@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@android:id/secondaryProgress">
+        <shape
+                android:shape="oval"
+                android:useLevel="true">
+
+            <gradient
+                    android:centerColor="@color/aqua"
+                    android:endColor="@color/aqua"
+                    android:startColor="@color/aqua"
+                    android:type="sweep" />
+            <size android:height="100dp" android:width="100dp"/>
+        </shape>
+    </item>
+</layer-list>

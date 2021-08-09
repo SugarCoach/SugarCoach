@@ -1,0 +1,197 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'kotlin-kapt'
+
+apply plugin: 'com.appspector.sdk'
+
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    defaultConfig {
+        applicationId "com.sugarcoach"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 19
+        versionName "1.0.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        debug {
+            buildConfigField("String", "BASE_URL", "\"http://ec2-13-59-253-95.us-east-2.compute.amazonaws.com:1337\"")
+        }
+        release {
+//            minifyEnabled true
+//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField("String", "BASE_URL", "\"http://www.mocky.io/v2\"")
+            buildConfigField("String", "API_KEY", "\"ABCXYZ123TEST\"")
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/ASL2.0'
+        exclude("META-INF/*.kotlin_module")
+    }
+}
+
+repositories {
+    maven {
+        url "https://maven.appspector.com/artifactory/android-sdk"
+    }
+}
+
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$rootProject.kotlin_version"
+
+    // android support libraries
+    implementation "androidx.appcompat:appcompat:$rootProject.supportLibraryVersion"
+    implementation "androidx.recyclerview:recyclerview:$rootProject.recyclerviewVersion"
+    implementation "androidx.cardview:cardview:$rootProject.cardviewVersion"
+    implementation "com.google.android.material:material:$rootProject.materialVersion"
+    implementation "androidx.vectordrawable:vectordrawable:$rootProject.vectordrawableVersion"
+    implementation "androidx.vectordrawable:vectordrawable-animated:$rootProject.vectordrawableAnimatedVersion"
+    implementation "androidx.constraintlayout:constraintlayout:$rootProject.constraintLayoutVersion"
+    implementation "com.google.android.material:material:$rootProject.materialVersion"
+
+    // network
+    implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$rootProject.retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$rootProject.retrofitVersion"
+    implementation "com.squareup.okhttp3:okhttp:$rootProject.okVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.loggingVersion"
+
+
+    // database
+    implementation "android.arch.persistence.room:rxjava2:$rootProject.roomDatabaseVersion"
+    kapt "android.arch.persistence.room:compiler:$rootProject.roomDatabaseVersion"
+
+    // font
+    implementation "uk.co.chrisjenx:calligraphy:$rootProject.calligraphyVersion"
+
+    // image
+    implementation "com.github.bumptech.glide:glide:$rootProject.glideVersion"
+
+    // parser
+    implementation "com.google.code.gson:gson:$rootProject.gsonVersion"
+
+    // debug database
+    debugImplementation "com.amitshekhar.android:debug-db:$rootProject.debugDBVersion"
+
+    // dependency injection
+    implementation "com.google.dagger:dagger:$rootProject.dagger2Version"
+    kapt "com.google.dagger:dagger-compiler:$rootProject.dagger2Version"
+    kapt "com.google.dagger:dagger-android-processor:$rootProject.dagger2Version"
+    implementation "com.google.dagger:dagger-android-support:$rootProject.dagger2Version"
+
+
+    // reactive
+    implementation "io.reactivex.rxjava2:rxjava:2.1.9"
+    implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxandroidVersion"
+
+    // code generator for view
+    implementation "com.jakewharton:butterknife:$rootProject.butterKnifeVersion"
+    kapt "com.jakewharton:butterknife-compiler:$rootProject.butterKnifeVersion"
+
+
+    // dependencies for local unit tests
+    testImplementation "junit:junit:$rootProject.ext.junitVersion"
+    testImplementation "org.mockito:mockito-core:$rootProject.mockitoVersion"
+    kaptTest "com.google.dagger:dagger-compiler:$rootProject.dagger2Version"
+
+    // UI Testing
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:$rootProject.espressoVersion"
+    androidTestImplementation "com.android.support.test.espresso:espresso-intents:$rootProject.espressoVersion"
+    androidTestImplementation "org.mockito:mockito-core:$rootProject.mockitoVersion"
+    kaptAndroidTest "com.google.dagger:dagger-compiler:$rootProject.dagger2Version"
+
+    // Android Kotlin Extension
+    implementation "androidx.core:core-ktx:$rootProject.androidKTXVersion"
+
+    //Facebook
+    implementation "com.facebook.android:facebook-login:$rootProject.facebookVersion"
+
+    //google
+    implementation "com.google.android.gms:play-services-auth:$rootProject.googleVersion"
+    implementation 'com.google.android.gms:play-services-vision:20.0.0'
+    implementation 'androidmads.library.qrgenearator:QRGenearator:1.0.4'
+    implementation project(':barcode-reader')
+
+    //view pager indicador
+    implementation "com.github.mazenrashed:DotsIndicatorWithoutViewpager:$rootProject.dotsVersion"
+
+    //emoji
+    implementation "com.github.andob:emojilike-android:$rootProject.emojiVersion"
+    implementation "com.github.skydoves:submarine:1.0.1"
+
+    //jodatime
+    implementation "joda-time:joda-time:2.10.4"
+
+    //Calendar Picker
+    implementation 'com.wdullaer:materialdatetimepicker:4.2.3'
+
+    //Expandable layout
+    implementation "com.github.skydoves:expandablelayout:1.0.1"
+
+    implementation 'com.izikode.izilib:accordionrecycler:0.5'
+
+
+    implementation 'com.aminography:choosephotohelper:1.0.4'
+
+    implementation 'com.github.tiper:MaterialSpinner:1.4.0'
+
+    implementation 'com.daimajia.easing:library:2.1@aar'
+    implementation 'com.daimajia.androidanimations:library:2.3@aar'
+
+    implementation 'com.appspector:android-sdk:1.2.1'
+
+
+    implementation "com.github.IslamKhSh:CardSlider:$rootProject.carouselVersion"
+
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+
+    implementation "com.github.skydoves:powerspinner:1.1.0"
+
+    implementation 'com.aminography:primedatepicker:1.1.0'
+    
+    implementation 'com.aminography:primecalendar:1.2.21'
+
+    implementation 'ru.egslava:MaskedEditText:1.0.5'
+    implementation 'com.google.firebase:firebase-analytics:17.4.1'
+
+    implementation 'com.github.kushalgupta0565:ExpandableRecyclerView:1.0.1'
+    implementation 'eu.bolt:screenshotty-rx:1.0.3'
+    implementation 'com.github.Chrisvin:LiquidSwipe:1.3'
+
+
+
+
+
+
+
+
+
+}
+
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.firebase.crashlytics'

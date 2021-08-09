@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#00DDBF</color>
+    <color name="colorPrimaryDark">#000</color>
+    <color name="colorAccent">#00DDBF</color>
+    <color name="shadow">#d0d8dc</color>
+    <color name="white">#FFFFFF</color>
+    <color name="google">#d34836</color>
+
+    //sugar
+    <color name="yellow">#FEB900</color>
+    <color name="rose">#ff4fbe</color>
+    <color name="aqua">#00DDBF</color>
+    <color name="purple">#CF74FF</color>
+    <color name="purpleDark">#c860ff</color>
+    <color name="blue">#00BCF2</color>
+    <color name="gray">#D7D7D7</color>
+    <color name="gray_letter">#c4c6ca</color>
+    <color name="gray_border">#c5c7cb</color>
+    <color name="light_gray">#c9cacf</color>
+    <color name="switchTrack">#4ED0F7</color>
+    <color name="switchAquaTrack">#7feedf</color>
+    <color name="pink">#ff4fbe</color>
+    <color name="blueDark">#2c5f9f</color>
+    <color name="fb">#295ca3</color>
+    <color name="twitter">#00bcf2</color>
+    <color name="red">#f44336</color>
+    <color name="yellowLight">#ffd54f</color>
+    <color name="green">#4caf50</color>
+    <color name="grayDark">#4b4b4b</color>
+    <color name="greyConfig">#ccdce2</color>
+    <color name="black">#000</color>
+</resources>

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools" android:orientation="vertical"
+              android:background="@color/white"
+              android:fitsSystemWindows="true"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/constraintLayout"
+            android:background="@color/white">
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="80dp"
+                style="@style/TextStyle.Date"
+                android:gravity="center"
+                android:layout_height="43dp"
+                android:id="@+id/detail_date_txt"
+                android:background="@drawable/date_right_bg"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+        <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                style="@style/TextStyle.Date"
+                android:gravity="center"
+                android:paddingLeft="5dp"
+                android:minWidth="80dp"
+                android:layout_height="43dp"
+                android:id="@+id/detail_time_txt"
+                android:background="@drawable/date_left_bg"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="0dp" app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:background="@color/white"
+                android:id="@+id/linearLayout4"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginTop="50dp" app:layout_constraintTop_toTopOf="parent">
+            <androidx.core.widget.NestedScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" android:fillViewport="true">
+                <LinearLayout android:layout_width="match_parent"
+                              android:layout_height="match_parent"
+                              android:orientation="vertical"
+                              android:layout_marginRight="5dp"
+                              android:layout_marginLeft="5dp">
+                    <LinearLayout android:layout_width="match_parent"
+                                  android:orientation="vertical"
+                                  android:id="@+id/daily_detail_ll"
+                                  android:paddingBottom="5dp"
+                                  android:paddingTop="5dp"
+                                  android:layout_height="match_parent" android:padding="5dp">
+                        <androidx.appcompat.widget.AppCompatTextView
+                                android:text="@string/daily_detail_gluc"
+                                style="@style/TextStyle.Heading"
+                                android:layout_gravity="center"
+                                android:id="@+id/detail_title"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="20dp" android:gravity="center" android:textColor="@color/yellow"
+                                android:layout_marginBottom="10dp"/>
+                        <androidx.cardview.widget.CardView
+                                android:layout_width="140dp"
+                                app:cardBackgroundColor="@color/blue"
+                                app:cardCornerRadius="10dp"
+                                app:cardElevation="2dp"
+                                app:cardPreventCornerOverlap="true"
+                                android:layout_height="70dp"
+                                app:layout_constraintStart_toEndOf="@+id/daily_date_txt"
+                                app:layout_constraintEnd_toStartOf="@+id/daily_time_txt"
+                                app:layout_constraintTop_toBottomOf="@+id/daily_date_txt"
+                                android:layout_gravity="right" android:layout_marginRight="10dp"
+                                android:layout_marginEnd="10dp">
+                            <LinearLayout
+                                    android:orientation="vertical"
+                                    android:layout_width="match_parent"
+                                    android:gravity="center"
+                                    android:id="@+id/detail_date_layout"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp">
+                                <androidx.appcompat.widget.AppCompatTextView
+                                        android:text="@string/daily_detail_date"
+                                        style="@style/TextStyle.Heading"
+                                        android:layout_gravity="center"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="16dp" android:gravity="center"/>
+                                <androidx.appcompat.widget.AppCompatTextView
+                                        style="@style/TextStyle.Heading"
+                                        android:layout_gravity="center"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="22dp" android:gravity="center"
+                                        android:id="@+id/detail_date_tv" android:layout_marginTop="10dp"
+                                        android:layout_marginBottom="5dp"/>
+
+                            </LinearLayout>
+                        </androidx.cardview.widget.CardView>
+                        <com.github.mikephil.charting.charts.BarChart
+                                android:id="@+id/detail_insulina"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:visibility="visible"
+                                android:layout_marginTop="10dp"/>
+                        <com.github.mikephil.charting.charts.PieChart
+                                android:id="@+id/detail_glucemia"
+                                android:visibility="gone"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="10dp"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.core.widget.NestedScrollView>
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
