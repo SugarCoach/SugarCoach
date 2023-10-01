@@ -95,8 +95,6 @@ class MainActivity : BaseActivity(), MainView {
     }
     override fun setUser(user: User) {
         main_username_txt.text = user.username
-        main_pts_txt.text = user.points + " "+ "pts"
-        main_nivel_txt.text = user.level
         user.avatar?.let {
             main_userimg_iv.setImageDrawable(getDrawable(resIdByName(it, "drawable")))
         }

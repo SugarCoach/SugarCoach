@@ -91,7 +91,7 @@ class SignPresenter <V : SignView, I : SignInteractorImp> @Inject internal const
     private fun googleSuccess(task: Task<GoogleSignInAccount>){
         val account = task.getResult(ApiException::class.java)
         val token: String? = account?.idToken
-        Log.e("token", token)
+        Log.e("token", token!!)
         getView()?.showProgress()
         interactor?.let {
             compositeDisposable.add(it.doGoogleLoginApiCall(token)

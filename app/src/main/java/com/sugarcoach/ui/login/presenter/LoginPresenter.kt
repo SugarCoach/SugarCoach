@@ -197,7 +197,7 @@ class LoginPresenter  <V : LoginView, I : LoginInteractorImp> @Inject internal c
     override fun activityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (resultCode == Activity.RESULT_OK) {
             if (requestCode == barcodeREQUEST && data != null) {
-                val barcode: Barcode = data.getParcelableExtra (BarcodeReaderActivity.KEY_CAPTURED_BARCODE)
+                val barcode: Barcode = data.getParcelableExtra (BarcodeReaderActivity.KEY_CAPTURED_BARCODE)!!
                 when (barcode.displayValue) {
                     "sugar" -> {
                         onLogin("n@n.com", "1", true,false)

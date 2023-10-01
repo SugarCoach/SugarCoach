@@ -2,7 +2,6 @@ package com.sugarcoach.ui.register.interactor
 
 import com.sugarcoach.data.database.repository.dailyregister.*
 import com.sugarcoach.data.database.repository.treament.*
-import com.sugarcoach.data.database.repository.user.User
 import com.sugarcoach.data.database.repository.user.UserRepo
 import com.sugarcoach.data.network.*
 import com.sugarcoach.data.ui.base.interactor.BaseInteractor
@@ -34,10 +33,6 @@ class RegisterInteractor @Inject constructor(private val treamentRepo: TreamentR
 
     override fun isDailyEmpty(): Observable<Boolean> {
         return Observable.just(dailyRepoHelper.isRegisterRepoEmpty())
-    }
-
-    override fun updateUser(user: User): Observable<Boolean> {
-        return userHelper.updateUser(user)
     }
 
     override fun insertDaily(dailyRegister: DailyRegister): Observable<Boolean> {

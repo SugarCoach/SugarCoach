@@ -5,33 +5,37 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.inputmethod.EditorInfo
 import android.widget.Toast
+import com.sugarcoach.R
+import com.sugarcoach.data.database.repository.user.User
+import com.sugarcoach.ui.base.view.BaseActivity
+import com.sugarcoach.ui.register.interactor.RegisterInteractorImp
+import com.sugarcoach.ui.register.presenter.RegisterPresenterImp
+import com.sugarcoach.util.AppConstants
+import kotlinx.android.synthetic.main.activity_register.*
+import javax.inject.Inject
+import android.os.Handler
+import android.view.LayoutInflater
+import android.view.inputmethod.EditorInfo
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
-import com.sugarcoach.R
 import com.sugarcoach.data.database.repository.dailyregister.Category
-import com.sugarcoach.data.database.repository.user.User
-import com.sugarcoach.ui.base.view.BaseActivity
 import com.sugarcoach.ui.daily.view.DailyActivity
 import com.sugarcoach.ui.main.view.MainActivity
-import com.sugarcoach.ui.register.interactor.RegisterInteractorImp
-import com.sugarcoach.ui.register.presenter.RegisterPresenterImp
 import com.sugarcoach.ui.treatment.view.TreatmentActivity
-import com.sugarcoach.util.AppConstants
 import com.sugarcoach.util.extensions.resIdByName
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog
-import kotlinx.android.synthetic.main.activity_register.*
+import kotlinx.android.synthetic.main.activity_register.dailyRegister
+import kotlinx.android.synthetic.main.activity_register.home
+import kotlinx.android.synthetic.main.activity_register.statistics
 import kotlinx.android.synthetic.main.dialog_comentary.view.*
 import kotlinx.android.synthetic.main.dialog_congratulation.view.*
 import kotlinx.android.synthetic.main.dialog_emotions.view.*
 import java.text.SimpleDateFormat
 import java.util.*
-import javax.inject.Inject
 
 
 class RegisterActivity : BaseActivity(), RegisterView, TimePickerDialog.OnTimeSetListener, DatePickerDialog.OnDateSetListener {
@@ -64,8 +68,6 @@ class RegisterActivity : BaseActivity(), RegisterView, TimePickerDialog.OnTimeSe
     lateinit var dialogComment: AlertDialog
 
     lateinit var user: User
-
-    var enable:Boolean = true
 
 
 
@@ -283,8 +285,6 @@ class RegisterActivity : BaseActivity(), RegisterView, TimePickerDialog.OnTimeSe
     override fun getUserData(user: User) {
         this.user = user
         register_username_txt.setText(user.username)
-        register_pts_txt.setText(user.points)
-        register_level_txt.setText(user.level)
         user.avatar?.let {
             register_userimg_iv.setImageDrawable(getDrawable(resIdByName(it, "drawable")))
         }
@@ -392,21 +392,13 @@ class RegisterActivity : BaseActivity(), RegisterView, TimePickerDialog.OnTimeSe
         register_again_iv.setOnClickListener {
             presenter.backLoad() }
         register_completed_iv.setOnClickListener {
-            if(enable)
-            {
-                presenter.finishLoad()
-            }
-            else{
-                Toast.makeText(this, getString(R.string.time_future_warning),Toast.LENGTH_SHORT).show()
-            }
-        }
+            presenter.finishLoad() }
         register_comentario.setOnClickListener { createDialogComment() }
         register_time_txt.setOnClickListener { presenter.showTimeDialog(supportFragmentManager, this) }
         register_date_txt.setOnClickListener { presenter.showDateDialog(supportFragmentManager, this) }
         register_value_txt.setOnEditorActionListener { v, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_DONE){
-                var value =register_value_txt.text.toString().replace(",",".")
-                presenter.checkValue(value.toFloat())
+                presenter.checkValue(register_value_txt.text.toString().toFloat())
             }
             false
         }
@@ -455,26 +447,6 @@ class RegisterActivity : BaseActivity(), RegisterView, TimePickerDialog.OnTimeSe
         dialog = builder.create()
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         view.congratulation_pts_txt.text = "+100"
-
-        val totalPoints = user.points!!.toInt() + Integer.valueOf(view.congratulation_pts_txt.text.toString())
-        var level = user.level
-
-        view.congratulation_pts_total_txt.text = totalPoints.toString()
-
-        when
-        {
-            totalPoints > 1850 -> {level = "Space Cadet"}
-
-            totalPoints > 3700 -> {level = "Rocket Captain"}
-
-            totalPoints > 7400 -> {level = "Startrek Voyayer"}
-
-            totalPoints > 14800 -> {level = "Future Traveller"}
-
-            totalPoints > 29600 -> {level = "Quarks Master "}
-        }
-        presenter.updateUser(totalPoints.toString(), level)
-
         user.avatar?.let {
             view.congratulation_avatar.setImageDrawable(getDrawable(resIdByName(it, "drawable")))
         }
@@ -486,11 +458,13 @@ class RegisterActivity : BaseActivity(), RegisterView, TimePickerDialog.OnTimeSe
     private fun createDialogComment(){
         val view = LayoutInflater.from(this).inflate(R.layout.dialog_comentary, null)
         val builder = AlertDialog.Builder(this)
+        builder.setCancelable(false)
         builder.setView(view)
         dialogComment = builder.create()
         dialogComment.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         view.comentary_save.setOnClickListener{
             presenter.saveComment(view.comentary_value.text.toString())
+            register_comentario_tv.text = view.comentary_value.text.toString()
             dialogComment.dismiss()
         }
         dialogComment.show()
@@ -544,20 +518,8 @@ class RegisterActivity : BaseActivity(), RegisterView, TimePickerDialog.OnTimeSe
         register_med_txt.selectItemByIndex(medition-1)
         val formatterTime = SimpleDateFormat("hh:mm a", Locale.getDefault())
         val formattedTime = formatterTime.format(value)
-        val parser = SimpleDateFormat("dd.MM.YYYY HH:mm:ss.SSS", Locale.getDefault())
-        val date = parser.format(value)
-        val currentDate = SimpleDateFormat("dd.MM.YYYY HH:mm:ss.SSS", Locale.getDefault()).format(Date())
-        if(date > currentDate)
-        {
-            enable= false
-            register_time_txt.text = formattedTime
-            Toast.makeText(this, getString(R.string.register_time_future),Toast.LENGTH_SHORT).show()
-        }
-        else {
-            enable = true
-            register_time_txt.text = formattedTime
-            Toast.makeText(this, getString(R.string.register_time_warning),Toast.LENGTH_SHORT).show()
-        }
+        register_time_txt.text = formattedTime
+        Toast.makeText(this, getString(R.string.register_time_warning),Toast.LENGTH_SHORT).show()
     }
 
     override fun setDate(value: Date) {

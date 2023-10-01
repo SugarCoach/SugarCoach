@@ -104,18 +104,16 @@ class ProfilePresenter <V : ProfileView, I : ProfileInteractorImp> @Inject inter
         getView()?.setAvatars(items)
         getUser()
     }
-    override fun updateAll(name: String?,weight: Float?,height: Float?,username: String?,mail: String?, points:String?, level:String?) {
+    override fun updateAll(name: String?,weight: Float?,height: Float?,username: String?,mail: String?) {
         user.name = name!!.toString()
         user.weight = weight!!.toFloat()
         user.height = height!!.toFloat()
         user.username = username!!.toString()
         user.email = mail!!.toString()
-        user.level = level
-        user.points = points
         interactor?.let {
             compositeDisposable.add(it.updateUser(user)
                 .compose(schedulerProvider.ioToMainObservableScheduler())
-                .subscribe({
+                .subscribe({ getView()?.showSuccessToast()
                 }, { throwable ->
                     showException(throwable)
                 })

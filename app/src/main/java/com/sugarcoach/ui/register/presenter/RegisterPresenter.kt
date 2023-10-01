@@ -32,7 +32,6 @@ import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import org.joda.time.LocalDate
 import org.joda.time.LocalDateTime
 import org.joda.time.LocalTime
 import org.joda.time.format.DateTimeFormat
@@ -112,20 +111,6 @@ class RegisterPresenter<V : RegisterView, I : RegisterInteractorImp> @Inject int
 
         }
 
-    }
-
-    override fun updateUser(points: String?,level: String?) {
-        user.points = points
-        user.level = level
-        interactor?.let {
-            compositeDisposable.add(it.updateUser(user)
-                .compose(schedulerProvider.ioToMainObservableScheduler())
-                .subscribe({ getView()?.showSuccessToast()
-                }, { throwable ->
-                    showException(throwable)
-                })
-            )
-        }
     }
 
     private fun getUser() = interactor?.let {
@@ -384,7 +369,7 @@ class RegisterPresenter<V : RegisterView, I : RegisterInteractorImp> @Inject int
         val midnight = LocalTime(0,0)
         val midnightEnd = LocalTime(5,59)
 
-        if (date == null || LocalDate(date) != currentDate.toLocalDate()){
+        if (date == null){
             when {
                 timeBetween(currentDate.toLocalTime(), breakfast, breakfastEnd) -> {
                     index = breakfastId
@@ -534,8 +519,8 @@ class RegisterPresenter<V : RegisterView, I : RegisterInteractorImp> @Inject int
         choosePhotoHelper = ChoosePhotoHelper.with(context)
             .asFilePath()
             .build(ChoosePhotoCallback {
-                photo = it
-                getView()?.setImage(it)
+                photo = it!!
+                getView()?.setImage(it!!)
             })
     }
 

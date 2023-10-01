@@ -110,7 +110,6 @@
                 android:layout_marginRight="20dp"
                 android:layout_marginBottom="16dp"
                 android:text="@string/profile_logout_label"
-                android:visibility="gone"
                 android:id="@+id/profile_logout_iv"
                 app:layout_constraintBottom_toTopOf="@+id/nestedScrollView2"/>
 

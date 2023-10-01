@@ -36,7 +36,6 @@ interface RegisterPresenterImp<V : RegisterView, I : RegisterInteractorImp> : Pr
     fun goToActivityMain()
     fun goToActivityStatistic()
     fun goToActivityTreament()
-    fun updateUser(points:String?, level: String?)
 
 
 

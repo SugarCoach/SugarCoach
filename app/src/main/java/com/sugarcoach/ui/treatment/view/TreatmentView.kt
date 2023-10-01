@@ -1,6 +1,5 @@
 package com.sugarcoach.ui.treatment.view
 
-import android.net.Uri
 import com.sugarcoach.data.database.repository.treament.TreatmentBasalCorrectora
 import com.sugarcoach.data.database.repository.user.User
 import com.sugarcoach.ui.base.view.BaseView
@@ -22,12 +21,11 @@ interface TreatmentView : BaseView {
     fun setBasalHoras(horas: List<BasalHoraItem>)
     fun getLabel(name: String): String
     fun openDailyActivity()
-    fun openRegisterActivity()
     fun openMainActivity()
     fun openStatisticActivity()
     fun setMedidor(basalInsuline: List<BasalItem>)
     fun setBomba(basalInsuline: List<BasalItem>)
     fun showDataSave()
-    fun sharedScreenShot(uri: Uri)
+
 
 }

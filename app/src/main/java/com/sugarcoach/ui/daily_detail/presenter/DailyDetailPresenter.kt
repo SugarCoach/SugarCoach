@@ -547,7 +547,7 @@ class DailyDetailPresenter<V : DailyDetailView, I : DailyDetailInteractorImp> @I
             .asFilePath()
             .build(ChoosePhotoCallback {
                 updatePhoto(it)
-                getView()?.setImage(it)
+                getView()?.setImage(it!!)
             })
     }
 

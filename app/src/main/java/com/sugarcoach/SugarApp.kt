@@ -1,7 +1,7 @@
 package com.sugarcoach
 
 import android.app.Application
-import com.appspector.sdk.AppSpector
+//import com.appspector.sdk.AppSpector
 import com.sugarcoach.di.component.DaggerAppComponent
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
@@ -20,10 +20,10 @@ class SugarApp : Application(), HasAndroidInjector {
             .application(this)
             .build()
             .inject(this)
-        AppSpector
+        /*AppSpector
             .build(this)
             .withDefaultMonitors()
-            .run("android_MTQ4MjQ0ZjEtZjFiNS00MmI3LWJjZWYtMzg2Y2I4OTJjYmY2");
+            .run("android_MTQ4MjQ0ZjEtZjFiNS00MmI3LWJjZWYtMzg2Y2I4OTJjYmY2");*/
     }
 
 }

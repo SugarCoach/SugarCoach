@@ -140,7 +140,6 @@ class DailyDetailActivity : BaseActivity(), DailyDetailView, TimePickerDialog.On
         val formattedTime = formatterTime.format(daily.created)
         daily_detail_time_tv.text =(formattedTime)
         daily_detail_date_tv.text = (formattedDate)
-        daily_detail_comment.text = daily.comment
         daily_detail_img_empty_ll.visibility = View.VISIBLE
         daily_detail_img.visibility = View.GONE
         daily.photo?.let {

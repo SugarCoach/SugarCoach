@@ -213,24 +213,66 @@ class MainPresenter<V : MainView, I : MainInteractorImp> @Inject internal constr
         val midnight = LocalTime(0,0)
         val midnightEnd = LocalTime(5,59)
 
-        when {
+        if (date == null){
+            when {
 
-            timeBetween(currentDate.toLocalTime(), breakfast, breakfastEnd) -> {
-                getView()?.setMedition(breakfastname)
+                timeBetween(currentDate.toLocalTime(), breakfast, breakfastEnd) -> {
+                    getView()?.setMedition(breakfastname )
+
+                }
+
+                timeBetween(currentDate.toLocalTime(),lunch, lunchEnd) ->{
+                    getView()?.setMedition(lunchname)
+                }
+
+                timeBetween(currentDate.toLocalTime(),snack,snackEnd) ->{
+                    getView()?.setMedition(snackname)
+                }
+
+
+                timeBetween(currentDate.toLocalTime(),dinner, dinnerEnd) ||  timeBetween(currentDate.toLocalTime(), midnight, midnightEnd) -> {
+                    getView()?.setMedition(dinnername)
+                }
 
             }
-
-            timeBetween(currentDate.toLocalTime(),lunch, lunchEnd) ->{
-                getView()?.setMedition(lunchname)
-            }
-
-            timeBetween(currentDate.toLocalTime(),snack,snackEnd) ->{
-                getView()?.setMedition(snackname)
-            }
-
-
-            timeBetween(currentDate.toLocalTime(),dinner, dinnerEnd) ||  timeBetween(currentDate.toLocalTime(), midnight, midnightEnd) -> {
-                getView()?.setMedition(dinnername)
+        }else{
+            when{
+                dailyRegister?.category_id == breakfastId && timeBetween(currentDate.toLocalTime(), breakfast, breakfastEnd)-> {
+                    getView()?.setMedition(pbreakfastname)
+                }
+                ( dailyRegister?.category_id == breakfastId || dailyRegister?.category_id == pbreakfastId) && timeBetween(currentDate.toLocalTime(),lunch, lunchEnd) -> {
+                    getView()?.setMedition(lunchname)
+                }
+                (dailyRegister?.category_id == breakfastId || dailyRegister?.category_id == pbreakfastId) && timeBetween(currentDate.toLocalTime(),snack,snackEnd) -> {
+                    getView()?.setMedition(snackname)
+                }
+                (dailyRegister?.category_id == breakfastId || dailyRegister?.category_id == pbreakfastId) &&  (timeBetween(currentDate.toLocalTime(),dinner, dinnerEnd) ||  timeBetween(currentDate.toLocalTime(), midnight, midnightEnd)) -> {
+                    getView()?.setMedition(dinnername)
+                }
+                dailyRegister?.category_id == lunchId && timeBetween(currentDate.toLocalTime(),lunch, lunchEnd) -> {
+                    getView()?.setMedition(plunchname)
+                }
+                (dailyRegister?.category_id == lunchId || dailyRegister?.category_id == plunchId) && timeBetween(currentDate.toLocalTime(),snack,snackEnd) -> {
+                    getView()?.setMedition(snackname)
+                }
+                (dailyRegister?.category_id == lunchId || dailyRegister?.category_id == plunchId) && (timeBetween(currentDate.toLocalTime(),dinner, dinnerEnd) ||  timeBetween(currentDate.toLocalTime(), midnight, midnightEnd))-> {
+                    getView()?.setMedition(dinnername)
+                }
+                dailyRegister?.category_id == snackId && timeBetween(currentDate.toLocalTime(),snack,snackEnd) -> {
+                    getView()?.setMedition(psnackname)
+                }
+                (dailyRegister?.category_id == snackId || dailyRegister?.category_id == psnackId) && (timeBetween(currentDate.toLocalTime(),dinner, dinnerEnd) ||  timeBetween(currentDate.toLocalTime(), midnight, midnightEnd)) -> {
+                    getView()?.setMedition(dinnername)
+                }
+                dailyRegister?.category_id == dinnerId && (timeBetween(currentDate.toLocalTime(),dinner, dinnerEnd) ||  timeBetween(currentDate.toLocalTime(), midnight, midnightEnd)) -> {
+                    getView()?.setMedition(pdinnername)
+                }
+                (dailyRegister?.category_id == dinnerId  || dailyRegister?.category_id == pdinnerId) && timeBetween(currentDate.toLocalTime(), breakfast, breakfastEnd) -> {
+                    getView()?.setMedition(breakfastname)
+                }
+                (dailyRegister?.category_id == pdinnerId) -> {
+                    getView()?.setMedition(breakfastname)
+                }
             }
 
         }

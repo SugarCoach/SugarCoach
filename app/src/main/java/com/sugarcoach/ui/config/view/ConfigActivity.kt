@@ -46,12 +46,12 @@ import androidmads.library.qrgenearator.QRGEncoder
 import androidx.core.app.ComponentActivity.ExtraData
 import androidx.core.content.ContextCompat.getSystemService
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import android.os.Build
 import android.os.Environment
 import android.text.TextWatcher
 import android.view.WindowManager
 import androidmads.library.qrgenearator.QRGSaver
 import androidx.annotation.NonNull
-import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import com.notbytes.barcode_reader.BarcodeReaderActivity
 import com.sugarcoach.ui.main.view.MainActivity
@@ -112,15 +112,10 @@ class ConfigActivity: BaseActivity(), ConfigView {
             config_upgrade.visibility = View.INVISIBLE
             config_type.text = getString(R.string.config_premium_label)
             config_control.isEnabled = true
-            config_control_title.setTextColor(ContextCompat.getColor(applicationContext, R.color.yellow))
             config_medico.isEnabled = true
-            config_medico_title.setTextColor(ContextCompat.getColor(applicationContext,R.color.purple))
             config_sms.isEnabled = true
-            config_sms_title.setTextColor(ContextCompat.getColor(applicationContext,R.color.blue))
             config_geo.isEnabled = true
-            config_geo_title.setTextColor(ContextCompat.getColor(applicationContext,R.color.pink))
             config_number.isEnabled = true
-
         }else{
             config_upgrade.visibility = View.VISIBLE
             config_type.text = getString(R.string.config_standard_label)
@@ -204,7 +199,7 @@ class ConfigActivity: BaseActivity(), ConfigView {
     private fun setOnClickListeners() {
         config_number.setOnEditorActionListener { v, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_DONE){
-                presenter.updateNumber(config_number.rawText)
+                presenter.updateNumber(config_number.text.toString())
             }
             false
         }
@@ -281,12 +276,11 @@ class ConfigActivity: BaseActivity(), ConfigView {
     fun dialogUpgrade() {
         val view = LayoutInflater.from(this).inflate(R.layout.dialog_codigo, null)
         val builder = AlertDialog.Builder(this)
-        val regex = "^(?=(?:[a-z]*\\d){3})(?=(?:\\d*[a-z]){3})\\w{6}\$".toRegex()
         builder.setView(view)
         dialog = builder.create()
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         view.premium_save.setOnClickListener{
-            if(view.premium_value.text.toString().isNotEmpty() && view.premium_value.text!!.length >= 6 && view.premium_value.text!!.matches(regex)) {
+            if(view.premium_value.text.toString().isNotEmpty()) {
                 presenter.updateType(view.premium_value.text.toString())
                 dialog.dismiss()
             }else{
@@ -341,7 +335,7 @@ class ConfigActivity: BaseActivity(), ConfigView {
         dialog.setMessage(msg)
             .setPositiveButton(getString(R.string.daily_detail_accept)) { paramDialogInterface, paramInt ->
                 var intent: Intent
-                if (android.os.Build.VERSION.SDK_INT >= 9) {
+                if (Build.VERSION.SDK_INT >= 9) {
                     /* on 2.3 and newer, use APPLICATION_DETAILS_SETTINGS with proper URI */
                     var packageURI = Uri.parse("package:" + packageName);
                     intent = Intent("android.settings.APPLICATION_DETAILS_SETTINGS", packageURI);

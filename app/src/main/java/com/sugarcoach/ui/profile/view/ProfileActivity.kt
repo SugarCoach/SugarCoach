@@ -34,7 +34,6 @@ import com.sugarcoach.ui.profile.presenter.ProfilePresenterImp
 import com.sugarcoach.util.extensions.resIdByName
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog
 import kotlinx.android.synthetic.main.activity_profile.*
-import kotlinx.android.synthetic.main.dialog_congratulation.view.*
 import kotlinx.android.synthetic.main.dialog_sex.view.*
 import kotlinx.android.synthetic.main.profile_item.*
 import org.joda.time.LocalDate
@@ -81,45 +80,6 @@ class ProfileActivity: BaseActivity(), ProfileView, DatePickerDialog.OnDateSetLi
     override fun showErrorToast() {
     }
 
-    private fun showDataSave() {
-        createDialogCongratulation()
-    }
-
-    private fun createDialogCongratulation(){
-        val view = LayoutInflater.from(this).inflate(R.layout.dialog_congratulation, null)
-        val builder = androidx.appcompat.app.AlertDialog.Builder(this)
-        builder.setCancelable(false)
-        builder.setView(view)
-        dialog = builder.create()
-        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        view.congratulation_pts_txt.text = "+100"
-        val totalPoints = user.points!!.toInt() + Integer.valueOf(view.congratulation_pts_txt.text.toString())
-        var level = user.level
-        view.congratulation_pts_total_txt.text = totalPoints.toString()
-        when
-        {
-            totalPoints > 1850 -> {level = "Space Cadet"}
-
-            totalPoints > 3700 -> {level = "Rocket Captain"}
-
-            totalPoints > 7400 -> {level = "Startrek Voyayer"}
-
-            totalPoints > 14800 -> {level = "Future Traveller"}
-
-            totalPoints > 29600 -> {level = "Quarks Master "}
-        }
-
-        user.avatar?.let {
-            view.congratulation_avatar.setImageDrawable(getDrawable(resIdByName(it, "drawable")))
-        }
-
-        presenter.updateAll(profile_name_tv.text.toString(),profile_weight_tv.text.toString().toFloat(),profile_height_tv.text.toString().toFloat(),profile_username_tv.text.toString(),profile_mail_tv.text.toString(), totalPoints.toString(), level )
-        view.congratulation_close.setOnClickListener { dialog.dismiss() }
-        dialog.setOnDismissListener { finish() }
-        dialog.show()
-
-    }
-
     override fun openLoginActivity() {
         val intent = Intent(this, LoginActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
@@ -134,8 +94,7 @@ class ProfileActivity: BaseActivity(), ProfileView, DatePickerDialog.OnDateSetLi
         profile_logout_iv.setOnClickListener { presenter.logout() }
         profile_save.setOnClickListener {
             hideMenu()
-            showDataSave()
-            }
+            presenter.updateAll(profile_name_tv.text.toString(),profile_weight_tv.text.toString().toFloat(),profile_height_tv.text.toString().toFloat(),profile_username_tv.text.toString(),profile_mail_tv.text.toString() ) }
         profile_shared.setOnClickListener {
             hideMenu()
             presenter.getScreenShot(this, profile_ll)

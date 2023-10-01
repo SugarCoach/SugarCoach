@@ -173,8 +173,8 @@
                                 android:paddingRight="5dp"
                                 android:id="@+id/config_sms_title"
                                 android:text="@string/config_sms_label"
-                                android:textColor="@color/gray_letter"
-                                android:textSize="12sp" />
+                                android:textColor="@color/blue"
+                                android:textSize="12dp" />
                         <LinearLayout
                                 android:layout_width="0dp"
                                 android:orientation="horizontal"
@@ -232,11 +232,10 @@
                 <FrameLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
-                    <br.com.sapereaude.maskedEditText.MaskedEditText
+                    <com.vicmikhailau.maskededittext.MaskedEditText
                             android:gravity="center|center_vertical"
                             android:background="@drawable/border_aqua"
                             android:inputType="phone"
-                            mask:allowed_chars="1234567890"
                             mask:mask="+## (###) ####-##-##"
                             android:textSize="15dp"
                             android:hint="0123456789012"
@@ -290,14 +289,14 @@
                                 android:layout_weight="0.50"
                                 android:gravity="center_vertical"
                                 android:drawableEnd="@drawable/info"
-                                android:drawableTint="@color/gray_letter"
+                                android:drawableTint="@color/pink"
                                 android:drawablePadding="4dp"
                                 android:paddingLeft="5dp"
                                 android:paddingRight="5dp"
                                 android:id="@+id/config_geo_title"
                                 android:text="@string/config_geolocalizacion_label"
-                                android:textColor="@color/gray_letter"
-                                android:textSize="12sp" />
+                                android:textColor="@color/pink"
+                                android:textSize="12dp" />
 
                         <LinearLayout
                                 android:layout_width="0dp"
@@ -376,12 +375,12 @@
                         <TextView
                                 style="@style/TextStyle.Heading"
                                 android:gravity="center_vertical"
-                                android:textSize="12sp"
-                                android:textColor="@color/gray_letter"
+                                android:textSize="12dp"
+                                android:textColor="@color/yellow"
                                 android:layout_width="0dp"
                                 android:layout_weight="0.50"
                                 android:drawableEnd="@drawable/info"
-                                android:drawableTint="@color/gray_letter"
+                                android:drawableTint="@color/yellow"
                                 android:drawablePadding="4dp"
                                 android:paddingLeft="5dp"
                                 android:paddingRight="5dp"
@@ -442,7 +441,7 @@
                         <TextView
                                 style="@style/TextStyle.Heading"
                                 android:gravity="center_vertical"
-                                android:textSize="12sp"
+                                android:textSize="12dp"
                                 android:textColor="@color/yellow"
                                 android:layout_width="0dp"
                                 android:layout_weight="0.50"
@@ -499,12 +498,12 @@
                             <TextView
                                     style="@style/TextStyle.Heading"
                                     android:gravity="center_vertical"
-                                    android:textSize="12sp"
-                                    android:textColor="@color/gray_letter"
+                                    android:textSize="12dp"
+                                    android:textColor="@color/purple"
                                     android:layout_width="0dp"
                                     android:layout_weight="0.50"
                                     android:drawableEnd="@drawable/info"
-                                    android:drawableTint="@color/gray_letter"
+                                    android:drawableTint="@color/purple"
                                     android:drawablePadding="4dp"
                                     android:paddingLeft="5dp"
                                     android:paddingRight="5dp"

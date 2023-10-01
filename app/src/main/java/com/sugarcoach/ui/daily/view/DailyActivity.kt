@@ -1,5 +1,6 @@
 package com.sugarcoach.ui.daily.view
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.os.Bundle
@@ -8,6 +9,7 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.hominoid.expandablerecyclerviewlib.listener.GroupExpandCollapseListener
 import com.hominoid.expandablerecyclerviewlib.models.ExpandableListItem
 import com.sugarcoach.R
 import com.sugarcoach.data.database.repository.user.User
@@ -86,10 +88,7 @@ class DailyActivity : BaseActivity(), DailyView {
     override fun getRegisters(registers: MutableList<ExpandableListItem<DailyHeader, DailyItem>>) {
         dailyAdapter = DailyAdapter(this,registers)
         daily_list.adapter = dailyAdapter
-        //dailyAdapter.toggleGroup(0)
-        for (i in dailyAdapter.groups.size - 1 downTo 0) {
-            dailyAdapter.toggleGroup(i)
-        }
+        dailyAdapter.toggleGroup(0)
         hideProgress()
     }
 

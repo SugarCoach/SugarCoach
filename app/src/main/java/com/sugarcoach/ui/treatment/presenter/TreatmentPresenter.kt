@@ -1,20 +1,7 @@
 package com.sugarcoach.ui.treatment.presenter
 
-import android.Manifest
-import android.app.Activity
-import android.content.Context
-import android.content.pm.PackageManager
-import android.graphics.Bitmap
-import android.graphics.Canvas
-import android.graphics.Color
-import android.net.Uri
-import android.provider.MediaStore
-import android.view.View
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import com.sugarcoach.R
 import com.sugarcoach.data.database.repository.treament.*
-import com.sugarcoach.data.database.repository.user.User
 import com.sugarcoach.ui.base.presenter.BasePresenter
 import com.sugarcoach.ui.treatment.interactor.TreatmentInteractorImp
 import com.sugarcoach.ui.treatment.view.BasalHoraItem
@@ -26,7 +13,6 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import org.joda.time.LocalDateTime
 import org.joda.time.LocalTime
-import java.io.ByteArrayOutputStream
 import javax.inject.Inject
 
 class TreatmentPresenter<V : TreatmentView, I : TreatmentInteractorImp> @Inject internal constructor(interactor: I, schedulerProvider: SchedulerProvider, disposable: CompositeDisposable) : BasePresenter<V, I>(interactor = interactor, schedulerProvider = schedulerProvider, compositeDisposable = disposable),
@@ -36,8 +22,6 @@ class TreatmentPresenter<V : TreatmentView, I : TreatmentInteractorImp> @Inject 
     lateinit var treament:Treament
     lateinit var correctora: TreamentCorrectoraHorarios
     lateinit var basal:TreamentHorarios
-    val permissionRequest = 1
-    lateinit var user:User
 
     override fun saveAll(obj: Float, hipo: Float, hyper: Float) {
         treament.object_glucose = obj
@@ -55,20 +39,6 @@ class TreatmentPresenter<V : TreatmentView, I : TreatmentInteractorImp> @Inject 
             )
         }
     }
-
-    override fun updateUser(points: String?,level: String?) {
-        user.points = points
-        user.level = level
-        interactor?.let {
-            compositeDisposable.add(it.updateUser(user)
-                .compose(schedulerProvider.ioToMainObservableScheduler())
-                .subscribe({ getView()?.showSuccessToast()
-                }, { throwable ->
-                    showException(throwable)
-                })
-            )
-        }
-    }
     override fun saveCorrectoraGlu(correctora: Float) {
         treament.correctora = correctora
     }
@@ -80,10 +50,6 @@ class TreatmentPresenter<V : TreatmentView, I : TreatmentInteractorImp> @Inject 
         getView()?.openDailyActivity()
     }
 
-    override fun goToActivityRegister() {
-        getView()?.openRegisterActivity()
-    }
-
     override fun goToActivityMain() {
         getView()?.openMainActivity()
     }
@@ -92,34 +58,6 @@ class TreatmentPresenter<V : TreatmentView, I : TreatmentInteractorImp> @Inject 
         getView()?.openStatisticActivity()
     }
 
-    override fun getScreenShot(context: Activity, view: View) {
-        if (checkAndRequestPermissions(context)){
-            val bitmap = getScreenShotImage(view)
-            val uri = getImageUri(context, bitmap)
-            getView()?.sharedScreenShot(uri)
-        }
-    }
-
-
-    override fun checkAndRequestPermissions(context: Activity): Boolean {
-        val readpermission = ContextCompat.checkSelfPermission(context, Manifest.permission.READ_EXTERNAL_STORAGE)
-        val writepermission = ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-
-
-        val listPermissionsNeeded = java.util.ArrayList<String>()
-
-        if (readpermission != PackageManager.PERMISSION_GRANTED) {
-            listPermissionsNeeded.add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-        }
-        if (writepermission != PackageManager.PERMISSION_GRANTED) {
-            listPermissionsNeeded.add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-        }
-        if (!listPermissionsNeeded.isEmpty()) {
-            ActivityCompat.requestPermissions(context, listPermissionsNeeded.toTypedArray(), permissionRequest)
-            return false
-        }
-        return true
-    }
 
     override fun saveBasal(item: BasalItem) {
         treament.basal_id = item.id
@@ -134,7 +72,6 @@ class TreatmentPresenter<V : TreatmentView, I : TreatmentInteractorImp> @Inject 
             compositeDisposable.add(it.editBasalCategory(basal)
                 .compose(schedulerProvider.ioToMainObservableScheduler())
                 .subscribe({ getView()?.showSuccessToast()
-                    getTotalBasalUpdateScreen()
                 }, { throwable ->
                     showException(throwable)
                 })
@@ -285,19 +222,6 @@ class TreatmentPresenter<V : TreatmentView, I : TreatmentInteractorImp> @Inject 
         getCategoriesCorrectora()
         getBasalHoras()
     }
-
-    override fun getTotalBasalUpdateScreen(){
-        interactor?.let {
-            compositeDisposable.add(it.getAverageBasal()
-                .compose(schedulerProvider.ioToMainSingleScheduler())
-                .subscribe({ average ->
-                    getView()?.let {
-                        it.setPromedioBasal(average.total)
-                    }
-                }, { err -> println(err) })
-            )
-        }
-    }
     private fun getTreatment() {
         interactor?.let {
             compositeDisposable.add(it.getTreatment()
@@ -312,31 +236,6 @@ class TreatmentPresenter<V : TreatmentView, I : TreatmentInteractorImp> @Inject 
                 }, { err -> println(err) })
             )
         }
-    }
-
-
-    private fun getScreenShotImage(view: View): Bitmap {
-        val returnedBitmap = Bitmap.createBitmap(view.width, view.height, Bitmap.Config.ARGB_8888)
-        val canvas = Canvas(returnedBitmap)
-        val bgDrawable = view.background
-        if (bgDrawable != null) bgDrawable.draw(canvas)
-        else canvas.drawColor(Color.WHITE)
-        view.draw(canvas)
-        return returnedBitmap
-    }
-
-    private fun getImageUri(context: Context, inImage: Bitmap): Uri {
-        val bytes = ByteArrayOutputStream()
-        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
-        val path = MediaStore.Images.Media.insertImage(context.getContentResolver(), inImage, getRandomString(10), null)
-        return Uri.parse(path)
-    }
-
-    private fun getRandomString(length: Int) : String {
-        val allowedChars = "ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz1234567890"
-        return (1..length)
-            .map { allowedChars.random() }
-            .joinToString("")
     }
 
     private fun getUser() {
@@ -387,7 +286,6 @@ class TreatmentPresenter<V : TreatmentView, I : TreatmentInteractorImp> @Inject 
         }
 
     }
-
     private fun getDataBasal(basal: List<BasalInsuline>) {
         val ret = ArrayList<BasalItem>()
         for (i in basal.indices) {
@@ -455,7 +353,7 @@ class TreatmentPresenter<V : TreatmentView, I : TreatmentInteractorImp> @Inject 
             .name(name!!)
             .selected(horarios[i].treamentHorarios!!.selected)
             .categoryId(horarios[i].treamentHorarios!!.category_id)
-            .units(horarios[i].treamentHorarios!!.units.toString())
+            .units(horarios[i].treamentHorarios!!.units.toInt().toString())
             .build()
 
         ret.add(data)
@@ -489,7 +387,7 @@ class TreatmentPresenter<V : TreatmentView, I : TreatmentInteractorImp> @Inject 
             val data = BasalHoraItem.Builder()
                 .id(horarios[i].id)
                 .name(name!!)
-                .units(horarios[i].units.toString())
+                .units(horarios[i].units.toInt().toString())
                 .build()
 
             ret.add(data)

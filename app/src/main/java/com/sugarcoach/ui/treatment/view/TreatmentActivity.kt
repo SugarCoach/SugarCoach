@@ -4,7 +4,6 @@ import android.content.Intent
 import android.graphics.Color
 import android.graphics.PorterDuff
 import android.graphics.drawable.ColorDrawable
-import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -24,15 +23,11 @@ import com.sugarcoach.data.database.repository.user.User
 import com.sugarcoach.ui.base.view.BaseActivity
 import com.sugarcoach.ui.daily.view.DailyActivity
 import com.sugarcoach.ui.main.view.MainActivity
-import com.sugarcoach.ui.register.view.RegisterActivity
 import com.sugarcoach.ui.statistics.view.StatisticsActivity
 import com.sugarcoach.ui.treatment.interactor.TreatmentInteractorImp
 import com.sugarcoach.ui.treatment.presenter.TreatmentPresenterImp
 import com.sugarcoach.util.extensions.resIdByName
-import kotlinx.android.synthetic.main.activity_daily_detail.*
 import kotlinx.android.synthetic.main.activity_treatment.*
-import kotlinx.android.synthetic.main.activity_treatment.home
-import kotlinx.android.synthetic.main.activity_treatment.statistics
 import kotlinx.android.synthetic.main.dialog_congratulation.view.*
 import kotlinx.android.synthetic.main.dialog_info.view.*
 import kotlinx.android.synthetic.main.dialog_treatment_save.view.*
@@ -95,8 +90,6 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
     var initialMedidor = false
     var initialBomba = false
     lateinit var user: User
-    var isFabOpen = false
-    var level:String ? =""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -149,16 +142,6 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
         }
     }
 
-
-    override fun sharedScreenShot(uri: Uri) {
-        val shareIntent: Intent = Intent().apply {
-            action = Intent.ACTION_SEND
-            putExtra(Intent.EXTRA_STREAM, uri)
-            type = "image/jpeg"
-        }
-        startActivity(Intent.createChooser(shareIntent, resources.getText(R.string.daily_detail_share)))
-    }
-
     override fun setPromColor(color: Int) {
         treatment_glu_prom_txt.setTextColor(ContextCompat.getColor(this,color))
     }
@@ -203,23 +186,6 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
         dialog = builder.create()
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         view.congratulation_pts_txt.text = "+100"
-        val totalPoints = user.points!!.toInt() + Integer.valueOf(view.congratulation_pts_txt.text.toString())
-        level = user.level
-        view.congratulation_pts_total_txt.text = totalPoints.toString()
-        when
-        {
-            totalPoints > 1850 -> {level = "Space Cadet"}
-
-            totalPoints > 3700 -> {level = "Rocket Captain"}
-
-            totalPoints > 7400 -> {level= "Startrek Voyayer"}
-
-            totalPoints > 14800 -> {level = "Future Traveller"}
-
-            totalPoints > 29600 -> {level = "Quarks Master "}
-        }
-        presenter.updateUser(totalPoints.toString(), level)
-
         user.avatar?.let {
             view.congratulation_avatar.setImageDrawable(getDrawable(resIdByName(it, "drawable")))
         }
@@ -275,7 +241,6 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
             if (!initialbasal) {
                 treatment_insu_txt.text = item.name
                 presenter.saveBasal(item)
-                presenter.getTotalBasalUpdateScreen()
             }else{
                 initialbasal = false
             }
@@ -343,47 +308,29 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
             false
         }
         treatment_glu_mayor_ud.setOnEditorActionListener { v, actionId, event ->
-            if (actionId == EditorInfo.IME_ACTION_DONE || actionId == EditorInfo.IME_ACTION_NEXT){
+            if (actionId == EditorInfo.IME_ACTION_DONE){
                 presenter.saveUnitCorrectora(treatment_glu_mayor_ud.text.toString().toFloat())
             }
             false
         }
         treatment_glu_mayor.setOnEditorActionListener { v, actionId, event ->
-            if (actionId == EditorInfo.IME_ACTION_DONE || actionId == EditorInfo.IME_ACTION_NEXT){
+            if (actionId == EditorInfo.IME_ACTION_DONE){
                 presenter.saveCorrectoraGlu(treatment_glu_mayor.text.toString().toFloat())
             }
             false
         }
         treatment_carbono_ud.setOnEditorActionListener { v, actionId, event ->
-            if (actionId == EditorInfo.IME_ACTION_DONE || actionId == EditorInfo.IME_ACTION_NEXT){
+            if (actionId == EditorInfo.IME_ACTION_DONE){
                 presenter.saveUnitInsulina(treatment_carbono_ud.text.toString().toFloat())
             }
             false
         }
         treatment_carbono.setOnEditorActionListener { v, actionId, event ->
-            if (actionId == EditorInfo.IME_ACTION_DONE || actionId == EditorInfo.IME_ACTION_NEXT){
+            if (actionId == EditorInfo.IME_ACTION_DONE){
                 presenter.saveCarbono(treatment_carbono.text.toString().toFloat())
             }
             false
         }
-
-        treatment_menu.setOnClickListener{
-            if (isFabOpen){
-                hideMenu()
-            }else{
-                showMenu()
-            }
-        }
-
-        treatment_shared.setOnClickListener {
-            hideMenu()
-            presenter.getScreenShot(this, treatment_ll)
-        }
-
-        treatment_edit.setOnClickListener {
-            presenter.updateAll()
-        }
-
         treatment_bomb.setOnCheckedChangeListener { buttonView, isChecked -> selectBomb(isChecked) }
         treatment_basal_title.setOnClickListener { v -> createDialogInfo(getString(R.string.info_insuline))  }
         treatment_ranges.setOnClickListener { v -> createDialogInfo(getString(R.string.info_objective))  }
@@ -398,7 +345,6 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
         home.setOnClickListener { presenter.goToActivityMain() }
         statistics.setOnClickListener { presenter.goToActivityStatistic() }
         dailyRegister.setOnClickListener { presenter.goToActivityDaily() }
-        add_register.setOnClickListener {presenter.goToActivityRegister() }
 
     }
     private fun createDialogInfo(info: String){
@@ -416,12 +362,6 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
     }
     override fun openDailyActivity() {
         val intent = Intent(this, DailyActivity::class.java)
-        startActivity(intent)
-        finish()
-    }
-
-    override fun openRegisterActivity() {
-        val intent = Intent(this, RegisterActivity::class.java)
         startActivity(intent)
         finish()
     }
@@ -475,20 +415,6 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
             dialog.dismiss()
         }
         dialog.show()
-    }
-
-    fun hideMenu(){
-        isFabOpen = false
-        treatment_menu.setImageResource(R.drawable.ic_hand)
-        treatment_edit.visibility = View.GONE
-        treatment_shared.visibility = View.GONE
-    }
-
-    fun showMenu(){
-        isFabOpen = true
-        treatment_menu.setImageResource(R.drawable.cancel)
-        treatment_edit.visibility = View.VISIBLE
-        treatment_shared.visibility = View.VISIBLE
     }
 
     override fun onBackPressed() {

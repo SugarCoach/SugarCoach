@@ -23,7 +23,7 @@ interface ProfilePresenterImp<V : ProfileView, I : ProfileInteractorImp> : Prese
     fun updateAvatar(position: Int, avatar: ProfileItem)
     fun setBirthday(year: Int, monthOfYear: Int, dayOfMonth: Int)
     fun setDebut(year: Int, monthOfYear: Int, dayOfMonth: Int)
-    fun updateAll(name: String?,weight: Float?,height: Float?,username: String?,mail: String?, points:String?, level:String?)
+    fun updateAll(name: String?,weight: Float?,height: Float?,username: String?,mail: String?)
     fun showDateDialog(fragmentManager: FragmentManager, dateSetListener: DatePickerDialog.OnDateSetListener, tag: String, date: LocalDate)
     fun getScreenShot(context: Activity, view: View)
     fun onRequestPermissionsResult(context: Activity, requestCode: Int, permissions: Array<String>, grantResults: IntArray)

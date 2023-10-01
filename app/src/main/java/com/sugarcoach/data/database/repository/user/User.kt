@@ -72,11 +72,5 @@ data class User(
 
 
     @ColumnInfo(name = "type_account")
-    var typeAccount: String?,
-
-    @ColumnInfo(name = "points")
-    var points: String?,
-
-    @ColumnInfo(name = "level")
-    var level: String?
+    var typeAccount: String?
 )
