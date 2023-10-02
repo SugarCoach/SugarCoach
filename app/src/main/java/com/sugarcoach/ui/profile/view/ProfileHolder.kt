@@ -5,22 +5,19 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.sugarcoach.R
-import kotlinx.android.synthetic.main.activity_treatment.view.*
-import kotlinx.android.synthetic.main.profile_item.view.*
-import kotlinx.android.synthetic.main.treatment_basal_item.view.*
-import kotlinx.android.synthetic.main.treatment_item.view.*
+import com.sugarcoach.databinding.ProfileItemBinding
+import com.sugarcoach.ui.treatment.view.TreatmentActivity
 import org.joda.time.LocalTime
 import java.util.*
 
-class ProfileHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+class ProfileHolder(private val binding: ProfileItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
-
-    fun inflateData(item: ProfileItem, position: Int, activity: ProfileActivity) {
-        itemView.profile_avatar.setImageDrawable(activity.getDrawable(item.image))
-        itemView.profile_avatar.borderColor = ContextCompat.getColor(activity, R.color.transparent)
-        if (item.selected){
-            itemView.profile_avatar.borderColor = ContextCompat.getColor(activity, R.color.purple)
+    fun bind(item: ProfileItem, activity: ProfileActivity) {
+        binding.profileAvatar.setImageDrawable(activity.getDrawable(item.image.toInt()))
+        binding.profileAvatar.borderColor = ContextCompat.getColor(activity, R.color.transparent)
+        if (item.selected) {
+            binding.profileAvatar.borderColor = ContextCompat.getColor(activity, R.color.purple)
         }
-        itemView.profile_avatar.setOnClickListener { activity.presenter.updateAvatar(position,item) }
+        binding.profileAvatar.setOnClickListener { activity.presenter.updateAvatar(position, item) }
     }
 }

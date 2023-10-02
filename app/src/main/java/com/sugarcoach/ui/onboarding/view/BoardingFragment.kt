@@ -5,9 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.sugarcoach.R
+import com.sugarcoach.databinding.FragmentOnboardingItemBinding
 import com.sugarcoach.ui.base.view.BaseFragment
-import kotlinx.android.synthetic.main.activity_onboarding.*
-import kotlinx.android.synthetic.main.fragment_onboarding_item.*
 
 private const val ARG_BACKGROUND_COLOR = "param1"
 private const val ARG_RESOURCE = "param2"
@@ -15,27 +14,41 @@ private const val ARG_TITLE = "param3"
 private const val ARG_SUBTITLE = "param4"
 private const val ARG_SHOWBUTTON = "param5"
 
-class BoardingFragment: BaseFragment() {
+class BoardingFragment : BaseFragment() {
     private var param1: Int? = null
     private var param2: Int? = null
     private var param3: Int? = null
     private var param4: Int? = null
     private var param5: Boolean? = null
 
+    private lateinit var binding: FragmentOnboardingItemBinding
+
     override fun setUp() {
-        boarding_item_subtitle.visibility = View.GONE
-        boarding_bt.visibility = View.GONE
-        param1?.let { boarding_layout.setBackgroundResource(it) }
-        param2?.let { boarding_image.setImageResource(it) }
-        param3?.let { boarding_item_title.text = (getString(it)) }
+        // Inflate the layout using data binding
+        binding = FragmentOnboardingItemBinding.inflate(layoutInflater)
+
+        // Set the visibility of views using data binding
+        binding.boardingItemSubtitle.visibility = View.GONE
+        binding.boardingBt.visibility = View.GONE
+
+        // Set the background resource, image resource, and text using data binding
+        param1?.let { binding.boardingLayout.setBackgroundResource(it) }
+        param2?.let { binding.boardingImage.setImageResource(it) }
+        param3?.let { binding.boardingItemTitle.text = getString(it) }
+
+        // Set the subtitle visibility and text using data binding
         param4?.let {
-            if( it != 0) {
-                boarding_item_subtitle.text = getString(it)
-                boarding_item_subtitle.visibility = View.VISIBLE
+            if (it != 0) {
+                binding.boardingItemSubtitle.text = getString(it)
+                binding.boardingItemSubtitle.visibility = View.VISIBLE
             }
         }
-        param5?.let { if (it) boarding_bt.visibility = View.VISIBLE }
-        boarding_bt.setOnClickListener {(activity as OnBoardingActivity).openLoginActivity() }
+
+        // Set the button visibility using data binding
+        param5?.let { if (it) binding.boardingBt.visibility = View.VISIBLE }
+
+        // Set the click listener using data binding
+        binding.boardingBt.setOnClickListener { (activity as OnBoardingActivity).openLoginActivity() }
 
     }
 

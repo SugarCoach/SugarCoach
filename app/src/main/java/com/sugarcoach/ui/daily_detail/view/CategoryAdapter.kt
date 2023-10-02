@@ -19,7 +19,7 @@ class CategoryAdapter (private val activity: DailyDetailActivity) : RecyclerView
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater: LayoutInflater = LayoutInflater.from(activity)
-        var holder = CategoriesHolder(inflater.inflate(R.layout.category_item, parent, false))
+        val holder = CategoriesHolder.create(parent)
         this.holder = holder
         return holder
     }
@@ -53,7 +53,7 @@ class CategoryAdapter (private val activity: DailyDetailActivity) : RecyclerView
         this.onSpinnerItemSelectedListener?.onItemSelected(index, this.itemList[index])
     }
     private fun bind(holder: CategoriesHolder, item: Category) {
-        holder.inflateData(item, activity)
+        holder.bind(item, activity)
     }
 
 }

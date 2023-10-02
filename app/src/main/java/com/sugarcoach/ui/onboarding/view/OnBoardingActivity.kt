@@ -3,13 +3,13 @@ package com.sugarcoach.ui.onboarding.view
 import android.content.Intent
 import android.os.Bundle
 import com.sugarcoach.R
+import com.sugarcoach.databinding.ActivityOnboardingBinding
 import com.sugarcoach.ui.base.view.BaseActivity
 import com.sugarcoach.ui.login.view.LoginActivity
 import com.sugarcoach.ui.onboarding.interactor.OnBoardingInteractorImp
 import com.sugarcoach.ui.onboarding.presenter.OnBoardingPresenterImp
 import com.sugarcoach.ui.sign.view.SignActivity
 import com.sugarcoach.ui.signEmail.view.SignEmailActivity
-import kotlinx.android.synthetic.main.activity_onboarding.*
 import javax.inject.Inject
 
 class OnBoardingActivity: BaseActivity(), OnBoardingView {
@@ -18,10 +18,12 @@ class OnBoardingActivity: BaseActivity(), OnBoardingView {
 
     @Inject
     lateinit var adapter: BoardingFragmentPagerAdapter
+    lateinit var binding: ActivityOnboardingBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_onboarding)
+        binding = ActivityOnboardingBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         presenter.onAttach(this)
     }
 
@@ -37,7 +39,7 @@ class OnBoardingActivity: BaseActivity(), OnBoardingView {
     }
 
     override fun setData(itemList: ArrayList<BoardingItem>) {
-        boarding_pager.adapter = adapter
+        binding.boardingPager.adapter = adapter
         adapter.setData(itemList)
         adapter.notifyDataSetChanged()
 

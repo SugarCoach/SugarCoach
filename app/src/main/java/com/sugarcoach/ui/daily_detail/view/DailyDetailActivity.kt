@@ -8,6 +8,7 @@ import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
+import android.text.Editable
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -27,6 +28,12 @@ import com.sugarcoach.R
 import com.sugarcoach.data.database.repository.dailyregister.Category
 import com.sugarcoach.data.database.repository.dailyregister.DailyRegister
 import com.sugarcoach.data.database.repository.user.User
+import com.sugarcoach.databinding.ActivityDailyBinding
+import com.sugarcoach.databinding.ActivityDailyDetailBinding
+import com.sugarcoach.databinding.DailyItemBinding
+import com.sugarcoach.databinding.DialogComentaryBinding
+import com.sugarcoach.databinding.DialogConfigDeleteBinding
+import com.sugarcoach.databinding.DialogEmotionsBinding
 import com.sugarcoach.ui.base.view.BaseActivity
 import com.sugarcoach.ui.daily.interactor.DailyInteractorImp
 import com.sugarcoach.ui.daily.presenter.DailyPresenterImp
@@ -42,14 +49,6 @@ import com.sugarcoach.util.extensions.resIdByName
 import com.sugarcoach.util.extensions.showKeyboard
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog
-import kotlinx.android.synthetic.main.activity_daily.*
-import kotlinx.android.synthetic.main.activity_daily.daily_date_txt
-import kotlinx.android.synthetic.main.activity_daily.daily_time_txt
-import kotlinx.android.synthetic.main.activity_daily_detail.*
-import kotlinx.android.synthetic.main.dialog_category.view.*
-import kotlinx.android.synthetic.main.dialog_comentary.view.*
-import kotlinx.android.synthetic.main.dialog_config_delete.view.*
-import kotlinx.android.synthetic.main.dialog_emotions.view.*
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
@@ -85,6 +84,8 @@ class DailyDetailActivity : BaseActivity(), DailyDetailView, TimePickerDialog.On
     lateinit var dialogExercises: AlertDialog
     lateinit var dialogComment: AlertDialog
 
+    lateinit var binding: ActivityDailyDetailBinding
+
     var isEdit = false
     var id: Int? = null
     var daily: DailyRegister? = null
@@ -92,7 +93,8 @@ class DailyDetailActivity : BaseActivity(), DailyDetailView, TimePickerDialog.On
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_daily_detail)
+        binding = ActivityDailyDetailBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         presenter.onAttach(this)
         enableViews()
         setListeners()
@@ -128,97 +130,99 @@ class DailyDetailActivity : BaseActivity(), DailyDetailView, TimePickerDialog.On
     }
 
     override fun getData(daily: DailyRegister) {
-        this.daily = daily
-        daily_detail_gluc_tv.setText(daily.glucose.toString())
-        daily_detail_gluc_tv.setTextColor(ContextCompat.getColor(this, presenter.getColorType(daily.glucose!!)))
-        daily_detail_insul.setText(daily.insulin.toString())
-        daily_detail_car.setText(daily.carbohydrates.toString())
-        daily_detail_basal.setText(daily.basal.toString())
+        binding.dailyDetailGlucTv.text = Editable.Factory.getInstance().newEditable(daily.glucose.toString())
+        binding.dailyDetailGlucTv.setTextColor(ContextCompat.getColor(this, presenter.getColorType(daily.glucose!!)))
+        binding.dailyDetailInsul.text = Editable.Factory.getInstance().newEditable(daily.insulin.toString())
+        binding.dailyDetailCar.text = Editable.Factory.getInstance().newEditable(daily.carbohydrates.toString())
+        binding.dailyDetailBasal.text = Editable.Factory.getInstance().newEditable(daily.basal.toString())
         val formatter = SimpleDateFormat("dd.M.yy", Locale.getDefault())
         val formatterTime = SimpleDateFormat("hh:mm a", Locale.getDefault())
         val formattedDate = formatter.format(daily.created)
         val formattedTime = formatterTime.format(daily.created)
-        daily_detail_time_tv.text =(formattedTime)
-        daily_detail_date_tv.text = (formattedDate)
-        daily_detail_img_empty_ll.visibility = View.VISIBLE
-        daily_detail_img.visibility = View.GONE
+        binding.dailyDetailTimeTv.text = formattedTime
+        binding.dailyDetailDateTv.text = formattedDate
+        binding.dailyDetailImgEmptyLl.visibility = View.VISIBLE
+        binding.dailyDetailImg.visibility = View.GONE
         daily.photo?.let {
             if(it.isNotEmpty()) {
-                daily_detail_img_empty_ll.visibility = View.GONE
-                daily_detail_img.visibility = View.VISIBLE
-                Glide.with(this).load(it).into(daily_detail_img)
+                binding.dailyDetailImgEmptyLl.visibility = View.GONE
+                binding.dailyDetailImg.visibility = View.VISIBLE
+                Glide.with(this).load(it).into(binding.dailyDetailImg)
             }
         }
     }
     private fun createDialogComment(){
-        val view = LayoutInflater.from(this).inflate(R.layout.dialog_comentary, null)
+        val view = DialogComentaryBinding.inflate(layoutInflater)
         val builder = AlertDialog.Builder(this)
         builder.setCancelable(false)
-        builder.setView(view)
+        builder.setView(view.root)
         dialogComment = builder.create()
         dialogComment.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        view.comentary_save.setOnClickListener{
-            presenter.saveComment(view.comentary_value.text.toString())
-            daily_detail_comment.text = view.comentary_value.text.toString()
+        view.comentarySave.setOnClickListener{
+            presenter.saveComment(view.comentaryValue.text.toString())
+            binding.dailyDetailComment.text = view.comentaryValue.text.toString()
             dialogComment.dismiss()
         }
         dialogComment.show()
     }
     fun setListeners(){
-        daily_detail_emotional_ll.setOnClickListener {
+        binding.dailyDetailEmotionalLl.setOnClickListener {
             showHideEmotionalCard(true)
 
         }
-        daily_detail_exercises_ll.setOnClickListener {
+        binding.dailyDetailExercisesLl.setOnClickListener {
             showHideExerciseCard(true)
 
         }
-        daily_detail_comment_ll.setOnClickListener {
+        binding.dailyDetailCommentLl.setOnClickListener {
             createDialogComment()
         }
-        daily_detail_time_tv.setOnClickListener {
-            presenter.showTimeDialog(supportFragmentManager, this) }
-        daily_detail_date_tv.setOnClickListener { presenter.showDateDialog(supportFragmentManager, this) }
-        daily_detail_gluc_tv.setOnEditorActionListener { v, actionId, event ->
+        binding.dailyDetailTimeTv.setOnClickListener {
+            presenter.showTimeDialog(supportFragmentManager, this)
+        }
+        binding.dailyDetailDateTv.setOnClickListener {
+            presenter.showDateDialog(supportFragmentManager, this)
+        }
+        binding.dailyDetailGlucTv.setOnEditorActionListener { v, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_DONE){
-                presenter.updateGlucose(daily_detail_gluc_tv.text.toString().toFloat())
+                presenter.updateGlucose(binding.dailyDetailGlucTv.text.toString().toFloat())
             }
             false
         }
-        daily_detail_insul.setOnEditorActionListener { v, actionId, event ->
+        binding.dailyDetailInsul.setOnEditorActionListener { v, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_DONE){
-                presenter.updateInsulin(daily_detail_insul.text.toString().toFloat())
+                presenter.updateInsulin(binding.dailyDetailInsul.text.toString().toFloat())
             }
             false
         }
-        daily_detail_car.setOnEditorActionListener { v, actionId, event ->
+        binding.dailyDetailCar.setOnEditorActionListener { v, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_DONE){
-                presenter.updateCarb(daily_detail_car.text.toString().toFloat())
+                presenter.updateCarb(binding.dailyDetailCar.text.toString().toFloat())
             }
             false
         }
-        daily_detail_basal.setOnEditorActionListener { v, actionId, event ->
+        binding.dailyDetailBasal.setOnEditorActionListener { v, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_DONE){
-                presenter.updateBasal(daily_detail_basal.text.toString().toFloat())
+                presenter.updateBasal(binding.dailyDetailBasal.text.toString().toFloat())
             }
             false
         }
-        daily_detail_img.setOnClickListener { presenter.showChooser() }
-        daily_detail_img_empty_ll.setOnClickListener { presenter.showChooser() }
-        daily_detail_edit.setOnClickListener {
+        binding.dailyDetailImg.setOnClickListener { presenter.showChooser() }
+        binding.dailyDetailImgEmptyLl.setOnClickListener { presenter.showChooser() }
+        binding.dailyDetailEdit.setOnClickListener {
             hideMenu()
             isEdit = true
             enableViews()
         }
-        daily_detail_delete.setOnClickListener {
+        binding.dailyDetailDelete.setOnClickListener {
             hideMenu()
             dialogDelete()
         }
-        daily_detail_shared.setOnClickListener {
+        binding.dailyDetailShared.setOnClickListener {
             hideMenu()
-            presenter.getScreenShot(this, daily_detail_ll)
+            presenter.getScreenShot(this, binding.dailyDetailLl)
         }
-        daily_menu.setOnClickListener{
+        binding.dailyMenu.setOnClickListener{
             if (isFabOpen){
                 hideMenu()
             }else{
@@ -230,73 +234,70 @@ class DailyDetailActivity : BaseActivity(), DailyDetailView, TimePickerDialog.On
 
     fun showMenu(){
         isFabOpen = true
-        daily_menu.setImageResource(R.drawable.cancel)
-        daily_detail_edit.visibility = View.VISIBLE
-        daily_detail_shared.visibility = View.VISIBLE
-        daily_detail_delete.visibility = View.VISIBLE
+        binding.dailyMenu.setImageResource(R.drawable.cancel)
+        binding.dailyDetailEdit.visibility = View.VISIBLE
+        binding.dailyDetailShared.visibility = View.VISIBLE
+        binding.dailyDetailDelete.visibility = View.VISIBLE
     }
 
     fun hideMenu(){
         isFabOpen = false
-        daily_menu.setImageResource(R.drawable.ic_hand)
-        daily_detail_edit.visibility = View.GONE
-        daily_detail_shared.visibility = View.GONE
-        daily_detail_delete.visibility = View.GONE
+        binding.dailyMenu.setImageResource(R.drawable.ic_hand)
+        binding.dailyDetailEdit.visibility = View.GONE
+        binding.dailyDetailShared.visibility = View.GONE
+        binding.dailyDetailDelete.visibility = View.GONE
     }
 
     override fun setEmotional(item: DailyItem) {
         showHideEmotionalCard(false)
-        daily_detail_emotional_tv.text = (getLabel(item.name))
-        daily_detail_emotional.setImageDrawable(getDrawable(item.image))
+        binding.dailyDetailEmotionalTv.text = (getLabel(item.name))
+        binding.dailyDetailEmotional.setImageDrawable(getDrawable(item.image))
     }
 
     override fun setExercise(item: DailyItem) {
         showHideExerciseCard(false)
-        daily_detail_exercises_tv.text = (getLabel(item.name))
-        daily_detail_exercises.setImageDrawable(getDrawable(item.image))
+        binding.dailyDetailExercisesTv.text = (getLabel(item.name))
+        binding.dailyDetailExercises.setImageDrawable(getDrawable(item.image))
     }
-
 
     override fun setDateMedition(date: Date) {
         val formatter = SimpleDateFormat("dd.M.yy", Locale.getDefault())
         val formatterTime = SimpleDateFormat("hh:mm a", Locale.getDefault())
         val formattedDate = formatter.format(date)
         val formattedTime = formatterTime.format(date)
-        daily_time_txt.setText(formattedTime)
-        daily_date_txt.setText(formattedDate)
+        binding.dailyTimeTxt.text = formattedTime
+        binding.dailyDateTxt.text = formattedDate
     }
 
     override fun enableViews() {
-        daily_detail_gluc_tv.isEnabled = isEdit
-        daily_detail_insul.isEnabled = isEdit
-        daily_detail_car.isEnabled = isEdit
-        daily_detail_category_tv.isEnabled = isEdit
-        daily_detail_time_tv.isEnabled = isEdit
-        daily_detail_date_tv.isEnabled = isEdit
-        daily_detail_exercises_ll.isEnabled = isEdit
-        daily_detail_emotional_ll.isEnabled = isEdit
-        daily_detail_img_empty_ll.isEnabled = isEdit
-        daily_detail_basal.isEnabled = isEdit
-        daily_detail_img.isEnabled = isEdit
-        daily_detail_comment_ll.isEnabled = isEdit
+        binding.dailyDetailGlucTv.isEnabled = isEdit
+        binding.dailyDetailInsul.isEnabled = isEdit
+        binding.dailyDetailCar.isEnabled = isEdit
+        binding.dailyDetailCategoryTv.isEnabled = isEdit
+        binding.dailyDetailTimeTv.isEnabled = isEdit
+        binding.dailyDetailDateTv.isEnabled = isEdit
+        binding.dailyDetailExercisesLl.isEnabled = isEdit
+        binding.dailyDetailEmotionalLl.isEnabled = isEdit
+        binding.dailyDetailImgEmptyLl.isEnabled = isEdit
+        binding.dailyDetailBasal.isEnabled = isEdit
+        binding.dailyDetailImg.isEnabled = isEdit
+        binding.dailyDetailCommentLl.isEnabled = isEdit
         if (isEdit){
-            daily_detail_gluc_tv.requestFocus()
-            daily_detail_gluc_tv.showKeyboard()
+            binding.dailyDetailGlucTv.requestFocus()
+            binding.dailyDetailGlucTv.showKeyboard()
         }
-
     }
 
     override fun setTime(value: Date) {
         val formatterTime = SimpleDateFormat("hh:mm a", Locale.getDefault())
         val formattedTime = formatterTime.format(value)
-        daily_detail_time_tv.text = formattedTime
+        binding.dailyDetailTimeTv.text = formattedTime
     }
 
     override fun setDate(value: Date) {
         val formatter = SimpleDateFormat("dd.M.yy", Locale.getDefault())
         val formattedDate = formatter.format(value)
-        daily_detail_date_tv.text = formattedDate
-
+        binding.dailyDetailDateTv.text = formattedDate
     }
     override fun onTimeSet(view: TimePickerDialog?, hourOfDay: Int, minute: Int, second: Int) {
         presenter.setTime(hourOfDay,minute)
@@ -317,9 +318,9 @@ class DailyDetailActivity : BaseActivity(), DailyDetailView, TimePickerDialog.On
     }
 
     override fun setImage(image: String) {
-        Glide.with(this).load(image).into(daily_detail_img)
-        daily_detail_img_empty_ll.visibility = View.GONE
-        daily_detail_img.visibility = View.VISIBLE
+        Glide.with(this).load(image).into(binding.dailyDetailEdit)
+        binding.dailyDetailImgEmptyLl.visibility = View.GONE
+        binding.dailyDetailImg.visibility = View.VISIBLE
 
     }
 
@@ -359,14 +360,13 @@ class DailyDetailActivity : BaseActivity(), DailyDetailView, TimePickerDialog.On
     }
 
     override fun setCategories(categories: List<Category>, index: Int) {
-        adapter.setPowerView(daily_detail_category_tv)
-        daily_detail_category_tv.setSpinnerAdapter(adapter)
-        daily_detail_category_tv.getSpinnerRecyclerView().layoutManager = manager
-        daily_detail_category_tv.setItems(categories)
-        daily_detail_category_tv.selectItemByIndex(index-1)
-        daily_detail_category_tv.setOnSpinnerItemSelectedListener<Category> { position, item ->
+        binding.dailyDetailCategoryTv.setSpinnerAdapter(adapter)
+        binding.dailyDetailCategoryTv.getSpinnerRecyclerView().layoutManager = manager
+        binding.dailyDetailCategoryTv.setItems(categories)
+        binding.dailyDetailCategoryTv.selectItemByIndex(index-1)
+        binding.dailyDetailCategoryTv.setOnSpinnerItemSelectedListener<Category> { position, item ->
             presenter.updateLabel(item.cate_id)
-            Toast.makeText(this, getString(R.string.register_category_warning),Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.register_category_warning), Toast.LENGTH_SHORT).show()
         }
     }
     private fun showHideEmotionalCard(show: Boolean) {
@@ -387,48 +387,48 @@ class DailyDetailActivity : BaseActivity(), DailyDetailView, TimePickerDialog.On
     }
 
     fun dialogDelete() {
-        val view = LayoutInflater.from(this).inflate(R.layout.dialog_config_delete, null)
+        val view = DialogConfigDeleteBinding.inflate(layoutInflater)
         val builder = AlertDialog.Builder(this)
-        builder.setView(view)
+        builder.setView(view.root)
         dialog = builder.create()
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        view.delete_accept.setOnClickListener {
+        view.deleteAccept.setOnClickListener {
             presenter.deleteRegister(daily!!)
             dialog.dismiss()
         }
-        view.delete_cancel.setOnClickListener {
+        view.deleteCancel.setOnClickListener {
             dialog.dismiss()
         }
         dialog.show()
     }
 
     override fun setExercicesData(items: List<DailyItem>) {
-        val view = LayoutInflater.from(this).inflate(R.layout.dialog_emotions, null)
+        val view = DialogEmotionsBinding.inflate(layoutInflater)
         val builder = AlertDialog.Builder(this)
         builder.setCancelable(false)
-        builder.setView(view)
+        builder.setView(view.root)
         dialogExercises = builder.create()
         dialogExercises.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         adapterExercices.setData(items,2)
-        view.emotions_title.text = getString(R.string.register_new_activity_txt)
-        view.emotions_list.layoutManager = managerExercices
-        view.emotions_list.adapter = adapterExercices
-        view.emotions_cancel.setOnClickListener{
+        view.emotionsTitle.text = getString(R.string.register_new_activity_txt)
+        view.emotionsList.layoutManager = managerExercices
+        view.emotionsList.adapter = adapterExercices
+        view.emotionsCancel.setOnClickListener{
             dialogExercises.dismiss()
         }
     }
 
     override fun setEmotionsData(items: List<DailyItem>) {
-        val view = LayoutInflater.from(this).inflate(R.layout.dialog_emotions, null)
+        val view = DialogEmotionsBinding.inflate(layoutInflater)
         val builder = AlertDialog.Builder(this)
         builder.setCancelable(false)
-        builder.setView(view)
+        builder.setView(view.root)
         dialogEmotions = builder.create()
         dialogEmotions.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         adapterEmotions.setData(items,1)
-        view.emotions_list.layoutManager = managerEmotions
-        view.emotions_list.adapter = adapterEmotions
-        view.emotions_cancel.setOnClickListener{
+        view.emotionsList.layoutManager = managerEmotions
+        view.emotionsList.adapter = adapterEmotions
+        view.emotionsCancel.setOnClickListener{
             dialogEmotions.dismiss()
         }
     }
@@ -460,10 +460,10 @@ class DailyDetailActivity : BaseActivity(), DailyDetailView, TimePickerDialog.On
     }
 
     fun menuListeners(){
-        home.setOnClickListener { presenter.goToActivityMain() }
-        statistics.setOnClickListener { presenter.goToActivityStatistic() }
-        tratamiento.setOnClickListener { presenter.goToActivityTreament() }
-        register.setOnClickListener { presenter.goToActivityRegister() }
+        binding.home.setOnClickListener { presenter.goToActivityMain() }
+        binding.statistics.setOnClickListener { presenter.goToActivityStatistic() }
+        binding.tratamiento.setOnClickListener { presenter.goToActivityTreament() }
+        binding.register.setOnClickListener { presenter.goToActivityRegister() }
     }
 
     override fun getLabel(name: String): String {
@@ -476,9 +476,9 @@ class DailyDetailActivity : BaseActivity(), DailyDetailView, TimePickerDialog.On
 
 
     override fun mirrorAccount() {
-        daily_detail_edit.visibility = View.INVISIBLE
-        daily_detail_delete.visibility = View.INVISIBLE
-        register.isEnabled = false
+        binding.dailyDetailEdit.visibility = View.INVISIBLE
+        binding.dailyDetailDelete.visibility = View.INVISIBLE
+        binding.register.isEnabled = false
     }
 
 }
