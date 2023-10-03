@@ -2,14 +2,12 @@ package com.sugarcoach.ui.onboarding.view
 
 import android.content.Intent
 import android.os.Bundle
-import com.sugarcoach.R
+import android.util.Log
 import com.sugarcoach.databinding.ActivityOnboardingBinding
 import com.sugarcoach.ui.base.view.BaseActivity
 import com.sugarcoach.ui.login.view.LoginActivity
 import com.sugarcoach.ui.onboarding.interactor.OnBoardingInteractorImp
 import com.sugarcoach.ui.onboarding.presenter.OnBoardingPresenterImp
-import com.sugarcoach.ui.sign.view.SignActivity
-import com.sugarcoach.ui.signEmail.view.SignEmailActivity
 import javax.inject.Inject
 
 class OnBoardingActivity: BaseActivity(), OnBoardingView {
@@ -21,6 +19,7 @@ class OnBoardingActivity: BaseActivity(), OnBoardingView {
     lateinit var binding: ActivityOnboardingBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        Log.i("OnCreateBoarding", "Se esta creando el boarding")
         super.onCreate(savedInstanceState)
         binding = ActivityOnboardingBinding.inflate(layoutInflater)
         setContentView(binding.root)

@@ -2,6 +2,7 @@ package com.sugarcoach.ui.login.view
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import com.notbytes.barcode_reader.BarcodeReaderActivity
 import com.sugarcoach.R
@@ -15,14 +16,13 @@ import com.sugarcoach.ui.signEmail.view.SignEmailActivity
 import com.sugarcoach.util.AppConstants
 import javax.inject.Inject
 
-
-
 class LoginActivity: BaseActivity(), LoginView {
     @Inject
     lateinit var presenter: LoginPresenterImp<LoginView,LoginInteractorImp>
     lateinit var binding: ActivityLoginBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        Log.i("OnCreateLogin", "Se esta creando el Login")
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -77,6 +77,7 @@ class LoginActivity: BaseActivity(), LoginView {
     }
 
     fun scanQR(){
+        Log.i("OnScan", "Entre al Scan QR en el LogACtivity")
         val launchIntent = BarcodeReaderActivity.getLaunchIntent(this, true, false)
         startActivityForResult(launchIntent, presenter.getBarcode())
     }
