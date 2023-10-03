@@ -13,114 +13,110 @@ import com.github.mikephil.charting.data.*
 import com.github.mikephil.charting.formatter.StackedValueFormatter
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet
 import com.sugarcoach.R
+import com.sugarcoach.databinding.StatisticsItemBinding
 import com.sugarcoach.util.CustomPercentFormatter
-import kotlinx.android.synthetic.main.statistics_item.view.*
 import kotlin.collections.ArrayList
 
-class StatisticsHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
+class StatisticsHolder(private val binding: StatisticsItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
     fun inflateData(item: StatisticsItem, position: Int, activity: StatisticsActivity ) {
 
 
-        itemView.statistics_item_title.text = activity.getString(item.name)
+        binding.statisticsItemTitle.text = activity.getString(item.name)
         setUpGlucemia()
         setUpInsulina()
 
-        when(position){
+        when(position) {
             0 -> {
-                itemView.statistics_item_piechart.visibility = View.VISIBLE
-                itemView.statistics_item_barchart.visibility = View.GONE
-                itemView.statistics_item_types.visibility = View.VISIBLE
-                itemView.statistics_item_types_insulina.visibility = View.GONE
-                itemView.statistics_item_types_car.visibility = View.GONE
-                itemView.statistics_item_types_exercise.visibility = View.GONE
-                itemView.statistics_item_types_state.visibility = View.GONE
-                itemView.statistics_item_types.setItems(item.types)
-                itemView.statistics_item_types.selectItemByIndex(item.index)
-                itemView.statistics_item_types.setOnSpinnerItemSelectedListener<String> { index, item ->
-                    activity.showCalendar(position,index)
+                binding.statisticsItemPiechart.visibility = View.VISIBLE
+                binding.statisticsItemBarchart.visibility = View.GONE
+                binding.statisticsItemTypes.visibility = View.VISIBLE
+                binding.statisticsItemTypesInsulina.visibility = View.GONE
+                binding.statisticsItemTypesCar.visibility = View.GONE
+                binding.statisticsItemTypesExercise.visibility = View.GONE
+                binding.statisticsItemTypesState.visibility = View.GONE
+                binding.statisticsItemTypes.setItems(item.types)
+                binding.statisticsItemTypes.selectItemByIndex(item.index)
+                binding.statisticsItemTypes.setOnSpinnerItemSelectedListener<String> { index, item ->
+                    activity.showCalendar(position, index)
                 }
                 showGlucemiaData(activity, item)
-
             }
             1 -> {
-                itemView.statistics_item_piechart.visibility = View.GONE
-                itemView.statistics_item_barchart.visibility = View.VISIBLE
-                itemView.statistics_item_types.visibility = View.GONE
-                itemView.statistics_item_types_insulina.visibility = View.VISIBLE
-                itemView.statistics_item_types_car.visibility = View.GONE
-                itemView.statistics_item_types_exercise.visibility = View.GONE
-                itemView.statistics_item_types_state.visibility = View.GONE
-                itemView.statistics_item_types_insulina.setItems(item.types)
-                itemView.statistics_item_types_insulina.selectItemByIndex(item.index)
-                itemView.statistics_item_types_insulina.setOnSpinnerItemSelectedListener<String> { index, item ->
-                    activity.showCalendar(position,index)
+                binding.statisticsItemPiechart.visibility = View.GONE
+                binding.statisticsItemBarchart.visibility = View.VISIBLE
+                binding.statisticsItemTypes.visibility = View.GONE
+                binding.statisticsItemTypesInsulina.visibility = View.VISIBLE
+                binding.statisticsItemTypesCar.visibility = View.GONE
+                binding.statisticsItemTypesExercise.visibility = View.GONE
+                binding.statisticsItemTypesState.visibility = View.GONE
+                binding.statisticsItemTypesInsulina.setItems(item.types)
+                binding.statisticsItemTypesInsulina.selectItemByIndex(item.index)
+                binding.statisticsItemTypesInsulina.setOnSpinnerItemSelectedListener<String> { index, item ->
+                    activity.showCalendar(position, index)
                 }
                 showInsulinaData(activity, item)
-
             }
             2 -> {
-                itemView.statistics_item_piechart.visibility = View.GONE
-                itemView.statistics_item_barchart.visibility = View.VISIBLE
-                itemView.statistics_item_types.visibility = View.GONE
-                itemView.statistics_item_types_insulina.visibility = View.GONE
-                itemView.statistics_item_types_car.visibility = View.VISIBLE
-                itemView.statistics_item_types_exercise.visibility = View.GONE
-                itemView.statistics_item_types_state.visibility = View.GONE
-                itemView.statistics_item_types_car.setItems(item.types)
-                itemView.statistics_item_types_car.selectItemByIndex(item.index)
-                itemView.statistics_item_types_car.setOnSpinnerItemSelectedListener<String> { index, item ->
-                    activity.showCalendar(position,index)
+                binding.statisticsItemPiechart.visibility = View.GONE
+                binding.statisticsItemBarchart.visibility = View.VISIBLE
+                binding.statisticsItemTypes.visibility = View.GONE
+                binding.statisticsItemTypesInsulina.visibility = View.GONE
+                binding.statisticsItemTypesCar.visibility = View.VISIBLE
+                binding.statisticsItemTypesExercise.visibility = View.GONE
+                binding.statisticsItemTypesState.visibility = View.GONE
+                binding.statisticsItemTypesCar.setItems(item.types)
+                binding.statisticsItemTypesCar.selectItemByIndex(item.index)
+                binding.statisticsItemTypesCar.setOnSpinnerItemSelectedListener<String> { index, item ->
+                    activity.showCalendar(position, index)
                 }
                 showCarbohidratosData(activity, item)
             }
             3 -> {
-                itemView.statistics_item_piechart.visibility = View.GONE
-                itemView.statistics_item_barchart.visibility = View.VISIBLE
-                itemView.statistics_item_types.visibility = View.GONE
-                itemView.statistics_item_types_insulina.visibility = View.GONE
-                itemView.statistics_item_types_car.visibility = View.GONE
-                itemView.statistics_item_types_exercise.visibility = View.VISIBLE
-                itemView.statistics_item_types_state.visibility = View.GONE
-                itemView.statistics_item_types_exercise.setItems(item.types)
-                itemView.statistics_item_types_exercise.selectItemByIndex(item.index)
-                itemView.statistics_item_types_exercise.setOnSpinnerItemSelectedListener<String> { index, item ->
-                    activity.showCalendar(position,index)
+                binding.statisticsItemPiechart.visibility = View.GONE
+                binding.statisticsItemBarchart.visibility = View.VISIBLE
+                binding.statisticsItemTypes.visibility = View.GONE
+                binding.statisticsItemTypesInsulina.visibility = View.GONE
+                binding.statisticsItemTypesCar.visibility = View.GONE
+                binding.statisticsItemTypesExercise.visibility = View.VISIBLE
+                binding.statisticsItemTypesState.visibility = View.GONE
+                binding.statisticsItemTypesExercise.setItems(item.types)
+                binding.statisticsItemTypesExercise.selectItemByIndex(item.index)
+                binding.statisticsItemTypesExercise.setOnSpinnerItemSelectedListener<String> { index, item ->
+                    activity.showCalendar(position, index)
                 }
                 showExercisesData(activity, item)
             }
             4 -> {
-                itemView.statistics_item_piechart.visibility = View.GONE
-                itemView.statistics_item_barchart.visibility = View.VISIBLE
-                itemView.statistics_item_types.visibility = View.GONE
-                itemView.statistics_item_types_insulina.visibility = View.GONE
-                itemView.statistics_item_types_car.visibility = View.GONE
-                itemView.statistics_item_types_exercise.visibility = View.GONE
-                itemView.statistics_item_types_state.visibility = View.VISIBLE
-                itemView.statistics_item_types_state.setItems(item.types)
-                itemView.statistics_item_types_state.selectItemByIndex(item.index)
-                itemView.statistics_item_types_state.setOnSpinnerItemSelectedListener<String> { index, item ->
-                    activity.showCalendar(position,index)
+                binding.statisticsItemPiechart.visibility = View.GONE
+                binding.statisticsItemBarchart.visibility = View.VISIBLE
+                binding.statisticsItemTypes.visibility = View.GONE
+                binding.statisticsItemTypesInsulina.visibility = View.GONE
+                binding.statisticsItemTypesCar.visibility = View.GONE
+                binding.statisticsItemTypesExercise.visibility = View.GONE
+                binding.statisticsItemTypesState.visibility = View.VISIBLE
+                binding.statisticsItemTypesState.setItems(item.types)
+                binding.statisticsItemTypesState.selectItemByIndex(item.index)
+                binding.statisticsItemTypesState.setOnSpinnerItemSelectedListener<String> { index, item ->
+                    activity.showCalendar(position, index)
                 }
                 showStatesData(activity, item)
             }
-
         }
 
     }
 
 
     fun setUpGlucemia(){
-        itemView.statistics_item_piechart.description.isEnabled = false
-        itemView.statistics_item_piechart.dragDecelerationFrictionCoef = 0.95f
-        itemView.statistics_item_piechart.isDrawHoleEnabled = false
-        itemView.statistics_item_piechart.rotationAngle =0f
-        itemView.statistics_item_piechart.isRotationEnabled = true
-        itemView.statistics_item_piechart.isHighlightPerTapEnabled = true
+        binding.statisticsItemPiechart.description.isEnabled = false
+        binding.statisticsItemPiechart.dragDecelerationFrictionCoef = 0.95f
+        binding.statisticsItemPiechart.isDrawHoleEnabled = false
+        binding.statisticsItemPiechart.rotationAngle =0f
+        binding.statisticsItemPiechart.isRotationEnabled = true
+        binding.statisticsItemPiechart.isHighlightPerTapEnabled = true
 
        // itemView.statistics_item_piechart.animateY(1400, Easing.EaseInOutQuad);
-        var l = itemView.statistics_item_piechart.legend
+        var l = binding.statisticsItemPiechart.legend
         l.verticalAlignment= Legend.LegendVerticalAlignment.TOP
         l.horizontalAlignment = Legend.LegendHorizontalAlignment.RIGHT
         l.orientation = Legend.LegendOrientation.VERTICAL
@@ -157,36 +153,36 @@ class StatisticsHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
 
         val data = PieData(dataSet)
-        data.setValueFormatter(CustomPercentFormatter(itemView.statistics_item_piechart))
+        data.setValueFormatter(CustomPercentFormatter(binding.statisticsItemPiechart))
         data.setValueTextSize(11f)
         data.setValueTextColor(Color.BLACK)
-        itemView.statistics_item_piechart.data = (data)
-        itemView.statistics_item_piechart.legend.setCustom(lentries)
+        binding.statisticsItemPiechart.data = (data)
+        binding.statisticsItemPiechart.legend.setCustom(lentries)
 
         // undo all highlights
-        itemView.statistics_item_piechart.highlightValues(null)
-        itemView.statistics_item_piechart.invalidate()
-        itemView.statistics_item_piechart.notifyDataSetChanged()
+        binding.statisticsItemPiechart.highlightValues(null)
+        binding.statisticsItemPiechart.invalidate()
+        binding.statisticsItemPiechart.notifyDataSetChanged()
     }
 
     fun setUpInsulina(){
-        itemView.statistics_item_barchart.description.isEnabled = false
-        itemView.statistics_item_barchart.isEnabled = false
-        itemView.statistics_item_barchart.setPinchZoom(false)
-        itemView.statistics_item_barchart.setDrawGridBackground(true)
-        itemView.statistics_item_barchart.setDrawBarShadow(false)
-        itemView.statistics_item_barchart.isHighlightFullBarEnabled = false
+        binding.statisticsItemBarchart.description.isEnabled = false
+        binding.statisticsItemBarchart.isEnabled = false
+        binding.statisticsItemBarchart.setPinchZoom(false)
+        binding.statisticsItemBarchart.setDrawGridBackground(true)
+        binding.statisticsItemBarchart.setDrawBarShadow(false)
+        binding.statisticsItemBarchart.isHighlightFullBarEnabled = false
 
         // change the position of the y-labels
-        var leftAxis  = itemView.statistics_item_barchart.axisLeft
+        var leftAxis  = binding.statisticsItemBarchart.axisLeft
         leftAxis.axisMinimum = 0f
-        itemView.statistics_item_barchart.axisRight.isEnabled =false
+        binding.statisticsItemBarchart.axisRight.isEnabled =false
 
-        var xLabels = itemView.statistics_item_barchart.xAxis;
+        var xLabels = binding.statisticsItemBarchart.xAxis;
         xLabels.position = XAxis.XAxisPosition.TOP
         xLabels.granularity = 1f
 
-        var l = itemView.statistics_item_barchart.legend;
+        var l = binding.statisticsItemBarchart.legend;
         l.verticalAlignment = Legend.LegendVerticalAlignment.BOTTOM
         l.horizontalAlignment = Legend.LegendHorizontalAlignment.RIGHT
         l.orientation = Legend.LegendOrientation.HORIZONTAL
@@ -226,12 +222,12 @@ class StatisticsHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         data.setValueFormatter(StackedValueFormatter(true, "", 1))
         data.setValueTextColor(Color.BLACK)
 
-        itemView.statistics_item_barchart.data = (data)
-        itemView.statistics_item_barchart.setDrawValueAboveBar(false)
-        itemView.statistics_item_barchart.xAxis.valueFormatter = StatisticsValueFormater(arrayOf(activity.getString(R.string.statistics_insulina_basal_label), label))
-        itemView.statistics_item_barchart.setFitBars(true)
-        itemView.statistics_item_barchart.invalidate()
-        itemView.statistics_item_barchart.notifyDataSetChanged()
+        binding.statisticsItemBarchart.data = (data)
+        binding.statisticsItemBarchart.setDrawValueAboveBar(false)
+        binding.statisticsItemBarchart.xAxis.valueFormatter = StatisticsValueFormater(arrayOf(activity.getString(R.string.statistics_insulina_basal_label), label))
+        binding.statisticsItemBarchart.setFitBars(true)
+        binding.statisticsItemBarchart.invalidate()
+        binding.statisticsItemBarchart.notifyDataSetChanged()
     }
 
     fun showCarbohidratosData(activity: StatisticsActivity, item: StatisticsItem){
@@ -251,10 +247,10 @@ class StatisticsHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var data =  BarData(dataSets)
         data.setValueTextColor(Color.BLACK)
 
-        itemView.statistics_item_barchart.data = (data)
-        itemView.statistics_item_barchart.setFitBars(true)
-        itemView.statistics_item_barchart.invalidate()
-        itemView.statistics_item_barchart.notifyDataSetChanged()
+        binding.statisticsItemBarchart.data = (data)
+        binding.statisticsItemBarchart.setFitBars(true)
+        binding.statisticsItemBarchart.invalidate()
+        binding.statisticsItemBarchart.notifyDataSetChanged()
 
     }
     fun showStatesData(activity: StatisticsActivity, item: StatisticsItem){
@@ -275,9 +271,9 @@ class StatisticsHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var data =  BarData(dataSets)
         data.setValueTextColor(Color.BLACK)
 
-        itemView.statistics_item_barchart.data = (data)
-        itemView.statistics_item_barchart.setFitBars(true)
-        itemView.statistics_item_barchart.invalidate()
+        binding.statisticsItemBarchart.data = (data)
+        binding.statisticsItemBarchart.setFitBars(true)
+        binding.statisticsItemBarchart.invalidate()
     }
 
     fun showExercisesData(activity: StatisticsActivity, item: StatisticsItem){
@@ -298,9 +294,9 @@ class StatisticsHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var data =  BarData(dataSets)
         data.setValueTextColor(Color.BLACK)
 
-        itemView.statistics_item_barchart.data = (data)
-        itemView.statistics_item_barchart.setFitBars(true)
-        itemView.statistics_item_barchart.invalidate()
+        binding.statisticsItemBarchart.data = (data)
+        binding.statisticsItemBarchart.setFitBars(true)
+        binding.statisticsItemBarchart.invalidate()
     }
     fun getColorsCategory(context: Context): ArrayList<Int> {
         val colors = ArrayList<Int>()

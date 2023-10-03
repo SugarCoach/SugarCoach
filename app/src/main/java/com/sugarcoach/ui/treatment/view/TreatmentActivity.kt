@@ -1,5 +1,6 @@
 package com.sugarcoach.ui.treatment.view
 
+import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.PorterDuff
@@ -20,6 +21,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.sugarcoach.R
 import com.sugarcoach.data.database.repository.treament.TreatmentBasalCorrectora
 import com.sugarcoach.data.database.repository.user.User
+import com.sugarcoach.databinding.ActivityTreatmentBinding
+import com.sugarcoach.databinding.DialogCongratulationBinding
+import com.sugarcoach.databinding.DialogInfoBinding
+import com.sugarcoach.databinding.DialogTreatmentSaveBinding
 import com.sugarcoach.ui.base.view.BaseActivity
 import com.sugarcoach.ui.daily.view.DailyActivity
 import com.sugarcoach.ui.main.view.MainActivity
@@ -27,10 +32,6 @@ import com.sugarcoach.ui.statistics.view.StatisticsActivity
 import com.sugarcoach.ui.treatment.interactor.TreatmentInteractorImp
 import com.sugarcoach.ui.treatment.presenter.TreatmentPresenterImp
 import com.sugarcoach.util.extensions.resIdByName
-import kotlinx.android.synthetic.main.activity_treatment.*
-import kotlinx.android.synthetic.main.dialog_congratulation.view.*
-import kotlinx.android.synthetic.main.dialog_info.view.*
-import kotlinx.android.synthetic.main.dialog_treatment_save.view.*
 import org.joda.time.LocalTime
 import java.text.SimpleDateFormat
 import java.util.*
@@ -91,9 +92,12 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
     var initialBomba = false
     lateinit var user: User
 
+    lateinit var binding: ActivityTreatmentBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_treatment)
+        binding = ActivityTreatmentBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         presenter.onAttach(this)
         setListeners()
         menuListeners()
@@ -115,81 +119,79 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
 
     override fun setData(user: User, date: Date) {
         this.user = user
-        treament_username_txt.setText(user.username)
+        binding.treamentUsernameTxt.setText(user.username)
         val formatter = SimpleDateFormat("dd.M.yy", Locale.getDefault())
         val formatterTime = SimpleDateFormat("hh:mm a", Locale.getDefault())
         val formattedDate = formatter.format(date)
         val formattedTime = formatterTime.format(date)
-        treament_time_txt.text = (formattedTime)
-        treament_date_txt.text = (formattedDate)
-        if (user.typeAccount == "3"){
+        binding.treamentTimeTxt.text = formattedTime
+        binding.treamentDateTxt.text = formattedDate
+        if (user.typeAccount == "3") {
             mirrorAccount()
         }
         user.avatar?.let {
-            treament_userimg_iv.setImageDrawable(getDrawable(resIdByName(it, "drawable")))
+            binding.treamentUserimgIv.setImageDrawable(getDrawable(resIdByName(it, "drawable")))
         }
-
     }
 
-
-    override fun setPromedio( promedio: Float) {
-        treatment_glu_prom_txt.text = promedio.toInt().toString()
+    override fun setPromedio(promedio: Float) {
+        binding.treatmentGluPromTxt.text = promedio.toInt().toString()
     }
 
     override fun setPromedioBasal(total: Float) {
         if (total > 0f) {
-            treatment_insu_prom_txt.text = total.toInt().toString()
+            binding.treatmentInsuPromTxt.text = total.toInt().toString()
         }
     }
 
     override fun setPromColor(color: Int) {
-        treatment_glu_prom_txt.setTextColor(ContextCompat.getColor(this,color))
+        binding.treatmentGluPromTxt.setTextColor(ContextCompat.getColor(this, color))
     }
 
     override fun setInsulinasBasales(basalInsuline: List<BasalItem>) {
-        adapter.setPowerView(treatment_basal)
-        treatment_basal.setSpinnerAdapter(adapter)
-        treatment_basal.getSpinnerRecyclerView().layoutManager = linearLayoutManager
-        treatment_basal.setItems(basalInsuline)
+        adapter.setPowerView(binding.treatmentBasal)
+        //binding.treatmentBasal.setSpinnerAdapter(adapter)
+        binding.treatmentBasal.getSpinnerRecyclerView().layoutManager = linearLayoutManager
+        binding.treatmentBasal.setItems(basalInsuline)
     }
 
     override fun setInsulinasCorrectoras(basalInsuline: List<BasalItem>) {
-        adapterCorrectora.setPowerView(treatment_correctora)
-        treatment_correctora.setSpinnerAdapter(adapterCorrectora)
-        treatment_correctora.getSpinnerRecyclerView().layoutManager = cmanager
-        treatment_correctora.setItems(basalInsuline)
+        adapterCorrectora.setPowerView(binding.treatmentCorrectora)
+        //binding.treatmentCorrectora.setSpinnerAdapter(adapterCorrectora)
+        binding.treatmentCorrectora.getSpinnerRecyclerView().layoutManager = cmanager
+        binding.treatmentCorrectora.setItems(basalInsuline)
     }
 
     override fun setMedidor(basalInsuline: List<BasalItem>) {
-        adapterMedidor.setPowerView(treatment_medidor)
-        treatment_medidor.setSpinnerAdapter(adapterMedidor)
-        treatment_medidor.getSpinnerRecyclerView().layoutManager = medidorManager
-        treatment_medidor.setItems(basalInsuline)
+        adapterMedidor.setPowerView(binding.treatmentMedidor)
+        binding.treatmentMedidor.setSpinnerAdapter(adapterMedidor)
+        binding.treatmentMedidor.getSpinnerRecyclerView().layoutManager = medidorManager
+        binding.treatmentMedidor.setItems(basalInsuline)
     }
 
     override fun setBomba(basalInsuline: List<BasalItem>) {
-        adapterBomba.setPowerView(treatment_bomb_infusora)
-        treatment_bomb_infusora.setSpinnerAdapter(adapterBomba)
-        treatment_bomb_infusora.getSpinnerRecyclerView().layoutManager = bombaManager
-        treatment_bomb_infusora.setItems(basalInsuline)
+        adapterBomba.setPowerView(binding.treatmentBombInfusora)
+        binding.treatmentBombInfusora.setSpinnerAdapter(adapterBomba)
+        binding.treatmentBombInfusora.getSpinnerRecyclerView().layoutManager = bombaManager
+        binding.treatmentBombInfusora.setItems(basalInsuline)
     }
 
     override fun showDataSave() {
-        createDialogCongratulation()
+        TODO("Not yet implemented")
     }
 
     private fun createDialogCongratulation(){
-        val view = LayoutInflater.from(this).inflate(R.layout.dialog_congratulation, null)
+        val view = DialogCongratulationBinding.inflate(layoutInflater)
         val builder = androidx.appcompat.app.AlertDialog.Builder(this)
         builder.setCancelable(false)
-        builder.setView(view)
+        builder.setView(view.root)
         dialog = builder.create()
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        view.congratulation_pts_txt.text = "+100"
+        view.congratulationPtsTxt.text = "+100"
         user.avatar?.let {
-            view.congratulation_avatar.setImageDrawable(getDrawable(resIdByName(it, "drawable")))
+            view.congratulationAvatar.setImageDrawable(getDrawable(resIdByName(it, "drawable")))
         }
-        view.congratulation_close.setOnClickListener { dialog.dismiss() }
+        view.congratulationClose.setOnClickListener { dialog.dismiss() }
         dialog.setOnDismissListener { finish() }
         dialog.show()
 
@@ -197,165 +199,189 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
 
     override fun setTreatment(treament: TreatmentBasalCorrectora) {
         var tratamiento = treament.treament!!
-        treatment_obj_txt.setText(tratamiento.object_glucose.toInt().toString())
-        treatment_hiper_txt.setText(tratamiento.hyperglucose.toInt().toString())
-        treatment_hipo_txt.setText(tratamiento.hipoglucose.toInt().toString())
-        treatment_bomb.isChecked = tratamiento.bomb!!
+        binding.treatmentObjTxt.setText(tratamiento.object_glucose.toInt().toString())
+        binding.treatmentHiperTxt.setText(tratamiento.hyperglucose.toInt().toString())
+        binding.treatmentHipoTxt.setText(tratamiento.hipoglucose.toInt().toString())
+        binding.treatmentBomb.isChecked = tratamiento.bomb!!
         if (tratamiento.correctora_unit > 0f) {
-            treatment_glu_mayor_ud.setText(tratamiento.correctora_unit.toInt().toString())
+            binding.treatmentGluMayorUd.setText(tratamiento.correctora_unit.toInt().toString())
         }
         if (tratamiento.correctora > 0f) {
-            treatment_glu_mayor.setText(tratamiento.correctora.toInt().toString())
+            binding.treatmentGluMayor.setText(tratamiento.correctora.toInt().toString())
         }
         if (tratamiento.insulina_unit > 0f) {
-            treatment_carbono_ud.setText(tratamiento.insulina_unit.toInt().toString())
+            binding.treatmentCarbonoUd.setText(tratamiento.insulina_unit.toInt().toString())
         }
         if (tratamiento.carbono > 0f) {
-            treatment_carbono.setText(tratamiento.carbono.toInt().toString())
+            binding.treatmentCarbono.setText(tratamiento.carbono.toInt().toString())
         }
         tratamiento.basal_id?.let {
             initialbasal = true
-            treatment_insu_txt.text = treament.basalInsuline?.name
-            treatment_basal.selectItemByIndex(it-1)
+            binding.treatmentInsuTxt.text = treament.basalInsuline?.name
+            binding.treatmentBasal.selectItemByIndex(it-1)
         }
         tratamiento.correctora_id?.let {
             initial = true
-            treatment_correctora.selectItemByIndex(it-1)
+            binding.treatmentCorrectora.selectItemByIndex(it-1)
         }
         tratamiento.medidor_id?.let {
             initialMedidor = true
-            treatment_medidor.selectItemByIndex(it-1)
+            binding.treatmentMedidor.selectItemByIndex(it-1)
         }
         tratamiento.bomba_id?.let {
             initialBomba = true
-            treatment_bomb_infusora.selectItemByIndex(it-1)
+            binding.treatmentBombInfusora.selectItemByIndex(it-1)
         }
-        treatment_correctora.setOnSpinnerItemSelectedListener<BasalItem> { position, item ->
+        binding.treatmentCorrectora.setOnSpinnerItemSelectedListener<BasalItem> { position, item ->
             if (!initial) {
                 presenter.saveCorrectora(item)
             }else{
                 initial = false
             }
         }
-        treatment_basal.setOnSpinnerItemSelectedListener<BasalItem> { position, item ->
+        binding.treatmentBasal.setOnSpinnerItemSelectedListener<BasalItem> { position, item ->
             if (!initialbasal) {
-                treatment_insu_txt.text = item.name
+                binding.treatmentInsuTxt.text = item.name
                 presenter.saveBasal(item)
             }else{
                 initialbasal = false
             }
         }
-        treatment_medidor.setOnSpinnerItemSelectedListener<BasalItem> { position, item ->
+        binding.treatmentMedidor.setOnSpinnerItemSelectedListener<BasalItem> { position, item ->
             if (!initialMedidor) {
                 presenter.saveMedidor(item)
             }else{
                 initialMedidor = false
             }
         }
-        treatment_bomb_infusora.setOnSpinnerItemSelectedListener<BasalItem> { position, item ->
+        binding.treatmentBombInfusora.setOnSpinnerItemSelectedListener<BasalItem> { position, item ->
             if (!initialBomba) {
                 presenter.saveBomba(item)
             }else{
                 initialBomba = false
             }
         }
-
     }
 
     override fun setCategories(category: List<HorarioItem>) {
         lmanager.orientation = RecyclerView.VERTICAL
-        treatment_basal_list.layoutManager = lmanager
-        treatment_basal_list.adapter = adapterCategory
+        binding.treatmentBasalList.layoutManager = lmanager
+        binding.treatmentBasalList.adapter = adapterCategory
         var items = ArrayList<String>()
         for (i in 1 until 36){
             items.add(i.toString())
         }
         adapterCategory.setData(category, items)
-
     }
 
     override fun setCategoriesCorrectora(category: List<HorarioItem>) {
         manager.orientation = RecyclerView.VERTICAL
-        treatment_correctora_list.layoutManager = manager
-        treatment_correctora_list.adapter = adapterCategoryCorrectora
+        binding.treatmentCorrectoraList.layoutManager = manager
+        binding.treatmentCorrectoraList.adapter = adapterCategoryCorrectora
         adapterCategoryCorrectora.setData(category)
     }
 
     override fun setBasalHoras(horas: List<BasalHoraItem>) {
         horamanager.orientation = RecyclerView.VERTICAL
-        treatment_hora_list.layoutManager = horamanager
-        treatment_hora_list.adapter = adapterBasalHoraAdapter
+        binding.treatmentHoraList.layoutManager = horamanager
+        binding.treatmentHoraList.adapter = adapterBasalHoraAdapter
         adapterBasalHoraAdapter.setData(horas)
     }
 
     fun setListeners(){
-        treatment_obj_txt.setOnEditorActionListener { v, actionId, event ->
+        binding.treatmentObjTxt.setOnEditorActionListener { v, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_DONE){
-                presenter.saveAll(treatment_obj_txt.text.toString().toFloat(), treatment_hipo_txt.text.toString().toFloat(),treatment_hiper_txt.text.toString().toFloat())
+                presenter.saveAll(binding.treatmentObjTxt.text.toString().toFloat(), binding.treatmentHipoTxt.text.toString().toFloat(),binding.treatmentHiperTxt.text.toString().toFloat())
             }
             false
         }
-        treatment_hipo_txt.setOnEditorActionListener { v, actionId, event ->
+        binding.treatmentHipoTxt.setOnEditorActionListener { v, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_DONE){
-                presenter.saveAll(treatment_obj_txt.text.toString().toFloat(), treatment_hipo_txt.text.toString().toFloat(),treatment_hiper_txt.text.toString().toFloat())
+                presenter.saveAll(binding.treatmentObjTxt.text.toString().toFloat(), binding.treatmentHipoTxt.text.toString().toFloat(),binding.treatmentHiperTxt.text.toString().toFloat())
             }
             false
         }
-        treatment_hiper_txt.setOnEditorActionListener { v, actionId, event ->
+        binding.treatmentHiperTxt.setOnEditorActionListener { v, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_DONE){
-                presenter.saveAll(treatment_obj_txt.text.toString().toFloat(), treatment_hipo_txt.text.toString().toFloat(),treatment_hiper_txt.text.toString().toFloat())
+                presenter.saveAll(binding.treatmentObjTxt.text.toString().toFloat(), binding.treatmentHipoTxt.text.toString().toFloat(),binding.treatmentHiperTxt.text.toString().toFloat())
             }
             false
         }
-        treatment_glu_mayor_ud.setOnEditorActionListener { v, actionId, event ->
+        binding.treatmentGluMayorUd.setOnEditorActionListener { v, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_DONE){
-                presenter.saveUnitCorrectora(treatment_glu_mayor_ud.text.toString().toFloat())
+                presenter.saveUnitCorrectora(binding.treatmentGluMayorUd.text.toString().toFloat())
             }
             false
         }
-        treatment_glu_mayor.setOnEditorActionListener { v, actionId, event ->
+        binding.treatmentGluMayor.setOnEditorActionListener { v, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_DONE){
-                presenter.saveCorrectoraGlu(treatment_glu_mayor.text.toString().toFloat())
+                presenter.saveCorrectoraGlu(binding.treatmentGluMayor.text.toString().toFloat())
             }
             false
         }
-        treatment_carbono_ud.setOnEditorActionListener { v, actionId, event ->
+        binding.treatmentCarbonoUd.setOnEditorActionListener { v, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_DONE){
-                presenter.saveUnitInsulina(treatment_carbono_ud.text.toString().toFloat())
+                presenter.saveUnitInsulina(binding.treatmentCarbonoUd.text.toString().toFloat())
             }
             false
         }
-        treatment_carbono.setOnEditorActionListener { v, actionId, event ->
+        binding.treatmentCarbono.setOnEditorActionListener { v, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_DONE){
-                presenter.saveCarbono(treatment_carbono.text.toString().toFloat())
+                presenter.saveCarbono(binding.treatmentCarbono.text.toString().toFloat())
             }
             false
         }
-        treatment_bomb.setOnCheckedChangeListener { buttonView, isChecked -> selectBomb(isChecked) }
-        treatment_basal_title.setOnClickListener { v -> createDialogInfo(getString(R.string.info_insuline))  }
-        treatment_ranges.setOnClickListener { v -> createDialogInfo(getString(R.string.info_objective))  }
-        treatment_basal_units.setOnClickListener { v -> createDialogInfo(getString(R.string.info_insuline_times))  }
-        treatment_glu_mayor_ud_title.setOnClickListener { v -> createDialogInfo(getString(R.string.info_insuline_correctora_mayor))  }
-        treatment_correctora_title.setOnClickListener { v -> createDialogInfo(getString(R.string.info_insuline_correctora))  }
-        treatment_correctora_list_title.setOnClickListener { v -> createDialogInfo(getString(R.string.info_insuline_horary))  }
-        treatment_carbono_title.setOnClickListener { v -> createDialogInfo(getString(R.string.info_carbono))  }
-        treatment_recordatorio_title.setOnClickListener { v -> createDialogInfo(getString(R.string.info_recordatorio))  }
+        binding.treatmentBomb.setOnCheckedChangeListener { buttonView, isChecked ->
+            selectBomb(isChecked)
+        }
+
+        binding.treatmentBasalTitle.setOnClickListener { v ->
+            createDialogInfo(getString(R.string.info_insuline))
+        }
+
+        binding.treatmentRanges.setOnClickListener { v ->
+            createDialogInfo(getString(R.string.info_objective))
+        }
+
+        binding.treatmentBasalUnits.setOnClickListener { v ->
+            createDialogInfo(getString(R.string.info_insuline_times))
+        }
+
+        binding.treatmentGluMayorUdTitle.setOnClickListener { v ->
+            createDialogInfo(getString(R.string.info_insuline_correctora_mayor))
+        }
+
+        binding.treatmentCorrectoraTitle.setOnClickListener { v ->
+            createDialogInfo(getString(R.string.info_insuline_correctora))
+        }
+
+        binding.treatmentCorrectoraListTitle.setOnClickListener { v ->
+            createDialogInfo(getString(R.string.info_insuline_horary))
+        }
+
+        binding.treatmentCarbonoTitle.setOnClickListener { v ->
+            createDialogInfo(getString(R.string.info_carbono))
+        }
+
+        binding.treatmentRecordatorioTitle.setOnClickListener { v ->
+            createDialogInfo(getString(R.string.info_recordatorio))
+        }
     }
     fun menuListeners(){
-        home.setOnClickListener { presenter.goToActivityMain() }
-        statistics.setOnClickListener { presenter.goToActivityStatistic() }
-        dailyRegister.setOnClickListener { presenter.goToActivityDaily() }
+        binding.home.setOnClickListener { presenter.goToActivityMain() }
+        binding.statistics.setOnClickListener { presenter.goToActivityStatistic() }
+        binding.dailyRegister.setOnClickListener { presenter.goToActivityDaily() }
 
     }
     private fun createDialogInfo(info: String){
-        val view = LayoutInflater.from(this).inflate(R.layout.dialog_info, null)
+        val view = DialogInfoBinding.inflate(layoutInflater)
         val builder = AlertDialog.Builder(this)
         builder.setCancelable(false)
-        builder.setView(view)
+        builder.setView(view.root)
         var dialog = builder.create()
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        view.info_subtitle.text = info
-        view.info_accept.setOnClickListener{
+        view.infoSubtitle.text = info
+        view.infoAccept.setOnClickListener{
             dialog.dismiss()
         }
         dialog.show()
@@ -385,32 +411,32 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
 
     fun selectBomb(show: Boolean){
         if (show) {
-            treatment_bomb_no.visibility = View.GONE
-            treatment_horario.visibility = View.GONE
-            treatment_bomb_si.visibility = View.VISIBLE
+            binding.treatmentBombNo.visibility = View.GONE
+            binding.treatmentHorario.visibility = View.GONE
+            binding.treatmentBombSi.visibility = View.VISIBLE
         }else{
-            treatment_bomb_no.visibility = View.VISIBLE
-            treatment_horario.visibility = View.VISIBLE
-            treatment_bomb_si.visibility = View.GONE
+            binding.treatmentBombNo.visibility = View.VISIBLE
+            binding.treatmentHorario.visibility = View.VISIBLE
+            binding.treatmentBombSi.visibility = View.GONE
         }
         presenter.saveBomb(show)
     }
     fun mirrorAccount() {
-        add_register.isEnabled = false
-        add_register_image.setColorFilter(ContextCompat.getColor(this, R.color.gray), PorterDuff.Mode.MULTIPLY)
+        binding.addRegister.isEnabled = false
+        binding.addRegisterImage.setColorFilter(ContextCompat.getColor(this, R.color.gray), PorterDuff.Mode.MULTIPLY)
     }
 
     fun dialogSave() {
-        val view = LayoutInflater.from(this).inflate(R.layout.dialog_treatment_save, null)
+        val view = DialogTreatmentSaveBinding.inflate(layoutInflater)
         val builder = AlertDialog.Builder(this)
-        builder.setView(view)
+        builder.setView(view.root)
         dialog = builder.create()
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        view.treament_accept.setOnClickListener {
+        view.treamentAccept.setOnClickListener {
             presenter.updateAll()
             dialog.dismiss()
         }
-        view.treament_cancel.setOnClickListener {
+        view.treamentCancel.setOnClickListener {
             finish()
             dialog.dismiss()
         }

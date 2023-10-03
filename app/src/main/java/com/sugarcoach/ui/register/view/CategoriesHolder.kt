@@ -6,10 +6,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.sugarcoach.data.database.repository.dailyregister.Category
 import com.sugarcoach.databinding.CategoryItemBinding
-import com.sugarcoach.ui.daily_detail.view.DailyDetailActivity
 
 class CategoriesHolder(private val binding: CategoryItemBinding) : RecyclerView.ViewHolder(binding.root) {
-    fun bind(item: Category, activity: DailyDetailActivity) {
+    fun bind(item: Category, activity: RegisterActivity) {
         binding.categoryName.text = activity.getLabel(item.cate_name)
     }
 

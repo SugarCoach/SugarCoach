@@ -1,28 +1,29 @@
 package com.sugarcoach.ui.signEmail.view
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.sugarcoach.R
+import com.sugarcoach.databinding.ActivitySignEmailBinding
 import com.sugarcoach.ui.base.view.BaseActivity
 import com.sugarcoach.ui.main.view.MainActivity
 import com.sugarcoach.ui.signEmail.interactor.SignEmailInteractorImp
 import com.sugarcoach.ui.signEmail.presenter.SignEmailPresenterImp
 import com.sugarcoach.util.AppConstants
-import kotlinx.android.synthetic.main.activity_sign_email.*
-import kotlinx.android.synthetic.main.activity_sign_email.sign_facebook
 import javax.inject.Inject
 
 class SignEmailActivity: BaseActivity(), SignEmailView {
 
     @Inject
     lateinit var presenter: SignEmailPresenterImp<SignEmailView, SignEmailInteractorImp>
-
+    lateinit var binding: ActivitySignEmailBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_sign_email)
+        binding = ActivitySignEmailBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         presenter.onAttach(this)
         setOnClickListeners()
     }
@@ -74,8 +75,8 @@ class SignEmailActivity: BaseActivity(), SignEmailView {
 //        finish()
     }
     private fun setOnClickListeners() {
-        sign_google.setOnClickListener { presenter.googleLogin(getString(R.string.google_id)) }
-        sign_facebook.setOnClickListener { presenter.facebookLogin() }
-        sign_email_bt.setOnClickListener { presenter.signIn(sign_email_user.text.toString(), sign_email_mail.text.toString(), sign_email_pass.text.toString()) }
+        binding.signGoogle.setOnClickListener { presenter.googleLogin(getString(R.string.google_id)) }
+        binding.signFacebook.setOnClickListener { presenter.facebookLogin() }
+        binding.signEmailBt.setOnClickListener { presenter.signIn(binding.signEmailUser.text.toString(), binding.signEmailMail.text.toString(), binding.signEmailPass.text.toString()) }
     }
 }

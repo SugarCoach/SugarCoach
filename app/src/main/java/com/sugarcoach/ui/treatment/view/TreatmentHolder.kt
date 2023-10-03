@@ -1,17 +1,20 @@
 package com.sugarcoach.ui.treatment.view
 
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.treatment_item.view.*
+import com.sugarcoach.databinding.BasalItemBinding
+import com.sugarcoach.databinding.TreatmentItemBinding
 import java.util.*
 
-class TreatmentHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+class TreatmentHolder(private val binding: TreatmentItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
 
     fun inflateData(item: HorarioItem, position: Int, activity: TreatmentActivity, items: ArrayList<String>) {
-        itemView.treament_item_label.text = item.name
-        itemView.treatment_item_horario.isChecked = item.selected
-        itemView.treatment_item_horario.setOnCheckedChangeListener { buttonView, isChecked ->
+        binding.treamentItemLabel.text = item.name
+        binding.treatmentItemHorario.isChecked = item.selected
+        binding.treatmentItemHorario.setOnCheckedChangeListener { buttonView, isChecked ->
             if (!isChecked){
                 val category = HorarioItem.Builder()
                     .id(item.id)
@@ -23,14 +26,14 @@ class TreatmentHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
                 activity.presenter.saveCategory(category)
             }
         }
-        itemView.treatment_item_unidad.setItems(items.toList())
+        binding.treatmentItemUnidad.setItems(items.toList())
         item.units.let {
-            if(it.isNotEmpty() && itemView.treatment_item_horario.isChecked) {
-                itemView.treatment_item_unidad.selectItemByIndex(item.units.toInt()-1)
+            if(it.isNotEmpty() && binding.treatmentItemHorario.isChecked) {
+                binding.treatmentItemUnidad.selectItemByIndex(item.units.toInt()-1)
             }
         }
-        itemView.treatment_item_unidad.setOnSpinnerItemSelectedListener<String> { index, unit ->
-            if (itemView.treatment_item_horario.isChecked){
+        binding.treatmentItemUnidad.setOnSpinnerItemSelectedListener<String> { index, unit ->
+            if (binding.treatmentItemHorario.isChecked){
                 val category = HorarioItem.Builder()
                     .id(item.id)
                     .name(item.name)
@@ -40,6 +43,14 @@ class TreatmentHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
                     .build()
                 activity.presenter.saveCategory(category)
             }
+        }
+    }
+
+    companion object {
+        fun create(parent: ViewGroup): TreatmentHolder {
+            val inflater = LayoutInflater.from(parent.context)
+            val binding = TreatmentItemBinding.inflate(inflater, parent, false)
+            return TreatmentHolder(binding)
         }
     }
 }

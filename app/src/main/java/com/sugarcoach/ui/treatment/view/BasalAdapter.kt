@@ -25,7 +25,7 @@ class BasalAdapter(private val activity: TreatmentActivity) : RecyclerView.Adapt
         bind(holder as BasalHolder, item)
 
         holder.itemView.setOnClickListener {
-            notifyItemSelected(position)
+            //notifyItemSelected(position)
         }
     }
 
@@ -35,11 +35,11 @@ class BasalAdapter(private val activity: TreatmentActivity) : RecyclerView.Adapt
 
 
     fun setPowerView(powerSpinnerView: PowerSpinnerView){
-        this.spinnerView = powerSpinnerView
+        //this.spinnerView = powerSpinnerView
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    override fun setItems(itemList: List<BasalItem>) {
+    /*override fun setItems(itemList: List<BasalItem>) {
         items.clear()
         items.addAll(itemList)
         notifyDataSetChanged()
@@ -49,7 +49,7 @@ class BasalAdapter(private val activity: TreatmentActivity) : RecyclerView.Adapt
     fun notifyItemSelected(index: Int) {
         this.spinnerView.notifyItemSelected(index, this.items[index].name)
         this.onSpinnerItemSelectedListener?.onItemSelected(index, this.items[index])
-    }
+    }*/
     private fun bind(holder: BasalHolder, item: BasalItem) {
         holder.bind(item, activity)
     }

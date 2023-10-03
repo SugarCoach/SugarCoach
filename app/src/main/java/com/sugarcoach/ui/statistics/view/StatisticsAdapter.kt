@@ -12,16 +12,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.RequestManager
 import com.github.islamkhsh.CardSliderAdapter
 import com.sugarcoach.R
+import com.sugarcoach.databinding.StatisticsItemBinding
 import java.util.*
 
 class StatisticsAdapter(private val activity: StatisticsActivity) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var itemList: MutableList<StatisticsItem> = Collections.emptyList()
     lateinit var holder: StatisticsHolder
-
+    lateinit var binding: StatisticsItemBinding
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater: LayoutInflater = LayoutInflater.from(activity)
-        var holder = StatisticsHolder(inflater.inflate(R.layout.statistics_item, parent, false))
+        var holder = StatisticsHolder(binding)
         this.holder = holder
         return holder
     }

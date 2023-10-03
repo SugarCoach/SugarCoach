@@ -4,16 +4,17 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.sugarcoach.R
+import com.sugarcoach.databinding.ProfileItemBinding
 import java.util.*
 
 class ProfileAdapter(private val activity: ProfileActivity) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var itemList: MutableList<ProfileItem> = Collections.emptyList()
     lateinit var holder: ProfileHolder
-
+    lateinit var binding: ProfileItemBinding
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater: LayoutInflater = LayoutInflater.from(activity)
-        var holder = ProfileHolder(inflater.inflate(R.layout.profile_item, parent, false))
+        var holder = ProfileHolder(binding)
         this.holder = holder
         return holder
     }
@@ -49,7 +50,7 @@ class ProfileAdapter(private val activity: ProfileActivity) : RecyclerView.Adapt
     }
 
     private fun bind(holder: ProfileHolder, item: ProfileItem) {
-        holder.inflateData(item,holder.adapterPosition, activity)
+        holder.bind(item, activity)
     }
 
 }
