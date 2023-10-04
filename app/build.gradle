@@ -183,7 +183,10 @@ dependencies {
     implementation 'eu.bolt:screenshotty-rx:1.0.3'
     implementation 'com.github.Chrisvin:LiquidSwipe:1.3'
 
+    //CORUTINAS
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1")
 }
+
 
 apply plugin: 'com.google.gms.google-services'
 apply plugin: 'com.google.firebase.crashlytics'

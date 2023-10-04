@@ -14,7 +14,11 @@ import com.sugarcoach.ui.login.presenter.LoginPresenterImp
 import com.sugarcoach.ui.main.view.MainActivity
 import com.sugarcoach.ui.signEmail.view.SignEmailActivity
 import com.sugarcoach.util.AppConstants
+import kotlinx.coroutines.coroutineScope
 import javax.inject.Inject
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 class LoginActivity: BaseActivity(), LoginView {
     @Inject
@@ -55,7 +59,11 @@ class LoginActivity: BaseActivity(), LoginView {
     }
 
     private fun setOnClickListeners() {
-        binding.loginBt.setOnClickListener { presenter.onLogin(binding.loginMail.text.toString(), binding.loginPass.text.toString(),false, false) }
+
+        binding.loginBt.setOnClickListener { runBlocking {
+            presenter.onLogin(binding.loginMail.text.toString(),
+                binding.loginPass.text.toString(),false, false)}
+        }
         binding.loginSignin.setOnClickListener { presenter.emailSign() }
         binding.loginForgot.setOnClickListener { presenter.forgot() }
         binding.loginScan.setOnClickListener{scanQR()}
@@ -73,7 +81,7 @@ class LoginActivity: BaseActivity(), LoginView {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        presenter.activityResult(requestCode, resultCode, data)
+        runBlocking { presenter.activityResult(requestCode, resultCode, data) }
     }
 
     fun scanQR(){

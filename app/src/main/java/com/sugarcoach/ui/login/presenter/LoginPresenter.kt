@@ -17,6 +17,8 @@ import com.sugarcoach.util.AppConstants
 import com.sugarcoach.util.SchedulerProvider
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import kotlinx.coroutines.async
+import kotlinx.coroutines.coroutineScope
 import org.joda.time.DateTime
 import java.text.SimpleDateFormat
 import java.util.*
@@ -27,31 +29,41 @@ class LoginPresenter  <V : LoginView, I : LoginInteractorImp> @Inject internal c
 
 
     val barcodeREQUEST = 1002
-    override fun onLogin(email: String, password: String, mirror: Boolean, medico: Boolean) {
+    override suspend fun onLogin(email: String, password: String, mirror: Boolean, medico: Boolean) {
         when {
             email.isEmpty() -> getView()?.showValidationMessage(AppConstants.EMPTY_EMAIL_ERROR)
             !isEmailValid(email) -> getView()?.showValidationMessage(AppConstants.INVALID_EMAIL_ERROR)
             password.isEmpty() -> getView()?.showValidationMessage(AppConstants.EMPTY_PASSWORD_ERROR)
             else -> {
-                interactor?.let {
-                    compositeDisposable.add(it.doServerLoginpiCall(email, password)
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .doOnSubscribe { getView()?.showProgress() }
-                        .doOnNext { getView()?.hideProgress() }
-                        .subscribe({ loginResponse ->
-                            updateUserInSharedPref(loginResponse = loginResponse,mirror = mirror,medico = medico)
-                            feedInDatabase()
-
-                        }, { throwable ->
-                            getView()?.hideProgress()
-                            showException(throwable)
-                        })
-                    )
-                }
+                suspendLogin(email, password, mirror, medico)
             }
         }
     }
 
+    private suspend fun suspendLogin(email: String, password: String, mirror: Boolean, medico: Boolean) = coroutineScope{
+         val waitResponse = async {
+            interactor?.let {
+                compositeDisposable.add(it.doServerLoginpiCall(email, password)
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .doOnSubscribe { getView()?.showProgress() }
+                    .doOnNext { getView()?.hideProgress() }
+                    .subscribe({ loginResponse ->
+                        updateUserInSharedPref(
+                            loginResponse = loginResponse,
+                            mirror = mirror,
+                            medico = medico
+                        )
+                        feedInDatabase()
+
+                    }, { throwable ->
+                        getView()?.hideProgress()
+                        showException(throwable)
+                    })
+                )
+            }
+        }
+        Log.i("OnSuspendLogin", "${waitResponse.await()}")
+    }
     private fun updateUserInSharedPref(loginResponse: LoginResponse, mirror: Boolean,medico: Boolean) =
         interactor?.updateUserInSharedPref(loginResponse,mirror,medico)
 
@@ -194,24 +206,31 @@ class LoginPresenter  <V : LoginView, I : LoginInteractorImp> @Inject internal c
 
     }
 
-    override fun activityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (resultCode == Activity.RESULT_OK) {
-            if (requestCode == barcodeREQUEST && data != null) {
-                val barcode: Barcode = data.getParcelableExtra (BarcodeReaderActivity.KEY_CAPTURED_BARCODE)!!
-                when (barcode.displayValue) {
-                    "sugar" -> {
-                        onLogin("n@n.com", "1", true,false)
+    override suspend fun activityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        coroutineScope {
+            if (resultCode == Activity.RESULT_OK) {
+                if (requestCode == barcodeREQUEST && data != null) {
+                    val barcode: Barcode =
+                        data.getParcelableExtra(BarcodeReaderActivity.KEY_CAPTURED_BARCODE)!!
+                    when (barcode.displayValue) {
+                        "sugar" -> {
+                            onLogin("n@n.com", "1", true, false)
+                        }
+
+                        "sugar_medico" -> {
+                            onLogin("n2@n.com", "1", true, true)
+                        }
+
+                        else -> {
+                            getView()?.showErrorToast()
+                        }
                     }
-                    "sugar_medico" -> {
-                        onLogin("n2@n.com", "1", true, true)
-                    }
-                    else -> {
-                        getView()?.showErrorToast()
-                    }
+                }else{
+                    Log.i("OnResultCode", "El result codew no fue RESULT_OK")
                 }
+            } else {
+                getView()?.showErrorToast()
             }
-        }else{
-            getView()?.showErrorToast()
         }
     }
     override fun getBarcode(): Int {

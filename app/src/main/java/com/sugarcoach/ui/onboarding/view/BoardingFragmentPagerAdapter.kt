@@ -14,7 +14,7 @@ class BoardingFragmentPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdap
         this.itemList = itemList.toMutableList()
     }
     override fun getItem(position: Int): Fragment {
-        var item = itemList[position]
+        val item = itemList[position]
         return BoardingFragment.newInstance(item.bg, item.image, item.title, item.subtitle, item.showButton)
     }
 

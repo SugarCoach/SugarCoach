@@ -17,6 +17,8 @@ import com.sugarcoach.util.AppConstants
 import com.sugarcoach.util.FileUtils
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.coroutineScope
 import javax.inject.Inject
 
 
@@ -46,10 +48,16 @@ class ConfigInteractor @Inject constructor(private val mContext: Context, privat
 
     override fun deleteUser() = userHelper.deleteUser()
 
-    override fun doServerLoginpiCall(email: String, password: String): Observable<LoginResponse> {
-        return apiHelper.performServerLogin(LoginRequest.ServerLoginRequest(email = email, pass = password)).subscribeOn(
-            Schedulers.io())
-            .map { it }
+    override suspend fun doServerLoginpiCall(email: String, password: String): Observable<LoginResponse> {
+        val loginResponse = coroutineScope {
+            val response = async {
+                apiHelper.performServerLogin(LoginRequest.ServerLoginRequest(email = email, pass = password))
+                    .subscribeOn(Schedulers.io())
+                    .map { it }
+            }
+            response.await()
+        }
+        return loginResponse
     }
 
     override fun getRegistersCall(): Observable<List<RegistersResponse>> {
