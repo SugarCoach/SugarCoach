@@ -1,5 +1,6 @@
 package com.sugarcoach.ui.onboarding.presenter
 
+import android.util.Log
 import com.sugarcoach.R
 import com.sugarcoach.ui.base.presenter.BasePresenter
 import com.sugarcoach.ui.onboarding.interactor.OnBoardingInteractorImp
@@ -20,7 +21,7 @@ class OnBoardingPresenter<V : OnBoardingView, I : OnBoardingInteractorImp>
     }
 
     private fun getData(){
-        /*val itemList = ArrayList<BoardingItem>()
+        val itemList = ArrayList<BoardingItem>()
         val oneItem = BoardingItem.Builder().bg(R.color.aqua).image(R.drawable.avatar_1).title(R.string.onboarding_item_one_title).subtitle(R.string.onboarding_item_one_subtitle).showButton(false).build()
         val twoItem = BoardingItem.Builder().bg(R.color.purple).image(R.drawable.avatar_2).title(R.string.onboarding_item_two_title).showButton(false).build()
         val threeItem = BoardingItem.Builder().bg(R.color.blue).image(R.drawable.avatar_3).title(R.string.onboarding_item_three_title).showButton(false).build()
@@ -30,8 +31,9 @@ class OnBoardingPresenter<V : OnBoardingView, I : OnBoardingInteractorImp>
         itemList.add(twoItem)
         itemList.add(threeItem)
         itemList.add(fourItem)
-        itemList.add(fiveItem)*/
-        //getView()?.setData(itemList)
+        itemList.add(fiveItem)
+        Log.i("OnGetData","Se ejecuto el get data")
+        getView()?.setData(itemList)
     }
 
 }

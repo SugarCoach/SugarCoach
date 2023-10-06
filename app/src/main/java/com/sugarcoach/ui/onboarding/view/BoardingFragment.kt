@@ -1,10 +1,16 @@
 package com.sugarcoach.ui.onboarding.view
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageButton
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import com.sugarcoach.R
 import com.sugarcoach.databinding.ActivityOnboardingBinding
@@ -17,7 +23,7 @@ private const val ARG_TITLE = "param3"
 private const val ARG_SUBTITLE = "param4"
 private const val ARG_SHOWBUTTON = "param5"
 
-class BoardingFragment(private val page: BoardingItem) : Fragment() {
+class BoardingFragment() : Fragment() {
     private var param1: Int? = null
     private var param2: Int? = null
     private var param3: Int? = null
@@ -26,32 +32,12 @@ class BoardingFragment(private val page: BoardingItem) : Fragment() {
 
     private lateinit var binding: FragmentOnboardingItemBinding
 
-    /*override fun setUp() {
-        binding = FragmentOnboardingItemBinding.inflate(layoutInflater)
-
-        binding.boardingItemSubtitle.visibility = View.GONE
-        binding.boardingBt.visibility = View.GONE
-
-        Log.i("OnSetUp", "$param1, $param2, ${getString(param3!!)}")
-        param1?.let { binding.boardingLayout.setBackgroundResource(it) }
-        param2?.let { binding.boardingImage.setImageResource(it) }
-        param3?.let { binding.boardingItemTitle.text = getString(it) }
-
-        param4?.let {
-            if (it != 0) {
-                binding.boardingItemSubtitle.text = getString(it)
-                binding.boardingItemSubtitle.visibility = View.VISIBLE
-            }
-        }
-
-        param5?.let { if (it) binding.boardingBt.visibility = View.VISIBLE }
-
-        binding.boardingBt.setOnClickListener { (activity as OnBoardingActivity).openLoginActivity() }
-
-    }*/
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_onboarding_item, container, false)
+    }
+
+    @SuppressLint("SetTextI18n")
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         arguments?.let {
             param1 = it.getInt(ARG_BACKGROUND_COLOR)
             param2 = it.getInt(ARG_RESOURCE)
@@ -59,31 +45,31 @@ class BoardingFragment(private val page: BoardingItem) : Fragment() {
             param4 = it.getInt(ARG_SUBTITLE)
             param5 = it.getBoolean(ARG_SHOWBUTTON)
         }
-        Log.i("OnCreateView", "${param1.toString()}, $param2, $param3, $param4, $param5")
 
-        binding = FragmentOnboardingItemBinding.inflate(layoutInflater)
+        val boardingItemTitle: TextView = view.findViewById(R.id.boarding_item_title)
+        val boardingLayout: ConstraintLayout = view.findViewById(R.id.boarding_layout)
+        val boardingImage: ImageView = view.findViewById(R.id.boarding_image)
+        val boardingItemSubtitle: TextView = view.findViewById(R.id.boarding_item_subtitle)
+        val boardingBt: Button = view.findViewById(R.id.boarding_bt)
+        boardingItemSubtitle.visibility = View.GONE
+        boardingBt.visibility = View.GONE
 
-        binding.boardingItemSubtitle.visibility = View.GONE
-        binding.boardingBt.visibility = View.GONE
-
-        Log.i("OnSetUp", "$param1, $param2, ${getString(param3!!)}")
-        param1?.let { binding.boardingLayout.setBackgroundResource(it) }
-        param2?.let { binding.boardingImage.setImageResource(it) }
-        param3?.let { binding.boardingItemTitle.text = getString(it) }
+        Log.i("OnViewCreated", "$param1, $param2, ${getString(param3!!)}")
+        param1?.let { boardingLayout.setBackgroundResource(it) }
+        param2?.let { boardingImage.setImageResource(it) }
+        param3?.let { Log.i("OnParam3:","El string es: ${getString(it)}")
+            boardingItemTitle.text = getString(it) }
 
         param4?.let {
             if (it != 0) {
-                binding.boardingItemSubtitle.text = getString(it)
-                binding.boardingItemSubtitle.visibility = View.VISIBLE
+                boardingItemSubtitle.text = getString(it)
+                boardingItemSubtitle.visibility = View.VISIBLE
             }
         }
 
-        param5?.let { if (it) binding.boardingBt.visibility = View.VISIBLE }
+        param5?.let { if (it) boardingBt.visibility = View.VISIBLE }
 
-        binding.boardingBt.setOnClickListener { (activity as OnBoardingActivity).openLoginActivity() }
-
-        return  FragmentOnboardingItemBinding.inflate(inflater, container, false).root
-        //return inflater.inflate(R.layout.fragment_onboarding_item, container, false)
+        boardingBt.setOnClickListener { (activity as OnBoardingActivity).openLoginActivity() }
     }
 
     /*companion object {

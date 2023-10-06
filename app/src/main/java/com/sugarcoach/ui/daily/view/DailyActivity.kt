@@ -44,7 +44,7 @@ class DailyActivity : BaseActivity(), DailyView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = ActivityConfigBinding.inflate(layoutInflater)
+        val binding = ActivityDailyBinding.inflate(layoutInflater)
         setContentView(binding.root)
         presenter.onAttach(this)
         setListeners()

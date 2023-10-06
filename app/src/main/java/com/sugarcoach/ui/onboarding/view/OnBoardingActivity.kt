@@ -1,5 +1,6 @@
 package com.sugarcoach.ui.onboarding.view
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -23,47 +24,15 @@ class OnBoardingActivity: BaseActivity(), OnBoardingView {
     @Inject
     lateinit var adapter: BoardingFragmentPagerAdapter
     lateinit var binding: ActivityOnboardingBinding
-    @Inject
-    lateinit var itemList: ArrayList<BoardingItem>
 
 
-    val onBoardingPageChangeCallback = object : ViewPager2.OnPageChangeCallback(){
-        override fun onPageSelected(position: Int) {
-            super.onPageSelected(position)
-            when (position){
-                0 -> {
-                    /*skipBtn.text = "Skip"
-                    skipBtn.visible()
-                    nextBtn.visible()
-                    previousBtn.gone()*/
-                    Log.i("On0","$itemList")
-                }
-                itemList.size - 1 -> {
-                    Log.i("OnSize","$position, $itemList")
-                    /*skipBtn.text = "Get Started"
-                    nextBtn.gone()
-                    skipBtn.visible()
-                    previousBtn.visible()*/
-
-                }
-                else -> {
-                    Log.i("OnElse","$position, $itemList")
-                }
-            }
-        }
-    }
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.i("OnCreateBoarding", "Se esta creando el boarding")
         super.onCreate(savedInstanceState)
         binding = ActivityOnboardingBinding.inflate(layoutInflater)
         setContentView(binding.root)
         presenter.onAttach(this)
-
-        binding.boardingPager.apply {
-            adapter = adapter
-            registerOnPageChangeCallback(onBoardingPageChangeCallback)
-            (getChildAt(0) as RecyclerView).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
-        }
+        //binding.boardingPager.adapter = adapter
     }
 
     override fun onDestroy() {
@@ -77,10 +46,11 @@ class OnBoardingActivity: BaseActivity(), OnBoardingView {
         finish()
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun setData(itemList: ArrayList<BoardingItem>) {
-        /*binding.boardingPager.adapter = adapter
+        binding.boardingPager.adapter = adapter
         adapter.setData(itemList)
-        adapter.notifyDataSetChanged()*/
+        adapter.notifyDataSetChanged()
     }
 
     override fun showProgress() {
