@@ -83,9 +83,9 @@
     <string name="login_user_label">Apodo</string>
     <string name="login_password_label">Contraseña</string>
     <string name="login_email_label">Mail</string>
-    <string name="facebook_app_id" translatable="false">620222050272632</string>
+    <string name="facebook_app_id" translatable="false">980132638986062</string>
     <!--<string name="facebook_app_id">544348083039193</string>-->
-    <string name="facebook_client_token" translatable="false">a8aac427a6b4e04ebde84824e20ecbad</string>
+    <string name="facebook_client_token" translatable="false">a3120380267bf88e458a6bc09ca06556</string>
     <string name="fb_login_protocol_scheme" translatable="false">fb544348083039193</string>
     <string name="google_id">491509079769-id35b8mg2ri28f22hokp9fbnhbpg9e3c.apps.googleusercontent.com</string>
     <string name="test">Lorem Lipsum</string>

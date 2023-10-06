@@ -1,24 +1,30 @@
 package com.sugarcoach.ui.onboarding.view
 
+import android.graphics.pdf.PdfDocument.Page
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
-import androidx.fragment.app.FragmentStatePagerAdapter
-import java.util.*
+import androidx.lifecycle.Lifecycle
+import androidx.viewpager.widget.PagerAdapter
+import androidx.viewpager2.adapter.FragmentStateAdapter
+import kotlin.collections.ArrayList
 
 
-class BoardingFragmentPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+class BoardingFragmentPagerAdapter(activity: FragmentActivity, private var itemList: ArrayList<BoardingItem>):
+    FragmentStateAdapter(activity) {
 
-    var itemList: MutableList<BoardingItem> = Collections.emptyList()
+    //var itemList: MutableList<BoardingItem> = emptyList<BoardingItem>().toMutableList()
     fun setData(itemList: List<BoardingItem>){
-        this.itemList = itemList.toMutableList()
+        this.itemList = itemList
     }
-    override fun getItem(position: Int): Fragment {
-        val item = itemList[position]
-        return BoardingFragment.newInstance(item.bg, item.image, item.title, item.subtitle, item.showButton)
-    }
-
-    override fun getCount(): Int {
+    override fun getItemCount(): Int {
         return itemList.size
     }
+
+    override fun createFragment(position: Int): Fragment {
+        val item = itemList[position]
+        return BoardingFragment(item)
+    }
+
+
 }
