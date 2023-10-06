@@ -1,6 +1,7 @@
 package com.sugarcoach.ui.sign.presenter
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import com.facebook.*
 import com.facebook.login.LoginManager
@@ -18,6 +19,7 @@ import javax.inject.Inject
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import android.util.Log
+import com.facebook.appevents.AppEventsLogger
 
 
 class SignPresenter <V : SignView, I : SignInteractorImp> @Inject internal constructor(interactor: I, schedulerProvider: SchedulerProvider ,disposable: CompositeDisposable) : BasePresenter<V, I>(interactor = interactor, schedulerProvider = schedulerProvider, compositeDisposable = disposable),
@@ -25,9 +27,13 @@ class SignPresenter <V : SignView, I : SignInteractorImp> @Inject internal const
     private var callbackManager: CallbackManager? = null
     private val permissionNeeds = Arrays.asList("public_profile", "email")
     lateinit var mGoogleSignInClient: GoogleSignInClient
+
     var RC_SIGN_IN: Int = 1010
 
-    override fun facebookLogin() {
+    override fun facebookLogin(context: Context) {
+        var loginEvent: AppEventsLogger = AppEventsLogger.newLogger(context)
+        loginEvent.logEvent(AppEventsLogger.ACTION_APP_EVENTS_FLUSHED)
+        /*
         LoginManager.getInstance().logInWithReadPermissions(getView() as Activity, permissionNeeds)
         callbackManager = CallbackManager.Factory.create()
         callbackManager = CallbackManager.Factory.create()
@@ -35,7 +41,7 @@ class SignPresenter <V : SignView, I : SignInteractorImp> @Inject internal const
             object : FacebookCallback<LoginResult> {
                 override fun onSuccess(loginResult: LoginResult) {
                     getView()?.onFacebookLogin()
-//                    facebookSuccess(loginResult.accessToken)
+                    facebookSuccess(loginResult.accessToken)
                 }
 
                 override fun onCancel() {
@@ -46,7 +52,7 @@ class SignPresenter <V : SignView, I : SignInteractorImp> @Inject internal const
                     println(exception.message)
                     getView()?.showErrorToast()
                 }
-            })
+            })*/
     }
 
 
@@ -61,13 +67,12 @@ class SignPresenter <V : SignView, I : SignInteractorImp> @Inject internal const
     }
 
 
-    override
-    fun activityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+    override fun activityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (FacebookSdk.isFacebookRequestCode(requestCode)) {
             callbackManager?.onActivityResult(requestCode, resultCode, data)
         }else if(requestCode == RC_SIGN_IN){
             getView()?.onGoogleLogin()
-        /*    var task: Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(data)
+            /*var task: Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(data)
             googleSuccess(task)*/
         }
     }

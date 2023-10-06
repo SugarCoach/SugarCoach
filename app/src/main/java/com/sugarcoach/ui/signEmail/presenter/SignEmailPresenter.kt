@@ -35,31 +35,14 @@ import javax.inject.Inject
 
 class SignEmailPresenter <V : SignEmailView, I : SignEmailInteractorImp> @Inject internal constructor(interactor: I, schedulerProvider: SchedulerProvider, disposable: CompositeDisposable) : BasePresenter<V, I>(interactor = interactor, schedulerProvider = schedulerProvider, compositeDisposable = disposable),
     SignEmailPresenterImp<V, I> {
-    private var callbackManager: CallbackManager? = null
-    private val permissionNeeds = Arrays.asList("public_profile", "email")
+
+    private val permissionNeeds = listOf("public_profile", "email")
     lateinit var mGoogleSignInClient: GoogleSignInClient
     var RC_SIGN_IN: Int = 1010
 
     override fun facebookLogin() {
+        Log.i("OnGetView", "${getView()}")
         LoginManager.getInstance().logInWithReadPermissions(getView() as Activity, permissionNeeds)
-        callbackManager = CallbackManager.Factory.create()
-        callbackManager = CallbackManager.Factory.create()
-        LoginManager.getInstance().registerCallback(callbackManager,
-            object : FacebookCallback<LoginResult> {
-                override fun onSuccess(loginResult: LoginResult) {
-                    getView()?.onFacebookLogin()
-//                    facebookSuccess(loginResult.accessToken)
-                }
-
-                override fun onCancel() {
-                    getView()?.showErrorToast()
-                }
-
-                override fun onError(exception: FacebookException) {
-                    println(exception.message)
-                    getView()?.showErrorToast()
-                }
-            })
     }
 
 
@@ -73,7 +56,8 @@ class SignEmailPresenter <V : SignEmailView, I : SignEmailInteractorImp> @Inject
 
     override fun activityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (FacebookSdk.isFacebookRequestCode(requestCode)) {
-            callbackManager?.onActivityResult(requestCode, resultCode, data)
+            Log.i("OnActivityResult", "OnActivityResult Facebook")
+            //callbackManager?.onActivityResult(requestCode, resultCode, data)
         }else if(requestCode == RC_SIGN_IN){
             getView()?.onGoogleLogin()
             /*    var task: Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(data)

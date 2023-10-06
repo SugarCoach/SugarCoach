@@ -26,7 +26,6 @@ class LoginActivity: BaseActivity(), LoginView {
     lateinit var binding: ActivityLoginBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        Log.i("OnCreateLogin", "Se esta creando el Login")
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)

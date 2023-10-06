@@ -54,11 +54,9 @@ class BoardingFragment() : Fragment() {
         boardingItemSubtitle.visibility = View.GONE
         boardingBt.visibility = View.GONE
 
-        Log.i("OnViewCreated", "$param1, $param2, ${getString(param3!!)}")
         param1?.let { boardingLayout.setBackgroundResource(it) }
         param2?.let { boardingImage.setImageResource(it) }
-        param3?.let { Log.i("OnParam3:","El string es: ${getString(it)}")
-            boardingItemTitle.text = getString(it) }
+        param3?.let { boardingItemTitle.text = getString(it) }
 
         param4?.let {
             if (it != 0) {
@@ -71,19 +69,5 @@ class BoardingFragment() : Fragment() {
 
         boardingBt.setOnClickListener { (activity as OnBoardingActivity).openLoginActivity() }
     }
-
-    /*companion object {
-        @JvmStatic
-        fun newInstance(param1: Int, param2: Int, param3: Int, param4: Int, param5: Boolean) =
-        BoardingFragment().apply {
-            arguments = Bundle().apply {
-                putInt(ARG_BACKGROUND_COLOR, param1)
-                putInt(ARG_RESOURCE, param2)
-                putInt(ARG_TITLE, param3)
-                putInt(ARG_SUBTITLE, param4)
-                putBoolean(ARG_SHOWBUTTON, param5)
-            }
-        }
-    }*/
 
 }

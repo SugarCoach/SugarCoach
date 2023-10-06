@@ -220,12 +220,12 @@
                      android:layout_weight="0.50"
                      android:id="@+id/sign_facebook"
                      android:layout_height="match_parent">
-          <ImageView
-                  android:layout_width="30dp"
-                  android:layout_height="30dp"
-                  android:src="@drawable/ic_facebook"
-                  app:srcCompat="@drawable/ic_facebook"
-                  android:layout_gravity="center"
+          <com.facebook.login.widget.LoginButton
+                  android:id="@+id/login_button"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_gravity="center_horizontal"
+                  android:layout_marginTop="10dp"
                   android:layout_marginLeft="15dp"
                   android:elevation="10dp"/>
         </FrameLayout>

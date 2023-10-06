@@ -1,6 +1,7 @@
 package com.sugarcoach.ui.signEmail.presenter
 
 import android.content.Intent
+import com.facebook.CallbackManager
 import com.sugarcoach.ui.base.presenter.Presenter
 import com.sugarcoach.ui.signEmail.interactor.SignEmailInteractorImp
 import com.sugarcoach.ui.signEmail.view.SignEmailView
