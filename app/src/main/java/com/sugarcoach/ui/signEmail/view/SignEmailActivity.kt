@@ -24,7 +24,7 @@ class SignEmailActivity: BaseActivity(), SignEmailView {
     @Inject
     lateinit var presenter: SignEmailPresenterImp<SignEmailView, SignEmailInteractorImp>
     lateinit var binding: ActivitySignEmailBinding
-    lateinit var callbackManager: CallbackManager
+    private lateinit var callbackManager: CallbackManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +36,7 @@ class SignEmailActivity: BaseActivity(), SignEmailView {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        Log.i("OnActivityResult", "Se ejecuto el activity result, ${requestCode}, ${resultCode}, $data")
         callbackManager.onActivityResult(requestCode, resultCode, data)
         super.onActivityResult(requestCode, resultCode, data)
     }
@@ -83,25 +84,25 @@ class SignEmailActivity: BaseActivity(), SignEmailView {
     override fun onFacebookLogin() {
         Log.i("OnFacebookLogin", "Se loggeo correctamente")
         Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
-//        val intent = Intent(this, MainActivity::class.java)
-//        startActivity(intent)
-//        finish()
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        finish()
     }
     private fun setOnClickListeners() {
         binding.signGoogle.setOnClickListener { presenter.googleLogin(getString(R.string.google_id)) }
-        binding.signFacebook.setOnClickListener { presenter.facebookLogin() }
         binding.signEmailBt.setOnClickListener { presenter.signIn(binding.signEmailUser.text.toString(), binding.signEmailMail.text.toString(), binding.signEmailPass.text.toString()) }
     }
 
     private fun configureFacebook(){
         callbackManager = CallbackManager.Factory.create()
+        Log.i("OnConfigure", "Se esta configurando el facebook")
 
         LoginManager.getInstance().registerCallback(callbackManager,
             object : FacebookCallback<LoginResult> {
-                override fun onSuccess(loginResult: LoginResult) {
-                    Log.i("OnSuccess", "Se Loggeo correctamente")
+                override fun onSuccess(result: LoginResult) {
+                    Log.i("OnFacebookSuccess", "Se Loggeo correctamente")
                     onFacebookLogin()
-//                    facebookSuccess(loginResult.accessToken)
+//                    facebookSuccess(result.accessToken)
                 }
 
                 override fun onCancel() {
