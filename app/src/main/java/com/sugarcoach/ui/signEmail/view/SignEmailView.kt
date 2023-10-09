@@ -9,6 +9,5 @@ interface SignEmailView : BaseView {
     fun onSign()
     fun showValidationMessage(errorCode: Int)
     fun onGoogleLogin()
-    fun googleSignIntent(mGoogleSignInClient: GoogleSignInClient, RC_SIGN_IN: Int)
     fun onFacebookLogin()
 }

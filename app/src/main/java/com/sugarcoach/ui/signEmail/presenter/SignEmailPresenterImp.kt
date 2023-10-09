@@ -10,7 +10,7 @@ import com.sugarcoach.ui.signEmail.view.SignEmailView
 
 interface SignEmailPresenterImp<V : SignEmailView, I : SignEmailInteractorImp> : Presenter<V, I>{
     fun signIn(username: String, email: String, password: String)
-    fun googleLogin(client: String)
+    fun googleLogin(idToken: String)
     fun facebookLogin(binding: ActivitySignEmailBinding, callbackManager: CallbackManager)
     fun activityResult(requestCode: Int, resultCode: Int, data: Intent?)
 

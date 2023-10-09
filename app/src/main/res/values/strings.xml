@@ -87,7 +87,8 @@
     <!--<string name="facebook_app_id">544348083039193</string>-->
     <string name="facebook_client_token" translatable="false">a3120380267bf88e458a6bc09ca06556</string>
     <string name="fb_login_protocol_scheme" translatable="false">fb544348083039193</string>
-    <string name="google_id">491509079769-id35b8mg2ri28f22hokp9fbnhbpg9e3c.apps.googleusercontent.com</string>
+    <!--<string name="google_id">491509079769-id35b8mg2ri28f22hokp9fbnhbpg9e3c.apps.googleusercontent.com</string>-->
+    <string name="google_id">284322166346-bsal2l85uifmd0b5bsnknipj2jcmro0o.apps.googleusercontent.com</string>
     <string name="test">Lorem Lipsum</string>
     <string name="loading_label">Cargando…</string>
     <string name="empty_register_range_error_message">Debe ingresar un valor dentro del rango</string>

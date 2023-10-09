@@ -2,6 +2,7 @@ package com.sugarcoach.ui.signEmail.presenter
 
 import android.app.Activity
 import android.content.Intent
+import android.content.IntentSender
 import android.util.Log
 import com.facebook.*
 import com.facebook.login.LoginManager
@@ -12,6 +13,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.GoogleAuthProvider
 import com.sugarcoach.BuildConfig
 import com.sugarcoach.data.database.repository.dailyregister.DailyRegister
 import com.sugarcoach.data.database.repository.treament.Treament
@@ -39,10 +42,15 @@ class SignEmailPresenter <V : SignEmailView, I : SignEmailInteractorImp> @Inject
 
     private val permissionNeeds = listOf("public_profile", "email")
     lateinit var mGoogleSignInClient: GoogleSignInClient
+    @Inject
+    lateinit var auth: FirebaseAuth
 
     var RC_SIGN_IN: Int = 1010
 
-    override fun facebookLogin(binding: ActivitySignEmailBinding, callbackManager: CallbackManager) {
+    override fun facebookLogin(
+        binding: ActivitySignEmailBinding,
+        callbackManager: CallbackManager
+    ) {
         binding.loginButton.permissions = permissionNeeds
 
         Log.i("OnConfigure", "Se esta configurando el facebook")
@@ -52,7 +60,6 @@ class SignEmailPresenter <V : SignEmailView, I : SignEmailInteractorImp> @Inject
                 override fun onSuccess(result: LoginResult) {
                     Log.i("OnFacebookSuccess", "Se Loggeo correctamente")
                     getView()?.onFacebookLogin()
-//                    facebookSuccess(result.accessToken)
                 }
 
                 override fun onCancel() {
@@ -69,12 +76,29 @@ class SignEmailPresenter <V : SignEmailView, I : SignEmailInteractorImp> @Inject
     }
 
 
-    override fun googleLogin(client: String) {
-        var gso: GoogleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestIdToken(client).build()
+    /*override fun googleLogin(client: String) {
+        var gso: GoogleSignInOptions =
+            GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestIdToken(client)
+                .build()
         mGoogleSignInClient = GoogleSignIn.getClient(getView() as Activity, gso)
         getView()?.googleSignIntent(mGoogleSignInClient, RC_SIGN_IN)
-    }
+    }*/
 
+    override fun googleLogin(idToken: String) {
+        val credential = GoogleAuthProvider.getCredential(idToken, null)
+        auth.signInWithCredential(credential)
+            .addOnCompleteListener() { task ->
+                if (task.isSuccessful) {
+                    // Sign in success, update UI with the signed-in user's information
+                    Log.d("OnPresenter", "signInWithCredential:success")
+                    val user = auth.currentUser
+                    getView()?.onGoogleLogin()
+                } else {
+                    // If sign in fails, display a message to the user.
+                    Log.i("OnPresenter", "signInWithCredential:failure", task.exception)
+                }
+            }
+    }
 
 
     override fun activityResult(requestCode: Int, resultCode: Int, data: Intent?) {

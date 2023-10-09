@@ -10,6 +10,7 @@ import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.facebook.AccessToken
+import com.google.firebase.auth.FirebaseAuth
 import com.jem.liquidswipe.clippathprovider.LiquidSwipeClipPathProvider
 import com.mazenrashed.dotsindicator.DotsIndicator
 import com.sugarcoach.databinding.ActivityOnboardingBinding
@@ -62,6 +63,7 @@ class OnBoardingActivity: BaseActivity(), OnBoardingView {
             Log.i("OnConfigure", "Usurio loggeado previamente")
             startMain()
         }
+
     }
 
     override fun startMain() {
