@@ -6,7 +6,6 @@ import java.util.*
 
 
 interface MainView : BaseView {
-
     fun showSuccessToast()
     fun openRegisterActivity()
     fun openTreatmentActivity()

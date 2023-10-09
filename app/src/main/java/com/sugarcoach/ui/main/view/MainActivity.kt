@@ -88,6 +88,7 @@ class MainActivity : BaseActivity(), MainView {
         binding.mainDailyCv.setOnClickListener { presenter.goToActivityDaily() }
         binding.mainConfigCv.setOnClickListener { presenter.goToActivityConfig() }
         binding.mainStatisticsCv.setOnClickListener { presenter.goToActivityStatistics() }
+        binding.logOutButton.setOnClickListener{ presenter.logOut() }
     }
 
 

@@ -41,6 +41,9 @@ class MainPresenter<V : MainView, I : MainInteractorImp> @Inject internal constr
         getTreatment()
 
     }
+    override fun facebookLogOut() {
+        com.facebook.login.LoginManager.getInstance().logOut()
+    }
 
     override fun onResume() {
         currentDate = LocalDateTime()

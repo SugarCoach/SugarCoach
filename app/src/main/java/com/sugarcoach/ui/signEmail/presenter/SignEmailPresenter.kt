@@ -18,6 +18,7 @@ import com.sugarcoach.data.database.repository.treament.Treament
 import com.sugarcoach.data.network.LoginResponse
 import com.sugarcoach.data.network.RegistersResponse
 import com.sugarcoach.data.network.SignResponse
+import com.sugarcoach.databinding.ActivitySignEmailBinding
 import com.sugarcoach.ui.base.presenter.BasePresenter
 import com.sugarcoach.ui.signEmail.interactor.SignEmailInteractorImp
 import com.sugarcoach.ui.signEmail.view.SignEmailView
@@ -38,11 +39,33 @@ class SignEmailPresenter <V : SignEmailView, I : SignEmailInteractorImp> @Inject
 
     private val permissionNeeds = listOf("public_profile", "email")
     lateinit var mGoogleSignInClient: GoogleSignInClient
+
     var RC_SIGN_IN: Int = 1010
 
-    override fun facebookLogin() {
-        Log.i("OnGetView", "${getView()}")
-        LoginManager.getInstance().logInWithReadPermissions(getView() as Activity, permissionNeeds)
+    override fun facebookLogin(binding: ActivitySignEmailBinding, callbackManager: CallbackManager) {
+        binding.loginButton.permissions = permissionNeeds
+
+        Log.i("OnConfigure", "Se esta configurando el facebook")
+
+        binding.loginButton.registerCallback(callbackManager,
+            object : FacebookCallback<LoginResult> {
+                override fun onSuccess(result: LoginResult) {
+                    Log.i("OnFacebookSuccess", "Se Loggeo correctamente")
+                    getView()?.onFacebookLogin()
+//                    facebookSuccess(result.accessToken)
+                }
+
+                override fun onCancel() {
+                    Log.i("OnCancel", "Se cancelo el login")
+                    getView()?.showErrorToast()
+                }
+
+                override fun onError(exception: FacebookException) {
+                    Log.i("OnFacebookError", "Ocrurró un error al logear")
+                    println(exception.message)
+                    getView()?.showErrorToast()
+                }
+            })
     }
 
 

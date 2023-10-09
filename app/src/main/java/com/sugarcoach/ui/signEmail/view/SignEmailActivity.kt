@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import com.facebook.AccessToken
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
 import com.facebook.FacebookException
@@ -83,10 +84,7 @@ class SignEmailActivity: BaseActivity(), SignEmailView {
 
     override fun onFacebookLogin() {
         Log.i("OnFacebookLogin", "Se loggeo correctamente")
-        Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
-        val intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
-        finish()
+
     }
     private fun setOnClickListeners() {
         binding.signGoogle.setOnClickListener { presenter.googleLogin(getString(R.string.google_id)) }
@@ -94,27 +92,10 @@ class SignEmailActivity: BaseActivity(), SignEmailView {
     }
 
     private fun configureFacebook(){
+        /**/
+
         callbackManager = CallbackManager.Factory.create()
-        Log.i("OnConfigure", "Se esta configurando el facebook")
-
-        LoginManager.getInstance().registerCallback(callbackManager,
-            object : FacebookCallback<LoginResult> {
-                override fun onSuccess(result: LoginResult) {
-                    Log.i("OnFacebookSuccess", "Se Loggeo correctamente")
-                    onFacebookLogin()
-//                    facebookSuccess(result.accessToken)
-                }
-
-                override fun onCancel() {
-                    Log.i("OnCancel", "Se cancelo el login")
-                    showErrorToast()
-                }
-
-                override fun onError(exception: FacebookException) {
-                    Log.i("OnFacebookError", "Ocrurró un error al logear")
-                    println(exception.message)
-                    showErrorToast()
-                }
-            })
+        presenter.facebookLogin(binding, callbackManager )
     }
+
 }
