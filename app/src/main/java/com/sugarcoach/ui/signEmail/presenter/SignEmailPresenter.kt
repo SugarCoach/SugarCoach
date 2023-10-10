@@ -4,6 +4,8 @@ import android.app.Activity
 import android.content.Intent
 import android.content.IntentSender
 import android.util.Log
+import androidx.core.app.ActivityCompat.startActivityForResult
+import androidx.fragment.app.Fragment
 import com.facebook.*
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
@@ -42,10 +44,8 @@ class SignEmailPresenter <V : SignEmailView, I : SignEmailInteractorImp> @Inject
 
     private val permissionNeeds = listOf("public_profile", "email")
     lateinit var mGoogleSignInClient: GoogleSignInClient
-    @Inject
-    lateinit var auth: FirebaseAuth
 
-    var RC_SIGN_IN: Int = 1010
+    var RC_SIGN_IN: Int = 123
 
     override fun facebookLogin(
         binding: ActivitySignEmailBinding,
@@ -75,23 +75,22 @@ class SignEmailPresenter <V : SignEmailView, I : SignEmailInteractorImp> @Inject
             })
     }
 
+    override fun googleLogin(client: GoogleSignInClient) {
+        val signInIntent = client.signInIntent
+        //startActivityForResult()
 
-    /*override fun googleLogin(client: String) {
-        var gso: GoogleSignInOptions =
-            GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestIdToken(client)
-                .build()
-        mGoogleSignInClient = GoogleSignIn.getClient(getView() as Activity, gso)
-        getView()?.googleSignIntent(mGoogleSignInClient, RC_SIGN_IN)
-    }*/
+        //mGoogleSignInClient = GoogleSignIn.getClient(getView() as Activity, gso)
+        //getView()?.googleSignIntent(client, RC_SIGN_IN)
+    }
 
-    override fun googleLogin(idToken: String) {
+    override fun authWithFirebase(idToken: String) {
         val credential = GoogleAuthProvider.getCredential(idToken, null)
-        auth.signInWithCredential(credential)
+        FirebaseAuth.getInstance().signInWithCredential(credential)
             .addOnCompleteListener() { task ->
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d("OnPresenter", "signInWithCredential:success")
-                    val user = auth.currentUser
+                    val user = FirebaseAuth.getInstance().currentUser
                     getView()?.onGoogleLogin()
                 } else {
                     // If sign in fails, display a message to the user.
@@ -102,6 +101,8 @@ class SignEmailPresenter <V : SignEmailView, I : SignEmailInteractorImp> @Inject
 
 
     override fun activityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        Log.i("OnFragmentActivityResul","Se ejeceute el result del fragment")
+
         if (FacebookSdk.isFacebookRequestCode(requestCode)) {
             Log.i("OnActivityResult", "OnActivityResult Facebook")
             //callbackManager?.onActivityResult(requestCode, resultCode, data)
@@ -109,22 +110,6 @@ class SignEmailPresenter <V : SignEmailView, I : SignEmailInteractorImp> @Inject
             getView()?.onGoogleLogin()
             /*    var task: Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(data)
                 googleSuccess(task)*/
-        }
-    }
-
-    private fun facebookSuccess(accessToken: AccessToken){
-        getView()?.showProgress()
-        interactor?.let {
-            compositeDisposable.add(it.doFBLoginApiCall(accessToken)
-                .compose(schedulerProvider.ioToMainObservableScheduler())
-                .subscribe({
-                        loginResponse -> updateUserSocial(loginResponse)
-                    getView()?.let {
-                        it.hideProgress()
-                        it.onFacebookLogin()
-                    }
-                }, {err -> println(err)})
-            )
         }
     }
 

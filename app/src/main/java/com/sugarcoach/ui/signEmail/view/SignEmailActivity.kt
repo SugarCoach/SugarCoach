@@ -1,9 +1,12 @@
 package com.sugarcoach.ui.signEmail.view
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.activity.ComponentActivity
+import androidx.core.app.ActivityCompat
 import com.facebook.AccessToken
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
@@ -35,7 +38,8 @@ class SignEmailActivity: BaseActivity(), SignEmailView {
 
     private lateinit var googleSignInClient: GoogleSignInClient
     private lateinit var auth: FirebaseAuth
-    private val RC_SIGN_IN = 9001
+
+    private val RC_SIGN_IN = 123
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,25 +52,27 @@ class SignEmailActivity: BaseActivity(), SignEmailView {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        Log.i("OnActivityResult", "Se ejecuto el activity result, ${requestCode}, ${resultCode}, $data")
-        callbackManager.onActivityResult(requestCode, resultCode, data)
         super.onActivityResult(requestCode, resultCode, data)
+        Log.i("OnActivityResult", "Se ejecuto el activity result, ${requestCode}, ${resultCode}, $data")
 
-        if (requestCode == RC_SIGN_IN) {
+        if (requestCode == RC_SIGN_IN && resultCode == Activity.RESULT_OK) {
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+
             try {
                 // Google Sign In was successful, authenticate with Firebase
                 val account = task.getResult(ApiException::class.java)!!
                 Log.i("OnActivityResult", "firebaseAuthWithGoogle:" + account.id)
-                presenter.googleLogin(account.idToken!!)
+                presenter.authWithFirebase(account.idToken!!)
+
             } catch (e: ApiException) {
                 // Google Sign In failed, update UI appropriately
                 Log.i("OnActivityResult", "Google sign in failed", e)
             }
+        }else{
+            callbackManager.onActivityResult(requestCode, resultCode, data)
         }
-
     }
-
+    private val launcher = registerFor
     override fun onDestroy() {
         presenter.onDetach()
         hideProgress()
@@ -103,7 +109,7 @@ class SignEmailActivity: BaseActivity(), SignEmailView {
         startMain()
     }
     private fun setOnClickListeners() {
-        binding.signGoogle.setOnClickListener { presenter.googleLogin(getString(R.string.google_id)) }
+        binding.signGoogle.setOnClickListener { googleLogin() }
         binding.signEmailBt.setOnClickListener { presenter.signIn(binding.signEmailUser.text.toString(), binding.signEmailMail.text.toString(), binding.signEmailPass.text.toString()) }
     }
 
@@ -112,16 +118,21 @@ class SignEmailActivity: BaseActivity(), SignEmailView {
         presenter.facebookLogin(binding, callbackManager)
     }
 
+    private fun googleLogin(){
+        val signInIntent = googleSignInClient.signInIntent
+        startActivityForResult(signInIntent, RC_SIGN_IN)
+    }
     private fun configureGoogle(){
+        auth = FirebaseAuth.getInstance()
+
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.google_id))
             .requestEmail()
             .build()
 
         googleSignInClient = GoogleSignIn.getClient(this, gso)
-
-        auth = Firebase.auth
     }
+
     private fun startMain(){
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)

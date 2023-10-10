@@ -1,33 +1,34 @@
 {
   "project_info": {
-    "project_number": "284322166346",
-    "project_id": "sugarcoachapp",
-    "storage_bucket": "sugarcoachapp.appspot.com"
+    "project_number": "341853924281",
+    "firebase_url": "https://sugarcoach-1614000290164-default-rtdb.firebaseio.com",
+    "project_id": "sugarcoach-1614000290164",
+    "storage_bucket": "sugarcoach-1614000290164.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:284322166346:android:36b4f97953b480e04898b3",
+        "mobilesdk_app_id": "1:341853924281:android:3458ecd93b0c812719e468",
         "android_client_info": {
           "package_name": "com.sugarcoach"
         }
       },
       "oauth_client": [
         {
-          "client_id": "284322166346-bsal2l85uifmd0b5bsnknipj2jcmro0o.apps.googleusercontent.com",
+          "client_id": "341853924281-pbkrpu3kmqerlat711fg8he13mp1pbbn.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyC_1zdkCx0_hygubs06p1wwNYD_AVZgEuo"
+          "current_key": "AIzaSyCjAq1Ak09NB3X63sxcR1-NdPBUrCW3I00"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "284322166346-bsal2l85uifmd0b5bsnknipj2jcmro0o.apps.googleusercontent.com",
+              "client_id": "341853924281-pbkrpu3kmqerlat711fg8he13mp1pbbn.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

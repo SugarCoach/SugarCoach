@@ -79,7 +79,6 @@ dependencies {
 
     // database
     implementation "androidx.room:room-runtime:$rootProject.roomDatabaseVersion"
-    implementation 'com.google.firebase:firebase-auth-ktx:22.1.2'
     kapt "androidx.room:room-compiler:$rootProject.roomDatabaseVersion"
 
     // font
@@ -129,11 +128,11 @@ dependencies {
     //implementation 'com.facebook.android:facebook-android-sdk:8.2'
     implementation 'com.facebook.android:facebook-login:latest.release'
 
-
     //google
     implementation(platform("com.google.firebase:firebase-bom:32.3.1"))
     implementation("com.google.firebase:firebase-auth-ktx")
     implementation("com.google.android.gms:play-services-auth:20.7.0")
+    //implementation("com.google.gms:google-services:4.4.0")
 
     implementation 'com.github.androidmads:QRGenerator:1.0.1'
     implementation project(':barcode-reader')
