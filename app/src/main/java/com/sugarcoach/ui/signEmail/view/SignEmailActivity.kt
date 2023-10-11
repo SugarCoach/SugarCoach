@@ -55,14 +55,14 @@ class SignEmailActivity: BaseActivity(), SignEmailView {
         super.onActivityResult(requestCode, resultCode, data)
         Log.i("OnActivityResult", "Se ejecuto el activity result, ${requestCode}, ${resultCode}, $data")
 
-        if (requestCode == RC_SIGN_IN && resultCode == Activity.RESULT_OK) {
+        if (requestCode == RC_SIGN_IN) {
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
-
+            Log.i("OnIf", "Entro al if")
             try {
                 // Google Sign In was successful, authenticate with Firebase
-                val account = task.getResult(ApiException::class.java)!!
+                val account = task.getResult(ApiException::class.java)
                 Log.i("OnActivityResult", "firebaseAuthWithGoogle:" + account.id)
-                presenter.authWithFirebase(account.idToken!!)
+                presenter.authWithFirebase(account.idToken!!, auth)
 
             } catch (e: ApiException) {
                 // Google Sign In failed, update UI appropriately
@@ -72,7 +72,7 @@ class SignEmailActivity: BaseActivity(), SignEmailView {
             callbackManager.onActivityResult(requestCode, resultCode, data)
         }
     }
-    private val launcher = registerFor
+
     override fun onDestroy() {
         presenter.onDetach()
         hideProgress()

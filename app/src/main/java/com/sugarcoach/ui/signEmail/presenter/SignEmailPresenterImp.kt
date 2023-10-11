@@ -15,6 +15,6 @@ interface SignEmailPresenterImp<V : SignEmailView, I : SignEmailInteractorImp> :
     fun facebookLogin(binding: ActivitySignEmailBinding, callbackManager: CallbackManager)
     fun googleLogin(client: GoogleSignInClient)
     fun activityResult(requestCode: Int, resultCode: Int, data: Intent?)
-    fun authWithFirebase(idToken: String)
+    fun authWithFirebase(idToken: String, auth: FirebaseAuth)
 
 }

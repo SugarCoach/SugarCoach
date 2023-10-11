@@ -83,9 +83,9 @@ class SignEmailPresenter <V : SignEmailView, I : SignEmailInteractorImp> @Inject
         //getView()?.googleSignIntent(client, RC_SIGN_IN)
     }
 
-    override fun authWithFirebase(idToken: String) {
+    override fun authWithFirebase(idToken: String, auth: FirebaseAuth) {
         val credential = GoogleAuthProvider.getCredential(idToken, null)
-        FirebaseAuth.getInstance().signInWithCredential(credential)
+        auth.signInWithCredential(credential)
             .addOnCompleteListener() { task ->
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
