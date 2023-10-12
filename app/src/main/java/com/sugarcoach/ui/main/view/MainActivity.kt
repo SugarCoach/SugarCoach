@@ -91,7 +91,6 @@ class MainActivity : BaseActivity(), MainView {
         binding.logOutButton.setOnClickListener{ presenter.logOut() }
     }
 
-
     override fun setMedition(label: String) {
         binding.mainMedTxt.text = getLabel(label)
     }

@@ -15,6 +15,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.sugarcoach.BuildConfig
@@ -49,7 +50,8 @@ class SignEmailPresenter <V : SignEmailView, I : SignEmailInteractorImp> @Inject
 
     override fun facebookLogin(
         binding: ActivitySignEmailBinding,
-        callbackManager: CallbackManager
+        callbackManager: CallbackManager,
+        auth: FirebaseAuth
     ) {
         binding.loginButton.permissions = permissionNeeds
 
@@ -59,7 +61,7 @@ class SignEmailPresenter <V : SignEmailView, I : SignEmailInteractorImp> @Inject
             object : FacebookCallback<LoginResult> {
                 override fun onSuccess(result: LoginResult) {
                     Log.i("OnFacebookSuccess", "Se Loggeo correctamente")
-                    getView()?.onFacebookLogin()
+                    handleFacebookAccessToken(result.accessToken, auth)
                 }
 
                 override fun onCancel() {
@@ -95,11 +97,29 @@ class SignEmailPresenter <V : SignEmailView, I : SignEmailInteractorImp> @Inject
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.i("OnPresenter", "signInWithCredential:failure", task.exception)
+                    getView()?.showErrorToast()
                 }
             }
     }
 
+    override fun handleFacebookAccessToken(token: AccessToken, auth: FirebaseAuth) {
+        Log.i("OnFacebookHandler", "handleFacebookAccessToken:$token")
 
+        val credential = FacebookAuthProvider.getCredential(token.token)
+        auth.signInWithCredential(credential)
+            .addOnCompleteListener() { task ->
+                if (task.isSuccessful) {
+                    // Sign in success, update UI with the signed-in user's information
+                    Log.d("TAG", "signInWithCredential:success")
+                    val user = auth.currentUser
+                    getView()?.onFacebookLogin()
+                } else {
+                    // If sign in fails, display a message to the user.
+                    Log.w("TAG", "signInWithCredential:failure", task.exception)
+                    getView()?.showErrorToast()
+                }
+            }
+    }
     override fun activityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         Log.i("OnFragmentActivityResul","Se ejeceute el result del fragment")
 

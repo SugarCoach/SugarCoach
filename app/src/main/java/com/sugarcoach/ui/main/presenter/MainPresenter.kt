@@ -5,6 +5,9 @@ import android.content.pm.PackageManager
 import android.util.Log
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.sugarcoach.R
 import com.sugarcoach.data.database.repository.dailyregister.Category
 import com.sugarcoach.data.database.repository.dailyregister.DailyRegister
@@ -65,12 +68,8 @@ class MainPresenter<V : MainView, I : MainInteractorImp> @Inject internal constr
     }
 
     override fun logOut() {
-        interactor?.let {
-            compositeDisposable.add(it.deleteUser()
-                .compose(schedulerProvider.ioToMainObservableScheduler())
-                .subscribe({ result -> deleteRegisters()
-                }, { err -> println(err) }))}
-
+        Firebase.auth.signOut()
+        getView()?.openLoginActivity()
     }
     fun deleteRegisters() {
         interactor?.let {

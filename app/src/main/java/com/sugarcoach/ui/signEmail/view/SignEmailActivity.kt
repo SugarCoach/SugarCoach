@@ -46,6 +46,7 @@ class SignEmailActivity: BaseActivity(), SignEmailView {
         binding = ActivitySignEmailBinding.inflate(layoutInflater)
         setContentView(binding.root)
         presenter.onAttach(this)
+        auth = FirebaseAuth.getInstance()
         configureFacebook()
         configureGoogle()
         setOnClickListeners()
@@ -115,7 +116,7 @@ class SignEmailActivity: BaseActivity(), SignEmailView {
 
     private fun configureFacebook(){
         callbackManager = CallbackManager.Factory.create()
-        presenter.facebookLogin(binding, callbackManager)
+        presenter.facebookLogin(binding, callbackManager, auth)
     }
 
     private fun googleLogin(){
@@ -123,7 +124,6 @@ class SignEmailActivity: BaseActivity(), SignEmailView {
         startActivityForResult(signInIntent, RC_SIGN_IN)
     }
     private fun configureGoogle(){
-        auth = FirebaseAuth.getInstance()
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.google_id))

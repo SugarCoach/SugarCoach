@@ -8,14 +8,14 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:341853924281:android:3458ecd93b0c812719e468",
+        "mobilesdk_app_id": "1:341853924281:android:82da0f6477fa245c19e468",
         "android_client_info": {
-          "package_name": "com.sugarcoach"
+          "package_name": "com.example.pruebadefirebase"
         }
       },
       "oauth_client": [
         {
-          "client_id": "341853924281-pbkrpu3kmqerlat711fg8he13mp1pbbn.apps.googleusercontent.com",
+          "client_id": "341853924281-84dftkcod2nu7r03g2c3mnog014imaag.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -28,7 +28,44 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "341853924281-pbkrpu3kmqerlat711fg8he13mp1pbbn.apps.googleusercontent.com",
+              "client_id": "341853924281-84dftkcod2nu7r03g2c3mnog014imaag.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:341853924281:android:3458ecd93b0c812719e468",
+        "android_client_info": {
+          "package_name": "com.sugarcoach"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "341853924281-3thcqi4uerjl92jvldcehgu5i8de31l3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sugarcoach",
+            "certificate_hash": "ae0eb4a1a29f616ee5c160e6408c664b42e3ee94"
+          }
+        },
+        {
+          "client_id": "341853924281-84dftkcod2nu7r03g2c3mnog014imaag.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjAq1Ak09NB3X63sxcR1-NdPBUrCW3I00"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "341853924281-84dftkcod2nu7r03g2c3mnog014imaag.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

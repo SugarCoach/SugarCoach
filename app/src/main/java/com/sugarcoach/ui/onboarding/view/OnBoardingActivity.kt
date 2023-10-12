@@ -11,6 +11,8 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.facebook.AccessToken
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.jem.liquidswipe.clippathprovider.LiquidSwipeClipPathProvider
 import com.mazenrashed.dotsindicator.DotsIndicator
 import com.sugarcoach.databinding.ActivityOnboardingBinding
@@ -29,10 +31,12 @@ class OnBoardingActivity: BaseActivity(), OnBoardingView {
     lateinit var adapter: BoardingFragmentPagerAdapter
     lateinit var binding: ActivityOnboardingBinding
     lateinit var dots: DotsIndicator
+    lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityOnboardingBinding.inflate(layoutInflater)
+        auth = FirebaseAuth.getInstance()
         verifyLogin()
         setContentView(binding.root)
         presenter.onAttach(this)
@@ -58,12 +62,11 @@ class OnBoardingActivity: BaseActivity(), OnBoardingView {
     }
 
     override fun verifyLogin() {
-        val accessToken: AccessToken? = AccessToken.getCurrentAccessToken()
-        if(accessToken != null && !accessToken.isExpired){
-            Log.i("OnConfigure", "Usurio loggeado previamente")
-            startMain()
+        if(auth.currentUser != null){
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
         }
-
     }
 
     override fun startMain() {
