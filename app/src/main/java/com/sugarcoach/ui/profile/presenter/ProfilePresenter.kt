@@ -14,6 +14,8 @@ import android.view.View
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentManager
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.sugarcoach.R
 import com.sugarcoach.data.database.repository.user.User
 import com.sugarcoach.ui.base.presenter.BasePresenter
@@ -42,16 +44,15 @@ class ProfilePresenter <V : ProfileView, I : ProfileInteractorImp> @Inject inter
 
     override fun onAttach(view: V?) {
         super.onAttach(view)
+        user = datab
         getAvatars()
         getMedition()
     }
-
 
     override fun updateSex(name: String?) {
         user.sex = name!!.toString()
         getView()?.setSex(name)
     }
-
 
     override fun updateAvatar(position: Int, avatar: ProfileItem) {
         user.avatar = avatar.image
@@ -122,6 +123,7 @@ class ProfilePresenter <V : ProfileView, I : ProfileInteractorImp> @Inject inter
     }
 
     override fun logout() {
+        Firebase.auth.signOut()
         interactor?.let {
             compositeDisposable.add(it.deleteUser()
                 .compose(schedulerProvider.ioToMainObservableScheduler())

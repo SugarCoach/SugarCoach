@@ -14,6 +14,7 @@ class ProfileAdapter(private val activity: ProfileActivity) : RecyclerView.Adapt
     lateinit var binding: ProfileItemBinding
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater: LayoutInflater = LayoutInflater.from(activity)
+        val binding: ProfileItemBinding = ProfileItemBinding.inflate(inflater)
         var holder = ProfileHolder(binding)
         this.holder = holder
         return holder

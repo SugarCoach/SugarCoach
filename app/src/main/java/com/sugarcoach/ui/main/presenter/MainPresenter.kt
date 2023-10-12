@@ -66,11 +66,6 @@ class MainPresenter<V : MainView, I : MainInteractorImp> @Inject internal constr
             )
         }
     }
-
-    override fun logOut() {
-        Firebase.auth.signOut()
-        getView()?.openLoginActivity()
-    }
     fun deleteRegisters() {
         interactor?.let {
             compositeDisposable.add(it.deleteAll()
