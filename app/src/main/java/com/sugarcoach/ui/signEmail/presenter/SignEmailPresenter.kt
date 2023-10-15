@@ -3,6 +3,7 @@ package com.sugarcoach.ui.signEmail.presenter
 import android.app.Activity
 import android.content.Intent
 import android.content.IntentSender
+import android.net.wifi.hotspot2.pps.Credential
 import android.util.Log
 import androidx.core.app.ActivityCompat.startActivityForResult
 import androidx.fragment.app.Fragment
@@ -15,6 +16,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.AuthCredential
+import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
@@ -87,7 +90,8 @@ class SignEmailPresenter <V : SignEmailView, I : SignEmailInteractorImp> @Inject
 
     override fun authWithFirebase(idToken: String, auth: FirebaseAuth) {
         val credential = GoogleAuthProvider.getCredential(idToken, null)
-        auth.signInWithCredential(credential)
+        //signWithLinkCredential(credential, auth)
+       auth.signInWithCredential(credential)
             .addOnCompleteListener() { task ->
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
@@ -106,7 +110,8 @@ class SignEmailPresenter <V : SignEmailView, I : SignEmailInteractorImp> @Inject
         Log.i("OnFacebookHandler", "handleFacebookAccessToken:$token")
 
         val credential = FacebookAuthProvider.getCredential(token.token)
-        auth.signInWithCredential(credential)
+        signWithLinkCredential(credential, auth)
+        /*auth.signInWithCredential(credential)
             .addOnCompleteListener() { task ->
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
@@ -117,6 +122,19 @@ class SignEmailPresenter <V : SignEmailView, I : SignEmailInteractorImp> @Inject
                     // If sign in fails, display a message to the user.
                     Log.w("TAG", "signInWithCredential:failure", task.exception)
                     getView()?.showErrorToast()
+                }
+            }*/
+    }
+
+    private fun signWithLinkCredential(credential: AuthCredential, auth: FirebaseAuth){
+        auth.currentUser!!.linkWithCredential(credential)
+            .addOnCompleteListener() { task ->
+                if (task.isSuccessful) {
+                    Log.d("OnLinkSuccess", "linkWithCredential:success")
+                    val user = task.result?.user
+                    getView()?.startMain()
+                } else {
+                    Log.w("OnLinkFailure", "Ya se inició sesión con estas credenciales", task.exception)
                 }
             }
     }
@@ -156,13 +174,25 @@ class SignEmailPresenter <V : SignEmailView, I : SignEmailInteractorImp> @Inject
         interactor?.updateUserSocial(loginResponse)
 
 
-    override fun signIn(username: String, email: String, password: String) {
+    override fun signIn(username: String, email: String, password: String, auth: FirebaseAuth) {
         when {
             username.isEmpty() -> getView()?.showValidationMessage(AppConstants.EMPTY_EMAIL_ERROR)
             email.isEmpty() -> getView()?.showValidationMessage(AppConstants.EMPTY_EMAIL_ERROR)
             !isEmailValid(email) -> getView()?.showValidationMessage(AppConstants.INVALID_EMAIL_ERROR)
             password.isEmpty() -> getView()?.showValidationMessage(AppConstants.EMPTY_PASSWORD_ERROR)
             else -> {
+                val credential = EmailAuthProvider.getCredential(email, password)
+                auth.createUserWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(){ task ->
+                        if(task.isSuccessful){
+                            Log.i("OnSuccessful", "Se registro correctamente")
+                            val user = auth.currentUser
+                            signWithLinkCredential(credential, auth)
+                        }else{
+                            Log.i("OnFailure", "Ocurrió un error al registrar el mail")
+                            getView()?.showErrorToast()
+                        }
+                    }
                 interactor?.let {
                     compositeDisposable.add(it.doServerSignApiCall(username,email, password)
                         .observeOn(AndroidSchedulers.mainThread())

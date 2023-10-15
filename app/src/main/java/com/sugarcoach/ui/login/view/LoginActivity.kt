@@ -4,6 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.notbytes.barcode_reader.BarcodeReaderActivity
 import com.sugarcoach.R
 import com.sugarcoach.databinding.ActivityLoginBinding
@@ -24,11 +27,13 @@ class LoginActivity: BaseActivity(), LoginView {
     @Inject
     lateinit var presenter: LoginPresenterImp<LoginView,LoginInteractorImp>
     lateinit var binding: ActivityLoginBinding
+    lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        auth = Firebase.auth
         presenter.onAttach(this)
         setOnClickListeners()
     }

@@ -10,4 +10,5 @@ interface SignEmailView : BaseView {
     fun showValidationMessage(errorCode: Int)
     fun onGoogleLogin()
     fun onFacebookLogin()
+    fun startMain()
 }

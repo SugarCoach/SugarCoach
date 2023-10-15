@@ -175,6 +175,7 @@
                             android:imeOptions="actionDone"
                             android:inputType="text"
                             android:padding="5dp"
+                            android:text='  '
                             android:textColor="@color/purple"
                             android:textColorHint="@color/gray_letter"
                             android:textSize="18dp" />

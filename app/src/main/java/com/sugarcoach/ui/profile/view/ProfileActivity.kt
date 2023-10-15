@@ -95,7 +95,11 @@ class ProfileActivity: BaseActivity(), ProfileView, DatePickerDialog.OnDateSetLi
         binding.profileLogoutIv.setOnClickListener { presenter.logout() }
         binding.profileSave.setOnClickListener {
             hideMenu()
-            presenter.updateAll(binding.profileNameTv.text.toString(), binding.profileWeightTv.text.toString().toFloat(), binding.profileHeightTv.text.toString().toFloat(), binding.profileUsernameTv.text.toString(), binding.profileMailTv.text.toString())
+            try{
+                presenter.updateAll(binding.profileNameTv.text.toString(), binding.profileWeightTv.text.toString().toFloat(), binding.profileHeightTv.text.toString().toFloat(), binding.profileUsernameTv.text.toString(), binding.profileMailTv.text.toString())
+            }catch (e: Exception){
+                showErrorToast()
+            }
         }
         binding.profileShared.setOnClickListener {
             hideMenu()

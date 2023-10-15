@@ -8,7 +8,7 @@ plugins{
 
 
 android {
-    compileSdk 33
+    compileSdk rootProject.compileSdkVersion
     defaultConfig {
         applicationId "com.sugarcoach"
         minSdkVersion rootProject.ext.minSdkVersion

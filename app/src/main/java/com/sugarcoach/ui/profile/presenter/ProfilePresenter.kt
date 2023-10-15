@@ -44,7 +44,6 @@ class ProfilePresenter <V : ProfileView, I : ProfileInteractorImp> @Inject inter
 
     override fun onAttach(view: V?) {
         super.onAttach(view)
-        user = datab
         getAvatars()
         getMedition()
     }
