@@ -48,7 +48,6 @@ class ProfilePresenter <V : ProfileView, I : ProfileInteractorImp> @Inject inter
         getAvatars()
         getMedition()
     }
-
     override fun updateSex(name: String?) {
         user.sex = name!!.toString()
         getView()?.setSex(name)

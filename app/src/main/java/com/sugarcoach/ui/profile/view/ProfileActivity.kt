@@ -6,6 +6,7 @@ import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
+import android.text.Editable
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -21,6 +22,8 @@ import com.aminography.primecalendar.common.CalendarFactory
 import com.aminography.primecalendar.common.CalendarType
 import com.aminography.primedatepicker.PickType
 import com.aminography.primedatepicker.fragment.PrimeDatePickerBottomSheet
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.sugarcoach.R
 import com.sugarcoach.data.database.repository.dailyregister.DailyRegister
 import com.sugarcoach.data.database.repository.user.User
@@ -65,9 +68,14 @@ class ProfileActivity: BaseActivity(), ProfileView, DatePickerDialog.OnDateSetLi
         binding = ActivityProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
         presenter.onAttach(this)
+        setInformationFromFirebase()
         setOnClickListeners()
     }
 
+    private fun setInformationFromFirebase(){
+        binding.profileMailTv.text = Editable.Factory.getInstance().newEditable(Firebase.auth.currentUser?.email)
+        binding.profileNameTv.text = Editable.Factory.getInstance().newEditable(Firebase.auth.currentUser?.displayName)
+    }
     override fun onDestroy() {
         presenter.onDetach()
         super.onDestroy()
