@@ -73,25 +73,19 @@ class SignEmailPresenter <V : SignEmailView, I : SignEmailInteractorImp> @Inject
                 }
 
                 override fun onError(exception: FacebookException) {
-                    Log.i("OnFacebookError", "Ocrurró un error al logear")
+                    Log.i("OnFacebookError", "Ocrurrió un error al logear")
                     println(exception.message)
                     getView()?.showErrorToast()
                 }
             })
     }
 
-    override fun googleLogin(client: GoogleSignInClient) {
-        val signInIntent = client.signInIntent
-        //startActivityForResult()
-
-        //mGoogleSignInClient = GoogleSignIn.getClient(getView() as Activity, gso)
-        //getView()?.googleSignIntent(client, RC_SIGN_IN)
-    }
 
     override fun authWithFirebase(idToken: String, auth: FirebaseAuth) {
+        Log.i("firebaseAuth", "Autenticando con Firebase")
         val credential = GoogleAuthProvider.getCredential(idToken, null)
         //signWithLinkCredential(credential, auth)
-       auth.signInWithCredential(credential)
+        auth.signInWithCredential(credential)
             .addOnCompleteListener() { task ->
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
@@ -107,23 +101,24 @@ class SignEmailPresenter <V : SignEmailView, I : SignEmailInteractorImp> @Inject
     }
 
     override fun handleFacebookAccessToken(token: AccessToken, auth: FirebaseAuth) {
-        Log.i("OnFacebookHandler", "handleFacebookAccessToken:$token")
-
         val credential = FacebookAuthProvider.getCredential(token.token)
-        signWithLinkCredential(credential, auth)
-        /*auth.signInWithCredential(credential)
+        Log.i("OnFacebookHandler", "handleFacebookAccessToken:$token, el credential:$credential")
+
+        //signWithLinkCredential(credential, auth)
+        auth.signInWithCredential(credential)
             .addOnCompleteListener() { task ->
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d("TAG", "signInWithCredential:success")
                     val user = auth.currentUser
+                    Log.i("CurrentUser", "El usuario actual es:$user")
                     getView()?.onFacebookLogin()
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w("TAG", "signInWithCredential:failure", task.exception)
                     getView()?.showErrorToast()
                 }
-            }*/
+            }
     }
 
     private fun signWithLinkCredential(credential: AuthCredential, auth: FirebaseAuth){
@@ -134,11 +129,11 @@ class SignEmailPresenter <V : SignEmailView, I : SignEmailInteractorImp> @Inject
                     val user = task.result?.user
                     getView()?.startMain()
                 } else {
-                    Log.w("OnLinkFailure", "Ya se inició sesión con estas credenciales", task.exception)
+                    Log.w("OnLinkFailure", "Este usuario ya esta loggeado", task.exception)
                 }
             }
     }
-    override fun activityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+    /*override fun activityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         Log.i("OnFragmentActivityResul","Se ejeceute el result del fragment")
 
         if (FacebookSdk.isFacebookRequestCode(requestCode)) {
@@ -149,7 +144,7 @@ class SignEmailPresenter <V : SignEmailView, I : SignEmailInteractorImp> @Inject
             /*    var task: Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(data)
                 googleSuccess(task)*/
         }
-    }
+    }*/
 
     private fun googleSuccess(task: Task<GoogleSignInAccount>){
         val account = task.getResult(ApiException::class.java)
@@ -187,13 +182,13 @@ class SignEmailPresenter <V : SignEmailView, I : SignEmailInteractorImp> @Inject
                         if(task.isSuccessful){
                             Log.i("OnSuccessful", "Se registro correctamente")
                             val user = auth.currentUser
-                            signWithLinkCredential(credential, auth)
+                            getView()?.startMain()
                         }else{
                             Log.i("OnFailure", "Ocurrió un error al registrar el mail")
                             getView()?.showErrorToast()
                         }
                     }
-                interactor?.let {
+                /*interactor?.let {
                     compositeDisposable.add(it.doServerSignApiCall(username,email, password)
                         .observeOn(AndroidSchedulers.mainThread())
                         .doOnSubscribe{getView()?.showProgress()}
@@ -205,7 +200,7 @@ class SignEmailPresenter <V : SignEmailView, I : SignEmailInteractorImp> @Inject
                             getView()?.showErrorToast()
                             getView()?.hideProgress()
                         }))
-                }
+                }*/
 
             }
         }
@@ -310,8 +305,6 @@ class SignEmailPresenter <V : SignEmailView, I : SignEmailInteractorImp> @Inject
         }
 
     }
-
-
 
     fun saveRegisters(registers: List<RegistersResponse>) {
 

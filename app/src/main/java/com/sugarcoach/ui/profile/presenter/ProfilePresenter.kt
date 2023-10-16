@@ -10,6 +10,7 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.net.Uri
 import android.provider.MediaStore
+import android.util.Log
 import android.view.View
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -122,7 +123,23 @@ class ProfilePresenter <V : ProfileView, I : ProfileInteractorImp> @Inject inter
     }
 
     override fun logout() {
-        Firebase.auth.signOut()
+
+        val providerId = Firebase.auth.currentUser?.providerData
+        Log.i("CurrentUser", "El usuario actual es: ${Firebase.auth.currentUser}")
+        Log.i("CurrentProvider", "El provider actual es:$providerId")
+
+        providerId?.let {
+            it.toString().let { it1 ->
+                Firebase.auth.currentUser!!.unlink(it1)
+                    .addOnCompleteListener() { task ->
+                        if (task.isSuccessful) {
+                            Firebase.auth.signOut()
+                            com.facebook.login.LoginManager.getInstance().logOut()
+                            Log.i("OnLogout", "Se desvincularon el provider de este usuario")
+                        }
+                    }
+            }
+        }
         interactor?.let {
             compositeDisposable.add(it.deleteUser()
                 .compose(schedulerProvider.ioToMainObservableScheduler())

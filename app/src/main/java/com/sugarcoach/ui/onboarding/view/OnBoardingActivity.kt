@@ -66,7 +66,9 @@ class OnBoardingActivity: BaseActivity(), OnBoardingView {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
+            Log.i("Verifying login", "El usuario esta loggeado")
         }
+        Log.i("Verifying login", "El usuario no esta loggeado")
     }
 
     override fun startMain() {

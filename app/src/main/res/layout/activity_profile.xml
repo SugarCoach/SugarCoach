@@ -126,7 +126,7 @@
         <androidx.appcompat.widget.AppCompatTextView
                 style="@style/TextStyle.Title"
                 android:layout_width="200dp"
-                android:text="jdjdjdjhfrkhkhtrkihtiorhtihrithihtiohrohtioh"
+                android:text=""
                 android:layout_height="wrap_content"
                 app:layout_constraintLeft_toLeftOf="parent"
                 android:layout_marginLeft="32dp"

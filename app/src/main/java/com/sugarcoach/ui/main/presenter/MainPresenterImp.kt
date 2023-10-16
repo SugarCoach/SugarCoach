@@ -10,7 +10,6 @@ import io.reactivex.Single
 
 
 interface MainPresenterImp<V : MainView, I : MainInteractorImp> : Presenter<V, I>{
-    fun facebookLogOut()
     fun goToActivityRegister()
     fun goToActivityTreatment()
     fun goToActivityDaily()

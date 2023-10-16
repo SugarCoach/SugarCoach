@@ -42,10 +42,6 @@ class MainPresenter<V : MainView, I : MainInteractorImp> @Inject internal constr
         getView()?.setDate(currentDate.toDate())
         getUser()
         getTreatment()
-
-    }
-    override fun facebookLogOut() {
-        com.facebook.login.LoginManager.getInstance().logOut()
     }
 
     override fun onResume() {
