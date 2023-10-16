@@ -50,8 +50,11 @@ import android.os.Build
 import android.os.Environment
 import android.text.TextWatcher
 import android.view.WindowManager
+import android.widget.TextView
 import androidmads.library.qrgenearator.QRGSaver
 import androidx.annotation.NonNull
+import androidx.appcompat.widget.SwitchCompat
+import androidx.cardview.widget.CardView
 import androidx.core.content.FileProvider
 import androidx.databinding.adapters.FrameLayoutBindingAdapter
 import com.notbytes.barcode_reader.BarcodeReaderActivity
@@ -64,6 +67,7 @@ import com.sugarcoach.ui.main.view.MainActivity
 import com.sugarcoach.util.AppConstants
 import com.sugarcoach.util.extensions.openNewTabWindow
 import com.sugarcoach.util.extensions.resIdByName
+import com.vicmikhailau.maskededittext.MaskedEditText
 /*import kotlinx.android.synthetic.main.activity_config.view.*
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.dialog_codigo.view.*
@@ -86,23 +90,33 @@ class ConfigActivity: BaseActivity(), ConfigView {
     lateinit var user: User
     var isMedicoEnable = false
     var isControlEnable = false
-    val config_upgrade = binding.configUpgrade
-    val config_type = binding.configType
-    val config_control = binding.configControl
-    val config_medico = binding.configMedico
-    val config_sms = binding.configSms
-    val config_geo = binding.configGeo
-    val config_number = binding.configNumber
+    lateinit var config_upgrade: CardView
+    lateinit var config_type: TextView
+    lateinit var config_control: SwitchCompat
+    lateinit var config_medico: SwitchCompat
+    lateinit var config_sms: SwitchCompat
+    lateinit var config_geo: SwitchCompat
+    lateinit var config_number: MaskedEditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = ActivityConfigBinding.inflate(layoutInflater)
+        binding = ActivityConfigBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        configureVariables()
         presenter.onAttach(this)
         menuListeners()
         presenter.checkAndRequestPermissions(this, arrayListOf(android.Manifest.permission.READ_EXTERNAL_STORAGE, android.Manifest.permission.WRITE_EXTERNAL_STORAGE, android.Manifest.permission.ACCESS_FINE_LOCATION))
     }
 
+    private fun configureVariables(){
+        config_upgrade = binding.configUpgrade
+        config_type = binding.configType
+        config_control = binding.configControl
+         config_medico = binding.configMedico
+        config_sms = binding.configSms
+         config_geo = binding.configGeo
+        config_number = binding.configNumber
+    }
     override fun onDestroy() {
         presenter.onDetach()
         super.onDestroy()

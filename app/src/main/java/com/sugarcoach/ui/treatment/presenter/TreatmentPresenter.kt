@@ -1,5 +1,6 @@
 package com.sugarcoach.ui.treatment.presenter
 
+import android.util.Log
 import com.sugarcoach.R
 import com.sugarcoach.data.database.repository.treament.*
 import com.sugarcoach.ui.base.presenter.BasePresenter
@@ -12,25 +13,25 @@ import com.sugarcoach.util.SchedulerProvider
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import org.joda.time.LocalDateTime
-import org.joda.time.LocalTime
+import java.lang.Exception
 import javax.inject.Inject
 
 class TreatmentPresenter<V : TreatmentView, I : TreatmentInteractorImp> @Inject internal constructor(interactor: I, schedulerProvider: SchedulerProvider, disposable: CompositeDisposable) : BasePresenter<V, I>(interactor = interactor, schedulerProvider = schedulerProvider, compositeDisposable = disposable),
     TreatmentPresenterImp<V,I> {
 
 
-    lateinit var treament:Treament
+    lateinit var treatment: Treament
     lateinit var correctora: TreamentCorrectoraHorarios
-    lateinit var basal:TreamentHorarios
+    lateinit var basal: TreamentHorarios
 
     override fun saveAll(obj: Float, hipo: Float, hyper: Float) {
-        treament.object_glucose = obj
-        treament.hipoglucose = hipo
-        treament.hyperglucose = hyper
+        treatment?.object_glucose = obj
+        treatment?.hipoglucose = hipo
+        treatment?.hyperglucose = hyper
     }
     override fun updateAll() {
         interactor?.let {
-            compositeDisposable.add(it.editTreatment(treament)
+            compositeDisposable.add(it.editTreatment(treatment!!)
                 .compose(schedulerProvider.ioToMainObservableScheduler())
                 .subscribe({ getView()?.showDataSave()
                 }, { throwable ->
@@ -40,11 +41,11 @@ class TreatmentPresenter<V : TreatmentView, I : TreatmentInteractorImp> @Inject 
         }
     }
     override fun saveCorrectoraGlu(correctora: Float) {
-        treament.correctora = correctora
+        treatment.correctora = correctora
     }
 
     override fun saveBomb(bomb: Boolean) {
-        treament.bomb = bomb
+        treatment.bomb = bomb
     }
     override fun goToActivityDaily() {
         getView()?.openDailyActivity()
@@ -60,14 +61,14 @@ class TreatmentPresenter<V : TreatmentView, I : TreatmentInteractorImp> @Inject 
 
 
     override fun saveBasal(item: BasalItem) {
-        treament.basal_id = item.id
+        treatment.basal_id = item.id
     }
 
     override fun saveCorrectora(item: BasalItem) {
-        treament.correctora_id = item.id
+        treatment.correctora_id = item.id
     }
     override fun saveCategory(item: HorarioItem) {
-        basal = TreamentHorarios(item.id, item.categoryId, item.selected, treament.id, item.units.toFloat())
+        basal = TreamentHorarios(item.id, item.categoryId, item.selected, treatment.id, item.units.toFloat())
             interactor?.let {
             compositeDisposable.add(it.editBasalCategory(basal)
                 .compose(schedulerProvider.ioToMainObservableScheduler())
@@ -80,7 +81,7 @@ class TreatmentPresenter<V : TreatmentView, I : TreatmentInteractorImp> @Inject 
     }
 
     override fun saveCorrectoraCategory(item: HorarioItem) {
-        correctora = TreamentCorrectoraHorarios(item.id, item.categoryId,  treament.id, item.selected)
+        correctora = TreamentCorrectoraHorarios(item.id, item.categoryId,  treatment.id, item.selected)
             interactor?.let {
             compositeDisposable.add(it.editCorrectoraCategory(correctora)
                 .compose(schedulerProvider.ioToMainObservableScheduler())
@@ -93,10 +94,10 @@ class TreatmentPresenter<V : TreatmentView, I : TreatmentInteractorImp> @Inject 
     }
 
     override fun saveUnitCorrectora(unit: Float) {
-        treament.correctora_unit = unit
+        treatment.correctora_unit = unit
     }
     override fun saveHoraBasal(item: BasalHoraItem) {
-        var hora = TreamentBasalHora(item.id, item.name,  treament.id, item.units.toFloat())
+        var hora = TreamentBasalHora(item.id, item.name,  treatment.id, item.units.toFloat())
         interactor?.let {
             compositeDisposable.add(it.editBasalHora(hora)
                 .compose(schedulerProvider.ioToMainObservableScheduler())
@@ -109,19 +110,19 @@ class TreatmentPresenter<V : TreatmentView, I : TreatmentInteractorImp> @Inject 
     }
 
     override fun saveMedidor(item: BasalItem) {
-        treament.medidor_id = item.id
+        treatment.medidor_id = item.id
     }
 
     override fun saveBomba(item: BasalItem) {
-        treament.bomba_id = item.id
+        treatment.bomba_id = item.id
     }
 
     override fun saveCarbono(carbono: Float) {
-        treament.carbono = carbono
+        treatment.carbono = carbono
     }
 
     override fun saveUnitInsulina(unit: Float) {
-        treament.insulina_unit = unit
+        treatment.insulina_unit = unit
     }
 
 
@@ -216,11 +217,20 @@ class TreatmentPresenter<V : TreatmentView, I : TreatmentInteractorImp> @Inject 
 
     override fun onAttach(view: V?) {
         super.onAttach(view)
-        getUser()
-        getBasal()
-        getCategories()
-        getCategoriesCorrectora()
-        getBasalHoras()
+        /*treatment = getTreatment()
+        correctora = correctora
+        basal = null*/
+        try{
+            getUser()
+            getBasal()
+            getCategories()
+            getCategoriesCorrectora()
+            getBasalHoras()
+        }catch (e: Exception){
+            Log.i("Onattach", "Ocurrio un error en el attach $e")
+            getView()?.showErrorToast()
+        }
+
     }
     private fun getTreatment() {
         interactor?.let {
@@ -228,7 +238,8 @@ class TreatmentPresenter<V : TreatmentView, I : TreatmentInteractorImp> @Inject 
                 .compose(schedulerProvider.ioToMainSingleScheduler())
                 .subscribe({ treament ->
                     getView()?.let {
-                        this.treament = treament.treament!!
+                        Log.i("OnGetTreatment", "Se inicializa el treatment como: ${treament.treament}")
+                        treatment = treament.treament!!
                         getPromedio(treament)
                         getTotalBasal()
                         getView()?.setTreatment(treament)

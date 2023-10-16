@@ -74,7 +74,11 @@ class ProfileActivity: BaseActivity(), ProfileView, DatePickerDialog.OnDateSetLi
 
     private fun setInformationFromFirebase(){
         binding.profileMailTv.text = Editable.Factory.getInstance().newEditable(Firebase.auth.currentUser?.email)
-        binding.profileNameTv.text = Editable.Factory.getInstance().newEditable(Firebase.auth.currentUser?.displayName)
+
+        if(Firebase.auth.currentUser?.displayName != null){
+            binding.profileNameTv.text = Editable.Factory.getInstance().newEditable(Firebase.auth.currentUser?.displayName)
+        }
+
     }
     override fun onDestroy() {
         presenter.onDetach()
@@ -146,7 +150,6 @@ class ProfileActivity: BaseActivity(), ProfileView, DatePickerDialog.OnDateSetLi
     override fun setAvatar(id: Int) {
         adapter.edit(id)
     }
-
 
     override fun getUserData(user: User) {
         this.user = user
