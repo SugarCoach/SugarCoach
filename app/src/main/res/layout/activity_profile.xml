@@ -110,7 +110,6 @@
                 android:layout_marginRight="20dp"
                 android:layout_marginBottom="16dp"
                 android:text="@string/profile_logout_label"
-                android:visibility="gone"
                 android:id="@+id/profile_logout_iv"
                 app:layout_constraintBottom_toTopOf="@+id/nestedScrollView2"/>
 
@@ -127,7 +126,7 @@
         <androidx.appcompat.widget.AppCompatTextView
                 style="@style/TextStyle.Title"
                 android:layout_width="200dp"
-                android:text="jdjdjdjhfrkhkhtrkihtiorhtihrithihtiohrohtioh"
+                android:text=""
                 android:layout_height="wrap_content"
                 app:layout_constraintLeft_toLeftOf="parent"
                 android:layout_marginLeft="32dp"
@@ -176,6 +175,7 @@
                             android:imeOptions="actionDone"
                             android:inputType="text"
                             android:padding="5dp"
+                            android:text=''
                             android:textColor="@color/purple"
                             android:textColorHint="@color/gray_letter"
                             android:textSize="18dp" />

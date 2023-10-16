@@ -60,8 +60,8 @@
                     android:linksClickable="true"
                     android:layout_marginTop="5dp"
                     android:text="@string/premium_message"
-                    android:textColor="@color/black"
-                    android:textSize="12sp" />
+                    android:textColor="@color/gray_letter"
+                    android:textSize="12dp" />
 
             <androidx.appcompat.widget.AppCompatTextView
                     style="@style/TextStyle.Heading"
@@ -70,11 +70,9 @@
                     android:gravity="center"
                     android:linksClickable="true"
                     android:id="@+id/premium_url"
-                    android:autoLink="web"
-                    android:textColorLink="@color/black"
                     android:text="@string/premium_url"
-                    android:textColor="@color/black"
-                    android:textSize="12sp" />
+                    android:textColor="@color/gray_letter"
+                    android:textSize="12dp" />
 
             <Button
                     android:id="@+id/premium_save"

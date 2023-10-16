@@ -14,7 +14,7 @@ interface ConfigInteractorImp : Interactor {
 
     fun getUser(): Single<User>
     fun updateUser(user: User): Observable<Boolean>
-    fun doServerLoginpiCall(email: String, password: String): Observable<LoginResponse>
+    suspend fun doServerLoginpiCall(email: String, password: String): Observable<LoginResponse>
     fun updateUserInSharedPref(loginResponse: LoginResponse, mirror: Boolean)
     fun treament(treament: Treament): Observable<Boolean>
     fun category(): Observable<Boolean>

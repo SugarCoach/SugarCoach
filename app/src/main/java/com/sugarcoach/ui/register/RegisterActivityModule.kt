@@ -13,6 +13,7 @@ import com.sugarcoach.ui.register.view.RegisterView
 
 import dagger.Module
 import dagger.Provides
+import org.joda.time.LocalDateTime
 
 @Module
 class RegisterActivityModule {
@@ -34,5 +35,7 @@ class RegisterActivityModule {
 
     @Provides
     internal fun provideLinearLayoutManager(context: RegisterActivity): LinearLayoutManager = LinearLayoutManager(context)
+    @Provides
+    internal fun provideCurrentDate(): LocalDateTime = LocalDateTime()
 
 }

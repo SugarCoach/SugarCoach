@@ -491,7 +491,7 @@
                                     android:layout_height="43dp"
                                     android:layout_gravity="center"
                                     android:scaleType="centerCrop"
-                                    app:srcCompat="@drawable/ic_control"/>
+                                    app:srcCompat="@drawable/ic_add_register_aqua"/>
                         </FrameLayout>
 
                         <TextView
@@ -530,7 +530,7 @@
                                 android:layout_height="43dp"
                                 android:layout_gravity="center"
                                 android:scaleType="centerCrop"
-                                app:srcCompat="@drawable/ic_add_register"/>
+                                app:srcCompat="@drawable/ic_control"/>
                     </LinearLayout>
                 </LinearLayout>
                 <FrameLayout android:layout_width="wrap_content"
@@ -565,8 +565,7 @@
                                     style="@style/TextStyle.Heading"
                                     android:gravity="center"
                                     android:textSize="36dp"
-                                    android:inputType="numberDecimal"
-                                    android:digits="0123456789.,"
+                                    android:inputType="number|numberDecimal"
                                     android:imeOptions="actionDone"
                                     android:textColorHint="@color/gray"
                                     android:background="@android:color/transparent"

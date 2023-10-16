@@ -1,16 +1,14 @@
-apply plugin: 'com.android.application'
-
-apply plugin: 'kotlin-android'
-
-apply plugin: 'kotlin-android-extensions'
-
-apply plugin: 'kotlin-kapt'
-
-apply plugin: 'com.appspector.sdk'
+plugins{
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id("com.google.gms.google-services")
+    //id 'com.appspector.sdk'
+}
 
 
 android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
+    compileSdk rootProject.compileSdkVersion
     defaultConfig {
         applicationId "com.sugarcoach"
         minSdkVersion rootProject.ext.minSdkVersion
@@ -38,25 +36,22 @@ android {
     }
 
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
+        jvmTarget = JavaVersion.VERSION_1_8
     }
     packagingOptions {
-        exclude 'META-INF/DEPENDENCIES'
-        exclude 'META-INF/LICENSE'
-        exclude 'META-INF/LICENSE.txt'
-        exclude 'META-INF/license.txt'
-        exclude 'META-INF/NOTICE'
-        exclude 'META-INF/NOTICE.txt'
-        exclude 'META-INF/notice.txt'
-        exclude 'META-INF/ASL2.0'
-        exclude("META-INF/*.kotlin_module")
+        resources {
+            excludes += ['META-INF/DEPENDENCIES', 'META-INF/LICENSE', 'META-INF/LICENSE.txt', 'META-INF/license.txt', 'META-INF/NOTICE', 'META-INF/NOTICE.txt', 'META-INF/notice.txt', 'META-INF/ASL2.0', 'META-INF/*.kotlin_module']
+        }
     }
+    buildFeatures {
+        viewBinding true
+    }
+    namespace 'com.sugarcoach'
 }
 
 repositories {
-    maven {
-        url "https://maven.appspector.com/artifactory/android-sdk"
-    }
+    //maven { url "https://maven.appspector.com/artifactory/android-sdk" }
+    jcenter() // Para la Mask
 }
 
 
@@ -83,8 +78,8 @@ dependencies {
 
 
     // database
-    implementation "android.arch.persistence.room:rxjava2:$rootProject.roomDatabaseVersion"
-    kapt "android.arch.persistence.room:compiler:$rootProject.roomDatabaseVersion"
+    implementation "androidx.room:room-runtime:$rootProject.roomDatabaseVersion"
+    kapt "androidx.room:room-compiler:$rootProject.roomDatabaseVersion"
 
     // font
     implementation "uk.co.chrisjenx:calligraphy:$rootProject.calligraphyVersion"
@@ -96,7 +91,8 @@ dependencies {
     implementation "com.google.code.gson:gson:$rootProject.gsonVersion"
 
     // debug database
-    debugImplementation "com.amitshekhar.android:debug-db:$rootProject.debugDBVersion"
+    //debugImplementation "com.amitshekhar.android:debug-db:$rootProject.debugDBVersion"
+    //debugImplementation 'com.amitshekhar.android:debug-db:1.0.6'
 
     // dependency injection
     implementation "com.google.dagger:dagger:$rootProject.dagger2Version"
@@ -129,12 +125,16 @@ dependencies {
     implementation "androidx.core:core-ktx:$rootProject.androidKTXVersion"
 
     //Facebook
-    implementation "com.facebook.android:facebook-login:$rootProject.facebookVersion"
+    //implementation 'com.facebook.android:facebook-android-sdk:8.2'
+    implementation 'com.facebook.android:facebook-login:latest.release'
 
     //google
-    implementation "com.google.android.gms:play-services-auth:$rootProject.googleVersion"
-    implementation 'com.google.android.gms:play-services-vision:20.0.0'
-    implementation 'androidmads.library.qrgenearator:QRGenearator:1.0.4'
+    implementation(platform("com.google.firebase:firebase-bom:32.3.1"))
+    implementation("com.google.firebase:firebase-auth-ktx")
+    implementation("com.google.android.gms:play-services-auth:20.7.0")
+    //implementation("com.google.gms:google-services:4.4.0")
+
+    implementation 'com.github.androidmads:QRGenerator:1.0.1'
     implementation project(':barcode-reader')
 
     //view pager indicador
@@ -153,17 +153,16 @@ dependencies {
     //Expandable layout
     implementation "com.github.skydoves:expandablelayout:1.0.1"
 
-    implementation 'com.izikode.izilib:accordionrecycler:0.5'
+    //implementation 'com.izikode.izilib:accordionrecycler:0.5'
 
-
-    implementation 'com.aminography:choosephotohelper:1.0.4'
 
     implementation 'com.github.tiper:MaterialSpinner:1.4.0'
 
     implementation 'com.daimajia.easing:library:2.1@aar'
     implementation 'com.daimajia.androidanimations:library:2.3@aar'
 
-    implementation 'com.appspector:android-sdk:1.2.1'
+    //implementation "com.appspector:android-sdk:1.2.1"
+    //implementation "com.appspector:android-sdk:1.+"
 
 
     implementation "com.github.IslamKhSh:CardSlider:$rootProject.carouselVersion"
@@ -172,26 +171,28 @@ dependencies {
 
     implementation "com.github.skydoves:powerspinner:1.1.0"
 
+    //AMINOGRAPHY
+    implementation 'com.aminography:choosephotohelper:1.3.1'
     implementation 'com.aminography:primedatepicker:1.1.0'
-    
     implementation 'com.aminography:primecalendar:1.2.21'
 
-    implementation 'ru.egslava:MaskedEditText:1.0.5'
+    // https://mvnrepository.com/artifact/ru.egslava/MaskedEditText
+    implementation 'io.github.vicmikhailau:MaskedEditText:4.0.6'
+
     implementation 'com.google.firebase:firebase-analytics:17.4.1'
 
     implementation 'com.github.kushalgupta0565:ExpandableRecyclerView:1.0.1'
     implementation 'eu.bolt:screenshotty-rx:1.0.3'
     implementation 'com.github.Chrisvin:LiquidSwipe:1.3'
 
+    // Page Indicator
+    implementation("com.tbuonomo:dotsindicator:4.3")
+    implementation ("androidx.viewpager2:viewpager2:1.1.0-beta02")
 
-
-
-
-
-
-
-
+    //CORUTINAS
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1")
 }
+
 
 apply plugin: 'com.google.gms.google-services'
 apply plugin: 'com.google.firebase.crashlytics'

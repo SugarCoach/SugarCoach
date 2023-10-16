@@ -8,6 +8,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import com.sugarcoach.R
 import com.sugarcoach.data.database.repository.user.User
+import com.sugarcoach.databinding.ActivityMainBinding
 import com.sugarcoach.ui.base.view.BaseActivity
 import com.sugarcoach.ui.config.view.ConfigActivity
 import com.sugarcoach.ui.daily.view.DailyActivity
@@ -19,7 +20,6 @@ import com.sugarcoach.ui.register.view.RegisterActivity
 import com.sugarcoach.ui.statistics.view.StatisticsActivity
 import com.sugarcoach.ui.treatment.view.TreatmentActivity
 import com.sugarcoach.util.extensions.resIdByName
-import kotlinx.android.synthetic.main.activity_main.*
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
@@ -29,10 +29,11 @@ class MainActivity : BaseActivity(), MainView {
 
     @Inject
     lateinit var presenter: MainPresenterImp<MainView, MainInteractorImp>
-
+    lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         presenter.onAttach(this)
         setOnClickListeners()
     }
@@ -81,24 +82,21 @@ class MainActivity : BaseActivity(), MainView {
     }
 
     private fun setOnClickListeners() {
-        main_add_register_cv.setOnClickListener { presenter.goToActivityRegister() }
-        main_treatment_cv.setOnClickListener { presenter.goToActivityTreatment() }
-        main_profile_cv.setOnClickListener { presenter.goToActivityProfile() }
-        main_daily_cv.setOnClickListener { presenter.goToActivityDaily()}
-        main_config_cv.setOnClickListener { presenter.goToActivityConfig()}
-        main_statistics_cv.setOnClickListener { presenter.goToActivityStatistics()}
+        binding.mainAddRegisterCv.setOnClickListener { presenter.goToActivityRegister() }
+        binding.mainTreatmentCv.setOnClickListener { presenter.goToActivityTreatment() }
+        binding.mainProfileCv.setOnClickListener { presenter.goToActivityProfile() }
+        binding.mainDailyCv.setOnClickListener { presenter.goToActivityDaily() }
+        binding.mainConfigCv.setOnClickListener { presenter.goToActivityConfig() }
+        binding.mainStatisticsCv.setOnClickListener { presenter.goToActivityStatistics() }
     }
-
 
     override fun setMedition(label: String) {
-        main_med_txt.text = getLabel(label)
+        binding.mainMedTxt.text = getLabel(label)
     }
     override fun setUser(user: User) {
-        main_username_txt.text = user.username
-        main_pts_txt.text = user.points + " "+ "pts"
-        main_nivel_txt.text = user.level
+        binding.mainUsernameTxt.text = user.username
         user.avatar?.let {
-            main_userimg_iv.setImageDrawable(getDrawable(resIdByName(it, "drawable")))
+            binding.mainUserimgIv.setImageDrawable(getDrawable(resIdByName(it, "drawable")))
         }
         presenter.checkAndRequestPermissions(this)
         if (user.typeAccount == "3"){
@@ -112,26 +110,26 @@ class MainActivity : BaseActivity(), MainView {
         val formatterTime = SimpleDateFormat("hh:mm a", Locale.getDefault())
         val formattedDate = formatter.format(date)
         val formattedTime = formatterTime.format(date)
-        main_time_txt.text = formattedTime
-        main_date_txt.text = formattedDate
+        binding.mainTimeTxt.text = formattedTime
+        binding.mainDateTxt.text = formattedDate
     }
 
     override fun setPromedios(min: Int, max: Int, promedio: Int) {
-        main_prom_txt.text = promedio.toString()
-        main_min_txt.text = min.toString()
-        main_max_txt.text = max.toString()
+        binding.mainPromTxt.text = promedio.toString()
+        binding.mainMinTxt.text = min.toString()
+        binding.mainMaxTxt.text = max.toString()
     }
 
     override fun setMinColor(color: Int) {
-        main_min_txt.setTextColor(ContextCompat.getColor(this,color))
+        binding.mainMinTxt.setTextColor(ContextCompat.getColor(this, color))
     }
 
     override fun setMaxColor(color: Int) {
-        main_max_txt.setTextColor(ContextCompat.getColor(this,color))
+        binding.mainMaxTxt.setTextColor(ContextCompat.getColor(this, color))
     }
 
     override fun setPromColor(color: Int) {
-        main_prom_txt.setTextColor(ContextCompat.getColor(this,color))
+        binding.mainPromTxt.setTextColor(ContextCompat.getColor(this, color))
     }
 
     override fun onResume() {
@@ -171,8 +169,8 @@ class MainActivity : BaseActivity(), MainView {
         return getString(resIdByName(name, "string"))
     }
     override fun mirrorAccount() {
-        main_add_register_cv.isEnabled = false
-        main_registo_image.setColorFilter(ContextCompat.getColor(this, R.color.gray), PorterDuff.Mode.MULTIPLY)
-        main_registo_title.setTextColor(ContextCompat.getColor(this, R.color.gray))
+        binding.mainAddRegisterCv.isEnabled = false
+        binding.mainRegistoImage.setColorFilter(ContextCompat.getColor(this, R.color.gray), PorterDuff.Mode.MULTIPLY)
+        binding.mainRegistoTitle.setTextColor(ContextCompat.getColor(this, R.color.gray))
     }
 }

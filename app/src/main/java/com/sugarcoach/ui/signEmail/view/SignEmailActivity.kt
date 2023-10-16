@@ -1,30 +1,78 @@
 package com.sugarcoach.ui.signEmail.view
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
+import androidx.activity.ComponentActivity
+import androidx.core.app.ActivityCompat
+import com.facebook.AccessToken
+import com.facebook.CallbackManager
+import com.facebook.FacebookCallback
+import com.facebook.FacebookException
+import com.facebook.login.LoginManager
+import com.facebook.login.LoginResult
+import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.sugarcoach.R
+import com.sugarcoach.databinding.ActivitySignEmailBinding
 import com.sugarcoach.ui.base.view.BaseActivity
 import com.sugarcoach.ui.main.view.MainActivity
 import com.sugarcoach.ui.signEmail.interactor.SignEmailInteractorImp
 import com.sugarcoach.ui.signEmail.presenter.SignEmailPresenterImp
 import com.sugarcoach.util.AppConstants
-import kotlinx.android.synthetic.main.activity_sign_email.*
-import kotlinx.android.synthetic.main.activity_sign_email.sign_facebook
 import javax.inject.Inject
 
 class SignEmailActivity: BaseActivity(), SignEmailView {
 
     @Inject
     lateinit var presenter: SignEmailPresenterImp<SignEmailView, SignEmailInteractorImp>
+    lateinit var binding: ActivitySignEmailBinding
+    private lateinit var callbackManager: CallbackManager
 
+    private lateinit var googleSignInClient: GoogleSignInClient
+    private lateinit var auth: FirebaseAuth
+
+    private val RC_SIGN_IN = 123
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_sign_email)
+        binding = ActivitySignEmailBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         presenter.onAttach(this)
+        auth = Firebase.auth
+        configureFacebook()
+        configureGoogle()
         setOnClickListeners()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        Log.i("OnActivityResult", "Se ejecuto el activity result, ${requestCode}, ${resultCode}, $data")
+
+        if (requestCode == RC_SIGN_IN) {
+            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+            Log.i("OnIf", "Entro al if")
+            try {
+                // Google Sign In was successful, authenticate with Firebase
+                val account = task.getResult(ApiException::class.java)
+                Log.i("OnActivityResult", "firebaseAuthWithGoogle:" + account.id)
+                presenter.authWithFirebase(account.idToken!!, auth)
+
+            } catch (e: ApiException) {
+                // Google Sign In failed, update UI appropriately
+                Log.i("OnActivityResult", "Google sign in failed", e)
+            }
+        }else{
+            callbackManager.onActivityResult(requestCode, resultCode, data)
+        }
     }
 
     override fun onDestroy() {
@@ -54,28 +102,42 @@ class SignEmailActivity: BaseActivity(), SignEmailView {
     }
 
     override fun onGoogleLogin() {
-        Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
-
-//        val intent = Intent(this, MainActivity::class.java)
-//        startActivity(intent)
-//        finish()
+        Log.i("OnGoogleLogin", "Se loggeo correctamente")
+        startMain()
     }
-
-    override fun googleSignIntent(mGoogleSignInClient: GoogleSignInClient, RC_SIGN_IN: Int) {
-        val intent: Intent = mGoogleSignInClient.signInIntent
-        startActivityForResult(intent, RC_SIGN_IN)
-    }
-
 
     override fun onFacebookLogin() {
-        Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
-//        val intent = Intent(this, MainActivity::class.java)
-//        startActivity(intent)
-//        finish()
+        Log.i("OnFacebookLogin", "Se loggeo correctamente")
+        startMain()
     }
     private fun setOnClickListeners() {
-        sign_google.setOnClickListener { presenter.googleLogin(getString(R.string.google_id)) }
-        sign_facebook.setOnClickListener { presenter.facebookLogin() }
-        sign_email_bt.setOnClickListener { presenter.signIn(sign_email_user.text.toString(), sign_email_mail.text.toString(), sign_email_pass.text.toString()) }
+        binding.signGoogle.setOnClickListener { googleLogin() }
+        binding.signEmailBt.setOnClickListener { presenter.signIn(binding.signEmailUser.text.toString(), binding.signEmailMail.text.toString(), binding.signEmailPass.text.toString(), auth) }
     }
+
+    private fun configureFacebook(){
+        callbackManager = CallbackManager.Factory.create()
+        presenter.facebookLogin(binding, callbackManager, auth)
+    }
+
+    private fun googleLogin(){
+        val signInIntent = googleSignInClient.signInIntent
+        startActivityForResult(signInIntent, RC_SIGN_IN)
+    }
+    private fun configureGoogle(){
+
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.google_id))
+            .requestEmail()
+            .build()
+
+        googleSignInClient = GoogleSignIn.getClient(this, gso)
+    }
+
+    override fun startMain(){
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
 }

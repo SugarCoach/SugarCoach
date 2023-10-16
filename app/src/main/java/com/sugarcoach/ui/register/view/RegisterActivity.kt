@@ -5,33 +5,34 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.inputmethod.EditorInfo
 import android.widget.Toast
+import com.sugarcoach.R
+import com.sugarcoach.data.database.repository.user.User
+import com.sugarcoach.ui.base.view.BaseActivity
+import com.sugarcoach.ui.register.interactor.RegisterInteractorImp
+import com.sugarcoach.ui.register.presenter.RegisterPresenterImp
+import com.sugarcoach.util.AppConstants
+import javax.inject.Inject
+import android.os.Handler
+import android.view.LayoutInflater
+import android.view.inputmethod.EditorInfo
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
-import com.sugarcoach.R
 import com.sugarcoach.data.database.repository.dailyregister.Category
-import com.sugarcoach.data.database.repository.user.User
-import com.sugarcoach.ui.base.view.BaseActivity
+import com.sugarcoach.databinding.ActivityRegisterBinding
+import com.sugarcoach.databinding.DialogComentaryBinding
+import com.sugarcoach.databinding.DialogCongratulationBinding
+import com.sugarcoach.databinding.DialogEmotionsBinding
 import com.sugarcoach.ui.daily.view.DailyActivity
 import com.sugarcoach.ui.main.view.MainActivity
-import com.sugarcoach.ui.register.interactor.RegisterInteractorImp
-import com.sugarcoach.ui.register.presenter.RegisterPresenterImp
 import com.sugarcoach.ui.treatment.view.TreatmentActivity
-import com.sugarcoach.util.AppConstants
 import com.sugarcoach.util.extensions.resIdByName
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog
-import kotlinx.android.synthetic.main.activity_register.*
-import kotlinx.android.synthetic.main.dialog_comentary.view.*
-import kotlinx.android.synthetic.main.dialog_congratulation.view.*
-import kotlinx.android.synthetic.main.dialog_emotions.view.*
 import java.text.SimpleDateFormat
 import java.util.*
-import javax.inject.Inject
 
 
 class RegisterActivity : BaseActivity(), RegisterView, TimePickerDialog.OnTimeSetListener, DatePickerDialog.OnDateSetListener {
@@ -65,18 +66,17 @@ class RegisterActivity : BaseActivity(), RegisterView, TimePickerDialog.OnTimeSe
 
     lateinit var user: User
 
-    var enable:Boolean = true
-
+    lateinit var binding: ActivityRegisterBinding
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_register)
+        binding = ActivityRegisterBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         presenter.onAttach(this)
         setOnClickListeners()
         setInitView()
         menuListeners()
-
     }
 
     override fun onDestroy() {
@@ -104,17 +104,17 @@ class RegisterActivity : BaseActivity(), RegisterView, TimePickerDialog.OnTimeSe
     override fun nextLoad(type: Int,value: Float?, position: String?) {
         when (type) {
             1 -> {
-                register_value_txt.setText("")
-                value?.let { if(it > 0) register_value_txt.setText(value.toInt().toString()) }
-                register_type.setText(R.string.register_insulina_label)
-                register_unidad_tv.setText(R.string.register_basal_unidad_label)
-                register_planet.setImageResource(R.drawable.planet_insulina)
-                register_planet_before.setImageResource(R.drawable.planet_glucemia)
-                register_planet_after.setImageResource(R.drawable.planet_carbohidratos)
-                register_dots.setDotSelection(1)
-                register_emotional_tv.visibility = View.GONE
-                register_exercices_tv.visibility = View.GONE
-                register_unidad_tv.visibility = View.VISIBLE
+                binding.registerValueTxt.setText("")
+                value?.let { if(it > 0) binding.registerValueTxt.setText(value.toInt().toString()) }
+                binding.registerType.setText(R.string.register_insulina_label)
+                binding.registerUnidadTv.setText(R.string.register_basal_unidad_label)
+                binding.registerPlanet.setImageResource(R.drawable.planet_insulina)
+                binding.registerPlanetBefore.setImageResource(R.drawable.planet_glucemia)
+                binding.registerPlanetAfter.setImageResource(R.drawable.planet_carbohidratos)
+                binding.registerDots.setDotSelection(1)
+                binding.registerEmotionalTv.visibility = View.GONE
+                binding.registerExercicesTv.visibility = View.GONE
+                binding.registerUnidadTv.visibility = View.VISIBLE
                 showHideExercise(false)
                 showHideEmotional(false)
                 showHideValue(true)
@@ -125,17 +125,17 @@ class RegisterActivity : BaseActivity(), RegisterView, TimePickerDialog.OnTimeSe
 
             }
             2 -> {
-                register_value_txt.setText("")
-                value?.let { if(it > 0) register_value_txt.setText(value.toString()) }
-                register_type.setText(R.string.register_carbohidratos_label)
-                register_unidad_tv.setText(R.string.register_car_unidad_label)
-                register_emotional_tv.visibility = View.GONE
-                register_exercices_tv.visibility = View.GONE
-                register_unidad_tv.visibility = View.VISIBLE
-                register_dots.setDotSelection(2)
-                register_planet.setImageResource(R.drawable.planet_carbohidratos)
-                register_planet_before.setImageResource(R.drawable.planet_insulina)
-                register_planet_after.setImageResource(R.drawable.planet_actividad)
+                binding.registerValueTxt.setText("")
+                value?.let { if(it > 0) binding.registerValueTxt.setText(value.toString()) }
+                binding.registerType.setText(R.string.register_carbohidratos_label)
+                binding.registerUnidadTv.setText(R.string.register_car_unidad_label)
+                binding.registerEmotionalTv.visibility = View.GONE
+                binding.registerExercicesTv.visibility = View.GONE
+                binding.registerUnidadTv.visibility = View.VISIBLE
+                binding.registerDots.setDotSelection(2)
+                binding.registerPlanet.setImageResource(R.drawable.planet_carbohidratos)
+                binding.registerPlanetBefore.setImageResource(R.drawable.planet_insulina)
+                binding.registerPlanetAfter.setImageResource(R.drawable.planet_actividad)
                 showHideExercise(false)
                 showHideEmotional(false)
                 showHideValue(true)
@@ -146,15 +146,15 @@ class RegisterActivity : BaseActivity(), RegisterView, TimePickerDialog.OnTimeSe
 
             }
             3 -> {
-                register_planet.setImageResource(R.drawable.planet_actividad)
-                register_planet_before.setImageResource(R.drawable.planet_carbohidratos)
-                register_planet_after.setImageResource(R.drawable.planet_estado)
-                register_value_txt.setText("")
-                register_dots.setDotSelection(3)
-                register_emotional_tv.visibility = View.GONE
-                register_exercices_tv.visibility = View.VISIBLE
-                register_unidad_tv.visibility = View.GONE
-                register_value_txt.isEnabled = false
+                binding.registerPlanet.setImageResource(R.drawable.planet_actividad)
+                binding.registerPlanetBefore.setImageResource(R.drawable.planet_carbohidratos)
+                binding.registerPlanetAfter.setImageResource(R.drawable.planet_estado)
+                binding.registerValueTxt.setText("")
+                binding.registerDots.setDotSelection(3)
+                binding.registerEmotionalTv.setVisibility(View.GONE)
+                binding.registerExercicesTv.setVisibility(View.VISIBLE)
+                binding.registerUnidadTv.setVisibility(View.GONE)
+                binding.registerValueTxt.setEnabled(false)
                 showHideExercise(true)
                 showHideEmotional(false)
                 showHideValue(false)
@@ -166,14 +166,14 @@ class RegisterActivity : BaseActivity(), RegisterView, TimePickerDialog.OnTimeSe
 
             }
             4 -> {
-                register_value_txt.setText("")
-                register_dots.setDotSelection(4)
-                register_emotional_tv.visibility = View.VISIBLE
-                register_exercices_tv.visibility = View.GONE
-                register_unidad_tv.visibility = View.GONE
-                register_value_txt.isEnabled = false
-                register_planet.setImageResource(R.drawable.planet_estado)
-                register_planet_before.setImageResource(R.drawable.planet_actividad)
+                binding.registerValueTxt.setText("")
+                binding.registerDots.setDotSelection(4)
+                binding.registerEmotionalTv.setVisibility(View.VISIBLE)
+                binding.registerExercicesTv.setVisibility(View.GONE)
+                binding.registerUnidadTv.setVisibility(View.GONE)
+                binding.registerValueTxt.setEnabled(false)
+                binding.registerPlanet.setImageResource(R.drawable.planet_estado)
+                binding.registerPlanetBefore.setImageResource(R.drawable.planet_actividad)
                 showHideExercise(false)
                 showHideEmotional(true)
                 showHideValue(false)
@@ -189,17 +189,17 @@ class RegisterActivity : BaseActivity(), RegisterView, TimePickerDialog.OnTimeSe
     override fun prevLoad(type: Int, value: Float?, position: String?) {
         when (type) {
             0 -> {
-                register_type.setText(R.string.register_glucemia_label)
-                register_unidad_tv.setText(R.string.register_gluc_unidad_label)
-                register_dots.setDotSelection(0)
-                register_planet.setImageResource(R.drawable.planet_glucemia)
-                register_planet_after.setImageResource(R.drawable.planet_insulina)
-                register_value_txt.isEnabled = true
-                register_emotional_tv.visibility = View.GONE
-                register_exercices_tv.visibility = View.GONE
-                register_unidad_tv.visibility = View.VISIBLE
-                register_value_txt.setText("")
-                value?.let { if(it > 0) register_value_txt.setText(value.toInt().toString()) }
+                binding.registerType.setText(R.string.register_glucemia_label)
+                binding.registerUnidadTv.setText(R.string.register_gluc_unidad_label)
+                binding.registerDots.setDotSelection(0)
+                binding.registerPlanet.setImageResource(R.drawable.planet_glucemia)
+                binding.registerPlanetAfter.setImageResource(R.drawable.planet_insulina)
+                binding.registerValueTxt.setEnabled(true)
+                binding.registerEmotionalTv.setVisibility(View.GONE)
+                binding.registerExercicesTv.setVisibility(View.GONE)
+                binding.registerUnidadTv.setVisibility(View.VISIBLE)
+                binding.registerValueTxt.setText("")
+                value?.let { if(it > 0) binding.registerValueTxt.setText(value.toInt().toString()) }
                 showHideExercise(false)
                 showHideEmotional(false)
                 showHideValue(true)
@@ -209,18 +209,18 @@ class RegisterActivity : BaseActivity(), RegisterView, TimePickerDialog.OnTimeSe
                 showHideNext(true)
             }
             1 -> {
-                register_type.setText(R.string.register_insulina_label)
-                register_unidad_tv.setText(R.string.register_basal_unidad_label)
-                register_dots.setDotSelection(1)
-                register_planet.setImageResource(R.drawable.planet_insulina)
-                register_planet_before.setImageResource(R.drawable.planet_glucemia)
-                register_planet_after.setImageResource(R.drawable.planet_carbohidratos)
-                register_value_txt.isEnabled = true
-                register_emotional_tv.visibility = View.GONE
-                register_exercices_tv.visibility = View.GONE
-                register_unidad_tv.visibility = View.VISIBLE
-                register_value_txt.setText("")
-                value?.let { if(it > 0) register_value_txt.setText(value.toString()) }
+                binding.registerType.setText(R.string.register_insulina_label)
+                binding.registerUnidadTv.setText(R.string.register_basal_unidad_label)
+                binding.registerDots.setDotSelection(1)
+                binding.registerPlanet.setImageResource(R.drawable.planet_insulina)
+                binding.registerPlanetBefore.setImageResource(R.drawable.planet_glucemia)
+                binding.registerPlanetAfter.setImageResource(R.drawable.planet_carbohidratos)
+                binding.registerValueTxt.isEnabled = true
+                binding.registerEmotionalTv.visibility = View.GONE
+                binding.registerExercicesTv.visibility = View.GONE
+                binding.registerUnidadTv.visibility = View.VISIBLE
+                binding.registerValueTxt.setText("")
+                value?.let { if(it > 0) binding.registerValueTxt.setText(value.toString()) }
                 showHideExercise(false)
                 showHideEmotional(false)
                 showHideValue(true)
@@ -230,17 +230,17 @@ class RegisterActivity : BaseActivity(), RegisterView, TimePickerDialog.OnTimeSe
                 showHideNext(true)
             }
             2 -> {
-                register_type.setText(R.string.register_carbohidratos_label)
-                register_dots.setDotSelection(2)
-                register_planet.setImageResource(R.drawable.planet_carbohidratos)
-                register_planet_before.setImageResource(R.drawable.planet_insulina)
-                register_planet_after.setImageResource(R.drawable.planet_actividad)
-                register_unidad_tv.setText(R.string.register_car_unidad_label)
-                register_value_txt.isEnabled = true
-                register_emotional_tv.visibility = View.GONE
-                register_exercices_tv.visibility = View.GONE
-                register_unidad_tv.visibility = View.VISIBLE
-                value?.let { if(it > 0) register_value_txt.setText(value.toString()) }
+                binding.registerType.setText(R.string.register_carbohidratos_label)
+                binding.registerDots.setDotSelection(2)
+                binding.registerPlanet.setImageResource(R.drawable.planet_carbohidratos)
+                binding.registerPlanetBefore.setImageResource(R.drawable.planet_insulina)
+                binding.registerPlanetAfter.setImageResource(R.drawable.planet_actividad)
+                binding.registerUnidadTv.setText(R.string.register_car_unidad_label)
+                binding.registerValueTxt.setEnabled(true)
+                binding.registerEmotionalTv.setVisibility(View.GONE)
+                binding.registerExercicesTv.setVisibility(View.GONE)
+                binding.registerUnidadTv.setVisibility(View.VISIBLE)
+                value?.let { if(it > 0) binding.registerValueTxt.setText(value.toString()) }
                 showHideExercise(false)
                 showHideEmotional(false)
                 showHideValue(true)
@@ -251,15 +251,15 @@ class RegisterActivity : BaseActivity(), RegisterView, TimePickerDialog.OnTimeSe
 
             }
             3 -> {
-                register_planet.setImageResource(R.drawable.planet_actividad)
-                register_planet_before.setImageResource(R.drawable.planet_carbohidratos)
-                register_planet_after.setImageResource(R.drawable.planet_estado)
-                register_emotional_tv.visibility = View.GONE
-                register_exercices_tv.visibility = View.VISIBLE
-                register_unidad_tv.visibility = View.GONE
-                register_value_txt.setText("")
-                register_dots.setDotSelection(3)
-                register_value_txt.isEnabled = false
+                binding.registerPlanet.setImageResource(R.drawable.planet_actividad)
+                binding.registerPlanetBefore.setImageResource(R.drawable.planet_carbohidratos)
+                binding.registerPlanetAfter.setImageResource(R.drawable.planet_estado)
+                binding.registerEmotionalTv.visibility = View.GONE
+                binding.registerExercicesTv.visibility = View.VISIBLE
+                binding.registerUnidadTv.visibility = View.GONE
+                binding.registerValueTxt.setText("")
+                binding.registerDots.setDotSelection(3)
+                binding.registerValueTxt.isEnabled = false
                 showHideExercise(true)
                 showHideEmotional(false)
                 showHideValue(false)
@@ -282,96 +282,83 @@ class RegisterActivity : BaseActivity(), RegisterView, TimePickerDialog.OnTimeSe
 
     override fun getUserData(user: User) {
         this.user = user
-        register_username_txt.setText(user.username)
-        register_pts_txt.setText(user.points)
-        register_level_txt.setText(user.level)
+        binding.registerUsernameTxt.setText(user.username)
         user.avatar?.let {
-            register_userimg_iv.setImageDrawable(getDrawable(resIdByName(it, "drawable")))
+            binding.registerUserimgIv.setImageDrawable(getDrawable(resIdByName(it, "drawable")))
         }
     }
 
 
     private fun showHidePlanet(show: Boolean) {
         if (show)
-            register_planet.visibility = View.VISIBLE
+            binding.registerPlanet.visibility = View.VISIBLE
         else
-            register_planet.visibility = View.GONE
+            binding.registerPlanet.visibility = View.GONE
 
     }
 
     private fun showHideEmotional(show: Boolean) {
         if (show) {
-            register_type.setText(R.string.register_emotional_label)
-            register_emotional_img.visibility = View.VISIBLE
+            binding.registerType.setText(R.string.register_emotional_label)
+            binding.registerEmotionalImg.visibility = View.VISIBLE
         }
         else {
-            register_emotional_img.visibility = View.GONE
+            binding.registerEmotionalImg.visibility = View.GONE
         }
 
     }
 
     private fun showHideExercise(show: Boolean) {
         if (show) {
-            register_type.setText(R.string.register_exercises_label)
-            register_exercise_img.visibility = View.VISIBLE
+            binding.registerType.setText(R.string.register_exercises_label)
+            binding.registerExerciseImg.setVisibility(View.VISIBLE)
+        } else {
+            binding.registerExerciseImg.setVisibility(View.GONE)
         }
-        else {
-            register_exercise_img.visibility = View.GONE
-        }
-
     }
 
     private fun showHideImgCar(show: Boolean) {
         if (show) {
-            register_img_ly.visibility = View.VISIBLE
+            binding.registerImgLy.setVisibility(View.VISIBLE)
+        } else {
+            binding.registerImgLy.setVisibility(View.GONE)
         }
-        else {
-            register_img_ly.visibility = View.GONE
-        }
-
     }
 
     private fun showHideComentario(show: Boolean) {
         if (show) {
-            register_comentario.visibility = View.VISIBLE
+            binding.registerComentario.setVisibility(View.VISIBLE)
+        } else {
+            binding.registerComentario.setVisibility(View.GONE)
         }
-        else {
-            register_comentario.visibility = View.GONE
-        }
-
     }
 
     private fun showHideNext(show: Boolean) {
         if (show) {
-            register_next_iv.visibility = View.VISIBLE
-            register_planet_after.visibility = View.VISIBLE
+            binding.registerNextIv.setVisibility(View.VISIBLE)
+            binding.registerPlanetAfter.setVisibility(View.VISIBLE)
+        } else {
+            binding.registerNextIv.setVisibility(View.INVISIBLE)
+            binding.registerPlanetAfter.setVisibility(View.INVISIBLE)
         }
-        else {
-            register_next_iv.visibility = View.INVISIBLE
-            register_planet_after.visibility = View.INVISIBLE
-        }
-
     }
 
     private fun showHidePrev(show: Boolean) {
         if (show) {
-            register_prev_iv.visibility = View.VISIBLE
-            register_planet_before.visibility = View.VISIBLE
+            binding.registerPrevIv.setVisibility(View.VISIBLE)
+            binding.registerPlanetBefore.setVisibility(View.VISIBLE)
+        } else {
+            binding.registerPrevIv.setVisibility(View.INVISIBLE)
+            binding.registerPlanetBefore.setVisibility(View.INVISIBLE)
         }
-        else {
-            register_prev_iv.visibility = View.INVISIBLE
-            register_planet_before.visibility = View.INVISIBLE
-        }
-
     }
+
     private fun showHideValue(show: Boolean) {
         if (show) {
-            register_value_txt.visibility = View.VISIBLE
+            binding.registerValueTxt.setVisibility(View.VISIBLE)
+        } else {
+            binding.registerValueTxt.setVisibility(View.GONE)
         }
-        else {
-            register_value_txt.visibility = View.GONE
-        }
-
     }
     private fun showHideEmotionalCard(show: Boolean) {
         if(show) dialogEmotions.show() else dialogEmotions.dismiss()
@@ -384,42 +371,34 @@ class RegisterActivity : BaseActivity(), RegisterView, TimePickerDialog.OnTimeSe
 
     private fun setOnClickListeners(){
 
-        register_next_iv.setOnClickListener {
+        binding.registerNextIv.setOnClickListener {
             presenter.nextLoad()
         }
-        register_prev_iv.setOnClickListener {
+        binding.registerPrevIv.setOnClickListener {
             presenter.prevLoad() }
-        register_again_iv.setOnClickListener {
+        binding.registerAgainIv.setOnClickListener {
             presenter.backLoad() }
-        register_completed_iv.setOnClickListener {
-            if(enable)
-            {
-                presenter.finishLoad()
-            }
-            else{
-                Toast.makeText(this, getString(R.string.time_future_warning),Toast.LENGTH_SHORT).show()
-            }
-        }
-        register_comentario.setOnClickListener { createDialogComment() }
-        register_time_txt.setOnClickListener { presenter.showTimeDialog(supportFragmentManager, this) }
-        register_date_txt.setOnClickListener { presenter.showDateDialog(supportFragmentManager, this) }
-        register_value_txt.setOnEditorActionListener { v, actionId, event ->
+        binding.registerCompletedIv.setOnClickListener {
+            presenter.finishLoad() }
+        binding.registerComentario.setOnClickListener { createDialogComment() }
+        binding.registerTimeTxt.setOnClickListener { presenter.showTimeDialog(supportFragmentManager, this) }
+        binding.registerDateTxt.setOnClickListener { presenter.showDateDialog(supportFragmentManager, this) }
+        binding.registerValueTxt.setOnEditorActionListener { v, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_DONE){
-                var value =register_value_txt.text.toString().replace(",",".")
-                presenter.checkValue(value.toFloat())
+                presenter.checkValue(binding.registerValueTxt.text.toString().toFloat())
             }
             false
         }
-        register_emotional_img.setOnClickListener{showHideEmotionalCard(true)}
-        register_exercise_img.setOnClickListener{showHideExerciseCard(true)}
-        register_img_ly.setOnClickListener { presenter.showChooser() }
+        binding.registerEmotionalImg.setOnClickListener{showHideEmotionalCard(true)}
+        binding.registerExerciseImg.setOnClickListener{showHideExerciseCard(true)}
+        binding.registerImgLy.setOnClickListener { presenter.showChooser() }
     }
 
     private fun setInitView(){
-        register_type.text = getString(R.string.register_glucemia_label)
-        register_unidad_tv.setText(R.string.register_gluc_unidad_label)
-        register_planet.setImageResource(R.drawable.planet_glucemia)
-        register_value_txt.isEnabled = true
+        binding.registerType.text = getString(R.string.register_glucemia_label)
+        binding.registerUnidadTv.setText(R.string.register_gluc_unidad_label)
+        binding.registerPlanet.setImageResource(R.drawable.planet_glucemia)
+        binding.registerValueTxt.isEnabled = true
         showHideExercise(false)
         showHideEmotional(false)
         showHidePlanet(true)
@@ -434,136 +413,106 @@ class RegisterActivity : BaseActivity(), RegisterView, TimePickerDialog.OnTimeSe
         val formatterTime = SimpleDateFormat("hh:mm a", Locale.getDefault())
         val formattedDate = formatter.format(date)
         val formattedTime = formatterTime.format(date)
-        register_time_txt.text = formattedTime
-        register_date_txt.text = formattedDate
-        adapter.setPowerView(register_med_txt)
-        register_med_txt.setSpinnerAdapter(adapter)
-        register_med_txt.getSpinnerRecyclerView().layoutManager = manager
-        register_med_txt.setItems(categories)
-        register_med_txt.selectItemByIndex(medition-1)
-        register_med_txt.setOnSpinnerItemSelectedListener<Category> { position, item ->
+        binding.registerTimeTxt.text = formattedTime
+        binding.registerDateTxt.text = formattedDate
+        adapter.setPowerView(binding.registerMedTxt)
+        binding.registerMedTxt.setSpinnerAdapter(adapter)
+        binding.registerMedTxt.getSpinnerRecyclerView().layoutManager = manager
+        binding.registerMedTxt.setItems(categories)
+        binding.registerMedTxt.selectItemByIndex(medition-1)
+        binding.registerMedTxt.setOnSpinnerItemSelectedListener<Category> { position, item ->
             presenter.setMedition(item.cate_id)
             Toast.makeText(this, getString(R.string.register_category_warning),Toast.LENGTH_SHORT).show()
         }
     }
 
     private fun createDialogCongratulation(){
-        val view = LayoutInflater.from(this).inflate(R.layout.dialog_congratulation, null)
+        val view = DialogCongratulationBinding.inflate(layoutInflater)
         val builder = AlertDialog.Builder(this)
         builder.setCancelable(false)
-        builder.setView(view)
+        builder.setView(view.root)
         dialog = builder.create()
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        view.congratulation_pts_txt.text = "+100"
-
-        val totalPoints = user.points!!.toInt() + Integer.valueOf(view.congratulation_pts_txt.text.toString())
-        var level = user.level
-
-        view.congratulation_pts_total_txt.text = totalPoints.toString()
-
-        when
-        {
-            totalPoints > 1850 -> {level = "Space Cadet"}
-
-            totalPoints > 3700 -> {level = "Rocket Captain"}
-
-            totalPoints > 7400 -> {level = "Startrek Voyayer"}
-
-            totalPoints > 14800 -> {level = "Future Traveller"}
-
-            totalPoints > 29600 -> {level = "Quarks Master "}
-        }
-        presenter.updateUser(totalPoints.toString(), level)
-
+        view.congratulationPtsTxt.text = "+100"
         user.avatar?.let {
-            view.congratulation_avatar.setImageDrawable(getDrawable(resIdByName(it, "drawable")))
+            view.congratulationAvatar.setImageDrawable(getDrawable(resIdByName(it, "drawable")))
         }
-        view.congratulation_close.setOnClickListener { dialog.dismiss() }
+        view.congratulationClose.setOnClickListener { dialog.dismiss() }
         dialog.setOnDismissListener { presenter.goToActivityDaily() }
         dialog.show()
 
     }
     private fun createDialogComment(){
-        val view = LayoutInflater.from(this).inflate(R.layout.dialog_comentary, null)
+        val view = DialogComentaryBinding.inflate(layoutInflater)
         val builder = AlertDialog.Builder(this)
-        builder.setView(view)
+        builder.setCancelable(false)
+        builder.setView(view.root)
         dialogComment = builder.create()
         dialogComment.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        view.comentary_save.setOnClickListener{
-            presenter.saveComment(view.comentary_value.text.toString())
+        view.comentarySave.setOnClickListener{
+            presenter.saveComment(view.comentaryValue.text.toString())
+            binding.registerComentarioTv.text = view.comentaryValue.text.toString()
             dialogComment.dismiss()
         }
         dialogComment.show()
     }
     override fun setEmotional(item: RegisterItem) {
-        register_emotional_img.visibility = View.VISIBLE
-        register_emotional_img.setImageDrawable(getDrawable(item.image))
-        register_emotional_tv.text = getLabel(item.name)
+        binding.registerEmotionalImg.visibility = View.VISIBLE
+        binding.registerEmotionalImg.setImageDrawable(getDrawable(item.image))
+        binding.registerEmotionalTv.text = getLabel(item.name)
         showHideEmotionalCard(false)
     }
 
     override fun setExercise(item: RegisterItem) {
-        register_exercise_img.visibility = View.VISIBLE
-        register_exercise_img.setImageDrawable(getDrawable(item.image))
-        register_exercices_tv.text = getLabel(item.name)
+        binding.registerExerciseImg.visibility = View.VISIBLE
+        binding.registerExerciseImg.setImageDrawable(getDrawable(item.image))
+        binding.registerExercicesTv.text = getLabel(item.name)
         showHideExerciseCard(false)
     }
 
     override fun setExercicesData(items: List<RegisterItem>) {
-        val view = LayoutInflater.from(this).inflate(R.layout.dialog_emotions, null)
+        val view = DialogEmotionsBinding.inflate(layoutInflater)
         val builder = AlertDialog.Builder(this)
         builder.setCancelable(false)
-        builder.setView(view)
+        builder.setView(view.root)
         dialogExercises = builder.create()
         dialogExercises.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         adapterExercices.setData(items,2)
-        view.emotions_title.text = getString(R.string.register_new_activity_txt)
-        view.emotions_list.layoutManager = managerExercices
-        view.emotions_list.adapter = adapterExercices
-        view.emotions_cancel.setOnClickListener{
+        view.emotionsTitle.text = getString(R.string.register_new_activity_txt)
+        view.emotionsList.layoutManager = managerExercices
+        view.emotionsList.adapter = adapterExercices
+        view.emotionsCancel.setOnClickListener{
             dialogExercises.dismiss()
         }
     }
 
     override fun setEmotionsData(items: List<RegisterItem>) {
-        val view = LayoutInflater.from(this).inflate(R.layout.dialog_emotions, null)
+        val view = DialogEmotionsBinding.inflate(layoutInflater)
         val builder = AlertDialog.Builder(this)
         builder.setCancelable(false)
-        builder.setView(view)
+        builder.setView(view.root)
         dialogEmotions = builder.create()
         dialogEmotions.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         adapterEmotions.setData(items,1)
-        view.emotions_list.layoutManager = managerEmotions
-        view.emotions_list.adapter = adapterEmotions
-        view.emotions_cancel.setOnClickListener{
+        view.emotionsList.layoutManager = managerEmotions
+        view.emotionsList.adapter = adapterEmotions
+        view.emotionsCancel.setOnClickListener{
             dialogEmotions.dismiss()
         }
     }
 
     override fun setTime(value: Date, medition: Int) {
-        register_med_txt.selectItemByIndex(medition-1)
+        binding.registerMedTxt.selectItemByIndex(medition-1)
         val formatterTime = SimpleDateFormat("hh:mm a", Locale.getDefault())
         val formattedTime = formatterTime.format(value)
-        val parser = SimpleDateFormat("dd.MM.YYYY HH:mm:ss.SSS", Locale.getDefault())
-        val date = parser.format(value)
-        val currentDate = SimpleDateFormat("dd.MM.YYYY HH:mm:ss.SSS", Locale.getDefault()).format(Date())
-        if(date > currentDate)
-        {
-            enable= false
-            register_time_txt.text = formattedTime
-            Toast.makeText(this, getString(R.string.register_time_future),Toast.LENGTH_SHORT).show()
-        }
-        else {
-            enable = true
-            register_time_txt.text = formattedTime
-            Toast.makeText(this, getString(R.string.register_time_warning),Toast.LENGTH_SHORT).show()
-        }
+        binding.registerTimeTxt.text = formattedTime
+        Toast.makeText(this, getString(R.string.register_time_warning),Toast.LENGTH_SHORT).show()
     }
 
     override fun setDate(value: Date) {
         val formatter = SimpleDateFormat("dd.M.yy", Locale.getDefault())
         val formattedDate = formatter.format(value)
-        register_date_txt.text = formattedDate
+        binding.registerDateTxt.text = formattedDate
         Toast.makeText(this, getString(R.string.register_date_warning),Toast.LENGTH_SHORT).show()
 
     }
@@ -577,7 +526,7 @@ class RegisterActivity : BaseActivity(), RegisterView, TimePickerDialog.OnTimeSe
 
 
     override fun setImage(image: String) {
-        Glide.with(this).load(image).into(register_img_iv)
+        Glide.with(this).load(image).into(binding.registerImgIv)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -629,10 +578,10 @@ class RegisterActivity : BaseActivity(), RegisterView, TimePickerDialog.OnTimeSe
     }
 
     fun menuListeners(){
-         home.setOnClickListener { presenter.goToActivityMain() }
-         statistics.setOnClickListener { presenter.goToActivityStatistic() }
-         dailyRegister.setOnClickListener { presenter.goToActivityDaily() }
-         treament.setOnClickListener { presenter.goToActivityTreament() }
+         binding.home.setOnClickListener { presenter.goToActivityMain() }
+         binding.statistics.setOnClickListener { presenter.goToActivityStatistic() }
+         binding.dailyRegister.setOnClickListener { presenter.goToActivityDaily() }
+         binding.treament.setOnClickListener { presenter.goToActivityTreament() }
 
     }
 

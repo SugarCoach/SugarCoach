@@ -1,13 +1,25 @@
 package com.sugarcoach.ui.treatment.view
 
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.basal_item.view.*
+import com.sugarcoach.data.database.repository.dailyregister.Category
+import com.sugarcoach.databinding.BasalItemBinding
+import com.sugarcoach.databinding.CategoryItemBinding
+import com.sugarcoach.ui.daily_detail.view.CategoriesHolder
+import com.sugarcoach.ui.daily_detail.view.DailyDetailActivity
 
-class BasalHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+class BasalHolder(private val binding: BasalItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    fun bind(item: BasalItem, activity: TreatmentActivity) {
+        binding.basalValue.text = activity.getLabel(item.name)
+    }
 
-
-    fun inflateData(item: BasalItem) {
-        itemView.basal_value.text = item.name
+    companion object {
+        fun create(parent: ViewGroup): BasalHolder {
+            val inflater = LayoutInflater.from(parent.context)
+            val binding = BasalItemBinding.inflate(inflater, parent, false)
+            return BasalHolder(binding)
+        }
     }
 }

@@ -9,7 +9,7 @@ import io.reactivex.Observable
 
 
 interface LoginInteractorImp : Interactor {
-    fun doServerLoginpiCall(email: String, password: String): Observable<LoginResponse>
+    suspend fun doServerLoginpiCall(email: String, password: String): Observable<LoginResponse>
     fun updateUserInSharedPref(loginResponse: LoginResponse, mirror: Boolean, medico: Boolean)
     fun treament(treament: Treament): Observable<Boolean>
     fun category(): Observable<Boolean>

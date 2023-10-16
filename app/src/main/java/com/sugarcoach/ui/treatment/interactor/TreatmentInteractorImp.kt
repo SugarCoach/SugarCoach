@@ -25,6 +25,5 @@ interface TreatmentInteractorImp : Interactor {
     fun editBasalHora(hora: TreamentBasalHora): Observable<Boolean>
     fun editBasalCategory(horarios: TreamentHorarios): Observable<Boolean>
     fun editCorrectoraCategory(horarios: TreamentCorrectoraHorarios): Observable<Boolean>
-    fun updateUser(user: User): Observable<Boolean>
 
 }

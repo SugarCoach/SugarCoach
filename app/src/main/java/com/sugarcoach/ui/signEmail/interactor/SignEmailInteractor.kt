@@ -28,9 +28,7 @@ class SignEmailInteractor @Inject constructor(private val mContext: Context, pri
         val gson = builder.create()
         var json = gson.toJson(signResponse.user)
         var user: User = gson.fromJson(json.toString(), User::class.java)
-        user.typeAccount = "1"
-        user.points = "0"
-        user.level="Startup Explorer"
+        user.typeAccount = "2"
         userHelper.insertRegister(user)
         preferenceHelper.let {
             it.setCurrentUserId(signResponse.user?.id)

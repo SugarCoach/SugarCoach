@@ -16,7 +16,6 @@ interface MainPresenterImp<V : MainView, I : MainInteractorImp> : Presenter<V, I
     fun goToActivityProfile()
     fun goToActivityConfig()
     fun goToActivityStatistics()
-    fun logOut()
     fun onResume()
     fun onRequestPermissionsResult(context: Activity, requestCode: Int, permissions: Array<String>, grantResults: IntArray)
     fun checkAndRequestPermissions(context: Activity)

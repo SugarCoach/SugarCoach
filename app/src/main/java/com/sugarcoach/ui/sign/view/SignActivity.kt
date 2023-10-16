@@ -5,21 +5,22 @@ import android.os.Bundle
 import android.widget.Toast
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.sugarcoach.R
+import com.sugarcoach.databinding.ActivitySigninBinding
 import com.sugarcoach.ui.base.view.BaseActivity
-import com.sugarcoach.ui.main.view.MainActivity
 import com.sugarcoach.ui.sign.interactor.SignInteractorImp
 import com.sugarcoach.ui.sign.presenter.SignPresenterImp
 import com.sugarcoach.ui.signEmail.view.SignEmailActivity
-import kotlinx.android.synthetic.main.activity_signin.*
 import javax.inject.Inject
 class SignActivity: BaseActivity(), SignView {
     @Inject
     lateinit var presenter: SignPresenterImp<SignView,SignInteractorImp>
 
+    lateinit var binding: ActivitySigninBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_signin)
+        binding = ActivitySigninBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         presenter.onAttach(this)
         setOnClickListeners()
     }
@@ -70,8 +71,8 @@ class SignActivity: BaseActivity(), SignView {
     }
 
     private fun setOnClickListeners() {
-        sign_google.setOnClickListener { presenter.googleLogin(getString(R.string.google_id)) }
-        sign_facebook.setOnClickListener { presenter.facebookLogin() }
-        sign_email.setOnClickListener { presenter.emailSign() }
+        binding.signGoogle.setOnClickListener { presenter.googleLogin(getString(R.string.google_id)) }
+        binding.signFacebook.setOnClickListener { presenter.facebookLogin(this) }
+        binding.signEmail.setOnClickListener { presenter.emailSign() }
     }
 }

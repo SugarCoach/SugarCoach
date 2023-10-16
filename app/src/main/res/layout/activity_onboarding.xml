@@ -8,7 +8,7 @@
     android:fitsSystemWindows="true"
     android:background="@color/white">
 
-    <com.jem.liquidswipe.LiquidSwipeViewPager
+    <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/boarding_pager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -16,4 +16,20 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+    <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
+            android:id="@+id/dots_indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="120dp"
+            android:layout_marginBottom="30dp"
+            app:dotsColor="@color/white"
+            app:dotsCornerRadius="8dp"
+            app:dotsSize="16dp"
+            app:dotsSpacing="4dp"
+            app:dotsWidthFactor="2.5"
+            app:selectedDotColor="@color/blue"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            />
 </androidx.constraintlayout.widget.ConstraintLayout>
