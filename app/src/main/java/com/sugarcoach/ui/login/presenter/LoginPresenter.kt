@@ -4,6 +4,9 @@ import android.app.Activity
 import android.content.Intent
 import android.util.Log
 import com.google.android.gms.vision.barcode.Barcode
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.notbytes.barcode_reader.BarcodeReaderActivity
 import com.sugarcoach.BuildConfig
 import com.sugarcoach.data.database.repository.dailyregister.DailyRegister
@@ -29,13 +32,27 @@ class LoginPresenter  <V : LoginView, I : LoginInteractorImp> @Inject internal c
 
 
     val barcodeREQUEST = 1002
+    val auth: FirebaseAuth = Firebase.auth
+
     override suspend fun onLogin(email: String, password: String, mirror: Boolean, medico: Boolean) {
         when {
             email.isEmpty() -> getView()?.showValidationMessage(AppConstants.EMPTY_EMAIL_ERROR)
             !isEmailValid(email) -> getView()?.showValidationMessage(AppConstants.INVALID_EMAIL_ERROR)
             password.isEmpty() -> getView()?.showValidationMessage(AppConstants.EMPTY_PASSWORD_ERROR)
             else -> {
-                suspendLogin(email, password, mirror, medico)
+                auth.signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener() { task ->
+                        if (task.isSuccessful) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.i("onLogin", "signInWithEmail:success")
+                            getView()?.onLogin()
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.i("onLogin", "signInWithEmail:failure", task.exception)
+                            getView()?.showErrorToast()
+                        }
+                    }
+                //suspendLogin(email, password, mirror, medico)
             }
         }
     }

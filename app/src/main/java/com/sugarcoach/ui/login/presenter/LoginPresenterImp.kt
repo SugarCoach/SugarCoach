@@ -1,6 +1,7 @@
 package com.sugarcoach.ui.login.presenter
 
 import android.content.Intent
+import com.google.firebase.auth.FirebaseAuth
 import com.sugarcoach.data.database.repository.dailyregister.DailyRegister
 import com.sugarcoach.data.network.RegistersResponse
 import com.sugarcoach.ui.base.presenter.Presenter
