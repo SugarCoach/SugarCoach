@@ -69,7 +69,7 @@ class TreatmentPresenter<V : TreatmentView, I : TreatmentInteractorImp> @Inject 
     }
     override fun saveCategory(item: HorarioItem) {
         basal = TreamentHorarios(item.id, item.categoryId, item.selected, treatment.id, item.units.toFloat())
-            interactor?.let {
+        interactor?.let {
             compositeDisposable.add(it.editBasalCategory(basal)
                 .compose(schedulerProvider.ioToMainObservableScheduler())
                 .subscribe({ getView()?.showSuccessToast()
@@ -82,7 +82,7 @@ class TreatmentPresenter<V : TreatmentView, I : TreatmentInteractorImp> @Inject 
 
     override fun saveCorrectoraCategory(item: HorarioItem) {
         correctora = TreamentCorrectoraHorarios(item.id, item.categoryId,  treatment.id, item.selected)
-            interactor?.let {
+        interactor?.let {
             compositeDisposable.add(it.editCorrectoraCategory(correctora)
                 .compose(schedulerProvider.ioToMainObservableScheduler())
                 .subscribe({ getView()?.showSuccessToast()
@@ -131,6 +131,7 @@ class TreatmentPresenter<V : TreatmentView, I : TreatmentInteractorImp> @Inject 
             compositeDisposable.add(it.getCorrectora()
                 .compose(schedulerProvider.ioToMainSingleScheduler())
                 .subscribe({ basals ->
+                    Log.i("OnGetCorrectora", "Se inicia bien: $basals")
                     getDataCorrectora(basals)
                 }, { throwable ->
                     showException(throwable)
@@ -145,6 +146,7 @@ class TreatmentPresenter<V : TreatmentView, I : TreatmentInteractorImp> @Inject 
             compositeDisposable.add(it.getBasals()
                 .compose(schedulerProvider.ioToMainSingleScheduler())
                 .subscribe({ basals ->
+                    Log.i("OnGetBasal", "Se inicia")
                     getDataBasal(basals)
                 }, { throwable ->
                     showException(throwable)
@@ -157,6 +159,7 @@ class TreatmentPresenter<V : TreatmentView, I : TreatmentInteractorImp> @Inject 
             compositeDisposable.add(it.getMedidores()
                 .compose(schedulerProvider.ioToMainSingleScheduler())
                 .subscribe({ medidores ->
+                    Log.i("OnGetMedidores", "Se inicia:$medidores")
                     getDataMedidor(medidores)
                 }, { throwable ->
                     showException(throwable)
@@ -170,6 +173,7 @@ class TreatmentPresenter<V : TreatmentView, I : TreatmentInteractorImp> @Inject 
             compositeDisposable.add(it.getBombas()
                 .compose(schedulerProvider.ioToMainSingleScheduler())
                 .subscribe({ bombas ->
+                    Log.i("OnGetBombas", "Se inicia:$bombas")
                     getDataBomba(bombas)
                 }, { throwable ->
                     showException(throwable)
@@ -237,14 +241,14 @@ class TreatmentPresenter<V : TreatmentView, I : TreatmentInteractorImp> @Inject 
             compositeDisposable.add(it.getTreatment()
                 .compose(schedulerProvider.ioToMainSingleScheduler())
                 .subscribe({ treament ->
+                    Log.i("OnGetTreatment", "Se ingresa a treatment:$treament")
                     getView()?.let {
-                        Log.i("OnGetTreatment", "Se inicializa el treatment como: ${treament.treament}")
                         treatment = treament.treament!!
                         getPromedio(treament)
                         getTotalBasal()
                         getView()?.setTreatment(treament)
                     }
-                }, { err -> println(err) })
+                }, { err -> Log.i("OnGetTreatment", "Ocurrio un error: $err") })
             )
         }
     }
@@ -308,6 +312,7 @@ class TreatmentPresenter<V : TreatmentView, I : TreatmentInteractorImp> @Inject 
             ret.add(data)
         }
         getView()?.setInsulinasBasales(ret)
+        Log.i("OnGetDataBasal", "Se inicia")
         getMedidores()
 
     }
@@ -322,6 +327,7 @@ class TreatmentPresenter<V : TreatmentView, I : TreatmentInteractorImp> @Inject 
             ret.add(data)
         }
         getView()?.setMedidor(ret)
+        Log.i("OnGetDataMedidor", "Se inicia")
         getBombas()
 
     }
@@ -336,10 +342,12 @@ class TreatmentPresenter<V : TreatmentView, I : TreatmentInteractorImp> @Inject 
             ret.add(data)
         }
         getView()?.setBomba(ret)
+        Log.i("OnGetDataBomba", "Se inicia")
         getCorrectora()
 
     }
     private fun getDataCorrectora(basal: List<CorrectoraInsuline>) {
+        Log.i("OnGetDataCorrectora", "Se inicia")
         getTreatment()
         val ret = ArrayList<BasalItem>()
         for (i in basal.indices) {
@@ -352,8 +360,6 @@ class TreatmentPresenter<V : TreatmentView, I : TreatmentInteractorImp> @Inject 
             ret.add(data)
         }
         getView()?.setInsulinasCorrectoras(ret)
-
-
     }
     private fun getDataCategories(horarios: List<TreatmentHorariosCategory>) {
         val ret = ArrayList<HorarioItem>()

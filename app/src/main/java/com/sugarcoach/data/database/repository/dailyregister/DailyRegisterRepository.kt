@@ -1,5 +1,6 @@
 package com.sugarcoach.data.database.repository.dailyregister
 
+import android.util.Log
 import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.internal.operators.single.SingleFromCallable
@@ -85,7 +86,14 @@ class DailyRegisterRepository @Inject constructor(private val dailyRegisterDao: 
     override fun loadDailyRegistersDATES(): Single<List<Date>>
             = Single.fromCallable { dailyRegisterDao.loadDates() }
 
-    override fun isRegisterRepoEmpty(): Boolean =  dailyRegisterDao.loadAll().isEmpty()
+    override fun isRegisterRepoEmpty(): Boolean {
+        try {
+            return dailyRegisterDao.loadAll().isEmpty()
+        }catch(e: Exception){
+            Log.i("OnRegisterRepository", "Ocurrió un error al llamar loadAll() $e")
+            return true
+        }
+    }
 
     override fun isCategoriesRepoEmpty(): Observable<Boolean> =   Observable.just(dailyRegisterDao.loadAllCategories().isEmpty())
 

@@ -175,14 +175,17 @@ class RegisterPresenter<V : RegisterView, I : RegisterInteractorImp> @Inject int
         interactor?.let {
             compositeDisposable.add(it.isDailyEmpty()
                 .compose(schedulerProvider.ioToMainObservableScheduler())
-                .subscribe {
-                        check ->
+                .subscribe ({ check ->
+                    Log.i("OnCheckDaily", "Todo funciono bien: $check, $categories")
                     if (!check){
                         getLastDaily(categories)
                     }else{
                         getMedition(null, categories)
                     }
+                }, { err ->
+                    Log.i("OnCheckDaily", "Ocurrió un error: $err")
                 })
+            )
         }
 
     }
@@ -217,8 +220,9 @@ class RegisterPresenter<V : RegisterView, I : RegisterInteractorImp> @Inject int
                 .compose(schedulerProvider.ioToMainSingleScheduler())
                 .subscribe({ categories ->
                     category = categories
+                    Log.i("OnGetCategories", "Las categories fueron:$categories")
                     checkDaily(categories)
-                }, { err -> println("error" + err) })
+                }, { err -> Log.i("onGetCategories", "Ocurrió un error: $err") })
             )
         }
     }
@@ -350,7 +354,6 @@ class RegisterPresenter<V : RegisterView, I : RegisterInteractorImp> @Inject int
     private fun getMedition(dailyRegister: DailyRegister?, category: List<Category>){
         var index = 0
         var currentDate = date
-        try{
             var date = dailyRegister?.created
             val breakfastId = category.filter { category -> category.cate_name.equals("register_breakfast_label")  }.single().cate_id
             val pbreakfastId  = category.filter { category -> category.cate_name.equals("register_pbreakfast_label")  }.single().cate_id
@@ -451,13 +454,8 @@ class RegisterPresenter<V : RegisterView, I : RegisterInteractorImp> @Inject int
                         getView()?.setDateMedition(currentDate.toDate(), index, category)
                     }
                 }
-
             }
-            this.label = index
-        }catch(e: Exception){
-            Log.i("OnRegisterPresenter", "Ocurrio un error inicializando las variables de getMedition")
-            getView()?.showErrorToast()
-        }
+        this.label = index
     }
 
     fun timeBetween(time: LocalTime, startTime: LocalTime, endTime: LocalTime): Boolean{

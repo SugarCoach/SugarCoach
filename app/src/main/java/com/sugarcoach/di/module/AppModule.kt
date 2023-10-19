@@ -2,8 +2,10 @@ package com.sugarcoach.di.module
 
 import android.app.Application
 import android.content.Context
+import android.util.Log
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.sqlite.db.SupportSQLiteDatabase
 import com.sugarcoach.BuildConfig.*
 import com.sugarcoach.data.database.AppDatabase
 import com.sugarcoach.data.database.repository.dailyregister.DailyRegisterRepo
@@ -40,8 +42,8 @@ class AppModule {
     @Provides
     @Singleton
     internal fun provideAppDatabase(context: Context): AppDatabase =
-            Room.databaseBuilder(context, AppDatabase::class.java, AppConstants.APP_DB_NAME).allowMainThreadQueries().setJournalMode(RoomDatabase.JournalMode.TRUNCATE).fallbackToDestructiveMigration().build()
-
+            Room.databaseBuilder(context, AppDatabase::class.java, AppConstants.APP_DB_NAME).allowMainThreadQueries()
+                .setJournalMode(RoomDatabase.JournalMode.TRUNCATE).fallbackToDestructiveMigration().build()
 
     @Provides
     @PreferenceInfo

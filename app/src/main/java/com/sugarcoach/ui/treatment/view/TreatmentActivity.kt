@@ -1,6 +1,7 @@
 package com.sugarcoach.ui.treatment.view
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.PorterDuff
@@ -18,6 +19,8 @@ import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.play.core.integrity.e
+import com.skydoves.powerspinner.PowerSpinnerInterface
 import com.sugarcoach.R
 import com.sugarcoach.data.database.repository.treament.TreatmentBasalCorrectora
 import com.sugarcoach.data.database.repository.user.User
@@ -33,6 +36,7 @@ import com.sugarcoach.ui.treatment.interactor.TreatmentInteractorImp
 import com.sugarcoach.ui.treatment.presenter.TreatmentPresenterImp
 import com.sugarcoach.util.extensions.resIdByName
 import org.joda.time.LocalTime
+import java.lang.reflect.TypeVariable
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
@@ -48,7 +52,6 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
 
     @Inject
     lateinit var manager: LinearLayoutManager
-
 
     @Inject
     lateinit var cmanager: LinearLayoutManager
@@ -108,14 +111,16 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
         super.onDestroy()
     }
 
-
     override fun showSuccessToast() {
         Toast.makeText(this, getString(R.string.update_success), Toast.LENGTH_LONG).show()
     }
 
-    override fun showErrorToast() {
+    fun showErrorToast2(context: Context, msg: String) {
+        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
     }
 
+    override fun showErrorToast() {
+    }
 
     override fun setData(user: User, date: Date) {
         this.user = user
@@ -198,7 +203,7 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
     }
 
     override fun setTreatment(treament: TreatmentBasalCorrectora) {
-        var tratamiento = treament.treament!!
+        val tratamiento = treament.treament!!
         binding.treatmentObjTxt.setText(tratamiento.object_glucose.toInt().toString())
         binding.treatmentHiperTxt.setText(tratamiento.hyperglucose.toInt().toString())
         binding.treatmentHipoTxt.setText(tratamiento.hipoglucose.toInt().toString())
@@ -289,82 +294,101 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
     }
 
     fun setListeners(){
-        binding.treatmentObjTxt.setOnEditorActionListener { v, actionId, event ->
-            if (actionId == EditorInfo.IME_ACTION_DONE){
-                presenter.saveAll(binding.treatmentObjTxt.text.toString().toFloat(), binding.treatmentHipoTxt.text.toString().toFloat(),binding.treatmentHiperTxt.text.toString().toFloat())
+        try {
+            binding.treatmentObjTxt.setOnEditorActionListener { v, actionId, event ->
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    presenter.saveAll(
+                        binding.treatmentObjTxt.text.toString().toFloat(),
+                        binding.treatmentHipoTxt.text.toString().toFloat(),
+                        binding.treatmentHiperTxt.text.toString().toFloat()
+                    )
+                }
+                false
             }
-            false
-        }
-        binding.treatmentHipoTxt.setOnEditorActionListener { v, actionId, event ->
-            if (actionId == EditorInfo.IME_ACTION_DONE){
-                presenter.saveAll(binding.treatmentObjTxt.text.toString().toFloat(), binding.treatmentHipoTxt.text.toString().toFloat(),binding.treatmentHiperTxt.text.toString().toFloat())
+            binding.treatmentHipoTxt.setOnEditorActionListener { v, actionId, event ->
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    presenter.saveAll(
+                        binding.treatmentObjTxt.text.toString().toFloat(),
+                        binding.treatmentHipoTxt.text.toString().toFloat(),
+                        binding.treatmentHiperTxt.text.toString().toFloat()
+                    )
+                }
+                false
             }
-            false
-        }
-        binding.treatmentHiperTxt.setOnEditorActionListener { v, actionId, event ->
-            if (actionId == EditorInfo.IME_ACTION_DONE){
-                presenter.saveAll(binding.treatmentObjTxt.text.toString().toFloat(), binding.treatmentHipoTxt.text.toString().toFloat(),binding.treatmentHiperTxt.text.toString().toFloat())
+            binding.treatmentHiperTxt.setOnEditorActionListener { v, actionId, event ->
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    presenter.saveAll(
+                        binding.treatmentObjTxt.text.toString().toFloat(),
+                        binding.treatmentHipoTxt.text.toString().toFloat(),
+                        binding.treatmentHiperTxt.text.toString().toFloat()
+                    )
+                }
+                false
             }
-            false
-        }
-        binding.treatmentGluMayorUd.setOnEditorActionListener { v, actionId, event ->
-            if (actionId == EditorInfo.IME_ACTION_DONE){
-                presenter.saveUnitCorrectora(binding.treatmentGluMayorUd.text.toString().toFloat())
+            binding.treatmentGluMayorUd.setOnEditorActionListener { v, actionId, event ->
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    presenter.saveUnitCorrectora(
+                        binding.treatmentGluMayorUd.text.toString().toFloat()
+                    )
+                }
+                false
             }
-            false
-        }
-        binding.treatmentGluMayor.setOnEditorActionListener { v, actionId, event ->
-            if (actionId == EditorInfo.IME_ACTION_DONE){
-                presenter.saveCorrectoraGlu(binding.treatmentGluMayor.text.toString().toFloat())
+            binding.treatmentGluMayor.setOnEditorActionListener { v, actionId, event ->
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    presenter.saveCorrectoraGlu(binding.treatmentGluMayor.text.toString().toFloat())
+                }
+                false
             }
-            false
-        }
-        binding.treatmentCarbonoUd.setOnEditorActionListener { v, actionId, event ->
-            if (actionId == EditorInfo.IME_ACTION_DONE){
-                presenter.saveUnitInsulina(binding.treatmentCarbonoUd.text.toString().toFloat())
+            binding.treatmentCarbonoUd.setOnEditorActionListener { v, actionId, event ->
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    presenter.saveUnitInsulina(binding.treatmentCarbonoUd.text.toString().toFloat())
+                }
+                false
             }
-            false
-        }
-        binding.treatmentCarbono.setOnEditorActionListener { v, actionId, event ->
-            if (actionId == EditorInfo.IME_ACTION_DONE){
-                presenter.saveCarbono(binding.treatmentCarbono.text.toString().toFloat())
+            binding.treatmentCarbono.setOnEditorActionListener { v, actionId, event ->
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    presenter.saveCarbono(binding.treatmentCarbono.text.toString().toFloat())
+                }
+                false
             }
-            false
-        }
-        binding.treatmentBomb.setOnCheckedChangeListener { buttonView, isChecked ->
-            selectBomb(isChecked)
-        }
+            binding.treatmentBomb.setOnCheckedChangeListener { buttonView, isChecked ->
+                selectBomb(isChecked)
+            }
 
-        binding.treatmentBasalTitle.setOnClickListener { v ->
-            createDialogInfo(getString(R.string.info_insuline))
-        }
+            binding.treatmentBasalTitle.setOnClickListener { v ->
+                createDialogInfo(getString(R.string.info_insuline))
+            }
 
-        binding.treatmentRanges.setOnClickListener { v ->
-            createDialogInfo(getString(R.string.info_objective))
-        }
+            binding.treatmentRanges.setOnClickListener { v ->
+                createDialogInfo(getString(R.string.info_objective))
+            }
 
-        binding.treatmentBasalUnits.setOnClickListener { v ->
-            createDialogInfo(getString(R.string.info_insuline_times))
-        }
+            binding.treatmentBasalUnits.setOnClickListener { v ->
+                createDialogInfo(getString(R.string.info_insuline_times))
+            }
 
-        binding.treatmentGluMayorUdTitle.setOnClickListener { v ->
-            createDialogInfo(getString(R.string.info_insuline_correctora_mayor))
-        }
+            binding.treatmentGluMayorUdTitle.setOnClickListener { v ->
+                createDialogInfo(getString(R.string.info_insuline_correctora_mayor))
+            }
 
-        binding.treatmentCorrectoraTitle.setOnClickListener { v ->
-            createDialogInfo(getString(R.string.info_insuline_correctora))
-        }
+            binding.treatmentCorrectoraTitle.setOnClickListener { v ->
+                createDialogInfo(getString(R.string.info_insuline_correctora))
+            }
 
-        binding.treatmentCorrectoraListTitle.setOnClickListener { v ->
-            createDialogInfo(getString(R.string.info_insuline_horary))
-        }
+            binding.treatmentCorrectoraListTitle.setOnClickListener { v ->
+                createDialogInfo(getString(R.string.info_insuline_horary))
+            }
 
-        binding.treatmentCarbonoTitle.setOnClickListener { v ->
-            createDialogInfo(getString(R.string.info_carbono))
-        }
+            binding.treatmentCarbonoTitle.setOnClickListener { v ->
+                createDialogInfo(getString(R.string.info_carbono))
+            }
 
-        binding.treatmentRecordatorioTitle.setOnClickListener { v ->
-            createDialogInfo(getString(R.string.info_recordatorio))
+            binding.treatmentRecordatorioTitle.setOnClickListener { v ->
+                createDialogInfo(getString(R.string.info_recordatorio))
+            }
+        }catch(e: Exception){
+            showErrorToast2(this,"No se pudo cargar sus datos")
+            Log.i("OnSetActionListener","No se pudo guardar el treatmenObjTxt")
         }
     }
     fun menuListeners(){

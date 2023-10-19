@@ -89,6 +89,7 @@ class MainPresenter<V : MainView, I : MainInteractorImp> @Inject internal constr
     }
 
     override fun goToActivityConfig() {
+        Log.i("OnConfig", "Se inicia el Config activity")
         getView()?.openConfigActivity()
     }
 
