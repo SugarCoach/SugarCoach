@@ -1,0 +1,17 @@
+query Treatment($userId: ID){
+    treatments(filters:{
+        users_permissions_user:{
+            id:{
+                eq:$userId
+            }
+        }
+    }){
+        data{
+            attributes{
+                bomb
+                insulina_unit
+            }
+        }
+    }
+
+}
