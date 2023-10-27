@@ -1,0 +1,19 @@
+mutation CreateUser($username:String, $email:String){
+    createUsersPermissionsUser(data:{
+        username: $username,
+        email: $email,
+        password: "",
+        confirmed: true,
+        blocked: false,
+        role:1 }){
+        data{
+            id
+            attributes {
+                username
+                email
+                blocked
+            }
+        }
+    }
+
+    }

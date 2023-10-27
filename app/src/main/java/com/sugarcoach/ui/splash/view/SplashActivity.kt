@@ -10,13 +10,15 @@ import com.sugarcoach.ui.main.view.MainActivity
 import com.sugarcoach.ui.onboarding.view.OnBoardingActivity
 import com.sugarcoach.ui.splash.interactor.SplashInteractorImp
 import com.sugarcoach.ui.splash.presenter.SplashPresenterImp
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class SplashActivity : BaseActivity(), SplashView {
 
     @Inject
     lateinit var presenter: SplashPresenterImp<SplashView, SplashInteractorImp>
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

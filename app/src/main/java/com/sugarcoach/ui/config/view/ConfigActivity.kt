@@ -221,7 +221,6 @@ class ConfigActivity: BaseActivity(), ConfigView {
         binding.statistics.setOnClickListener { presenter.goToActivityStatistic() }
         binding.dailyRegister.setOnClickListener { presenter.goToActivityDaily() }
         binding.treament.setOnClickListener { presenter.goToActivityTreament() }
-
     }
 
 

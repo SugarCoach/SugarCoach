@@ -5,14 +5,16 @@ import android.content.Context
 import android.util.Log
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import androidx.sqlite.db.SupportSQLiteDatabase
+import com.apollographql.apollo3.ApolloClient
+import com.apollographql.apollo3.network.okHttpClient
 import com.sugarcoach.BuildConfig.*
+import com.sugarcoach.data.api_db.ApiClient
+import com.sugarcoach.data.api_db.ApiRepository
 import com.sugarcoach.data.database.AppDatabase
 import com.sugarcoach.data.database.repository.dailyregister.DailyRegisterRepo
 import com.sugarcoach.data.database.repository.dailyregister.DailyRegisterRepository
 import com.sugarcoach.data.database.repository.treament.TreamentRepo
 import com.sugarcoach.data.database.repository.treament.TreamentRepository
-import com.sugarcoach.data.database.repository.treament.TreamentRepository_Factory
 import com.sugarcoach.data.database.repository.user.UserRepo
 import com.sugarcoach.data.database.repository.user.UserRepository
 import com.sugarcoach.data.network.ApiHelper
@@ -35,15 +37,36 @@ import javax.inject.Singleton
 @Module
 class AppModule {
 
+    private val PRODUCTIONAPITOKEN = "69725b8c30c691fe229e99f7c53f18baba677f133512ec56ef88e506ec6c1ff822f499a547e8d0fe5152f20372d134cbaad72701d048ff50cfd552c5c19bd5e398475a69ec6ee257d31152da93dae5b705b5d58e6218783a182e6264c6aacf43b986d46c77cf9f12ac8ad33e0bbea22ddaea9e55ab6cb339abe4c90edb4a8306"
+    private val DEVELOPAPITOKEN = "a01e786f4142617cc7e15c74fb78f4bbfcff853db056dc54df8bf4e758a401f6644a75658a5877dc8c0d5f298904090617fb2e0e6a6c17f50824ef65b748c9505a66c66d1fc41ac8acb249b628fa4b2397b9133f9ec56cdaf840eaf72917c9a0687423142628e9d666689d4650728dd6d5513ba9223abe52028a912375ef20a7"
+    @Provides
+    @Singleton
+    internal fun provideApolloClient(): ApolloClient {
+        Log.i("OnProvideApi", "Se esta creando la API")
+        return ApolloClient.Builder()
+            .serverUrl("https://sugarapi-production.up.railway.app/graphql")
+            .okHttpClient(OkHttpClient.Builder().build())
+            .addHttpHeader("Authorization", PRODUCTIONAPITOKEN)
+            .build()
+    }
+    @Provides
+    @Singleton
+    internal fun getRepository(client: ApolloClient): ApiClient = ApiRepository(client)
+
     @Provides
     @Singleton
     internal fun provideContext(application: Application): Context = application
 
     @Provides
     @Singleton
-    internal fun provideAppDatabase(context: Context): AppDatabase =
-            Room.databaseBuilder(context, AppDatabase::class.java, AppConstants.APP_DB_NAME).allowMainThreadQueries()
-                .setJournalMode(RoomDatabase.JournalMode.TRUNCATE).fallbackToDestructiveMigration().build()
+    internal fun provideAppDatabase(context: Context): AppDatabase {
+        val database = Room.databaseBuilder(context, AppDatabase::class.java, AppConstants.APP_DB_NAME)
+            .allowMainThreadQueries()
+            .setJournalMode(RoomDatabase.JournalMode.TRUNCATE).fallbackToDestructiveMigration()
+            .build()
+        Log.i("OnDatabase", "Se esta creando la database")
+        return database
+    }
 
     @Provides
     @PreferenceInfo
@@ -75,7 +98,6 @@ class AppModule {
             .client(okHttpBuilder.build())
             .build()
     }
-
 
     @Provides
     @Singleton

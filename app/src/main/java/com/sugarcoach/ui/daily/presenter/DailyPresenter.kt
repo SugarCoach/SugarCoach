@@ -1,5 +1,6 @@
 package com.sugarcoach.ui.daily.presenter
 
+import android.util.Log
 import com.hominoid.expandablerecyclerviewlib.models.ExpandableListItem
 import com.sugarcoach.R
 import com.sugarcoach.data.database.repository.dailyregister.DailyRegisterCategory
@@ -32,9 +33,10 @@ class DailyPresenter<V : DailyView, I : DailyInteractorImp> @Inject internal con
     lateinit var emotions: List<States>
     override fun onAttach(view: V?) {
         super.onAttach(view)
-        getExercices()
+        /*getExercices()
         getTreatment()
-        getMedition()
+        getMedition()*/
+        Log.i("OnAttach", "Se inicio el attach")
     }
 
     private fun getTreatment(){

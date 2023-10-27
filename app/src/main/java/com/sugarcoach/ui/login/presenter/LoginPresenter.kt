@@ -52,6 +52,7 @@ class LoginPresenter  <V : LoginView, I : LoginInteractorImp> @Inject internal c
                             getView()?.showErrorToast()
                         }
                     }
+                feedInDatabase()
                 //suspendLogin(email, password, mirror, medico)
             }
         }

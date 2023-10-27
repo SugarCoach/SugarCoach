@@ -10,6 +10,24 @@ query Treatment($userId: ID){
             attributes{
                 bomb
                 insulina_unit
+                object_glucose
+                correctora
+                correctora_unit
+                hyperglucose
+                hipoglucose
+                carbono
+                basal_insuline {
+                    name
+                }
+                medidor {
+                    name
+                }
+                bomba_infusora {
+                    name
+                }
+                correctora_insuline {
+                    name
+                }
             }
         }
     }

@@ -164,12 +164,17 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
+
                 <androidx.core.widget.NestedScrollView
                         android:layout_width="match_parent"
-                        android:layout_height="0dp" android:fillViewport="true"
-                        app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                        android:layout_height="0dp"
+                        android:fillViewport="true"
+                        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintBottom_toTopOf="@+id/linearLayout">
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0">
 
                     <LinearLayout
                             android:layout_width="match_parent"
@@ -399,8 +404,8 @@
                                                     android:layout_height="match_parent"
                                                     android:background="@color/white"
                                                     android:gravity="center"
-                                                    android:inputType="number|numberDecimal"
                                                     android:imeOptions="actionDone"
+                                                    android:inputType="number|numberDecimal"
                                                     android:textColor="@color/yellowLight"
                                                     android:textSize="16dp" />
                                         </androidx.cardview.widget.CardView>
@@ -440,8 +445,8 @@
                                                     android:layout_height="match_parent"
                                                     android:background="@color/white"
                                                     android:gravity="center"
-                                                    android:inputType="number|numberDecimal"
                                                     android:imeOptions="actionDone"
+                                                    android:inputType="number|numberDecimal"
                                                     android:textColor="@color/green"
                                                     android:textSize="18dp" />
                                         </androidx.cardview.widget.CardView>
@@ -483,8 +488,8 @@
                                                     android:layout_height="match_parent"
                                                     android:background="@color/white"
                                                     android:gravity="center"
-                                                    android:inputType="number|numberDecimal"
                                                     android:imeOptions="actionDone"
+                                                    android:inputType="number|numberDecimal"
                                                     android:textColor="@color/red"
                                                     android:textSize="16dp" />
                                         </androidx.cardview.widget.CardView>
@@ -657,6 +662,7 @@
                                 </androidx.cardview.widget.CardView>
                             </LinearLayout>
                         </LinearLayout>
+
                         <androidx.cardview.widget.CardView
                                 android:id="@+id/treatment_horario"
                                 android:layout_width="match_parent"
@@ -745,6 +751,7 @@
                             </LinearLayout>
 
                         </androidx.cardview.widget.CardView>
+
                         <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -905,6 +912,7 @@
                             </androidx.cardview.widget.CardView>
 
                         </LinearLayout>
+
                         <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -1066,6 +1074,7 @@
                             </androidx.cardview.widget.CardView>
 
                         </LinearLayout>
+
                         <LinearLayout
                                 android:id="@+id/treatment_bomb_no"
                                 android:layout_width="match_parent"
@@ -1191,8 +1200,8 @@
                                                 android:layout_width="match_parent"
                                                 android:layout_height="match_parent"
                                                 android:drawableRight="@drawable/info"
-                                                android:gravity="center"
                                                 android:drawableTint="@color/purple"
+                                                android:gravity="center"
                                                 android:paddingRight="4dp"
                                                 android:text="@string/treatment_sincronizar_medidor_txt"
                                                 android:textColor="@color/purple"
@@ -1312,8 +1321,8 @@
                                 android:layout_marginStart="8dp"
                                 android:layout_marginTop="10dp"
                                 android:layout_marginEnd="8dp"
-                                android:visibility="visible"
                                 android:layout_marginBottom="10dp"
+                                android:visibility="visible"
                                 app:cardBackgroundColor="@color/yellow"
                                 app:cardElevation="5dp"
                                 tools:visibility="visible">
