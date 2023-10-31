@@ -17,6 +17,8 @@ import com.sugarcoach.ui.login.presenter.LoginPresenterImp
 import com.sugarcoach.ui.main.view.MainActivity
 import com.sugarcoach.ui.signEmail.view.SignEmailActivity
 import com.sugarcoach.util.AppConstants
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.coroutineScope
 import javax.inject.Inject
 import kotlinx.coroutines.async
@@ -33,11 +35,17 @@ class LoginActivity: BaseActivity(), LoginView {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        feedDatabase()
         auth = Firebase.auth
         presenter.onAttach(this)
         setOnClickListeners()
     }
 
+    override fun feedDatabase() {
+        CoroutineScope(Dispatchers.IO).launch {
+            presenter.feedInDatabase()
+        }
+    }
     override fun onDestroy() {
         presenter.onDetach()
         super.onDestroy()

@@ -1,32 +1,23 @@
 package com.sugarcoach.ui.signEmail.presenter
 
-import android.app.Activity
-import android.content.Intent
-import android.content.IntentSender
-import android.net.wifi.hotspot2.pps.Credential
 import android.util.Log
-import androidx.core.app.ActivityCompat.startActivityForResult
-import androidx.fragment.app.Fragment
 import com.facebook.*
-import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
-import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import com.sugarcoach.BuildConfig
 import com.sugarcoach.data.database.repository.dailyregister.DailyRegister
 import com.sugarcoach.data.database.repository.treament.Treament
 import com.sugarcoach.data.network.LoginResponse
 import com.sugarcoach.data.network.RegistersResponse
-import com.sugarcoach.data.network.SignResponse
 import com.sugarcoach.databinding.ActivitySignEmailBinding
 import com.sugarcoach.ui.base.presenter.BasePresenter
 import com.sugarcoach.ui.signEmail.interactor.SignEmailInteractorImp
@@ -36,8 +27,6 @@ import com.sugarcoach.util.SchedulerProvider
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import org.joda.time.DateTime
-import retrofit2.HttpException
-import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
@@ -47,7 +36,8 @@ class SignEmailPresenter <V : SignEmailView, I : SignEmailInteractorImp> @Inject
     SignEmailPresenterImp<V, I> {
 
     private val permissionNeeds = listOf("public_profile", "email")
-    lateinit var mGoogleSignInClient: GoogleSignInClient
+
+    lateinit var user: FirebaseUser
 
     var RC_SIGN_IN: Int = 123
 
@@ -90,7 +80,8 @@ class SignEmailPresenter <V : SignEmailView, I : SignEmailInteractorImp> @Inject
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d("OnPresenter", "signInWithCredential:success")
-                    val user = FirebaseAuth.getInstance().currentUser
+                    user = auth.currentUser!!
+                    updateUser(user)
                     getView()?.onGoogleLogin()
                 } else {
                     // If sign in fails, display a message to the user.
@@ -110,7 +101,8 @@ class SignEmailPresenter <V : SignEmailView, I : SignEmailInteractorImp> @Inject
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d("TAG", "signInWithCredential:success")
-                    val user = auth.currentUser
+                    user = auth.currentUser!!
+                    updateUser(user)
                     Log.i("CurrentUser", "El usuario actual es:$user")
                     getView()?.onFacebookLogin()
                 } else {
@@ -181,7 +173,8 @@ class SignEmailPresenter <V : SignEmailView, I : SignEmailInteractorImp> @Inject
                     .addOnCompleteListener(){ task ->
                         if(task.isSuccessful){
                             Log.i("OnSuccessful", "Se registro correctamente")
-                            val user = auth.currentUser
+                            user = auth.currentUser!!
+                            updateUser(user)
                             getView()?.startMain()
                         }else{
                             Log.i("OnFailure", "Ocurrió un error al registrar el mail")
@@ -287,7 +280,7 @@ class SignEmailPresenter <V : SignEmailView, I : SignEmailInteractorImp> @Inject
 
     }
 
-    private fun updateUser(signResponse: SignResponse) =
+    private fun updateUser(signResponse: FirebaseUser?) =
         interactor?.updateUser(signResponse)
 
 

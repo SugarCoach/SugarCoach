@@ -1,11 +1,14 @@
 package com.sugarcoach.ui.signEmail.interactor
 
 import android.content.Context
+import android.util.Log
 import com.facebook.AccessToken
+import com.google.firebase.auth.FirebaseUser
 import com.google.gson.GsonBuilder
 import com.google.gson.internal.`$Gson$Types`
 import com.sugarcoach.data.database.repository.dailyregister.*
 import com.sugarcoach.data.database.repository.treament.*
+import com.sugarcoach.data.database.repository.user.ParcialUser
 import com.sugarcoach.data.database.repository.user.User
 import com.sugarcoach.data.database.repository.user.UserRepo
 import com.sugarcoach.data.network.*
@@ -22,17 +25,30 @@ class SignEmailInteractor @Inject constructor(private val mContext: Context, pri
     SignEmailInteractorImp {
 
 
-    override fun updateUser(signResponse: SignResponse) {
-
+    override fun updateUser(signResponse: FirebaseUser?) {
         val builder = GsonBuilder().excludeFieldsWithoutExposeAnnotation()
         val gson = builder.create()
-        var json = gson.toJson(signResponse.user)
-        var user: User = gson.fromJson(json.toString(), User::class.java)
+
+        val parcialUser: ParcialUser = ParcialUser(signResponse!!.email!!, signResponse.displayName!!, false,
+            signResponse.providerId, true)
+
+        val json = gson.toJson(parcialUser, ParcialUser::class.java)
+        Log.i("OnJson", json.toString())
+        val user: User = gson.fromJson(json.toString(), User::class.java)
+
         user.typeAccount = "2"
-        userHelper.insertRegister(user)
+        Log.i("OnUser", user.toString())
+        val isDisposed = userHelper.insertRegister(user).
+        observeOn(Schedulers.io())
+            .subscribe({
+                Log.i("OnSuscribe", "Todo fue bien")
+            },{
+                Log.i("OnThrow", "Todo fue mal")
+            })
+
         preferenceHelper.let {
-            it.setCurrentUserId(signResponse.user?.id)
-            it.setAccessToken(signResponse.accessToken)
+            it.setCurrentUserId(signResponse.email)
+            it.setAccessToken(signResponse.uid)
             it.setUserLoged(true)
         }
     }

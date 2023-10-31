@@ -10,5 +10,6 @@ interface LoginView : BaseView {
     fun onEmailSign()
     fun onForgot()
 
+    fun feedDatabase()
 
 }

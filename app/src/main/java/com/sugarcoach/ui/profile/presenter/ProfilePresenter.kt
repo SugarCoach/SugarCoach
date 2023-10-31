@@ -130,7 +130,10 @@ class ProfilePresenter <V : ProfileView, I : ProfileInteractorImp> @Inject inter
         interactor?.let {
             compositeDisposable.add(it.deleteUser()
                 .compose(schedulerProvider.ioToMainObservableScheduler())
-                .subscribe({ result -> deleteRegisters()
+                .flatMap { interactor?.deleteTreament() }
+                .subscribe({ result ->
+                    interactor?.perfomLogout()
+                    getView()?.openLoginActivity()
                 }, { err -> println(err) }))
         }
     }

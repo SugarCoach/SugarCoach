@@ -67,8 +67,9 @@ class OnBoardingActivity: BaseActivity(), OnBoardingView {
             startActivity(intent)
             finish()
             Log.i("Verifying login", "El usuario esta loggeado")
+        }else{
+            Log.i("Verifying login", "El usuario no esta loggeado")
         }
-        Log.i("Verifying login", "El usuario no esta loggeado")
     }
 
     override fun startMain() {

@@ -154,7 +154,8 @@ class LoginPresenter  <V : LoginView, I : LoginInteractorImp> @Inject internal c
         getView()?.onForgot()
     }
 
-    private fun feedInDatabase() = interactor?.let {
+    override fun feedInDatabase() = interactor?.let {
+        Log.i("OnFeedDatabase", "Se esta llenando la db")
         compositeDisposable.add(it.getCorrectora()
             .flatMap { interactor?.getBasal() }
             .flatMap { interactor?.getMedidor() }

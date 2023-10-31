@@ -1,6 +1,7 @@
 package com.sugarcoach.ui.signEmail.interactor
 
 import com.facebook.AccessToken
+import com.google.firebase.auth.FirebaseUser
 import com.sugarcoach.data.database.repository.dailyregister.DailyRegister
 import com.sugarcoach.data.database.repository.treament.Treament
 import com.sugarcoach.data.network.LoginResponse
@@ -11,7 +12,7 @@ import io.reactivex.Observable
 
 
 interface SignEmailInteractorImp : Interactor {
-    fun updateUser(signResponse: SignResponse)
+    fun updateUser(signResponse: FirebaseUser?)
     fun doServerSignApiCall(username: String, email: String, password: String): Observable<SignResponse>
     fun getRegistersCall(): Observable<List<RegistersResponse>>
     fun saveRegisters(registersResponse: List<DailyRegister>): Observable<Boolean>
