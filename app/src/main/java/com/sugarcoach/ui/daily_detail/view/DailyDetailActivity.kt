@@ -78,7 +78,6 @@ class DailyDetailActivity : BaseActivity(), DailyDetailView, TimePickerDialog.On
     @Inject
     lateinit var adapterExercices: ItemAdapter
 
-
     lateinit var dialogEmotions: AlertDialog
 
     lateinit var dialogExercises: AlertDialog
@@ -360,6 +359,7 @@ class DailyDetailActivity : BaseActivity(), DailyDetailView, TimePickerDialog.On
     }
 
     override fun setCategories(categories: List<Category>, index: Int) {
+        adapter.setPowerView(binding.dailyDetailCategoryTv)
         binding.dailyDetailCategoryTv.setSpinnerAdapter(adapter)
         binding.dailyDetailCategoryTv.getSpinnerRecyclerView().layoutManager = manager
         binding.dailyDetailCategoryTv.setItems(categories)

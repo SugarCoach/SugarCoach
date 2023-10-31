@@ -33,9 +33,9 @@ class DailyPresenter<V : DailyView, I : DailyInteractorImp> @Inject internal con
     lateinit var emotions: List<States>
     override fun onAttach(view: V?) {
         super.onAttach(view)
-        /*getExercices()
+        getExercices()
         getTreatment()
-        getMedition()*/
+        getMedition()
         Log.i("OnAttach", "Se inicio el attach")
     }
 

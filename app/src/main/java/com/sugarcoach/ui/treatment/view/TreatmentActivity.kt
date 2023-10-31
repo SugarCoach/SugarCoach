@@ -155,14 +155,14 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
 
     override fun setInsulinasBasales(basalInsuline: List<BasalItem>) {
         adapter.setPowerView(binding.treatmentBasal)
-        //binding.treatmentBasal.setSpinnerAdapter(adapter)
+        binding.treatmentBasal.setSpinnerAdapter(adapter)
         binding.treatmentBasal.getSpinnerRecyclerView().layoutManager = linearLayoutManager
         binding.treatmentBasal.setItems(basalInsuline)
     }
 
     override fun setInsulinasCorrectoras(basalInsuline: List<BasalItem>) {
         adapterCorrectora.setPowerView(binding.treatmentCorrectora)
-        //binding.treatmentCorrectora.setSpinnerAdapter(adapterCorrectora)
+        binding.treatmentCorrectora.setSpinnerAdapter(adapterCorrectora)
         binding.treatmentCorrectora.getSpinnerRecyclerView().layoutManager = cmanager
         binding.treatmentCorrectora.setItems(basalInsuline)
     }

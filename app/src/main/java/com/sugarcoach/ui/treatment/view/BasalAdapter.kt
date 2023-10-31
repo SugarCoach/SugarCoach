@@ -12,20 +12,31 @@ import com.sugarcoach.databinding.BasalItemBinding
 import com.sugarcoach.ui.daily_detail.view.DailyDetailActivity
 import java.util.*
 
-class BasalAdapter(private val activity: TreatmentActivity) : RecyclerView.Adapter<BasalHolder>() {
+class BasalAdapter (private val activity: TreatmentActivity) : RecyclerView.Adapter<RecyclerView.ViewHolder>(),
+    PowerSpinnerInterface<BasalItem> {
+
+    override lateinit var spinnerView: PowerSpinnerView
+    override var onSpinnerItemSelectedListener: OnSpinnerItemSelectedListener<BasalItem>? = null
+    private var itemList: MutableList<BasalItem> = Collections.emptyList()
+    lateinit var holder: BasalHolder
+
+    lateinit var binding: BasalItemBinding
+
     private val items: MutableList<BasalItem> = mutableListOf()
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BasalHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val binding = BasalItemBinding.inflate(inflater, parent, false)
-        return BasalHolder(binding)
+        binding = BasalItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val holder = BasalHolder(binding)
+        this.holder = holder
+        return holder
     }
 
-    override fun onBindViewHolder(holder: BasalHolder, position: Int) {
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val item = items[holder.adapterPosition]
         bind(holder as BasalHolder, item)
 
         holder.itemView.setOnClickListener {
-            //notifyItemSelected(position)
+            notifyItemSelected(position)
         }
     }
 
@@ -33,25 +44,24 @@ class BasalAdapter(private val activity: TreatmentActivity) : RecyclerView.Adapt
         return items.size
     }
 
-
     fun setPowerView(powerSpinnerView: PowerSpinnerView){
-        //this.spinnerView = powerSpinnerView
+        this.spinnerView = powerSpinnerView
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    /*override fun setItems(itemList: List<BasalItem>) {
+    override fun setItems(itemList: List<BasalItem>) {
         items.clear()
         items.addAll(itemList)
         notifyDataSetChanged()
     }
 
     // we must call the spinnerView.notifyItemSelected method to let PowerSpinnerView know about changed information.
-    fun notifyItemSelected(index: Int) {
+    override fun notifyItemSelected(index: Int) {
         this.spinnerView.notifyItemSelected(index, this.items[index].name)
         this.onSpinnerItemSelectedListener?.onItemSelected(index, this.items[index])
-    }*/
+    }
     private fun bind(holder: BasalHolder, item: BasalItem) {
-        holder.bind(item, activity)
+        holder.bind(item)
     }
 
 }

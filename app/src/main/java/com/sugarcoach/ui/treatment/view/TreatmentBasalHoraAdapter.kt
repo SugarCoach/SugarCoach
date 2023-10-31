@@ -14,6 +14,7 @@ class TreatmentBasalHoraAdapter(private val activity: TreatmentActivity) : Recyc
     lateinit var binding: TreatmentBasalItemBinding
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater: LayoutInflater = LayoutInflater.from(activity)
+        binding = TreatmentBasalItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         var holder = TreatmentBasalHoraHolder(binding)
         this.holder = holder
         return holder

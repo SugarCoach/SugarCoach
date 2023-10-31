@@ -8,6 +8,7 @@ import com.skydoves.powerspinner.PowerSpinnerInterface
 import com.skydoves.powerspinner.PowerSpinnerView
 import com.sugarcoach.R
 import com.sugarcoach.data.database.repository.dailyregister.Category
+import com.sugarcoach.databinding.CategoryItemBinding
 import java.util.*
 
 class CategoryAdapter (private val activity: DailyDetailActivity) : RecyclerView.Adapter<RecyclerView.ViewHolder>(),
@@ -17,16 +18,18 @@ class CategoryAdapter (private val activity: DailyDetailActivity) : RecyclerView
     private var itemList: MutableList<Category> = Collections.emptyList()
     lateinit var holder: CategoriesHolder
 
+    lateinit var binding: CategoryItemBinding
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater: LayoutInflater = LayoutInflater.from(activity)
-        val holder = CategoriesHolder.create(parent)
+        binding = CategoryItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        var holder = CategoriesHolder(binding)
         this.holder = holder
         return holder
     }
 
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        val item = itemList[holder.adapterPosition]
+        val item = itemList[holder.bindingAdapterPosition]
         bind(holder as CategoriesHolder, item)
 
         holder.itemView.setOnClickListener {

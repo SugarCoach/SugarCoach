@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <network-security-config>
     <domain-config cleartextTrafficPermitted="true">
-        <domain includeSubdomains="true">http://localhost/graphql</domain>
+        <domain includeSubdomains="true">http://ec2-13-59-253-95.us-east-2.compute.amazonaws.com:1337l</domain>
     </domain-config>
 </network-security-config>
