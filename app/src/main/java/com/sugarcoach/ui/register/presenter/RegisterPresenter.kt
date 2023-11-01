@@ -247,7 +247,6 @@ class RegisterPresenter<V : RegisterView, I : RegisterInteractorImp> @Inject int
         dailyRegister = DailyRegister(0,"", glucose,insulin,carbohydrates,emotionalState, exercise, label, comment, photo,false,date.toDate(), date.toString(
             DateTimeFormat.forPattern("yyyy-MM-dd")),0f,"")
         getTreatmentHorario()
-
     }
 
     fun finishRegister(){

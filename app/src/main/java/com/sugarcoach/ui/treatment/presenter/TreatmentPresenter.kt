@@ -1,6 +1,18 @@
 package com.sugarcoach.ui.treatment.presenter
 
+import android.Manifest
+import android.app.Activity
+import android.content.Context
+import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.graphics.Color
+import android.net.Uri
+import android.provider.MediaStore
 import android.util.Log
+import android.view.View
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.sugarcoach.R
 import com.sugarcoach.data.database.repository.treament.*
 import com.sugarcoach.ui.base.presenter.BasePresenter
@@ -13,6 +25,7 @@ import com.sugarcoach.util.SchedulerProvider
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import org.joda.time.LocalDateTime
+import java.io.ByteArrayOutputStream
 import java.lang.Exception
 import javax.inject.Inject
 
@@ -219,11 +232,59 @@ class TreatmentPresenter<V : TreatmentView, I : TreatmentInteractorImp> @Inject 
         }
     }
 
+    override fun showException(throwable: Throwable?) {
+
+    }
+    override fun getScreenShot(context: Activity, view: View) {
+        if (checkAndRequestPermissions(context)){
+            val bitmap = getScreenShotImage(view)
+            val uri = getImageUri(context, bitmap)
+            getView()?.sharedScreenShot(uri)
+        }
+    }
+
+    private fun getScreenShotImage(view: View): Bitmap {
+        val returnedBitmap = Bitmap.createBitmap(view.width, view.height, Bitmap.Config.ARGB_8888)
+        val canvas = Canvas(returnedBitmap)
+        val bgDrawable = view.background
+        if (bgDrawable != null) bgDrawable.draw(canvas)
+        else canvas.drawColor(Color.WHITE)
+        view.draw(canvas)
+        return returnedBitmap
+    }
+    private fun getImageUri(context: Context, inImage: Bitmap): Uri {
+        val bytes = ByteArrayOutputStream()
+        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
+        val path = MediaStore.Images.Media.insertImage(context.getContentResolver(), inImage, getRandomString(10), null)
+        return Uri.parse(path)
+    }
+    private fun getRandomString(length: Int) : String {
+        val allowedChars = "ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz1234567890"
+        return (1..length)
+            .map { allowedChars.random() }
+            .joinToString("")
+    }
+    override fun checkAndRequestPermissions(context: Activity): Boolean {
+        val readpermission = ContextCompat.checkSelfPermission(context, Manifest.permission.READ_EXTERNAL_STORAGE)
+        val writepermission = ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+
+
+        val listPermissionsNeeded = java.util.ArrayList<String>()
+
+        if (readpermission != PackageManager.PERMISSION_GRANTED) {
+            listPermissionsNeeded.add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        }
+        if (writepermission != PackageManager.PERMISSION_GRANTED) {
+            listPermissionsNeeded.add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        }
+        if (!listPermissionsNeeded.isEmpty()) {
+            ActivityCompat.requestPermissions(context, listPermissionsNeeded.toTypedArray(), 1)
+            return false
+        }
+        return true
+    }
     override fun onAttach(view: V?) {
         super.onAttach(view)
-        /*treatment = getTreatment()
-        correctora = correctora
-        basal = null*/
         try{
             getUser()
             getBasal()

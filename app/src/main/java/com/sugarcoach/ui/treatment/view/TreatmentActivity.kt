@@ -6,6 +6,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.graphics.PorterDuff
 import android.graphics.drawable.ColorDrawable
+import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -93,6 +94,7 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
     var initialbasal = false
     var initialMedidor = false
     var initialBomba = false
+    var isFabOpen = false
     lateinit var user: User
 
     lateinit var binding: ActivityTreatmentBinding
@@ -182,7 +184,7 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
     }
 
     override fun showDataSave() {
-        TODO("Not yet implemented")
+        createDialogCongratulation()
     }
 
     private fun createDialogCongratulation(){
@@ -294,108 +296,142 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
     }
 
     fun setListeners(){
-        try {
-            binding.treatmentObjTxt.setOnEditorActionListener { v, actionId, event ->
-                if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    presenter.saveAll(
-                        binding.treatmentObjTxt.text.toString().toFloat(),
-                        binding.treatmentHipoTxt.text.toString().toFloat(),
-                        binding.treatmentHiperTxt.text.toString().toFloat()
-                    )
-                }
-                false
+        binding.treatmentObjTxt.setOnEditorActionListener { v, actionId, event ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                presenter.saveAll(
+                    binding.treatmentObjTxt.text.toString().toFloat(),
+                    binding.treatmentHipoTxt.text.toString().toFloat(),
+                    binding.treatmentHiperTxt.text.toString().toFloat()
+                )
             }
-            binding.treatmentHipoTxt.setOnEditorActionListener { v, actionId, event ->
-                if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    presenter.saveAll(
-                        binding.treatmentObjTxt.text.toString().toFloat(),
-                        binding.treatmentHipoTxt.text.toString().toFloat(),
-                        binding.treatmentHiperTxt.text.toString().toFloat()
-                    )
-                }
-                false
-            }
-            binding.treatmentHiperTxt.setOnEditorActionListener { v, actionId, event ->
-                if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    presenter.saveAll(
-                        binding.treatmentObjTxt.text.toString().toFloat(),
-                        binding.treatmentHipoTxt.text.toString().toFloat(),
-                        binding.treatmentHiperTxt.text.toString().toFloat()
-                    )
-                }
-                false
-            }
-            binding.treatmentGluMayorUd.setOnEditorActionListener { v, actionId, event ->
-                if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    presenter.saveUnitCorrectora(
-                        binding.treatmentGluMayorUd.text.toString().toFloat()
-                    )
-                }
-                false
-            }
-            binding.treatmentGluMayor.setOnEditorActionListener { v, actionId, event ->
-                if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    presenter.saveCorrectoraGlu(binding.treatmentGluMayor.text.toString().toFloat())
-                }
-                false
-            }
-            binding.treatmentCarbonoUd.setOnEditorActionListener { v, actionId, event ->
-                if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    presenter.saveUnitInsulina(binding.treatmentCarbonoUd.text.toString().toFloat())
-                }
-                false
-            }
-            binding.treatmentCarbono.setOnEditorActionListener { v, actionId, event ->
-                if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    presenter.saveCarbono(binding.treatmentCarbono.text.toString().toFloat())
-                }
-                false
-            }
-            binding.treatmentBomb.setOnCheckedChangeListener { buttonView, isChecked ->
-                selectBomb(isChecked)
-            }
-
-            binding.treatmentBasalTitle.setOnClickListener { v ->
-                createDialogInfo(getString(R.string.info_insuline))
-            }
-
-            binding.treatmentRanges.setOnClickListener { v ->
-                createDialogInfo(getString(R.string.info_objective))
-            }
-
-            binding.treatmentBasalUnits.setOnClickListener { v ->
-                createDialogInfo(getString(R.string.info_insuline_times))
-            }
-
-            binding.treatmentGluMayorUdTitle.setOnClickListener { v ->
-                createDialogInfo(getString(R.string.info_insuline_correctora_mayor))
-            }
-
-            binding.treatmentCorrectoraTitle.setOnClickListener { v ->
-                createDialogInfo(getString(R.string.info_insuline_correctora))
-            }
-
-            binding.treatmentCorrectoraListTitle.setOnClickListener { v ->
-                createDialogInfo(getString(R.string.info_insuline_horary))
-            }
-
-            binding.treatmentCarbonoTitle.setOnClickListener { v ->
-                createDialogInfo(getString(R.string.info_carbono))
-            }
-
-            binding.treatmentRecordatorioTitle.setOnClickListener { v ->
-                createDialogInfo(getString(R.string.info_recordatorio))
-            }
-        }catch(e: Exception){
-            showErrorToast2(this,"No se pudo cargar sus datos")
-            Log.i("OnSetActionListener","No se pudo guardar el treatmenObjTxt")
+            false
         }
+        binding.treatmentHipoTxt.setOnEditorActionListener { v, actionId, event ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                presenter.saveAll(
+                    binding.treatmentObjTxt.text.toString().toFloat(),
+                    binding.treatmentHipoTxt.text.toString().toFloat(),
+                    binding.treatmentHiperTxt.text.toString().toFloat()
+                )
+            }
+            false
+        }
+        binding.treatmentHiperTxt.setOnEditorActionListener { v, actionId, event ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                presenter.saveAll(
+                    binding.treatmentObjTxt.text.toString().toFloat(),
+                    binding.treatmentHipoTxt.text.toString().toFloat(),
+                    binding.treatmentHiperTxt.text.toString().toFloat()
+                )
+            }
+            false
+        }
+        binding.treatmentGluMayorUd.setOnEditorActionListener { v, actionId, event ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                presenter.saveUnitCorrectora(
+                    binding.treatmentGluMayorUd.text.toString().toFloat()
+                )
+            }
+            false
+        }
+        binding.treatmentGluMayor.setOnEditorActionListener { v, actionId, event ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                presenter.saveCorrectoraGlu(binding.treatmentGluMayor.text.toString().toFloat())
+            }
+            false
+        }
+        binding.treatmentCarbonoUd.setOnEditorActionListener { v, actionId, event ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                presenter.saveUnitInsulina(binding.treatmentCarbonoUd.text.toString().toFloat())
+            }
+            false
+        }
+        binding.treatmentCarbono.setOnEditorActionListener { v, actionId, event ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                presenter.saveCarbono(binding.treatmentCarbono.text.toString().toFloat())
+            }
+            false
+        }
+
+        binding.treatmentMenu.setOnClickListener{
+            if (isFabOpen){
+                hideMenu()
+            }else{
+                showMenu()
+            }
+        }
+
+        binding.treatmentShared.setOnClickListener {
+            hideMenu()
+            presenter.getScreenShot(this, binding.treatmentLl)
+        }
+
+        binding.treatmentEdit.setOnClickListener {
+            presenter.updateAll()
+        }
+
+        binding.treatmentBomb.setOnCheckedChangeListener { buttonView, isChecked ->
+            selectBomb(isChecked)
+        }
+
+        binding.treatmentBasalTitle.setOnClickListener { v ->
+            createDialogInfo(getString(R.string.info_insuline))
+        }
+
+        binding.treatmentRanges.setOnClickListener { v ->
+            createDialogInfo(getString(R.string.info_objective))
+        }
+
+        binding.treatmentBasalUnits.setOnClickListener { v ->
+            createDialogInfo(getString(R.string.info_insuline_times))
+        }
+
+        binding.treatmentGluMayorUdTitle.setOnClickListener { v ->
+            createDialogInfo(getString(R.string.info_insuline_correctora_mayor))
+        }
+
+        binding.treatmentCorrectoraTitle.setOnClickListener { v ->
+            createDialogInfo(getString(R.string.info_insuline_correctora))
+        }
+
+        binding.treatmentCorrectoraListTitle.setOnClickListener { v ->
+            createDialogInfo(getString(R.string.info_insuline_horary))
+        }
+
+        binding.treatmentCarbonoTitle.setOnClickListener { v ->
+            createDialogInfo(getString(R.string.info_carbono))
+        }
+
+        binding.treatmentRecordatorioTitle.setOnClickListener { v ->
+            createDialogInfo(getString(R.string.info_recordatorio))
+        }
+
+    }
+    fun hideMenu(){
+        isFabOpen = false
+        binding.treatmentMenu.setImageResource(R.drawable.ic_hand)
+        binding.treatmentEdit.visibility = View.GONE
+        binding.treatmentShared.visibility = View.GONE
+    }
+    fun showMenu(){
+        isFabOpen = true
+        binding.treatmentMenu.setImageResource(R.drawable.cancel)
+        binding.treatmentEdit.visibility = View.VISIBLE
+        binding.treatmentShared.visibility = View.VISIBLE
+    }
+
+    override fun sharedScreenShot(uri: Uri) {
+        val shareIntent: Intent = Intent().apply {
+            action = Intent.ACTION_SEND
+            putExtra(Intent.EXTRA_STREAM, uri)
+            type = "image/jpeg"
+        }
+        startActivity(Intent.createChooser(shareIntent, resources.getText(R.string.daily_detail_share)))
     }
     fun menuListeners(){
         binding.home.setOnClickListener { presenter.goToActivityMain() }
         binding.statistics.setOnClickListener { presenter.goToActivityStatistic() }
         binding.dailyRegister.setOnClickListener { presenter.goToActivityDaily() }
-
     }
     private fun createDialogInfo(info: String){
         val view = DialogInfoBinding.inflate(layoutInflater)
