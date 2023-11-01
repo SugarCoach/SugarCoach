@@ -8,8 +8,7 @@ import com.sugarcoach.data.api_db.user.UserResponse
 fun CreateUserMutation.Attributes?.toUser(): UserResponse {
     return UserResponse(
         username = this?.username!!,
-        email = this.email!!,
-        blocked = this.blocked!!
+        email = this.email!!
     )
 }
 

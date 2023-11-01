@@ -29,21 +29,28 @@ class ApiRepository @Inject constructor(
     }
 
     override suspend fun createUser(username: String, email: String): UserResponse {
+        val optionalUser = Optional.present(username)
+        val optionalEmail = Optional.present(email)
+        Log.i("OnInputData", "${optionalUser}, $optionalEmail")
         val response = apolloClient
-            .mutation(CreateUserMutation())
+            .mutation(CreateUserMutation(username = optionalUser, email = optionalEmail))
             .execute()
             .data
             ?.createUsersPermissionsUser
             ?.data
             ?.attributes
-            ?.toUser()
+            ?.toUser() ?: return UserResponse("","")
 
-        Log.i("OnCreateUser", "$response")
-
-        return UserResponse("asd","asd", false)
+        return response
     }
-    override suspend fun getDailyRegisters() {
-        TODO("Not yet implemented")
+    override suspend fun getDailyRegisters(id: String): DailyRegisterResponse {
+        val response = apolloClient
+            .query(TreatmentQuery(optionalId))
+            .execute()
+            .data
+            ?.treatments
+            ?.data
+            ?.map { it.attributes.toTreatment() }
     }
 
 }

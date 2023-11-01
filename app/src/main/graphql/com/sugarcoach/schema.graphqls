@@ -4,6 +4,12 @@ scalar JSON
 # A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
 scalar DateTime
 
+# A time string with format HH:mm:ss.SSS
+scalar Time
+
+# A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
+scalar Date
+
 # The `Upload` scalar type represents a file upload.
 scalar Upload
 
@@ -148,6 +154,56 @@ input FloatFilterInput {
   between: [Float]
 }
 
+input DateFilterInput {
+  and: [Date]
+  or: [Date]
+  not: DateFilterInput
+  eq: Date
+  eqi: Date
+  ne: Date
+  nei: Date
+  startsWith: Date
+  endsWith: Date
+  contains: Date
+  notContains: Date
+  containsi: Date
+  notContainsi: Date
+  gt: Date
+  gte: Date
+  lt: Date
+  lte: Date
+  null: Boolean
+  notNull: Boolean
+  in: [Date]
+  notIn: [Date]
+  between: [Date]
+}
+
+input TimeFilterInput {
+  and: [Time]
+  or: [Time]
+  not: TimeFilterInput
+  eq: Time
+  eqi: Time
+  ne: Time
+  nei: Time
+  startsWith: Time
+  endsWith: Time
+  contains: Time
+  notContains: Time
+  containsi: Time
+  notContainsi: Time
+  gt: Time
+  gte: Time
+  lt: Time
+  lte: Time
+  null: Boolean
+  notNull: Boolean
+  in: [Time]
+  notIn: [Time]
+  between: [Time]
+}
+
 input DateTimeFilterInput {
   and: [DateTime]
   or: [DateTime]
@@ -198,6 +254,19 @@ input JSONFilterInput {
   between: [JSON]
 }
 
+input ComponentDailyRegisterDailyRegisterComponentFiltersInput {
+  name: StringFilterInput
+  and: [ComponentDailyRegisterDailyRegisterComponentFiltersInput]
+  or: [ComponentDailyRegisterDailyRegisterComponentFiltersInput]
+  not: ComponentDailyRegisterDailyRegisterComponentFiltersInput
+}
+
+input ComponentDailyRegisterDailyRegisterComponentInput {
+  id: ID
+  name: String
+  icon: ID
+}
+
 type ComponentDailyRegisterDailyRegisterComponent {
   id: ID!
   name: String
@@ -219,6 +288,78 @@ input ComponentTreatmentDailyRegisterComponentsInput {
 type ComponentTreatmentDailyRegisterComponents {
   id: ID!
   name: String
+}
+
+input DailyRegisterFiltersInput {
+  id: IDFilterInput
+  glucose: FloatFilterInput
+  insulin: FloatFilterInput
+  carbohydrates: FloatFilterInput
+  comment: StringFilterInput
+  basal: FloatFilterInput
+  colors: StringFilterInput
+  dataS: TimeFilterInput
+  created: DateFilterInput
+  emotional_state: ComponentDailyRegisterDailyRegisterComponentFiltersInput
+  excercise: ComponentDailyRegisterDailyRegisterComponentFiltersInput
+  category: StringFilterInput
+  users_permissions_user: UsersPermissionsUserFiltersInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  publishedAt: DateTimeFilterInput
+  and: [DailyRegisterFiltersInput]
+  or: [DailyRegisterFiltersInput]
+  not: DailyRegisterFiltersInput
+}
+
+input DailyRegisterInput {
+  glucose: Float
+  insulin: Float
+  carbohydrates: Float
+  comment: String
+  photo: ID
+  basal: Float
+  colors: String
+  dataS: Time
+  created: Date
+  emotional_state: ComponentDailyRegisterDailyRegisterComponentInput
+  excercise: ComponentDailyRegisterDailyRegisterComponentInput
+  category: String
+  users_permissions_user: ID
+  publishedAt: DateTime
+}
+
+type DailyRegister {
+  glucose: Float
+  insulin: Float
+  carbohydrates: Float
+  comment: String
+  photo: UploadFileEntityResponse
+  basal: Float
+  colors: String
+  dataS: Time
+  created: Date
+  emotional_state: ComponentDailyRegisterDailyRegisterComponent
+  excercise: ComponentDailyRegisterDailyRegisterComponent
+  category: String
+  users_permissions_user: UsersPermissionsUserEntityResponse
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+}
+
+type DailyRegisterEntity {
+  id: ID
+  attributes: DailyRegister
+}
+
+type DailyRegisterEntityResponse {
+  data: DailyRegisterEntity
+}
+
+type DailyRegisterEntityResponseCollection {
+  data: [DailyRegisterEntity!]!
+  meta: ResponseCollectionMeta!
 }
 
 input TreatmentFiltersInput {
@@ -615,6 +756,7 @@ type UsersPermissionsUserRelationResponseCollection {
 union GenericMorph =
     ComponentDailyRegisterDailyRegisterComponent
   | ComponentTreatmentDailyRegisterComponents
+  | DailyRegister
   | Treatment
   | UploadFile
   | UploadFolder
@@ -686,6 +828,13 @@ input PaginationArg {
 }
 
 type Query {
+  dailyRegister(id: ID): DailyRegisterEntityResponse
+  dailyRegisters(
+    filters: DailyRegisterFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): DailyRegisterEntityResponseCollection
   treatment(id: ID): TreatmentEntityResponse
   treatments(
     filters: TreatmentFiltersInput
@@ -727,6 +876,12 @@ type Query {
 }
 
 type Mutation {
+  createDailyRegister(data: DailyRegisterInput!): DailyRegisterEntityResponse
+  updateDailyRegister(
+    id: ID!
+    data: DailyRegisterInput!
+  ): DailyRegisterEntityResponse
+  deleteDailyRegister(id: ID!): DailyRegisterEntityResponse
   createTreatment(data: TreatmentInput!): TreatmentEntityResponse
   updateTreatment(id: ID!, data: TreatmentInput!): TreatmentEntityResponse
   deleteTreatment(id: ID!): TreatmentEntityResponse

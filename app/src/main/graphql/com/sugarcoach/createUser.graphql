@@ -1,8 +1,8 @@
-mutation CreateUser($username:String, $email:String){
+mutation CreateUser($username: String, $email: String) {
     createUsersPermissionsUser(data:{
         username: $username,
         email: $email,
-        password: "",
+        password: "contraseña123",
         confirmed: true,
         blocked: false,
         role:1 }){
@@ -11,9 +11,7 @@ mutation CreateUser($username:String, $email:String){
             attributes {
                 username
                 email
-                blocked
             }
         }
     }
-
-    }
+}
