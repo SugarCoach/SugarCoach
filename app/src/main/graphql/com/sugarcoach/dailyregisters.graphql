@@ -1,4 +1,4 @@
-query DailyRegisters($userId: ID){
+query DailyRegister($userId: ID){
     dailyRegisters(filters: {
         users_permissions_user:{
             id:{
@@ -7,8 +7,37 @@ query DailyRegisters($userId: ID){
         }
     }){
         data{
+            id
             attributes {
                 glucose
+                insulin
+                carbohydrates
+                comment
+                basal
+                colors
+                dataS
+                created
+                emotional_state {
+                    name
+                    icon{
+                        data {
+                            attributes {
+                                url
+                            }
+                        }
+                    }
+                }
+                excercise {
+                    name
+                    icon{
+                        data {
+                            attributes {
+                                url
+                            }
+                        }
+                    }
+                }
+                category
             }
         }
     }
