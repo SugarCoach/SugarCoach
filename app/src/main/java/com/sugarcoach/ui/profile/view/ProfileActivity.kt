@@ -90,7 +90,7 @@ class ProfileActivity: BaseActivity(), ProfileView, DatePickerDialog.OnDateSetLi
         finish()
     }
 
-    override fun showErrorToast() {
+    override fun showErrorToast(msg: String) {
     }
 
     override fun openLoginActivity() {

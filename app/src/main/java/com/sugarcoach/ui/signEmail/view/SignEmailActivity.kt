@@ -18,6 +18,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -55,11 +56,9 @@ class SignEmailActivity: BaseActivity(), SignEmailView {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        Log.i("OnActivityResult", "Se ejecuto el activity result, ${requestCode}, ${resultCode}, $data")
 
         if (requestCode == RC_SIGN_IN) {
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
-            Log.i("OnIf", "Entro al if")
             try {
                 // Google Sign In was successful, authenticate with Firebase
                 val account = task.getResult(ApiException::class.java)
@@ -82,11 +81,12 @@ class SignEmailActivity: BaseActivity(), SignEmailView {
     }
 
 
-    override fun showErrorToast() {
+    override fun showErrorToast(msg: String) {
         Toast.makeText(this, getString(R.string.sign_failure), Toast.LENGTH_LONG).show()
     }
 
     override fun onSign() {
+
         val intent = Intent(this, MainActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
         startActivity(intent)
@@ -101,15 +101,6 @@ class SignEmailActivity: BaseActivity(), SignEmailView {
         }
     }
 
-    override fun onGoogleLogin() {
-        Log.i("OnGoogleLogin", "Se loggeo correctamente")
-        startMain()
-    }
-
-    override fun onFacebookLogin() {
-        Log.i("OnFacebookLogin", "Se loggeo correctamente")
-        startMain()
-    }
     private fun setOnClickListeners() {
         binding.signGoogle.setOnClickListener { googleLogin() }
         binding.signEmailBt.setOnClickListener { presenter.signIn(binding.signEmailUser.text.toString(), binding.signEmailMail.text.toString(), binding.signEmailPass.text.toString(), auth) }

@@ -1,5 +1,6 @@
 package com.sugarcoach.ui.register.interactor
 
+import com.sugarcoach.data.api_db.ApiRepository
 import com.sugarcoach.data.database.repository.dailyregister.*
 import com.sugarcoach.data.database.repository.treament.*
 import com.sugarcoach.data.database.repository.user.UserRepo
@@ -13,14 +14,21 @@ import java.io.File
 import javax.inject.Inject
 
 
-class RegisterInteractor @Inject constructor(private val treamentRepo: TreamentRepo, private  val dailyRepoHelper: DailyRegisterRepo, userRepoHelper: UserRepo, preferenceHelper: PreferenceHelper, apiHelper: ApiHelper) : BaseInteractor(userRepoHelper,preferenceHelper,apiHelper),
+class RegisterInteractor @Inject constructor(private val treamentRepo: TreamentRepo,
+                                             private  val dailyRepoHelper: DailyRegisterRepo,
+                                             userRepoHelper: UserRepo, preferenceHelper: PreferenceHelper,
+                                             apiHelper: ApiHelper)
+    : BaseInteractor(userRepoHelper,preferenceHelper,apiHelper),
     RegisterInteractorImp {
-    override fun saveRegisterCall(dailyRegister: DailyRegister): Observable<RegisterSaveResponse> {
-        return apiHelper.performSaveRegisters(token = "Bearer "+preferenceHelper.getAccessToken().toString(),
+    @Inject
+    lateinit var apiRepository: ApiRepository
+    override suspend fun saveRegisterCall(dailyRegister: DailyRegister): Observable<RegisterSaveResponse> {
+        /*return apiHelper.performSaveRegisters(token = "Bearer "+preferenceHelper.getAccessToken().toString(),
             request = RegisterSaveRequest.RegisterSaveRequest( dailyRegister.glucose, dailyRegister.insulin, dailyRegister.carbohydrates,dailyRegister.emotionalState,  dailyRegister.exercise,dailyRegister.category_id, dailyRegister.basal, dailyRegister.colors, preferenceHelper.getCurrentUserId().toString())
         ).subscribeOn(
             Schedulers.io())
-            .map { it }
+            .map { it }*/
+        apiRepository
     }
 
     override fun saveRegisterPhotoCall(id: String, photo: File): Observable<RegisterSavePhotoResponse> {

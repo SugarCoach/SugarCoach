@@ -35,7 +35,7 @@ class SplashActivity : BaseActivity(), SplashView {
     override fun showSuccessToast() {
     }
 
-    override fun showErrorToast() {
+    override fun showErrorToast(msg: String) {
     }
 
     override fun openMainActivity() {

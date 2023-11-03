@@ -1,11 +1,12 @@
 package com.sugarcoach.ui.signEmail.interactor
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.util.Log
-import com.facebook.AccessToken
 import com.google.firebase.auth.FirebaseUser
 import com.google.gson.GsonBuilder
 import com.google.gson.internal.`$Gson$Types`
+import com.sugarcoach.data.api_db.ApiRepository
 import com.sugarcoach.data.database.repository.dailyregister.*
 import com.sugarcoach.data.database.repository.treament.*
 import com.sugarcoach.data.database.repository.user.ParcialUser
@@ -18,33 +19,53 @@ import com.sugarcoach.util.AppConstants
 import com.sugarcoach.util.FileUtils
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
-class SignEmailInteractor @Inject constructor(private val mContext: Context, private val treamentRepoHelper: TreamentRepo, private  val dailyRepoHelper: DailyRegisterRepo, userRepoHelper: UserRepo, preferenceHelper: PreferenceHelper, apiHelper: ApiHelper) : BaseInteractor(userRepoHelper,preferenceHelper,apiHelper),
+class SignEmailInteractor @Inject constructor(private val mContext: Context, private val treamentRepoHelper: TreamentRepo,
+                                              private  val dailyRepoHelper: DailyRegisterRepo,
+                                              userRepoHelper: UserRepo, preferenceHelper: PreferenceHelper,
+                                              apiHelper: ApiHelper
+) : BaseInteractor(userRepoHelper,preferenceHelper, apiHelper),
     SignEmailInteractorImp {
 
-
+    @Inject
+    lateinit var apiRepository: ApiRepository
+    @SuppressLint("CheckResult")
     override fun updateUser(signResponse: FirebaseUser?) {
         val builder = GsonBuilder().excludeFieldsWithoutExposeAnnotation()
         val gson = builder.create()
 
-        val parcialUser: ParcialUser = ParcialUser(signResponse!!.email!!, signResponse.displayName!!, false,
+        val parcialUser = ParcialUser(signResponse!!.email!!, signResponse.displayName!!, false,
             signResponse.providerId, true)
 
         val json = gson.toJson(parcialUser, ParcialUser::class.java)
         Log.i("OnJson", json.toString())
-        val user: User = gson.fromJson(json.toString(), User::class.java)
+        val user = gson.fromJson(json.toString(), User::class.java)
 
         user.typeAccount = "2"
         Log.i("OnUser", user.toString())
-        val isDisposed = userHelper.insertRegister(user).
-        observeOn(Schedulers.io())
-            .subscribe({
-                Log.i("OnSuscribe", "Todo fue bien")
-            },{
-                Log.i("OnThrow", "Todo fue mal")
+
+        CoroutineScope(Dispatchers.IO).launch {
+            apiRepository.createUser(user.username, user.email).fold({
+                Log.i("OnCreateUser", it.toString())
+
+            }, {
+                Log.i("OnCreateUser", "Ocurrió un error con la API: $it")
             })
+
+            userHelper.insertRegister(user).
+            observeOn(Schedulers.io())
+                .subscribe({
+                    Log.i("OnSuscribe", "Todo fue bien")
+                },{
+                    Log.i("OnThrow", "Todo fue mal")
+                })
+        }
+
 
         preferenceHelper.let {
             it.setCurrentUserId(signResponse.email)
@@ -53,16 +74,6 @@ class SignEmailInteractor @Inject constructor(private val mContext: Context, pri
         }
     }
 
-    override fun doServerSignApiCall(username: String, email: String, password: String): Observable<SignResponse> =
-        apiHelper.performServerSign(SignRequest.ServerSignRequest(username = username, email = email, pass = password)).subscribeOn(
-            Schedulers.io())
-            .map { it }
-
-    override fun getRegistersCall(): Observable<List<RegistersResponse>> {
-        return apiHelper.performGetRegisters(token = "Bearer "+preferenceHelper.getAccessToken().toString()).subscribeOn(
-            Schedulers.io())
-            .map { it }
-    }
     override fun saveRegisters(registersResponse: List<DailyRegister>): Observable<Boolean> {
         if (dailyRepoHelper.loadDailyRegistersTotal() > 0 || dailyRepoHelper.isRegisterRepoEmpty()) {
             dailyRepoHelper.deleteAll()
@@ -74,13 +85,7 @@ class SignEmailInteractor @Inject constructor(private val mContext: Context, pri
         }
     }
 
-    override fun doGoogleLoginApiCall(token: String?): Observable<LoginResponse> {
-        return apiHelper.performGoogleLogin(LoginRequest.GoogleLoginRequest(token.toString()))
-    }
 
-    override fun doFBLoginApiCall(accessToken: AccessToken): Observable<LoginResponse> {
-        return apiHelper.performFBLogin(LoginRequest.FacebookLoginRequest(accessToken.token))
-    }
     override fun updateUserSocial(loginResponse: LoginResponse) {
         val builder = GsonBuilder().excludeFieldsWithoutExposeAnnotation()
         val gson = builder.create()

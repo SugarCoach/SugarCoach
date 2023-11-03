@@ -118,7 +118,7 @@ class DailyDetailActivity : BaseActivity(), DailyDetailView, TimePickerDialog.On
 
     }
 
-    override fun showErrorToast() {
+    override fun showErrorToast(msg:String) {
         Toast.makeText(this, getString(R.string.login_failure), Toast.LENGTH_LONG).show()
         hideProgress()
     }

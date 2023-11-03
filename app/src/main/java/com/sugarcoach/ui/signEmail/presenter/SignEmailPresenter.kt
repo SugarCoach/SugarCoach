@@ -82,7 +82,7 @@ class SignEmailPresenter <V : SignEmailView, I : SignEmailInteractorImp> @Inject
                     Log.d("OnPresenter", "signInWithCredential:success")
                     user = auth.currentUser!!
                     updateUser(user)
-                    getView()?.onGoogleLogin()
+                    getView()?.onSign()
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.i("OnPresenter", "signInWithCredential:failure", task.exception)
@@ -104,7 +104,7 @@ class SignEmailPresenter <V : SignEmailView, I : SignEmailInteractorImp> @Inject
                     user = auth.currentUser!!
                     updateUser(user)
                     Log.i("CurrentUser", "El usuario actual es:$user")
-                    getView()?.onFacebookLogin()
+                    getView()?.onSign()
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w("TAG", "signInWithCredential:failure", task.exception)
@@ -138,7 +138,7 @@ class SignEmailPresenter <V : SignEmailView, I : SignEmailInteractorImp> @Inject
         }
     }*/
 
-    private fun googleSuccess(task: Task<GoogleSignInAccount>){
+    /*private fun googleSuccess(task: Task<GoogleSignInAccount>){
         val account = task.getResult(ApiException::class.java)
         val token: String? = account?.idToken
         Log.e("token", token!!)
@@ -151,14 +151,14 @@ class SignEmailPresenter <V : SignEmailView, I : SignEmailInteractorImp> @Inject
                     updateUserSocial(loginResponse)
                     getView()?.let {
                         it.hideProgress()
-                        it.onFacebookLogin()
+                        it.onSign()
                     }
                 }, {err -> println(err)})
             )
         }
-    }
-    private fun updateUserSocial(loginResponse: LoginResponse) =
-        interactor?.updateUserSocial(loginResponse)
+    }*/
+    /*private fun updateUserSocial(loginResponse: LoginResponse) =
+        interactor?.updateUserSocial(loginResponse)*/
 
 
     override fun signIn(username: String, email: String, password: String, auth: FirebaseAuth) {
@@ -280,11 +280,13 @@ class SignEmailPresenter <V : SignEmailView, I : SignEmailInteractorImp> @Inject
 
     }
 
-    private fun updateUser(signResponse: FirebaseUser?) =
+    private fun updateUser(signResponse: FirebaseUser?) {
         interactor?.updateUser(signResponse)
+    }
 
 
-    fun getRegisters() {
+
+    /*fun getRegisters() {
         interactor?.let {
             compositeDisposable.add(it.getRegistersCall()
                 .doOnSubscribe { getView()?.showProgress() }
@@ -296,8 +298,7 @@ class SignEmailPresenter <V : SignEmailView, I : SignEmailInteractorImp> @Inject
                 })
             )
         }
-
-    }
+    }*/
 
     fun saveRegisters(registers: List<RegistersResponse>) {
 

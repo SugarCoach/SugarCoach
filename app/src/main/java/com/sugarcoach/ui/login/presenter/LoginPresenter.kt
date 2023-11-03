@@ -23,6 +23,7 @@ import io.reactivex.disposables.CompositeDisposable
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 import org.joda.time.DateTime
+import org.joda.time.LocalDate
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
@@ -99,7 +100,6 @@ class LoginPresenter  <V : LoginView, I : LoginInteractorImp> @Inject internal c
                 })
             )
         }
-
     }
 
 
@@ -110,18 +110,18 @@ class LoginPresenter  <V : LoginView, I : LoginInteractorImp> @Inject internal c
         var dailyRegisters: List<DailyRegister> = registers.map { register ->
             DailyRegister(
                 0,
-                register.id.toString(),
-                register.glucose,
-                register.insulin,
-                register.carbohydrates,
-                register.emotional_state,
-                register.exercise,
+                "",
+                0F,
+                0F,
+                0F,
+                "",
+                "",
                 1,
                 "",
-                register.photo?.let { BuildConfig.BASE_URL + it.url } ?: "",
+                "",
                 true,
-                parser.parse(register.createdAt),
-                parser2.format(parser.parse(register.createdAt)),
+                LocalDate.now().toDate(),
+                "",
                 0f,
                 ""
             )
@@ -213,13 +213,13 @@ class LoginPresenter  <V : LoginView, I : LoginInteractorImp> @Inject internal c
     }
 
     private fun createdTreatmentHorarios() {
-        interactor?.let {
+        interactor?.let { it ->
             compositeDisposable.add(it.treamentHorarios()
                 .flatMap { interactor?.treatmentHorariosCorrectora() }
                 .flatMap { interactor?.treatmentBasalHora() }
                 .compose(schedulerProvider.ioToMainObservableScheduler())
-                .subscribe {
-                    getRegisters()
+                .subscribe {response ->
+                    saveRegisters(emptyList())
                 })
         }
 

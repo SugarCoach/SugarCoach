@@ -68,7 +68,7 @@ class StatisticsActivity : BaseActivity(), StatisticsView {
         super.onDestroy()
     }
 
-    override fun showErrorToast() {
+    override fun showErrorToast(msg: String) {
     }
 
 

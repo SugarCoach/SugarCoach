@@ -1,5 +1,6 @@
 package com.sugarcoach.data.ui.base.interactor
 
+import com.sugarcoach.data.api_db.ApiRepository
 import com.sugarcoach.data.database.repository.user.UserRepo
 import com.sugarcoach.data.network.ApiHelper
 import com.sugarcoach.di.preferences.PreferenceHelper
@@ -12,7 +13,7 @@ open class BaseInteractor(): Interactor{
 
     protected lateinit var userHelper: UserRepo
 
-    constructor(userHelper: UserRepo,preferenceHelper: PreferenceHelper, apiHelper: ApiHelper) : this() {
+    constructor(userHelper: UserRepo, preferenceHelper: PreferenceHelper, apiHelper: ApiHelper) : this() {
         this.preferenceHelper = preferenceHelper
         this.apiHelper = apiHelper
         this.userHelper = userHelper

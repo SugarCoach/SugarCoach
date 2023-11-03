@@ -86,7 +86,7 @@ class OnBoardingActivity: BaseActivity(), OnBoardingView {
         TODO("Not yet implemented")
     }
 
-    override fun showErrorToast() {
+    override fun showErrorToast(msg: String) {
     }
 
 }

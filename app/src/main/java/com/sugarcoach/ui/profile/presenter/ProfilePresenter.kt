@@ -127,7 +127,8 @@ class ProfilePresenter <V : ProfileView, I : ProfileInteractorImp> @Inject inter
         Firebase.auth.signOut()
         com.facebook.login.LoginManager.getInstance().logOut()
 
-        interactor?.let {
+        getView()?.openLoginActivity()
+        /*interactor?.let {
             compositeDisposable.add(it.deleteUser()
                 .compose(schedulerProvider.ioToMainObservableScheduler())
                 .flatMap { interactor?.deleteTreament() }
@@ -135,7 +136,7 @@ class ProfilePresenter <V : ProfileView, I : ProfileInteractorImp> @Inject inter
                     interactor?.perfomLogout()
                     getView()?.openLoginActivity()
                 }, { err -> println(err) }))
-        }
+        }*/
     }
     fun deleteRegisters() {
         interactor?.let {

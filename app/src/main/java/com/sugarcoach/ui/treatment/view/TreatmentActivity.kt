@@ -121,7 +121,7 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
         Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
     }
 
-    override fun showErrorToast() {
+    override fun showErrorToast(msg: String) {
     }
 
     override fun setData(user: User, date: Date) {

@@ -13,11 +13,7 @@ import io.reactivex.Observable
 
 interface SignEmailInteractorImp : Interactor {
     fun updateUser(signResponse: FirebaseUser?)
-    fun doServerSignApiCall(username: String, email: String, password: String): Observable<SignResponse>
-    fun getRegistersCall(): Observable<List<RegistersResponse>>
     fun saveRegisters(registersResponse: List<DailyRegister>): Observable<Boolean>
-    fun doFBLoginApiCall(accessToken: AccessToken): Observable<LoginResponse>
-    fun doGoogleLoginApiCall(token: String?): Observable<LoginResponse>
     fun updateUserSocial(loginResponse: LoginResponse)
     fun treament(treament: Treament): Observable<Boolean>
     fun category(): Observable<Boolean>
@@ -30,7 +26,5 @@ interface SignEmailInteractorImp : Interactor {
     fun getMedidor(): Observable<Boolean>
     fun getBombas(): Observable<Boolean>
     fun getCorrectora(): Observable<Boolean>
-
-
 
 }

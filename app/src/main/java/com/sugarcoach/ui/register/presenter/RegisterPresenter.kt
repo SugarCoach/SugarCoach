@@ -32,6 +32,9 @@ import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.joda.time.LocalDateTime
 import org.joda.time.LocalTime
 import org.joda.time.format.DateTimeFormat
@@ -252,28 +255,29 @@ class RegisterPresenter<V : RegisterView, I : RegisterInteractorImp> @Inject int
     fun finishRegister(){
         Log.i("OnFinish","Se estan cargando los datos a la db")
         interactor?.let {
-            compositeDisposable.add(it.saveRegisterCall(dailyRegister)
-                .compose(schedulerProvider.ioToMainObservableScheduler())
-                .doOnSubscribe { getView()?.showProgress() }
-                .subscribe({ response ->
+            CoroutineScope(Dispatchers.IO).launch {
+                compositeDisposable.add(it.saveRegisterCall(dailyRegister)
+                    .compose(schedulerProvider.ioToMainObservableScheduler())
+                    .doOnSubscribe { getView()?.showProgress() }
+                    .subscribe({ response ->
 
-                    if (photo.isNotEmpty()){
+                        if (photo.isNotEmpty()){
 
-                        var file = File(photo)
-                        dailyRegister.idOnline = response.id
-                        dailyRegister.online = true
-                        uploadPhoto(response.id, file, dailyRegister)
-                    }else{
-                        dailyRegister.idOnline = response.id
-                        dailyRegister.online = true
+                            var file = File(photo)
+                            dailyRegister.idOnline = response.id
+                            dailyRegister.online = true
+                            uploadPhoto(response.id, file, dailyRegister)
+                        }else{
+                            dailyRegister.idOnline = response.id
+                            dailyRegister.online = true
 
+                            saveRegister(null, dailyRegister)
+                        }
+                    }, {
+                        getView()?.showErrorToast()
                         saveRegister(null, dailyRegister)
-                    }
-                }, {
-                    getView()?.showErrorToast()
-                    saveRegister(null, dailyRegister)
-                })
-            )
+                    }))
+            }
         }
     }
 

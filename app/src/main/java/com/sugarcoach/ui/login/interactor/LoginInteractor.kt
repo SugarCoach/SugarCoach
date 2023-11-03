@@ -3,6 +3,7 @@ package com.sugarcoach.ui.login.interactor
 import android.content.Context
 import com.google.gson.GsonBuilder
 import com.google.gson.internal.`$Gson$Types`
+import com.sugarcoach.data.api_db.ApiRepository
 import com.sugarcoach.data.database.repository.dailyregister.*
 import com.sugarcoach.data.database.repository.treament.*
 import com.sugarcoach.data.database.repository.user.User
@@ -17,6 +18,8 @@ import com.sugarcoach.util.AppConstants
 import com.sugarcoach.util.FileUtils
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 import javax.inject.Inject
@@ -28,6 +31,8 @@ class LoginInteractor @Inject constructor(private val mContext: Context, private
     BaseInteractor(userRepoHelper,preferenceHelper,apiHelper),
     LoginInteractorImp {
 
+    @Inject
+    lateinit var apiRepository: ApiRepository
     override suspend fun doServerLoginpiCall(email: String, password: String): Observable<LoginResponse> {
        val loginResponse = coroutineScope {
            val response = this.async {
@@ -44,6 +49,9 @@ class LoginInteractor @Inject constructor(private val mContext: Context, private
         return apiHelper.performGetRegisters(token = "Bearer "+preferenceHelper.getAccessToken().toString()).subscribeOn(
             Schedulers.io())
             .map { it }
+        /*CoroutineScope(Dispatchers.IO).async {
+            apiRepository.getDailyRegisters()
+        }*/
     }
     override fun updateUserInSharedPref(loginResponse: LoginResponse, mirror: Boolean, medico: Boolean) {
         val builder = GsonBuilder().excludeFieldsWithoutExposeAnnotation()

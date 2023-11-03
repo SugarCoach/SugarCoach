@@ -56,7 +56,7 @@ class MainActivity : BaseActivity(), MainView {
     override fun showSuccessToast() {
     }
 
-    override fun showErrorToast() {
+    override fun showErrorToast(msg: String) {
     }
 
     override fun openLoginActivity() {
@@ -103,8 +103,7 @@ class MainActivity : BaseActivity(), MainView {
 
     private fun apiCall(){
         CoroutineScope(Dispatchers.IO).launch {
-            val response = apiRepository.getDailyRegisters()
-            Log.i("OnApiResponse", "$response")
+            val response = apiRepository.getDailyRegisters("1")
         }
     }
 
