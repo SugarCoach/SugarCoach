@@ -1,5 +1,8 @@
 package com.sugarcoach.data.api_db.DailyRegister.domain
 
-class DailyRegisterComponent {
-    var name: String,
-}
+import android.provider.MediaStore.Images.Media
+
+data class DailyRegisterComponent (
+    var name: String?,
+    var icon: String?
+)
