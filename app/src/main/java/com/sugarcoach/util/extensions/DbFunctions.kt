@@ -10,12 +10,15 @@ import com.sugarcoach.data.api_db.DailyRegister.domain.DailyRegisterComponent
 import com.sugarcoach.data.api_db.Treatment.TreatmentResponse
 import com.sugarcoach.data.api_db.user.UserResponse
 import com.sugarcoach.data.database.repository.dailyregister.DailyRegister
+import com.sugarcoach.data.database.repository.dailyregister.States
+import com.sugarcoach.type.ComponentDailyRegisterDailyRegisterComponentInput
 import com.sugarcoach.type.DailyRegisterInput
 
-fun CreateUserMutation.Attributes?.toUser(): UserResponse {
+fun CreateUserMutation.Attributes?.toUser(id: String): UserResponse {
     return UserResponse(
         username = this?.username!!,
-        email = this.email!!
+        email = this.email,
+        id = id
     )
 }
 
@@ -44,8 +47,6 @@ fun DailyRegisterQuery.Attributes?.toDailyRegister(): DailyRegisterResponse {
         comment = this?.comment,
         basal = this?.basal,
         colors = this?.colors,
-        dataS = this?.dataS?.toString(),
-        created = this?.created?.toString(),
         category = this?.category,
         emotionalState = this?.emotional_state?.toDailyComponent(),
         excersise = this?.excercise?.toDailyComponent()
@@ -65,9 +66,22 @@ fun DailyComponentTrans(name: String?, icon: String?): DailyRegisterComponent{
         icon = icon
     )
 }
-fun DailyRegister.toDailyInput(): DailyRegisterInput{
+fun DailyRegister.toDailyInput(id: String?): DailyRegisterInput{
+
     return DailyRegisterInput(
         glucose = Optional.present(glucose?.toDouble()),
-
+        insulin = Optional.present(insulin?.toDouble()),
+        carbohydrates = Optional.present(carbohydrates?.toDouble()),
+        comment = Optional.present(comment),
+        basal = Optional.present(basal?.toDouble()),
+        colors = Optional.present(colors),
+        users_permissions_user = Optional.present(id)
+    )
+}
+fun States.toDailyEmotions(): ComponentDailyRegisterDailyRegisterComponentInput{
+    return ComponentDailyRegisterDailyRegisterComponentInput(
+        id = Optional.present(state_id),
+        name = Optional.present(state_name),
+        icon = Optional.present(state_icono)
     )
 }

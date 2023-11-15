@@ -8,12 +8,11 @@ import com.sugarcoach.CreateUserMutation
 import com.sugarcoach.DailyRegisterQuery
 import com.sugarcoach.data.api_db.Treatment.TreatmentResponse
 import com.sugarcoach.TreatmentQuery
+import com.sugarcoach.UpdateDailyRegisterMutation
 import com.sugarcoach.data.api_db.DailyRegister.DailyRegisterResponse
-import com.sugarcoach.data.api_db.DailyRegister.domain.DailyCreateResponse
+import com.sugarcoach.data.api_db.DailyRegister.domain.CreateDailyResponse
 import com.sugarcoach.data.api_db.user.UserResponse
-import com.sugarcoach.data.database.repository.dailyregister.DailyRegister
 import com.sugarcoach.type.DailyRegisterInput
-import com.sugarcoach.util.extensions.toDailyInput
 import com.sugarcoach.util.extensions.toDailyRegister
 import com.sugarcoach.util.extensions.toTreatment
 import com.sugarcoach.util.extensions.toUser
@@ -44,19 +43,20 @@ class ApiRepository @Inject constructor(
 
     }
 
-    override suspend fun createUser(username: String, email: String): Result<UserResponse?> {
+    override suspend fun createUser(username: String, email: String, FirebaseId: String): Result<UserResponse?> {
         val optionalUser = Optional.present(username)
         val optionalEmail = Optional.present(email)
+        val optionalId = Optional.present(FirebaseId)
         return try {
             val response = apolloClient
-                .mutation(CreateUserMutation(username = optionalUser, email = optionalEmail))
+                .mutation(CreateUserMutation(username = optionalUser, email = optionalEmail, optionalId))
                 .execute()
                 .data
                 ?.createUsersPermissionsUser
                 ?.data
-                ?.attributes
-                ?.toUser()
-            success(response)
+
+            Log.i("OnCreateUser", "$response")
+            success(response?.attributes.toUser(response?.id!!))
         }catch (e: Exception){
             Log.i("OnUserError", "Ocurrió un error: $e")
             failure(e)
@@ -81,19 +81,34 @@ class ApiRepository @Inject constructor(
         }
     }
 
-    override suspend fun createDailyRegister(dailyRegister: DailyRegister): Result<String> {
+    override suspend fun createDailyRegister(dailyRegister: DailyRegisterInput): Result<CreateDailyResponse> {
         return try{
             val response = apolloClient
-                .mutation(CreateDailyMutation(dailyRegister.toDailyInput()))
+                .mutation(CreateDailyMutation(dailyRegister))
                 .execute()
                 .data
-                ?.dailyRegisters
+                ?.createDailyRegister
                 ?.data
-                ?.map { it.attributes.toDailyRegister() }
-            Log.i("OnResponse", response.toString())
-            success("")
+
+            Log.i("OnResponse", response!!.id!!)
+            success(CreateDailyResponse(response.id!!, response.attributes!!.createdAt!!, response.attributes.updatedAt))
         }catch (e: Exception){
-            Log.i("OnDailyError", "Ocurrió un error: ${e.initCause(e.cause)}")
+            Log.i("OnDailyError", "Ocurrió un error: ${e}")
+            failure(e)
+        }
+    }
+
+    override suspend fun updateDailyRegister(id: String, dailyRegister: DailyRegisterInput): Result<String?> {
+        return try{
+            val response = apolloClient
+                .mutation(UpdateDailyRegisterMutation(id, dailyRegister))
+                .execute()
+                .data
+                ?.updateDailyRegister
+                ?.data
+                ?.id
+            success(response)
+        }catch(e: Exception){
             failure(e)
         }
     }

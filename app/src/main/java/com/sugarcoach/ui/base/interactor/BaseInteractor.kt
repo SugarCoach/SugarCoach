@@ -29,6 +29,13 @@ open class BaseInteractor(): Interactor{
             it.setAccessToken(null)
             it.setUserLoged(false)
         }
+    }
 
+    override fun getCurrentId(): String? {
+        return preferenceHelper.getCurrentUserId()
+    }
+
+    override fun setUserId(id: String){
+        preferenceHelper.setCurrentUserId(id)
     }
 }

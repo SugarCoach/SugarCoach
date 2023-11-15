@@ -18,9 +18,11 @@ import com.sugarcoach.R
 import com.sugarcoach.data.database.repository.dailyregister.Category
 import com.sugarcoach.data.database.repository.dailyregister.DailyRegister
 import com.sugarcoach.data.database.repository.dailyregister.Exercises
+import com.sugarcoach.data.database.repository.dailyregister.States
 import com.sugarcoach.data.database.repository.treament.Treament
 import com.sugarcoach.data.database.repository.user.User
 import com.sugarcoach.ui.base.presenter.BasePresenter
+import com.sugarcoach.ui.daily.view.DailyItem
 import com.sugarcoach.ui.register.interactor.RegisterInteractorImp
 import com.sugarcoach.ui.register.view.RegisterItem
 import com.sugarcoach.ui.register.view.RegisterView
@@ -68,7 +70,8 @@ class RegisterPresenter<V : RegisterView, I : RegisterInteractorImp> @Inject int
 
     private lateinit var choosePhotoHelper: ChoosePhotoHelper
 
-
+    lateinit var dailyExcercises: List<RegisterItem>
+    lateinit var dailyEmotions: List<RegisterItem>
 
     override fun onAttach(view: V?) {
         super.onAttach(view)
@@ -149,11 +152,13 @@ class RegisterPresenter<V : RegisterView, I : RegisterInteractorImp> @Inject int
 
                         exercices.add(content)
                     }
+                    this.dailyExcercises = exercices
                     getView()?.setExercicesData(exercices)
                     getEmotions()
                 }
             }, { err -> println(err) }))
     }
+
     private fun getEmotions() = interactor?.let {
         emotions = ArrayList<RegisterItem>()
         compositeDisposable.add(it.getEmotions()
@@ -171,10 +176,12 @@ class RegisterPresenter<V : RegisterView, I : RegisterInteractorImp> @Inject int
 
                         emotions.add(content)
                     }
+                    this.dailyEmotions = emotions
                     getView()?.setEmotionsData(emotions)
                 }
             }, { err -> println(err) }))
     }
+
     private fun checkDaily(categories: List<Category>) {
         interactor?.let {
             compositeDisposable.add(it.isDailyEmpty()
@@ -258,7 +265,7 @@ class RegisterPresenter<V : RegisterView, I : RegisterInteractorImp> @Inject int
             CoroutineScope(Dispatchers.IO).launch {
                 compositeDisposable.add(it.saveRegisterCall(dailyRegister)
                     .compose(schedulerProvider.ioToMainObservableScheduler())
-                    .doOnSubscribe { getView()?.showProgress() }
+                    .doOnSubscribe { Log.i("onProgess", "Se muestra que carga") }
                     .subscribe({ response ->
 
                         if (photo.isNotEmpty()){

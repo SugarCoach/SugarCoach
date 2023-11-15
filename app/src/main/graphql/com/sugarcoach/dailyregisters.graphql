@@ -15,8 +15,6 @@ query DailyRegister($userId: ID){
                 comment
                 basal
                 colors
-                dataS
-                created
                 emotional_state {
                     name
                     icon{

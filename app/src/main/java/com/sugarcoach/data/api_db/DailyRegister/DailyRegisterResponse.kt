@@ -9,8 +9,6 @@ data class DailyRegisterResponse(
     var comment: String?,
     var basal: Double?,
     var colors: String?,
-    var dataS: String?,
-    var created: String?,
     var emotionalState: DailyRegisterComponent?,
     var excersise: DailyRegisterComponent?,
     var category: String?

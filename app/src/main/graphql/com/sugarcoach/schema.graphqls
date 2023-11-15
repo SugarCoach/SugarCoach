@@ -4,12 +4,6 @@ scalar JSON
 # A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
 scalar DateTime
 
-# A time string with format HH:mm:ss.SSS
-scalar Time
-
-# A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
-scalar Date
-
 # The `Upload` scalar type represents a file upload.
 scalar Upload
 
@@ -154,56 +148,6 @@ input FloatFilterInput {
   between: [Float]
 }
 
-input DateFilterInput {
-  and: [Date]
-  or: [Date]
-  not: DateFilterInput
-  eq: Date
-  eqi: Date
-  ne: Date
-  nei: Date
-  startsWith: Date
-  endsWith: Date
-  contains: Date
-  notContains: Date
-  containsi: Date
-  notContainsi: Date
-  gt: Date
-  gte: Date
-  lt: Date
-  lte: Date
-  null: Boolean
-  notNull: Boolean
-  in: [Date]
-  notIn: [Date]
-  between: [Date]
-}
-
-input TimeFilterInput {
-  and: [Time]
-  or: [Time]
-  not: TimeFilterInput
-  eq: Time
-  eqi: Time
-  ne: Time
-  nei: Time
-  startsWith: Time
-  endsWith: Time
-  contains: Time
-  notContains: Time
-  containsi: Time
-  notContainsi: Time
-  gt: Time
-  gte: Time
-  lt: Time
-  lte: Time
-  null: Boolean
-  notNull: Boolean
-  in: [Time]
-  notIn: [Time]
-  between: [Time]
-}
-
 input DateTimeFilterInput {
   and: [DateTime]
   or: [DateTime]
@@ -288,6 +232,148 @@ input ComponentTreatmentDailyRegisterComponentsInput {
 type ComponentTreatmentDailyRegisterComponents {
   id: ID!
   name: String
+}
+
+input DailyRegisterFiltersInput {
+  id: IDFilterInput
+  glucose: FloatFilterInput
+  insulin: FloatFilterInput
+  carbohydrates: FloatFilterInput
+  comment: StringFilterInput
+  basal: FloatFilterInput
+  colors: StringFilterInput
+  emotional_state: ComponentDailyRegisterDailyRegisterComponentFiltersInput
+  excercise: ComponentDailyRegisterDailyRegisterComponentFiltersInput
+  category: StringFilterInput
+  users_permissions_user: UsersPermissionsUserFiltersInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  publishedAt: DateTimeFilterInput
+  and: [DailyRegisterFiltersInput]
+  or: [DailyRegisterFiltersInput]
+  not: DailyRegisterFiltersInput
+}
+
+input DailyRegisterInput {
+  glucose: Float
+  insulin: Float
+  carbohydrates: Float
+  comment: String
+  photo: ID
+  basal: Float
+  colors: String
+  emotional_state: ComponentDailyRegisterDailyRegisterComponentInput
+  excercise: ComponentDailyRegisterDailyRegisterComponentInput
+  category: String
+  users_permissions_user: ID
+  publishedAt: DateTime
+}
+
+type DailyRegister {
+  glucose: Float
+  insulin: Float
+  carbohydrates: Float
+  comment: String
+  photo: UploadFileEntityResponse
+  basal: Float
+  colors: String
+  emotional_state: ComponentDailyRegisterDailyRegisterComponent
+  excercise: ComponentDailyRegisterDailyRegisterComponent
+  category: String
+  users_permissions_user: UsersPermissionsUserEntityResponse
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+}
+
+type DailyRegisterEntity {
+  id: ID
+  attributes: DailyRegister
+}
+
+type DailyRegisterEntityResponse {
+  data: DailyRegisterEntity
+}
+
+type DailyRegisterEntityResponseCollection {
+  data: [DailyRegisterEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
+input TreatmentFiltersInput {
+  id: IDFilterInput
+  online_id: StringFilterInput
+  bomb: BooleanFilterInput
+  object_glucose: FloatFilterInput
+  correctora_unit: FloatFilterInput
+  hyperglucose: FloatFilterInput
+  hipoglucose: FloatFilterInput
+  correctora: FloatFilterInput
+  insulina_unit: FloatFilterInput
+  carbono: FloatFilterInput
+  basal_insuline: ComponentTreatmentDailyRegisterComponentsFiltersInput
+  medidor: ComponentTreatmentDailyRegisterComponentsFiltersInput
+  bomba_infusora: ComponentTreatmentDailyRegisterComponentsFiltersInput
+  correctora_insuline: ComponentTreatmentDailyRegisterComponentsFiltersInput
+  users_permissions_user: UsersPermissionsUserFiltersInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  publishedAt: DateTimeFilterInput
+  and: [TreatmentFiltersInput]
+  or: [TreatmentFiltersInput]
+  not: TreatmentFiltersInput
+}
+
+input TreatmentInput {
+  online_id: String
+  bomb: Boolean
+  object_glucose: Float
+  correctora_unit: Float
+  hyperglucose: Float
+  hipoglucose: Float
+  correctora: Float
+  insulina_unit: Float
+  carbono: Float
+  basal_insuline: ComponentTreatmentDailyRegisterComponentsInput
+  medidor: ComponentTreatmentDailyRegisterComponentsInput
+  bomba_infusora: ComponentTreatmentDailyRegisterComponentsInput
+  correctora_insuline: ComponentTreatmentDailyRegisterComponentsInput
+  users_permissions_user: ID
+  publishedAt: DateTime
+}
+
+type Treatment {
+  online_id: String
+  bomb: Boolean
+  object_glucose: Float
+  correctora_unit: Float
+  hyperglucose: Float
+  hipoglucose: Float
+  correctora: Float
+  insulina_unit: Float
+  carbono: Float
+  basal_insuline: ComponentTreatmentDailyRegisterComponents
+  medidor: ComponentTreatmentDailyRegisterComponents
+  bomba_infusora: ComponentTreatmentDailyRegisterComponents
+  correctora_insuline: ComponentTreatmentDailyRegisterComponents
+  users_permissions_user: UsersPermissionsUserEntityResponse
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+}
+
+type TreatmentEntity {
+  id: ID
+  attributes: Treatment
+}
+
+type TreatmentEntityResponse {
+  data: TreatmentEntity
+}
+
+type TreatmentEntityResponseCollection {
+  data: [TreatmentEntity!]!
+  meta: ResponseCollectionMeta!
 }
 
 input UploadFileFiltersInput {
@@ -557,6 +643,7 @@ input UsersPermissionsUserFiltersInput {
   confirmed: BooleanFilterInput
   blocked: BooleanFilterInput
   role: UsersPermissionsRoleFiltersInput
+  FirebaseUID: StringFilterInput
   createdAt: DateTimeFilterInput
   updatedAt: DateTimeFilterInput
   and: [UsersPermissionsUserFiltersInput]
@@ -574,6 +661,7 @@ input UsersPermissionsUserInput {
   confirmed: Boolean
   blocked: Boolean
   role: ID
+  FirebaseUID: String
 }
 
 type UsersPermissionsUser {
@@ -583,6 +671,7 @@ type UsersPermissionsUser {
   confirmed: Boolean
   blocked: Boolean
   role: UsersPermissionsRoleEntityResponse
+  FirebaseUID: String!
   createdAt: DateTime
   updatedAt: DateTime
 }
@@ -605,165 +694,17 @@ type UsersPermissionsUserRelationResponseCollection {
   data: [UsersPermissionsUserEntity!]!
 }
 
-input DailyRegisterFiltersInput {
-  id: IDFilterInput
-  glucose: FloatFilterInput
-  insulin: FloatFilterInput
-  carbohydrates: FloatFilterInput
-  comment: StringFilterInput
-  basal: FloatFilterInput
-  colors: StringFilterInput
-  dataS: TimeFilterInput
-  created: DateFilterInput
-  emotional_state: ComponentDailyRegisterDailyRegisterComponentFiltersInput
-  excercise: ComponentDailyRegisterDailyRegisterComponentFiltersInput
-  category: StringFilterInput
-  users_permissions_user: UsersPermissionsUserFiltersInput
-  createdAt: DateTimeFilterInput
-  updatedAt: DateTimeFilterInput
-  publishedAt: DateTimeFilterInput
-  and: [DailyRegisterFiltersInput]
-  or: [DailyRegisterFiltersInput]
-  not: DailyRegisterFiltersInput
-}
-
-input DailyRegisterInput {
-  glucose: Float
-  insulin: Float
-  carbohydrates: Float
-  comment: String
-  photo: ID
-  basal: Float
-  colors: String
-  dataS: Time
-  created: Date
-  emotional_state: ComponentDailyRegisterDailyRegisterComponentInput
-  excercise: ComponentDailyRegisterDailyRegisterComponentInput
-  category: String
-  users_permissions_user: ID
-  publishedAt: DateTime
-}
-
-type DailyRegister {
-  glucose: Float
-  insulin: Float
-  carbohydrates: Float
-  comment: String
-  photo: UploadFileEntityResponse
-  basal: Float
-  colors: String
-  dataS: Time
-  created: Date
-  emotional_state: ComponentDailyRegisterDailyRegisterComponent
-  excercise: ComponentDailyRegisterDailyRegisterComponent
-  category: String
-  users_permissions_user: UsersPermissionsUserEntityResponse
-  createdAt: DateTime
-  updatedAt: DateTime
-  publishedAt: DateTime
-}
-
-type DailyRegisterEntity {
-  id: ID
-  attributes: DailyRegister
-}
-
-type DailyRegisterEntityResponse {
-  data: DailyRegisterEntity
-}
-
-type DailyRegisterEntityResponseCollection {
-  data: [DailyRegisterEntity!]!
-  meta: ResponseCollectionMeta!
-}
-
-input TreatmentFiltersInput {
-  id: IDFilterInput
-  online_id: StringFilterInput
-  bomb: BooleanFilterInput
-  object_glucose: FloatFilterInput
-  correctora_unit: FloatFilterInput
-  hyperglucose: FloatFilterInput
-  hipoglucose: FloatFilterInput
-  correctora: FloatFilterInput
-  insulina_unit: FloatFilterInput
-  carbono: FloatFilterInput
-  basal_insuline: ComponentTreatmentDailyRegisterComponentsFiltersInput
-  medidor: ComponentTreatmentDailyRegisterComponentsFiltersInput
-  bomba_infusora: ComponentTreatmentDailyRegisterComponentsFiltersInput
-  correctora_insuline: ComponentTreatmentDailyRegisterComponentsFiltersInput
-  users_permissions_user: UsersPermissionsUserFiltersInput
-  createdAt: DateTimeFilterInput
-  updatedAt: DateTimeFilterInput
-  publishedAt: DateTimeFilterInput
-  and: [TreatmentFiltersInput]
-  or: [TreatmentFiltersInput]
-  not: TreatmentFiltersInput
-}
-
-input TreatmentInput {
-  online_id: String
-  bomb: Boolean
-  object_glucose: Float
-  correctora_unit: Float
-  hyperglucose: Float
-  hipoglucose: Float
-  correctora: Float
-  insulina_unit: Float
-  carbono: Float
-  basal_insuline: ComponentTreatmentDailyRegisterComponentsInput
-  medidor: ComponentTreatmentDailyRegisterComponentsInput
-  bomba_infusora: ComponentTreatmentDailyRegisterComponentsInput
-  correctora_insuline: ComponentTreatmentDailyRegisterComponentsInput
-  users_permissions_user: ID
-  publishedAt: DateTime
-}
-
-type Treatment {
-  online_id: String
-  bomb: Boolean
-  object_glucose: Float
-  correctora_unit: Float
-  hyperglucose: Float
-  hipoglucose: Float
-  correctora: Float
-  insulina_unit: Float
-  carbono: Float
-  basal_insuline: ComponentTreatmentDailyRegisterComponents
-  medidor: ComponentTreatmentDailyRegisterComponents
-  bomba_infusora: ComponentTreatmentDailyRegisterComponents
-  correctora_insuline: ComponentTreatmentDailyRegisterComponents
-  users_permissions_user: UsersPermissionsUserEntityResponse
-  createdAt: DateTime
-  updatedAt: DateTime
-  publishedAt: DateTime
-}
-
-type TreatmentEntity {
-  id: ID
-  attributes: Treatment
-}
-
-type TreatmentEntityResponse {
-  data: TreatmentEntity
-}
-
-type TreatmentEntityResponseCollection {
-  data: [TreatmentEntity!]!
-  meta: ResponseCollectionMeta!
-}
-
 union GenericMorph =
     ComponentDailyRegisterDailyRegisterComponent
   | ComponentTreatmentDailyRegisterComponents
+  | DailyRegister
+  | Treatment
   | UploadFile
   | UploadFolder
   | I18NLocale
   | UsersPermissionsPermission
   | UsersPermissionsRole
   | UsersPermissionsUser
-  | DailyRegister
-  | Treatment
 
 input FileInfoInput {
   name: String
@@ -828,6 +769,20 @@ input PaginationArg {
 }
 
 type Query {
+  dailyRegister(id: ID): DailyRegisterEntityResponse
+  dailyRegisters(
+    filters: DailyRegisterFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): DailyRegisterEntityResponseCollection
+  treatment(id: ID): TreatmentEntityResponse
+  treatments(
+    filters: TreatmentFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): TreatmentEntityResponseCollection
   uploadFile(id: ID): UploadFileEntityResponse
   uploadFiles(
     filters: UploadFileFiltersInput
@@ -858,33 +813,10 @@ type Query {
     pagination: PaginationArg = {}
     sort: [String] = []
   ): UsersPermissionsUserEntityResponseCollection
-  dailyRegister(id: ID): DailyRegisterEntityResponse
-  dailyRegisters(
-    filters: DailyRegisterFiltersInput
-    pagination: PaginationArg = {}
-    sort: [String] = []
-    publicationState: PublicationState = LIVE
-  ): DailyRegisterEntityResponseCollection
-  treatment(id: ID): TreatmentEntityResponse
-  treatments(
-    filters: TreatmentFiltersInput
-    pagination: PaginationArg = {}
-    sort: [String] = []
-    publicationState: PublicationState = LIVE
-  ): TreatmentEntityResponseCollection
   me: UsersPermissionsMe
 }
 
 type Mutation {
-  createUploadFile(data: UploadFileInput!): UploadFileEntityResponse
-  updateUploadFile(id: ID!, data: UploadFileInput!): UploadFileEntityResponse
-  deleteUploadFile(id: ID!): UploadFileEntityResponse
-  createUploadFolder(data: UploadFolderInput!): UploadFolderEntityResponse
-  updateUploadFolder(
-    id: ID!
-    data: UploadFolderInput!
-  ): UploadFolderEntityResponse
-  deleteUploadFolder(id: ID!): UploadFolderEntityResponse
   createDailyRegister(data: DailyRegisterInput!): DailyRegisterEntityResponse
   updateDailyRegister(
     id: ID!
@@ -894,6 +826,15 @@ type Mutation {
   createTreatment(data: TreatmentInput!): TreatmentEntityResponse
   updateTreatment(id: ID!, data: TreatmentInput!): TreatmentEntityResponse
   deleteTreatment(id: ID!): TreatmentEntityResponse
+  createUploadFile(data: UploadFileInput!): UploadFileEntityResponse
+  updateUploadFile(id: ID!, data: UploadFileInput!): UploadFileEntityResponse
+  deleteUploadFile(id: ID!): UploadFileEntityResponse
+  createUploadFolder(data: UploadFolderInput!): UploadFolderEntityResponse
+  updateUploadFolder(
+    id: ID!
+    data: UploadFolderInput!
+  ): UploadFolderEntityResponse
+  deleteUploadFolder(id: ID!): UploadFolderEntityResponse
   upload(
     refId: ID
     ref: String

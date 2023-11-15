@@ -99,6 +99,7 @@ class DailyDetailActivity : BaseActivity(), DailyDetailView, TimePickerDialog.On
         setListeners()
         presenter.initChooser(this)
         id = intent.extras!!.getInt("id")
+        Log.i("OnDailyDetail", "El id de este register es: $id")
         menuListeners()
 
     }
@@ -115,7 +116,6 @@ class DailyDetailActivity : BaseActivity(), DailyDetailView, TimePickerDialog.On
     override fun showSuccessToast() {
         Toast.makeText(this, getString(R.string.delete_success), Toast.LENGTH_LONG).show()
         finish()
-
     }
 
     override fun showErrorToast(msg:String) {

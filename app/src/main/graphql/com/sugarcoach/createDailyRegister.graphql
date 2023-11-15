@@ -2,6 +2,10 @@ mutation CreateDaily($dailyRegister: DailyRegisterInput!){
     createDailyRegister(data:$dailyRegister){
         data {
             id
+            attributes {
+                updatedAt
+                createdAt
+            }
         }
     }
 }

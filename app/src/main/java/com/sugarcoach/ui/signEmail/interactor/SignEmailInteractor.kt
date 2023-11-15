@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.util.Log
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.google.gson.GsonBuilder
 import com.google.gson.internal.`$Gson$Types`
 import com.sugarcoach.data.api_db.ApiRepository
@@ -47,12 +49,12 @@ class SignEmailInteractor @Inject constructor(private val mContext: Context, pri
         val user = gson.fromJson(json.toString(), User::class.java)
 
         user.typeAccount = "2"
-        Log.i("OnUser", user.toString())
+        Log.i("OnUser", signResponse.uid)
 
         CoroutineScope(Dispatchers.IO).launch {
-            apiRepository.createUser(user.username, user.email).fold({
+            apiRepository.createUser(user.username, user.email, signResponse.uid).fold({
                 Log.i("OnCreateUser", it.toString())
-
+                setUserId(it?.id!!)
             }, {
                 Log.i("OnCreateUser", "Ocurrió un error con la API: $it")
             })
@@ -66,9 +68,7 @@ class SignEmailInteractor @Inject constructor(private val mContext: Context, pri
                 })
         }
 
-
         preferenceHelper.let {
-            it.setCurrentUserId(signResponse.email)
             it.setAccessToken(signResponse.uid)
             it.setUserLoged(true)
         }

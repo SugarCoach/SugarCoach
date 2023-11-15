@@ -103,7 +103,8 @@ class MainActivity : BaseActivity(), MainView {
 
     private fun apiCall(){
         CoroutineScope(Dispatchers.IO).launch {
-            val response = apiRepository.getDailyRegisters("1")
+            //val response = apiRepository.createUser("asdasd", "asdas@gmail.com")
+            //Log.i("OnApiResponse", "$response")
         }
     }
 

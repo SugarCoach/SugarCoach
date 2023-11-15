@@ -1,5 +1,9 @@
 package com.sugarcoach.ui.register.interactor
 
+import android.util.Log
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.sugarcoach.data.api_db.ApiRepository
 import com.sugarcoach.data.database.repository.dailyregister.*
 import com.sugarcoach.data.database.repository.treament.*
@@ -7,10 +11,19 @@ import com.sugarcoach.data.database.repository.user.UserRepo
 import com.sugarcoach.data.network.*
 import com.sugarcoach.data.ui.base.interactor.BaseInteractor
 import com.sugarcoach.di.preferences.PreferenceHelper
+import com.sugarcoach.ui.daily.view.DailyItem
+import com.sugarcoach.util.extensions.toDailyInput
 import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Deferred
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
+import okhttp3.internal.wait
 import java.io.File
+import java.lang.Thread.State
 import javax.inject.Inject
 
 
@@ -28,7 +41,31 @@ class RegisterInteractor @Inject constructor(private val treamentRepo: TreamentR
         ).subscribeOn(
             Schedulers.io())
             .map { it }*/
-        apiRepository
+        val userId = Firebase.auth.currentUser?.uid
+        Log.i("OnInsertDaily", "El uid del usuario actual: $userId")
+
+        var saveResponse: RegisterSaveResponse?
+
+        val apiRes = CoroutineScope(Dispatchers.IO).async {
+            apiRepository.createDailyRegister(dailyRegister.toDailyInput(getCurrentId())).fold({
+                saveResponse = RegisterSaveResponse().apply {
+                    id = it.id
+                    createdAt = it.createdAt.toString()
+                    updatedAt = it.updatedAt.toString()
+                }
+                return@async saveResponse
+            },{
+                Log.i("OnInsertDaily", "Ocurrió un error: ${it}")
+                return@async RegisterSaveResponse().apply{
+                    id = ""
+                    createdAt = ""
+                    updatedAt = ""
+                }
+            })
+        }
+        saveResponse = apiRes.await()
+        return Observable.just(saveResponse)
+        //return Observable.just(RegisterSaveResponse(null, null, null))
     }
 
     override fun saveRegisterPhotoCall(id: String, photo: File): Observable<RegisterSavePhotoResponse> {
@@ -45,6 +82,7 @@ class RegisterInteractor @Inject constructor(private val treamentRepo: TreamentR
 
     override fun insertDaily(dailyRegister: DailyRegister): Observable<Boolean> {
         dailyRepoHelper.insertRegister(dailyRegister)
+
         return Observable.just(true)
     }
 
@@ -67,6 +105,5 @@ class RegisterInteractor @Inject constructor(private val treamentRepo: TreamentR
 
     override fun getTreatment(): Single<TreatmentBasalCorrectora> = treamentRepo.load()
     override fun getTreatmentHorarios(id: Int):Single<TreamentHorarios> = treamentRepo.loadTreatmentByCategory(id)
-
 
 }

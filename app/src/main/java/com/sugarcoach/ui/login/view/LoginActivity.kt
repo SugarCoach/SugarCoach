@@ -29,14 +29,12 @@ class LoginActivity: BaseActivity(), LoginView {
     @Inject
     lateinit var presenter: LoginPresenterImp<LoginView,LoginInteractorImp>
     lateinit var binding: ActivityLoginBinding
-    lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
         feedDatabase()
-        auth = Firebase.auth
         presenter.onAttach(this)
         setOnClickListeners()
     }
@@ -78,8 +76,8 @@ class LoginActivity: BaseActivity(), LoginView {
         }
         binding.loginSignin.setOnClickListener { presenter.emailSign() }
         binding.loginForgot.setOnClickListener { presenter.forgot() }
-        binding.loginScan.setOnClickListener{scanQR()}
-        binding.loginMedicoScan.setOnClickListener{scanQR()}
+        binding.loginScan.setOnClickListener{ scanQR() }
+        binding.loginMedicoScan.setOnClickListener{ scanQR() }
     }
     override fun onEmailSign() {
         val intent = Intent(this, SignEmailActivity::class.java)

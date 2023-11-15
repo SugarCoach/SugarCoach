@@ -11,6 +11,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.facebook.AccessToken
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.jem.liquidswipe.clippathprovider.LiquidSwipeClipPathProvider
@@ -21,6 +22,7 @@ import com.sugarcoach.ui.login.view.LoginActivity
 import com.sugarcoach.ui.main.view.MainActivity
 import com.sugarcoach.ui.onboarding.interactor.OnBoardingInteractorImp
 import com.sugarcoach.ui.onboarding.presenter.OnBoardingPresenterImp
+import com.sugarcoach.ui.signEmail.view.SignEmailActivity
 import javax.inject.Inject
 
 class OnBoardingActivity: BaseActivity(), OnBoardingView {
@@ -31,12 +33,10 @@ class OnBoardingActivity: BaseActivity(), OnBoardingView {
     lateinit var adapter: BoardingFragmentPagerAdapter
     lateinit var binding: ActivityOnboardingBinding
     lateinit var dots: DotsIndicator
-    lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityOnboardingBinding.inflate(layoutInflater)
-        auth = FirebaseAuth.getInstance()
         verifyLogin()
         setContentView(binding.root)
         presenter.onAttach(this)
@@ -62,11 +62,12 @@ class OnBoardingActivity: BaseActivity(), OnBoardingView {
     }
 
     override fun verifyLogin() {
-        if(auth.currentUser != null){
+        Log.i("Verifying login", "Se esta verificando el login")
+        if(Firebase.auth.currentUser != null){
+            Log.i("Verifying login", "El usuario esta loggeado")
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
-            Log.i("Verifying login", "El usuario esta loggeado")
         }else{
             Log.i("Verifying login", "El usuario no esta loggeado")
         }

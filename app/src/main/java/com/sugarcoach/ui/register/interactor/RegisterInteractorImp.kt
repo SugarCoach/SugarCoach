@@ -10,6 +10,7 @@ import com.sugarcoach.data.network.LoginResponse
 import com.sugarcoach.data.network.RegisterSavePhotoResponse
 import com.sugarcoach.data.network.RegisterSaveResponse
 import com.sugarcoach.data.ui.base.interactor.Interactor
+import com.sugarcoach.ui.daily.view.DailyItem
 import io.reactivex.Observable
 import io.reactivex.Single
 import java.io.File
@@ -28,7 +29,6 @@ interface RegisterInteractorImp : Interactor {
     fun getCategories(): Single<List<Category>>
     fun getExercises(): Single<List<Exercises>>
     fun getEmotions(): Single<List<States>>
-
 
 
 }
