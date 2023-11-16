@@ -267,19 +267,24 @@ class RegisterPresenter<V : RegisterView, I : RegisterInteractorImp> @Inject int
                     .compose(schedulerProvider.ioToMainObservableScheduler())
                     .doOnSubscribe { Log.i("onProgess", "Se muestra que carga") }
                     .subscribe({ response ->
+                        if(response.id != ""){
+                            if (photo.isNotEmpty()){
 
-                        if (photo.isNotEmpty()){
+                                var file = File(photo)
+                                dailyRegister.idOnline = response.id
+                                dailyRegister.online = true
+                                uploadPhoto(response.id, file, dailyRegister)
+                            }else{
+                                dailyRegister.idOnline = response.id
+                                dailyRegister.online = true
 
-                            var file = File(photo)
-                            dailyRegister.idOnline = response.id
-                            dailyRegister.online = true
-                            uploadPhoto(response.id, file, dailyRegister)
+                                saveRegister(null, dailyRegister)
+                            }
                         }else{
-                            dailyRegister.idOnline = response.id
-                            dailyRegister.online = true
-
-                            saveRegister(null, dailyRegister)
+                            getView()?.showErrorToast()
+                            getView()?.openMainActivity()
                         }
+
                     }, {
                         getView()?.showErrorToast()
                         saveRegister(null, dailyRegister)

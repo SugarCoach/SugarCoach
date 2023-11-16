@@ -30,5 +30,4 @@ interface RegisterInteractorImp : Interactor {
     fun getExercises(): Single<List<Exercises>>
     fun getEmotions(): Single<List<States>>
 
-
 }

@@ -19,10 +19,14 @@ import com.sugarcoach.data.ui.base.interactor.BaseInteractor
 import com.sugarcoach.di.preferences.PreferenceHelper
 import com.sugarcoach.util.AppConstants
 import com.sugarcoach.util.FileUtils
+import com.sugarcoach.util.extensions.toTreatmentInput
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -53,7 +57,7 @@ class SignEmailInteractor @Inject constructor(private val mContext: Context, pri
 
         CoroutineScope(Dispatchers.IO).launch {
             apiRepository.createUser(user.username, user.email, signResponse.uid).fold({
-                Log.i("OnCreateUser", it.toString())
+                Log.i("OnCreateUser", it.toString()+ ": " + it?.id!!.toString())
                 setUserId(it?.id!!)
             }, {
                 Log.i("OnCreateUser", "Ocurrió un error con la API: $it")
@@ -98,18 +102,34 @@ class SignEmailInteractor @Inject constructor(private val mContext: Context, pri
             it.setUserLoged(true)
         }
     }
-    override fun treament(treament: Treament): Observable<Boolean> {
+    override suspend fun treament(treament: Treament): Observable<Boolean> {
         val builder = GsonBuilder().excludeFieldsWithoutExposeAnnotation()
         val gson = builder.create()
-        return treamentRepoHelper.isTreamentRepoEmpty().subscribeOn(Schedulers.io())
-            .concatMap { isEmpty ->
-                if (isEmpty) {
-                    treamentRepoHelper.insertTreament(treament)
-                } else
-                    Observable.just(false)
-            }
-    }
+        val apiRes = CoroutineScope(Dispatchers.IO).async {
+            apiRepository.createTreatment(treament.toTreatmentInput()).fold({
+                treament.onlineId = it.id
+                Log.i("OnApiTreatment", "La response fue: $it")
+                return@async true
+            }, {
+                Log.i("OnApiTreatment", "Ocurrió un error: $it")
+                return@async cancel("Ocurrió un error $it")
+            })
+        }
 
+        apiRes.await()
+        return if (!apiRes.isCancelled){
+            treamentRepoHelper.isTreamentRepoEmpty().subscribeOn(Schedulers.io())
+                .concatMap { isEmpty ->
+                    if (isEmpty) {
+                        treamentRepoHelper.insertTreament(treament)
+                    } else
+                        Observable.just(false)
+                }
+        }else{
+            return Observable.just(false)
+        }
+
+    }
     override fun category(): Observable<Boolean> {
         val builder = GsonBuilder().excludeFieldsWithoutExposeAnnotation()
         val gson = builder.create()

@@ -26,6 +26,9 @@ import com.sugarcoach.util.AppConstants
 import com.sugarcoach.util.SchedulerProvider
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.joda.time.DateTime
 import java.text.SimpleDateFormat
 import java.util.*
@@ -211,15 +214,17 @@ class SignEmailPresenter <V : SignEmailView, I : SignEmailInteractorImp> @Inject
     }
 
     private fun createdTreament() {
-        interactor?.let {
-            var treament = Treament(1, false, 120f,0f, 60f, 180f, null, null,null,null, 0f, 0f, 0f, DateTime.now().toDate())
-            compositeDisposable.add(it.treament(treament)
-                .compose(schedulerProvider.ioToMainObservableScheduler())
-                .subscribe {
-                    if (it) {
-                        createdCategories()
-                    }
-                })
+        CoroutineScope(Dispatchers.IO).launch {
+            interactor?.let {
+                var treament = Treament(1, false, 120f,0f, 60f, 180f, null, null,null,null, 0f, 0f, 0f, DateTime.now().toDate(), "")
+                compositeDisposable.add(it.treament(treament)
+                    .compose(schedulerProvider.ioToMainObservableScheduler())
+                    .subscribe {
+                        if (it) {
+                            createdCategories()
+                        }
+                    })
+            }
         }
     }
 

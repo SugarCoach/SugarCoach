@@ -99,7 +99,6 @@ class DailyDetailActivity : BaseActivity(), DailyDetailView, TimePickerDialog.On
         setListeners()
         presenter.initChooser(this)
         id = intent.extras!!.getInt("id")
-        Log.i("OnDailyDetail", "El id de este register es: $id")
         menuListeners()
 
     }

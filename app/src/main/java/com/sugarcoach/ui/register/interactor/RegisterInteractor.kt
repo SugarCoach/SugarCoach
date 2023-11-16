@@ -48,10 +48,12 @@ class RegisterInteractor @Inject constructor(private val treamentRepo: TreamentR
 
         val apiRes = CoroutineScope(Dispatchers.IO).async {
             apiRepository.createDailyRegister(dailyRegister.toDailyInput(getCurrentId())).fold({
+                response ->
+                Log.i("OnInsertDaily", "El id del register es: ${response.id}")
                 saveResponse = RegisterSaveResponse().apply {
-                    id = it.id
-                    createdAt = it.createdAt.toString()
-                    updatedAt = it.updatedAt.toString()
+                    id = response.id
+                    createdAt = response.createdAt.toString()
+                    updatedAt = response.updatedAt.toString()
                 }
                 return@async saveResponse
             },{

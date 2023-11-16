@@ -10,6 +10,7 @@ import javax.inject.Inject
 
 class DailyRegisterRepository @Inject constructor(private val dailyRegisterDao: DailyRegisterDao): DailyRegisterRepo {
 
+
     override fun insertRegisters(dailyRegister: List<DailyRegister>): Observable<Boolean> {
         val dispoded = Observable.just(dailyRegisterDao)
             .subscribeOn(Schedulers.io())

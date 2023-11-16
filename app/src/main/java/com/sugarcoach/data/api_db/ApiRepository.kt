@@ -4,6 +4,7 @@ import android.util.Log
 import com.apollographql.apollo3.ApolloClient
 import com.apollographql.apollo3.api.Optional
 import com.sugarcoach.CreateDailyMutation
+import com.sugarcoach.CreateTreatmentMutation
 import com.sugarcoach.CreateUserMutation
 import com.sugarcoach.DailyRegisterQuery
 import com.sugarcoach.data.api_db.Treatment.TreatmentResponse
@@ -11,8 +12,10 @@ import com.sugarcoach.TreatmentQuery
 import com.sugarcoach.UpdateDailyRegisterMutation
 import com.sugarcoach.data.api_db.DailyRegister.DailyRegisterResponse
 import com.sugarcoach.data.api_db.DailyRegister.domain.CreateDailyResponse
+import com.sugarcoach.data.api_db.Treatment.domain.CreateTreatmentResponse
 import com.sugarcoach.data.api_db.user.UserResponse
 import com.sugarcoach.type.DailyRegisterInput
+import com.sugarcoach.type.TreatmentInput
 import com.sugarcoach.util.extensions.toDailyRegister
 import com.sugarcoach.util.extensions.toTreatment
 import com.sugarcoach.util.extensions.toUser
@@ -90,10 +93,11 @@ class ApiRepository @Inject constructor(
                 ?.createDailyRegister
                 ?.data
 
-            Log.i("OnResponse", response!!.id!!)
-            success(CreateDailyResponse(response.id!!, response.attributes!!.createdAt!!, response.attributes.updatedAt))
+            Log.i("OnResponse", response.toString())
+            //success(CreateDailyResponse("55", 0, 0))
+            success(CreateDailyResponse(response?.id!!, response.attributes!!.createdAt!!, response.attributes.updatedAt))
         }catch (e: Exception){
-            Log.i("OnDailyError", "Ocurrió un error: ${e}")
+            Log.i("OnDailyError", "Ocurrió un error: ${e.message}")
             failure(e)
         }
     }
@@ -107,10 +111,44 @@ class ApiRepository @Inject constructor(
                 ?.updateDailyRegister
                 ?.data
                 ?.id
+
             success(response)
         }catch(e: Exception){
             failure(e)
         }
+    }
+
+    override suspend fun createTreatment(treatment: TreatmentInput): Result<CreateTreatmentResponse> {
+        return try{
+            val response = apolloClient
+                .mutation(CreateTreatmentMutation(treatment))
+                .execute()
+                .data
+                ?.createTreatment
+                ?.data
+
+            success(CreateTreatmentResponse(response?.id!!, response.attributes?.createdAt, response.attributes?.updatedAt))
+        }catch (e: Exception){
+            failure(e)
+        }
+    }
+
+    override suspend fun updateTreatment(id: String, treatment: TreatmentInput): Result<CreateTreatmentResponse> {
+        /*return try{
+            val response = apolloClient
+                .mutation(UpdateTr(id, treatment))
+                .execute()
+                .data
+                ?.updateDailyRegister
+                ?.data
+                ?.id
+
+            success(CreateTreatmentResponse(response?.id, response?.attributes?.createdAt,
+                response?.attributes?.createdAt))
+        }catch(e: Exception){
+            failure(e)
+        }*/
+        return success(CreateTreatmentResponse("","",""))
     }
 }
 

@@ -1,0 +1,11 @@
+mutation updateTreatment($id: ID!, $treatment: TreatmentInput!){
+    updateTreatment(id: $id, data: $treatment){
+        data {
+            id
+            attributes {
+                createdAt
+                updatedAt
+            }
+        }
+    }
+}

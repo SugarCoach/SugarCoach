@@ -36,5 +36,6 @@ data class Treament (
     @ColumnInfo(name = "correctora") var correctora:Float, //Cada cuanto g/ml de glusemia por encima del objetivo hay que corregir
     @ColumnInfo(name = "insulina_unit") var insulina_unit:Float, //Unidad de correción por carbs
     @ColumnInfo(name = "carbono") var carbono:Float, //Cada cuantos g de carbs hay que corregir
-    @ColumnInfo(name = "created") var created: Date
+    @ColumnInfo(name = "created") var created: Date,
+    @ColumnInfo(name = "onlineId") var onlineId: String?
 )

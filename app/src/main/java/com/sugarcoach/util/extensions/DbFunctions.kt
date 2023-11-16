@@ -1,5 +1,6 @@
 package com.sugarcoach.util.extensions
 
+import android.util.Log
 import com.apollographql.apollo3.api.Optional
 import com.apollographql.apollo3.api.create
 import com.sugarcoach.CreateUserMutation
@@ -11,8 +12,11 @@ import com.sugarcoach.data.api_db.Treatment.TreatmentResponse
 import com.sugarcoach.data.api_db.user.UserResponse
 import com.sugarcoach.data.database.repository.dailyregister.DailyRegister
 import com.sugarcoach.data.database.repository.dailyregister.States
+import com.sugarcoach.data.database.repository.treament.Treament
 import com.sugarcoach.type.ComponentDailyRegisterDailyRegisterComponentInput
 import com.sugarcoach.type.DailyRegisterInput
+import com.sugarcoach.type.Treatment
+import com.sugarcoach.type.TreatmentInput
 
 fun CreateUserMutation.Attributes?.toUser(id: String): UserResponse {
     return UserResponse(
@@ -67,7 +71,7 @@ fun DailyComponentTrans(name: String?, icon: String?): DailyRegisterComponent{
     )
 }
 fun DailyRegister.toDailyInput(id: String?): DailyRegisterInput{
-
+    Log.i("OnDBFunctions","El id del usuario es: $id")
     return DailyRegisterInput(
         glucose = Optional.present(glucose?.toDouble()),
         insulin = Optional.present(insulin?.toDouble()),
@@ -84,4 +88,8 @@ fun States.toDailyEmotions(): ComponentDailyRegisterDailyRegisterComponentInput{
         name = Optional.present(state_name),
         icon = Optional.present(state_icono)
     )
+}
+
+fun Treament.toTreatmentInput(): TreatmentInput{
+    return TreatmentInput()
 }

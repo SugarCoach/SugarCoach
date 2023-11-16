@@ -46,7 +46,9 @@ class TreatmentPresenter<V : TreatmentView, I : TreatmentInteractorImp> @Inject 
         interactor?.let {
             compositeDisposable.add(it.editTreatment(treatment!!)
                 .compose(schedulerProvider.ioToMainObservableScheduler())
-                .subscribe({ getView()?.showDataSave()
+                .subscribe({
+                    getView()?.showDataSave()
+
                 }, { throwable ->
                     showException(throwable)
                 })
