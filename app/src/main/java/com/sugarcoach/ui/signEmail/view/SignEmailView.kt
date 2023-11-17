@@ -9,4 +9,5 @@ interface SignEmailView : BaseView {
     fun onSign()
     fun showValidationMessage(errorCode: Int)
     fun startMain()
+
 }

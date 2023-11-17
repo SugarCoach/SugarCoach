@@ -14,4 +14,5 @@ data class TreatmentResponse(
     var basal_insuline: TreatmentQuery.Basal_insuline?,
     var medidor: TreatmentQuery.Medidor?,
     var bomba_infusora: TreatmentQuery.Bomba_infusora?,
-    var correctora_insuline: TreatmentQuery.Correctora_insuline?)
+    var correctora_insuline: TreatmentQuery.Correctora_insuline?,
+    var id:  String)

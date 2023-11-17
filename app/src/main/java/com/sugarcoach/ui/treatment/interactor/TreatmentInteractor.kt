@@ -1,5 +1,6 @@
 package com.sugarcoach.ui.treatment.interactor
 
+import android.util.Log
 import com.sugarcoach.data.api_db.ApiRepository
 import com.sugarcoach.data.database.repository.dailyregister.DailyRegisterRepo
 import com.sugarcoach.data.database.repository.treament.*
@@ -13,6 +14,7 @@ import io.reactivex.Single
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
@@ -23,15 +25,34 @@ class TreatmentInteractor @Inject constructor(private val treamentRepoHelper: Tr
     TreatmentInteractorImp {
     @Inject
     lateinit var apiRepository: ApiRepository
-    override fun editTreatment(treament: Treament): Observable<Boolean> {
-        return treamentRepoHelper.updateTreatment(treament)
+    override suspend fun editTreatment(treatment: Treament): Observable<Boolean> {
+        val response = editCloudTreatment(treatment)
+        Log.i("OnEditTreatment", "La response fue: $response")
+        if(response){
+            return treamentRepoHelper.updateTreatment(treatment)
+        }else{
+            return Observable.just(false)
+        }
+
     }
 
-    override fun editCloudTreatment(id: String, treatment: Treament): Result<String> {
+    override suspend fun editCloudTreatment(treatment: Treament): Boolean {
         val response = CoroutineScope(Dispatchers.IO).async {
-            apiRepository.updateTreatment(id, treatment.toTreatmentInput())
+            var response: Boolean = false
+            apiRepository.getUserTreatment(getCurrentId()!!).fold({
+                apiRepository.updateTreatment(it!!.id, treatment.toTreatmentInput(getCurrentId()!!)).fold({
+                    Log.i("OnEditCloud", "Se actualizo correctamente")
+                    response = true
+                },{
+                    Log.i("OnEditCloud", "Ocurrió un error: ${it}")
+                })
+            },{
+                Log.i("OnEditCloud", "Ocurrió un error ${it}")
+            })
+            return@async response
         }
-        return Result.success(response.toString())
+        return response.await()
+
     }
 
     override fun editBasalHora(hora: TreamentBasalHora): Observable<Boolean> {

@@ -7,6 +7,7 @@ query Treatment($userId: ID){
         }
     }){
         data{
+            id
             attributes{
                 bomb
                 insulina_unit

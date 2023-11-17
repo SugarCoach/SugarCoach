@@ -168,7 +168,7 @@ class LoginPresenter  <V : LoginView, I : LoginInteractorImp> @Inject internal c
 
     private fun createdTreament() {
         interactor?.let {
-            var treament = Treament(1, false, 120f,0f, 60f, 180f, null,null, null, null,0f, 0f, 0f, DateTime.now().toDate(), "")
+            var treament = Treament(1, false, 120f,0f, 60f, 180f, null,null, null, null,0f, 0f, 0f, DateTime.now().toDate())
             compositeDisposable.add(it.treament(treament)
                 .compose(schedulerProvider.ioToMainObservableScheduler())
                 .subscribe {

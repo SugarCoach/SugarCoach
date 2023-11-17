@@ -302,7 +302,6 @@ type DailyRegisterEntityResponseCollection {
 
 input TreatmentFiltersInput {
   id: IDFilterInput
-  online_id: StringFilterInput
   bomb: BooleanFilterInput
   object_glucose: FloatFilterInput
   correctora_unit: FloatFilterInput
@@ -325,7 +324,6 @@ input TreatmentFiltersInput {
 }
 
 input TreatmentInput {
-  online_id: String
   bomb: Boolean
   object_glucose: Float
   correctora_unit: Float
@@ -343,7 +341,6 @@ input TreatmentInput {
 }
 
 type Treatment {
-  online_id: String
   bomb: Boolean
   object_glucose: Float
   correctora_unit: Float
@@ -644,6 +641,7 @@ input UsersPermissionsUserFiltersInput {
   blocked: BooleanFilterInput
   role: UsersPermissionsRoleFiltersInput
   FirebaseUID: StringFilterInput
+  online_id: StringFilterInput
   createdAt: DateTimeFilterInput
   updatedAt: DateTimeFilterInput
   and: [UsersPermissionsUserFiltersInput]
@@ -662,6 +660,7 @@ input UsersPermissionsUserInput {
   blocked: Boolean
   role: ID
   FirebaseUID: String
+  online_id: String
 }
 
 type UsersPermissionsUser {
@@ -672,6 +671,7 @@ type UsersPermissionsUser {
   blocked: Boolean
   role: UsersPermissionsRoleEntityResponse
   FirebaseUID: String!
+  online_id: String
   createdAt: DateTime
   updatedAt: DateTime
 }

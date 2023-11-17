@@ -24,6 +24,9 @@ import com.sugarcoach.ui.treatment.view.TreatmentView
 import com.sugarcoach.util.SchedulerProvider
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.joda.time.LocalDateTime
 import java.io.ByteArrayOutputStream
 import java.lang.Exception
@@ -43,16 +46,23 @@ class TreatmentPresenter<V : TreatmentView, I : TreatmentInteractorImp> @Inject 
         treatment?.hyperglucose = hyper
     }
     override fun updateAll() {
+        Log.i("OnUpdateAll", "Se actualizan las bases de datos")
         interactor?.let {
-            compositeDisposable.add(it.editTreatment(treatment!!)
-                .compose(schedulerProvider.ioToMainObservableScheduler())
-                .subscribe({
-                    getView()?.showDataSave()
+            CoroutineScope(Dispatchers.IO).launch{
+                compositeDisposable.add(it.editTreatment(treatment)
+                    .compose(schedulerProvider.ioToMainObservableScheduler())
+                    .subscribe({
+                        if(it){
+                            getView()?.showDataSave()
+                        }else{
+                            getView()?.showErrorToast()
+                        }
 
-                }, { throwable ->
-                    showException(throwable)
-                })
-            )
+                    }, { throwable ->
+                        showException(throwable)
+                    })
+                )
+            }
         }
     }
     override fun saveCorrectoraGlu(correctora: Float) {

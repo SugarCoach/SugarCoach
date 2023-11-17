@@ -34,7 +34,6 @@ class LoginActivity: BaseActivity(), LoginView {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        feedDatabase()
         presenter.onAttach(this)
         setOnClickListeners()
     }

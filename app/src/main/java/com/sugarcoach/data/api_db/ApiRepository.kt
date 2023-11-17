@@ -10,6 +10,7 @@ import com.sugarcoach.DailyRegisterQuery
 import com.sugarcoach.data.api_db.Treatment.TreatmentResponse
 import com.sugarcoach.TreatmentQuery
 import com.sugarcoach.UpdateDailyRegisterMutation
+import com.sugarcoach.UpdateTreatmentMutation
 import com.sugarcoach.data.api_db.DailyRegister.DailyRegisterResponse
 import com.sugarcoach.data.api_db.DailyRegister.domain.CreateDailyResponse
 import com.sugarcoach.data.api_db.Treatment.domain.CreateTreatmentResponse
@@ -26,7 +27,7 @@ import kotlin.Result.Companion.success
 class ApiRepository @Inject constructor(
     private val apolloClient: ApolloClient
 ): ApiClient {
-    override suspend fun getUserTreatment(id: String): TreatmentResponse? {
+    override suspend fun getUserTreatment(id: String): Result<TreatmentResponse?> {
         val optionalId = Optional.present(id)
         Log.i("onRepository", "Se esta haciendo la request")
         return try {
@@ -36,11 +37,11 @@ class ApiRepository @Inject constructor(
                 .data
                 ?.treatments
                 ?.data
-                ?.map { it.attributes.toTreatment() }
-            response?.get(0)
+
+            success(response?.map { it.attributes.toTreatment(response.get(0).id!!) }?.get(0))
         }catch (e: Exception){
             Log.i("OnTreatmentError", "Ocurrió un error: $e")
-            null
+            failure(e)
         }
 
 
@@ -49,10 +50,10 @@ class ApiRepository @Inject constructor(
     override suspend fun createUser(username: String, email: String, FirebaseId: String): Result<UserResponse?> {
         val optionalUser = Optional.present(username)
         val optionalEmail = Optional.present(email)
-        val optionalId = Optional.present(FirebaseId)
+        val optionalFirebaseId = Optional.present(FirebaseId)
         return try {
             val response = apolloClient
-                .mutation(CreateUserMutation(username = optionalUser, email = optionalEmail, optionalId))
+                .mutation(CreateUserMutation(username = optionalUser, email = optionalEmail, optionalFirebaseId))
                 .execute()
                 .data
                 ?.createUsersPermissionsUser
@@ -127,28 +128,26 @@ class ApiRepository @Inject constructor(
                 ?.createTreatment
                 ?.data
 
-            success(CreateTreatmentResponse(response?.id!!, response.attributes?.createdAt, response.attributes?.updatedAt))
+            success(CreateTreatmentResponse(response?.attributes?.createdAt, response?.attributes?.updatedAt))
         }catch (e: Exception){
             failure(e)
         }
     }
 
     override suspend fun updateTreatment(id: String, treatment: TreatmentInput): Result<CreateTreatmentResponse> {
-        /*return try{
+        return try{
             val response = apolloClient
-                .mutation(UpdateTr(id, treatment))
+                .mutation(UpdateTreatmentMutation(id, treatment))
                 .execute()
                 .data
-                ?.updateDailyRegister
+                ?.updateTreatment
                 ?.data
-                ?.id
 
-            success(CreateTreatmentResponse(response?.id, response?.attributes?.createdAt,
+            success(CreateTreatmentResponse(response?.attributes?.createdAt,
                 response?.attributes?.createdAt))
         }catch(e: Exception){
             failure(e)
-        }*/
-        return success(CreateTreatmentResponse("","",""))
+        }
     }
 }
 

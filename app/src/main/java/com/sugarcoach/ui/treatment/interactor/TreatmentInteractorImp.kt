@@ -21,9 +21,9 @@ interface TreatmentInteractorImp : Interactor {
     fun getBasalHoras(): Single<List<TreamentBasalHora>>
     fun getCorrectora(): Single<List<CorrectoraInsuline>>
     fun getTreatment(): Single<TreatmentBasalCorrectora>
-    fun editTreatment(treament: Treament): Observable<Boolean>
+    suspend fun editTreatment(treament: Treament): Observable<Boolean>
     fun editBasalHora(hora: TreamentBasalHora): Observable<Boolean>
     fun editBasalCategory(horarios: TreamentHorarios): Observable<Boolean>
     fun editCorrectoraCategory(horarios: TreamentCorrectoraHorarios): Observable<Boolean>
-    fun editCloudTreatment(id: String, treatment: Treament): Result<String>
+    suspend fun editCloudTreatment(treatment: Treament): Boolean
 }

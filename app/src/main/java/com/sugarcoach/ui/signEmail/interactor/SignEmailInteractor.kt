@@ -40,6 +40,7 @@ class SignEmailInteractor @Inject constructor(private val mContext: Context, pri
 
     @Inject
     lateinit var apiRepository: ApiRepository
+    lateinit var user: User
     @SuppressLint("CheckResult")
     override fun updateUser(signResponse: FirebaseUser?) {
         val builder = GsonBuilder().excludeFieldsWithoutExposeAnnotation()
@@ -50,7 +51,7 @@ class SignEmailInteractor @Inject constructor(private val mContext: Context, pri
 
         val json = gson.toJson(parcialUser, ParcialUser::class.java)
         Log.i("OnJson", json.toString())
-        val user = gson.fromJson(json.toString(), User::class.java)
+        user = gson.fromJson(json.toString(), User::class.java)
 
         user.typeAccount = "2"
         Log.i("OnUser", signResponse.uid)
@@ -58,7 +59,7 @@ class SignEmailInteractor @Inject constructor(private val mContext: Context, pri
         CoroutineScope(Dispatchers.IO).launch {
             apiRepository.createUser(user.username, user.email, signResponse.uid).fold({
                 Log.i("OnCreateUser", it.toString()+ ": " + it?.id!!.toString())
-                setUserId(it?.id!!)
+                setUserId(it.id)
             }, {
                 Log.i("OnCreateUser", "Ocurrió un error con la API: $it")
             })
@@ -105,9 +106,10 @@ class SignEmailInteractor @Inject constructor(private val mContext: Context, pri
     override suspend fun treament(treament: Treament): Observable<Boolean> {
         val builder = GsonBuilder().excludeFieldsWithoutExposeAnnotation()
         val gson = builder.create()
+        Log.i("OnApiTreatment", "El treament a subir es: $treament")
         val apiRes = CoroutineScope(Dispatchers.IO).async {
-            apiRepository.createTreatment(treament.toTreatmentInput()).fold({
-                treament.onlineId = it.id
+            apiRepository.createTreatment(treament.toTreatmentInput(getCurrentId()!!)).fold({
+
                 Log.i("OnApiTreatment", "La response fue: $it")
                 return@async true
             }, {

@@ -69,6 +69,7 @@ class TreamentRepository @Inject constructor(private val treamentDao: TreamentDa
 
     override fun insertTreament(treament: Treament): Observable<Boolean> {
         treamentDao.insert(treament)
+        Log.i("OnInsertTreatment", "Se esta insertando: $treament")
         return Observable.just(true)
     }
 

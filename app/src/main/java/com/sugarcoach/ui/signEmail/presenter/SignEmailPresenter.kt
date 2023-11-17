@@ -203,6 +203,7 @@ class SignEmailPresenter <V : SignEmailView, I : SignEmailInteractorImp> @Inject
     }
 
     private fun feedInDatabase() = interactor?.let {
+        Log.i("OnFeedDb", "Se esta llenando la Db")
         compositeDisposable.add(it.getCorrectora()
             .flatMap { interactor?.getBasal() }
             .flatMap { interactor?.getMedidor() }
@@ -216,7 +217,7 @@ class SignEmailPresenter <V : SignEmailView, I : SignEmailInteractorImp> @Inject
     private fun createdTreament() {
         CoroutineScope(Dispatchers.IO).launch {
             interactor?.let {
-                var treament = Treament(1, false, 120f,0f, 60f, 180f, null, null,null,null, 0f, 0f, 0f, DateTime.now().toDate(), "")
+                var treament = Treament(1, false, 120f,0f, 60f, 180f, null, null,null,null, 0f, 0f, 0f, DateTime.now().toDate())
                 compositeDisposable.add(it.treament(treament)
                     .compose(schedulerProvider.ioToMainObservableScheduler())
                     .subscribe {
@@ -286,6 +287,7 @@ class SignEmailPresenter <V : SignEmailView, I : SignEmailInteractorImp> @Inject
     }
 
     private fun updateUser(signResponse: FirebaseUser?) {
+        feedInDatabase()
         interactor?.updateUser(signResponse)
     }
 

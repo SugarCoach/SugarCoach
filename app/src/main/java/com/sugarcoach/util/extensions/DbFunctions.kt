@@ -26,7 +26,7 @@ fun CreateUserMutation.Attributes?.toUser(id: String): UserResponse {
     )
 }
 
-fun TreatmentQuery.Attributes?.toTreatment(): TreatmentResponse {
+fun TreatmentQuery.Attributes?.toTreatment(id: String): TreatmentResponse {
     return TreatmentResponse(
         bomb = this?.bomb,
         insuline_unit = this?.insulina_unit?.toFloat(),
@@ -39,7 +39,8 @@ fun TreatmentQuery.Attributes?.toTreatment(): TreatmentResponse {
         basal_insuline = basal_insuline,
         medidor = this.medidor,
         bomba_infusora = this.bomba_infusora,
-        correctora_insuline = this.correctora_insuline
+        correctora_insuline = this.correctora_insuline,
+        id = id
     )
 }
 
@@ -90,6 +91,13 @@ fun States.toDailyEmotions(): ComponentDailyRegisterDailyRegisterComponentInput{
     )
 }
 
-fun Treament.toTreatmentInput(): TreatmentInput{
-    return TreatmentInput()
+fun Treament.toTreatmentInput(id: String): TreatmentInput{
+    return TreatmentInput(
+        bomb = Optional.present(bomb),
+        object_glucose = Optional.present(object_glucose.toDouble()),
+        correctora_unit = Optional.present(correctora_unit.toDouble()),
+        hyperglucose = Optional.present(hyperglucose.toDouble()),
+        hipoglucose = Optional.present(hipoglucose.toDouble()),
+        users_permissions_user = Optional.present(id)
+    )
 }
