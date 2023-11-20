@@ -119,7 +119,7 @@ class ApiRepository @Inject constructor(
         }
     }
 
-    override suspend fun createTreatment(treatment: TreatmentInput): Result<CreateTreatmentResponse> {
+    override suspend fun createTreatment(treatment: TreatmentInput): Result<Boolean> {
         return try{
             val response = apolloClient
                 .mutation(CreateTreatmentMutation(treatment))
@@ -127,8 +127,8 @@ class ApiRepository @Inject constructor(
                 .data
                 ?.createTreatment
                 ?.data
-
-            success(CreateTreatmentResponse(response?.attributes?.createdAt, response?.attributes?.updatedAt))
+            Log.i("OnApiTreatment", "${CreateTreatmentResponse(response?.attributes?.createdAt, response?.attributes?.updatedAt)}")
+            success(true)
         }catch (e: Exception){
             failure(e)
         }

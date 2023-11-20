@@ -15,7 +15,8 @@ interface SignEmailInteractorImp : Interactor {
     fun updateUser(signResponse: FirebaseUser?)
     fun saveRegisters(registersResponse: List<DailyRegister>): Observable<Boolean>
     fun updateUserSocial(loginResponse: LoginResponse)
-    suspend fun treament(treament: Treament): Observable<Boolean>
+    fun treament(treament: Treament): Observable<Boolean>
+    suspend fun insertTreatment(treament: Treament): Result<Boolean>
     fun category(): Observable<Boolean>
     fun states(): Observable<Boolean>
     fun exercises(): Observable<Boolean>

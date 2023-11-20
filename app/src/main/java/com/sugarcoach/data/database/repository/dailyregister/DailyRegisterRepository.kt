@@ -20,6 +20,7 @@ class DailyRegisterRepository @Inject constructor(private val dailyRegisterDao: 
     }
 
     override fun insertCategories(category: List<Category>): Observable<Boolean> {
+        Log.i("OnInsertCategories", "Se estan insertando: $category")
         val dispoded = Observable.just(dailyRegisterDao)
             .subscribeOn(Schedulers.io())
             .subscribe { dailyRegisterDao ->   dailyRegisterDao.insertAllCategories(category)}

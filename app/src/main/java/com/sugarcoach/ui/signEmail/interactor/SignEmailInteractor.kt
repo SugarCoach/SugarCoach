@@ -103,36 +103,31 @@ class SignEmailInteractor @Inject constructor(private val mContext: Context, pri
             it.setUserLoged(true)
         }
     }
-    override suspend fun treament(treament: Treament): Observable<Boolean> {
+    override fun treament(treament: Treament): Observable<Boolean> {
         val builder = GsonBuilder().excludeFieldsWithoutExposeAnnotation()
         val gson = builder.create()
-        Log.i("OnApiTreatment", "El treament a subir es: $treament")
-        val apiRes = CoroutineScope(Dispatchers.IO).async {
-            apiRepository.createTreatment(treament.toTreatmentInput(getCurrentId()!!)).fold({
 
-                Log.i("OnApiTreatment", "La response fue: $it")
-                return@async true
-            }, {
-                Log.i("OnApiTreatment", "Ocurrió un error: $it")
-                return@async cancel("Ocurrió un error $it")
-            })
-        }
-
-        apiRes.await()
-        return if (!apiRes.isCancelled){
-            treamentRepoHelper.isTreamentRepoEmpty().subscribeOn(Schedulers.io())
-                .concatMap { isEmpty ->
-                    if (isEmpty) {
-                        treamentRepoHelper.insertTreament(treament)
-                    } else
-                        Observable.just(false)
+        return treamentRepoHelper.isTreamentRepoEmpty().subscribeOn(Schedulers.io())
+            .concatMap { isEmpty ->
+                if (isEmpty) {
+                    Log.i("OnApiTreatment", "Se inserta: $treament")
+                    treamentRepoHelper.insertTreament(treament)
+                } else{
+                    Log.i("OnApiTreatment", "El result fue empty")
+                    Observable.just(false)
                 }
-        }else{
-            return Observable.just(false)
-        }
+            }
 
     }
+
+    override suspend fun insertTreatment(treament: Treament): Result<Boolean> {
+        Log.i("OnApiTreatment", "El treament a subir es: $treament")
+        return apiRepository.createTreatment(treament.toTreatmentInput(getCurrentId()!!))
+    }
+
+
     override fun category(): Observable<Boolean> {
+        Log.i("OnSingInteractor", "Se estan cargando las categories")
         val builder = GsonBuilder().excludeFieldsWithoutExposeAnnotation()
         val gson = builder.create()
         return dailyRepoHelper.isCategoriesRepoEmpty().subscribeOn(Schedulers.io())

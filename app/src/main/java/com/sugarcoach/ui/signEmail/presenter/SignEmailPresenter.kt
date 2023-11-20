@@ -28,6 +28,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import org.joda.time.DateTime
 import java.text.SimpleDateFormat
@@ -215,21 +216,21 @@ class SignEmailPresenter <V : SignEmailView, I : SignEmailInteractorImp> @Inject
     }
 
     private fun createdTreament() {
-        CoroutineScope(Dispatchers.IO).launch {
-            interactor?.let {
-                var treament = Treament(1, false, 120f,0f, 60f, 180f, null, null,null,null, 0f, 0f, 0f, DateTime.now().toDate())
-                compositeDisposable.add(it.treament(treament)
-                    .compose(schedulerProvider.ioToMainObservableScheduler())
-                    .subscribe {
-                        if (it) {
-                            createdCategories()
-                        }
-                    })
-            }
-        }
+
+            var treament = Treament(1, false, 120f,0f, 60f, 180f, null, null,null,null, 0f, 0f, 0f, DateTime.now().toDate())
+            compositeDisposable.add(interactor!!.treament(treament)
+                .compose(schedulerProvider.ioToMainObservableScheduler())
+                .subscribe {
+                    Log.i("OnCreatedTreatment", "El result fue: $it")
+                    if (it) {
+                        CoroutineScope(Dispatchers.IO).launch { interactor!!.insertTreatment(treament) }
+                        createdCategories()
+                    }
+                })
     }
 
     private fun createdCategories() {
+        Log.i("OnSignPresenter", "Se estan creando las categories")
         interactor?.let {
             compositeDisposable.add(it.category()
                 .compose(schedulerProvider.ioToMainObservableScheduler())
