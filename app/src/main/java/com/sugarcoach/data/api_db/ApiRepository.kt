@@ -128,7 +128,11 @@ class ApiRepository @Inject constructor(
                 ?.createTreatment
                 ?.data
             Log.i("OnApiTreatment", "${CreateTreatmentResponse(response?.attributes?.createdAt, response?.attributes?.updatedAt)}")
-            success(true)
+            if (!response?.id.isNullOrEmpty()){
+                success(true)
+            }else{
+                success(false)
+            }
         }catch (e: Exception){
             failure(e)
         }

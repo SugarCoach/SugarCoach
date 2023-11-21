@@ -29,6 +29,7 @@ import io.reactivex.disposables.CompositeDisposable
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import org.joda.time.DateTime
 import java.text.SimpleDateFormat
@@ -86,7 +87,8 @@ class SignEmailPresenter <V : SignEmailView, I : SignEmailInteractorImp> @Inject
                     Log.d("OnPresenter", "signInWithCredential:success")
                     user = auth.currentUser!!
                     updateUser(user)
-                    getView()?.onSign()
+
+                    //getView()?.onSign()
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.i("OnPresenter", "signInWithCredential:failure", task.exception)
@@ -216,25 +218,34 @@ class SignEmailPresenter <V : SignEmailView, I : SignEmailInteractorImp> @Inject
     }
 
     private fun createdTreament() {
-
-            var treament = Treament(1, false, 120f,0f, 60f, 180f, null, null,null,null, 0f, 0f, 0f, DateTime.now().toDate())
-            compositeDisposable.add(interactor!!.treament(treament)
+        var treament = Treament(1, false, 120f,0f, 60f, 180f, null, null,null,null, 0f, 0f, 0f, DateTime.now().toDate())
+        interactor?.let {
+            compositeDisposable.add(it.treament(treament)
                 .compose(schedulerProvider.ioToMainObservableScheduler())
                 .subscribe {
                     Log.i("OnCreatedTreatment", "El result fue: $it")
                     if (it) {
-                        CoroutineScope(Dispatchers.IO).launch { interactor!!.insertTreatment(treament) }
-                        createdCategories()
+                        CoroutineScope(Dispatchers.IO).launch {
+                            interactor!!.insertTreatment(treament).onSuccess {
+                                if(it){
+                                    createdCategories()
+                                }
+                            }
+                        }
                     }
                 })
+        }
+
+
     }
 
     private fun createdCategories() {
-        Log.i("OnSignPresenter", "Se estan creando las categories")
+        Log.i("OnCreatedCategories", "Se estan creando las categories")
         interactor?.let {
             compositeDisposable.add(it.category()
                 .compose(schedulerProvider.ioToMainObservableScheduler())
                 .subscribe {
+                    Log.i("OnCreatedCategories", "El category trajo respuesta: $it")
                     createdExercises()
                 })
         }
@@ -242,6 +253,7 @@ class SignEmailPresenter <V : SignEmailView, I : SignEmailInteractorImp> @Inject
     }
 
     private fun createdExercises() {
+        Log.i("OnCreatedExercises", "Se estan creando los ejercicios")
         interactor?.let {
             compositeDisposable.add(it.exercises()
                 .compose(schedulerProvider.ioToMainObservableScheduler())
@@ -253,6 +265,7 @@ class SignEmailPresenter <V : SignEmailView, I : SignEmailInteractorImp> @Inject
     }
 
     private fun createdStates() {
+        Log.i("OnCreatedStates", "Se estan creando los estados")
         interactor?.let {
             compositeDisposable.add(it.states()
                 .compose(schedulerProvider.ioToMainObservableScheduler())
@@ -288,8 +301,10 @@ class SignEmailPresenter <V : SignEmailView, I : SignEmailInteractorImp> @Inject
     }
 
     private fun updateUser(signResponse: FirebaseUser?) {
-        feedInDatabase()
-        interactor?.updateUser(signResponse)
+        CoroutineScope(Dispatchers.IO).launch {
+            interactor?.updateUser(signResponse)
+            feedInDatabase()
+        }
     }
 
 
@@ -334,6 +349,4 @@ class SignEmailPresenter <V : SignEmailView, I : SignEmailInteractorImp> @Inject
         }
 
     }
-
-
 }

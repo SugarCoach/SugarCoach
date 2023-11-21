@@ -42,7 +42,7 @@ class SignEmailInteractor @Inject constructor(private val mContext: Context, pri
     lateinit var apiRepository: ApiRepository
     lateinit var user: User
     @SuppressLint("CheckResult")
-    override fun updateUser(signResponse: FirebaseUser?) {
+    override suspend fun updateUser(signResponse: FirebaseUser?) {
         val builder = GsonBuilder().excludeFieldsWithoutExposeAnnotation()
         val gson = builder.create()
 
@@ -56,23 +56,20 @@ class SignEmailInteractor @Inject constructor(private val mContext: Context, pri
         user.typeAccount = "2"
         Log.i("OnUser", signResponse.uid)
 
-        CoroutineScope(Dispatchers.IO).launch {
-            apiRepository.createUser(user.username, user.email, signResponse.uid).fold({
-                Log.i("OnCreateUser", it.toString()+ ": " + it?.id!!.toString())
-                setUserId(it.id)
-            }, {
-                Log.i("OnCreateUser", "Ocurrió un error con la API: $it")
+        userHelper.insertRegister(user).
+        observeOn(Schedulers.io())
+            .subscribe({
+                Log.i("OnSuscribe", "Todo fue bien")
+            },{
+                Log.i("OnThrow", "Todo fue mal")
             })
 
-            userHelper.insertRegister(user).
-            observeOn(Schedulers.io())
-                .subscribe({
-                    Log.i("OnSuscribe", "Todo fue bien")
-                },{
-                    Log.i("OnThrow", "Todo fue mal")
-                })
-        }
-
+        apiRepository.createUser(user.username, user.email, signResponse.uid).fold({
+            Log.i("OnCreateUser", it.toString()+ ": " + it?.id!!.toString())
+            setUserId(it.id) },
+            {
+            Log.i("OnCreateUser", "Ocurrió un error con la API: $it")
+            })
         preferenceHelper.let {
             it.setAccessToken(signResponse.uid)
             it.setUserLoged(true)
@@ -121,17 +118,17 @@ class SignEmailInteractor @Inject constructor(private val mContext: Context, pri
     }
 
     override suspend fun insertTreatment(treament: Treament): Result<Boolean> {
-        Log.i("OnApiTreatment", "El treament a subir es: $treament")
+        Log.i("OnApiTreatment", "El treament a subir es: $treament. currentId: ${getCurrentId()!!}")
         return apiRepository.createTreatment(treament.toTreatmentInput(getCurrentId()!!))
     }
 
 
     override fun category(): Observable<Boolean> {
-        Log.i("OnSingInteractor", "Se estan cargando las categories")
         val builder = GsonBuilder().excludeFieldsWithoutExposeAnnotation()
         val gson = builder.create()
         return dailyRepoHelper.isCategoriesRepoEmpty().subscribeOn(Schedulers.io())
             .concatMap { isEmpty ->
+                Log.i("OnCategory", "Es empty: $isEmpty")
                 if (isEmpty) {
                     val type = `$Gson$Types`.newParameterizedTypeWithOwner(null, List::class.java, Category::class.java)
                     val categoryList = gson.fromJson<List<Category>>(
@@ -140,8 +137,9 @@ class SignEmailInteractor @Inject constructor(private val mContext: Context, pri
                             AppConstants.DATABASE_CATEGORY),
                         type)
                     dailyRepoHelper.insertCategories(categoryList)
-                } else
+                } else{
                     Observable.just(false)
+                }
             }
     }
 
@@ -151,6 +149,7 @@ class SignEmailInteractor @Inject constructor(private val mContext: Context, pri
         val gson = builder.create()
         return dailyRepoHelper.isExercisesRepoEmpty().subscribeOn(Schedulers.io())
             .concatMap { isEmpty ->
+                Log.i("OnExcercises", "Es empty: $isEmpty")
                 if (isEmpty) {
                     val type = `$Gson$Types`.newParameterizedTypeWithOwner(null, List::class.java, Exercises::class.java)
                     val itemList = gson.fromJson<List<Exercises>>(
