@@ -11,8 +11,8 @@ data class TreatmentResponse(
     var hyperglucose: Float?,
     var hipoglucose: Float?,
     var carbono: Float?,
-    var basal_insuline: TreatmentQuery.Basal_insuline?,
-    var medidor: TreatmentQuery.Medidor?,
-    var bomba_infusora: TreatmentQuery.Bomba_infusora?,
-    var correctora_insuline: TreatmentQuery.Correctora_insuline?,
+    var basal_insuline: String?,
+    var medidor: String?,
+    var bomba_infusora: String?,
+    var correctora_insuline: String?,
     var id:  String)

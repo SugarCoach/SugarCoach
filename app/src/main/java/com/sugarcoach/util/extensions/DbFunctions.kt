@@ -12,12 +12,12 @@ import com.sugarcoach.data.api_db.Treatment.TreatmentResponse
 import com.sugarcoach.data.api_db.user.UserResponse
 import com.sugarcoach.data.database.repository.dailyregister.DailyRegister
 import com.sugarcoach.data.database.repository.dailyregister.States
+import com.sugarcoach.data.database.repository.treament.CorrectoraInsuline
 import com.sugarcoach.data.database.repository.treament.Treament
 import com.sugarcoach.type.ComponentDailyRegisterDailyRegisterComponentInput
 import com.sugarcoach.type.DailyRegisterInput
 import com.sugarcoach.type.Treatment
 import com.sugarcoach.type.TreatmentInput
-
 fun CreateUserMutation.Attributes?.toUser(id: String): UserResponse {
     return UserResponse(
         username = this?.username!!,
@@ -31,15 +31,15 @@ fun TreatmentQuery.Attributes?.toTreatment(id: String): TreatmentResponse {
         bomb = this?.bomb,
         insuline_unit = this?.insulina_unit?.toFloat(),
         object_glucose = this?.object_glucose?.toFloat(),
-        correctora = this?.correctora!!.toFloat(),
-        correctora_unit = correctora_unit?.toFloat(),
-        hyperglucose = hyperglucose?.toFloat(),
-        hipoglucose = hipoglucose?.toFloat(),
-        carbono = carbono?.toFloat(),
-        basal_insuline = basal_insuline,
-        medidor = this.medidor,
-        bomba_infusora = this.bomba_infusora,
-        correctora_insuline = this.correctora_insuline,
+        correctora = this?.correctora?.toFloat(),
+        correctora_unit = this?.correctora_unit?.toFloat(),
+        hyperglucose = this?.hyperglucose?.toFloat(),
+        hipoglucose = this?.hipoglucose?.toFloat(),
+        carbono = this?.carbono?.toFloat(),
+        basal_insuline = this?.basal_insuline,
+        medidor = this?.medidor,
+        bomba_infusora = this?.bomba_infusora,
+        correctora_insuline = this?.correctora_insuline,
         id = id
     )
 }
@@ -91,13 +91,18 @@ fun States.toDailyEmotions(): ComponentDailyRegisterDailyRegisterComponentInput{
     )
 }
 
-fun Treament.toTreatmentInput(id: String): TreatmentInput{
+fun Treament.toTreatmentInput(id: String, basalInsuline: String = "", correctoraInsuline: String = ""): TreatmentInput{
     return TreatmentInput(
         bomb = Optional.present(bomb),
         object_glucose = Optional.present(object_glucose.toDouble()),
         correctora_unit = Optional.present(correctora_unit.toDouble()),
         hyperglucose = Optional.present(hyperglucose.toDouble()),
         hipoglucose = Optional.present(hipoglucose.toDouble()),
+        correctora = Optional.present(correctora.toDouble()),
+        insulina_unit = Optional.present(insulina_unit.toDouble()),
+        carbono = Optional.present(carbono.toDouble()),
+        basal_insuline = Optional.present(basalInsuline),
+        correctora_insuline = Optional.present(correctoraInsuline),
         users_permissions_user = Optional.present(id)
     )
 }

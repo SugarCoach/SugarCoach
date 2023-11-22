@@ -29,7 +29,7 @@ class ApiRepository @Inject constructor(
 ): ApiClient {
     override suspend fun getUserTreatment(id: String): Result<TreatmentResponse?> {
         val optionalId = Optional.present(id)
-        Log.i("onRepository", "Se esta haciendo la request")
+        Log.i("onRepository", "Se esta haciendo la request. Id: $id")
         return try {
             val response = apolloClient
                 .query(TreatmentQuery(optionalId))
@@ -37,8 +37,8 @@ class ApiRepository @Inject constructor(
                 .data
                 ?.treatments
                 ?.data
-
-            success(response?.map { it.attributes.toTreatment(response.get(0).id!!) }?.get(0))
+            Log.i("OnGetUserTreatment", response?.get(0).toString())
+            success(response?.get(0)?.attributes.toTreatment(response?.get(0)?.id!!))
         }catch (e: Exception){
             Log.i("OnTreatmentError", "Ocurrió un error: $e")
             failure(e)

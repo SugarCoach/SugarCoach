@@ -338,7 +338,7 @@ class SignEmailPresenter <V : SignEmailView, I : SignEmailInteractorImp> @Inject
 
         val parser =  SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
         val parser2 =  SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-        var dailyRegisters: List<DailyRegister> = registers.map { register ->
+        val dailyRegisters: List<DailyRegister> = registers.map { register ->
             DailyRegister(0, register.id.toString(), register.glucose, register.insulin, register.carbohydrates, register.emotional_state, register.exercise, 1,  "", register.photo?.let { BuildConfig.BASE_URL + it.url }?: "" , true , parser.parse(register.createdAt), parser2.format(parser.parse(register.createdAt)),0f,"")
         }
 

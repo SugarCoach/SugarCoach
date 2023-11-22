@@ -1,5 +1,6 @@
 package com.sugarcoach.ui.treatment.interactor
 
+import android.annotation.SuppressLint
 import android.util.Log
 import com.sugarcoach.data.api_db.ApiRepository
 import com.sugarcoach.data.database.repository.dailyregister.DailyRegisterRepo
@@ -14,7 +15,6 @@ import io.reactivex.Single
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
@@ -25,34 +25,50 @@ class TreatmentInteractor @Inject constructor(private val treamentRepoHelper: Tr
     TreatmentInteractorImp {
     @Inject
     lateinit var apiRepository: ApiRepository
-    override suspend fun editTreatment(treatment: Treament): Observable<Boolean> {
-        val response = editCloudTreatment(treatment)
+
+    lateinit var treatment: Treament
+    lateinit var basalInsuline: String
+    lateinit var correctoraInsuline: String
+    @SuppressLint("CheckResult")
+    override suspend fun editTreatment(treament: Treament, basalInsuline: String, correctoraInsuline: String): Observable<Boolean> {
+        Log.i("OnEditTreatment", "El treatment que se va a subir es: $treament")
+        this.basalInsuline = basalInsuline
+        this.correctoraInsuline = correctoraInsuline
+
+        val response = editCloudTreatment(treament)
         Log.i("OnEditTreatment", "La response fue: $response")
-        if(response){
-            return treamentRepoHelper.updateTreatment(treatment)
+        return if(response){
+            val roomResp = treamentRepoHelper.updateTreatment(treament)
+            roomResp.subscribe {
+                Log.i("OnEditTreatment", "La respuesta de room fue: $it")
+            }
+            roomResp
         }else{
-            return Observable.just(false)
+            Observable.just(false)
         }
 
     }
 
     override suspend fun editCloudTreatment(treatment: Treament): Boolean {
         val response = CoroutineScope(Dispatchers.IO).async {
-            var response: Boolean = false
+            var response = false
+
             apiRepository.getUserTreatment(getCurrentId()!!).fold({
-                apiRepository.updateTreatment(it!!.id, treatment.toTreatmentInput(getCurrentId()!!)).fold({
+                Log.i("OnEditCloud", "El treatment de este usuario es: $it")
+
+                apiRepository.updateTreatment(it!!.id, treatment.toTreatmentInput(getCurrentId()!!, basalInsuline, correctoraInsuline)).fold({
                     Log.i("OnEditCloud", "Se actualizo correctamente")
                     response = true
                 },{
-                    Log.i("OnEditCloud", "Ocurrió un error: ${it}")
+                    Log.i("OnEditCloud", "Ocurrió un error actualizando el Treatment: ${it}")
                 })
+
             },{
-                Log.i("OnEditCloud", "Ocurrió un error ${it}")
+                Log.i("OnEditCloud", "Ocurrió un error obteniendo el userTreatment ${it}")
             })
             return@async response
         }
         return response.await()
-
     }
 
     override fun editBasalHora(hora: TreamentBasalHora): Observable<Boolean> {

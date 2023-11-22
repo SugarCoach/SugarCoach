@@ -40,6 +40,9 @@ class TreatmentPresenter<V : TreatmentView, I : TreatmentInteractorImp> @Inject 
     lateinit var correctora: TreamentCorrectoraHorarios
     lateinit var basal: TreamentHorarios
 
+    lateinit var basalInsuline: String
+    lateinit var correctoraInsuline: String
+
     override fun saveAll(obj: Float, hipo: Float, hyper: Float) {
         treatment?.object_glucose = obj
         treatment?.hipoglucose = hipo
@@ -49,14 +52,11 @@ class TreatmentPresenter<V : TreatmentView, I : TreatmentInteractorImp> @Inject 
         Log.i("OnUpdateAll", "Se actualizan las bases de datos")
         interactor?.let {
             CoroutineScope(Dispatchers.IO).launch{
-                compositeDisposable.add(it.editTreatment(treatment)
+                compositeDisposable.add(it.editTreatment(treatment, basalInsuline, correctoraInsuline)
                     .compose(schedulerProvider.ioToMainObservableScheduler())
                     .subscribe({
-                        if(it){
-                            getView()?.showDataSave()
-                        }else{
-                            getView()?.showErrorToast()
-                        }
+                        Log.i("OnUpdateAll", "La respuesta de editTreatment fue: $it")
+                        getView()?.showDataSave()
 
                     }, { throwable ->
                         showException(throwable)
@@ -307,7 +307,6 @@ class TreatmentPresenter<V : TreatmentView, I : TreatmentInteractorImp> @Inject 
             Log.i("Onattach", "Ocurrio un error en el attach $e")
             getView()?.showErrorToast()
         }
-
     }
     private fun getTreatment() {
         interactor?.let {
@@ -317,6 +316,8 @@ class TreatmentPresenter<V : TreatmentView, I : TreatmentInteractorImp> @Inject 
                     Log.i("OnGetTreatment", "Se ingresa a treatment:$treament")
                     getView()?.let {
                         treatment = treament.treament!!
+                        basalInsuline = treament.basalInsuline?.name.toString()
+                        correctoraInsuline = treament.correctoraInsuline?.cname.toString()
                         getPromedio(treament)
                         getTotalBasal()
                         getView()?.setTreatment(treament)

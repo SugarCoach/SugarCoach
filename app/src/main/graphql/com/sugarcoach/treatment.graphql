@@ -17,18 +17,10 @@ query Treatment($userId: ID){
                 hyperglucose
                 hipoglucose
                 carbono
-                basal_insuline {
-                    name
-                }
-                medidor {
-                    name
-                }
-                bomba_infusora {
-                    name
-                }
-                correctora_insuline {
-                    name
-                }
+                basal_insuline
+                medidor
+                bomba_infusora
+                correctora_insuline
             }
         }
     }
