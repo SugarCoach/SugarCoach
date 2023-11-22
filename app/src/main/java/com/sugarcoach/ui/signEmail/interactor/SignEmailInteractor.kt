@@ -28,6 +28,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import java.lang.Exception
 import javax.inject.Inject
 
 
@@ -41,8 +43,9 @@ class SignEmailInteractor @Inject constructor(private val mContext: Context, pri
     @Inject
     lateinit var apiRepository: ApiRepository
     lateinit var user: User
+
     @SuppressLint("CheckResult")
-    override suspend fun updateUser(signResponse: FirebaseUser?) {
+    override fun updateUser(signResponse: FirebaseUser?): Observable<Boolean> {
         val builder = GsonBuilder().excludeFieldsWithoutExposeAnnotation()
         val gson = builder.create()
 
@@ -56,26 +59,28 @@ class SignEmailInteractor @Inject constructor(private val mContext: Context, pri
         user.typeAccount = "2"
         Log.i("OnUser", signResponse.uid)
 
-        userHelper.insertRegister(user).
-        observeOn(Schedulers.io())
-            .subscribe({
-                Log.i("OnSuscribe", "Todo fue bien")
-            },{
-                Log.i("OnThrow", "Todo fue mal")
-            })
-
-        apiRepository.createUser(user.username, user.email, signResponse.uid).fold({
-            Log.i("OnCreateUser", it.toString()+ ": " + it?.id!!.toString())
-            setUserId(it.id) },
-            {
-            Log.i("OnCreateUser", "Ocurrió un error con la API: $it")
-            })
         preferenceHelper.let {
             it.setAccessToken(signResponse.uid)
             it.setUserLoged(true)
         }
+
+        return userHelper.insertRegister(user)
     }
 
+    override suspend fun updateCloudUser(signResponse: FirebaseUser?): Result<Boolean> {
+        return if (signResponse != null) {
+            apiRepository.createUser(user.username, user.email, signResponse.uid).fold({
+                Log.i("OnCreateUser", it.toString()+ ": " + it?.id!!.toString())
+                setUserId(it.id)
+                return Result.success(true)
+            }, {
+                Log.i("OnCreateUser", "Ocurrió un error con la API: $it")
+                return Result.failure(it)
+            })
+        }else{
+            Result.failure(Exception("El signResponse es nulo"))
+        }
+    }
     override fun saveRegisters(registersResponse: List<DailyRegister>): Observable<Boolean> {
         if (dailyRepoHelper.loadDailyRegistersTotal() > 0 || dailyRepoHelper.isRegisterRepoEmpty()) {
             dailyRepoHelper.deleteAll()

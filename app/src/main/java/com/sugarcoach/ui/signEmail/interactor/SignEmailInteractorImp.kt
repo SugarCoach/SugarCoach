@@ -12,7 +12,8 @@ import io.reactivex.Observable
 
 
 interface SignEmailInteractorImp : Interactor {
-    fun updateUser(signResponse: FirebaseUser?)
+    fun updateUser(signResponse: FirebaseUser?): Observable<Boolean>
+    suspend fun updateCloudUser(signResponse: FirebaseUser?): Result<Boolean>
     fun saveRegisters(registersResponse: List<DailyRegister>): Observable<Boolean>
     fun updateUserSocial(loginResponse: LoginResponse)
     fun treament(treament: Treament): Observable<Boolean>
