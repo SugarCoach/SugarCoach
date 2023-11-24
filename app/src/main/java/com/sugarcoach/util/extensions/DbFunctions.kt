@@ -14,7 +14,6 @@ import com.sugarcoach.data.database.repository.dailyregister.DailyRegister
 import com.sugarcoach.data.database.repository.dailyregister.States
 import com.sugarcoach.data.database.repository.treament.CorrectoraInsuline
 import com.sugarcoach.data.database.repository.treament.Treament
-import com.sugarcoach.type.ComponentDailyRegisterDailyRegisterComponentInput
 import com.sugarcoach.type.DailyRegisterInput
 import com.sugarcoach.type.Treatment
 import com.sugarcoach.type.TreatmentInput
@@ -53,16 +52,9 @@ fun DailyRegisterQuery.Attributes?.toDailyRegister(): DailyRegisterResponse {
         basal = this?.basal,
         colors = this?.colors,
         category = this?.category,
-        emotionalState = this?.emotional_state?.toDailyComponent(),
-        excersise = this?.excercise?.toDailyComponent()
+        emotionalState = this?.emotional_state,
+        excersise = this?.excercise
     )
-}
-fun DailyRegisterQuery.Emotional_state?.toDailyComponent(): DailyRegisterComponent{
-    return DailyComponentTrans(this?.name, this?.icon?.data?.attributes?.url)
-}
-
-fun DailyRegisterQuery.Excercise?.toDailyComponent(): DailyRegisterComponent{
-    return DailyComponentTrans(this?.name, this?.icon?.data?.attributes?.url)
 }
 
 fun DailyComponentTrans(name: String?, icon: String?): DailyRegisterComponent{
@@ -72,7 +64,7 @@ fun DailyComponentTrans(name: String?, icon: String?): DailyRegisterComponent{
     )
 }
 fun DailyRegister.toDailyInput(id: String?): DailyRegisterInput{
-    Log.i("OnDBFunctions","El id del usuario es: $id")
+    Log.i("OnDBFunctions","El ejercicio es: $exercise")
     return DailyRegisterInput(
         glucose = Optional.present(glucose?.toDouble()),
         insulin = Optional.present(insulin?.toDouble()),
@@ -80,14 +72,9 @@ fun DailyRegister.toDailyInput(id: String?): DailyRegisterInput{
         comment = Optional.present(comment),
         basal = Optional.present(basal?.toDouble()),
         colors = Optional.present(colors),
+        excercise = Optional.present(exercise),
+        emotional_state = Optional.present(emotionalState),
         users_permissions_user = Optional.present(id)
-    )
-}
-fun States.toDailyEmotions(): ComponentDailyRegisterDailyRegisterComponentInput{
-    return ComponentDailyRegisterDailyRegisterComponentInput(
-        id = Optional.present(state_id),
-        name = Optional.present(state_name),
-        icon = Optional.present(state_icono)
     )
 }
 

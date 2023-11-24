@@ -15,26 +15,8 @@ query DailyRegister($userId: ID){
                 comment
                 basal
                 colors
-                emotional_state {
-                    name
-                    icon{
-                        data {
-                            attributes {
-                                url
-                            }
-                        }
-                    }
-                }
-                excercise {
-                    name
-                    icon{
-                        data {
-                            attributes {
-                                url
-                            }
-                        }
-                    }
-                }
+                emotional_state
+                excercise
                 category
             }
         }

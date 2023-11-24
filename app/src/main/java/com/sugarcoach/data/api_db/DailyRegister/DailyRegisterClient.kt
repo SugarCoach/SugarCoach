@@ -10,4 +10,6 @@ interface DailyRegisterClient {
     suspend fun createDailyRegister(dailyRegister: DailyRegisterInput): Result<CreateDailyResponse>
 
     suspend fun updateDailyRegister(id: String, dailyRegister: DailyRegisterInput): Result<String?>
+
+    suspend fun deleteDailyRegister(id: String): Result<String?>
 }

@@ -7,6 +7,7 @@ import com.sugarcoach.CreateDailyMutation
 import com.sugarcoach.CreateTreatmentMutation
 import com.sugarcoach.CreateUserMutation
 import com.sugarcoach.DailyRegisterQuery
+import com.sugarcoach.DeleteDailyRegisterMutation
 import com.sugarcoach.data.api_db.Treatment.TreatmentResponse
 import com.sugarcoach.TreatmentQuery
 import com.sugarcoach.UpdateDailyRegisterMutation
@@ -112,7 +113,7 @@ class ApiRepository @Inject constructor(
                 ?.updateDailyRegister
                 ?.data
                 ?.id
-
+            Log.i("OnUpdateDailyRegister", "$response")
             success(response)
         }catch(e: Exception){
             failure(e)
@@ -149,6 +150,22 @@ class ApiRepository @Inject constructor(
 
             success(CreateTreatmentResponse(response?.attributes?.createdAt,
                 response?.attributes?.createdAt))
+        }catch(e: Exception){
+            failure(e)
+        }
+    }
+
+    override suspend fun deleteDailyRegister(id: String): Result<String?>{
+        return try{
+            val response = apolloClient
+                .mutation(DeleteDailyRegisterMutation(id))
+                .execute()
+                .data
+                ?.deleteDailyRegister
+                ?.data
+                ?.id
+
+            success(response)
         }catch(e: Exception){
             failure(e)
         }

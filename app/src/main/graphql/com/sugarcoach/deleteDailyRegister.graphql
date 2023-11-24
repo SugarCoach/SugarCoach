@@ -1,0 +1,7 @@
+mutation DeleteDailyRegister($id: ID!){
+    deleteDailyRegister(id: $id){
+        data {
+            id
+        }
+    }
+}
