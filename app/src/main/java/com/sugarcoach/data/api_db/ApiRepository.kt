@@ -8,6 +8,7 @@ import com.sugarcoach.CreateTreatmentMutation
 import com.sugarcoach.CreateUserMutation
 import com.sugarcoach.DailyRegisterQuery
 import com.sugarcoach.DeleteDailyRegisterMutation
+import com.sugarcoach.GetUserByUIDQuery
 import com.sugarcoach.data.api_db.Treatment.TreatmentResponse
 import com.sugarcoach.TreatmentQuery
 import com.sugarcoach.UpdateDailyRegisterMutation
@@ -168,6 +169,23 @@ class ApiRepository @Inject constructor(
             success(response)
         }catch(e: Exception){
             failure(e)
+        }
+    }
+
+    override suspend fun getUserId(firebaseUID: String): String? {
+        return try{
+            val response = apolloClient
+                .query(GetUserByUIDQuery(Optional.present(firebaseUID)))
+                .execute()
+                .data
+                ?.usersPermissionsUsers
+                ?.data
+                ?.get(0)
+                ?.id
+
+            response
+        }catch(e: Exception){
+            ""
         }
     }
 }
