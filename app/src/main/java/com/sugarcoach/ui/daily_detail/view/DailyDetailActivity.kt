@@ -166,7 +166,6 @@ class DailyDetailActivity : BaseActivity(), DailyDetailView, TimePickerDialog.On
     fun setListeners(){
         binding.dailyDetailEmotionalLl.setOnClickListener {
             showHideEmotionalCard(true)
-
         }
         binding.dailyDetailExercisesLl.setOnClickListener {
             showHideExerciseCard(true)
@@ -392,7 +391,7 @@ class DailyDetailActivity : BaseActivity(), DailyDetailView, TimePickerDialog.On
         dialog = builder.create()
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         view.deleteAccept.setOnClickListener {
-            presenter.deleteRegister(daily!!)
+            presenter.deleteRegister()
             dialog.dismiss()
         }
         view.deleteCancel.setOnClickListener {

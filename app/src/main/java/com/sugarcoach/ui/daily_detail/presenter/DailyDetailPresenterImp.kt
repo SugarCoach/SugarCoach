@@ -21,7 +21,7 @@ import java.util.*
 interface DailyDetailPresenterImp<V : DailyDetailView, I : DailyDetailInteractorImp> : Presenter<V, I> {
     fun getRegister(id: Int)
     fun getScreenShot(context: Activity,view: View)
-    fun deleteRegister(dailyRegister: DailyRegister)
+    fun deleteRegister()
     fun updateGlucose(glucose: Float?)
     fun updateInsulin(insulin: Float?)
     fun updateBasal(basal: Float?)
