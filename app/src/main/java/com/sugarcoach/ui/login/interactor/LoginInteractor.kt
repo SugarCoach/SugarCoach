@@ -22,6 +22,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
+import java.lang.Exception
 import javax.inject.Inject
 
 
@@ -33,6 +34,16 @@ class LoginInteractor @Inject constructor(private val mContext: Context, private
 
     @Inject
     lateinit var apiRepository: ApiRepository
+
+
+    override suspend fun getUserData(userUID: String?): Result<String> {
+        val apiRes = apiRepository.getUserId(userUID!!)
+        return if(!apiRes.isNullOrEmpty()){
+            Result.success(apiRes)
+        }else{
+            Result.failure(Exception("Ocurrió un error llamando al user"))
+        }
+    }
     override suspend fun doServerLoginpiCall(email: String, password: String): Observable<LoginResponse> {
        val loginResponse = coroutineScope {
            val response = this.async {
@@ -100,6 +111,7 @@ class LoginInteractor @Inject constructor(private val mContext: Context, private
                     Observable.just(false)
             }
     }
+
 
     override fun category(): Observable<Boolean> {
         val builder = GsonBuilder().excludeFieldsWithoutExposeAnnotation()
