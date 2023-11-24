@@ -44,9 +44,9 @@ class TreatmentPresenter<V : TreatmentView, I : TreatmentInteractorImp> @Inject 
     lateinit var correctoraInsuline: String
 
     override fun saveAll(obj: Float, hipo: Float, hyper: Float) {
-        treatment?.object_glucose = obj
-        treatment?.hipoglucose = hipo
-        treatment?.hyperglucose = hyper
+        treatment.object_glucose = obj
+        treatment.hipoglucose = hipo
+        treatment.hyperglucose = hyper
     }
     override fun updateAll() {
         Log.i("OnUpdateAll", "Se actualizan las bases de datos")
@@ -148,6 +148,7 @@ class TreatmentPresenter<V : TreatmentView, I : TreatmentInteractorImp> @Inject 
 
     override fun saveUnitInsulina(unit: Float) {
         treatment.insulina_unit = unit
+        Log.i("OnSaveUnitInsulina", "Se guardo unit = $unit")
     }
 
 
