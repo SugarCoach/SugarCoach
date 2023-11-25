@@ -51,7 +51,6 @@ fun DailyRegisterQuery.Attributes?.toDailyRegister(): DailyRegisterResponse {
         comment = this?.comment,
         basal = this?.basal,
         colors = this?.colors,
-        category = this?.category,
         emotionalState = this?.emotional_state,
         excersise = this?.excercise
     )
