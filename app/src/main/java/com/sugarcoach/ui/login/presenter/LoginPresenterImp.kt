@@ -17,6 +17,6 @@ interface LoginPresenterImp<V : LoginView, I : LoginInteractorImp> : Presenter<V
     suspend fun activityResult(requestCode: Int, resultCode: Int, data: Intent?)
     fun getBarcode():Int
 
-    fun feedInDatabase():Boolean?
+    fun feedInDatabase()
 
 }

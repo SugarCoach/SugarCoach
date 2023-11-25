@@ -69,9 +69,11 @@ class LoginActivity: BaseActivity(), LoginView {
 
     private fun setOnClickListeners() {
 
-        binding.loginBt.setOnClickListener { runBlocking {
-            presenter.onLogin(binding.loginMail.text.toString(),
-                binding.loginPass.text.toString(),false, false)}
+        binding.loginBt.setOnClickListener {
+            runBlocking {
+                presenter.onLogin(binding.loginMail.text.toString(),
+                    binding.loginPass.text.toString(),false, false)
+            }
         }
         binding.loginSignin.setOnClickListener { presenter.emailSign() }
         binding.loginForgot.setOnClickListener { presenter.forgot() }
