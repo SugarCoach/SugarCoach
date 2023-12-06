@@ -18,6 +18,7 @@ interface SignEmailInteractorImp : Interactor {
     fun updateUserSocial(loginResponse: LoginResponse)
     fun treament(treament: Treament): Observable<Boolean>
     suspend fun insertTreatment(treament: Treament): Result<Boolean>
+    suspend fun createUserData(): Result<Boolean>
     fun category(): Observable<Boolean>
     fun states(): Observable<Boolean>
     fun exercises(): Observable<Boolean>

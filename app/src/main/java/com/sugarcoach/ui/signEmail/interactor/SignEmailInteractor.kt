@@ -127,6 +127,9 @@ class SignEmailInteractor @Inject constructor(private val mContext: Context, pri
         return apiRepository.createTreatment(treament.toTreatmentInput(getCurrentId()!!))
     }
 
+    override suspend fun createUserData(): Result<Boolean> {
+        return apiRepository.createUserData(getCurrentId()!!)
+    }
 
     override fun category(): Observable<Boolean> {
         val builder = GsonBuilder().excludeFieldsWithoutExposeAnnotation()

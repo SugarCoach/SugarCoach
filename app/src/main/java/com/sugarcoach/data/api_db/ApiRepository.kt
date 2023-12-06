@@ -5,20 +5,25 @@ import com.apollographql.apollo3.ApolloClient
 import com.apollographql.apollo3.api.Optional
 import com.sugarcoach.CreateDailyMutation
 import com.sugarcoach.CreateTreatmentMutation
+import com.sugarcoach.CreateUserDataMutation
 import com.sugarcoach.CreateUserMutation
 import com.sugarcoach.DailyRegisterQuery
 import com.sugarcoach.DeleteDailyRegisterMutation
 import com.sugarcoach.GetUserByUIDQuery
+import com.sugarcoach.GetUserDataQuery
 import com.sugarcoach.data.api_db.Treatment.TreatmentResponse
 import com.sugarcoach.TreatmentQuery
 import com.sugarcoach.UpdateDailyRegisterMutation
 import com.sugarcoach.UpdateTreatmentMutation
+import com.sugarcoach.UpdateUserDataMutation
 import com.sugarcoach.data.api_db.DailyRegister.DailyRegisterResponse
 import com.sugarcoach.data.api_db.DailyRegister.domain.CreateDailyResponse
 import com.sugarcoach.data.api_db.Treatment.domain.CreateTreatmentResponse
 import com.sugarcoach.data.api_db.user.UserResponse
+import com.sugarcoach.data.database.repository.user.User
 import com.sugarcoach.type.DailyRegisterInput
 import com.sugarcoach.type.TreatmentInput
+import com.sugarcoach.type.UserDataInput
 import com.sugarcoach.util.extensions.toDailyRegister
 import com.sugarcoach.util.extensions.toTreatment
 import com.sugarcoach.util.extensions.toUser
@@ -67,8 +72,61 @@ class ApiRepository @Inject constructor(
             Log.i("OnUserError", "Ocurrió un error: $e")
             failure(e)
         }
-
     }
+
+    override suspend fun getUserDataId(userId: String): Result<String> {
+
+        return try {
+            val response = apolloClient
+                .query(GetUserDataQuery(userId))
+                .execute()
+                .data
+                ?.usersData
+                ?.data
+                ?.get(0)
+
+            Log.i("OnUpdateUserData", "$response")
+            success(response?.id!!)
+        }catch (e: Exception){
+            Log.i("OnUserError", "Ocurrió un error: $e")
+            failure(e)
+        }
+    }
+
+    override suspend fun createUserData(userId: String): Result<Boolean> {
+        return try {
+            val response = apolloClient
+                .mutation(CreateUserDataMutation(userId))
+                .execute()
+                .data
+                ?.createUserData
+                ?.data
+
+            Log.i("OnCreateUserData", "$response")
+            success(response?.id.isNullOrEmpty())
+        }catch (e: Exception){
+            Log.i("OnUserError", "Ocurrió un error: $e")
+            failure(e)
+        }
+    }
+
+    override suspend fun updateUserData(user: UserDataInput, id: String): Result<Boolean> {
+        return try {
+            val response = apolloClient
+                .mutation(UpdateUserDataMutation(user, id))
+                .execute()
+                .data
+                ?.updateUserData
+                ?.data
+
+            Log.i("OnUpdateUserData", "$response")
+            success(response?.id.isNullOrEmpty())
+        }catch (e: Exception){
+            Log.i("OnUserError", "Ocurrió un error: $e")
+            failure(e)
+        }
+    }
+
     override suspend fun getDailyRegisters(id: String): Result<List<DailyRegisterResponse>?> {
         return try{
             val optionalId = Optional.present(id)

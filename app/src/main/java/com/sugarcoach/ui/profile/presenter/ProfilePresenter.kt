@@ -30,6 +30,10 @@ import com.sugarcoach.util.SchedulerProvider
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog
 import io.reactivex.disposables.CompositeDisposable
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.joda.time.LocalDate
 import org.joda.time.LocalDateTime
 import java.io.ByteArrayOutputStream
@@ -108,10 +112,34 @@ class ProfilePresenter <V : ProfileView, I : ProfileInteractorImp> @Inject inter
         user.height = height!!.toFloat()
         user.username = username!!.toString()
         user.email = mail!!.toString()
+        getView()?.showProgress()
         interactor?.let {
             compositeDisposable.add(it.updateUser(user)
                 .compose(schedulerProvider.ioToMainObservableScheduler())
-                .subscribe({ getView()?.showSuccessToast()
+                .subscribe({
+                    //getView()?.showSuccessToast()
+                    CoroutineScope(Dispatchers.IO).launch {
+                        interactor!!.getDataId().fold({
+                            interactor!!.updateApiUser(user, it).fold({
+                                withContext(Dispatchers.Main){
+                                    getView()?.hideProgress()
+                                    getView()?.showSuccessToast()
+                                }
+                            },{
+                                withContext(Dispatchers.Main){
+                                    getView()?.hideProgress()
+                                    getView()?.showErrorToast("Verifique su conexión Wifi")
+                                    getView()?.showErrorToast()
+                                }
+                            })
+                        },{
+                            withContext(Dispatchers.Main){
+                                getView()?.hideProgress()
+                                getView()?.showErrorToast("Verifique su conexión Wifi")
+                                getView()?.showErrorToast()
+                            }
+                        })
+                    }
                 }, { throwable ->
                     showException(throwable)
                 })

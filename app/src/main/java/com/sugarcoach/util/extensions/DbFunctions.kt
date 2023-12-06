@@ -14,9 +14,12 @@ import com.sugarcoach.data.database.repository.dailyregister.DailyRegister
 import com.sugarcoach.data.database.repository.dailyregister.States
 import com.sugarcoach.data.database.repository.treament.CorrectoraInsuline
 import com.sugarcoach.data.database.repository.treament.Treament
+import com.sugarcoach.data.database.repository.user.User
 import com.sugarcoach.type.DailyRegisterInput
 import com.sugarcoach.type.Treatment
 import com.sugarcoach.type.TreatmentInput
+import com.sugarcoach.type.UserDataInput
+
 fun CreateUserMutation.Attributes?.toUser(id: String): UserResponse {
     return UserResponse(
         username = this?.username!!,
@@ -90,5 +93,17 @@ fun Treament.toTreatmentInput(id: String, basalInsuline: String = "", correctora
         basal_insuline = Optional.present(basalInsuline),
         correctora_insuline = Optional.present(correctoraInsuline),
         users_permissions_user = Optional.present(id)
+    )
+}
+
+fun User.toDataInput(id: String): UserDataInput{
+    return UserDataInput(
+        name = Optional.present(name),
+        birth_date = Optional.present(birthday.toString()),
+        sex = Optional.present(sex),
+        height = Optional.present(height?.toDouble()),
+        weight = Optional.present(weight?.toDouble()),
+        debut_date = Optional.present(debut.toString()),
+        users_permissions_user = Optional.present(id),
     )
 }

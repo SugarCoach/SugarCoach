@@ -98,7 +98,7 @@ class MainActivity : BaseActivity(), MainView {
         binding.mainDailyCv.setOnClickListener { presenter.goToActivityDaily() }
         binding.mainConfigCv.setOnClickListener { presenter.goToActivityConfig() }
         binding.mainStatisticsCv.setOnClickListener { presenter.goToActivityStatistics() }
-        binding.callAPI.setOnClickListener { apiCall() }
+        //binding.callAPI.setOnClickListener { apiCall() }
     }
 
     private fun apiCall(){

@@ -206,6 +206,7 @@ class SignEmailPresenter <V : SignEmailView, I : SignEmailInteractorImp> @Inject
 
     private fun feedInDatabase() = interactor?.let {
         Log.i("OnFeedDb", "Se esta llenando la Db")
+        getView()?.showProgress()
         compositeDisposable.add(it.getCorrectora()
             .flatMap { interactor?.getBasal() }
             .flatMap { interactor?.getMedidor() }
@@ -226,16 +227,18 @@ class SignEmailPresenter <V : SignEmailView, I : SignEmailInteractorImp> @Inject
                     if (it) {
                         CoroutineScope(Dispatchers.IO).launch {
                             interactor!!.insertTreatment(treament).onSuccess {
-                                if(it){
-                                    createdCategories()
+                                if (it){
+                                    interactor!!.createUserData().onSuccess {
+                                        if(it){
+                                            createdCategories()
+                                        }
+                                    }
                                 }
                             }
                         }
                     }
                 })
         }
-
-
     }
 
     private fun createdCategories() {
@@ -283,6 +286,7 @@ class SignEmailPresenter <V : SignEmailView, I : SignEmailInteractorImp> @Inject
                 .compose(schedulerProvider.ioToMainObservableScheduler())
                 .subscribe {
                     getView()?.onSign()
+                    getView()?.hideProgress()
                 })
         }
 

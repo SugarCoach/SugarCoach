@@ -350,13 +350,14 @@ type TreatmentEntityResponseCollection {
 
 input UserDataFiltersInput {
   id: IDFilterInput
-  Nombre: StringFilterInput
+  name: StringFilterInput
   birth_date: StringFilterInput
   sex: StringFilterInput
   height: FloatFilterInput
   weight: FloatFilterInput
   debut_date: StringFilterInput
   icon: IntFilterInput
+  users_permissions_user: UsersPermissionsUserFiltersInput
   createdAt: DateTimeFilterInput
   updatedAt: DateTimeFilterInput
   publishedAt: DateTimeFilterInput
@@ -366,24 +367,26 @@ input UserDataFiltersInput {
 }
 
 input UserDataInput {
-  Nombre: String
+  name: String
   birth_date: String
   sex: String
   height: Float
   weight: Float
   debut_date: String
   icon: Int
+  users_permissions_user: ID
   publishedAt: DateTime
 }
 
 type UserData {
-  Nombre: String
+  name: String
   birth_date: String
   sex: String
   height: Float
   weight: Float
   debut_date: String
   icon: Int
+  users_permissions_user: UsersPermissionsUserEntityResponse
   createdAt: DateTime
   updatedAt: DateTime
   publishedAt: DateTime
@@ -673,6 +676,7 @@ input UsersPermissionsUserFiltersInput {
   FirebaseUID: StringFilterInput
   online_id: StringFilterInput
   treatment: TreatmentFiltersInput
+  user_datum: UserDataFiltersInput
   createdAt: DateTimeFilterInput
   updatedAt: DateTimeFilterInput
   and: [UsersPermissionsUserFiltersInput]
@@ -693,6 +697,7 @@ input UsersPermissionsUserInput {
   FirebaseUID: String
   online_id: String
   treatment: ID
+  user_datum: ID
 }
 
 type UsersPermissionsUser {
@@ -705,6 +710,7 @@ type UsersPermissionsUser {
   FirebaseUID: String!
   online_id: String
   treatment: TreatmentEntityResponse
+  user_datum: UserDataEntityResponse
   createdAt: DateTime
   updatedAt: DateTime
 }
