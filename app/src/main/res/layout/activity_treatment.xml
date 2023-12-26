@@ -822,7 +822,7 @@
                                                         android:id="@+id/treatment_glu_mayor_ud"
                                                         style="@style/TextStyle.Heading"
                                                         android:layout_width="match_parent"
-                                                        android:layout_height="match_parent"
+                                                        android:layout_height="24dp"
                                                         android:layout_marginTop="5dp"
                                                         android:background="@color/white"
                                                         android:gravity="center"
