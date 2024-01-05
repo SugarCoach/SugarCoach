@@ -6,6 +6,7 @@ import android.util.Log
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.apollographql.apollo3.ApolloClient
+import com.apollographql.apollo3.network.http.HttpNetworkTransport
 import com.apollographql.apollo3.network.okHttpClient
 import com.sugarcoach.BuildConfig.*
 import com.sugarcoach.data.api_db.ApiClient
@@ -44,10 +45,18 @@ class AppModule {
     internal fun provideApolloClient(): ApolloClient {
         Log.i("OnProvideApi", "Se esta creando la API")
         return ApolloClient.Builder()
-            .serverUrl("http://loadbalancer-1417729450.us-east-1.elb.amazonaws.com/graphql")
+            .serverUrl("https://api.sugar.coach/graphql")
             .okHttpClient(OkHttpClient.Builder().build())
             .addHttpHeader("Authorization", PRODUCTIONAPITOKEN)
             .build()
+        /*val httpNetworkTransport = HttpNetworkTransport.Builder()
+            .serverUrl("http://loadbalancer-1417729450.us-east-1.elb.amazonaws.com/graphql")
+            .okHttpClient(OkHttpClient.Builder().build())
+            .build()
+
+        return ApolloClient.Builder()
+            .networkTransport(httpNetworkTransport)
+            .build()*/
     }
     @Provides
     @Singleton

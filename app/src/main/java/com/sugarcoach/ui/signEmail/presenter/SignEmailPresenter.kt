@@ -229,6 +229,7 @@ class SignEmailPresenter <V : SignEmailView, I : SignEmailInteractorImp> @Inject
                             interactor!!.insertTreatment(treament).onSuccess {
                                 if (it){
                                     interactor!!.createUserData().onSuccess {
+                                        Log.i("OnCreateUserData", "El response fue: $it")
                                         if(it){
                                             createdCategories()
                                         }

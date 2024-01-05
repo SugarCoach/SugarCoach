@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <network-security-config>
     <domain-config cleartextTrafficPermitted="true">
-        <domain includeSubdomains="true">https://sugarapi-production.up.railway.app/</domain>
+        <domain includeSubdomains="true">http://loadbalancer-1417729450.us-east-1.elb.amazonaws.com/graphql</domain>
     </domain-config>
 </network-security-config>

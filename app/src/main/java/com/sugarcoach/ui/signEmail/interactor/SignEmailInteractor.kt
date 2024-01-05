@@ -17,8 +17,10 @@ import com.sugarcoach.data.database.repository.user.UserRepo
 import com.sugarcoach.data.network.*
 import com.sugarcoach.data.ui.base.interactor.BaseInteractor
 import com.sugarcoach.di.preferences.PreferenceHelper
+import com.sugarcoach.type.DateTime
 import com.sugarcoach.util.AppConstants
 import com.sugarcoach.util.FileUtils
+import com.sugarcoach.util.extensions.toDailyInput
 import com.sugarcoach.util.extensions.toTreatmentInput
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
@@ -29,7 +31,10 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.joda.time.LocalDateTime
+import org.joda.time.format.DateTimeFormat
 import java.lang.Exception
+import java.util.Date
 import javax.inject.Inject
 
 
@@ -66,6 +71,7 @@ class SignEmailInteractor @Inject constructor(private val mContext: Context, pri
 
         return userHelper.insertRegister(user)
     }
+
 
     override suspend fun updateCloudUser(signResponse: FirebaseUser?): Result<Boolean> {
         return if (signResponse != null) {

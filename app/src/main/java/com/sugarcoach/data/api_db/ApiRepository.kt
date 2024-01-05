@@ -85,10 +85,10 @@ class ApiRepository @Inject constructor(
                 ?.data
                 ?.get(0)
 
-            Log.i("OnUpdateUserData", "$response")
+            Log.i("OnGetUserId", "$response")
             success(response?.id!!)
         }catch (e: Exception){
-            Log.i("OnUserError", "Ocurrió un error: $e")
+            Log.i("OnGetUserId", "Ocurrió un error: $e")
             failure(e)
         }
     }
@@ -103,7 +103,7 @@ class ApiRepository @Inject constructor(
                 ?.data
 
             Log.i("OnCreateUserData", "$response")
-            success(response?.id.isNullOrEmpty())
+            success(!response?.id.isNullOrEmpty())
         }catch (e: Exception){
             Log.i("OnUserError", "Ocurrió un error: $e")
             failure(e)
@@ -122,7 +122,7 @@ class ApiRepository @Inject constructor(
             Log.i("OnUpdateUserData", "$response")
             success(response?.id.isNullOrEmpty())
         }catch (e: Exception){
-            Log.i("OnUserError", "Ocurrió un error: $e")
+            Log.i("OnUpdateUserError", "Ocurrió un error: $e")
             failure(e)
         }
     }
