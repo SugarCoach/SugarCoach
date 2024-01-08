@@ -32,7 +32,6 @@ class ConfigInteractor @Inject constructor(private val mContext: Context, privat
         return userHelper.updateUser(user)
     }
 
-
     override
     fun getUser() = userHelper.loadUser()
 
@@ -148,7 +147,7 @@ class ConfigInteractor @Inject constructor(private val mContext: Context, privat
             }
     }
 
-    override fun exercises(): Observable<Boolean> {
+    override fun exercises(): Observable<Boolean> { // NO SE LLAMA EN NINGUN LADO
         val builder = GsonBuilder().excludeFieldsWithoutExposeAnnotation()
         val gson = builder.create()
         return dailyRepoHelper.isExercisesRepoEmpty().subscribeOn(Schedulers.io())

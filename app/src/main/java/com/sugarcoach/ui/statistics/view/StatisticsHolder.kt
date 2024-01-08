@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Color
 import android.util.Log
 import android.view.View
+import androidx.appcompat.view.menu.MenuView.ItemView
 import androidx.core.content.ContextCompat.getColor
 import androidx.recyclerview.widget.RecyclerView
 import com.github.mikephil.charting.components.Legend
@@ -20,7 +21,6 @@ import kotlin.collections.ArrayList
 class StatisticsHolder(private val binding: StatisticsItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
     fun inflateData(item: StatisticsItem, position: Int, activity: StatisticsActivity ) {
-
 
         binding.statisticsItemTitle.text = activity.getString(item.name)
         setUpGlucemia()

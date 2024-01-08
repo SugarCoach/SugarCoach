@@ -1,6 +1,7 @@
 package com.sugarcoach.ui.signEmail.interactor
 
 import com.facebook.AccessToken
+import com.google.firebase.auth.FirebaseUser
 import com.sugarcoach.data.database.repository.dailyregister.DailyRegister
 import com.sugarcoach.data.database.repository.treament.Treament
 import com.sugarcoach.data.network.LoginResponse
@@ -11,14 +12,13 @@ import io.reactivex.Observable
 
 
 interface SignEmailInteractorImp : Interactor {
-    fun updateUser(signResponse: SignResponse)
-    fun doServerSignApiCall(username: String, email: String, password: String): Observable<SignResponse>
-    fun getRegistersCall(): Observable<List<RegistersResponse>>
+    fun updateUser(signResponse: FirebaseUser?): Observable<Boolean>
+    suspend fun updateCloudUser(signResponse: FirebaseUser?): Result<Boolean>
     fun saveRegisters(registersResponse: List<DailyRegister>): Observable<Boolean>
-    fun doFBLoginApiCall(accessToken: AccessToken): Observable<LoginResponse>
-    fun doGoogleLoginApiCall(token: String?): Observable<LoginResponse>
     fun updateUserSocial(loginResponse: LoginResponse)
     fun treament(treament: Treament): Observable<Boolean>
+    suspend fun insertTreatment(treament: Treament): Result<Boolean>
+    suspend fun createUserData(): Result<Boolean>
     fun category(): Observable<Boolean>
     fun states(): Observable<Boolean>
     fun exercises(): Observable<Boolean>
@@ -29,7 +29,5 @@ interface SignEmailInteractorImp : Interactor {
     fun getMedidor(): Observable<Boolean>
     fun getBombas(): Observable<Boolean>
     fun getCorrectora(): Observable<Boolean>
-
-
 
 }

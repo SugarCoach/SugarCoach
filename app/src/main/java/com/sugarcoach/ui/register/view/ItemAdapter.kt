@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.sugarcoach.R
+import com.sugarcoach.databinding.CategoryItemBinding
 import com.sugarcoach.databinding.EmotionsItemBinding
 import java.util.*
 
@@ -14,6 +15,7 @@ class ItemAdapter(private val activity: RegisterActivity) : RecyclerView.Adapter
     lateinit var binding: EmotionsItemBinding
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater: LayoutInflater = LayoutInflater.from(activity)
+        binding = EmotionsItemBinding.inflate(inflater)
         return ItemHolder(binding)
     }
 

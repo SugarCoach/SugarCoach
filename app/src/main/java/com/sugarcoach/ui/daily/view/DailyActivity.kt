@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.core.content.ContextCompat
@@ -60,8 +61,8 @@ class DailyActivity : BaseActivity(), DailyView {
     override fun showSuccessToast() {
     }
 
-    override fun showErrorToast() {
-        Toast.makeText(this, getString(R.string.login_failure), Toast.LENGTH_LONG).show()
+    override fun showErrorToast(msg: String) {
+        Toast.makeText(this, msg, Toast.LENGTH_LONG).show()
     }
 
     override fun getUserData(user: User) {
@@ -90,10 +91,16 @@ class DailyActivity : BaseActivity(), DailyView {
     }
 
     override fun getRegisters(registers: MutableList<ExpandableListItem<DailyHeader, DailyItem>>) {
-        dailyAdapter = DailyAdapter(this,registers)
-        binding.dailyList.adapter = dailyAdapter
-        dailyAdapter.toggleGroup(0)
-        hideProgress()
+        try {
+            dailyAdapter = DailyAdapter(this,registers)
+            binding.dailyList.adapter = dailyAdapter
+            dailyAdapter.toggleGroup(0)
+            hideProgress()
+        }catch (e: Exception){
+            Log.i("OnDailyAdapter", "Ocurrió un error: $e")
+            showErrorToast("Haga una carga antes")
+            openRegisterActivity()
+        }
     }
 
     override fun setUp() {

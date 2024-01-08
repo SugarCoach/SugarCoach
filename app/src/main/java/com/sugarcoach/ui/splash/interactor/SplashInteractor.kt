@@ -1,20 +1,14 @@
 package com.sugarcoach.ui.splash.interactor
 
 import android.content.Context
-import com.google.gson.GsonBuilder
-import com.google.gson.internal.`$Gson$Types`
-import com.sugarcoach.data.database.repository.dailyregister.Category
 import com.sugarcoach.data.database.repository.dailyregister.DailyRegister
 import com.sugarcoach.data.database.repository.dailyregister.DailyRegisterRepo
 import com.sugarcoach.data.database.repository.treament.*
-import com.sugarcoach.data.database.repository.user.User
 import com.sugarcoach.data.database.repository.user.UserRepo
 import com.sugarcoach.data.network.ApiHelper
 import com.sugarcoach.data.network.RegistersResponse
 import com.sugarcoach.data.ui.base.interactor.BaseInteractor
 import com.sugarcoach.di.preferences.PreferenceHelper
-import com.sugarcoach.util.AppConstants
-import com.sugarcoach.util.FileUtils
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject

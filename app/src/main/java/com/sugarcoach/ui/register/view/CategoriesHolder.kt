@@ -12,11 +12,11 @@ class CategoriesHolder(private val binding: CategoryItemBinding) : RecyclerView.
         binding.categoryName.text = activity.getLabel(item.cate_name)
     }
 
-    companion object {
+    /*companion object {
         fun create(parent: ViewGroup): CategoriesHolder {
             val inflater = LayoutInflater.from(parent.context)
             val binding = CategoryItemBinding.inflate(inflater, parent, false)
             return CategoriesHolder(binding)
         }
-    }
+    }*/
 }

@@ -1,0 +1,7 @@
+mutation UpdateUserData($user: UserDataInput!, $id: ID!){
+    updateUserData(data: $user, id: $id){
+        data {
+            id
+        }
+    }
+}

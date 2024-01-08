@@ -192,7 +192,7 @@ class ConfigPresenter <V : ConfigView, I : ConfigInteractorImp> @Inject internal
     override fun checkAndRequestPermissions(context: Activity, permission: ArrayList<String>) {
         val listPermissionsNeeded = ArrayList<String>()
         for (i in permission.indices){
-        val readpermission = ContextCompat.checkSelfPermission(context, permission[i])
+            val readpermission = ContextCompat.checkSelfPermission(context, permission[i])
             if (readpermission != PackageManager.PERMISSION_GRANTED) {
                 listPermissionsNeeded.add(permission[i])
             }

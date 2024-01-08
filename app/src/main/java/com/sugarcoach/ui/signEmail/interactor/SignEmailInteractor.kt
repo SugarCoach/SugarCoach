@@ -1,51 +1,91 @@
 package com.sugarcoach.ui.signEmail.interactor
 
+import android.annotation.SuppressLint
 import android.content.Context
-import com.facebook.AccessToken
+import android.util.Log
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.google.gson.GsonBuilder
 import com.google.gson.internal.`$Gson$Types`
+import com.sugarcoach.data.api_db.ApiRepository
 import com.sugarcoach.data.database.repository.dailyregister.*
 import com.sugarcoach.data.database.repository.treament.*
+import com.sugarcoach.data.database.repository.user.ParcialUser
 import com.sugarcoach.data.database.repository.user.User
 import com.sugarcoach.data.database.repository.user.UserRepo
 import com.sugarcoach.data.network.*
 import com.sugarcoach.data.ui.base.interactor.BaseInteractor
 import com.sugarcoach.di.preferences.PreferenceHelper
+import com.sugarcoach.type.DateTime
 import com.sugarcoach.util.AppConstants
 import com.sugarcoach.util.FileUtils
+import com.sugarcoach.util.extensions.toDailyInput
+import com.sugarcoach.util.extensions.toTreatmentInput
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Deferred
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import org.joda.time.LocalDateTime
+import org.joda.time.format.DateTimeFormat
+import java.lang.Exception
+import java.util.Date
 import javax.inject.Inject
 
 
-class SignEmailInteractor @Inject constructor(private val mContext: Context, private val treamentRepoHelper: TreamentRepo, private  val dailyRepoHelper: DailyRegisterRepo, userRepoHelper: UserRepo, preferenceHelper: PreferenceHelper, apiHelper: ApiHelper) : BaseInteractor(userRepoHelper,preferenceHelper,apiHelper),
+class SignEmailInteractor @Inject constructor(private val mContext: Context, private val treamentRepoHelper: TreamentRepo,
+                                              private  val dailyRepoHelper: DailyRegisterRepo,
+                                              userRepoHelper: UserRepo, preferenceHelper: PreferenceHelper,
+                                              apiHelper: ApiHelper
+) : BaseInteractor(userRepoHelper,preferenceHelper, apiHelper),
     SignEmailInteractorImp {
 
+    @Inject
+    lateinit var apiRepository: ApiRepository
+    lateinit var user: User
 
-    override fun updateUser(signResponse: SignResponse) {
-
+    @SuppressLint("CheckResult")
+    override fun updateUser(signResponse: FirebaseUser?): Observable<Boolean> {
         val builder = GsonBuilder().excludeFieldsWithoutExposeAnnotation()
         val gson = builder.create()
-        var json = gson.toJson(signResponse.user)
-        var user: User = gson.fromJson(json.toString(), User::class.java)
+
+        val parcialUser = ParcialUser(signResponse!!.email!!, signResponse.displayName!!, false,
+            signResponse.providerId, true)
+
+        val json = gson.toJson(parcialUser, ParcialUser::class.java)
+        Log.i("OnJson", json.toString())
+        user = gson.fromJson(json.toString(), User::class.java)
+
         user.typeAccount = "2"
-        userHelper.insertRegister(user)
+        Log.i("OnUser", signResponse.uid)
+
         preferenceHelper.let {
-            it.setCurrentUserId(signResponse.user?.id)
-            it.setAccessToken(signResponse.accessToken)
+            it.setAccessToken(signResponse.uid)
             it.setUserLoged(true)
         }
+
+        return userHelper.insertRegister(user)
     }
 
-    override fun doServerSignApiCall(username: String, email: String, password: String): Observable<SignResponse> =
-        apiHelper.performServerSign(SignRequest.ServerSignRequest(username = username, email = email, pass = password)).subscribeOn(
-            Schedulers.io())
-            .map { it }
 
-    override fun getRegistersCall(): Observable<List<RegistersResponse>> {
-        return apiHelper.performGetRegisters(token = "Bearer "+preferenceHelper.getAccessToken().toString()).subscribeOn(
-            Schedulers.io())
-            .map { it }
+    override suspend fun updateCloudUser(signResponse: FirebaseUser?): Result<Boolean> {
+        return if (signResponse != null) {
+            apiRepository.createUser(user.username, user.email, signResponse.uid).fold({
+                Log.i("OnCreateUser", it.toString()+ ": " + it?.id!!.toString())
+                setUserId(it.id)
+                return Result.success(true)
+            }, {
+                Log.i("OnCreateUser", "Ocurrió un error con la API: $it")
+                return Result.failure(it)
+            })
+        }else{
+            Result.failure(Exception("El signResponse es nulo"))
+        }
     }
     override fun saveRegisters(registersResponse: List<DailyRegister>): Observable<Boolean> {
         if (dailyRepoHelper.loadDailyRegistersTotal() > 0 || dailyRepoHelper.isRegisterRepoEmpty()) {
@@ -58,13 +98,7 @@ class SignEmailInteractor @Inject constructor(private val mContext: Context, pri
         }
     }
 
-    override fun doGoogleLoginApiCall(token: String?): Observable<LoginResponse> {
-        return apiHelper.performGoogleLogin(LoginRequest.GoogleLoginRequest(token.toString()))
-    }
 
-    override fun doFBLoginApiCall(accessToken: AccessToken): Observable<LoginResponse> {
-        return apiHelper.performFBLogin(LoginRequest.FacebookLoginRequest(accessToken.token))
-    }
     override fun updateUserSocial(loginResponse: LoginResponse) {
         val builder = GsonBuilder().excludeFieldsWithoutExposeAnnotation()
         val gson = builder.create()
@@ -80,13 +114,27 @@ class SignEmailInteractor @Inject constructor(private val mContext: Context, pri
     override fun treament(treament: Treament): Observable<Boolean> {
         val builder = GsonBuilder().excludeFieldsWithoutExposeAnnotation()
         val gson = builder.create()
+
         return treamentRepoHelper.isTreamentRepoEmpty().subscribeOn(Schedulers.io())
             .concatMap { isEmpty ->
                 if (isEmpty) {
+                    Log.i("OnApiTreatment", "Se inserta: $treament")
                     treamentRepoHelper.insertTreament(treament)
-                } else
+                } else{
+                    Log.i("OnApiTreatment", "El result fue empty")
                     Observable.just(false)
+                }
             }
+
+    }
+
+    override suspend fun insertTreatment(treament: Treament): Result<Boolean> {
+        Log.i("OnApiTreatment", "El treament a subir es: $treament. currentId: ${getCurrentId()!!}")
+        return apiRepository.createTreatment(treament.toTreatmentInput(getCurrentId()!!))
+    }
+
+    override suspend fun createUserData(): Result<Boolean> {
+        return apiRepository.createUserData(getCurrentId()!!)
     }
 
     override fun category(): Observable<Boolean> {
@@ -94,6 +142,7 @@ class SignEmailInteractor @Inject constructor(private val mContext: Context, pri
         val gson = builder.create()
         return dailyRepoHelper.isCategoriesRepoEmpty().subscribeOn(Schedulers.io())
             .concatMap { isEmpty ->
+                Log.i("OnCategory", "Es empty: $isEmpty")
                 if (isEmpty) {
                     val type = `$Gson$Types`.newParameterizedTypeWithOwner(null, List::class.java, Category::class.java)
                     val categoryList = gson.fromJson<List<Category>>(
@@ -102,8 +151,9 @@ class SignEmailInteractor @Inject constructor(private val mContext: Context, pri
                             AppConstants.DATABASE_CATEGORY),
                         type)
                     dailyRepoHelper.insertCategories(categoryList)
-                } else
+                } else{
                     Observable.just(false)
+                }
             }
     }
 
@@ -113,6 +163,7 @@ class SignEmailInteractor @Inject constructor(private val mContext: Context, pri
         val gson = builder.create()
         return dailyRepoHelper.isExercisesRepoEmpty().subscribeOn(Schedulers.io())
             .concatMap { isEmpty ->
+                Log.i("OnExcercises", "Es empty: $isEmpty")
                 if (isEmpty) {
                     val type = `$Gson$Types`.newParameterizedTypeWithOwner(null, List::class.java, Exercises::class.java)
                     val itemList = gson.fromJson<List<Exercises>>(
