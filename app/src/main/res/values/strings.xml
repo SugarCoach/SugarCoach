@@ -8,7 +8,7 @@
     <string name="boarding_subtitle">SugarCoach!</string>
     <string name="register_label">Crear cuenta</string>
     <string name="empty_email_error_message">El mail no puede estar vacio</string>
-    <string name="empty_codigo_error_message">El codigo no puede estar vacio o no puede ser menor a 6 digitos</string>
+    <string name="empty_codigo_error_message">El codigo no puede estar vacio</string>
     <string name="invalid_email_error_message">Por favor ingrese un mail valido</string>
     <string name="invalid_phone_error_message">Por favor ingrese un numero de telefono valido</string>
     <string name="empty_password_error_message">La contraseña no puede estar vacia</string>
@@ -83,9 +83,10 @@
     <string name="login_user_label">Apodo</string>
     <string name="login_password_label">Contraseña</string>
     <string name="login_email_label">Mail</string>
-    <string name="facebook_app_id">544348083039193</string>
-    <string name="fb_login_protocol_scheme">fb544348083039193</string>
-    <string name="google_id">491509079769-id35b8mg2ri28f22hokp9fbnhbpg9e3c.apps.googleusercontent.com</string>
+    <string name="facebook_app_id" translatable="false">980132638986062</string>
+    <string name="facebook_client_token" translatable="false">a3120380267bf88e458a6bc09ca06556</string>
+    <string name="fb_login_protocol_scheme" translatable="false">fb544348083039193</string>
+    <string name="google_id">341853924281-84dftkcod2nu7r03g2c3mnog014imaag.apps.googleusercontent.com</string>
     <string name="test">Lorem Lipsum</string>
     <string name="loading_label">Cargando…</string>
     <string name="empty_register_range_error_message">Debe ingresar un valor dentro del rango</string>
@@ -102,9 +103,6 @@
     <string name="dialog_category_label">Selecciona un tipo de medición</string>
     <string name="register_date_warning">Atención usted está por cambiar la fecha</string>
     <string name="register_time_warning">Atención usted está por cambiar la hora</string>
-    <string name="register_time_future">Atención usted no puede poner una fecha futura</string>
-    <string name="time_future_warning">Para poder continuar el horario tiene que ser antiguo, no podes cargar una hora futura! </string>
-    <string name="validate_hour">Atención no puede poner una hora futura!</string>
     <string name="register_category_warning">Atención usted está por cambiar la categoría</string>
     <string name="congratulation_pts_label">Total pts</string>
     <string name="congratulation_nivel_label">Nivel</string>

@@ -10,6 +10,7 @@ import com.sugarcoach.data.network.LoginResponse
 import com.sugarcoach.data.network.RegisterSavePhotoResponse
 import com.sugarcoach.data.network.RegisterSaveResponse
 import com.sugarcoach.data.ui.base.interactor.Interactor
+import com.sugarcoach.ui.daily.view.DailyItem
 import io.reactivex.Observable
 import io.reactivex.Single
 import java.io.File
@@ -17,7 +18,7 @@ import java.io.File
 
 interface RegisterInteractorImp : Interactor {
 
-    fun saveRegisterCall(dailyRegister: DailyRegister): Observable<RegisterSaveResponse>
+    suspend fun saveRegisterCall(dailyRegister: DailyRegister): Observable<RegisterSaveResponse>
     fun saveRegisterPhotoCall(id: String, photo: File): Observable<RegisterSavePhotoResponse>
     fun insertDaily(dailyRegister: DailyRegister): Observable<Boolean>
     fun getUser(): Single<User>
@@ -28,8 +29,5 @@ interface RegisterInteractorImp : Interactor {
     fun getCategories(): Single<List<Category>>
     fun getExercises(): Single<List<Exercises>>
     fun getEmotions(): Single<List<States>>
-    fun updateUser(user: User): Observable<Boolean>
-
-
 
 }

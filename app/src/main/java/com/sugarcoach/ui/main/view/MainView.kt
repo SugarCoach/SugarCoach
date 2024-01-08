@@ -6,7 +6,7 @@ import java.util.*
 
 
 interface MainView : BaseView {
-
+    //fun performLogOut()
     fun showSuccessToast()
     fun openRegisterActivity()
     fun openTreatmentActivity()

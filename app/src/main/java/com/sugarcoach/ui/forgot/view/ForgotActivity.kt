@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import com.sugarcoach.R
+import com.sugarcoach.databinding.ActivityForgotBinding
 import com.sugarcoach.ui.base.view.BaseActivity
 import com.sugarcoach.ui.forgot.interactor.ForgotInteractorImp
 import com.sugarcoach.ui.forgot.presenter.ForgotPresenterImp
@@ -12,18 +13,17 @@ import com.sugarcoach.ui.login.presenter.LoginPresenterImp
 import com.sugarcoach.ui.main.view.MainActivity
 import com.sugarcoach.ui.signEmail.view.SignEmailActivity
 import com.sugarcoach.util.AppConstants
-import kotlinx.android.synthetic.main.activity_forgot.*
-import kotlinx.android.synthetic.main.activity_login.*
 import javax.inject.Inject
 
 class ForgotActivity: BaseActivity(), ForgotView {
     @Inject
     lateinit var presenter: ForgotPresenterImp<ForgotView,ForgotInteractorImp>
-
+    lateinit var binding: ActivityForgotBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_forgot)
+        binding = ActivityForgotBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         presenter.onAttach(this)
         setOnClickListeners()
     }
@@ -42,7 +42,7 @@ class ForgotActivity: BaseActivity(), ForgotView {
         }
     }
 
-    override fun showErrorToast() {
+    override fun showErrorToast(msg: String) {
         Toast.makeText(this, getString(R.string.login_failure), Toast.LENGTH_LONG).show()
     }
     override fun onForgot() {
@@ -51,6 +51,6 @@ class ForgotActivity: BaseActivity(), ForgotView {
     }
 
     private fun setOnClickListeners() {
-        forgot_bt.setOnClickListener { presenter.onForgot(forgot_mail.text.toString()) }
+        binding.forgotBt.setOnClickListener { presenter.onForgot(binding.forgotMail.text.toString()) }
     }
 }

@@ -3,6 +3,7 @@ package com.sugarcoach.ui.login.interactor
 import android.content.Context
 import com.google.gson.GsonBuilder
 import com.google.gson.internal.`$Gson$Types`
+import com.sugarcoach.data.api_db.ApiRepository
 import com.sugarcoach.data.database.repository.dailyregister.*
 import com.sugarcoach.data.database.repository.treament.*
 import com.sugarcoach.data.database.repository.user.User
@@ -17,22 +18,51 @@ import com.sugarcoach.util.AppConstants
 import com.sugarcoach.util.FileUtils
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.coroutineScope
+import java.lang.Exception
 import javax.inject.Inject
 
 
-class LoginInteractor @Inject constructor(private val mContext: Context, private  val dailyRepoHelper: DailyRegisterRepo, private val treamentRepoHelper: TreamentRepo, userRepoHelper: UserRepo, preferenceHelper: PreferenceHelper, apiHelper: ApiHelper) : BaseInteractor(userRepoHelper,preferenceHelper,apiHelper),
+class LoginInteractor @Inject constructor(private val mContext: Context, private  val dailyRepoHelper: DailyRegisterRepo,
+                                          private val treamentRepoHelper: TreamentRepo, userRepoHelper: UserRepo,
+                                          preferenceHelper: PreferenceHelper, apiHelper: ApiHelper) :
+    BaseInteractor(userRepoHelper,preferenceHelper,apiHelper),
     LoginInteractorImp {
 
-    override fun doServerLoginpiCall(email: String, password: String): Observable<LoginResponse> {
-       return apiHelper.performServerLogin(LoginRequest.ServerLoginRequest(email = email, pass = password)).subscribeOn(
-           Schedulers.io())
-           .map { it }
+    @Inject
+    lateinit var apiRepository: ApiRepository
+
+
+    override suspend fun getUserData(userUID: String?): Result<String> {
+        val apiRes = apiRepository.getUserId(userUID!!)
+        return if(!apiRes.isNullOrEmpty()){
+            Result.success(apiRes)
+        }else{
+            Result.failure(Exception("Ocurrió un error llamando al user"))
+        }
+    }
+    override suspend fun doServerLoginpiCall(email: String, password: String): Observable<LoginResponse> {
+       val loginResponse = coroutineScope {
+           val response = this.async {
+               apiHelper.performServerLogin(LoginRequest.ServerLoginRequest(email = email, pass = password))
+                   .subscribeOn(Schedulers.io())
+                   .map { it }
+           }
+           response.await()
+       }
+        return loginResponse
     }
 
     override fun getRegistersCall(): Observable<List<RegistersResponse>> {
         return apiHelper.performGetRegisters(token = "Bearer "+preferenceHelper.getAccessToken().toString()).subscribeOn(
             Schedulers.io())
             .map { it }
+        /*CoroutineScope(Dispatchers.IO).async {
+            apiRepository.getDailyRegisters()
+        }*/
     }
     override fun updateUserInSharedPref(loginResponse: LoginResponse, mirror: Boolean, medico: Boolean) {
         val builder = GsonBuilder().excludeFieldsWithoutExposeAnnotation()
@@ -81,6 +111,7 @@ class LoginInteractor @Inject constructor(private val mContext: Context, private
                     Observable.just(false)
             }
     }
+
 
     override fun category(): Observable<Boolean> {
         val builder = GsonBuilder().excludeFieldsWithoutExposeAnnotation()

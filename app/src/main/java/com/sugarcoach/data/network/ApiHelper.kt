@@ -11,7 +11,7 @@ import retrofit2.http.*
 
 interface ApiHelper {
     @POST(ENDPOINT_SERVER_LOGIN)
-    fun performServerLogin(@Body request: LoginRequest.ServerLoginRequest): Observable<LoginResponse>
+    suspend fun performServerLogin(@Body request: LoginRequest.ServerLoginRequest): Observable<LoginResponse>
 
     @POST(ENDPOINT_SERVER_LOGIN)
     fun performServerForgot(@Body request: ForgotRequest.ServerForgotRequest): Observable<LoginResponse>

@@ -1,10 +1,6 @@
 package com.sugarcoach.ui.forgot.interactor
 
-import android.util.Log
-import com.google.gson.GsonBuilder
-import com.sugarcoach.data.database.repository.dailyregister.DailyRegister
 import com.sugarcoach.data.database.repository.dailyregister.DailyRegisterRepo
-import com.sugarcoach.data.database.repository.user.User
 import com.sugarcoach.data.database.repository.user.UserRepo
 import com.sugarcoach.data.network.*
 import com.sugarcoach.data.ui.base.interactor.BaseInteractor

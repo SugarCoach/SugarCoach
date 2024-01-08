@@ -34,6 +34,10 @@ import com.sugarcoach.data.database.repository.treament.Treament
 import com.sugarcoach.ui.daily_detail.view.DailyItem
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.io.ByteArrayOutputStream
 import java.io.File
 import kotlin.random.Random
@@ -104,18 +108,21 @@ class DailyDetailPresenter<V : DailyDetailView, I : DailyDetailInteractorImp> @I
             )
         }
     }
-    override fun deleteRegister(dailyRegister: DailyRegister) {
+    override fun deleteRegister() {
+        Log.i("OnDeleteRegister", "El idOnline es: ${dailyRegister.idOnline}")
         if (!dailyRegister.idOnline.isNullOrEmpty()) {
             interactor?.let {
-                compositeDisposable.add(it.deleteRegistersCall(dailyRegister.idOnline!!)
-                    .doOnSubscribe { getView()?.showProgress() }
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe({ response ->
+                getView()?.showProgress()
+                CoroutineScope(Dispatchers.IO).launch {
+                    it.deleteRegistersCall(dailyRegister.idOnline!!).fold({
+                        Log.i("OnUpdateGlucose", "La response es: $it")
                         deleteRegisterLocal(dailyRegister.id)
-                    }, { throwable ->
-                        getView()?.showErrorToast()
+                    },{
+                        withContext(Dispatchers.Main){
+                            getView()?.showErrorToast("Verifique su conexión a WiFi")
+                        }
                     })
-                )
+                }
             }
         }else{
             deleteRegisterLocal(dailyRegister.id)
@@ -154,6 +161,7 @@ class DailyDetailPresenter<V : DailyDetailView, I : DailyDetailInteractorImp> @I
                     date = LocalDateTime(dailyRegister.created)
                     setExercises(register.dailyRegister!!.exercise)
                     setEmotional(register.dailyRegister!!.emotionalState)
+                    interactor?.setIdOnline(register.dailyRegister!!.idOnline.toString())
                 }, { throwable ->
                     showException(throwable)
                 })
@@ -164,143 +172,145 @@ class DailyDetailPresenter<V : DailyDetailView, I : DailyDetailInteractorImp> @I
 
     override fun updateGlucose(glucose: Float?) {
         dailyRegister.glucose = glucose!!.toFloat()
+        Log.i("OnUpdateGlucose", "La glucosa es: $glucose, el daily es: $dailyRegister")
+        getView()?.showProgress()
         interactor?.let {
-            compositeDisposable.add(it.updateRegisterCall(dailyRegister)
-                .compose(schedulerProvider.ioToMainObservableScheduler())
-                .doOnSubscribe { getView()?.showProgress() }
-                .subscribe({ updateGlucoseLocal(glucose)
-                }, { throwable ->
-                    showException(throwable)
+            CoroutineScope(Dispatchers.IO).launch {
+                it.updateRegisterCall(dailyRegister).fold({
+                    Log.i("OnUpdateGlucose", "La response es: $it")
+                    updateGlucoseLocal(glucose)
+                },{
+                    withContext(Dispatchers.Main){
+                        getView()?.showErrorToast("Verifique su conexión a WiFi")
+                    }
                 })
-            )
+            }
         }
 
     }
     override fun updateInsulin(insulin: Float?) {
         dailyRegister.insulin = insulin!!.toFloat()
-        interactor?.let {
-            compositeDisposable.add(it.updateRegisterCall(dailyRegister)
-                .compose(schedulerProvider.ioToMainObservableScheduler())
-                .doOnSubscribe { getView()?.showProgress() }
-                .subscribe({ updateInsulinLocal(insulin)
-                }, { throwable ->
-                    showException(throwable)
-                })
-            )
-        }
 
+        getView()?.showProgress()
+        interactor?.let {
+            CoroutineScope(Dispatchers.IO).launch {
+                it.updateRegisterCall(dailyRegister).fold({
+                    Log.i("OnUpdateGlucose", "La response es: $it")
+                    updateInsulinLocal(insulin)
+                },{
+                    withContext(Dispatchers.Main){
+                        getView()?.showErrorToast("Verifique su conexión a WiFi")
+                    }
+                })
+            }
+        }
     }
     override fun updateBasal(basal: Float?) {
         dailyRegister.basal = basal!!.toFloat()
+
+        getView()?.showProgress()
         interactor?.let {
-            compositeDisposable.add(it.updateRegister(dailyRegister)
-                .compose(schedulerProvider.ioToMainObservableScheduler())
-                .doOnSubscribe { getView()?.showProgress() }
-                .subscribe({ updateBasalLocal(basal)
-                }, { throwable ->
-                    showException(throwable)
+            CoroutineScope(Dispatchers.IO).launch {
+                it.updateRegisterCall(dailyRegister).fold({
+                    Log.i("OnUpdateGlucose", "La response es: $it")
+                    updateBasalLocal(basal)
+                },{
+                    withContext(Dispatchers.Main){
+                        getView()?.showErrorToast("Verifique su conexión a WiFi")
+                    }
                 })
-            )
+            }
         }
     }
     override fun updateCarb(carbohydrates: Float?) {
         dailyRegister.carbohydrates = carbohydrates!!.toFloat()
+
+        getView()?.showProgress()
         interactor?.let {
-            compositeDisposable.add(it.updateRegisterCall(dailyRegister)
-                .compose(schedulerProvider.ioToMainObservableScheduler())
-                .doOnSubscribe { getView()?.showProgress() }
-                .subscribe({ updateCarbLocal(carbohydrates)
-                }, { throwable ->
-                    showException(throwable)
+            CoroutineScope(Dispatchers.IO).launch {
+                it.updateRegisterCall(dailyRegister).fold({
+                    Log.i("OnUpdateGlucose", "La response es: $it")
+                    updateCarbLocal(carbohydrates)
+                },{
+                    withContext(Dispatchers.Main){
+                        getView()?.showErrorToast("Verifique su conexión a WiFi")
+                    }
                 })
-            )
+            }
         }
 
     }
 
-
-
     override fun updateExercise(exercise: String?) {
+        Log.i("OnUpdateExercise", "El ejercicio fue: $exercise")
         dailyRegister.exercise = exercise!!.toString()
+
+        getView()?.showProgress()
         interactor?.let {
-            compositeDisposable.add(it.updateRegisterCall(dailyRegister)
-                .compose(schedulerProvider.ioToMainObservableScheduler())
-                .doOnSubscribe { getView()?.showProgress() }
-                .subscribe({
+            CoroutineScope(Dispatchers.IO).launch {
+                it.updateRegisterCall(dailyRegister).fold({
+                    Log.i("OnUpdateExercise", "La response es: $it")
                     updateExerciseLocal(exercise)
-                }, { throwable ->
-                    showException(throwable)
+                },{
+                    withContext(Dispatchers.Main){
+                        getView()?.showErrorToast("Verifique su conexión a WiFi")
+                    }
                 })
-            )
+            }
         }
 
     }
     override fun updateLabel(label: Int?) {
         dailyRegister.category_id = label!!
-        interactor?.let {
-            compositeDisposable.add(it.updateRegisterCall(dailyRegister)
-                .compose(schedulerProvider.ioToMainObservableScheduler())
-                .doOnSubscribe { getView()?.showProgress() }
-                .subscribe({
-                    updateLabelLocal(label)
 
-                }, { throwable ->
-                    showException(throwable)
-                })
-            )
-        }
-
+        getView()?.showProgress()
+        updateLabelLocal(label)
     }
     override fun updateEmotional(emotional: String?) {
         dailyRegister.emotionalState = emotional!!.toString()
+
+        getView()?.showProgress()
         interactor?.let {
-            compositeDisposable.add(it.updateRegisterCall(dailyRegister)
-                .compose(schedulerProvider.ioToMainObservableScheduler())
-                .doOnSubscribe { getView()?.showProgress() }
-                .subscribe({
-                   updateEmotionalLocal(emotional)
-                }, { throwable ->
-                    showException(throwable)
+            CoroutineScope(Dispatchers.IO).launch {
+                it.updateRegisterCall(dailyRegister).fold({
+                    Log.i("OnUpdateGlucose", "La response es: $it")
+                    updateEmotionalLocal(emotional)
+                },{
+                    withContext(Dispatchers.Main){
+                        getView()?.showErrorToast("Verifique su conexión a WiFi")
+                    }
                 })
-            )
+            }
         }
+
 
     }
     override fun updateComment(comment: String?) {
         dailyRegister.comment = comment!!.toString()
+        getView()?.showProgress()
         interactor?.let {
-            compositeDisposable.add(it.updateRegisterCall(dailyRegister)
-                .compose(schedulerProvider.ioToMainObservableScheduler())
-                .doOnSubscribe { getView()?.showProgress() }
-                .subscribe({ updateCommentLocal(comment)
-                }, { throwable ->
-                    showException(throwable)
+            CoroutineScope(Dispatchers.IO).launch {
+                it.updateRegisterCall(dailyRegister).fold({
+                    Log.i("OnUpdateGlucose", "La response es: $it")
+                    updateCommentLocal(comment)
+                },{
+                    withContext(Dispatchers.Main){
+                        getView()?.showErrorToast("Verifique su conexión a WiFi")
+                    }
                 })
-            )
+            }
         }
 
     }
     override fun updatePhoto(photo: String?) {
         dailyRegister.photo = photo!!.toString()
-        var file = File(photo)
-        interactor?.let {
-            compositeDisposable.add(it.saveRegisterPhotoCall(dailyRegister.idOnline!!, file)
-                .compose(schedulerProvider.ioToMainObservableScheduler())
-                .doOnSubscribe { getView()?.showProgress() }
-                .subscribe({ updatePhotoLocal(photo)
-                }, { throwable ->
-                    showException(throwable)
-                })
-            )
-        }
-
+        updatePhotoLocal(photo)
     }
     fun updateExerciseLocal(exercise: String?) {
         dailyRegister.exercise = exercise!!.toString()
         interactor?.let {
             compositeDisposable.add(it.updateRegister(dailyRegister)
                 .compose(schedulerProvider.ioToMainObservableScheduler())
-                .doOnSubscribe { getView()?.showProgress() }
                 .doOnNext { getView()?.hideProgress() }
                 .subscribe({
                     getView()?.showSuccessToastUpdate()
@@ -317,7 +327,6 @@ class DailyDetailPresenter<V : DailyDetailView, I : DailyDetailInteractorImp> @I
         interactor?.let {
             compositeDisposable.add(it.updateRegister(dailyRegister)
                 .compose(schedulerProvider.ioToMainObservableScheduler())
-                .doOnSubscribe { getView()?.showProgress() }
                 .doOnNext { getView()?.hideProgress() }
                 .subscribe({ getView()?.showSuccessToastUpdate()
                 }, { throwable ->
@@ -332,7 +341,6 @@ class DailyDetailPresenter<V : DailyDetailView, I : DailyDetailInteractorImp> @I
         interactor?.let {
             compositeDisposable.add(it.updateRegister(dailyRegister)
                 .compose(schedulerProvider.ioToMainObservableScheduler())
-                .doOnSubscribe { getView()?.showProgress() }
                 .doOnNext { getView()?.hideProgress() }
                 .subscribe({ getView()?.showSuccessToastUpdate()
                 }, { throwable ->
@@ -347,7 +355,6 @@ class DailyDetailPresenter<V : DailyDetailView, I : DailyDetailInteractorImp> @I
         interactor?.let {
             compositeDisposable.add(it.updateRegister(dailyRegister)
                 .compose(schedulerProvider.ioToMainObservableScheduler())
-                .doOnSubscribe { getView()?.showProgress() }
                 .doOnNext { getView()?.hideProgress() }
                 .subscribe({ getView()?.showSuccessToastUpdate()
                 }, { throwable ->
@@ -361,7 +368,6 @@ class DailyDetailPresenter<V : DailyDetailView, I : DailyDetailInteractorImp> @I
         interactor?.let {
             compositeDisposable.add(it.updateRegister(dailyRegister)
                 .compose(schedulerProvider.ioToMainObservableScheduler())
-                .doOnSubscribe { getView()?.showProgress() }
                 .doOnNext { getView()?.hideProgress() }
                 .subscribe({ getView()?.showSuccessToastUpdate()
                 }, { throwable ->
@@ -376,7 +382,6 @@ class DailyDetailPresenter<V : DailyDetailView, I : DailyDetailInteractorImp> @I
         interactor?.let {
             compositeDisposable.add(it.updateRegister(dailyRegister)
                 .compose(schedulerProvider.ioToMainObservableScheduler())
-                .doOnSubscribe { getView()?.showProgress() }
                 .doOnNext { getView()?.hideProgress() }
                 .subscribe({
                     getView()?.showSuccessToastUpdate()
@@ -393,7 +398,6 @@ class DailyDetailPresenter<V : DailyDetailView, I : DailyDetailInteractorImp> @I
         interactor?.let {
             compositeDisposable.add(it.updateRegister(dailyRegister)
                 .compose(schedulerProvider.ioToMainObservableScheduler())
-                .doOnSubscribe { getView()?.showProgress() }
                 .doOnNext { getView()?.hideProgress() }
                 .subscribe({
                     getView()?.showSuccessToastUpdate()
@@ -410,7 +414,6 @@ class DailyDetailPresenter<V : DailyDetailView, I : DailyDetailInteractorImp> @I
         interactor?.let {
             compositeDisposable.add(it.updateRegister(dailyRegister)
                 .compose(schedulerProvider.ioToMainObservableScheduler())
-                .doOnSubscribe { getView()?.showProgress() }
                 .doOnNext { getView()?.hideProgress() }
                 .subscribe({ getView()?.showSuccessToastUpdate()
                 }, { throwable ->
@@ -547,7 +550,7 @@ class DailyDetailPresenter<V : DailyDetailView, I : DailyDetailInteractorImp> @I
             .asFilePath()
             .build(ChoosePhotoCallback {
                 updatePhoto(it)
-                getView()?.setImage(it)
+                getView()?.setImage(it!!)
             })
     }
 
@@ -650,16 +653,18 @@ class DailyDetailPresenter<V : DailyDetailView, I : DailyDetailInteractorImp> @I
 
     override fun saveComment(comment: String) {
         dailyRegister.comment = comment
+        getView()?.showProgress()
         interactor?.let {
-            compositeDisposable.add(it.updateRegisterCall(dailyRegister)
-                .compose(schedulerProvider.ioToMainObservableScheduler())
-                .doOnSubscribe { getView()?.showProgress() }
-                .doOnComplete { getView()?.hideProgress() }
-                .subscribe({ saveCommentLocal(comment)
-                }, { throwable ->
-                    showException(throwable)
+            CoroutineScope(Dispatchers.IO).launch {
+                it.updateRegisterCall(dailyRegister).fold({
+                    Log.i("OnUpdateGlucose", "La response es: $it")
+                    saveCommentLocal(comment)
+                },{
+                    withContext(Dispatchers.Main){
+                        getView()?.showErrorToast("Verifique su conexión a WiFi")
+                    }
                 })
-            )
+            }
         }
     }
 
@@ -668,7 +673,7 @@ class DailyDetailPresenter<V : DailyDetailView, I : DailyDetailInteractorImp> @I
         interactor?.let {
             compositeDisposable.add(it.updateRegister(dailyRegister)
                 .compose(schedulerProvider.ioToMainObservableScheduler())
-                .doOnSubscribe { getView()?.showProgress() }
+                .doOnNext({getView()?.hideProgress()})
                 .subscribe({ getView()?.showSuccessToastUpdate()
                 }, { throwable ->
                     showException(throwable)

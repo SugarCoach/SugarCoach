@@ -22,12 +22,12 @@ interface TreatmentView : BaseView {
     fun setBasalHoras(horas: List<BasalHoraItem>)
     fun getLabel(name: String): String
     fun openDailyActivity()
-    fun openRegisterActivity()
     fun openMainActivity()
     fun openStatisticActivity()
     fun setMedidor(basalInsuline: List<BasalItem>)
     fun setBomba(basalInsuline: List<BasalItem>)
     fun showDataSave()
     fun sharedScreenShot(uri: Uri)
+
 
 }

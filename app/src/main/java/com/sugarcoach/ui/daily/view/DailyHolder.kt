@@ -14,62 +14,66 @@ import com.hominoid.expandablerecyclerviewlib.viewholders.GroupViewHolder
 import com.sugarcoach.R
 import com.sugarcoach.ui.daily.presenter.DailyPresenter
 import com.sugarcoach.ui.daily_detail.view.DailyDetailActivity
-import kotlinx.android.synthetic.main.daily_item.view.*
 import java.text.SimpleDateFormat
 import java.util.*
 
-class DailyHolder(itemView: View) : ChildViewHolder(itemView) {
+// Import the necessary data binding classes
+import com.sugarcoach.databinding.DailyItemBinding
+
+class DailyHolder(private val binding: DailyItemBinding) : ChildViewHolder(binding.root) {
     fun setItemClickListener(id: Int) {
-        itemView.setOnClickListener {
-            val intent = Intent(itemView.context, DailyDetailActivity::class.java)
+        binding.root.setOnClickListener {
+            val intent = Intent(binding.root.context, DailyDetailActivity::class.java)
             intent.putExtra("id", id)
-            itemView.context.startActivity(intent)
+            binding.root.context.startActivity(intent)
         }
     }
 
     fun inflateData(item: DailyItem, activity: DailyActivity) {
-        itemView.daily_exercise_iv.visibility = View.GONE
-        itemView.daily_emotional_iv.visibility = View.GONE
-        itemView.daily_exercise_tv.visibility = View.GONE
-        itemView.daily_emotional_tv.visibility = View.GONE
-        itemView.daily_cardview.setCardBackgroundColor(item.bgColor)
-        itemView.daily_glu_text.setTextColor( item.bgColor)
-        itemView.daily_correcto_text.setTextColor( item.bgColor)
-        itemView.daily_basal_text.setTextColor( item.bgColor)
-        itemView.daily_hc_text.setTextColor(item.bgColor)
+        // Set the visibility of views using data binding
+        binding.dailyExerciseIv.visibility = View.GONE
+        binding.dailyEmotionalIv.visibility = View.GONE
+        binding.dailyExerciseTv.visibility = View.GONE
+        binding.dailyEmotionalTv.visibility = View.GONE
+
+        // Set the background color using data binding
+        binding.dailyCardview.setCardBackgroundColor(item.bgColor)
+        binding.dailyGluText.setTextColor(item.bgColor)
+        binding.dailyCorrectoText.setTextColor(item.bgColor)
+        binding.dailyBasalText.setTextColor(item.bgColor)
+        binding.dailyHcText.setTextColor(item.bgColor)
+
+        // Set the text and color using data binding
         item.glucose?.let {
-            itemView.daily_glu_tv.text = it
-            itemView.daily_glu_tv.setTextColor(getColor(itemView.context, item.gluColor))
+            binding.dailyGluTv.text = it
+            binding.dailyGluTv.setTextColor(getColor(binding.root.context, item.gluColor))
         }
-        item.category?.let { itemView.daily_category_tv.text = it }
-        item.carbohydrates?.let { itemView.daily_hc_tv.text = it }
-        item.date?.let {dateString ->
+        item.category?.let { binding.dailyCategoryTv.text = it }
+        item.carbohydrates?.let { binding.dailyHcTv.text = it }
+        item.date?.let { dateString ->
             val formatterTime = SimpleDateFormat("hh:mm a", Locale.getDefault())
             val formattedTime = formatterTime.format(dateString)
-            itemView.daily_time_tv.text = formattedTime
-
+            binding.dailyTimeTv.text = formattedTime
         }
-        item.basal?.let { itemView.daily_basal_tv.text = it }
-        item.insulin?.let { itemView.daily_correcto_tv.text = it }
+        item.basal?.let { binding.dailyBasalTv.text = it }
+        item.insulin?.let { binding.dailyCorrectoTv.text = it }
         item.exercise?.let {
             val intDrawer = activity.getDrawable(it.exercise_icono)
             intDrawer?.let { drawable ->
-                itemView.daily_exercise_iv.setImageDrawable(drawable)
-                itemView.daily_exercise_tv.text = activity.getLabel(it.exercise_name)
-                itemView.daily_exercise_iv.visibility = View.VISIBLE
-                itemView.daily_exercise_tv.visibility = View.VISIBLE
+                binding.dailyExerciseIv.setImageDrawable(drawable)
+                binding.dailyExerciseTv.text = activity.getLabel(it.exercise_name)
+                binding.dailyExerciseIv.visibility = View.VISIBLE
+                binding.dailyExerciseTv.visibility = View.VISIBLE
             }
         }
         item.state?.let {
             val intDrawer = activity.getDrawable(it.state_icono)
             intDrawer?.let { drawable ->
-                itemView.daily_emotional_iv.setImageDrawable(drawable)
-                itemView.daily_emotional_tv.text = activity.getLabel(it.state_name)
-                itemView.daily_emotional_iv.visibility = View.VISIBLE
-                itemView.daily_emotional_tv.visibility = View.VISIBLE
+                binding.dailyEmotionalIv.setImageDrawable(drawable)
+                binding.dailyEmotionalTv.text = activity.getLabel(it.state_name)
+                binding.dailyEmotionalIv.visibility = View.VISIBLE
+                binding.dailyEmotionalTv.visibility = View.VISIBLE
             }
         }
     }
-
-
 }

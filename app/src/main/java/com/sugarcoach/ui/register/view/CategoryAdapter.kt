@@ -8,6 +8,8 @@ import com.skydoves.powerspinner.PowerSpinnerInterface
 import com.skydoves.powerspinner.PowerSpinnerView
 import com.sugarcoach.R
 import com.sugarcoach.data.database.repository.dailyregister.Category
+import com.sugarcoach.databinding.CategoryItemBinding
+import com.sugarcoach.databinding.ProfileItemBinding
 import java.util.*
 
 class CategoryAdapter (private val activity: RegisterActivity) : RecyclerView.Adapter<RecyclerView.ViewHolder>(),
@@ -17,16 +19,19 @@ class CategoryAdapter (private val activity: RegisterActivity) : RecyclerView.Ad
     private var itemList: MutableList<Category> = Collections.emptyList()
     lateinit var holder: CategoriesHolder
 
+    lateinit var binding: CategoryItemBinding
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater: LayoutInflater = LayoutInflater.from(activity)
-        var holder = CategoriesHolder(inflater.inflate(R.layout.category_item, parent, false))
+        binding = CategoryItemBinding.inflate(inflater)
+        val holder = CategoriesHolder(binding)
         this.holder = holder
         return holder
     }
 
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        val item = itemList[holder.adapterPosition]
+        val item = itemList[holder.bindingAdapterPosition]
         bind(holder as CategoriesHolder, item)
 
         holder.itemView.setOnClickListener {
@@ -53,7 +58,7 @@ class CategoryAdapter (private val activity: RegisterActivity) : RecyclerView.Ad
         this.onSpinnerItemSelectedListener?.onItemSelected(index, this.itemList[index])
     }
     private fun bind(holder: CategoriesHolder, item: Category) {
-        holder.inflateData(item, activity)
+        holder.bind(item, activity)
     }
 
 }

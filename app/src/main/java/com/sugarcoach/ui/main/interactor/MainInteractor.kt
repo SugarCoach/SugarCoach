@@ -1,7 +1,5 @@
 package com.sugarcoach.ui.main.interactor
 
-import android.util.Log.d
-import android.util.Log.e
 import com.sugarcoach.data.database.AppDatabase
 import com.sugarcoach.data.database.repository.dailyregister.Category
 import com.sugarcoach.data.database.repository.dailyregister.DailyRegisterRepo
@@ -11,11 +9,8 @@ import com.sugarcoach.data.database.repository.user.UserRepo
 import com.sugarcoach.data.network.ApiHelper
 import com.sugarcoach.data.ui.base.interactor.BaseInteractor
 import com.sugarcoach.di.preferences.PreferenceHelper
-import io.reactivex.Maybe
 import io.reactivex.Observable
 import io.reactivex.Single
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 

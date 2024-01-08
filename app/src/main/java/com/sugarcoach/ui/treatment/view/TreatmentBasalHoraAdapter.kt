@@ -4,16 +4,18 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.sugarcoach.R
+import com.sugarcoach.databinding.TreatmentBasalItemBinding
 import java.util.*
 
 class TreatmentBasalHoraAdapter(private val activity: TreatmentActivity) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var itemList: MutableList<BasalHoraItem> = Collections.emptyList()
     lateinit var holder: TreatmentBasalHoraHolder
-
+    lateinit var binding: TreatmentBasalItemBinding
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater: LayoutInflater = LayoutInflater.from(activity)
-        var holder = TreatmentBasalHoraHolder(inflater.inflate(R.layout.treatment_basal_item, parent, false))
+        binding = TreatmentBasalItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        var holder = TreatmentBasalHoraHolder(binding)
         this.holder = holder
         return holder
     }

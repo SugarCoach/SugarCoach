@@ -555,5 +555,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/planet_insulina" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>

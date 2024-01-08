@@ -1,6 +1,7 @@
 package com.sugarcoach.ui.register
 
 
+import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sugarcoach.ui.register.interactor.RegisterInteractor
 import com.sugarcoach.ui.register.interactor.RegisterInteractorImp
@@ -13,6 +14,7 @@ import com.sugarcoach.ui.register.view.RegisterView
 
 import dagger.Module
 import dagger.Provides
+import org.joda.time.LocalDateTime
 
 @Module
 class RegisterActivityModule {
@@ -34,5 +36,10 @@ class RegisterActivityModule {
 
     @Provides
     internal fun provideLinearLayoutManager(context: RegisterActivity): LinearLayoutManager = LinearLayoutManager(context)
+    @Provides
+    internal fun provideCurrentDate(): LocalDateTime {
+        Log.i("OnRegisterModule", "La date fue: ${LocalDateTime()}")
+        return LocalDateTime()
+    }
 
 }

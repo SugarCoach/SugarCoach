@@ -1,0 +1,23 @@
+query DailyRegister($userId: ID){
+    dailyRegisters(filters: {
+        users_permissions_user:{
+            id:{
+                eq:$userId
+            }
+        }
+    }){
+        data{
+            id
+            attributes {
+                glucose
+                insulin
+                carbohydrates
+                comment
+                basal
+                colors
+                emotional_state
+                excercise
+            }
+        }
+    }
+}

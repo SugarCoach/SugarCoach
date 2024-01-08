@@ -1,24 +1,48 @@
 package com.sugarcoach.ui.onboarding.view
 
+import android.graphics.pdf.PdfDocument.Page
+import android.os.Bundle
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
-import androidx.fragment.app.FragmentStatePagerAdapter
-import java.util.*
+import androidx.lifecycle.Lifecycle
+import androidx.viewpager.widget.PagerAdapter
+import androidx.viewpager2.adapter.FragmentStateAdapter
+import kotlin.collections.ArrayList
 
 
-class BoardingFragmentPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+class BoardingFragmentPagerAdapter(activity: FragmentActivity):
+    FragmentStateAdapter(activity) {
 
-    var itemList: MutableList<BoardingItem> = Collections.emptyList()
-    fun setData(itemList: List<BoardingItem>){
-        this.itemList = itemList.toMutableList()
+    companion object{
+        private const val ARG_BACKGROUND_COLOR = "param1"
+        private const val ARG_RESOURCE = "param2"
+        private const val ARG_TITLE = "param3"
+        private const val ARG_SUBTITLE = "param4"
+        private const val ARG_SHOWBUTTON = "param5"
     }
-    override fun getItem(position: Int): Fragment {
-        var item = itemList[position]
-        return BoardingFragment.newInstance(item.bg, item.image, item.title, item.subtitle, item.showButton)
-    }
 
-    override fun getCount(): Int {
+    var itemList: MutableList<BoardingItem> = emptyList<BoardingItem>().toMutableList()
+
+    override fun getItemCount(): Int {
         return itemList.size
     }
+
+    fun setData(itemList: ArrayList<BoardingItem>){
+        this.itemList = itemList
+    }
+    override fun createFragment(position: Int): Fragment {
+        val item = itemList[position]
+        val fragment = BoardingFragment()
+        fragment.arguments = Bundle().apply {
+            putInt(ARG_BACKGROUND_COLOR, item.bg)
+            putInt(ARG_RESOURCE, item.image)
+            putInt(ARG_TITLE, item.title)
+            putInt(ARG_SUBTITLE, item.subtitle)
+            putBoolean(ARG_SHOWBUTTON, item.showButton)
+        }
+
+        return fragment
+    }
+
 }

@@ -4,16 +4,19 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.sugarcoach.R
+import com.sugarcoach.databinding.EmotionsItemBinding
 import java.util.*
 
 class ItemAdapter(private val activity: DailyDetailActivity) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var itemList: MutableList<DailyItem> = Collections.emptyList()
     private var type= 0;
+    lateinit var binding: EmotionsItemBinding
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val inflater: LayoutInflater = LayoutInflater.from(activity)
-        return ItemHolder(inflater.inflate(R.layout.emotions_item, parent, false))
+        val inflater = LayoutInflater.from(activity)
+        binding = EmotionsItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ItemHolder(binding)
     }
 
     override fun getItemCount(): Int {

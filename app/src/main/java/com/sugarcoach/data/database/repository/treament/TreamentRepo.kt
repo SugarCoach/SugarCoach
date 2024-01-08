@@ -78,6 +78,4 @@ interface TreamentRepo {
 
     fun updateCorrectoraCategory(horarios: TreamentCorrectoraHorarios): Observable<Boolean>
 
-
-
 }

@@ -4,16 +4,18 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.sugarcoach.R
+import com.sugarcoach.databinding.TreatmentCorrectoraItemBinding
 import java.util.*
 
 class TreatmentCorrectoraAdapter(private val activity: TreatmentActivity) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var itemList: MutableList<HorarioItem> = Collections.emptyList()
     lateinit var holder: TreatmentCorrectoraHolder
-
+    lateinit var binding: TreatmentCorrectoraItemBinding
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater: LayoutInflater = LayoutInflater.from(activity)
-        var holder = TreatmentCorrectoraHolder(inflater.inflate(R.layout.treatment_correctora_item, parent, false))
+        binding = TreatmentCorrectoraItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        var holder = TreatmentCorrectoraHolder(binding)
         this.holder = holder
         return holder
     }

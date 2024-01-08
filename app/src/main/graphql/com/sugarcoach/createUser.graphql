@@ -1,0 +1,19 @@
+mutation CreateUser($username: String, $email: String, $FirebaseId: String) {
+    createUsersPermissionsUser(data:{
+        username: $username,
+        email: $email,
+        password: "contraseña123",
+        confirmed: true,
+        blocked: false,
+        role:1,
+        FirebaseUID: $FirebaseId
+    }){
+        data{
+            id
+            attributes {
+                username
+                email
+            }
+        }
+    }
+}

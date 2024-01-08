@@ -19,6 +19,7 @@ import com.aminography.primedatepicker.fragment.PrimeDatePickerBottomSheet
 import com.sugarcoach.R
 import com.sugarcoach.data.database.repository.dailyregister.DailyRegister
 import com.sugarcoach.data.database.repository.user.User
+import com.sugarcoach.databinding.ActivityEstadisticasBinding
 import com.sugarcoach.ui.base.view.BaseActivity
 import com.sugarcoach.ui.daily.interactor.DailyInteractorImp
 import com.sugarcoach.ui.daily.presenter.DailyPresenterImp
@@ -28,7 +29,6 @@ import com.sugarcoach.ui.main.view.MainActivity
 import com.sugarcoach.ui.statistics.interactor.StatisticsInteractorImp
 import com.sugarcoach.ui.statistics.presenter.StatisticsPresenterImp
 import com.sugarcoach.ui.treatment.view.TreatmentActivity
-import kotlinx.android.synthetic.main.activity_estadisticas.*
 import org.joda.time.LocalDate
 import java.text.SimpleDateFormat
 import java.util.*
@@ -47,17 +47,19 @@ class StatisticsActivity : BaseActivity(), StatisticsView {
     @Inject
     lateinit var linearLayoutManager: LinearLayoutManager
 
+    lateinit var binding: ActivityEstadisticasBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_estadisticas)
+        binding = ActivityEstadisticasBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         presenter.onAttach(this)
         menuListeners()
         setListeners()
     }
 
     private fun setListeners() {
-        statistics_shared.setOnClickListener {
-            presenter.getScreenShot(this, statistics_list)
+        binding.statisticsShared.setOnClickListener {
+            presenter.getScreenShot(this, binding.statisticsList)
         }
     }
 
@@ -66,7 +68,7 @@ class StatisticsActivity : BaseActivity(), StatisticsView {
         super.onDestroy()
     }
 
-    override fun showErrorToast() {
+    override fun showErrorToast(msg: String) {
     }
 
 
@@ -76,21 +78,21 @@ class StatisticsActivity : BaseActivity(), StatisticsView {
         val formatterTime = SimpleDateFormat("hh:mm a", Locale.getDefault())
         val formattedDate = formatter.format(date)
         val formattedTime = formatterTime.format(date)
-        statistics_time_txt.setText(formattedTime)
-        statistics_date_txt.setText(formattedDate)
+        binding.statisticsTimeTxt.setText(formattedTime)
+        binding.statisticsDateTxt.setText(formattedDate)
     }
 
     fun menuListeners(){
-        home.setOnClickListener { presenter.goToActivityMain() }
-        dailyRegister.setOnClickListener { presenter.goToActivityDaily() }
-        treament.setOnClickListener { presenter.goToActivityTreament() }
+        binding.home.setOnClickListener { presenter.goToActivityMain() }
+        binding.dailyRegister.setOnClickListener { presenter.goToActivityDaily() }
+        binding.treament.setOnClickListener { presenter.goToActivityTreament() }
 
     }
 
     override fun setUp() {
         linearLayoutManager.orientation = RecyclerView.VERTICAL
-        statistics_list.layoutManager = linearLayoutManager
-        statistics_list.adapter = adapter
+        binding.statisticsList.layoutManager = linearLayoutManager
+        binding.statisticsList.adapter = adapter
         presenter.getData()
     }
     override fun getData(data: List<StatisticsItem>) {
@@ -143,8 +145,8 @@ class StatisticsActivity : BaseActivity(), StatisticsView {
         finish()
     }
     override fun mirrorAccount() {
-        add_register.isEnabled = false
-        add_register_image.setColorFilter(ContextCompat.getColor(this, R.color.gray), PorterDuff.Mode.MULTIPLY)
+        binding.addRegister.isEnabled = false
+        binding.addRegisterImage.setColorFilter(ContextCompat.getColor(this, R.color.gray), PorterDuff.Mode.MULTIPLY)
     }
     fun showCalendar(position: Int, index: Int){
         val pickType = when(position) {

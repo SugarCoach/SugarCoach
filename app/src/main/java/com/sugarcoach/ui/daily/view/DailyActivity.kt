@@ -1,16 +1,21 @@
 package com.sugarcoach.ui.daily.view
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.hominoid.expandablerecyclerviewlib.listener.GroupExpandCollapseListener
 import com.hominoid.expandablerecyclerviewlib.models.ExpandableListItem
 import com.sugarcoach.R
 import com.sugarcoach.data.database.repository.user.User
+import com.sugarcoach.databinding.ActivityConfigBinding
+import com.sugarcoach.databinding.ActivityDailyBinding
 import com.sugarcoach.ui.base.view.BaseActivity
 import com.sugarcoach.ui.daily.interactor.DailyInteractorImp
 import com.sugarcoach.ui.daily.presenter.DailyPresenterImp
@@ -20,7 +25,6 @@ import com.sugarcoach.ui.register.view.RegisterActivity
 import com.sugarcoach.ui.statistics.view.StatisticsActivity
 import com.sugarcoach.ui.treatment.view.TreatmentActivity
 import com.sugarcoach.util.extensions.resIdByName
-import kotlinx.android.synthetic.main.activity_daily.*
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
@@ -28,6 +32,8 @@ import kotlin.collections.ArrayList
 
 
 class DailyActivity : BaseActivity(), DailyView {
+
+    lateinit var binding: ActivityDailyBinding
 
     @Inject
     lateinit var presenter: DailyPresenterImp<DailyView, DailyInteractorImp>
@@ -39,7 +45,8 @@ class DailyActivity : BaseActivity(), DailyView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_daily)
+        binding = ActivityDailyBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         presenter.onAttach(this)
         setListeners()
         menuListeners()
@@ -54,14 +61,14 @@ class DailyActivity : BaseActivity(), DailyView {
     override fun showSuccessToast() {
     }
 
-    override fun showErrorToast() {
-        Toast.makeText(this, getString(R.string.login_failure), Toast.LENGTH_LONG).show()
+    override fun showErrorToast(msg: String) {
+        Toast.makeText(this, msg, Toast.LENGTH_LONG).show()
     }
 
     override fun getUserData(user: User) {
-        daily_username_txt.setText(user.username)
+        binding.dailyUsernameTxt.setText(user.username)
         user.avatar?.let {
-            daily_userimg_iv.setImageDrawable(getDrawable(resIdByName(it, "drawable")))
+            binding.dailyUserimgIv.setImageDrawable(getDrawable(resIdByName(it, "drawable")))
         }
     }
 
@@ -70,37 +77,40 @@ class DailyActivity : BaseActivity(), DailyView {
         val formatterTime = SimpleDateFormat("hh:mm a", Locale.getDefault())
         val formattedDate = formatter.format(date)
         val formattedTime = formatterTime.format(date)
-        daily_time_txt.setText(formattedTime)
-        daily_date_txt.setText(formattedDate)
+        binding.dailyTimeTxt.setText(formattedTime)
+        binding.dailyDateTxt.setText(formattedDate)
     }
 
     override fun showProgress() {
-        loading.visibility = View.VISIBLE
+        binding.loading.visibility = View.VISIBLE
     }
 
     override fun hideProgress() {
-        loading.visibility = View.GONE
-        daily_list.visibility = View.VISIBLE
+        binding.loading.visibility = View.GONE
+        binding.dailyList.visibility = View.VISIBLE
     }
 
     override fun getRegisters(registers: MutableList<ExpandableListItem<DailyHeader, DailyItem>>) {
-        dailyAdapter = DailyAdapter(this,registers)
-        daily_list.adapter = dailyAdapter
-        //dailyAdapter.toggleGroup(0)
-        for (i in dailyAdapter.groups.size - 1 downTo 0) {
-            dailyAdapter.toggleGroup(i)
+        try {
+            dailyAdapter = DailyAdapter(this,registers)
+            binding.dailyList.adapter = dailyAdapter
+            dailyAdapter.toggleGroup(0)
+            hideProgress()
+        }catch (e: Exception){
+            Log.i("OnDailyAdapter", "Ocurrió un error: $e")
+            showErrorToast("Haga una carga antes")
+            openRegisterActivity()
         }
-        hideProgress()
     }
 
     override fun setUp() {
         linearLayoutManager.orientation = RecyclerView.VERTICAL
-        daily_list.layoutManager = linearLayoutManager
+        binding.dailyList.layoutManager = linearLayoutManager
         presenter.getRegisters()
     }
 
     fun setListeners(){
-        daily_pdf_iv.setOnClickListener { showErrorToast() }
+        binding.dailyPdfIv.setOnClickListener { showErrorToast() }
     }
 
     override fun openDailyDetailActivity(id: Int) {
@@ -115,7 +125,7 @@ class DailyActivity : BaseActivity(), DailyView {
         presenter.onResume()
     }
     fun hideList(){
-        daily_list.visibility = View.INVISIBLE
+        binding.dailyList.visibility = View.INVISIBLE
     }
     override fun getLabel(name: String): String {
         return getString(resIdByName(name, "string"))
@@ -148,13 +158,13 @@ class DailyActivity : BaseActivity(), DailyView {
     }
 
     fun menuListeners(){
-        daily_home.setOnClickListener { presenter.goToActivityMain() }
-        daily_statistics.setOnClickListener { presenter.goToActivityStatistic() }
-        daily_tratamiento.setOnClickListener { presenter.goToActivityTreament() }
-        daily_register.setOnClickListener { presenter.goToActivityRegister() }
+        binding.dailyHome.setOnClickListener { presenter.goToActivityMain() }
+        binding.dailyStatistics.setOnClickListener { presenter.goToActivityStatistic() }
+        binding.dailyTratamiento.setOnClickListener { presenter.goToActivityTreament() }
+        binding.dailyRegister.setOnClickListener { presenter.goToActivityRegister() }
     }
     override fun mirrorAccount() {
-        daily_register.isEnabled = false
+        binding.dailyRegister.isEnabled = false
     }
 
     override fun getDrawable(name: String): Drawable? {

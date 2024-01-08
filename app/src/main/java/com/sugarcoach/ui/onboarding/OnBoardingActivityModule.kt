@@ -2,12 +2,16 @@ package com.sugarcoach.ui.onboarding
 
 
 
+import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.Lifecycle
+import com.sugarcoach.R
 import com.sugarcoach.ui.onboarding.interactor.OnBoardingInteractor
 import com.sugarcoach.ui.onboarding.interactor.OnBoardingInteractorImp
 import com.sugarcoach.ui.onboarding.presenter.OnBoardingPresenter
 import com.sugarcoach.ui.onboarding.presenter.OnBoardingPresenterImp
 import com.sugarcoach.ui.onboarding.view.BoardingFragmentPagerAdapter
+import com.sugarcoach.ui.onboarding.view.BoardingItem
 import com.sugarcoach.ui.onboarding.view.OnBoardingActivity
 import com.sugarcoach.ui.onboarding.view.OnBoardingView
 
@@ -24,5 +28,7 @@ class OnBoardingActivityModule {
     internal fun provideOnBoardingPresenter(onboardingPresenter: OnBoardingPresenter<OnBoardingView, OnBoardingInteractorImp>)
             : OnBoardingPresenterImp<OnBoardingView, OnBoardingInteractorImp> = onboardingPresenter
     @Provides
-    internal fun provideBoardingFragmentPagerAdapter(context: OnBoardingActivity): BoardingFragmentPagerAdapter = BoardingFragmentPagerAdapter(context.supportFragmentManager)
+    internal fun provideBoardingFragmentPagerAdapter(context: OnBoardingActivity):
+            BoardingFragmentPagerAdapter = BoardingFragmentPagerAdapter(context)
+
 }

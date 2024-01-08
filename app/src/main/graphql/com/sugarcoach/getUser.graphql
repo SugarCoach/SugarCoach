@@ -1,0 +1,11 @@
+query GetUserByUID($id: String){
+    usersPermissionsUsers(filters: {
+        FirebaseUID: {
+            eq: $id
+        }
+    }){
+        data {
+            id
+        }
+    }
+}

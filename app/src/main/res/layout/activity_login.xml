@@ -97,7 +97,7 @@
               android:layout_height="45dp"
               app:strokeColor="@color/pink"
               app:cardBackgroundColor="@color/white"
-              app:cardForegroundColor="@color/transparent"
+              app:cardForegroundColor="@android:color/transparent"
               app:strokeWidth="1dp">
         <androidx.appcompat.widget.AppCompatEditText
                 android:gravity="center_vertical"
@@ -128,7 +128,7 @@
               android:layout_height="45dp"
               app:strokeColor="@color/pink"
               app:cardBackgroundColor="@color/white"
-              app:cardForegroundColor="@color/transparent"
+              app:cardForegroundColor="@android:color/transparent"
               app:strokeWidth="1dp">
         <androidx.appcompat.widget.AppCompatEditText
                 android:gravity="center_vertical"

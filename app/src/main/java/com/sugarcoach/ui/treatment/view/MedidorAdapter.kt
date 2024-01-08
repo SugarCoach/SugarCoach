@@ -7,6 +7,7 @@ import com.skydoves.powerspinner.OnSpinnerItemSelectedListener
 import com.skydoves.powerspinner.PowerSpinnerInterface
 import com.skydoves.powerspinner.PowerSpinnerView
 import com.sugarcoach.R
+import com.sugarcoach.databinding.BasalItemBinding
 import java.util.*
 
 class MedidorAdapter (private val activity: TreatmentActivity) : RecyclerView.Adapter<RecyclerView.ViewHolder>(),
@@ -15,10 +16,11 @@ class MedidorAdapter (private val activity: TreatmentActivity) : RecyclerView.Ad
     override var onSpinnerItemSelectedListener: OnSpinnerItemSelectedListener<BasalItem>? = null
     private var itemList: MutableList<BasalItem> = Collections.emptyList()
     lateinit var holder: MedidorHolder
-
+    lateinit var binding: BasalItemBinding
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater: LayoutInflater = LayoutInflater.from(activity)
-        var holder = MedidorHolder(inflater.inflate(R.layout.basal_item, parent, false))
+        binding = BasalItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        var holder = MedidorHolder(binding)
         this.holder = holder
         return holder
     }
@@ -52,7 +54,7 @@ class MedidorAdapter (private val activity: TreatmentActivity) : RecyclerView.Ad
         this.onSpinnerItemSelectedListener?.onItemSelected(index, this.itemList[index])
     }
     private fun bind(holder: MedidorHolder, item: BasalItem) {
-        holder.inflateData(item)
+        holder.bind(item)
     }
 
 }

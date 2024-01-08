@@ -4,8 +4,10 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import androidx.fragment.app.FragmentManager
+import com.sugarcoach.data.database.repository.dailyregister.DailyRegister
 import com.sugarcoach.ui.base.presenter.Presenter
 import com.sugarcoach.ui.register.interactor.RegisterInteractorImp
+import com.sugarcoach.ui.register.view.RegisterItem
 import com.sugarcoach.ui.register.view.RegisterView
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog
@@ -36,8 +38,6 @@ interface RegisterPresenterImp<V : RegisterView, I : RegisterInteractorImp> : Pr
     fun goToActivityMain()
     fun goToActivityStatistic()
     fun goToActivityTreament()
-    fun updateUser(points:String?, level: String?)
-
 
 
 }

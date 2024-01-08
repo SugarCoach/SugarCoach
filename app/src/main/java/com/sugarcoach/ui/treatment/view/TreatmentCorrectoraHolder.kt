@@ -2,15 +2,16 @@ package com.sugarcoach.ui.treatment.view
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.treatment_correctora_item.view.*
+import com.sugarcoach.databinding.TreatmentCorrectoraItemBinding
 
-class TreatmentCorrectoraHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+class TreatmentCorrectoraHolder(private val binding: TreatmentCorrectoraItemBinding)
+    : RecyclerView.ViewHolder(binding.root) {
 
 
     fun inflateData(item: HorarioItem, activity: TreatmentActivity) {
-        itemView.treament_item_correctora_label.text = item.name
-        itemView.treament_item_correctora_horario.isChecked = item.selected
-        itemView.treament_item_correctora_horario.setOnCheckedChangeListener { buttonView, isChecked ->
+        binding.treamentItemCorrectoraLabel.text = item.name
+        binding.treamentItemCorrectoraHorario.isChecked = item.selected
+        binding.treamentItemCorrectoraHorario.setOnCheckedChangeListener { buttonView, isChecked ->
                 val category = HorarioItem.Builder()
                     .id(item.id)
                     .name(item.name)

@@ -16,9 +16,9 @@ interface DailyDetailInteractorImp : Interactor {
 
 
     fun getRegister(id: Int): Single<DailyRegisterCategory>
-    fun updateRegisterCall(dailyRegister: DailyRegister): Observable<RegisterSaveResponse>
+    suspend fun updateRegisterCall(dailyRegister: DailyRegister): Result<String?>
     fun saveRegisterPhotoCall(id: String, photo: File): Observable<RegisterSavePhotoResponse>
-    fun deleteRegistersCall(id: String): Observable<RegisterSaveResponse>
+    suspend fun deleteRegistersCall(id: String): Result<String?>
     fun deleteRegister(id: Int): Observable<Boolean>
     fun updateRegister(dailyRegister: DailyRegister): Observable<Boolean>
     fun getCategories(): Single<List<Category>>
@@ -26,7 +26,6 @@ interface DailyDetailInteractorImp : Interactor {
     fun getUser(): Single<User>
     fun getExercises(): Single<List<Exercises>>
     fun getEmotions(): Single<List<States>>
-
-
+    fun setIdOnline(id: String)
 
 }

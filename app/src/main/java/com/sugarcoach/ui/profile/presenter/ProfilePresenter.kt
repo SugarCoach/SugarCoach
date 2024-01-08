@@ -10,10 +10,13 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.net.Uri
 import android.provider.MediaStore
+import android.util.Log
 import android.view.View
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentManager
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.sugarcoach.R
 import com.sugarcoach.data.database.repository.user.User
 import com.sugarcoach.ui.base.presenter.BasePresenter
@@ -27,6 +30,10 @@ import com.sugarcoach.util.SchedulerProvider
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog
 import io.reactivex.disposables.CompositeDisposable
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.joda.time.LocalDate
 import org.joda.time.LocalDateTime
 import java.io.ByteArrayOutputStream
@@ -45,19 +52,15 @@ class ProfilePresenter <V : ProfileView, I : ProfileInteractorImp> @Inject inter
         getAvatars()
         getMedition()
     }
-
-
     override fun updateSex(name: String?) {
         user.sex = name!!.toString()
         getView()?.setSex(name)
     }
 
-
     override fun updateAvatar(position: Int, avatar: ProfileItem) {
         user.avatar = avatar.image
         getView()?.setAvatar(position)
     }
-
 
     override fun setBirthday(year: Int, monthOfYear: Int, dayOfMonth: Int) {
         val date = LocalDate(year, monthOfYear, dayOfMonth)
@@ -70,7 +73,6 @@ class ProfilePresenter <V : ProfileView, I : ProfileInteractorImp> @Inject inter
         user.debut = date.toDate()
         getView()?.setDebut(date.toDate())
     }
-
 
     private fun getUser() = interactor?.let {
         compositeDisposable.add(it.getUser()
@@ -104,18 +106,40 @@ class ProfilePresenter <V : ProfileView, I : ProfileInteractorImp> @Inject inter
         getView()?.setAvatars(items)
         getUser()
     }
-    override fun updateAll(name: String?,weight: Float?,height: Float?,username: String?,mail: String?, points:String?, level:String?) {
+    override fun updateAll(name: String?,weight: Float?,height: Float?,username: String?,mail: String?) {
         user.name = name!!.toString()
         user.weight = weight!!.toFloat()
         user.height = height!!.toFloat()
         user.username = username!!.toString()
         user.email = mail!!.toString()
-        user.level = level
-        user.points = points
+        getView()?.showProgress()
         interactor?.let {
             compositeDisposable.add(it.updateUser(user)
                 .compose(schedulerProvider.ioToMainObservableScheduler())
                 .subscribe({
+                    //getView()?.showSuccessToast()
+                    CoroutineScope(Dispatchers.IO).launch {
+                        interactor!!.getDataId().fold({
+                            interactor!!.updateApiUser(user, it).fold({
+                                withContext(Dispatchers.Main){
+                                    getView()?.hideProgress()
+                                    getView()?.showSuccessToast()
+                                }
+                            },{
+                                withContext(Dispatchers.Main){
+                                    getView()?.hideProgress()
+                                    getView()?.showErrorToast("Verifique su conexión Wifi")
+                                    getView()?.showErrorToast()
+                                }
+                            })
+                        },{
+                            withContext(Dispatchers.Main){
+                                getView()?.hideProgress()
+                                getView()?.showErrorToast("Verifique su conexión Wifi")
+                                getView()?.showErrorToast()
+                            }
+                        })
+                    }
                 }, { throwable ->
                     showException(throwable)
                 })
@@ -124,12 +148,23 @@ class ProfilePresenter <V : ProfileView, I : ProfileInteractorImp> @Inject inter
     }
 
     override fun logout() {
-        interactor?.let {
+        val providerId = Firebase.auth.currentUser?.providerData
+
+        Log.i("CurrentUser", "El usuario actual es: ${Firebase.auth.currentUser}")
+        Log.i("CurrentProvider", "El provider actual es:$providerId")
+        Firebase.auth.signOut()
+        com.facebook.login.LoginManager.getInstance().logOut()
+
+        getView()?.openLoginActivity()
+        /*interactor?.let {
             compositeDisposable.add(it.deleteUser()
                 .compose(schedulerProvider.ioToMainObservableScheduler())
-                .subscribe({ result -> deleteRegisters()
-                }, { err -> println(err) }))}
-
+                .flatMap { interactor?.deleteTreament() }
+                .subscribe({ result ->
+                    interactor?.perfomLogout()
+                    getView()?.openLoginActivity()
+                }, { err -> println(err) }))
+        }*/
     }
     fun deleteRegisters() {
         interactor?.let {

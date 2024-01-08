@@ -6,6 +6,7 @@ import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
+import android.text.Editable
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -21,9 +22,13 @@ import com.aminography.primecalendar.common.CalendarFactory
 import com.aminography.primecalendar.common.CalendarType
 import com.aminography.primedatepicker.PickType
 import com.aminography.primedatepicker.fragment.PrimeDatePickerBottomSheet
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.sugarcoach.R
 import com.sugarcoach.data.database.repository.dailyregister.DailyRegister
 import com.sugarcoach.data.database.repository.user.User
+import com.sugarcoach.databinding.ActivityProfileBinding
+import com.sugarcoach.databinding.DialogSexBinding
 import com.sugarcoach.ui.base.view.BaseActivity
 import com.sugarcoach.ui.daily.interactor.DailyInteractorImp
 import com.sugarcoach.ui.daily.presenter.DailyPresenterImp
@@ -33,10 +38,6 @@ import com.sugarcoach.ui.profile.interactor.ProfileInteractorImp
 import com.sugarcoach.ui.profile.presenter.ProfilePresenterImp
 import com.sugarcoach.util.extensions.resIdByName
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog
-import kotlinx.android.synthetic.main.activity_profile.*
-import kotlinx.android.synthetic.main.dialog_congratulation.view.*
-import kotlinx.android.synthetic.main.dialog_sex.view.*
-import kotlinx.android.synthetic.main.profile_item.*
 import org.joda.time.LocalDate
 import org.joda.time.LocalDateTime
 import java.text.SimpleDateFormat
@@ -61,13 +62,24 @@ class ProfileActivity: BaseActivity(), ProfileView, DatePickerDialog.OnDateSetLi
 
     var isFabOpen = false
 
+    lateinit var binding: ActivityProfileBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_profile)
+        binding = ActivityProfileBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         presenter.onAttach(this)
+        setInformationFromFirebase()
         setOnClickListeners()
     }
 
+    private fun setInformationFromFirebase(){
+        binding.profileMailTv.text = Editable.Factory.getInstance().newEditable(Firebase.auth.currentUser?.email)
+
+        if(Firebase.auth.currentUser?.displayName != null){
+            binding.profileNameTv.text = Editable.Factory.getInstance().newEditable(Firebase.auth.currentUser?.displayName)
+        }
+
+    }
     override fun onDestroy() {
         presenter.onDetach()
         super.onDestroy()
@@ -78,46 +90,7 @@ class ProfileActivity: BaseActivity(), ProfileView, DatePickerDialog.OnDateSetLi
         finish()
     }
 
-    override fun showErrorToast() {
-    }
-
-    private fun showDataSave() {
-        createDialogCongratulation()
-    }
-
-    private fun createDialogCongratulation(){
-        val view = LayoutInflater.from(this).inflate(R.layout.dialog_congratulation, null)
-        val builder = androidx.appcompat.app.AlertDialog.Builder(this)
-        builder.setCancelable(false)
-        builder.setView(view)
-        dialog = builder.create()
-        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        view.congratulation_pts_txt.text = "+100"
-        val totalPoints = user.points!!.toInt() + Integer.valueOf(view.congratulation_pts_txt.text.toString())
-        var level = user.level
-        view.congratulation_pts_total_txt.text = totalPoints.toString()
-        when
-        {
-            totalPoints > 1850 -> {level = "Space Cadet"}
-
-            totalPoints > 3700 -> {level = "Rocket Captain"}
-
-            totalPoints > 7400 -> {level = "Startrek Voyayer"}
-
-            totalPoints > 14800 -> {level = "Future Traveller"}
-
-            totalPoints > 29600 -> {level = "Quarks Master "}
-        }
-
-        user.avatar?.let {
-            view.congratulation_avatar.setImageDrawable(getDrawable(resIdByName(it, "drawable")))
-        }
-
-        presenter.updateAll(profile_name_tv.text.toString(),profile_weight_tv.text.toString().toFloat(),profile_height_tv.text.toString().toFloat(),profile_username_tv.text.toString(),profile_mail_tv.text.toString(), totalPoints.toString(), level )
-        view.congratulation_close.setOnClickListener { dialog.dismiss() }
-        dialog.setOnDismissListener { finish() }
-        dialog.show()
-
+    override fun showErrorToast(msg: String) {
     }
 
     override fun openLoginActivity() {
@@ -128,22 +101,26 @@ class ProfileActivity: BaseActivity(), ProfileView, DatePickerDialog.OnDateSetLi
     }
 
     private fun setOnClickListeners() {
-        profile_sex_tv.setOnClickListener { dialogSex()  }
-        profile_debut_tv.setOnClickListener { presenter.showDateDialog(supportFragmentManager, this, "debut", if(user.debut != null) LocalDate(user.debut) else LocalDate.now()) }
-        profile_nac_tv.setOnClickListener { presenter.showDateDialog(supportFragmentManager, this, "birthday", if(user.birthday != null) LocalDate(user.birthday) else LocalDate.now()) }
-        profile_logout_iv.setOnClickListener { presenter.logout() }
-        profile_save.setOnClickListener {
+        binding.profileSexTv.setOnClickListener { dialogSex() }
+        binding.profileDebutTv.setOnClickListener { presenter.showDateDialog(supportFragmentManager, this, "debut", if (user.debut != null) LocalDate(user.debut) else LocalDate.now()) }
+        binding.profileNacTv.setOnClickListener { presenter.showDateDialog(supportFragmentManager, this, "birthday", if (user.birthday != null) LocalDate(user.birthday) else LocalDate.now()) }
+        binding.profileLogoutIv.setOnClickListener { presenter.logout() }
+        binding.profileSave.setOnClickListener {
             hideMenu()
-            showDataSave()
+            try{
+                presenter.updateAll(binding.profileNameTv.text.toString(), binding.profileWeightTv.text.toString().toFloat(), binding.profileHeightTv.text.toString().toFloat(), binding.profileUsernameTv.text.toString(), binding.profileMailTv.text.toString())
+            }catch (e: Exception){
+                showErrorToast()
             }
-        profile_shared.setOnClickListener {
-            hideMenu()
-            presenter.getScreenShot(this, profile_ll)
         }
-        profile_menu.setOnClickListener{
-            if (isFabOpen){
+        binding.profileShared.setOnClickListener {
+            hideMenu()
+            presenter.getScreenShot(this, binding.profileLl)
+        }
+        binding.profileMenu.setOnClickListener {
+            if (isFabOpen) {
                 hideMenu()
-            }else{
+            } else {
                 showMenu()
             }
         }
@@ -155,8 +132,8 @@ class ProfileActivity: BaseActivity(), ProfileView, DatePickerDialog.OnDateSetLi
         val formatterTime = SimpleDateFormat("hh:mm a", Locale.getDefault())
         val formattedDate = formatter.format(date)
         val formattedTime = formatterTime.format(date)
-        profile_time_txt.setText(formattedTime)
-        profile_date_txt.setText(formattedDate)
+        binding.profileTimeTxt.text = formattedTime
+        binding.profileDateTxt.text = formattedDate
     }
 
     override fun getDrawable(name: String): Drawable? {
@@ -165,8 +142,8 @@ class ProfileActivity: BaseActivity(), ProfileView, DatePickerDialog.OnDateSetLi
 
     override fun setAvatars(avatars: List<ProfileItem>){
         manager.orientation = RecyclerView.VERTICAL
-        profile_avatars.layoutManager = manager
-        profile_avatars.adapter = adapter
+        binding.profileAvatars.layoutManager = manager
+        binding.profileAvatars.adapter = adapter
         adapter.setData(avatars)
     }
 
@@ -174,34 +151,31 @@ class ProfileActivity: BaseActivity(), ProfileView, DatePickerDialog.OnDateSetLi
         adapter.edit(id)
     }
 
-
     override fun getUserData(user: User) {
         this.user = user
         user.name?.let {
-            profile_name_tv.setText(it)
+            binding.profileNameTv.setText(it)
         }
         user.username.let {
-            profile_username_txt.setText(it)
-            profile_username_tv.setText(it)
+            binding.profileUsernameTxt.setText(it)
+            binding.profileUsernameTv.setText(it)
         }
         user.email.let {
-            profile_mail_tv.setText(it)
+            binding.profileMailTv.setText(it)
         }
         user.weight?.let {
-            profile_weight_tv.setText(it.toString())
+            binding.profileWeightTv.setText(it.toString())
         }
         user.height?.let {
-            profile_height_tv.setText(it.toString())
+            binding.profileHeightTv.setText(it.toString())
         }
         user.sex?.let {
-            profile_sex_tv.setText(it)
+            binding.profileSexTv.setText(it)
         }
         user.avatar?.let {
-           adapter.setAvatar(it)
-            profile_userimg_iv.setImageDrawable(getDrawable(resIdByName(it, "drawable")))
+            adapter.setAvatar(it)
+            binding.profileUserimgIv.setImageDrawable(getDrawable(resIdByName(it, "drawable")))
         }
-
-
     }
 
     override fun onDateSet(view: DatePickerDialog?, year: Int, monthOfYear: Int, dayOfMonth: Int) {
@@ -216,24 +190,24 @@ class ProfileActivity: BaseActivity(), ProfileView, DatePickerDialog.OnDateSetLi
     }
 
     fun dialogSex() {
-        val view = LayoutInflater.from(this).inflate(R.layout.dialog_sex, null)
+        val binding = DialogSexBinding.inflate(LayoutInflater.from(this))
         val builder = AlertDialog.Builder(this)
-        builder.setView(view)
+        builder.setView(binding.root)
         dialog = builder.create()
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        view.profile_fem_tv.setOnClickListener {
+        binding.profileFemTv.setOnClickListener {
             presenter.updateSex(getString(R.string.profile_fem_label))
             dialog.dismiss()
         }
-        view.profile_mas_tv.setOnClickListener {
+        binding.profileMasTv.setOnClickListener {
             presenter.updateSex(getString(R.string.profile_mas_label))
             dialog.dismiss()
         }
-        view.profile_otro_tv.setOnClickListener {
+        binding.profileOtroTv.setOnClickListener {
             presenter.updateSex(getString(R.string.profile_otro_label))
             dialog.dismiss()
         }
-        view.profile_definir_tv.setOnClickListener {
+        binding.profileDefinirTv.setOnClickListener {
             presenter.updateSex(getString(R.string.profile_no_definir_label))
             dialog.dismiss()
         }
@@ -243,21 +217,18 @@ class ProfileActivity: BaseActivity(), ProfileView, DatePickerDialog.OnDateSetLi
     override fun setBirthday(value: Date) {
         val formatter = SimpleDateFormat("dd.M.yy", Locale.getDefault())
         val formattedDate = formatter.format(value)
-        profile_nac_tv.setText(formattedDate)
+        binding.profileNacTv.text = formattedDate
     }
 
     override fun setDebut(value: Date) {
         val formatter = SimpleDateFormat("dd.M.yy", Locale.getDefault())
         val formattedDate = formatter.format(value)
-        profile_debut_tv.setText(formattedDate)
+        binding.profileDebutTv.text = formattedDate
     }
-
-
 
     override fun setSex(sex: String) {
-        profile_sex_tv.setText(sex)
+        binding.profileSexTv.text = sex
     }
-
 
     override fun sharedScreenShot(uri: Uri) {
         val shareIntent: Intent = Intent().apply {
@@ -268,18 +239,18 @@ class ProfileActivity: BaseActivity(), ProfileView, DatePickerDialog.OnDateSetLi
         startActivity(Intent.createChooser(shareIntent, resources.getText(R.string.daily_detail_share)))
     }
 
-    fun showMenu(){
+    fun showMenu() {
         isFabOpen = true
-        profile_menu.setImageResource(R.drawable.cancel)
-        profile_save.visibility = View.VISIBLE
-        profile_shared.visibility = View.VISIBLE
+        binding.profileMenu.setImageResource(R.drawable.cancel)
+        binding.profileSave.visibility = View.VISIBLE
+        binding.profileShared.visibility = View.VISIBLE
     }
 
-    fun hideMenu(){
+    fun hideMenu() {
         isFabOpen = false
-        profile_menu.setImageResource(R.drawable.ic_hand)
-        profile_save.visibility = View.GONE
-        profile_shared.visibility = View.GONE
+        binding.profileMenu.setImageResource(R.drawable.ic_hand)
+        binding.profileSave.visibility = View.GONE
+        binding.profileShared.visibility = View.GONE
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {

@@ -10,12 +10,13 @@ import com.hominoid.expandablerecyclerviewlib.adapter.ExpandableRecyclerViewAdap
 import com.hominoid.expandablerecyclerviewlib.models.ExpandableListItem
 import com.hominoid.expandablerecyclerviewlib.viewholders.GroupViewHolder
 import com.sugarcoach.R
+import com.sugarcoach.databinding.DailyItemBinding
 import java.text.SimpleDateFormat
 import java.util.*
 
 class DailyAdapter(private val context: DailyActivity,groups: List<ExpandableListItem<*, *>>) : ExpandableRecyclerViewAdapter<DailyAdapter.HeaderViewHolder, DailyHolder>(groups) {
 
-
+    lateinit var binding: DailyItemBinding
 
     class HeaderViewHolder(itemView: View) :GroupViewHolder(itemView) {
 
@@ -42,7 +43,8 @@ class DailyAdapter(private val context: DailyActivity,groups: List<ExpandableLis
 
     override fun onCreateChildViewHolder(parent: ViewGroup, viewType: Int): DailyHolder {
         val inflater: LayoutInflater = LayoutInflater.from(context)
-        return DailyHolder(inflater.inflate(R.layout.daily_item, parent, false))
+        binding = DailyItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return DailyHolder(binding)
 
     }
 

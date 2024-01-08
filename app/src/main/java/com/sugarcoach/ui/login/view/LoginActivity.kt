@@ -2,9 +2,14 @@ package com.sugarcoach.ui.login.view
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.notbytes.barcode_reader.BarcodeReaderActivity
 import com.sugarcoach.R
+import com.sugarcoach.databinding.ActivityLoginBinding
 import com.sugarcoach.ui.base.view.BaseActivity
 import com.sugarcoach.ui.forgot.view.ForgotActivity
 import com.sugarcoach.ui.login.interactor.LoginInteractorImp
@@ -12,23 +17,32 @@ import com.sugarcoach.ui.login.presenter.LoginPresenterImp
 import com.sugarcoach.ui.main.view.MainActivity
 import com.sugarcoach.ui.signEmail.view.SignEmailActivity
 import com.sugarcoach.util.AppConstants
-import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.coroutineScope
 import javax.inject.Inject
-
-
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 class LoginActivity: BaseActivity(), LoginView {
     @Inject
     lateinit var presenter: LoginPresenterImp<LoginView,LoginInteractorImp>
-
+    lateinit var binding: ActivityLoginBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        binding = ActivityLoginBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         presenter.onAttach(this)
         setOnClickListeners()
     }
 
+    override fun feedDatabase() {
+        CoroutineScope(Dispatchers.IO).launch {
+            presenter.feedInDatabase()
+        }
+    }
     override fun onDestroy() {
         presenter.onDetach()
         super.onDestroy()
@@ -43,7 +57,7 @@ class LoginActivity: BaseActivity(), LoginView {
         }
     }
 
-    override fun showErrorToast() {
+    override fun showErrorToast(msg: String) {
         Toast.makeText(this, getString(R.string.login_failure), Toast.LENGTH_LONG).show()
     }
     override fun onLogin() {
@@ -54,11 +68,17 @@ class LoginActivity: BaseActivity(), LoginView {
     }
 
     private fun setOnClickListeners() {
-        login_bt.setOnClickListener { presenter.onLogin(login_mail.text.toString(), login_pass.text.toString(),false, false) }
-        login_signin.setOnClickListener { presenter.emailSign() }
-        login_forgot.setOnClickListener { presenter.forgot() }
-        login_scan.setOnClickListener{scanQR()}
-        login_medico_scan.setOnClickListener{scanQR()}
+
+        binding.loginBt.setOnClickListener {
+            runBlocking {
+                presenter.onLogin(binding.loginMail.text.toString(),
+                    binding.loginPass.text.toString(),false, false)
+            }
+        }
+        binding.loginSignin.setOnClickListener { presenter.emailSign() }
+        binding.loginForgot.setOnClickListener { presenter.forgot() }
+        binding.loginScan.setOnClickListener{ scanQR() }
+        binding.loginMedicoScan.setOnClickListener{ scanQR() }
     }
     override fun onEmailSign() {
         val intent = Intent(this, SignEmailActivity::class.java)
@@ -72,10 +92,11 @@ class LoginActivity: BaseActivity(), LoginView {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        presenter.activityResult(requestCode, resultCode, data)
+        runBlocking { presenter.activityResult(requestCode, resultCode, data) }
     }
 
     fun scanQR(){
+        Log.i("OnScan", "Entre al Scan QR en el LogACtivity")
         val launchIntent = BarcodeReaderActivity.getLaunchIntent(this, true, false)
         startActivityForResult(launchIntent, presenter.getBarcode())
     }

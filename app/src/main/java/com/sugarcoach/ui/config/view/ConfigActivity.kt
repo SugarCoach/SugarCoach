@@ -31,13 +31,13 @@ import com.sugarcoach.ui.profile.presenter.ProfilePresenterImp
 import com.sugarcoach.ui.statistics.view.StatisticsActivity
 import com.sugarcoach.ui.treatment.view.TreatmentActivity
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog
-import kotlinx.android.synthetic.main.activity_config.*
+/*import kotlinx.android.synthetic.main.activity_config.*
 import kotlinx.android.synthetic.main.activity_config.home
 import kotlinx.android.synthetic.main.activity_config.statistics
 import kotlinx.android.synthetic.main.activity_config.treament
 import kotlinx.android.synthetic.main.activity_profile.*
 import kotlinx.android.synthetic.main.dialog_sex.view.*
-import kotlinx.android.synthetic.main.dialog_upgrade.view.*
+import kotlinx.android.synthetic.main.dialog_upgrade.view.**/
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
@@ -46,26 +46,36 @@ import androidmads.library.qrgenearator.QRGEncoder
 import androidx.core.app.ComponentActivity.ExtraData
 import androidx.core.content.ContextCompat.getSystemService
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import android.os.Build
 import android.os.Environment
 import android.text.TextWatcher
 import android.view.WindowManager
+import android.widget.TextView
 import androidmads.library.qrgenearator.QRGSaver
 import androidx.annotation.NonNull
-import androidx.core.content.ContextCompat
+import androidx.appcompat.widget.SwitchCompat
+import androidx.cardview.widget.CardView
 import androidx.core.content.FileProvider
+import androidx.databinding.adapters.FrameLayoutBindingAdapter
 import com.notbytes.barcode_reader.BarcodeReaderActivity
+import com.sugarcoach.databinding.ActivityConfigBinding
+import com.sugarcoach.databinding.DialogCodigoBinding
+import com.sugarcoach.databinding.DialogCongratulationBinding
+import com.sugarcoach.databinding.DialogControlBinding
+import com.sugarcoach.databinding.DialogInfoBinding
 import com.sugarcoach.ui.main.view.MainActivity
 import com.sugarcoach.util.AppConstants
 import com.sugarcoach.util.extensions.openNewTabWindow
 import com.sugarcoach.util.extensions.resIdByName
-import kotlinx.android.synthetic.main.activity_config.view.*
+import com.vicmikhailau.maskededittext.MaskedEditText
+/*import kotlinx.android.synthetic.main.activity_config.view.*
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.dialog_codigo.view.*
 import kotlinx.android.synthetic.main.dialog_congratulation_premium.view.*
 import kotlinx.android.synthetic.main.dialog_control.view.*
 import kotlinx.android.synthetic.main.dialog_info.view.*
 import kotlinx.android.synthetic.main.dialog_upgrade.view.upgrade_accept
-import kotlinx.android.synthetic.main.dialog_upgrade.view.upgrade_cancel
+import kotlinx.android.synthetic.main.dialog_upgrade.view.upgrade_cancel*/
 import org.joda.time.DateTime
 import org.joda.time.LocalDateTime
 import java.io.File
@@ -76,19 +86,37 @@ import kotlin.random.Random
 class ConfigActivity: BaseActivity(), ConfigView {
     @Inject
     lateinit var presenter: ConfigPresenterImp<ConfigView, ConfigInteractorImp>
+    private lateinit var binding: ActivityConfigBinding
     lateinit var user: User
     var isMedicoEnable = false
     var isControlEnable = false
-
+    lateinit var config_upgrade: CardView
+    lateinit var config_type: TextView
+    lateinit var config_control: SwitchCompat
+    lateinit var config_medico: SwitchCompat
+    lateinit var config_sms: SwitchCompat
+    lateinit var config_geo: SwitchCompat
+    lateinit var config_number: MaskedEditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_config)
+        binding = ActivityConfigBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        configureVariables()
         presenter.onAttach(this)
         menuListeners()
         presenter.checkAndRequestPermissions(this, arrayListOf(android.Manifest.permission.READ_EXTERNAL_STORAGE, android.Manifest.permission.WRITE_EXTERNAL_STORAGE, android.Manifest.permission.ACCESS_FINE_LOCATION))
     }
 
+    private fun configureVariables(){
+        config_upgrade = binding.configUpgrade
+        config_type = binding.configType
+        config_control = binding.configControl
+         config_medico = binding.configMedico
+        config_sms = binding.configSms
+         config_geo = binding.configGeo
+        config_number = binding.configNumber
+    }
     override fun onDestroy() {
         presenter.onDetach()
         super.onDestroy()
@@ -98,7 +126,7 @@ class ConfigActivity: BaseActivity(), ConfigView {
         Toast.makeText(this, getString(R.string.update_success), Toast.LENGTH_LONG).show()
     }
 
-    override fun showErrorToast() {
+    override fun showErrorToast(msg: String) {
         Toast.makeText(this, getString(R.string.empty_codigo_error_message), Toast.LENGTH_LONG).show()
     }
 
@@ -108,19 +136,15 @@ class ConfigActivity: BaseActivity(), ConfigView {
     }
 
     override fun setType(value: Boolean) {
-        if (value){
-            config_upgrade.visibility = View.INVISIBLE
-            config_type.text = getString(R.string.config_premium_label)
-            config_control.isEnabled = true
-            config_control_title.setTextColor(ContextCompat.getColor(applicationContext, R.color.yellow))
-            config_medico.isEnabled = true
-            config_medico_title.setTextColor(ContextCompat.getColor(applicationContext,R.color.purple))
-            config_sms.isEnabled = true
-            config_sms_title.setTextColor(ContextCompat.getColor(applicationContext,R.color.blue))
-            config_geo.isEnabled = true
-            config_geo_title.setTextColor(ContextCompat.getColor(applicationContext,R.color.pink))
-            config_number.isEnabled = true
 
+        if (value){
+            binding.configUpgrade.visibility = View.INVISIBLE
+            binding.configType.text = getString(R.string.config_premium_label)
+            binding.configControl.isEnabled = true
+            binding.configMedico.isEnabled = true
+            binding.configSms.isEnabled = true
+            binding.configGeo.isEnabled = true
+            binding.configNumber.isEnabled = true
         }else{
             config_upgrade.visibility = View.VISIBLE
             config_type.text = getString(R.string.config_standard_label)
@@ -193,18 +217,17 @@ class ConfigActivity: BaseActivity(), ConfigView {
     }
 
     fun menuListeners(){
-        home.setOnClickListener { presenter.goToActivityMain() }
-        statistics.setOnClickListener { presenter.goToActivityStatistic() }
-        dailyRegister.setOnClickListener { presenter.goToActivityDaily() }
-        treament.setOnClickListener { presenter.goToActivityTreament() }
-
+        binding.home.setOnClickListener { presenter.goToActivityMain() }
+        binding.statistics.setOnClickListener { presenter.goToActivityStatistic() }
+        binding.dailyRegister.setOnClickListener { presenter.goToActivityDaily() }
+        binding.treament.setOnClickListener { presenter.goToActivityTreament() }
     }
 
 
     private fun setOnClickListeners() {
         config_number.setOnEditorActionListener { v, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_DONE){
-                presenter.updateNumber(config_number.rawText)
+                presenter.updateNumber(config_number.text.toString())
             }
             false
         }
@@ -227,9 +250,8 @@ class ConfigActivity: BaseActivity(), ConfigView {
                 presenter.updateControlMedico(isChecked)
             }
         }
-        config_geo.setOnCheckedChangeListener { buttonView, isChecked -> presenter.updateGeo(this, isChecked) }
 
-        config_questions.setOnClickListener { openNewTabWindow(getString(R.string.url_preguntas), this) }
+        /*config_questions.setOnClickListener { openNewTabWindow(getString(R.string.url_preguntas), this) }
         config_upgrade.setOnClickListener { dialogUpgrade()  }
         config_control_qr.setOnClickListener{( if (isControlEnable) sharedScreenShot("sugar"))}
         config_medico_qr.setOnClickListener{( if (isMedicoEnable) sharedScreenShot("sugar_medico"))}
@@ -237,7 +259,20 @@ class ConfigActivity: BaseActivity(), ConfigView {
         config_sms_info.setOnClickListener{createDialogInfo(getString(R.string.info_sms_number))}
         config_geo_title.setOnClickListener{createDialogInfo(getString(R.string.info_geo))}
         config_control_title.setOnClickListener{createDialogInfo(getString(R.string.info_control))}
-        config_medico_title.setOnClickListener{createDialogInfo(getString(R.string.info_medico))}
+        config_medico_title.setOnClickListener{createDialogInfo(getString(R.string.info_medico))}*/
+
+        binding.configQuestions.setOnClickListener { openNewTabWindow(getString(R.string.url_preguntas), this) }
+        binding.configUpgrade.setOnClickListener { dialogUpgrade()  }
+        binding.configControlQr.setOnClickListener{( if (isControlEnable) sharedScreenShot("sugar"))}
+        binding.configMedicoQr.setOnClickListener{( if (isMedicoEnable) sharedScreenShot("sugar_medico"))}
+        binding.configSmsTitle.setOnClickListener{createDialogInfo(getString(R.string.info_sms))}
+        binding.configSmsInfo.setOnClickListener{createDialogInfo(getString(R.string.info_sms_number))}
+        binding.configGeoTitle.setOnClickListener{createDialogInfo(getString(R.string.info_geo))}
+        binding.configControlTitle.setOnClickListener{createDialogInfo(getString(R.string.info_control))}
+        binding.configMedicoTitle.setOnClickListener{createDialogInfo(getString(R.string.info_medico))}
+
+
+
     }
 
 
@@ -262,7 +297,7 @@ class ConfigActivity: BaseActivity(), ConfigView {
             }
         }
         user.username.let {
-            config_username_txt.setText(it)
+            binding.configUsernameTxt.setText(it)
         }
         user.number.let {
             config_number.setText(it)
@@ -271,7 +306,7 @@ class ConfigActivity: BaseActivity(), ConfigView {
             premiumAccount()
         }
         user.avatar?.let {
-            config_userimg_iv.setImageDrawable(getDrawable(resIdByName(it, "drawable")))
+            binding.configUserimgIv.setImageDrawable(getDrawable(resIdByName(it, "drawable")))
         }
 
         setOnClickListeners()
@@ -279,35 +314,36 @@ class ConfigActivity: BaseActivity(), ConfigView {
     }
 
     fun dialogUpgrade() {
-        val view = LayoutInflater.from(this).inflate(R.layout.dialog_codigo, null)
+        //val view = LayoutInflater.from(this).inflate(R.layout.dialog_codigo, null)
+        val view = DialogCodigoBinding.inflate(layoutInflater)
         val builder = AlertDialog.Builder(this)
-        val regex = "^(?=(?:[a-z]*\\d){3})(?=(?:\\d*[a-z]){3})\\w{6}\$".toRegex()
-        builder.setView(view)
+        builder.setView(view.root)
         dialog = builder.create()
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        view.premium_save.setOnClickListener{
-            if(view.premium_value.text.toString().isNotEmpty() && view.premium_value.text!!.length >= 6 && view.premium_value.text!!.matches(regex)) {
-                presenter.updateType(view.premium_value.text.toString())
+        view.premiumSave.setOnClickListener{
+            if(view.premiumValue.text.toString().isNotEmpty()) {
+                presenter.updateType(view.premiumValue.text.toString())
                 dialog.dismiss()
             }else{
                 showErrorToast()
             }
         }
-        view.premium_url.setOnClickListener { openNewTabWindow(getString(R.string.url_preguntas), this) }
+        view.premiumUrl.setOnClickListener { openNewTabWindow(getString(R.string.url_preguntas), this) }
         dialog.show()
     }
 
     override fun createDialogCongratulation(){
-        val view = LayoutInflater.from(this).inflate(R.layout.dialog_congratulation_premium, null)
+        //val view = LayoutInflater.from(this).inflate(R.layout.dialog_congratulation_premium, null)
+        val view = DialogCongratulationBinding.inflate(layoutInflater)
         val builder = AlertDialog.Builder(this)
         builder.setCancelable(false)
-        builder.setView(view)
+        builder.setView(view.root)
         dialog = builder.create()
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         user.avatar?.let {
-            view.congratulation_avatar.setImageDrawable(getDrawable(resIdByName(it, "drawable")))
+            view.congratulationAvatar.setImageDrawable(getDrawable(resIdByName(it, "drawable")))
         }
-        view.congratulation_close.setOnClickListener { dialog.dismiss() }
+        view.congratulationClose.setOnClickListener { dialog.dismiss() }
         dialog.setOnDismissListener { setType(true) }
         dialog.show()
 
@@ -315,13 +351,14 @@ class ConfigActivity: BaseActivity(), ConfigView {
 
 
     fun dialogControl(title: String, isMedico: Boolean) {
-        val view = LayoutInflater.from(this).inflate(R.layout.dialog_control, null)
+        //val view = LayoutInflater.from(this).inflate(R.layout.dialog_control, null)
+        val view = DialogControlBinding.inflate(layoutInflater)
         val builder = AlertDialog.Builder(this)
-        builder.setView(view)
+        builder.setView(view.root)
         dialog = builder.create()
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        view.upgrade_title.text = title
-        view.upgrade_accept.setOnClickListener {
+        view.upgradeTitle.text = title
+        view.upgradeAccept.setOnClickListener {
             if(isMedico) {
                 presenter.updateControlMedico(true)
             }else{
@@ -330,7 +367,7 @@ class ConfigActivity: BaseActivity(), ConfigView {
             }
             dialog.dismiss()
         }
-        view.upgrade_cancel.setOnClickListener {
+        view.upgradeCancel.setOnClickListener {
             dialog.dismiss()
         }
         dialog.show()
@@ -341,7 +378,7 @@ class ConfigActivity: BaseActivity(), ConfigView {
         dialog.setMessage(msg)
             .setPositiveButton(getString(R.string.daily_detail_accept)) { paramDialogInterface, paramInt ->
                 var intent: Intent
-                if (android.os.Build.VERSION.SDK_INT >= 9) {
+                if (Build.VERSION.SDK_INT >= 9) {
                     /* on 2.3 and newer, use APPLICATION_DETAILS_SETTINGS with proper URI */
                     var packageURI = Uri.parse("package:" + packageName);
                     intent = Intent("android.settings.APPLICATION_DETAILS_SETTINGS", packageURI);
@@ -360,14 +397,15 @@ class ConfigActivity: BaseActivity(), ConfigView {
     }
 
     private fun createDialogInfo(info: String){
-        val view = LayoutInflater.from(this).inflate(R.layout.dialog_info, null)
+        //val view = LayoutInflater.from(this).inflate(R.layout.dialog_info, null)
+        val view = DialogInfoBinding.inflate(layoutInflater)
         val builder = android.app.AlertDialog.Builder(this)
         builder.setCancelable(false)
-        builder.setView(view)
+        builder.setView(view.root)
         var dialog = builder.create()
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        view.info_subtitle.text = info
-        view.info_accept.setOnClickListener{
+        view.infoSubtitle.text = info
+        view.infoAccept.setOnClickListener{
             dialog.dismiss()
         }
         dialog.show()

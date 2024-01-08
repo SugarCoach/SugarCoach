@@ -18,9 +18,11 @@ import com.sugarcoach.R
 import com.sugarcoach.data.database.repository.dailyregister.Category
 import com.sugarcoach.data.database.repository.dailyregister.DailyRegister
 import com.sugarcoach.data.database.repository.dailyregister.Exercises
+import com.sugarcoach.data.database.repository.dailyregister.States
 import com.sugarcoach.data.database.repository.treament.Treament
 import com.sugarcoach.data.database.repository.user.User
 import com.sugarcoach.ui.base.presenter.BasePresenter
+import com.sugarcoach.ui.daily.view.DailyItem
 import com.sugarcoach.ui.register.interactor.RegisterInteractorImp
 import com.sugarcoach.ui.register.view.RegisterItem
 import com.sugarcoach.ui.register.view.RegisterView
@@ -32,11 +34,14 @@ import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import org.joda.time.LocalDate
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.joda.time.LocalDateTime
 import org.joda.time.LocalTime
 import org.joda.time.format.DateTimeFormat
 import java.io.File
+import java.lang.Exception
 import java.util.*
 import javax.inject.Inject
 import kotlin.collections.ArrayList
@@ -60,10 +65,13 @@ class RegisterPresenter<V : RegisterView, I : RegisterInteractorImp> @Inject int
     var comment: String = ""
     var color: Int = 0
     lateinit var user: User
+    @Inject
     lateinit var date: LocalDateTime
+
     private lateinit var choosePhotoHelper: ChoosePhotoHelper
 
-
+    lateinit var dailyExcercises: List<RegisterItem>
+    lateinit var dailyEmotions: List<RegisterItem>
 
     override fun onAttach(view: V?) {
         super.onAttach(view)
@@ -114,20 +122,6 @@ class RegisterPresenter<V : RegisterView, I : RegisterInteractorImp> @Inject int
 
     }
 
-    override fun updateUser(points: String?,level: String?) {
-        user.points = points
-        user.level = level
-        interactor?.let {
-            compositeDisposable.add(it.updateUser(user)
-                .compose(schedulerProvider.ioToMainObservableScheduler())
-                .subscribe({ getView()?.showSuccessToast()
-                }, { throwable ->
-                    showException(throwable)
-                })
-            )
-        }
-    }
-
     private fun getUser() = interactor?.let {
         compositeDisposable.add(it.getUser()
             .subscribeOn(Schedulers.io())
@@ -158,11 +152,13 @@ class RegisterPresenter<V : RegisterView, I : RegisterInteractorImp> @Inject int
 
                         exercices.add(content)
                     }
+                    this.dailyExcercises = exercices
                     getView()?.setExercicesData(exercices)
                     getEmotions()
                 }
             }, { err -> println(err) }))
     }
+
     private fun getEmotions() = interactor?.let {
         emotions = ArrayList<RegisterItem>()
         compositeDisposable.add(it.getEmotions()
@@ -180,22 +176,27 @@ class RegisterPresenter<V : RegisterView, I : RegisterInteractorImp> @Inject int
 
                         emotions.add(content)
                     }
+                    this.dailyEmotions = emotions
                     getView()?.setEmotionsData(emotions)
                 }
             }, { err -> println(err) }))
     }
+
     private fun checkDaily(categories: List<Category>) {
         interactor?.let {
             compositeDisposable.add(it.isDailyEmpty()
                 .compose(schedulerProvider.ioToMainObservableScheduler())
-                .subscribe {
-                        check ->
+                .subscribe ({ check ->
+                    Log.i("OnCheckDaily", "Todo funciono bien: $check, $categories")
                     if (!check){
                         getLastDaily(categories)
                     }else{
                         getMedition(null, categories)
                     }
+                }, { err ->
+                    Log.i("OnCheckDaily", "Ocurrió un error: $err")
                 })
+            )
         }
 
     }
@@ -211,6 +212,7 @@ class RegisterPresenter<V : RegisterView, I : RegisterInteractorImp> @Inject int
         }
     }
     private fun getTreatmentHorario(){
+        Log.i("OnGetHorario", "Se esta obteniendo el horario ${dailyRegister.category_id}")
         interactor?.let {
             compositeDisposable.add(it.getTreatmentHorarios(dailyRegister.category_id)
                 .compose(schedulerProvider.ioToMainSingleScheduler())
@@ -230,8 +232,9 @@ class RegisterPresenter<V : RegisterView, I : RegisterInteractorImp> @Inject int
                 .compose(schedulerProvider.ioToMainSingleScheduler())
                 .subscribe({ categories ->
                     category = categories
+                    Log.i("OnGetCategories", "Las categories fueron:$categories")
                     checkDaily(categories)
-                }, { err -> println("error" + err) })
+                }, { err -> Log.i("onGetCategories", "Ocurrió un error: $err") })
             )
         }
     }
@@ -242,6 +245,7 @@ class RegisterPresenter<V : RegisterView, I : RegisterInteractorImp> @Inject int
             compositeDisposable.add(it.getLastDaily()
                 .compose(schedulerProvider.ioToMainSingleScheduler())
                 .subscribe({ daily ->
+                    Log.i("lastDaily", daily.toString())
                     getMedition(daily.dailyRegister, categories)
                 }, { err -> println("error" + err) })
             )
@@ -249,36 +253,43 @@ class RegisterPresenter<V : RegisterView, I : RegisterInteractorImp> @Inject int
     }
 
     override fun finishLoad() {
+        Log.i("OnFinishLoad", "Se estan cargando los datos")
         dailyRegister = DailyRegister(0,"", glucose,insulin,carbohydrates,emotionalState, exercise, label, comment, photo,false,date.toDate(), date.toString(
             DateTimeFormat.forPattern("yyyy-MM-dd")),0f,"")
         getTreatmentHorario()
-
     }
 
     fun finishRegister(){
+        Log.i("OnFinish","Se estan cargando los datos a la db")
         interactor?.let {
-            compositeDisposable.add(it.saveRegisterCall(dailyRegister)
-                .compose(schedulerProvider.ioToMainObservableScheduler())
-                .doOnSubscribe { getView()?.showProgress() }
-                .subscribe({ response ->
+            CoroutineScope(Dispatchers.IO).launch {
+                compositeDisposable.add(it.saveRegisterCall(dailyRegister)
+                    .compose(schedulerProvider.ioToMainObservableScheduler())
+                    .doOnSubscribe { Log.i("onProgess", "Se muestra que carga") }
+                    .subscribe({ response ->
+                        if(response.id != ""){
+                            if (photo.isNotEmpty()){
 
-                    if (photo.isNotEmpty()){
+                                var file = File(photo)
+                                dailyRegister.idOnline = response.id
+                                dailyRegister.online = true
+                                uploadPhoto(response.id, file, dailyRegister)
+                            }else{
+                                dailyRegister.idOnline = response.id
+                                dailyRegister.online = true
 
-                        var file = File(photo)
-                        dailyRegister.idOnline = response.id
-                        dailyRegister.online = true
-                        uploadPhoto(response.id, file, dailyRegister)
-                    }else{
-                        dailyRegister.idOnline = response.id
-                        dailyRegister.online = true
+                                saveRegister(null, dailyRegister)
+                            }
+                        }else{
+                            getView()?.showErrorToast()
+                            getView()?.openMainActivity()
+                        }
 
+                    }, {
+                        getView()?.showErrorToast()
                         saveRegister(null, dailyRegister)
-                    }
-                }, {
-                    getView()?.showErrorToast()
-                    //saveRegister(null, dailyRegister)
-                })
-            )
+                    }))
+            }
         }
     }
 
@@ -362,8 +373,11 @@ class RegisterPresenter<V : RegisterView, I : RegisterInteractorImp> @Inject int
 
     private fun getMedition(dailyRegister: DailyRegister?, category: List<Category>){
         var index = 0
+        var currentDate = date
         var date = dailyRegister?.created
-        var currentDate = LocalDateTime()
+
+        Log.i("OnGetMedition", "$category, $currentDate, $date")
+
         val breakfastId = category.filter { category -> category.cate_name.equals("register_breakfast_label")  }.single().cate_id
         val pbreakfastId  = category.filter { category -> category.cate_name.equals("register_pbreakfast_label")  }.single().cate_id
         val lunchId  = category.filter { category -> category.cate_name.equals("register_lunch_label")  }.single().cate_id
@@ -384,30 +398,31 @@ class RegisterPresenter<V : RegisterView, I : RegisterInteractorImp> @Inject int
         val midnight = LocalTime(0,0)
         val midnightEnd = LocalTime(5,59)
 
-        if (date == null || LocalDate(date) != currentDate.toLocalDate()){
+        if (date == null){
             when {
                 timeBetween(currentDate.toLocalTime(), breakfast, breakfastEnd) -> {
                     index = breakfastId
-                    getView()?.setDateMedition(currentDate.toDate(),index, category )
-
+                    getView()?.setDateMedition(currentDate.toDate(), index, category )
+                    Log.i("OnTest", "$index, ${currentDate.toDate()}, $category")
                 }
 
                 timeBetween(currentDate.toLocalTime(),lunch, lunchEnd) ->{
                     index = lunchId
                     getView()?.setDateMedition(currentDate.toDate(),index, category)
-                 }
+                }
 
                 timeBetween(currentDate.toLocalTime(),snack,snackEnd) ->{
                     index = snackId
                     getView()?.setDateMedition(currentDate.toDate(), index, category)
                 }
 
-
                 timeBetween(currentDate.toLocalTime(),dinner, dinnerEnd) ||  timeBetween(currentDate.toLocalTime(), midnight, midnightEnd) -> {
                     index = dinnerId
                     getView()?.setDateMedition(currentDate.toDate(),index, category)
                 }
-
+                else ->{
+                    Log.i("OnElse", "No se entro a ningun when")
+                }
 
             }
         }else{
@@ -460,10 +475,13 @@ class RegisterPresenter<V : RegisterView, I : RegisterInteractorImp> @Inject int
                     index = breakfastId
                     getView()?.setDateMedition(currentDate.toDate(), index, category)
                 }
+                else ->{
+                    Log.i("OnElse", "No se entro a ningun when")
+                    index = 1
+                    getView()?.setDateMedition(currentDate.toDate(), index, category)
+                }
             }
-
         }
-        this.date = currentDate
         this.label = index
     }
 
@@ -534,8 +552,8 @@ class RegisterPresenter<V : RegisterView, I : RegisterInteractorImp> @Inject int
         choosePhotoHelper = ChoosePhotoHelper.with(context)
             .asFilePath()
             .build(ChoosePhotoCallback {
-                photo = it
-                getView()?.setImage(it)
+                photo = it!!
+                getView()?.setImage(it!!)
             })
     }
 
