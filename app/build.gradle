@@ -9,14 +9,14 @@ plugins{
 
 apollo{
     service("service"){
-        packageName.set("com.sugarcoach")
+        packageName.set("com.sugarcoachpremium")
     }
 }
 
 android {
     compileSdk rootProject.compileSdkVersion
     defaultConfig {
-        applicationId "com.sugarcoach"
+        applicationId "com.sugarcoachpremium"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 19
@@ -52,7 +52,7 @@ android {
     buildFeatures {
         viewBinding true
     }
-    namespace 'com.sugarcoach'
+    namespace 'com.sugarcoachpremium'
 }
 
 repositories {

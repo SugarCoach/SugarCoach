@@ -8,12 +8,28 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:341853924281:android:82da0f6477fa245c19e468",
+        "mobilesdk_app_id": "1:341853924281:android:3458ecd93b0c812719e468",
         "android_client_info": {
-          "package_name": "com.example.pruebadefirebase"
+          "package_name": "com.sugarcoach"
         }
       },
       "oauth_client": [
+        {
+          "client_id": "341853924281-3thcqi4uerjl92jvldcehgu5i8de31l3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sugarcoach",
+            "certificate_hash": "ae0eb4a1a29f616ee5c160e6408c664b42e3ee94"
+          }
+        },
+        {
+          "client_id": "341853924281-pam5erovph1279ph3c56bi75ehvo588e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sugarcoach",
+            "certificate_hash": "37c1ba02a0b64f501634c7521a34b4c790666294"
+          }
+        },
         {
           "client_id": "341853924281-84dftkcod2nu7r03g2c3mnog014imaag.apps.googleusercontent.com",
           "client_type": 3
@@ -37,18 +53,18 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:341853924281:android:3458ecd93b0c812719e468",
+        "mobilesdk_app_id": "1:341853924281:android:953c1844f3b7512a19e468",
         "android_client_info": {
-          "package_name": "com.sugarcoach"
+          "package_name": "com.sugarcoachpremium"
         }
       },
       "oauth_client": [
         {
-          "client_id": "341853924281-3thcqi4uerjl92jvldcehgu5i8de31l3.apps.googleusercontent.com",
+          "client_id": "341853924281-bmiq5os25o07ugnm1mh5q94nevc1ef7d.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.sugarcoach",
-            "certificate_hash": "ae0eb4a1a29f616ee5c160e6408c664b42e3ee94"
+            "package_name": "com.sugarcoachpremium",
+            "certificate_hash": "245f1e9940900da5dfd063d18527dc124e8b0145"
           }
         },
         {
