@@ -68,6 +68,14 @@
           }
         },
         {
+          "client_id": "341853924281-ieb88ostersti798b3n4vv7nig45h85v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sugarcoachpremium",
+            "certificate_hash": "ae0eb4a1a29f616ee5c160e6408c664b42e3ee94"
+          }
+        },
+        {
           "client_id": "341853924281-84dftkcod2nu7r03g2c3mnog014imaag.apps.googleusercontent.com",
           "client_type": 3
         }
