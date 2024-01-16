@@ -9,6 +9,8 @@ import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.sugarcoachpremium.BuildConfig
 import com.sugarcoachpremium.data.database.repository.dailyregister.DailyRegister
 import com.sugarcoachpremium.data.database.repository.treament.Treament
@@ -172,6 +174,7 @@ class SignEmailPresenter <V : SignEmailView, I : SignEmailInteractorImp> @Inject
                         if(task.isSuccessful){
                             Log.i("OnSuccessful", "Se registro correctamente")
                             user = auth.currentUser!!
+                            Log.i("OnEmailRegister", "El user que se registro es: ${user.email} ${user.displayName}")
                             updateUser(user)
                         }else{
                             Log.i("OnFailure", "Ocurrió un error al registrar el mail")
@@ -309,7 +312,7 @@ class SignEmailPresenter <V : SignEmailView, I : SignEmailInteractorImp> @Inject
 
             override fun onError(e: Throwable){
                 Log.i("OnUpdateUser", "Ocurrió un error: $e")
-                FirebaseAuth.getInstance().signOut()
+                Firebase.auth.currentUser?.delete()
                 getView()?.showErrorToast()
             }
 

@@ -40,7 +40,7 @@ class SignEmailInteractor @Inject constructor(private val mContext: Context, pri
         val builder = GsonBuilder().excludeFieldsWithoutExposeAnnotation()
         val gson = builder.create()
 
-        val parcialUser = ParcialUser(signResponse!!.email!!, signResponse.displayName!!, false,
+        val parcialUser = ParcialUser(signResponse!!.email!!, signResponse.email!!.substring(0, signResponse.email!!.indexOf('@')), false,
             signResponse.providerId, true)
 
         val json = gson.toJson(parcialUser, ParcialUser::class.java)
