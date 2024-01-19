@@ -1,0 +1,11 @@
+query GetUserDataId($id: ID!){
+    usersData(filters: {
+        users_permissions_user: {
+            id:{eq: $id}
+        }
+    }){
+        data {
+            id
+        }
+    }
+}

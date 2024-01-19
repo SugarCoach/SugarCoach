@@ -6,6 +6,15 @@ query GetUserData($id: ID!){
     }){
         data {
             id
+            attributes {
+                name
+                birth_date
+                sex
+                height
+                weight
+                debut_date
+                icon
+            }
         }
     }
 }

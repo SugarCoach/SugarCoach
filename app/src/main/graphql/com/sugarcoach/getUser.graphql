@@ -6,6 +6,10 @@ query GetUserByUID($id: String){
     }){
         data {
             id
+            attributes {
+                username
+                email
+            }
         }
     }
 }

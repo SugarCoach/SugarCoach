@@ -65,15 +65,14 @@ class LoginActivity: BaseActivity(), LoginView {
     private fun setOnClickListeners() {
 
         binding.loginBt.setOnClickListener {
-            runBlocking {
-                presenter.onLogin(binding.loginMail.text.toString(),
-                    binding.loginPass.text.toString(),false, false)
-            }
+            showProgress()
+            presenter.onLogin(binding.loginMail.text.toString(),
+                binding.loginPass.text.toString(),false, false)
         }
         binding.loginSignin.setOnClickListener { presenter.emailSign() }
-        binding.loginForgot.setOnClickListener { presenter.forgot() }
-        binding.loginScan.setOnClickListener{ scanQR() }
-        binding.loginMedicoScan.setOnClickListener{ scanQR() }
+        //binding.loginForgot.setOnClickListener { presenter.forgot() }
+        //binding.loginScan.setOnClickListener{ scanQR() }
+        //binding.loginMedicoScan.setOnClickListener{ scanQR() }
     }
     override fun onEmailSign() {
         val intent = Intent(this, SignEmailActivity::class.java)

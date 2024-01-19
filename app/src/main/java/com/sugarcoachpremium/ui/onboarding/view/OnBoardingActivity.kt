@@ -27,9 +27,9 @@ class OnBoardingActivity: BaseActivity(), OnBoardingView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityOnboardingBinding.inflate(layoutInflater)
-        verifyLogin()
         setContentView(binding.root)
         presenter.onAttach(this)
+        verifyLogin()
     }
 
     override fun onDestroy() {
@@ -58,9 +58,8 @@ class OnBoardingActivity: BaseActivity(), OnBoardingView {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
-        }else{
-            Log.i("Verifying login", "El usuario no esta loggeado")
         }
+        Log.i("Verifying login", "El usuario no esta loggeado")
     }
 
     override fun startMain() {

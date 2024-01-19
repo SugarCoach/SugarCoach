@@ -10,6 +10,7 @@ import com.google.firebase.ktx.Firebase
 import com.notbytes.barcode_reader.BarcodeReaderActivity
 import com.sugarcoachpremium.data.database.repository.dailyregister.DailyRegister
 import com.sugarcoachpremium.data.database.repository.treament.Treament
+import com.sugarcoachpremium.data.database.repository.user.User
 import com.sugarcoachpremium.data.network.LoginResponse
 import com.sugarcoachpremium.data.network.RegistersResponse
 import com.sugarcoachpremium.ui.base.presenter.BasePresenter
@@ -17,8 +18,10 @@ import com.sugarcoachpremium.ui.login.interactor.LoginInteractorImp
 import com.sugarcoachpremium.ui.login.view.LoginView
 import com.sugarcoachpremium.util.AppConstants
 import com.sugarcoachpremium.util.SchedulerProvider
+import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -39,7 +42,7 @@ class LoginPresenter  <V : LoginView, I : LoginInteractorImp> @Inject internal c
     val auth: FirebaseAuth = Firebase.auth
     lateinit var userId: String
 
-    override suspend fun onLogin(email: String, password: String, mirror: Boolean, medico: Boolean) {
+    override fun onLogin(email: String, password: String, mirror: Boolean, medico: Boolean) {
         when {
             email.isEmpty() -> getView()?.showValidationMessage(AppConstants.EMPTY_EMAIL_ERROR)
             !isEmailValid(email) -> getView()?.showValidationMessage(AppConstants.INVALID_EMAIL_ERROR)
@@ -48,35 +51,64 @@ class LoginPresenter  <V : LoginView, I : LoginInteractorImp> @Inject internal c
                 auth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener() { task ->
                         if (task.isSuccessful) {
-                            // Sign in success, update UI with the signed-in user's information
+                                // Sign in success, update UI with the signed-in user's information
                             Log.i("onLogin", "signInWithEmail:success")
-                            CoroutineScope(Dispatchers.IO).launch{
-                                interactor?.let {
-                                    it.getUserData(Firebase.auth.currentUser?.uid).fold({
-                                        userId = it
-                                    },{
-                                        Log.i("OnLogin", "Ocurrió un error: $it")
-                                        withContext(Dispatchers.Main){
-                                            getView()?.showErrorToast()
-                                        }
-                                    }) }
-                                feedInDatabase()
-                                withContext(Dispatchers.Main) {
-                                    getView()?.onLogin()
-                                }
+                            CoroutineScope(Dispatchers.IO).launch {
+                                updateUser(Firebase.auth.currentUser?.uid)
                             }
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.i("onLogin", "signInWithEmail:failure", task.exception)
-                            getView()?.showErrorToast()
+                            getView()?.showErrorToast("Mail o contraseña incorrectos")
+                            getView()?.hideProgress()
                         }
                     }
-
-                //suspendLogin(email, password, mirror, medico)
+                }
             }
         }
-    }
 
+    private suspend fun updateUser(firebaseUID: String?) {
+        interactor?.getUserData(firebaseUID)?.fold({
+            if (it == null) {
+                withContext(Dispatchers.Main) {
+                    getView()?.hideProgress()
+                    getView()?.showErrorToast()
+                }
+            }
+
+            interactor?.makeLocalUser(it)?.subscribe(object: Observer<Boolean> {
+                override fun onSubscribe(d: Disposable) {
+                    Log.i("OnMakeLocal", "Se suscribió")
+                }
+
+                override fun onNext(t: Boolean) {
+                    Log.i("OnMakeLocal", "Se ejecuto el next")
+                }
+
+                override fun onError(e: Throwable){
+                    Log.i("OnMakeLocal", "Ocurrió un error: $e")
+                    Firebase.auth.currentUser?.delete()
+                    getView()?.showErrorToast()
+                }
+
+                //@SuppressLint("CheckResult")
+                override fun onComplete() {
+                    Log.i("OnMakeLocal", "Se encontró el usuario")
+                    try{
+                        feedInDatabase()
+                    }catch (e: Exception){
+                        getView()?.showErrorToast()
+                    }
+                }
+            })
+
+        }, {
+            withContext(Dispatchers.Main) {
+                getView()?.hideProgress()
+                getView()?.showErrorToast()
+            }
+        })
+    }
     private suspend fun suspendLogin(email: String, password: String, mirror: Boolean, medico: Boolean) = coroutineScope{
          val waitResponse = async {
             interactor?.let {

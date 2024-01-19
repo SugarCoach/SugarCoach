@@ -66,7 +66,7 @@ class SignEmailInteractor @Inject constructor(private val mContext: Context, pri
                 setUserId(it.id)
                 return Result.success(true)
             }, {
-                Log.i("OnCreateUser", "Ocurrió un error con la API: $it")
+                Log.i("OnCreateUser", "Ocurrió un error con la API: $it, Los datos ingresados fueron: ${user.username + user.email + signResponse.uid}")
                 return Result.failure(it)
             })
         }else{

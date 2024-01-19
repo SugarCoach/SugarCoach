@@ -73,19 +73,18 @@ class ProfilePresenter <V : ProfileView, I : ProfileInteractorImp> @Inject inter
         compositeDisposable.add(it.getUser()
             .compose(schedulerProvider.ioToMainSingleScheduler())
             .subscribe({ userData ->
+                Log.i("OnGetUser", "La data fue $userData")
                 getView()?.let {
                     user = userData
                     getView()?.getUserData(userData)
                     userData.birthday?.let {
                         getView()?.setBirthday(it)
-
                     }
                     userData.debut?.let {
                         getView()?.setDebut(it)
-
                     }
                 }
-            }, { err -> println(err) }))
+            }, { err -> Log.i("OnGetUser", "No se pudo encontrar el usuario") }))
     }
 
     fun getAvatars(){
@@ -102,12 +101,28 @@ class ProfilePresenter <V : ProfileView, I : ProfileInteractorImp> @Inject inter
         getUser()
     }
     override fun updateAll(name: String?,weight: Float?,height: Float?,username: String?,mail: String?) {
-        user.name = name!!.toString()
-        user.weight = weight!!.toFloat()
-        user.height = height!!.toFloat()
-        user.username = username!!.toString()
-        user.email = mail!!.toString()
         getView()?.showProgress()
+
+        if(name != null){
+            println(name)
+            user.name = name.toString()
+        }
+        if (weight != null) {
+            println(weight)
+            user.weight = weight.toFloat()
+        }
+        if (height != null) {
+            println(height)
+            user.height = height.toFloat()
+        }
+        if(username != null){
+            println(username)
+            user.username = username.toString()
+        }
+        if(mail != null){
+            println(mail)
+            user.email = mail.toString()
+        }
         interactor?.let {
             compositeDisposable.add(it.updateUser(user)
                 .compose(schedulerProvider.ioToMainObservableScheduler())
@@ -115,6 +130,7 @@ class ProfilePresenter <V : ProfileView, I : ProfileInteractorImp> @Inject inter
                     //getView()?.showSuccessToast()
                     CoroutineScope(Dispatchers.IO).launch {
                         interactor!!.getDataId().fold({
+                            Log.i("OnProfilePresenter", "El id es: $it")
                             interactor!!.updateApiUser(user, it).fold({
                                 withContext(Dispatchers.Main){
                                     getView()?.hideProgress()
@@ -149,8 +165,17 @@ class ProfilePresenter <V : ProfileView, I : ProfileInteractorImp> @Inject inter
         Log.i("CurrentProvider", "El provider actual es:$providerId")
         Firebase.auth.signOut()
         com.facebook.login.LoginManager.getInstance().logOut()
-
+        interactor?.perfomLogout()
         getView()?.openLoginActivity()
+        /*interactor?.let {
+            compositeDisposable.add(it.deleteUser()
+                .compose(schedulerProvider.ioToMainObservableScheduler())
+                .subscribe({ result ->
+                    interactor?.perfomLogout()
+                    getView()?.openLoginActivity()
+                }, { err -> println(err) })
+            )
+        }*/
         /*interactor?.let {
             compositeDisposable.add(it.deleteUser()
                 .compose(schedulerProvider.ioToMainObservableScheduler())

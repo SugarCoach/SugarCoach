@@ -7,6 +7,7 @@ import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
@@ -59,8 +60,10 @@ class ProfileActivity: BaseActivity(), ProfileView, DatePickerDialog.OnDateSetLi
     }
 
     private fun setInformationFromFirebase(){
-        binding.profileMailTv.text = Editable.Factory.getInstance().newEditable(Firebase.auth.currentUser?.email)
-
+        if(Firebase.auth.currentUser?.email != null) {
+            binding.profileMailTv.text =
+                Editable.Factory.getInstance().newEditable(Firebase.auth.currentUser?.email)
+        }
         if(Firebase.auth.currentUser?.displayName != null){
             binding.profileNameTv.text = Editable.Factory.getInstance().newEditable(Firebase.auth.currentUser?.displayName)
         }
@@ -92,7 +95,7 @@ class ProfileActivity: BaseActivity(), ProfileView, DatePickerDialog.OnDateSetLi
         binding.profileNacTv.setOnClickListener { presenter.showDateDialog(supportFragmentManager, this, "birthday", if (user.birthday != null) LocalDate(user.birthday) else LocalDate.now()) }
         binding.profileLogoutIv.setOnClickListener { presenter.logout() }
         binding.profileSave.setOnClickListener {
-            hideMenu()
+            Log.i("OnProfile", "Se esta guardando la data")
             try{
                 presenter.updateAll(binding.profileNameTv.text.toString(), binding.profileWeightTv.text.toString().toFloat(), binding.profileHeightTv.text.toString().toFloat(), binding.profileUsernameTv.text.toString(), binding.profileMailTv.text.toString())
             }catch (e: Exception){
@@ -104,6 +107,7 @@ class ProfileActivity: BaseActivity(), ProfileView, DatePickerDialog.OnDateSetLi
             presenter.getScreenShot(this, binding.profileLl)
         }
         binding.profileMenu.setOnClickListener {
+            Log.i("OnMenu", "Se toco el menu")
             if (isFabOpen) {
                 hideMenu()
             } else {

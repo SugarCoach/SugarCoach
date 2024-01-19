@@ -1,7 +1,9 @@
 package com.sugarcoachpremium.ui.login.interactor
 
+import com.sugarcoachpremium.GetUserByUIDQuery
 import com.sugarcoachpremium.data.database.repository.dailyregister.DailyRegister
 import com.sugarcoachpremium.data.database.repository.treament.Treament
+import com.sugarcoachpremium.data.database.repository.user.User
 import com.sugarcoachpremium.data.network.LoginResponse
 import com.sugarcoachpremium.data.network.RegistersResponse
 import com.sugarcoachpremium.data.ui.base.interactor.Interactor
@@ -10,7 +12,8 @@ import io.reactivex.Observable
 
 interface LoginInteractorImp : Interactor {
 
-    suspend fun getUserData(userUID: String?): Result<String>
+    suspend fun getUserData(userUID: String?): Result<GetUserByUIDQuery.Data1?>
+    suspend fun makeLocalUser(cloudUser: GetUserByUIDQuery.Data1?): Observable<Boolean>
     suspend fun doServerLoginpiCall(email: String, password: String): Observable<LoginResponse>
     fun updateUserInSharedPref(loginResponse: LoginResponse, mirror: Boolean, medico: Boolean)
     fun treament(treament: Treament): Observable<Boolean>

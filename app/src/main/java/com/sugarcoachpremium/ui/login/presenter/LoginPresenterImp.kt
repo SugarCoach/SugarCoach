@@ -7,7 +7,7 @@ import com.sugarcoachpremium.ui.login.view.LoginView
 
 
 interface LoginPresenterImp<V : LoginView, I : LoginInteractorImp> : Presenter<V, I>{
-    suspend fun onLogin(email: String, password: String, mirror: Boolean, medico: Boolean)
+    fun onLogin(email: String, password: String, mirror: Boolean, medico: Boolean)
     fun emailSign()
     fun forgot()
     suspend fun activityResult(requestCode: Int, resultCode: Int, data: Intent?)

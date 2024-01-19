@@ -19,20 +19,31 @@ android {
         applicationId "com.sugarcoachpremium"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 21
+        versionCode 26
         versionName "1.0.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
+    /*signingConfigs {
+        release {
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
+            storePassword keystoreProperties['storePassword']
+        }
+    }*/
 
     buildTypes {
         debug {
             buildConfigField("String", "BASE_URL", "\"http://ec2-13-59-253-95.us-east-2.compute.amazonaws.com:1337\"")
         }
         release {
-//            minifyEnabled true
-//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            buildConfigField("String", "BASE_URL", "\"http://www.mocky.io/v2\"")
-            buildConfigField("String", "API_KEY", "\"ABCXYZ123TEST\"")
+            minifyEnabled false
+            //proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            //signingConfig signingConfigs.release
+            buildConfigField("String", "BASE_URL", "\"http://ec2-13-59-253-95.us-east-2.compute.amazonaws.com:1337\"")
+            signingConfig signingConfigs.debug
+            //buildConfigField("String", "API_KEY", "\"ABCXYZ123TEST\"")
         }
     }
 

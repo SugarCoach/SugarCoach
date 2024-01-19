@@ -10,6 +10,7 @@ import com.sugarcoachpremium.CreateUserMutation
 import com.sugarcoachpremium.DailyRegisterQuery
 import com.sugarcoachpremium.DeleteDailyRegisterMutation
 import com.sugarcoachpremium.GetUserByUIDQuery
+import com.sugarcoachpremium.GetUserDataIdQuery
 import com.sugarcoachpremium.GetUserDataQuery
 import com.sugarcoachpremium.data.api_db.Treatment.TreatmentResponse
 import com.sugarcoachpremium.UpdateDailyRegisterMutation
@@ -23,9 +24,11 @@ import com.sugarcoachpremium.type.DailyRegisterInput
 import com.sugarcoachpremium.type.TreatmentInput
 import com.sugarcoachpremium.type.UserDataInput
 import com.sugarcoachpremium.TreatmentQuery
+import com.sugarcoachpremium.data.database.repository.user.User
 import com.sugarcoachpremium.util.extensions.toDailyRegister
 import com.sugarcoachpremium.util.extensions.toTreatment
 import com.sugarcoachpremium.util.extensions.toUser
+import java.util.Date
 import javax.inject.Inject
 import kotlin.Result.Companion.failure
 import kotlin.Result.Companion.success
@@ -74,10 +77,9 @@ class ApiRepository @Inject constructor(
     }
 
     override suspend fun getUserDataId(userId: String): Result<String> {
-
         return try {
             val response = apolloClient
-                .query(GetUserDataQuery(userId))
+                .query(GetUserDataIdQuery(userId))
                 .execute()
                 .data
                 ?.usersData
@@ -89,6 +91,25 @@ class ApiRepository @Inject constructor(
         }catch (e: Exception){
             Log.i("OnGetUserId", "Ocurrió un error: $e")
             failure(e)
+        }
+    }
+
+    override suspend fun getUserData(userId: String): GetUserDataQuery.Attributes?{
+        return try {
+            val response = apolloClient
+                .query(GetUserDataQuery(userId))
+                .execute()
+                .data
+                ?.usersData
+                ?.data
+                ?.get(0)
+
+            Log.i("OnGetUserId", "$response")
+            response?.attributes
+        }catch (e: Exception){
+            Log.i("OnGetUserId", "Ocurrió un error: $e")
+            return GetUserDataQuery.Attributes("","","",
+                0.0,0.0,"", 0)
         }
     }
 
@@ -110,6 +131,7 @@ class ApiRepository @Inject constructor(
     }
 
     override suspend fun updateUserData(user: UserDataInput, id: String): Result<Boolean> {
+        Log.i("OnUpdateUserData", "El user a actualizar: $user, con id: $id")
         return try {
             val response = apolloClient
                 .mutation(UpdateUserDataMutation(user, id))
@@ -229,8 +251,8 @@ class ApiRepository @Inject constructor(
         }
     }
 
-    override suspend fun getUserId(firebaseUID: String): String? {
-        return try{
+    override suspend fun getUserId(firebaseUID: String): Result<GetUserByUIDQuery.Data1?> {
+        return try {
             val response = apolloClient
                 .query(GetUserByUIDQuery(Optional.present(firebaseUID)))
                 .execute()
@@ -238,11 +260,10 @@ class ApiRepository @Inject constructor(
                 ?.usersPermissionsUsers
                 ?.data
                 ?.get(0)
-                ?.id
 
-            response
+            success(response)
         }catch(e: Exception){
-            ""
+            error("$e $firebaseUID")
         }
     }
 }

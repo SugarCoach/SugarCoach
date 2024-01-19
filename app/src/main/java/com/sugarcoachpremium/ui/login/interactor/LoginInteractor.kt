@@ -1,8 +1,10 @@
 package com.sugarcoachpremium.ui.login.interactor
 
 import android.content.Context
+import android.util.Log
 import com.google.gson.GsonBuilder
 import com.google.gson.internal.`$Gson$Types`
+import com.sugarcoachpremium.GetUserByUIDQuery
 import com.sugarcoachpremium.data.api_db.ApiRepository
 import com.sugarcoachpremium.data.database.repository.dailyregister.*
 import com.sugarcoachpremium.data.database.repository.treament.*
@@ -21,7 +23,11 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 import java.lang.Exception
+import java.text.SimpleDateFormat
+import java.util.Date
 import javax.inject.Inject
+import kotlin.Result.Companion.failure
+import kotlin.Result.Companion.success
 
 
 class LoginInteractor @Inject constructor(private val mContext: Context, private  val dailyRepoHelper: DailyRegisterRepo,
@@ -34,13 +40,8 @@ class LoginInteractor @Inject constructor(private val mContext: Context, private
     lateinit var apiRepository: ApiRepository
 
 
-    override suspend fun getUserData(userUID: String?): Result<String> {
-        val apiRes = apiRepository.getUserId(userUID!!)
-        return if(!apiRes.isNullOrEmpty()){
-            Result.success(apiRes)
-        }else{
-            Result.failure(Exception("Ocurrió un error llamando al user"))
-        }
+    override suspend fun getUserData(userUID: String?): Result<GetUserByUIDQuery.Data1?> {
+        return apiRepository.getUserId(userUID!!)
     }
     override suspend fun doServerLoginpiCall(email: String, password: String): Observable<LoginResponse> {
        val loginResponse = coroutineScope {
@@ -52,6 +53,39 @@ class LoginInteractor @Inject constructor(private val mContext: Context, private
            response.await()
        }
         return loginResponse
+    }
+
+    override suspend fun makeLocalUser(cloudUser: GetUserByUIDQuery.Data1?): Observable<Boolean>{
+        val data = apiRepository.getUserData(cloudUser?.id!!)
+        if (data == null) {
+            return Observable.just(false)
+        }
+        val user = User(
+            1,
+            cloudUser.attributes!!.username,
+            false,
+            cloudUser.attributes.email,
+            "",
+            true,
+            data.sex,
+            data.name,
+            null,
+            data.weight?.toFloat(),
+            data.height?.toFloat(),
+            data.birth_date?.let { SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy").parse(it) },
+            data.debut_date?.let { SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy").parse(it) },
+            false,
+            false,
+            false,
+            false,
+            "",
+            "",
+            "2",
+            cloudUser.id.toInt()
+        )
+         Log.i("OnLoginInteractor", "El Id del user: ${cloudUser.id}")
+        setUserId(cloudUser.id)
+        return userHelper.insertRegister(user)
     }
 
     override fun getRegistersCall(): Observable<List<RegistersResponse>> {
