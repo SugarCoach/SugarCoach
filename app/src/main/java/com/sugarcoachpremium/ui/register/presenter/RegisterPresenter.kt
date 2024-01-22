@@ -390,7 +390,6 @@ class RegisterPresenter<V : RegisterView, I : RegisterInteractorImp> @Inject int
                 timeBetween(currentDate.toLocalTime(), breakfast, breakfastEnd) -> {
                     index = breakfastId
                     getView()?.setDateMedition(currentDate.toDate(), index, category )
-                    Log.i("OnTest", "$index, ${currentDate.toDate()}, $category")
                 }
 
                 timeBetween(currentDate.toLocalTime(),lunch, lunchEnd) ->{
@@ -408,13 +407,16 @@ class RegisterPresenter<V : RegisterView, I : RegisterInteractorImp> @Inject int
                     getView()?.setDateMedition(currentDate.toDate(),index, category)
                 }
                 else ->{
-                    Log.i("OnElse", "No se entro a ningun when")
+                    Log.i("OnElse", "No se entro a ningun when de arriba")
                 }
-
             }
         }else{
-            when{
+            when {
                 dailyRegister?.category_id == breakfastId && timeBetween(currentDate.toLocalTime(), breakfast, breakfastEnd)-> {
+                    index = pbreakfastId
+                    getView()?.setDateMedition(currentDate.toDate(), index, category)
+                }
+                ( dailyRegister?.category_id == breakfastId || dailyRegister?.category_id == pbreakfastId) && timeBetween(currentDate.toLocalTime(),breakfast, breakfastEnd) -> {
                     index = pbreakfastId
                     getView()?.setDateMedition(currentDate.toDate(), index, category)
                 }
@@ -434,6 +436,10 @@ class RegisterPresenter<V : RegisterView, I : RegisterInteractorImp> @Inject int
                     index = plunchId
                     getView()?.setDateMedition(currentDate.toDate(),index, category)
                 }
+                (dailyRegister?.category_id == lunchId || dailyRegister?.category_id == plunchId) && timeBetween(currentDate.toLocalTime(), lunch, lunchEnd) -> {
+                    index = plunchId
+                    getView()?.setDateMedition(currentDate.toDate(),index, category)
+                }
                 (dailyRegister?.category_id == lunchId || dailyRegister?.category_id == plunchId) && timeBetween(currentDate.toLocalTime(),snack,snackEnd) -> {
                     index = snackId
                     getView()?.setDateMedition(currentDate.toDate(), index, category)
@@ -446,6 +452,10 @@ class RegisterPresenter<V : RegisterView, I : RegisterInteractorImp> @Inject int
                     index = psnackId
                     getView()?.setDateMedition(currentDate.toDate(), index, category)
                 }
+                (dailyRegister?.category_id == snackId || dailyRegister?.category_id == psnackId) && (timeBetween(currentDate.toLocalTime(),snack, snackEnd)) -> {
+                    index = psnackId
+                    getView()?.setDateMedition(currentDate.toDate(), index, category)
+                }
                 (dailyRegister?.category_id == snackId || dailyRegister?.category_id == psnackId) && (timeBetween(currentDate.toLocalTime(),dinner, dinnerEnd) ||  timeBetween(currentDate.toLocalTime(), midnight, midnightEnd)) -> {
                     index = dinnerId
                     getView()?.setDateMedition(currentDate.toDate(), index, category)
@@ -454,8 +464,16 @@ class RegisterPresenter<V : RegisterView, I : RegisterInteractorImp> @Inject int
                     index = pdinnerId
                     getView()?.setDateMedition(currentDate.toDate(), index, category)
                 }
-                (dailyRegister?.category_id == dinnerId  || dailyRegister?.category_id == pdinnerId) && timeBetween(currentDate.toLocalTime(), breakfast, breakfastEnd) -> {
-                    index = breakfastId
+                dailyRegister?.category_id == dinnerId && (timeBetween(currentDate.toLocalTime(),dinner, dinnerEnd) ||  timeBetween(currentDate.toLocalTime(), midnight, midnightEnd)) -> {
+                    index = pdinnerId
+                    getView()?.setDateMedition(currentDate.toDate(), index, category)
+                }
+                (dailyRegister?.category_id == dinnerId  || dailyRegister?.category_id == pdinnerId) && timeBetween(currentDate.toLocalTime(), dinner, dinnerEnd) -> {
+                    index = pdinnerId
+                    getView()?.setDateMedition(currentDate.toDate(), index, category)
+                }
+                (dailyRegister?.category_id == dinnerId  || dailyRegister?.category_id == pdinnerId) && timeBetween(currentDate.toLocalTime(), dinner, dinnerEnd) -> {
+                    index = pdinnerId
                     getView()?.setDateMedition(currentDate.toDate(), index, category)
                 }
                 (dailyRegister?.category_id == pdinnerId) -> {
