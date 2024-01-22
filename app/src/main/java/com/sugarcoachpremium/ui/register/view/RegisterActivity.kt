@@ -67,6 +67,7 @@ class RegisterActivity : BaseActivity(), RegisterView, TimePickerDialog.OnTimeSe
 
     lateinit var binding: ActivityRegisterBinding
 
+    var counter: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -369,12 +370,18 @@ class RegisterActivity : BaseActivity(), RegisterView, TimePickerDialog.OnTimeSe
 
 
     private fun setOnClickListeners(){
-
+        counter = 0
         binding.registerNextIv.setOnClickListener {
+            if(counter < 2){
+                presenter.checkValue(binding.registerValueTxt.text.toString().toFloat())
+                counter ++
+            }
             presenter.nextLoad()
         }
         binding.registerPrevIv.setOnClickListener {
-            presenter.prevLoad() }
+            presenter.prevLoad()
+            counter --
+        }
         binding.registerAgainIv.setOnClickListener {
             presenter.backLoad() }
         binding.registerCompletedIv.setOnClickListener {
@@ -385,6 +392,7 @@ class RegisterActivity : BaseActivity(), RegisterView, TimePickerDialog.OnTimeSe
         binding.registerValueTxt.setOnEditorActionListener { v, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_DONE){
                 presenter.checkValue(binding.registerValueTxt.text.toString().toFloat())
+                counter ++
             }
             false
         }
