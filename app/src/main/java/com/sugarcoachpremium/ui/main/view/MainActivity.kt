@@ -116,7 +116,7 @@ class MainActivity : BaseActivity(), MainView {
             binding.mainUserimgIv.setImageDrawable(getDrawable(resIdByName(it, "drawable")))
         }
         presenter.checkAndRequestPermissions(this)
-        if (user.typeAccount == "3"){
+        if (user.typeAccount == "3") {
             mirrorAccount()
         }
     }

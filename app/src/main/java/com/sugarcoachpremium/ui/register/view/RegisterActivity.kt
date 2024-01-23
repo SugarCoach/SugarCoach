@@ -80,6 +80,7 @@ class RegisterActivity : BaseActivity(), RegisterView, TimePickerDialog.OnTimeSe
     }
 
     override fun onDestroy() {
+        counter = 0
         presenter.onDetach()
         super.onDestroy()
     }
@@ -370,9 +371,9 @@ class RegisterActivity : BaseActivity(), RegisterView, TimePickerDialog.OnTimeSe
 
 
     private fun setOnClickListeners(){
-        counter = 0
+        //counter = 0
         binding.registerNextIv.setOnClickListener {
-            if(counter < 2){
+            if(counter < 2 || counter == 2){
                 presenter.checkValue(binding.registerValueTxt.text.toString().toFloat())
                 counter ++
             }
@@ -418,7 +419,6 @@ class RegisterActivity : BaseActivity(), RegisterView, TimePickerDialog.OnTimeSe
 
         val formatter = SimpleDateFormat("dd.M.yy", Locale.getDefault())
         val formatterTime = SimpleDateFormat("hh:mm a", Locale.getDefault())
-        Log.i("OnRegisterActivity", "La hora es: $date y las categories: $categories")
         val formattedDate = formatter.format(date)
         val formattedTime = formatterTime.format(date)
         binding.registerTimeTxt.text = formattedTime

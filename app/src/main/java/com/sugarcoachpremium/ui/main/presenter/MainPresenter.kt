@@ -204,7 +204,7 @@ class MainPresenter<V : MainView, I : MainInteractorImp> @Inject internal constr
             when {
 
                 timeBetween(currentDate.toLocalTime(), breakfast, breakfastEnd) -> {
-                    getView()?.setMedition(breakfastname )
+                    getView()?.setMedition(breakfastname)
 
                 }
 
@@ -224,7 +224,7 @@ class MainPresenter<V : MainView, I : MainInteractorImp> @Inject internal constr
             }
         }else{
             when{
-                dailyRegister?.category_id == breakfastId && timeBetween(currentDate.toLocalTime(), breakfast, breakfastEnd)-> {
+                (dailyRegister?.category_id == breakfastId || dailyRegister?.category_id == pbreakfastId ) && timeBetween(currentDate.toLocalTime(), breakfast, breakfastEnd)-> {
                     getView()?.setMedition(pbreakfastname)
                 }
                 ( dailyRegister?.category_id == breakfastId || dailyRegister?.category_id == pbreakfastId) && timeBetween(currentDate.toLocalTime(),lunch, lunchEnd) -> {
@@ -236,7 +236,7 @@ class MainPresenter<V : MainView, I : MainInteractorImp> @Inject internal constr
                 (dailyRegister?.category_id == breakfastId || dailyRegister?.category_id == pbreakfastId) &&  (timeBetween(currentDate.toLocalTime(),dinner, dinnerEnd) ||  timeBetween(currentDate.toLocalTime(), midnight, midnightEnd)) -> {
                     getView()?.setMedition(dinnername)
                 }
-                dailyRegister?.category_id == lunchId && timeBetween(currentDate.toLocalTime(),lunch, lunchEnd) -> {
+                (dailyRegister?.category_id == lunchId || dailyRegister?.category_id == plunchId   && timeBetween(currentDate.toLocalTime(),lunch, lunchEnd)) -> {
                     getView()?.setMedition(plunchname)
                 }
                 (dailyRegister?.category_id == lunchId || dailyRegister?.category_id == plunchId) && timeBetween(currentDate.toLocalTime(),snack,snackEnd) -> {
@@ -245,13 +245,13 @@ class MainPresenter<V : MainView, I : MainInteractorImp> @Inject internal constr
                 (dailyRegister?.category_id == lunchId || dailyRegister?.category_id == plunchId) && (timeBetween(currentDate.toLocalTime(),dinner, dinnerEnd) ||  timeBetween(currentDate.toLocalTime(), midnight, midnightEnd))-> {
                     getView()?.setMedition(dinnername)
                 }
-                dailyRegister?.category_id == snackId && timeBetween(currentDate.toLocalTime(),snack,snackEnd) -> {
+                (dailyRegister?.category_id == snackId || dailyRegister?.category_id == psnackId) && timeBetween(currentDate.toLocalTime(),snack,snackEnd) -> {
                     getView()?.setMedition(psnackname)
                 }
                 (dailyRegister?.category_id == snackId || dailyRegister?.category_id == psnackId) && (timeBetween(currentDate.toLocalTime(),dinner, dinnerEnd) ||  timeBetween(currentDate.toLocalTime(), midnight, midnightEnd)) -> {
                     getView()?.setMedition(dinnername)
                 }
-                dailyRegister?.category_id == dinnerId && (timeBetween(currentDate.toLocalTime(),dinner, dinnerEnd) ||  timeBetween(currentDate.toLocalTime(), midnight, midnightEnd)) -> {
+                (dailyRegister?.category_id == dinnerId || dailyRegister?.category_id == pdinnerId ) && (timeBetween(currentDate.toLocalTime(),dinner, dinnerEnd) ||  timeBetween(currentDate.toLocalTime(), midnight, midnightEnd)) -> {
                     getView()?.setMedition(pdinnername)
                 }
                 (dailyRegister?.category_id == dinnerId  || dailyRegister?.category_id == pdinnerId) && timeBetween(currentDate.toLocalTime(), breakfast, breakfastEnd) -> {
