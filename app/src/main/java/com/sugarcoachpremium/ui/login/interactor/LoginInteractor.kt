@@ -81,7 +81,8 @@ class LoginInteractor @Inject constructor(private val mContext: Context, private
             "",
             "",
             "2",
-            cloudUser.id.toInt()
+            cloudUser.id.toInt(),
+            data.sugar_points!!
         )
          Log.i("OnLoginInteractor", "El Id del user: ${cloudUser.id}")
         setUserId(cloudUser.id)

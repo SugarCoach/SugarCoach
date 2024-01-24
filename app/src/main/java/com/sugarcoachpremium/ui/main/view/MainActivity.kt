@@ -112,6 +112,7 @@ class MainActivity : BaseActivity(), MainView {
     }
     override fun setUser(user: User) {
         binding.mainUsernameTxt.text = user.username
+        binding.mainPtsTxt.text = user.points.toString()
         user.avatar?.let {
             binding.mainUserimgIv.setImageDrawable(getDrawable(resIdByName(it, "drawable")))
         }

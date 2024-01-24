@@ -26,6 +26,7 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.joda.time.LocalDateTime
 import org.joda.time.LocalTime
 import org.joda.time.format.DateTimeFormat
@@ -248,11 +249,11 @@ class RegisterPresenter<V : RegisterView, I : RegisterInteractorImp> @Inject int
 
     fun finishRegister(){
         Log.i("OnFinish","Se estan cargando los datos a la db")
+        getView()?.showProgress()
         interactor?.let {
             CoroutineScope(Dispatchers.IO).launch {
                 compositeDisposable.add(it.saveRegisterCall(dailyRegister)
                     .compose(schedulerProvider.ioToMainObservableScheduler())
-                    .doOnSubscribe { Log.i("onProgess", "Se muestra que carga") }
                     .subscribe({ response ->
                         if(response.id != ""){
                             if (photo.isNotEmpty()){
@@ -268,11 +269,13 @@ class RegisterPresenter<V : RegisterView, I : RegisterInteractorImp> @Inject int
                                 saveRegister(null, dailyRegister)
                             }
                         }else{
+                            getView()?.hideProgress()
                             getView()?.showErrorToast()
                             getView()?.openMainActivity()
                         }
 
                     }, {
+                        getView()?.hideProgress()
                         getView()?.showErrorToast()
                         saveRegister(null, dailyRegister)
                     }))
@@ -285,22 +288,56 @@ class RegisterPresenter<V : RegisterView, I : RegisterInteractorImp> @Inject int
         interactor?.let {
             compositeDisposable.add(it.insertDaily(dailyRegister)
                 .compose(schedulerProvider.ioToMainObservableScheduler())
-                .doOnSubscribe { getView()?.showProgress() }
-                .doOnNext { getView()?.hideProgress() }
-                .subscribe({
-                    if (it) {
-                        getView()?.finishLoad()
-                    }else
-                        getView()?.showErrorToast()
+                .subscribe({dispose ->
+                        if (!dispose) {
+                            updatePoints()
+                        }else {
+                            getView()?.hideProgress()
+                            goToActivityMain()
+                            getView()?.showErrorToast()
+                        }
+
                 }, { throwable ->
                     getView()?.hideProgress()
                     showException(throwable)
+                    goToActivityMain()
                 })
             )
         }
 
     }
 
+    private fun updatePoints(){
+        interactor?.let { inte ->
+            compositeDisposable.add(inte.updateLocalPoints(user, 100)
+                .compose(schedulerProvider.ioToMainObservableScheduler())
+                .subscribe({ userInsert ->
+                    if(!userInsert){
+                        getView()?.hideProgress()
+                        getView()?.showErrorToast()
+                        goToActivityMain()
+                    }
+                    CoroutineScope(Dispatchers.IO).launch {
+                        if (inte.updateUserPoints()) {
+                            withContext(Dispatchers.Main){
+                                getView()?.hideProgress()
+                                getView()?.finishLoad()
+                            }
+                        }else{
+                            withContext(Dispatchers.Main){
+                                getView()?.hideProgress()
+                                getView()?.showErrorToast()
+                                goToActivityMain()
+                            }
+                        }
+                    }
+                },{
+                    getView()?.hideProgress()
+                    getView()?.showErrorToast()
+                    goToActivityMain()
+                }))
+        }
+    }
     fun uploadPhoto(id: String?,photo: File, dailyRegister: DailyRegister) {
         interactor?.let {
             compositeDisposable.add(it.saveRegisterPhotoCall(id.toString(), photo)

@@ -74,5 +74,8 @@ data class User(
     var typeAccount: String?,
 
     @ColumnInfo(name = "online_id")
-    var onlineId: Int?
+    var onlineId: Int?,
+
+    @ColumnInfo(name = "sugar_points")
+    var points: Int
 )

@@ -1,5 +1,7 @@
 mutation CreateUserData($id: ID!){
-    createUserData(data: {users_permissions_user: $id}){
+    createUserData(data: {
+        users_permissions_user: $id
+        sugar_points: 0}){
         data {
             id
         }

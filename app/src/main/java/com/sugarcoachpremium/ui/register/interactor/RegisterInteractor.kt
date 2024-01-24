@@ -6,11 +6,13 @@ import com.google.firebase.ktx.Firebase
 import com.sugarcoachpremium.data.api_db.ApiRepository
 import com.sugarcoachpremium.data.database.repository.dailyregister.*
 import com.sugarcoachpremium.data.database.repository.treament.*
+import com.sugarcoachpremium.data.database.repository.user.User
 import com.sugarcoachpremium.data.database.repository.user.UserRepo
 import com.sugarcoachpremium.data.network.*
 import com.sugarcoachpremium.data.ui.base.interactor.BaseInteractor
 import com.sugarcoachpremium.di.preferences.PreferenceHelper
 import com.sugarcoachpremium.util.extensions.toDailyInput
+import com.sugarcoachpremium.util.extensions.toDataInput
 import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
@@ -29,14 +31,13 @@ class RegisterInteractor @Inject constructor(private val treamentRepo: TreamentR
     RegisterInteractorImp {
     @Inject
     lateinit var apiRepository: ApiRepository
+    lateinit var user: User
     override suspend fun saveRegisterCall(dailyRegister: DailyRegister): Observable<RegisterSaveResponse> {
         /*return apiHelper.performSaveRegisters(token = "Bearer "+preferenceHelper.getAccessToken().toString(),
             request = RegisterSaveRequest.RegisterSaveRequest( dailyRegister.glucose, dailyRegister.insulin, dailyRegister.carbohydrates,dailyRegister.emotionalState,  dailyRegister.exercise,dailyRegister.category_id, dailyRegister.basal, dailyRegister.colors, preferenceHelper.getCurrentUserId().toString())
         ).subscribeOn(
             Schedulers.io())
             .map { it }*/
-        val userId = Firebase.auth.currentUser?.uid
-        Log.i("OnInsertDaily", "El uid del usuario actual: $userId")
 
         var saveResponse: RegisterSaveResponse?
 
@@ -61,7 +62,6 @@ class RegisterInteractor @Inject constructor(private val treamentRepo: TreamentR
         }
         saveResponse = apiRes.await()
         return Observable.just(saveResponse)
-        //return Observable.just(RegisterSaveResponse(null, null, null))
     }
 
     override fun saveRegisterPhotoCall(id: String, photo: File): Observable<RegisterSavePhotoResponse> {
@@ -72,14 +72,26 @@ class RegisterInteractor @Inject constructor(private val treamentRepo: TreamentR
             .map { it }
     }
 
+    override fun updateLocalPoints(user: User, points: Int): Observable<Boolean>{
+        this.user = user
+        user.points += points
+        return userHelper.insertRegister(user)
+    }
+    override suspend fun updateUserPoints(): Boolean {
+        apiRepository.getUserDataId(getCurrentId()!!).fold({
+            return apiRepository.updateUserData(user.toDataInput(it), it).isSuccess
+        },{
+            Log.i("OnRegisterInteractor", "UpdateUserPoints: $it")
+            return false
+        })
+    }
+
     override fun isDailyEmpty(): Observable<Boolean> {
         return Observable.just(dailyRepoHelper.isRegisterRepoEmpty())
     }
 
     override fun insertDaily(dailyRegister: DailyRegister): Observable<Boolean> {
-        dailyRepoHelper.insertRegister(dailyRegister)
-
-        return Observable.just(true)
+        return dailyRepoHelper.insertRegister(dailyRegister)
     }
 
     override

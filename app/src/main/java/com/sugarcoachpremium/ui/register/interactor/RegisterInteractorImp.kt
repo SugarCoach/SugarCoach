@@ -14,6 +14,9 @@ import java.io.File
 
 interface RegisterInteractorImp : Interactor {
 
+    suspend fun updateUserPoints(): Boolean
+
+    fun updateLocalPoints(user:User, points: Int): Observable<Boolean>
     suspend fun saveRegisterCall(dailyRegister: DailyRegister): Observable<RegisterSaveResponse>
     fun saveRegisterPhotoCall(id: String, photo: File): Observable<RegisterSavePhotoResponse>
     fun insertDaily(dailyRegister: DailyRegister): Observable<Boolean>

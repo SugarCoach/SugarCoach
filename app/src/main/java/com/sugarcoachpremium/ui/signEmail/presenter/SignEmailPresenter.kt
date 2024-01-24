@@ -51,8 +51,6 @@ class SignEmailPresenter <V : SignEmailView, I : SignEmailInteractorImp> @Inject
     ) {
         binding.loginButton.permissions = permissionNeeds
 
-        Log.i("OnConfigure", "Se esta configurando el facebook")
-
         binding.loginButton.registerCallback(callbackManager,
             object : FacebookCallback<LoginResult> {
                 override fun onSuccess(result: LoginResult) {

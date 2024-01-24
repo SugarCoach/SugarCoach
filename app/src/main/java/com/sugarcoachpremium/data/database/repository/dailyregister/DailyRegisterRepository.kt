@@ -64,6 +64,7 @@ class DailyRegisterRepository @Inject constructor(private val dailyRegisterDao: 
             .subscribeOn(Schedulers.io())
             .subscribe { dailyRegisterDao ->   dailyRegisterDao.insert(dailyRegister)}
             .isDisposed
+        Log.i("OnDailyRegisterRepo", "disposesd fue: $dispoded")
         return Observable.just(dispoded)
     }
 

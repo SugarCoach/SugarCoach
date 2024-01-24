@@ -358,6 +358,7 @@ input UserDataFiltersInput {
   debut_date: StringFilterInput
   icon: IntFilterInput
   users_permissions_user: UsersPermissionsUserFiltersInput
+  sugar_points: IntFilterInput
   createdAt: DateTimeFilterInput
   updatedAt: DateTimeFilterInput
   publishedAt: DateTimeFilterInput
@@ -375,6 +376,7 @@ input UserDataInput {
   debut_date: String
   icon: Int
   users_permissions_user: ID
+  sugar_points: Int
   publishedAt: DateTime
 }
 
@@ -387,6 +389,7 @@ type UserData {
   debut_date: String
   icon: Int
   users_permissions_user: UsersPermissionsUserEntityResponse
+  sugar_points: Int
   createdAt: DateTime
   updatedAt: DateTime
   publishedAt: DateTime

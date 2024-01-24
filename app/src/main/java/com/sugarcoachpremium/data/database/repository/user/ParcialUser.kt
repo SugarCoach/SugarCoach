@@ -16,5 +16,5 @@ data class ParcialUser(
     val provider: String,
 
     @Expose
-    val confirmed: Boolean
+    val confirmed: Boolean,
 )

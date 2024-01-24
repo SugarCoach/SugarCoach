@@ -107,10 +107,6 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
         Toast.makeText(this, getString(R.string.update_success), Toast.LENGTH_LONG).show()
     }
 
-    fun showErrorToast2(context: Context, msg: String) {
-        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
-    }
-
     override fun showErrorToast(msg: String) {
     }
 

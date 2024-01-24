@@ -48,7 +48,7 @@ class SignEmailInteractor @Inject constructor(private val mContext: Context, pri
         user = gson.fromJson(json.toString(), User::class.java)
 
         user.typeAccount = "2"
-        Log.i("OnUser", signResponse.uid)
+        user.points = 0
 
         preferenceHelper.let {
             it.setAccessToken(signResponse.uid)
