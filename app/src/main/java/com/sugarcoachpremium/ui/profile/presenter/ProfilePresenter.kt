@@ -123,18 +123,18 @@ class ProfilePresenter <V : ProfileView, I : ProfileInteractorImp> @Inject inter
             println(mail)
             user.email = mail.toString()
         }
+        user.points += 100
         interactor?.let {
             compositeDisposable.add(it.updateUser(user)
                 .compose(schedulerProvider.ioToMainObservableScheduler())
                 .subscribe({
-                    //getView()?.showSuccessToast()
                     CoroutineScope(Dispatchers.IO).launch {
                         interactor!!.getDataId().fold({
                             Log.i("OnProfilePresenter", "El id es: $it")
                             interactor!!.updateApiUser(user, it).fold({
                                 withContext(Dispatchers.Main){
                                     getView()?.hideProgress()
-                                    getView()?.showSuccessToast()
+                                    getView()?.createCongratsDialog()
                                 }
                             },{
                                 withContext(Dispatchers.Main){

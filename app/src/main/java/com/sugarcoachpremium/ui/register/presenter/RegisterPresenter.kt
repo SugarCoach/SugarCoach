@@ -312,22 +312,25 @@ class RegisterPresenter<V : RegisterView, I : RegisterInteractorImp> @Inject int
             compositeDisposable.add(inte.updateLocalPoints(user, 100)
                 .compose(schedulerProvider.ioToMainObservableScheduler())
                 .subscribe({ userInsert ->
-                    if(!userInsert){
+                    Log.i("OnRegisterPresenter", "UserInsert: $userInsert")
+                    if(userInsert){
                         getView()?.hideProgress()
                         getView()?.showErrorToast()
                         goToActivityMain()
-                    }
-                    CoroutineScope(Dispatchers.IO).launch {
-                        if (inte.updateUserPoints()) {
-                            withContext(Dispatchers.Main){
-                                getView()?.hideProgress()
-                                getView()?.finishLoad()
-                            }
-                        }else{
-                            withContext(Dispatchers.Main){
-                                getView()?.hideProgress()
-                                getView()?.showErrorToast()
-                                goToActivityMain()
+                    }else {
+                        CoroutineScope(Dispatchers.IO).launch {
+                            val updatedPoints = inte.updateUserPoints()
+                            if (updatedPoints) {
+                                withContext(Dispatchers.Main){
+                                    getView()?.hideProgress()
+                                    getView()?.finishLoad()
+                                }
+                            }else{
+                                withContext(Dispatchers.Main){
+                                    getView()?.hideProgress()
+                                    getView()?.showErrorToast()
+                                    goToActivityMain()
+                                }
                             }
                         }
                     }

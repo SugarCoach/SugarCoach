@@ -5,10 +5,12 @@ import android.util.Log
 import com.sugarcoachpremium.data.api_db.ApiRepository
 import com.sugarcoachpremium.data.database.repository.dailyregister.DailyRegisterRepo
 import com.sugarcoachpremium.data.database.repository.treament.*
+import com.sugarcoachpremium.data.database.repository.user.User
 import com.sugarcoachpremium.data.database.repository.user.UserRepo
 import com.sugarcoachpremium.data.network.ApiHelper
 import com.sugarcoachpremium.data.ui.base.interactor.BaseInteractor
 import com.sugarcoachpremium.di.preferences.PreferenceHelper
+import com.sugarcoachpremium.util.extensions.toDataInput
 import com.sugarcoachpremium.util.extensions.toTreatmentInput
 import io.reactivex.Observable
 import io.reactivex.Single
@@ -29,6 +31,7 @@ class TreatmentInteractor @Inject constructor(private val treamentRepoHelper: Tr
     lateinit var treatment: Treament
     lateinit var basalInsuline: String
     lateinit var correctoraInsuline: String
+    lateinit var user: User
     @SuppressLint("CheckResult")
     override suspend fun editTreatment(treament: Treament, basalInsuline: String, correctoraInsuline: String): Observable<Boolean> {
         Log.i("OnEditTreatment", "El treatment que se va a subir es: $treament")
@@ -69,6 +72,22 @@ class TreatmentInteractor @Inject constructor(private val treamentRepoHelper: Tr
             return@async response
         }
         return response.await()
+    }
+
+    override fun updateLocalPoints(user: User, points: Int): Observable<Boolean>{
+        this.user = user
+        user.points += points
+        this.user.points = user.points
+        return userHelper.insertRegister(user)
+    }
+
+    override suspend fun updateUserPoints(): Boolean {
+        apiRepository.getUserDataId(getCurrentId()!!).fold({
+            return apiRepository.updateUserData(user.toDataInput(getCurrentId()!!), it).isSuccess
+        },{
+            Log.i("OnTreatmentInteractor", "Error in UpdateUserPoints: $it")
+            return false
+        })
     }
 
     override fun editBasalHora(hora: TreamentBasalHora): Observable<Boolean> {

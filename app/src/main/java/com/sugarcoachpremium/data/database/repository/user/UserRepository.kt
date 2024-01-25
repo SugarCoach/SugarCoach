@@ -28,10 +28,9 @@ class UserRepository @Inject constructor(private val userDao: UserDao): UserRepo
         val dispoded = Observable.just(userDao)
             .subscribeOn(Schedulers.io())
             .subscribe {
-                    userDao ->     userDao.insert(user)
+                    userDao ->  userDao.insert(user)
             }
             .isDisposed
-
         return Observable.just(dispoded)
     }
 

@@ -15,6 +15,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.sugarcoachpremium.R
 import com.sugarcoachpremium.data.database.repository.treament.*
+import com.sugarcoachpremium.data.database.repository.user.User
 import com.sugarcoachpremium.ui.base.presenter.BasePresenter
 import com.sugarcoachpremium.ui.treatment.interactor.TreatmentInteractorImp
 import com.sugarcoachpremium.ui.treatment.view.BasalHoraItem
@@ -27,6 +28,7 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.joda.time.LocalDateTime
 import java.io.ByteArrayOutputStream
 import java.lang.Exception
@@ -43,6 +45,8 @@ class TreatmentPresenter<V : TreatmentView, I : TreatmentInteractorImp> @Inject 
     lateinit var basalInsuline: String
     lateinit var correctoraInsuline: String
 
+    lateinit var user: User
+
     override fun saveAll(obj: Float, hipo: Float, hyper: Float) {
         treatment.object_glucose = obj
         treatment.hipoglucose = hipo
@@ -50,19 +54,54 @@ class TreatmentPresenter<V : TreatmentView, I : TreatmentInteractorImp> @Inject 
     }
     override fun updateAll() {
         Log.i("OnUpdateAll", "Se actualizan las bases de datos")
+        getView()?.showProgress()
         interactor?.let {
             CoroutineScope(Dispatchers.IO).launch{
                 compositeDisposable.add(it.editTreatment(treatment, basalInsuline, correctoraInsuline)
                     .compose(schedulerProvider.ioToMainObservableScheduler())
                     .subscribe({
                         Log.i("OnUpdateAll", "La respuesta de editTreatment fue: $it")
-                        getView()?.showDataSave()
-
+                        updatePoints()
                     }, { throwable ->
                         showException(throwable)
                     })
                 )
             }
+        }
+    }
+
+    private fun updatePoints(){
+        interactor?.let { inte ->
+            compositeDisposable.add(inte.updateLocalPoints(user, 100)
+                .compose(schedulerProvider.ioToMainObservableScheduler())
+                .subscribe({ userInsert ->
+                    Log.i("OnRegisterPresenter", "UserInsert: $userInsert")
+                    if(userInsert){
+                        getView()?.hideProgress()
+                        getView()?.showErrorToast()
+                        goToActivityMain()
+                    }else {
+                        CoroutineScope(Dispatchers.IO).launch {
+                            val updatedPoints = inte.updateUserPoints()
+                            if (updatedPoints) {
+                                withContext(Dispatchers.Main){
+                                    getView()?.hideProgress()
+                                    getView()?.showDataSave()
+                                }
+                            }else{
+                                withContext(Dispatchers.Main){
+                                    getView()?.hideProgress()
+                                    getView()?.showErrorToast()
+                                    goToActivityMain()
+                                }
+                            }
+                        }
+                    }
+                },{
+                    getView()?.hideProgress()
+                    getView()?.showErrorToast()
+                    goToActivityMain()
+                }))
         }
     }
     override fun saveCorrectoraGlu(correctora: Float) {
@@ -334,6 +373,7 @@ class TreatmentPresenter<V : TreatmentView, I : TreatmentInteractorImp> @Inject 
             compositeDisposable.add(it.getUser()
                 .subscribeOn(Schedulers.io())
                 .subscribe({ userData ->
+                    user = userData
                     getView()?.let {
                         getView()?.setData(userData,date.toDate())
                     }

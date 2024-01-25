@@ -10,6 +10,8 @@ import java.util.*
 interface ProfileView : BaseView {
 
     fun showSuccessToast()
+
+    fun createCongratsDialog()
     fun getUserData(user: User)
     fun setBirthday(value: Date)
     fun setDebut(value: Date)

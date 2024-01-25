@@ -41,7 +41,7 @@ class ProfileInteractor @Inject constructor(private  val dailyRepoHelper: DailyR
         return apiRepo.getUserDataId(getCurrentId()!!)
     }
     override suspend fun updateApiUser(user: User, id: String): Result<Boolean> {
-        return apiRepo.updateUserData(user.toDataInput(id), id)
+        return apiRepo.updateUserData(user.toDataInput(getCurrentId()!!), id)
     }
 
     override

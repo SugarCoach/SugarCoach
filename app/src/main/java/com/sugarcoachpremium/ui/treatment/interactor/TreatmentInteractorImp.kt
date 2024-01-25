@@ -10,6 +10,10 @@ import io.reactivex.Single
 
 interface TreatmentInteractorImp : Interactor {
     fun getUser(): Single<User>
+
+    fun updateLocalPoints(user: User, points: Int): Observable<Boolean>
+
+    suspend fun updateUserPoints(): Boolean
     fun isDailyEmpty(): Observable<Boolean>
     fun getAverages(): Single<DailyRegisterAverages>
     fun getAverageBasal(): Single<TreatmentAverage>

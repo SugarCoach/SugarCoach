@@ -101,5 +101,7 @@ fun User.toDataInput(id: String): UserDataInput{
         weight = Optional.present(weight?.toDouble()),
         debut_date = Optional.present(debut.toString()),
         icon = Optional.present(0),
+        sugar_points = Optional.present(points),
+        users_permissions_user = Optional.present(id)
     )
 }

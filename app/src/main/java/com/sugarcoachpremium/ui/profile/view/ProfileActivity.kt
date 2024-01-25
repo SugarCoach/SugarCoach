@@ -19,6 +19,7 @@ import com.google.firebase.ktx.Firebase
 import com.sugarcoachpremium.R
 import com.sugarcoachpremium.data.database.repository.user.User
 import com.sugarcoachpremium.databinding.ActivityProfileBinding
+import com.sugarcoachpremium.databinding.DialogCongratulationBinding
 import com.sugarcoachpremium.databinding.DialogSexBinding
 import com.sugarcoachpremium.ui.base.view.BaseActivity
 import com.sugarcoachpremium.ui.login.view.LoginActivity
@@ -57,6 +58,22 @@ class ProfileActivity: BaseActivity(), ProfileView, DatePickerDialog.OnDateSetLi
         presenter.onAttach(this)
         setInformationFromFirebase()
         setOnClickListeners()
+    }
+
+    override fun createCongratsDialog(){
+        val view = DialogCongratulationBinding.inflate(layoutInflater)
+        val builder = androidx.appcompat.app.AlertDialog.Builder(this)
+        builder.setCancelable(false)
+        builder.setView(view.root)
+        dialog = builder.create()
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        view.congratulationPtsTxt.text = "+100"
+        user.avatar?.let {
+            view.congratulationAvatar.setImageDrawable(getDrawable(resIdByName(it, "drawable")))
+        }
+        view.congratulationClose.setOnClickListener { dialog.dismiss() }
+        dialog.setOnDismissListener { finish() }
+        dialog.show()
     }
 
     private fun setInformationFromFirebase(){

@@ -75,13 +75,14 @@ class RegisterInteractor @Inject constructor(private val treamentRepo: TreamentR
     override fun updateLocalPoints(user: User, points: Int): Observable<Boolean>{
         this.user = user
         user.points += points
+        this.user.points = user.points
         return userHelper.insertRegister(user)
     }
     override suspend fun updateUserPoints(): Boolean {
         apiRepository.getUserDataId(getCurrentId()!!).fold({
-            return apiRepository.updateUserData(user.toDataInput(it), it).isSuccess
+            return apiRepository.updateUserData(user.toDataInput(getCurrentId()!!), it).isSuccess
         },{
-            Log.i("OnRegisterInteractor", "UpdateUserPoints: $it")
+            Log.i("OnRegisterInteractor", "Error in UpdateUserPoints: $it")
             return false
         })
     }

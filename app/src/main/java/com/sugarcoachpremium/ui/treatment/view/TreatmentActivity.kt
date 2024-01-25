@@ -187,7 +187,6 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
         view.congratulationClose.setOnClickListener { dialog.dismiss() }
         dialog.setOnDismissListener { finish() }
         dialog.show()
-
     }
 
     override fun setTreatment(treament: TreatmentBasalCorrectora) {
