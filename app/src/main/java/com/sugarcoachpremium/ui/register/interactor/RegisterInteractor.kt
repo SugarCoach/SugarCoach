@@ -92,6 +92,7 @@ class RegisterInteractor @Inject constructor(private val treamentRepo: TreamentR
     }
 
     override fun insertDaily(dailyRegister: DailyRegister): Observable<Boolean> {
+
         return dailyRepoHelper.insertRegister(dailyRegister)
     }
 

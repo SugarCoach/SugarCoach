@@ -17,6 +17,7 @@ import androidx.fragment.app.FragmentManager
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.sugarcoachpremium.R
+import com.sugarcoachpremium.data.database.repository.dailyregister.DailyRegister
 import com.sugarcoachpremium.data.database.repository.user.User
 import com.sugarcoachpremium.ui.base.presenter.BasePresenter
 import com.sugarcoachpremium.ui.profile.interactor.ProfileInteractorImp
@@ -35,6 +36,7 @@ import java.io.ByteArrayOutputStream
 import java.util.*
 import javax.inject.Inject
 import kotlin.collections.ArrayList
+import kotlin.reflect.full.memberProperties
 
 class ProfilePresenter <V : ProfileView, I : ProfileInteractorImp> @Inject internal constructor(interactor: I, schedulerProvider: SchedulerProvider, disposable: CompositeDisposable) : BasePresenter<V, I>(interactor = interactor, schedulerProvider = schedulerProvider, compositeDisposable = disposable),
     ProfilePresenterImp<V, I> {
@@ -123,31 +125,29 @@ class ProfilePresenter <V : ProfileView, I : ProfileInteractorImp> @Inject inter
             println(mail)
             user.email = mail.toString()
         }
-        user.points += 100
+        val points = cantParametersChanged(name,weight,height,username,mail)
+        user.points += points
         interactor?.let {
             compositeDisposable.add(it.updateUser(user)
                 .compose(schedulerProvider.ioToMainObservableScheduler())
                 .subscribe({
                     CoroutineScope(Dispatchers.IO).launch {
                         interactor!!.getDataId().fold({
-                            Log.i("OnProfilePresenter", "El id es: $it")
                             interactor!!.updateApiUser(user, it).fold({
                                 withContext(Dispatchers.Main){
                                     getView()?.hideProgress()
-                                    getView()?.createCongratsDialog()
+                                    getView()?.createCongratsDialog(points, user.points)
                                 }
                             },{
                                 withContext(Dispatchers.Main){
                                     getView()?.hideProgress()
                                     getView()?.showErrorToast("Verifique su conexión Wifi")
-                                    getView()?.showErrorToast()
                                 }
                             })
                         },{
                             withContext(Dispatchers.Main){
                                 getView()?.hideProgress()
                                 getView()?.showErrorToast("Verifique su conexión Wifi")
-                                getView()?.showErrorToast()
                             }
                         })
                     }
@@ -156,6 +156,35 @@ class ProfilePresenter <V : ProfileView, I : ProfileInteractorImp> @Inject inter
                 })
             )
         }
+    }
+
+    private fun cantParametersChanged(name: String?,weight: Float?,height: Float?,username: String?,mail: String?): Int{
+        val noNull = mutableListOf<String>()
+        val listOfProperties = mutableListOf("username","email","sex", "name", "avatar", "weight",
+            "birthday", "debut", "number", "height")
+        val listOfValues = mutableListOf<String?>(user.name,user.weight.toString(),user.height.toString(),user.username,user.email,
+            user.debut.toString(), user.avatar.toString(), user.birthday.toString(), user.sex.toString())
+
+        val properties = User::class.memberProperties
+
+        for (property in properties) {
+            val valor = property.get(user)
+
+            if ((valor != "" && valor != null) && (property.name in listOfProperties) && (valor.toString() !in listOfValues)) {
+                Log.i("OnProfilePresenter", "cantParameterChanged: El valor es: $valor, ${property.name}")
+                noNull.add(property.name)
+            }
+        }
+        var points = 0
+        var contr = true
+        for(v in 1 until noNull.size){
+            if(contr){
+                points += 100
+                contr = false
+            }
+            points += 50
+        }
+        return points
     }
 
     override fun logout() {

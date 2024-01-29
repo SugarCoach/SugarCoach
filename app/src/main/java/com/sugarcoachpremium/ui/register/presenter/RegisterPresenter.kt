@@ -33,6 +33,10 @@ import org.joda.time.format.DateTimeFormat
 import java.io.File
 import javax.inject.Inject
 import kotlin.collections.ArrayList
+import kotlin.reflect.full.findParameterByName
+import kotlin.reflect.full.instanceParameter
+import kotlin.reflect.full.memberProperties
+import kotlin.reflect.full.valueParameters
 
 class RegisterPresenter<V : RegisterView, I : RegisterInteractorImp> @Inject internal constructor(interactor: I, schedulerProvider: SchedulerProvider, disposable: CompositeDisposable) : BasePresenter<V, I>(interactor = interactor, schedulerProvider = schedulerProvider, compositeDisposable = disposable),
     RegisterPresenterImp<V,I> {
@@ -290,7 +294,7 @@ class RegisterPresenter<V : RegisterView, I : RegisterInteractorImp> @Inject int
                 .compose(schedulerProvider.ioToMainObservableScheduler())
                 .subscribe({dispose ->
                         if (!dispose) {
-                            updatePoints()
+                            updatePoints(cantParametersChanged())
                         }else {
                             getView()?.hideProgress()
                             goToActivityMain()
@@ -307,9 +311,9 @@ class RegisterPresenter<V : RegisterView, I : RegisterInteractorImp> @Inject int
 
     }
 
-    private fun updatePoints(){
+    private fun updatePoints(points: Int){
         interactor?.let { inte ->
-            compositeDisposable.add(inte.updateLocalPoints(user, 100)
+            compositeDisposable.add(inte.updateLocalPoints(user, points)
                 .compose(schedulerProvider.ioToMainObservableScheduler())
                 .subscribe({ userInsert ->
                     Log.i("OnRegisterPresenter", "UserInsert: $userInsert")
@@ -323,7 +327,7 @@ class RegisterPresenter<V : RegisterView, I : RegisterInteractorImp> @Inject int
                             if (updatedPoints) {
                                 withContext(Dispatchers.Main){
                                     getView()?.hideProgress()
-                                    getView()?.finishLoad()
+                                    getView()?.finishLoad(points, user.points)
                                 }
                             }else{
                                 withContext(Dispatchers.Main){
@@ -341,6 +345,33 @@ class RegisterPresenter<V : RegisterView, I : RegisterInteractorImp> @Inject int
                 }))
         }
     }
+
+    private fun cantParametersChanged(): Int{
+        val noNull = mutableListOf<String>()
+        val listOfProperties = mutableListOf("glucose","insulin","carbohydrates", "emotionalState", "exercise")
+
+        val properties = DailyRegister::class.memberProperties
+
+        for (property in properties) {
+            val valor = property.get(dailyRegister)
+
+            if ((valor != "" && valor != null) && (property.name in listOfProperties)) {
+                Log.i("OnRegisterPresenter", "cantParameterChanged: El valor es: $valor, ${property.name}")
+                noNull.add(property.name)
+            }
+        }
+        var points = 0
+        var contr = true
+        for(v in 1 until noNull.size){
+            if(contr){
+                points += 100
+                contr = false
+            }
+            points += 50
+        }
+        return points
+    }
+
     fun uploadPhoto(id: String?,photo: File, dailyRegister: DailyRegister) {
         interactor?.let {
             compositeDisposable.add(it.saveRegisterPhotoCall(id.toString(), photo)
@@ -384,6 +415,7 @@ class RegisterPresenter<V : RegisterView, I : RegisterInteractorImp> @Inject int
     }
 
     override fun saveComment(comment: String) {
+        this.comment = comment
         this.comment = comment
     }
     private fun getRange(type: Int, value: Float): Boolean{

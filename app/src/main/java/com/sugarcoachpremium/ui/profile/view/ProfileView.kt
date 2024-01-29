@@ -11,7 +11,7 @@ interface ProfileView : BaseView {
 
     fun showSuccessToast()
 
-    fun createCongratsDialog()
+    fun createCongratsDialog(points: Int, totalPoints: Int)
     fun getUserData(user: User)
     fun setBirthday(value: Date)
     fun setDebut(value: Date)

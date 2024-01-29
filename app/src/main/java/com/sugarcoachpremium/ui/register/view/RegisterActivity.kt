@@ -273,8 +273,8 @@ class RegisterActivity : BaseActivity(), RegisterView, TimePickerDialog.OnTimeSe
         }
     }
 
-    override fun finishLoad() {
-        createDialogCongratulation()
+    override fun finishLoad(points: Int, totalPoints: Int) {
+        createDialogCongratulation(points, totalPoints)
     }
 
     override fun backLoad() {
@@ -434,21 +434,41 @@ class RegisterActivity : BaseActivity(), RegisterView, TimePickerDialog.OnTimeSe
         }
     }
 
-    private fun createDialogCongratulation(){
+    private fun createDialogCongratulation(points: Int, totalPoints: Int){
         val view = DialogCongratulationBinding.inflate(layoutInflater)
         val builder = AlertDialog.Builder(this)
         builder.setCancelable(false)
         builder.setView(view.root)
         dialog = builder.create()
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        view.congratulationPtsTxt.text = "+100"
+        view.congratulationPtsTxt.text = "+" + (points.toString())
         user.avatar?.let {
             view.congratulationAvatar.setImageDrawable(getDrawable(resIdByName(it, "drawable")))
         }
+        var text = "1 - Startup Explorer"
+        val levelPoints = 43400
+        when{
+            (totalPoints in levelPoints until levelPoints*2) ->{
+                text = "2 - Space Cadet"
+            }
+            (totalPoints in levelPoints*2 until levelPoints*4) ->{
+                text = "3 - Rocket Captain"
+            }
+            (totalPoints in levelPoints*4 until levelPoints*8 ) ->{
+                text = "4 - Startreck Voyayer"
+            }
+            (totalPoints in levelPoints*8 until levelPoints*16 ) ->{
+                text = "5 - Future Traveller"
+            }
+            (totalPoints >= levelPoints*16) ->{
+                text = "6 - Quarks Master"
+            }
+        }
+        view.congratulationLevelTxt.text = text
+        view.congratulationPtsTotalTxt.text = totalPoints.toString()
         view.congratulationClose.setOnClickListener { dialog.dismiss() }
         dialog.setOnDismissListener { presenter.goToActivityDaily() }
         dialog.show()
-
     }
     private fun createDialogComment(){
         val view = DialogComentaryBinding.inflate(layoutInflater)

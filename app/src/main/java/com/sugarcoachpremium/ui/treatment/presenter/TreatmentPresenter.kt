@@ -14,8 +14,10 @@ import android.view.View
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.sugarcoachpremium.R
+import com.sugarcoachpremium.data.database.repository.dailyregister.DailyRegister
 import com.sugarcoachpremium.data.database.repository.treament.*
 import com.sugarcoachpremium.data.database.repository.user.User
+import com.sugarcoachpremium.type.Treatment
 import com.sugarcoachpremium.ui.base.presenter.BasePresenter
 import com.sugarcoachpremium.ui.treatment.interactor.TreatmentInteractorImp
 import com.sugarcoachpremium.ui.treatment.view.BasalHoraItem
@@ -33,6 +35,7 @@ import org.joda.time.LocalDateTime
 import java.io.ByteArrayOutputStream
 import java.lang.Exception
 import javax.inject.Inject
+import kotlin.reflect.full.memberProperties
 
 class TreatmentPresenter<V : TreatmentView, I : TreatmentInteractorImp> @Inject internal constructor(interactor: I, schedulerProvider: SchedulerProvider, disposable: CompositeDisposable) : BasePresenter<V, I>(interactor = interactor, schedulerProvider = schedulerProvider, compositeDisposable = disposable),
     TreatmentPresenterImp<V,I> {
@@ -61,7 +64,7 @@ class TreatmentPresenter<V : TreatmentView, I : TreatmentInteractorImp> @Inject 
                     .compose(schedulerProvider.ioToMainObservableScheduler())
                     .subscribe({
                         Log.i("OnUpdateAll", "La respuesta de editTreatment fue: $it")
-                        updatePoints()
+                        updatePoints(cantParametersChanged())
                     }, { throwable ->
                         showException(throwable)
                     })
@@ -70,9 +73,9 @@ class TreatmentPresenter<V : TreatmentView, I : TreatmentInteractorImp> @Inject 
         }
     }
 
-    private fun updatePoints(){
+    private fun updatePoints(points: Int){
         interactor?.let { inte ->
-            compositeDisposable.add(inte.updateLocalPoints(user, 100)
+            compositeDisposable.add(inte.updateLocalPoints(user, points)
                 .compose(schedulerProvider.ioToMainObservableScheduler())
                 .subscribe({ userInsert ->
                     Log.i("OnRegisterPresenter", "UserInsert: $userInsert")
@@ -86,7 +89,7 @@ class TreatmentPresenter<V : TreatmentView, I : TreatmentInteractorImp> @Inject 
                             if (updatedPoints) {
                                 withContext(Dispatchers.Main){
                                     getView()?.hideProgress()
-                                    getView()?.showDataSave()
+                                    getView()?.showDataSave(user.points, points)
                                 }
                             }else{
                                 withContext(Dispatchers.Main){
@@ -103,6 +106,31 @@ class TreatmentPresenter<V : TreatmentView, I : TreatmentInteractorImp> @Inject 
                     goToActivityMain()
                 }))
         }
+    }
+
+    private fun cantParametersChanged(): Int{
+        val noNull = mutableListOf<String>()
+
+        val properties = Treament::class.memberProperties
+
+        for (property in properties) {
+            val valor = property.get(treatment)
+
+            if ((valor != "" && valor != null) && (property.name != "date") ) {
+                Log.i("OnTreatmentPresenter", "cantParameterChanged: El valor es: $valor, ${property.name}")
+                noNull.add(property.name)
+            }
+        }
+        var points = 0
+        var contr = true
+        for(v in 1 until noNull.size){
+            if(contr){
+                points += 100
+                contr = false
+            }
+            points += 50
+        }
+        return points
     }
     override fun saveCorrectoraGlu(correctora: Float) {
         treatment.correctora = correctora

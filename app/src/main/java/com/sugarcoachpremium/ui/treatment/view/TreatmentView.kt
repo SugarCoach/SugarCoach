@@ -26,7 +26,7 @@ interface TreatmentView : BaseView {
     fun openStatisticActivity()
     fun setMedidor(basalInsuline: List<BasalItem>)
     fun setBomba(basalInsuline: List<BasalItem>)
-    fun showDataSave()
+    fun showDataSave(totalPoints: Int, points: Int)
     fun sharedScreenShot(uri: Uri)
 
 

@@ -12,7 +12,7 @@ interface RegisterView : BaseView {
     fun showSuccessToast()
     fun nextLoad(type: Int,value: Float?, position: String?)
     fun prevLoad(type: Int,value: Float?, position: String?)
-    fun finishLoad()
+    fun finishLoad(points: Int, totalPoints: Int)
     fun backLoad()
     fun showValidationMessage(errorCode: Int)
     fun getUserData(user: User)

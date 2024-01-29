@@ -112,10 +112,36 @@ class MainActivity : BaseActivity(), MainView {
     }
     override fun setUser(user: User) {
         binding.mainUsernameTxt.text = user.username
-        binding.mainPtsTxt.text = user.points.toString()
+        if(user.points == 0){
+            binding.mainPtsTxt.text = "Usa la App para ganar puntos!"
+        }else{
+            binding.mainPtsTxt.text = user.points.toString()
+        }
+
         user.avatar?.let {
             binding.mainUserimgIv.setImageDrawable(getDrawable(resIdByName(it, "drawable")))
         }
+        var text = "Nivel 1"
+        val levelPoints = 43400
+        when{
+            (user.points in levelPoints until levelPoints*2) ->{
+                text = "Nivel 2"
+            }
+            (user.points in levelPoints*2 until levelPoints*4) ->{
+                text = "Nivel 3"
+            }
+            (user.points in levelPoints*4 until levelPoints*8) ->{
+                text = "Nivel 4"
+            }
+            (user.points in levelPoints*8 until levelPoints*16) ->{
+                text = "Nivel 5"
+            }
+            (user.points >= levelPoints*16) ->{
+                text = "Nivel 6"
+            }
+        }
+        binding.mainNivelTxt.text = text
+
         presenter.checkAndRequestPermissions(this)
         if (user.typeAccount == "3") {
             mirrorAccount()
