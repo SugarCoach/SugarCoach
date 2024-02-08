@@ -1,4 +1,4 @@
-plugins{
+ plugins{
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
@@ -19,7 +19,7 @@ android {
         applicationId "com.sugarcoachpremium"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 28
+        versionCode 29
         versionName "1.0.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
