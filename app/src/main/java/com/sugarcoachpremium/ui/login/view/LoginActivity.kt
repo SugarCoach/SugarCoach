@@ -70,7 +70,7 @@ class LoginActivity: BaseActivity(), LoginView {
                 binding.loginPass.text.toString(),false, false)
         }
         binding.loginSignin.setOnClickListener { presenter.emailSign() }
-        //binding.loginForgot.setOnClickListener { presenter.forgot() }
+        binding.loginForgot.setOnClickListener { presenter.forgot() }
         //binding.loginScan.setOnClickListener{ scanQR() }
         //binding.loginMedicoScan.setOnClickListener{ scanQR() }
     }
@@ -90,7 +90,6 @@ class LoginActivity: BaseActivity(), LoginView {
     }
 
     fun scanQR(){
-        Log.i("OnScan", "Entre al Scan QR en el LogACtivity")
         val launchIntent = BarcodeReaderActivity.getLaunchIntent(this, true, false)
         startActivityForResult(launchIntent, presenter.getBarcode())
     }
