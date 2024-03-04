@@ -1,5 +1,6 @@
 package com.sugarcoachpremium.ui.treatment.interactor
 
+import com.sugarcoachpremium.data.api_db.DailyRegister.DailyRegisterResponse
 import com.sugarcoachpremium.data.database.repository.dailyregister.DailyRegisterAverages
 import com.sugarcoachpremium.data.database.repository.treament.*
 import com.sugarcoachpremium.data.database.repository.user.User
@@ -10,6 +11,8 @@ import io.reactivex.Single
 
 interface TreatmentInteractorImp : Interactor {
     fun getUser(): Single<User>
+
+    suspend fun getDailys(): Result<List<DailyRegisterResponse>?>
 
     fun updateLocalPoints(user: User, points: Int): Observable<Boolean>
 

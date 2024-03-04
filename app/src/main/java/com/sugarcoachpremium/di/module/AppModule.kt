@@ -7,8 +7,6 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.apollographql.apollo3.ApolloClient
 import com.apollographql.apollo3.network.okHttpClient
-import com.sugarcoachpremium.BuildConfig.BASE_URL
-import com.sugarcoachpremium.BuildConfig.DEBUG
 import com.sugarcoachpremium.data.api_db.ApiClient
 import com.sugarcoachpremium.data.api_db.ApiRepository
 import com.sugarcoachpremium.data.database.AppDatabase
@@ -38,25 +36,17 @@ import javax.inject.Singleton
 @Module
 class AppModule {
 
-    private val PRODUCTIONAPITOKEN = "64445c5953bc00a2e6039b3acb24d8fc18017180ccc99f29e30610e040dd55da0b7f4d57036ec86e850c8e3ffb5f38bd2bd7a34b5a377852de8939ca4f0e4603f1d724378d6c7d495c879ece2005ff162692b1c4c61d11fd18430511eab32f637f7442322255bbe47a1f828bc433367d99c6a421e3394bba38acc038edf6edaa"
+    private val PRODUCTIONAPITOKEN = "2d2d6280daaf5ccce73f9b69c70034dda356f1f4a0bc8724be97f2a577ea0050c26c5a70a2443d00c93de79b9e8bf33a6fb40d003a6e0cd04aa26ee16800948f121bbc6800d0a872011340e8a5ff9aa4522daf9d2717383b3a6799944e31ff3fcd09ef87710f4e297151eb4a70ea9d6929394686b81f6a693aca73e6248305b7"
     private val DEVELOPAPITOKEN = "5d913c4bd45cefe7702664e36def1d4e3418c2134ea03d283ded5eb1f83c88e3c5a53b2300869810d686f99629e8cfe14a3bd998da6d8178ca19de9aca86a77a3dee5d42f0ecc74b2a1f6fd24b163f3ebd5f6b43dcbedd84dbf4daf28f8764298bf7ebf9eaea8c1b0de87b6211ab1015241b2c78cbe447d0cf251d56090f2a7a"
     @Provides
     @Singleton
     internal fun provideApolloClient(): ApolloClient {
         Log.i("OnProvideApi", "Se esta creando la API")
         return ApolloClient.Builder()
-            .serverUrl("https://api.sugar.coach/graphql")
+            .serverUrl("https://monkfish-app-nqddj.ondigitalocean.app/graphql")
             .okHttpClient(OkHttpClient.Builder().build())
             .addHttpHeader("Authorization", PRODUCTIONAPITOKEN)
             .build()
-        /*val httpNetworkTransport = HttpNetworkTransport.Builder()
-            .serverUrl("http://loadbalancer-1417729450.us-east-1.elb.amazonaws.com/graphql")
-            .okHttpClient(OkHttpClient.Builder().build())
-            .build()
-
-        return ApolloClient.Builder()
-            .networkTransport(httpNetworkTransport)
-            .build()*/
     }
     @Provides
     @Singleton
@@ -89,19 +79,8 @@ class AppModule {
     @Provides
     fun provideRetrofit(): Retrofit {
         val okHttpBuilder = OkHttpClient.Builder()
-        if (DEBUG) {
-            val httpLoggingInterceptor = HttpLoggingInterceptor()
-            httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
-            okHttpBuilder.addInterceptor(httpLoggingInterceptor)
-        }
-        okHttpBuilder.addInterceptor {
-            val request = it.request()
-            val url = request.url.newBuilder()
-                .build()
-            it.proceed(request.newBuilder().url(url).build())
-        }
         return Retrofit.Builder()
-            .baseUrl(BASE_URL)
+            .baseUrl("https://monkfish-app-nqddj.ondigitalocean.app/")
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .client(okHttpBuilder.build())

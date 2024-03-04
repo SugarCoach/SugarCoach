@@ -158,6 +158,7 @@ class ApiRepository @Inject constructor(
                 ?.dailyRegisters
                 ?.data
                 ?.map { it.attributes.toDailyRegister() }
+
             Log.i("OnResponse", response.toString())
             success(response)
         }catch (e: Exception){

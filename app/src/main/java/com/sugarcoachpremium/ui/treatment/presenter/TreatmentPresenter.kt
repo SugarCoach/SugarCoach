@@ -555,4 +555,16 @@ class TreatmentPresenter<V : TreatmentView, I : TreatmentInteractorImp> @Inject 
         getView()?.setBasalHoras(ret)
 
     }
+
+    override suspend fun makePdf() {
+        interactor?.getDailys()?.fold({
+            if (it != null) {
+                for(daily in it){
+                    Log.i("OnTreatmentPresenter", "MakePDF: $daily")
+                }
+            }
+        },{
+            Log.i("OnTreatmentPresenter", "MakePDF: Ocurrió un error:$it")
+        })
+    }
 }

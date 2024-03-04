@@ -310,8 +310,10 @@ class SignEmailPresenter <V : SignEmailView, I : SignEmailInteractorImp> @Inject
 
             override fun onError(e: Throwable){
                 Log.i("OnUpdateUser", "Ocurrió un error: $e")
-                Firebase.auth.currentUser?.delete()
-                getView()?.showErrorToast()
+                Firebase.auth.currentUser?.delete()?.addOnCompleteListener {
+                    getView()?.hideProgress()
+                    getView()?.showErrorToast()
+                }
             }
 
             //@SuppressLint("CheckResult")

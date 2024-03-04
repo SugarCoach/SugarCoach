@@ -8,5 +8,6 @@ data class DailyRegisterResponse(
     var basal: Double?,
     var colors: String?,
     var emotionalState: String?,
-    var excersise: String?
+    var excersise: String?,
+
 )

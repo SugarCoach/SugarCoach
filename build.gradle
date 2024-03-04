@@ -55,7 +55,7 @@ ext {
     materialVersion = '1.0.0'
     vectordrawableVersion = '1.1.0'
     vectordrawableAnimatedVersion = '1.1.0'
-    gsonVersion = '2.10.1' 
+    gsonVersion = '2.10.1'
     calligraphyVersion = '2.3.0'
     glideVersion = '4.11.0'
     dagger2Version = '2.48'

@@ -3,6 +3,7 @@ package com.sugarcoachpremium.ui.treatment.interactor
 import android.annotation.SuppressLint
 import android.util.Log
 import com.sugarcoachpremium.data.api_db.ApiRepository
+import com.sugarcoachpremium.data.api_db.DailyRegister.DailyRegisterResponse
 import com.sugarcoachpremium.data.database.repository.dailyregister.DailyRegisterRepo
 import com.sugarcoachpremium.data.database.repository.treament.*
 import com.sugarcoachpremium.data.database.repository.user.User
@@ -129,4 +130,8 @@ class TreatmentInteractor @Inject constructor(private val treamentRepoHelper: Tr
         treamentRepoHelper.loadAllCorrectora()
 
     override fun getTreatment(): Single<TreatmentBasalCorrectora> = treamentRepoHelper.load()
+
+    override suspend fun getDailys(): Result<List<DailyRegisterResponse>?> {
+        return apiRepository.getDailyRegisters(getCurrentId()!!)
+    }
 }

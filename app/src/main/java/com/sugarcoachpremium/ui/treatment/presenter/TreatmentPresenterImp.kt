@@ -12,6 +12,8 @@ import com.sugarcoachpremium.ui.treatment.view.TreatmentView
 
 interface TreatmentPresenterImp<V : TreatmentView, I : TreatmentInteractorImp> : Presenter<V, I> {
     fun saveBasal(item: BasalItem)
+
+    suspend fun makePdf()
     fun getScreenShot(context: Activity, view: View)
     fun checkAndRequestPermissions(context: Activity): Boolean
     fun saveCorrectora(item: BasalItem)

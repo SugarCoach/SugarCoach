@@ -17,6 +17,7 @@ query DailyRegister($userId: ID){
                 colors
                 emotional_state
                 excercise
+                createdAt
             }
         }
     }

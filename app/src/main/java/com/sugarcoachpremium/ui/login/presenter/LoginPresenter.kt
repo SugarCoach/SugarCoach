@@ -51,7 +51,7 @@ class LoginPresenter  <V : LoginView, I : LoginInteractorImp> @Inject internal c
                 auth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener() { task ->
                         if (task.isSuccessful) {
-                                // Sign in success, update UI with the signed-in user's information
+                            // Sign in success, update UI with the signed-in user's information
                             Log.i("onLogin", "signInWithEmail:success")
                             CoroutineScope(Dispatchers.IO).launch {
                                 updateUser(Firebase.auth.currentUser?.uid)

@@ -27,6 +27,9 @@ import com.sugarcoachpremium.ui.statistics.view.StatisticsActivity
 import com.sugarcoachpremium.ui.treatment.interactor.TreatmentInteractorImp
 import com.sugarcoachpremium.ui.treatment.presenter.TreatmentPresenterImp
 import com.sugarcoachpremium.util.extensions.resIdByName
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
@@ -369,7 +372,10 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
 
         binding.treatmentShared.setOnClickListener {
             hideMenu()
-            presenter.getScreenShot(this, binding.treatmentLl)
+            CoroutineScope(Dispatchers.IO).launch {
+                presenter.makePdf()
+            }
+            //presenter.getScreenShot(this, binding.treatmentLl)
         }
 
         binding.treatmentEdit.setOnClickListener {
