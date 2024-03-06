@@ -11,9 +11,12 @@ import android.net.Uri
 import android.provider.MediaStore
 import android.util.Log
 import android.view.View
+import android.widget.TableRow
+import android.widget.TextView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.sugarcoachpremium.R
+import com.sugarcoachpremium.data.api_db.DailyRegister.DailyRegisterResponse
 import com.sugarcoachpremium.data.database.repository.dailyregister.DailyRegister
 import com.sugarcoachpremium.data.database.repository.treament.*
 import com.sugarcoachpremium.data.database.repository.user.User
@@ -34,6 +37,7 @@ import kotlinx.coroutines.withContext
 import org.joda.time.LocalDateTime
 import java.io.ByteArrayOutputStream
 import java.lang.Exception
+import java.util.EnumSet.range
 import javax.inject.Inject
 import kotlin.reflect.full.memberProperties
 
@@ -164,7 +168,7 @@ class TreatmentPresenter<V : TreatmentView, I : TreatmentInteractorImp> @Inject 
         interactor?.let {
             compositeDisposable.add(it.editBasalCategory(basal)
                 .compose(schedulerProvider.ioToMainObservableScheduler())
-                .subscribe({ getView()?.showSuccessToast()
+                .subscribe({ getView()?.showSuccessToast("Actualizo Correctamente")
                 }, { throwable ->
                     showException(throwable)
                 })
@@ -177,7 +181,7 @@ class TreatmentPresenter<V : TreatmentView, I : TreatmentInteractorImp> @Inject 
         interactor?.let {
             compositeDisposable.add(it.editCorrectoraCategory(correctora)
                 .compose(schedulerProvider.ioToMainObservableScheduler())
-                .subscribe({ getView()?.showSuccessToast()
+                .subscribe({ getView()?.showSuccessToast("Actualizo Correctamente")
                 }, { throwable ->
                     showException(throwable)
                 })
@@ -193,7 +197,7 @@ class TreatmentPresenter<V : TreatmentView, I : TreatmentInteractorImp> @Inject 
         interactor?.let {
             compositeDisposable.add(it.editBasalHora(hora)
                 .compose(schedulerProvider.ioToMainObservableScheduler())
-                .subscribe({ getView()?.showSuccessToast()
+                .subscribe({ getView()?.showSuccessToast("Actualizo Correctamente")
                 }, { throwable ->
                     showException(throwable)
                 })
@@ -556,15 +560,81 @@ class TreatmentPresenter<V : TreatmentView, I : TreatmentInteractorImp> @Inject 
 
     }
 
-    override suspend fun makePdf() {
+    override suspend fun makePdf(context: Context) {
         interactor?.getDailys()?.fold({
             if (it != null) {
+                /*val columns = checkCantColumns(it)
+                withContext(Dispatchers.IO){
+                    getView()?.openTableActivity(it)
+                }
+                Log.i("OnTreatmentPresenter", "MakePdf: $columns")
                 for(daily in it){
                     Log.i("OnTreatmentPresenter", "MakePDF: $daily")
-                }
+                }*/
+                getView()?.hideProgress()
+                getView()?.showSuccessToast("Pdf creado")
             }
+            getView()?.hideProgress()
+            getView()?.showErrorToast("Realice una carga antes")
         },{
             Log.i("OnTreatmentPresenter", "MakePDF: Ocurrió un error:$it")
+            getView()?.hideProgress()
+            getView()?.showErrorToast()
         })
+    }
+
+    private fun checkCantColumns(dailys: List<DailyRegisterResponse>): MutableMap<String, Int>{
+        val cantColumns = mutableMapOf("pbreak" to 0, "plunch" to 0, "psnack" to 0, "pdinner" to 0)
+
+        for(i in 0..dailys.size - 1){
+            Log.i("TreatmentPresenter", "CheckCantColumns: ${dailys[i].date}")
+            if(i == 0 || dailys[i].date == dailys[i-1].date){
+                when(dailys[i].category){
+                    "2" -> {
+                        cantColumns["pbreak"] = cantColumns["pbreak"]!! + 1
+                    }
+                    "4" -> {
+                        cantColumns["plunch"] = cantColumns["plunch"]!! + 1
+                    }
+                    "6" -> {
+                        cantColumns["psnack"] = cantColumns["psnack"]!! + 1
+                    }
+                    "8" -> {
+                        cantColumns["pdinner"] = cantColumns["pdinner"]!! + 1
+                    }
+                }
+            }
+
+        }
+        return cantColumns
+    }
+
+    private fun setUpTable(columns: MutableMap<String,Int>, context: Context){
+        val tableRow0 = TableRow(context)
+        val textView0 = TextView(context)
+
+        textView0.text = "Day"
+        textView0.setTextColor(Color.BLACK)
+        tableRow0.addView(textView0)
+
+        val textView1 = TextView(context)
+        textView1.text = "Breakfast"
+        textView1.setTextColor(Color.BLACK)
+        tableRow0.addView(textView0)
+
+        val textView2 = TextView(context)
+        textView2.text = "Lunch"
+        textView2.setTextColor(Color.BLACK)
+        tableRow0.addView(textView0)
+
+        val textView3 = TextView(context)
+        textView3.text = "Snack"
+        textView3.setTextColor(Color.BLACK)
+        tableRow0.addView(textView0)
+
+        val textView4 = TextView(context)
+        textView4.text = "Dinner"
+        textView4.setTextColor(Color.BLACK)
+        tableRow0.addView(textView0)
     }
 }

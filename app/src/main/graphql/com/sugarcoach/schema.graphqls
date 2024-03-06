@@ -18,11 +18,6 @@ type ResponseCollectionMeta {
   pagination: Pagination!
 }
 
-enum PublicationState {
-  LIVE
-  PREVIEW
-}
-
 input IDFilterInput {
   and: [ID]
   or: [ID]
@@ -223,7 +218,6 @@ input DailyRegisterFiltersInput {
   excercise: StringFilterInput
   createdAt: DateTimeFilterInput
   updatedAt: DateTimeFilterInput
-  publishedAt: DateTimeFilterInput
   and: [DailyRegisterFiltersInput]
   or: [DailyRegisterFiltersInput]
   not: DailyRegisterFiltersInput
@@ -241,7 +235,6 @@ input DailyRegisterInput {
   users_permissions_user: ID
   emotional_state: String
   excercise: String
-  publishedAt: DateTime
 }
 
 type DailyRegister {
@@ -258,7 +251,6 @@ type DailyRegister {
   excercise: String
   createdAt: DateTime
   updatedAt: DateTime
-  publishedAt: DateTime
 }
 
 type DailyRegisterEntity {
@@ -292,7 +284,6 @@ input TreatmentFiltersInput {
   users_permissions_user: UsersPermissionsUserFiltersInput
   createdAt: DateTimeFilterInput
   updatedAt: DateTimeFilterInput
-  publishedAt: DateTimeFilterInput
   and: [TreatmentFiltersInput]
   or: [TreatmentFiltersInput]
   not: TreatmentFiltersInput
@@ -312,7 +303,6 @@ input TreatmentInput {
   bomba_infusora: String
   correctora_insuline: String
   users_permissions_user: ID
-  publishedAt: DateTime
 }
 
 type Treatment {
@@ -331,7 +321,6 @@ type Treatment {
   users_permissions_user: UsersPermissionsUserEntityResponse
   createdAt: DateTime
   updatedAt: DateTime
-  publishedAt: DateTime
 }
 
 type TreatmentEntity {
@@ -361,7 +350,6 @@ input UserDataFiltersInput {
   sugar_points: IntFilterInput
   createdAt: DateTimeFilterInput
   updatedAt: DateTimeFilterInput
-  publishedAt: DateTimeFilterInput
   and: [UserDataFiltersInput]
   or: [UserDataFiltersInput]
   not: UserDataFiltersInput
@@ -377,7 +365,6 @@ input UserDataInput {
   icon: Int
   users_permissions_user: ID
   sugar_points: Int
-  publishedAt: DateTime
 }
 
 type UserData {
@@ -392,7 +379,6 @@ type UserData {
   sugar_points: Int
   createdAt: DateTime
   updatedAt: DateTime
-  publishedAt: DateTime
 }
 
 type UserDataEntity {
@@ -817,21 +803,18 @@ type Query {
     filters: DailyRegisterFiltersInput
     pagination: PaginationArg = {}
     sort: [String] = []
-    publicationState: PublicationState = LIVE
   ): DailyRegisterEntityResponseCollection
   treatment(id: ID): TreatmentEntityResponse
   treatments(
     filters: TreatmentFiltersInput
     pagination: PaginationArg = {}
     sort: [String] = []
-    publicationState: PublicationState = LIVE
   ): TreatmentEntityResponseCollection
   userData(id: ID): UserDataEntityResponse
   usersData(
     filters: UserDataFiltersInput
     pagination: PaginationArg = {}
     sort: [String] = []
-    publicationState: PublicationState = LIVE
   ): UserDataEntityResponseCollection
   uploadFile(id: ID): UploadFileEntityResponse
   uploadFiles(

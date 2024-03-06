@@ -2,10 +2,10 @@ mutation CreateUser($username: String, $email: String, $FirebaseId: String) {
     createUsersPermissionsUser(data:{
         username: $username,
         email: $email,
-        password: "contraseña123",
         confirmed: true,
         blocked: false,
         role:1,
+        password: "123456"
         FirebaseUID: $FirebaseId
     }){
         data{

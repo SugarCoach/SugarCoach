@@ -36,7 +36,7 @@ import javax.inject.Singleton
 @Module
 class AppModule {
 
-    private val PRODUCTIONAPITOKEN = "2d2d6280daaf5ccce73f9b69c70034dda356f1f4a0bc8724be97f2a577ea0050c26c5a70a2443d00c93de79b9e8bf33a6fb40d003a6e0cd04aa26ee16800948f121bbc6800d0a872011340e8a5ff9aa4522daf9d2717383b3a6799944e31ff3fcd09ef87710f4e297151eb4a70ea9d6929394686b81f6a693aca73e6248305b7"
+    private val PRODUCTIONAPITOKEN = "407f65c84995cb113a6911ba72c0b88d0b1659c74d5bf27fd05dc705631be9d81fde453ba5a5007c008ecefd56cf3f4f67cf9da5a65b9c411d72cf60ffdf1ff04ecff86ea0609259ee57f46dead479a9b85950f8af16e2f0aa3b22bc1cfa3d1a8a26db07f96f238545b6d108bb3956c119376b72066a186eb872cba5a6d654cd"
     private val DEVELOPAPITOKEN = "5d913c4bd45cefe7702664e36def1d4e3418c2134ea03d283ded5eb1f83c88e3c5a53b2300869810d686f99629e8cfe14a3bd998da6d8178ca19de9aca86a77a3dee5d42f0ecc74b2a1f6fd24b163f3ebd5f6b43dcbedd84dbf4daf28f8764298bf7ebf9eaea8c1b0de87b6211ab1015241b2c78cbe447d0cf251d56090f2a7a"
     @Provides
     @Singleton
@@ -45,7 +45,7 @@ class AppModule {
         return ApolloClient.Builder()
             .serverUrl("https://monkfish-app-nqddj.ondigitalocean.app/graphql")
             .okHttpClient(OkHttpClient.Builder().build())
-            .addHttpHeader("Authorization", PRODUCTIONAPITOKEN)
+            //.addHttpHeader("Authorization", PRODUCTIONAPITOKEN)
             .build()
     }
     @Provides

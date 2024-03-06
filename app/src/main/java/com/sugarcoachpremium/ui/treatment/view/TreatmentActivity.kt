@@ -14,6 +14,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.sugarcoachpremium.R
+import com.sugarcoachpremium.data.api_db.DailyRegister.DailyRegisterResponse
 import com.sugarcoachpremium.data.database.repository.treament.TreatmentBasalCorrectora
 import com.sugarcoachpremium.data.database.repository.user.User
 import com.sugarcoachpremium.databinding.ActivityTreatmentBinding
@@ -24,12 +25,14 @@ import com.sugarcoachpremium.ui.base.view.BaseActivity
 import com.sugarcoachpremium.ui.daily.view.DailyActivity
 import com.sugarcoachpremium.ui.main.view.MainActivity
 import com.sugarcoachpremium.ui.statistics.view.StatisticsActivity
+import com.sugarcoachpremium.ui.table.view.TableActivity
 import com.sugarcoachpremium.ui.treatment.interactor.TreatmentInteractorImp
 import com.sugarcoachpremium.ui.treatment.presenter.TreatmentPresenterImp
 import com.sugarcoachpremium.util.extensions.resIdByName
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.io.Serializable
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
@@ -105,8 +108,8 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
         super.onDestroy()
     }
 
-    override fun showSuccessToast() {
-        Toast.makeText(this, getString(R.string.update_success), Toast.LENGTH_LONG).show()
+    override fun showSuccessToast(msg: String) {
+        Toast.makeText(this, msg, Toast.LENGTH_LONG).show()
     }
 
     override fun showErrorToast(msg: String) {
@@ -372,8 +375,9 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
 
         binding.treatmentShared.setOnClickListener {
             hideMenu()
+            showProgress()
             CoroutineScope(Dispatchers.IO).launch {
-                presenter.makePdf()
+                presenter.makePdf(baseContext)
             }
             //presenter.getScreenShot(this, binding.treatmentLl)
         }
@@ -464,6 +468,13 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
         finish()
     }
 
+     override fun openTableActivity(dailyRegisters: List<DailyRegisterResponse>, ){
+         /*val intent = Intent(this, TableActivity::class.java)
+         intent.putExtra("DailyRegisters", dailyRegisters.toArray())
+         startActivity(intent)
+         finish()*/
+     }
+
     override fun openStatisticActivity() {
         val intent = Intent(this, StatisticsActivity::class.java)
         startActivity(intent)
@@ -516,6 +527,7 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
     }
 
     override fun onBackPressed() {
+        super.onBackPressed()
         dialogSave()
     }
 }

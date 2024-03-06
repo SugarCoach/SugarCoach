@@ -26,6 +26,7 @@ import com.sugarcoachpremium.ui.splash.SplashActivityModule
 import com.sugarcoachpremium.ui.splash.view.SplashActivity
 import com.sugarcoachpremium.ui.statistics.StatisticsActivityModule
 import com.sugarcoachpremium.ui.statistics.view.StatisticsActivity
+import com.sugarcoachpremium.ui.table.view.TableActivity
 import com.sugarcoachpremium.ui.treatment.TreatmentActivityModule
 import com.sugarcoachpremium.ui.treatment.view.TreatmentActivity
 import dagger.Module
@@ -78,6 +79,9 @@ abstract class ActivityBuilder {
 
     @ContributesAndroidInjector(modules = [(ForgotActivityModule::class)])
     abstract fun bindForgotActivity(): ForgotActivity
+
+    /*@ContributesAndroidInjector()
+    abstract fun bindMainTableActivity(): TableActivity*/
 //
 
 //    @ContributesAndroidInjector(modules = [(BlogFragmentProvider::class), (OpenSourceFragmentProvider::class)])

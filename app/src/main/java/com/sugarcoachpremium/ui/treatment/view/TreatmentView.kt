@@ -1,6 +1,7 @@
 package com.sugarcoachpremium.ui.treatment.view
 
 import android.net.Uri
+import com.sugarcoachpremium.data.api_db.DailyRegister.DailyRegisterResponse
 import com.sugarcoachpremium.data.database.repository.treament.TreatmentBasalCorrectora
 import com.sugarcoachpremium.data.database.repository.user.User
 import com.sugarcoachpremium.ui.base.view.BaseView
@@ -9,7 +10,8 @@ import java.util.*
 
 interface TreatmentView : BaseView {
 
-    fun showSuccessToast()
+    fun showSuccessToast(msg: String)
+    fun openTableActivity(dailyRegisters: List<DailyRegisterResponse>)
     fun setData(user: User, date: Date)
     fun setPromedio(prom: Float)
     fun setPromedioBasal(total: Float)

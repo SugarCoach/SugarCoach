@@ -18,6 +18,7 @@ query DailyRegister($userId: ID){
                 emotional_state
                 excercise
                 createdAt
+                category
             }
         }
     }

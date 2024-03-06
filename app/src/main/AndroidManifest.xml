@@ -1,11 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
-
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <queries>
@@ -13,68 +13,96 @@
         <provider android:authorities="com.facebook.orca.provider.PlatformProvider" />
     </queries>
 
-    <application android:allowBackup="true"
-                android:label="@string/app_name"
-                android:icon="@drawable/logo_b"
-                android:largeHeap="true"
-                android:roundIcon="@mipmap/ic_launcher_round"
-                android:supportsRtl="true"
-                android:name=".SugarApp"
+    <application
+            android:name=".SugarApp"
+            android:allowBackup="true"
+            android:icon="@drawable/logo_b"
+            android:label="@string/app_name"
+            android:largeHeap="true"
             android:networkSecurityConfig="@xml/network_security_config"
-                android:theme="@style/AppTheme">
+            android:roundIcon="@mipmap/ic_launcher_round"
+            android:supportsRtl="true"
+            android:theme="@style/AppTheme">
+        <activity
+                android:name=".ui.table.view.TableActivity"
+                android:exported="false" />
         <activity
                 android:name=".ui.splash.view.SplashActivity"
                 android:exported="true">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.main.view.MainActivity"  android:theme="@style/AppTheme.FullScreen">
-        </activity>
-        <activity android:name=".ui.register.view.RegisterActivity"
-        android:theme="@style/AppTheme.FullScreen">
-        </activity>
-        <activity android:name=".ui.treatment.view.TreatmentActivity"  android:theme="@style/AppTheme.FullScreen">
-        </activity>
-        <activity android:name=".ui.sign.view.SignActivity" android:theme="@style/AppTheme.FullScreen">
-        </activity>
-        <activity android:name=".ui.login.view.LoginActivity" android:theme="@style/AppTheme.FullScreen">
-        </activity>
-        <activity android:name=".ui.onboarding.view.OnBoardingActivity">
-        </activity>
-        <activity android:name=".ui.signEmail.view.SignEmailActivity" android:theme="@style/AppTheme.FullScreen">
-        </activity>
-        <activity android:name=".ui.daily.view.DailyActivity"  android:theme="@style/AppTheme.FullScreen">
-        </activity>
-        <activity android:name=".ui.daily_detail.view.DailyDetailActivity"  android:theme="@style/AppTheme.FullScreen">
-        </activity>
-        <activity android:name=".ui.profile.view.ProfileActivity"  android:theme="@style/AppTheme.FullScreen">
-        </activity>
-        <activity android:name=".ui.config.view.ConfigActivity"  android:theme="@style/AppTheme.FullScreen">
-        </activity>
-        <activity android:name=".ui.statistics.view.StatisticsActivity"  android:theme="@style/AppTheme.FullScreen">
-        </activity>
-        <activity android:name=".ui.forgot.view.ForgotActivity"  android:theme="@style/AppTheme.FullScreen">
-        </activity>
-        <activity android:name="com.facebook.FacebookActivity"
-            android:configChanges= "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-            android:label="@string/app_name" />
-        <activity android:name="com.facebook.CustomTabActivity" android:exported="true">
+        <activity
+                android:name=".ui.main.view.MainActivity"
+                android:theme="@style/AppTheme.FullScreen"></activity>
+        <activity
+                android:name=".ui.register.view.RegisterActivity"
+                android:theme="@style/AppTheme.FullScreen"></activity>
+        <activity
+                android:name=".ui.treatment.view.TreatmentActivity"
+                android:theme="@style/AppTheme.FullScreen"></activity>
+        <activity
+                android:name=".ui.sign.view.SignActivity"
+                android:theme="@style/AppTheme.FullScreen"></activity>
+        <activity
+                android:name=".ui.login.view.LoginActivity"
+                android:theme="@style/AppTheme.FullScreen"></activity>
+        <activity android:name=".ui.onboarding.view.OnBoardingActivity"></activity>
+        <activity
+                android:name=".ui.signEmail.view.SignEmailActivity"
+                android:theme="@style/AppTheme.FullScreen"></activity>
+        <activity
+                android:name=".ui.daily.view.DailyActivity"
+                android:theme="@style/AppTheme.FullScreen"></activity>
+        <activity
+                android:name=".ui.daily_detail.view.DailyDetailActivity"
+                android:theme="@style/AppTheme.FullScreen"></activity>
+        <activity
+                android:name=".ui.profile.view.ProfileActivity"
+                android:theme="@style/AppTheme.FullScreen"></activity>
+        <activity
+                android:name=".ui.config.view.ConfigActivity"
+                android:theme="@style/AppTheme.FullScreen"></activity>
+        <activity
+                android:name=".ui.statistics.view.StatisticsActivity"
+                android:theme="@style/AppTheme.FullScreen"></activity>
+        <activity
+                android:name=".ui.forgot.view.ForgotActivity"
+                android:theme="@style/AppTheme.FullScreen"></activity>
+        <activity
+                android:name="com.facebook.FacebookActivity"
+                android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+                android:label="@string/app_name" />
+        <activity
+                android:name="com.facebook.CustomTabActivity"
+                android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
-        <meta-data android:name="com.facebook.sdk.ClientToken" android:value="@string/facebook_client_token"/>
-        <meta-data android:name="com.facebook.sdk.AutoLogAppEventsEnabled"
-                android:value="true"/>
-        <meta-data android:name="com.facebook.sdk.AdvertiserIDCollectionEnabled"
-                android:value="true"/>
+
+        <meta-data
+                android:name="com.facebook.sdk.ApplicationId"
+                android:value="@string/facebook_app_id" />
+        <meta-data
+                android:name="com.facebook.sdk.ClientToken"
+                android:value="@string/facebook_client_token" />
+        <meta-data
+                android:name="com.facebook.sdk.AutoLogAppEventsEnabled"
+                android:value="true" />
+        <meta-data
+                android:name="com.facebook.sdk.AdvertiserIDCollectionEnabled"
+                android:value="true" />
+
         <provider
                 android:name=".util.GenericFileProvider"
                 android:authorities="${applicationId}.provider"
@@ -82,7 +110,8 @@
                 android:grantUriPermissions="true">
             <meta-data
                     android:name="android.support.FILE_PROVIDER_PATHS"
-                    android:resource="@xml/provider_paths"/>
+                    android:resource="@xml/provider_paths" />
         </provider>
     </application>
+
 </manifest>

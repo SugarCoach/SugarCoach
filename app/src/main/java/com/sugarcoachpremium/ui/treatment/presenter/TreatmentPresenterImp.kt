@@ -1,6 +1,7 @@
 package com.sugarcoachpremium.ui.treatment.presenter
 
 import android.app.Activity
+import android.content.Context
 import android.view.View
 import com.sugarcoachpremium.ui.base.presenter.Presenter
 import com.sugarcoachpremium.ui.treatment.interactor.TreatmentInteractorImp
@@ -13,7 +14,7 @@ import com.sugarcoachpremium.ui.treatment.view.TreatmentView
 interface TreatmentPresenterImp<V : TreatmentView, I : TreatmentInteractorImp> : Presenter<V, I> {
     fun saveBasal(item: BasalItem)
 
-    suspend fun makePdf()
+    suspend fun makePdf(context: Context)
     fun getScreenShot(context: Activity, view: View)
     fun checkAndRequestPermissions(context: Activity): Boolean
     fun saveCorrectora(item: BasalItem)

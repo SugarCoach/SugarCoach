@@ -51,7 +51,9 @@ fun DailyRegisterQuery.Attributes?.toDailyRegister(): DailyRegisterResponse {
         basal = this?.basal,
         colors = this?.colors,
         emotionalState = this?.emotional_state,
-        excersise = this?.excercise
+        excersise = this?.excercise,
+        date = this?.createdAt.toString(),
+        category = this?.category.toString()
     )
 }
 
@@ -70,6 +72,7 @@ fun DailyRegister.toDailyInput(id: String?): DailyRegisterInput{
         comment = Optional.present(comment),
         basal = Optional.present(basal?.toDouble()),
         colors = Optional.present(colors),
+        category = Optional.present(category_id.toString()),
         excercise = Optional.present(exercise),
         emotional_state = Optional.present(emotionalState),
         users_permissions_user = Optional.present(id)

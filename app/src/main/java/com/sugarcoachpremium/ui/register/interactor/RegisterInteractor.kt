@@ -33,12 +33,6 @@ class RegisterInteractor @Inject constructor(private val treamentRepo: TreamentR
     lateinit var apiRepository: ApiRepository
     lateinit var user: User
     override suspend fun saveRegisterCall(dailyRegister: DailyRegister): Observable<RegisterSaveResponse> {
-        /*return apiHelper.performSaveRegisters(token = "Bearer "+preferenceHelper.getAccessToken().toString(),
-            request = RegisterSaveRequest.RegisterSaveRequest( dailyRegister.glucose, dailyRegister.insulin, dailyRegister.carbohydrates,dailyRegister.emotionalState,  dailyRegister.exercise,dailyRegister.category_id, dailyRegister.basal, dailyRegister.colors, preferenceHelper.getCurrentUserId().toString())
-        ).subscribeOn(
-            Schedulers.io())
-            .map { it }*/
-
         var saveResponse: RegisterSaveResponse?
 
         val apiRes = CoroutineScope(Dispatchers.IO).async {

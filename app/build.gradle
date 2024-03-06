@@ -14,12 +14,12 @@ apollo{
 }
 
 android {
-    compileSdk rootProject.compileSdkVersion
+    compileSdk 34
     defaultConfig {
         applicationId "com.sugarcoachpremium"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 31
+        versionCode 32
         versionName "1.0.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -96,6 +96,7 @@ dependencies {
 
     // database
     implementation "androidx.room:room-runtime:$rootProject.roomDatabaseVersion"
+    implementation 'androidx.activity:activity:1.8.0'
     kapt "androidx.room:room-compiler:$rootProject.roomDatabaseVersion"
 
     // font

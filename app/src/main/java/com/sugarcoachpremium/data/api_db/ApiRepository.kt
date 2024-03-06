@@ -62,7 +62,7 @@ class ApiRepository @Inject constructor(
         val optionalFirebaseId = Optional.present(FirebaseId)
         return try {
             val response = apolloClient
-                .mutation(CreateUserMutation(username = optionalUser, email = optionalEmail, optionalFirebaseId))
+                .mutation(CreateUserMutation(optionalUser, optionalEmail, optionalFirebaseId))
                 .execute()
                 .data
                 ?.createUsersPermissionsUser
@@ -158,7 +158,9 @@ class ApiRepository @Inject constructor(
                 ?.dailyRegisters
                 ?.data
                 ?.map { it.attributes.toDailyRegister() }
-
+            if (response != null) {
+                response.forEach { it.date = it.date.split('T')[0] }
+            }
             Log.i("OnResponse", response.toString())
             success(response)
         }catch (e: Exception){
