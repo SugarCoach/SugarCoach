@@ -48,12 +48,12 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility "17"
+        targetCompatibility "17"
     }
 
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8
+        jvmTarget = JavaVersion.VERSION_17
     }
     packagingOptions {
         resources {
@@ -66,11 +66,13 @@ android {
     namespace 'com.sugarcoachpremium'
 }
 
-repositories {
-    //maven { url "https://maven.appspector.com/artifactory/android-sdk" }
-    jcenter() // Para la Mask
-}
-
+    //repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+ repositories {
+     //maven { url "https://maven.appspector.com/artifactory/android-sdk" }
+     mavenCentral()// Para la Mask y aminography
+     maven { url 'https://jitpack.io' }
+     jcenter()
+ }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -190,9 +192,9 @@ dependencies {
     implementation "com.github.skydoves:powerspinner:1.1.0"
 
     //AMINOGRAPHY
-    implementation 'com.aminography:choosephotohelper:1.3.1'
-    implementation 'com.aminography:primedatepicker:1.1.0'
-    implementation 'com.aminography:primecalendar:1.2.21'
+    //implementation 'com.github.aminography:ChoosePhotoHelper:master-SNAPSHOT'
+    implementation 'com.aminography:primedatepicker:3.5.0'
+    implementation 'com.aminography:primecalendar:1.7.0'
 
     // https://mvnrepository.com/artifact/ru.egslava/MaskedEditText
     implementation 'io.github.vicmikhailau:MaskedEditText:4.0.6'

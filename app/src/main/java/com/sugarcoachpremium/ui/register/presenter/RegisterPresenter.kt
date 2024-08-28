@@ -5,8 +5,8 @@ import android.content.Intent
 import android.graphics.Color
 import android.util.Log
 import androidx.fragment.app.FragmentManager
-import com.aminography.choosephotohelper.ChoosePhotoHelper
-import com.aminography.choosephotohelper.callback.ChoosePhotoCallback
+//import com.aminography.//choosephotohelper.//ChoosePhotoHelper
+//import com.aminography.//choosephotohelper.callback.ChoosePhotoCallback
 import com.sugarcoachpremium.BuildConfig
 import com.sugarcoachpremium.data.database.repository.dailyregister.Category
 import com.sugarcoachpremium.data.database.repository.dailyregister.DailyRegister
@@ -60,7 +60,7 @@ class RegisterPresenter<V : RegisterView, I : RegisterInteractorImp> @Inject int
     @Inject
     lateinit var date: LocalDateTime
 
-    private lateinit var choosePhotoHelper: ChoosePhotoHelper
+    //private lateinit var choosePhotoHelper: ChoosePhotoHelper
 
     lateinit var dailyExcercises: List<RegisterItem>
     lateinit var dailyEmotions: List<RegisterItem>
@@ -626,24 +626,24 @@ class RegisterPresenter<V : RegisterView, I : RegisterInteractorImp> @Inject int
     }
 
     override fun initChooser(context: Activity){
-        choosePhotoHelper = ChoosePhotoHelper.with(context)
+        /*choosePhotoHelper = ChoosePhotoHelper.with(context)
             .asFilePath()
             .build(ChoosePhotoCallback {
                 photo = it!!
                 getView()?.setImage(it!!)
-            })
+            })*/
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        choosePhotoHelper.onActivityResult(requestCode, resultCode, data)
+        //choosePhotoHelper.onActivityResult(requestCode, resultCode, data)
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
-        choosePhotoHelper.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        //choosePhotoHelper.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
 
     override fun showChooser() {
-        choosePhotoHelper.showChooser()
+        //choosePhotoHelper.showChooser()
     }
     override fun goToActivityDaily() {
         getView()?.openDailyActivity()

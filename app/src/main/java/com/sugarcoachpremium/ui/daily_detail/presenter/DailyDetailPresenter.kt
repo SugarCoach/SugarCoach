@@ -11,8 +11,8 @@ import android.view.View
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentManager
-import com.aminography.choosephotohelper.ChoosePhotoHelper
-import com.aminography.choosephotohelper.callback.ChoosePhotoCallback
+//import com.aminography.//choosephotohelper.//ChoosePhotoHelper
+//import com.aminography.//choosephotohelper.callback.ChoosePhotoCallback
 import com.sugarcoachpremium.R
 import com.sugarcoachpremium.data.database.repository.dailyregister.DailyRegister
 import com.sugarcoachpremium.ui.base.presenter.BasePresenter
@@ -48,7 +48,7 @@ class DailyDetailPresenter<V : DailyDetailView, I : DailyDetailInteractorImp> @I
     lateinit var treament: Treament
     lateinit var emotions: ArrayList<DailyItem>
     lateinit var exercices: ArrayList<DailyItem>
-    private lateinit var choosePhotoHelper: ChoosePhotoHelper
+    //private lateinit var //choosePhotoHelper: //ChoosePhotoHelper
     lateinit var  date: LocalDateTime
     val permissionRequest = 1
     private fun getExercices() = interactor?.let {
@@ -543,20 +543,20 @@ class DailyDetailPresenter<V : DailyDetailView, I : DailyDetailInteractorImp> @I
     }
 
     override fun initChooser(context: Activity){
-        choosePhotoHelper = ChoosePhotoHelper.with(context)
+        /*//choosePhotoHelper = //ChoosePhotoHelper.with(context)
             .asFilePath()
             .build(ChoosePhotoCallback {
                 updatePhoto(it)
                 getView()?.setImage(it!!)
-            })
+            })*/
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        choosePhotoHelper.onActivityResult(requestCode, resultCode, data)
+        //choosePhotoHelper.onActivityResult(requestCode, resultCode, data)
     }
 
     override fun onRequestPermissionsResult(context: Activity, requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
-        choosePhotoHelper.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        //choosePhotoHelper.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when (requestCode) {
             permissionRequest -> {
 
@@ -581,7 +581,7 @@ class DailyDetailPresenter<V : DailyDetailView, I : DailyDetailInteractorImp> @I
     }
 
     override fun showChooser() {
-        choosePhotoHelper.showChooser()
+        //choosePhotoHelper.showChooser()
     }
 
 

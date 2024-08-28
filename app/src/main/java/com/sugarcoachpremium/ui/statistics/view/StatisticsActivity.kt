@@ -9,10 +9,12 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.aminography.primecalendar.PrimeCalendar
+import com.aminography.primecalendar.civil.CivilCalendar
 import com.aminography.primecalendar.common.CalendarFactory
 import com.aminography.primecalendar.common.CalendarType
-import com.aminography.primedatepicker.PickType
-import com.aminography.primedatepicker.fragment.PrimeDatePickerBottomSheet
+import com.aminography.primedatepicker.common.PickType
+//import com.aminography.primedatepicker.fragment.PrimeDatePickerBottomSheet
+import com.aminography.primedatepicker.picker.PrimeDatePicker
 import com.sugarcoachpremium.R
 import com.sugarcoachpremium.databinding.ActivityEstadisticasBinding
 import com.sugarcoachpremium.ui.base.view.BaseActivity
@@ -145,11 +147,20 @@ class StatisticsActivity : BaseActivity(), StatisticsView {
             1,2-> PickType.SINGLE
             else -> PickType.SINGLE
         }
-        val today = CalendarFactory.newInstance(CalendarType.CIVIL)
+        val today = CivilCalendar()
 //
-        val datePicker = PrimeDatePickerBottomSheet.newInstance(today, null, null, pickType)
-//
-        datePicker.setOnDateSetListener(object : PrimeDatePickerBottomSheet.OnDayPickedListener {
+        val datePicker = PrimeDatePicker.bottomSheetWith(today)
+            .pickSingleDay { singleDay ->
+                when (position) {
+                    1 -> presenter.getDataInsulineDate(position, singleDay.toString(), index)
+                    2 -> presenter.getDataCarDate(position, singleDay.toString(), index)
+                }
+            }
+            .build()
+        datePicker.show(supportFragmentManager, "Calendar")
+        //val datePicker = PrimeDatePickerBottomSheet.newInstance(today, null, null, pickType)
+
+        /*datePicker.setOnDateSetListener(object : PrimeDatePickerBottomSheet.OnDayPickedListener {
 
             override fun onSingleDayPicked(singleDay: PrimeCalendar) {
                 val day = singleDay.shortDateString.replace("/", "-")
@@ -223,7 +234,7 @@ class StatisticsActivity : BaseActivity(), StatisticsView {
                     datePicker.show(supportFragmentManager, "Calendar")
                 }
             }
-        }
+        }*/
 
     }
     override fun sharedScreenShot(uri: Uri) {
