@@ -99,7 +99,7 @@ class RegisterActivity : BaseActivity(), RegisterView, TimePickerDialog.OnTimeSe
     }
 
     override fun showErrorToast(msg: String) {
-        Toast.makeText(this, getString(R.string.login_failure), Toast.LENGTH_LONG).show()
+        Toast.makeText(this, msg, Toast.LENGTH_LONG).show()
     }
 
     override fun nextLoad(type: Int,value: Float?, position: String?) {

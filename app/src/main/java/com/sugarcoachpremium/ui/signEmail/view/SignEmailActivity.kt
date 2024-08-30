@@ -72,7 +72,7 @@ class SignEmailActivity: BaseActivity(), SignEmailView {
 
 
     override fun showErrorToast(msg: String) {
-        Toast.makeText(this, getString(R.string.sign_failure), Toast.LENGTH_LONG).show()
+        Toast.makeText(this, msg, Toast.LENGTH_LONG).show()
     }
 
     override fun onSign() {

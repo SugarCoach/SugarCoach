@@ -66,7 +66,6 @@ class SignEmailInteractor @Inject constructor(private val mContext: Context, pri
                 setUserId(it.id)
                 return Result.success(true)
             }, {
-                Log.i("OnCreateUser", "Ocurrió un error con la API: $it, Los datos ingresados fueron: ${user.username + user.email + signResponse.uid}")
                 return Result.failure(it)
             })
         }else{
@@ -109,6 +108,7 @@ class SignEmailInteractor @Inject constructor(private val mContext: Context, pri
                 } else{
                     Log.i("OnApiTreatment", "El result fue empty")
                     Observable.just(false)
+                    throw Exception("Ocurrió un error creando el tratamiento")
                 }
             }
 

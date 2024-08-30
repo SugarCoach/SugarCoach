@@ -34,7 +34,7 @@ abstract class BasePresenter<V : BaseView, I : Interactor> internal constructor(
         val error = throwable as HttpException
         try {
             println(error.message())
-            getView()?.showErrorToast()
+            getView()?.showErrorToast("Ocurrió un error desconocido")
             //TODO need JsonParser for BackendException
         } catch (e: IOException) {
             println(throwable)

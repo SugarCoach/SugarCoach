@@ -65,11 +65,16 @@ class ApiRepository @Inject constructor(
                 .mutation(CreateUserMutation(optionalUser, optionalEmail, optionalFirebaseId))
                 .execute()
                 .data
+
+            val data = response
                 ?.createUsersPermissionsUser
                 ?.data
 
             Log.i("OnCreateUser", "$response")
-            success(response?.attributes.toUser(response?.id!!))
+            if(response == null){
+                throw Exception("Ya existe un usuario registrado con ese mail")
+            }
+            success(data?.attributes.toUser(data?.id!!))
         }catch (e: Exception){
             Log.i("OnUserError", "Ocurrió un error: $e")
             failure(e)
