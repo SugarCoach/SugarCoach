@@ -172,7 +172,7 @@ class SignEmailPresenter <V : SignEmailView, I : SignEmailInteractorImp> @Inject
                         if(task.isSuccessful){
                             Log.i("OnSuccessful", "Se registro correctamente")
                             user = auth.currentUser!!
-                            Log.i("OnEmailRegister", "El user que se registro es: ${user.email} ${user.displayName}")
+                            Log.i("OnEmailRegister", "El user que se registro es: ${user.email}")
                             updateUser(user)
                         }else{
                             Log.i("OnFailure", "Ocurrió un error al registrar el mail")
@@ -231,7 +231,9 @@ class SignEmailPresenter <V : SignEmailView, I : SignEmailInteractorImp> @Inject
                             }
                         }
                     }
-                })
+                }).runCatching {
+                    throw Exception("Error creando el tratamiento")
+            }
         }
     }
 
@@ -322,10 +324,15 @@ class SignEmailPresenter <V : SignEmailView, I : SignEmailInteractorImp> @Inject
                     interactor?.updateCloudUser(signResponse)!!.fold({
                         feedInDatabase()
                     },{
-                        Log.i("OnUpdateUser", "Ocurrió un error: $it")
+                        var message = it.message;
+                        Log.i("OnUpdateUser", "Ocurrió un error: $message")
                         withContext(Dispatchers.Main) {
                             FirebaseAuth.getInstance().signOut()
-                            getView()?.showErrorToast()
+                            if (message != null) {
+                                getView()?.showErrorToast(message)
+                            }else{
+                                getView()?.showErrorToast()
+                            }
                             getView()?.hideProgress()
                         }
                     })
