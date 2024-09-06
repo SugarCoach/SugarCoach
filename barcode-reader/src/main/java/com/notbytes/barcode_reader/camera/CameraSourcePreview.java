@@ -47,7 +47,7 @@ public class CameraSourcePreview extends ViewGroup {
 
         if (mCameraSource != null) {
             mStartRequested = true;
-            startIfReady();
+            //startIfReady();
         }
     }
 
@@ -100,12 +100,12 @@ public class CameraSourcePreview extends ViewGroup {
         public void surfaceCreated(SurfaceHolder surface) {
             mSurfaceAvailable = true;
             try {
-                startIfReady();
+                //startIfReady();
             } catch (SecurityException se) {
                 Log.e(TAG, "Do not have permission to start the camera", se);
-            } catch (IOException e) {
+            } /*catch (IOException e) {
                 Log.e(TAG, "Could not start camera source.", e);
-            }
+            }*/
         }
 
         @Override
