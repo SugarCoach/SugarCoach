@@ -38,7 +38,7 @@ jobs:
         keyPassword: ${{ secrets.KEY_PASSWORD }}
     - name: Upload TabShop app bundle
       id: uploadArtifact
-      uses: actions/upload-artifact@v1
+      uses: actions/upload-artifact@v3.2.1
       with:
         name: TabShop
         path: app/build/outputs/bundle/release/app-release.abb
