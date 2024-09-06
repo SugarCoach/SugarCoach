@@ -170,11 +170,11 @@ public class CameraSourcePreview extends ViewGroup {
                     childWidth - childXOffset, childHeight - childYOffset);
         }
 
-        try {
+        /*try {
             //startIfReady();
         } catch (IOException e) {
             Log.e(TAG, "Could not start camera source.", e);
-        }
+        }*/
     }
 
     private boolean isPortraitMode() {
