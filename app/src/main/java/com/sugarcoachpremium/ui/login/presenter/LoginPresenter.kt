@@ -88,6 +88,7 @@ class LoginPresenter  <V : LoginView, I : LoginInteractorImp> @Inject internal c
                 override fun onError(e: Throwable){
                     Log.i("OnMakeLocal", "Ocurrió un error: $e")
                     Firebase.auth.currentUser?.delete()
+                    getView()?.hideProgress()
                     getView()?.showErrorToast()
                 }
 
@@ -97,6 +98,7 @@ class LoginPresenter  <V : LoginView, I : LoginInteractorImp> @Inject internal c
                     try{
                         feedInDatabase()
                     }catch (e: Exception){
+                        getView()?.hideProgress()
                         getView()?.showErrorToast()
                     }
                 }
@@ -154,6 +156,7 @@ class LoginPresenter  <V : LoginView, I : LoginInteractorImp> @Inject internal c
 
 
     fun saveRegisters(registers: List<RegistersResponse>) {
+        Log.i("saveRegister", "Creando treatment")
 
         val parser = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
         val parser2 = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
@@ -219,9 +222,9 @@ class LoginPresenter  <V : LoginView, I : LoginInteractorImp> @Inject internal c
     }
 
     private fun createdTreament() {
-        getView()?.showProgress()
+        //getView()?.showProgress()
         CoroutineScope(Dispatchers.IO).launch {
-
+            Log.i("OnCoroutine", "Creando treatment")
             interactor?.let {
                 var treament = Treament(1, false, 120f,0f, 60f, 180f, null,null, null, null,0f, 0f, 0f, DateTime.now().toDate())
                 compositeDisposable.add(it.treament(treament)
@@ -237,6 +240,7 @@ class LoginPresenter  <V : LoginView, I : LoginInteractorImp> @Inject internal c
     }
 
     private fun createdCategories() {
+        Log.i("onCreatedTreatment", "Creando treatment")
         interactor?.let {
             compositeDisposable.add(it.category()
                 .compose(schedulerProvider.ioToMainObservableScheduler())
@@ -248,6 +252,7 @@ class LoginPresenter  <V : LoginView, I : LoginInteractorImp> @Inject internal c
     }
 
     private fun createdExercises() {
+        Log.i("onCreatedTreatment", "Creando treatment")
         interactor?.let {
             compositeDisposable.add(it.exercises()
                 .compose(schedulerProvider.ioToMainObservableScheduler())
@@ -259,6 +264,7 @@ class LoginPresenter  <V : LoginView, I : LoginInteractorImp> @Inject internal c
     }
 
     private fun createdStates() {
+        Log.i("onCreatedTreatment", "Creando treatment")
         interactor?.let {
             compositeDisposable.add(it.states()
                 .compose(schedulerProvider.ioToMainObservableScheduler())
@@ -270,6 +276,7 @@ class LoginPresenter  <V : LoginView, I : LoginInteractorImp> @Inject internal c
     }
 
     private fun createdTreatmentHorarios() {
+        Log.i("onCreatedTreatment", "Creando treatment")
         interactor?.let { it ->
             compositeDisposable.add(it.treamentHorarios()
                 .flatMap { interactor?.treatmentHorariosCorrectora() }

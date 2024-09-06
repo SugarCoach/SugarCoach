@@ -43,8 +43,8 @@ tasks.register('clean', Delete) {
 ext {
     // Sdk and tools
     minSdkVersion = 24
-    targetSdkVersion = 33
-    compileSdkVersion = 33
+    targetSdkVersion = 34
+    compileSdkVersion = 34
     buildToolsVersion = '28.0.2'
 
     // App dependencies
