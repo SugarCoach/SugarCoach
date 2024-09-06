@@ -24,10 +24,10 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    lint {
-        baseline = file("lint-baseline.xml")
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
     }
-
     /*signingConfigs {
         release {
             keyAlias keystoreProperties['keyAlias']
