@@ -17,7 +17,7 @@
 ### CÓMO ACTUALIZAR LA PÁGINA
 - Hacer un push al repositorio de github en la rama master
 - Entrar al droplet con el usuario root
-- ir a ```cd ../car/www/html/Vue```
+- ir a ```cd ../var/www/html/Vue```
 - Hacer un git pull de los cambios
 - Buildear el Vue con “npm run build”
 - Hacer un restart del nginx con “sudo systemctl restart nginx”
