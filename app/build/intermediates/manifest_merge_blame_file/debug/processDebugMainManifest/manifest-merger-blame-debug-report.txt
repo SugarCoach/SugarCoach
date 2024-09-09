@@ -1,0 +1,618 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.sugarcoachpremium"
+4    android:versionCode="38"
+5    android:versionName="1.3.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="24"
+9        android:targetSdkVersion="34" />
+10
+11    <uses-feature
+11-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:4:5-6:40
+12        android:name="android.hardware.camera"
+12-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:5:13-51
+13        android:required="true" />
+13-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:6:13-37
+14
+15    <uses-permission android:name="android.permission.INTERNET" />
+15-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:8:5-67
+15-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:8:22-64
+16    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+16-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:9:5-79
+16-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:9:22-76
+17    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+17-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:10:5-81
+17-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:10:22-78
+18    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+18-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:11:5-76
+18-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:11:22-73
+19    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+19-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:12:5-81
+19-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:12:22-78
+20    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+20-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:13:5-79
+20-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:13:22-76
+21    <uses-permission android:name="android.permission.CAMERA" />
+21-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:14:5-65
+21-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:14:22-62
+22    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+22-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:15:5-77
+22-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:15:22-74
+23
+24    <queries>
+24-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:17:5-20:15
+25        <provider android:authorities="com.facebook.katana.provider.PlatformProvider" />
+25-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:18:9-89
+25-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:18:19-86
+26        <provider android:authorities="com.facebook.orca.provider.PlatformProvider" />
+26-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:18:9-89
+26-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:18:19-86
+27
+28        <package android:name="com.facebook.katana" />
+28-->[com.facebook.android:facebook-common:17.0.1] /home/ramadan/.gradle/caches/transforms-4/8de134f099c42948555ef8e1d2a2e2a3/transformed/jetified-facebook-common-17.0.1/AndroidManifest.xml:18:9-55
+28-->[com.facebook.android:facebook-common:17.0.1] /home/ramadan/.gradle/caches/transforms-4/8de134f099c42948555ef8e1d2a2e2a3/transformed/jetified-facebook-common-17.0.1/AndroidManifest.xml:18:18-52
+29    </queries>
+30
+31    <uses-permission android:name="android.permission.VIBRATE" />
+31-->[com.wdullaer:materialdatetimepicker:4.2.3] /home/ramadan/.gradle/caches/transforms-4/955fbd1fa769e291d2d6c6105f067248/transformed/jetified-materialdatetimepicker-4.2.3/AndroidManifest.xml:26:5-66
+31-->[com.wdullaer:materialdatetimepicker:4.2.3] /home/ramadan/.gradle/caches/transforms-4/955fbd1fa769e291d2d6c6105f067248/transformed/jetified-materialdatetimepicker-4.2.3/AndroidManifest.xml:26:22-63
+32    <uses-permission android:name="android.permission.WAKE_LOCK" />
+32-->[com.google.android.gms:play-services-measurement:21.3.0] /home/ramadan/.gradle/caches/transforms-4/58533b85df7ec4ec1668f0a74df4d437/transformed/jetified-play-services-measurement-21.3.0/AndroidManifest.xml:25:5-68
+32-->[com.google.android.gms:play-services-measurement:21.3.0] /home/ramadan/.gradle/caches/transforms-4/58533b85df7ec4ec1668f0a74df4d437/transformed/jetified-play-services-measurement-21.3.0/AndroidManifest.xml:25:22-65
+33    <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" />
+33-->[com.google.android.gms:play-services-measurement:21.3.0] /home/ramadan/.gradle/caches/transforms-4/58533b85df7ec4ec1668f0a74df4d437/transformed/jetified-play-services-measurement-21.3.0/AndroidManifest.xml:26:5-110
+33-->[com.google.android.gms:play-services-measurement:21.3.0] /home/ramadan/.gradle/caches/transforms-4/58533b85df7ec4ec1668f0a74df4d437/transformed/jetified-play-services-measurement-21.3.0/AndroidManifest.xml:26:22-107
+34    <uses-permission android:name="com.google.android.gms.permission.AD_ID" />
+34-->[com.google.android.gms:play-services-measurement-api:21.3.0] /home/ramadan/.gradle/caches/transforms-4/998e208d67f4d39ceba8a9d42924b29a/transformed/jetified-play-services-measurement-api-21.3.0/AndroidManifest.xml:25:5-79
+34-->[com.google.android.gms:play-services-measurement-api:21.3.0] /home/ramadan/.gradle/caches/transforms-4/998e208d67f4d39ceba8a9d42924b29a/transformed/jetified-play-services-measurement-api-21.3.0/AndroidManifest.xml:25:22-76
+35
+36    <permission
+36-->[androidx.core:core:1.10.1] /home/ramadan/.gradle/caches/transforms-4/949bd3149aaa2ffd78c5985d4a9a6e09/transformed/core-1.10.1/AndroidManifest.xml:22:5-24:47
+37        android:name="com.sugarcoachpremium.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+37-->[androidx.core:core:1.10.1] /home/ramadan/.gradle/caches/transforms-4/949bd3149aaa2ffd78c5985d4a9a6e09/transformed/core-1.10.1/AndroidManifest.xml:23:9-81
+38        android:protectionLevel="signature" />
+38-->[androidx.core:core:1.10.1] /home/ramadan/.gradle/caches/transforms-4/949bd3149aaa2ffd78c5985d4a9a6e09/transformed/core-1.10.1/AndroidManifest.xml:24:9-44
+39
+40    <uses-permission android:name="com.sugarcoachpremium.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+40-->[androidx.core:core:1.10.1] /home/ramadan/.gradle/caches/transforms-4/949bd3149aaa2ffd78c5985d4a9a6e09/transformed/core-1.10.1/AndroidManifest.xml:26:5-97
+40-->[androidx.core:core:1.10.1] /home/ramadan/.gradle/caches/transforms-4/949bd3149aaa2ffd78c5985d4a9a6e09/transformed/core-1.10.1/AndroidManifest.xml:26:22-94
+41    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+42
+43    <application
+43-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:22:5-121:19
+44        android:name="com.sugarcoachpremium.SugarApp"
+44-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:23:13-37
+45        android:allowBackup="true"
+45-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:24:13-39
+46        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+46-->[androidx.core:core:1.10.1] /home/ramadan/.gradle/caches/transforms-4/949bd3149aaa2ffd78c5985d4a9a6e09/transformed/core-1.10.1/AndroidManifest.xml:28:18-86
+47        android:debuggable="true"
+48        android:extractNativeLibs="false"
+49        android:icon="@drawable/logo_b"
+49-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:25:13-44
+50        android:label="@string/app_name"
+50-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:26:13-45
+51        android:largeHeap="true"
+51-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:27:13-37
+52        android:networkSecurityConfig="@xml/network_security_config"
+52-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:28:13-73
+53        android:roundIcon="@mipmap/ic_launcher_round"
+53-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:29:13-58
+54        android:supportsRtl="true"
+54-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:30:13-39
+55        android:testOnly="true"
+56        android:theme="@style/AppTheme" >
+56-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:31:13-44
+57        <activity
+57-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:32:9-34:44
+58            android:name="com.sugarcoachpremium.ui.table.view.TableActivity"
+58-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:33:17-60
+59            android:exported="false" />
+59-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:34:17-41
+60        <activity
+60-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:35:9-44:20
+61            android:name="com.sugarcoachpremium.ui.splash.view.SplashActivity"
+61-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:36:17-62
+62            android:exported="true" >
+62-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:37:17-40
+63            <intent-filter>
+63-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:38:13-43:29
+64                <action android:name="android.intent.action.MAIN" />
+64-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:39:17-69
+64-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:39:25-66
+65                <action android:name="android.intent.action.VIEW" />
+65-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:40:17-69
+65-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:40:25-66
+66
+67                <category android:name="android.intent.category.LAUNCHER" />
+67-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:42:17-77
+67-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:42:27-74
+68            </intent-filter>
+69        </activity>
+70        <activity
+70-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:45:9-47:71
+71            android:name="com.sugarcoachpremium.ui.main.view.MainActivity"
+71-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:46:17-58
+72            android:theme="@style/AppTheme.FullScreen" />
+72-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:47:17-59
+73        <activity
+73-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:48:9-50:71
+74            android:name="com.sugarcoachpremium.ui.register.view.RegisterActivity"
+74-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:49:17-66
+75            android:theme="@style/AppTheme.FullScreen" />
+75-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:50:17-59
+76        <activity
+76-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:51:9-53:71
+77            android:name="com.sugarcoachpremium.ui.treatment.view.TreatmentActivity"
+77-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:52:17-68
+78            android:theme="@style/AppTheme.FullScreen" />
+78-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:53:17-59
+79        <activity
+79-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:54:9-56:71
+80            android:name="com.sugarcoachpremium.ui.sign.view.SignActivity"
+80-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:55:17-58
+81            android:theme="@style/AppTheme.FullScreen" />
+81-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:56:17-59
+82        <activity
+82-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:57:9-59:71
+83            android:name="com.sugarcoachpremium.ui.login.view.LoginActivity"
+83-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:58:17-60
+84            android:theme="@style/AppTheme.FullScreen" />
+84-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:59:17-59
+85        <activity android:name="com.sugarcoachpremium.ui.onboarding.view.OnBoardingActivity" />
+85-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:60:9-84
+85-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:60:19-72
+86        <activity
+86-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:61:9-63:71
+87            android:name="com.sugarcoachpremium.ui.signEmail.view.SignEmailActivity"
+87-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:62:17-68
+88            android:theme="@style/AppTheme.FullScreen" />
+88-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:63:17-59
+89        <activity
+89-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:64:9-66:71
+90            android:name="com.sugarcoachpremium.ui.daily.view.DailyActivity"
+90-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:65:17-60
+91            android:theme="@style/AppTheme.FullScreen" />
+91-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:66:17-59
+92        <activity
+92-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:67:9-69:71
+93            android:name="com.sugarcoachpremium.ui.daily_detail.view.DailyDetailActivity"
+93-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:68:17-73
+94            android:theme="@style/AppTheme.FullScreen" />
+94-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:69:17-59
+95        <activity
+95-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:70:9-72:71
+96            android:name="com.sugarcoachpremium.ui.profile.view.ProfileActivity"
+96-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:71:17-64
+97            android:theme="@style/AppTheme.FullScreen" />
+97-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:72:17-59
+98        <activity
+98-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:73:9-75:71
+99            android:name="com.sugarcoachpremium.ui.config.view.ConfigActivity"
+99-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:74:17-62
+100            android:theme="@style/AppTheme.FullScreen" />
+100-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:75:17-59
+101        <activity
+101-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:76:9-78:71
+102            android:name="com.sugarcoachpremium.ui.statistics.view.StatisticsActivity"
+102-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:77:17-70
+103            android:theme="@style/AppTheme.FullScreen" />
+103-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:78:17-59
+104        <activity
+104-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:79:9-81:71
+105            android:name="com.sugarcoachpremium.ui.forgot.view.ForgotActivity"
+105-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:80:17-62
+106            android:theme="@style/AppTheme.FullScreen" />
+106-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:81:17-59
+107        <activity
+107-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:82:9-85:52
+108            android:name="com.facebook.FacebookActivity"
+108-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:83:17-61
+109            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+109-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:84:17-100
+110            android:label="@string/app_name"
+110-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:85:17-49
+111            android:theme="@style/com_facebook_activity_theme" />
+111-->[com.facebook.android:facebook-common:17.0.1] /home/ramadan/.gradle/caches/transforms-4/8de134f099c42948555ef8e1d2a2e2a3/transformed/jetified-facebook-common-17.0.1/AndroidManifest.xml:25:13-63
+112        <activity
+112-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:86:9-97:20
+113            android:name="com.facebook.CustomTabActivity"
+113-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:87:17-62
+114            android:exported="true" >
+114-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:88:17-40
+115            <intent-filter>
+115-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:89:13-96:29
+116                <action android:name="android.intent.action.VIEW" />
+116-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:40:17-69
+116-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:40:25-66
+117
+118                <category android:name="android.intent.category.DEFAULT" />
+118-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:92:17-76
+118-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:92:27-73
+119                <category android:name="android.intent.category.BROWSABLE" />
+119-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:93:17-78
+119-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:93:27-75
+120
+121                <data android:scheme="@string/fb_login_protocol_scheme" />
+121-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:95:17-75
+121-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:95:23-72
+122            </intent-filter>
+123            <intent-filter>
+123-->[com.facebook.android:facebook-common:17.0.1] /home/ramadan/.gradle/caches/transforms-4/8de134f099c42948555ef8e1d2a2e2a3/transformed/jetified-facebook-common-17.0.1/AndroidManifest.xml:31:13-40:29
+124                <action android:name="android.intent.action.VIEW" />
+124-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:40:17-69
+124-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:40:25-66
+125
+126                <category android:name="android.intent.category.DEFAULT" />
+126-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:92:17-76
+126-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:92:27-73
+127                <category android:name="android.intent.category.BROWSABLE" />
+127-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:93:17-78
+127-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:93:27-75
+128
+129                <data
+129-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:95:17-75
+130                    android:host="cct.com.sugarcoachpremium"
+131                    android:scheme="fbconnect" />
+131-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:95:23-72
+132            </intent-filter>
+133        </activity>
+134
+135        <meta-data
+135-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:99:9-101:59
+136            android:name="com.facebook.sdk.ApplicationId"
+136-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:100:17-62
+137            android:value="@string/facebook_app_id" />
+137-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:101:17-56
+138        <meta-data
+138-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:102:9-104:65
+139            android:name="com.facebook.sdk.ClientToken"
+139-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:103:17-60
+140            android:value="@string/facebook_client_token" />
+140-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:104:17-62
+141        <meta-data
+141-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:105:9-107:40
+142            android:name="com.facebook.sdk.AutoLogAppEventsEnabled"
+142-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:106:17-72
+143            android:value="true" />
+143-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:107:17-37
+144        <meta-data
+144-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:108:9-110:40
+145            android:name="com.facebook.sdk.AdvertiserIDCollectionEnabled"
+145-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:109:17-78
+146            android:value="true" />
+146-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:110:17-37
+147
+148        <provider
+149            android:name="com.sugarcoachpremium.util.GenericFileProvider"
+149-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:113:17-57
+150            android:authorities="com.sugarcoachpremium.provider"
+150-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:114:17-64
+151            android:exported="false"
+151-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:115:17-41
+152            android:grantUriPermissions="true" >
+152-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:116:17-51
+153            <meta-data
+153-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:117:13-119:62
+154                android:name="android.support.FILE_PROVIDER_PATHS"
+154-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:118:21-71
+155                android:resource="@xml/provider_paths" />
+155-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:119:21-59
+156        </provider>
+157
+158        <service
+158-->[androidx.room:room-runtime:2.5.0] /home/ramadan/.gradle/caches/transforms-4/246dc2817b9ee0ec482f6937d4ec3e80/transformed/room-runtime-2.5.0/AndroidManifest.xml:24:9-28:63
+159            android:name="androidx.room.MultiInstanceInvalidationService"
+159-->[androidx.room:room-runtime:2.5.0] /home/ramadan/.gradle/caches/transforms-4/246dc2817b9ee0ec482f6937d4ec3e80/transformed/room-runtime-2.5.0/AndroidManifest.xml:25:13-74
+160            android:directBootAware="true"
+160-->[androidx.room:room-runtime:2.5.0] /home/ramadan/.gradle/caches/transforms-4/246dc2817b9ee0ec482f6937d4ec3e80/transformed/room-runtime-2.5.0/AndroidManifest.xml:26:13-43
+161            android:exported="false" />
+161-->[androidx.room:room-runtime:2.5.0] /home/ramadan/.gradle/caches/transforms-4/246dc2817b9ee0ec482f6937d4ec3e80/transformed/room-runtime-2.5.0/AndroidManifest.xml:27:13-37
+162
+163        <activity android:name="com.notbytes.barcode_reader.BarcodeReaderActivity" />
+163-->[:barcode-reader] /home/ramadan/Desktop/Sugar-coach/SugarCoach/barcode-reader/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:12:9-86
+163-->[:barcode-reader] /home/ramadan/Desktop/Sugar-coach/SugarCoach/barcode-reader/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:12:19-83
+164        <activity android:name="com.facebook.CustomTabMainActivity" />
+164-->[com.facebook.android:facebook-common:17.0.1] /home/ramadan/.gradle/caches/transforms-4/8de134f099c42948555ef8e1d2a2e2a3/transformed/jetified-facebook-common-17.0.1/AndroidManifest.xml:26:9-71
+164-->[com.facebook.android:facebook-common:17.0.1] /home/ramadan/.gradle/caches/transforms-4/8de134f099c42948555ef8e1d2a2e2a3/transformed/jetified-facebook-common-17.0.1/AndroidManifest.xml:26:19-68
+165        <activity
+165-->[com.google.android.gms:play-services-auth:20.7.0] /home/ramadan/.gradle/caches/transforms-4/5d6e0f38bbeb51da886b59cc396214ef/transformed/jetified-play-services-auth-20.7.0/AndroidManifest.xml:23:9-27:75
+166            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
+166-->[com.google.android.gms:play-services-auth:20.7.0] /home/ramadan/.gradle/caches/transforms-4/5d6e0f38bbeb51da886b59cc396214ef/transformed/jetified-play-services-auth-20.7.0/AndroidManifest.xml:24:13-93
+167            android:excludeFromRecents="true"
+167-->[com.google.android.gms:play-services-auth:20.7.0] /home/ramadan/.gradle/caches/transforms-4/5d6e0f38bbeb51da886b59cc396214ef/transformed/jetified-play-services-auth-20.7.0/AndroidManifest.xml:25:13-46
+168            android:exported="false"
+168-->[com.google.android.gms:play-services-auth:20.7.0] /home/ramadan/.gradle/caches/transforms-4/5d6e0f38bbeb51da886b59cc396214ef/transformed/jetified-play-services-auth-20.7.0/AndroidManifest.xml:26:13-37
+169            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+169-->[com.google.android.gms:play-services-auth:20.7.0] /home/ramadan/.gradle/caches/transforms-4/5d6e0f38bbeb51da886b59cc396214ef/transformed/jetified-play-services-auth-20.7.0/AndroidManifest.xml:27:13-72
+170        <!--
+171            Service handling Google Sign-In user revocation. For apps that do not integrate with
+172            Google Sign-In, this service will never be started.
+173        -->
+174        <service
+174-->[com.google.android.gms:play-services-auth:20.7.0] /home/ramadan/.gradle/caches/transforms-4/5d6e0f38bbeb51da886b59cc396214ef/transformed/jetified-play-services-auth-20.7.0/AndroidManifest.xml:33:9-37:51
+175            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
+175-->[com.google.android.gms:play-services-auth:20.7.0] /home/ramadan/.gradle/caches/transforms-4/5d6e0f38bbeb51da886b59cc396214ef/transformed/jetified-play-services-auth-20.7.0/AndroidManifest.xml:34:13-89
+176            android:exported="true"
+176-->[com.google.android.gms:play-services-auth:20.7.0] /home/ramadan/.gradle/caches/transforms-4/5d6e0f38bbeb51da886b59cc396214ef/transformed/jetified-play-services-auth-20.7.0/AndroidManifest.xml:35:13-36
+177            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION"
+177-->[com.google.android.gms:play-services-auth:20.7.0] /home/ramadan/.gradle/caches/transforms-4/5d6e0f38bbeb51da886b59cc396214ef/transformed/jetified-play-services-auth-20.7.0/AndroidManifest.xml:36:13-107
+178            android:visibleToInstantApps="true" />
+178-->[com.google.android.gms:play-services-auth:20.7.0] /home/ramadan/.gradle/caches/transforms-4/5d6e0f38bbeb51da886b59cc396214ef/transformed/jetified-play-services-auth-20.7.0/AndroidManifest.xml:37:13-48
+179        <service
+179-->[com.google.firebase:firebase-auth-ktx:22.1.2] /home/ramadan/.gradle/caches/transforms-4/c6b9e80c2b61d73057591cf17dfa320d/transformed/jetified-firebase-auth-ktx-22.1.2/AndroidManifest.xml:8:9-14:19
+180            android:name="com.google.firebase.components.ComponentDiscoveryService"
+180-->[com.google.firebase:firebase-auth-ktx:22.1.2] /home/ramadan/.gradle/caches/transforms-4/c6b9e80c2b61d73057591cf17dfa320d/transformed/jetified-firebase-auth-ktx-22.1.2/AndroidManifest.xml:9:13-84
+181            android:directBootAware="true"
+181-->[com.google.firebase:firebase-common:20.3.3] /home/ramadan/.gradle/caches/transforms-4/ce35520c6debf12d7a32d0c19e57ff76/transformed/jetified-firebase-common-20.3.3/AndroidManifest.xml:34:13-43
+182            android:exported="false" >
+182-->[com.google.firebase:firebase-auth-ktx:22.1.2] /home/ramadan/.gradle/caches/transforms-4/c6b9e80c2b61d73057591cf17dfa320d/transformed/jetified-firebase-auth-ktx-22.1.2/AndroidManifest.xml:10:13-37
+183            <meta-data
+183-->[com.google.firebase:firebase-auth-ktx:22.1.2] /home/ramadan/.gradle/caches/transforms-4/c6b9e80c2b61d73057591cf17dfa320d/transformed/jetified-firebase-auth-ktx-22.1.2/AndroidManifest.xml:11:13-13:85
+184                android:name="com.google.firebase.components:com.google.firebase.auth.ktx.FirebaseAuthKtxRegistrar"
+184-->[com.google.firebase:firebase-auth-ktx:22.1.2] /home/ramadan/.gradle/caches/transforms-4/c6b9e80c2b61d73057591cf17dfa320d/transformed/jetified-firebase-auth-ktx-22.1.2/AndroidManifest.xml:12:17-116
+185                android:value="com.google.firebase.components.ComponentRegistrar" />
+185-->[com.google.firebase:firebase-auth-ktx:22.1.2] /home/ramadan/.gradle/caches/transforms-4/c6b9e80c2b61d73057591cf17dfa320d/transformed/jetified-firebase-auth-ktx-22.1.2/AndroidManifest.xml:13:17-82
+186            <meta-data
+186-->[com.google.firebase:firebase-auth:22.1.2] /home/ramadan/.gradle/caches/transforms-4/a451a49ac2deed4f045e21957902563a/transformed/jetified-firebase-auth-22.1.2/AndroidManifest.xml:69:13-71:85
+187                android:name="com.google.firebase.components:com.google.firebase.auth.FirebaseAuthRegistrar"
+187-->[com.google.firebase:firebase-auth:22.1.2] /home/ramadan/.gradle/caches/transforms-4/a451a49ac2deed4f045e21957902563a/transformed/jetified-firebase-auth-22.1.2/AndroidManifest.xml:70:17-109
+188                android:value="com.google.firebase.components.ComponentRegistrar" />
+188-->[com.google.firebase:firebase-auth:22.1.2] /home/ramadan/.gradle/caches/transforms-4/a451a49ac2deed4f045e21957902563a/transformed/jetified-firebase-auth-22.1.2/AndroidManifest.xml:71:17-82
+189            <meta-data
+189-->[com.google.android.gms:play-services-measurement-api:21.3.0] /home/ramadan/.gradle/caches/transforms-4/998e208d67f4d39ceba8a9d42924b29a/transformed/jetified-play-services-measurement-api-21.3.0/AndroidManifest.xml:31:13-33:85
+190                android:name="com.google.firebase.components:com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar"
+190-->[com.google.android.gms:play-services-measurement-api:21.3.0] /home/ramadan/.gradle/caches/transforms-4/998e208d67f4d39ceba8a9d42924b29a/transformed/jetified-play-services-measurement-api-21.3.0/AndroidManifest.xml:32:17-139
+191                android:value="com.google.firebase.components.ComponentRegistrar" />
+191-->[com.google.android.gms:play-services-measurement-api:21.3.0] /home/ramadan/.gradle/caches/transforms-4/998e208d67f4d39ceba8a9d42924b29a/transformed/jetified-play-services-measurement-api-21.3.0/AndroidManifest.xml:33:17-82
+192            <meta-data
+192-->[com.google.firebase:firebase-common-ktx:20.3.3] /home/ramadan/.gradle/caches/transforms-4/9ec0c47244d3c5a033e59aad6fce2007/transformed/jetified-firebase-common-ktx-20.3.3/AndroidManifest.xml:14:13-16:85
+193                android:name="com.google.firebase.components:com.google.firebase.ktx.FirebaseCommonKtxRegistrar"
+193-->[com.google.firebase:firebase-common-ktx:20.3.3] /home/ramadan/.gradle/caches/transforms-4/9ec0c47244d3c5a033e59aad6fce2007/transformed/jetified-firebase-common-ktx-20.3.3/AndroidManifest.xml:15:17-113
+194                android:value="com.google.firebase.components.ComponentRegistrar" />
+194-->[com.google.firebase:firebase-common-ktx:20.3.3] /home/ramadan/.gradle/caches/transforms-4/9ec0c47244d3c5a033e59aad6fce2007/transformed/jetified-firebase-common-ktx-20.3.3/AndroidManifest.xml:16:17-82
+195            <meta-data
+195-->[com.google.firebase:firebase-installations:17.1.4] /home/ramadan/.gradle/caches/transforms-4/49905de1e8d35f4810a720bb833007e1/transformed/jetified-firebase-installations-17.1.4/AndroidManifest.xml:15:13-17:85
+196                android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsRegistrar"
+196-->[com.google.firebase:firebase-installations:17.1.4] /home/ramadan/.gradle/caches/transforms-4/49905de1e8d35f4810a720bb833007e1/transformed/jetified-firebase-installations-17.1.4/AndroidManifest.xml:16:17-127
+197                android:value="com.google.firebase.components.ComponentRegistrar" />
+197-->[com.google.firebase:firebase-installations:17.1.4] /home/ramadan/.gradle/caches/transforms-4/49905de1e8d35f4810a720bb833007e1/transformed/jetified-firebase-installations-17.1.4/AndroidManifest.xml:17:17-82
+198        </service>
+199
+200        <activity
+200-->[com.google.firebase:firebase-auth:22.1.2] /home/ramadan/.gradle/caches/transforms-4/a451a49ac2deed4f045e21957902563a/transformed/jetified-firebase-auth-22.1.2/AndroidManifest.xml:29:9-46:20
+201            android:name="com.google.firebase.auth.internal.GenericIdpActivity"
+201-->[com.google.firebase:firebase-auth:22.1.2] /home/ramadan/.gradle/caches/transforms-4/a451a49ac2deed4f045e21957902563a/transformed/jetified-firebase-auth-22.1.2/AndroidManifest.xml:30:13-80
+202            android:excludeFromRecents="true"
+202-->[com.google.firebase:firebase-auth:22.1.2] /home/ramadan/.gradle/caches/transforms-4/a451a49ac2deed4f045e21957902563a/transformed/jetified-firebase-auth-22.1.2/AndroidManifest.xml:31:13-46
+203            android:exported="true"
+203-->[com.google.firebase:firebase-auth:22.1.2] /home/ramadan/.gradle/caches/transforms-4/a451a49ac2deed4f045e21957902563a/transformed/jetified-firebase-auth-22.1.2/AndroidManifest.xml:32:13-36
+204            android:launchMode="singleTask"
+204-->[com.google.firebase:firebase-auth:22.1.2] /home/ramadan/.gradle/caches/transforms-4/a451a49ac2deed4f045e21957902563a/transformed/jetified-firebase-auth-22.1.2/AndroidManifest.xml:33:13-44
+205            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+205-->[com.google.firebase:firebase-auth:22.1.2] /home/ramadan/.gradle/caches/transforms-4/a451a49ac2deed4f045e21957902563a/transformed/jetified-firebase-auth-22.1.2/AndroidManifest.xml:34:13-72
+206            <intent-filter>
+206-->[com.google.firebase:firebase-auth:22.1.2] /home/ramadan/.gradle/caches/transforms-4/a451a49ac2deed4f045e21957902563a/transformed/jetified-firebase-auth-22.1.2/AndroidManifest.xml:35:13-45:29
+207                <action android:name="android.intent.action.VIEW" />
+207-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:40:17-69
+207-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:40:25-66
+208
+209                <category android:name="android.intent.category.DEFAULT" />
+209-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:92:17-76
+209-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:92:27-73
+210                <category android:name="android.intent.category.BROWSABLE" />
+210-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:93:17-78
+210-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:93:27-75
+211
+212                <data
+212-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:95:17-75
+213                    android:host="firebase.auth"
+214                    android:path="/"
+215                    android:scheme="genericidp" />
+215-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:95:23-72
+216            </intent-filter>
+217        </activity>
+218        <activity
+218-->[com.google.firebase:firebase-auth:22.1.2] /home/ramadan/.gradle/caches/transforms-4/a451a49ac2deed4f045e21957902563a/transformed/jetified-firebase-auth-22.1.2/AndroidManifest.xml:47:9-64:20
+219            android:name="com.google.firebase.auth.internal.RecaptchaActivity"
+219-->[com.google.firebase:firebase-auth:22.1.2] /home/ramadan/.gradle/caches/transforms-4/a451a49ac2deed4f045e21957902563a/transformed/jetified-firebase-auth-22.1.2/AndroidManifest.xml:48:13-79
+220            android:excludeFromRecents="true"
+220-->[com.google.firebase:firebase-auth:22.1.2] /home/ramadan/.gradle/caches/transforms-4/a451a49ac2deed4f045e21957902563a/transformed/jetified-firebase-auth-22.1.2/AndroidManifest.xml:49:13-46
+221            android:exported="true"
+221-->[com.google.firebase:firebase-auth:22.1.2] /home/ramadan/.gradle/caches/transforms-4/a451a49ac2deed4f045e21957902563a/transformed/jetified-firebase-auth-22.1.2/AndroidManifest.xml:50:13-36
+222            android:launchMode="singleTask"
+222-->[com.google.firebase:firebase-auth:22.1.2] /home/ramadan/.gradle/caches/transforms-4/a451a49ac2deed4f045e21957902563a/transformed/jetified-firebase-auth-22.1.2/AndroidManifest.xml:51:13-44
+223            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+223-->[com.google.firebase:firebase-auth:22.1.2] /home/ramadan/.gradle/caches/transforms-4/a451a49ac2deed4f045e21957902563a/transformed/jetified-firebase-auth-22.1.2/AndroidManifest.xml:52:13-72
+224            <intent-filter>
+224-->[com.google.firebase:firebase-auth:22.1.2] /home/ramadan/.gradle/caches/transforms-4/a451a49ac2deed4f045e21957902563a/transformed/jetified-firebase-auth-22.1.2/AndroidManifest.xml:53:13-63:29
+225                <action android:name="android.intent.action.VIEW" />
+225-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:40:17-69
+225-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:40:25-66
+226
+227                <category android:name="android.intent.category.DEFAULT" />
+227-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:92:17-76
+227-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:92:27-73
+228                <category android:name="android.intent.category.BROWSABLE" />
+228-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:93:17-78
+228-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:93:27-75
+229
+230                <data
+230-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:95:17-75
+231                    android:host="firebase.auth"
+232                    android:path="/"
+233                    android:scheme="recaptcha" />
+233-->/home/ramadan/Desktop/Sugar-coach/SugarCoach/app/src/main/AndroidManifest.xml:95:23-72
+234            </intent-filter>
+235        </activity>
+236        <activity
+236-->[com.google.android.gms:play-services-base:18.0.1] /home/ramadan/.gradle/caches/transforms-4/3c3d0c1a7251ce292d33069dacb3f91e/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:20:9-22:45
+237            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+237-->[com.google.android.gms:play-services-base:18.0.1] /home/ramadan/.gradle/caches/transforms-4/3c3d0c1a7251ce292d33069dacb3f91e/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:20:19-85
+238            android:exported="false"
+238-->[com.google.android.gms:play-services-base:18.0.1] /home/ramadan/.gradle/caches/transforms-4/3c3d0c1a7251ce292d33069dacb3f91e/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:22:19-43
+239            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+239-->[com.google.android.gms:play-services-base:18.0.1] /home/ramadan/.gradle/caches/transforms-4/3c3d0c1a7251ce292d33069dacb3f91e/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:21:19-78
+240
+241        <receiver
+241-->[com.google.android.gms:play-services-measurement:21.3.0] /home/ramadan/.gradle/caches/transforms-4/58533b85df7ec4ec1668f0a74df4d437/transformed/jetified-play-services-measurement-21.3.0/AndroidManifest.xml:29:9-33:20
+242            android:name="com.google.android.gms.measurement.AppMeasurementReceiver"
+242-->[com.google.android.gms:play-services-measurement:21.3.0] /home/ramadan/.gradle/caches/transforms-4/58533b85df7ec4ec1668f0a74df4d437/transformed/jetified-play-services-measurement-21.3.0/AndroidManifest.xml:30:13-85
+243            android:enabled="true"
+243-->[com.google.android.gms:play-services-measurement:21.3.0] /home/ramadan/.gradle/caches/transforms-4/58533b85df7ec4ec1668f0a74df4d437/transformed/jetified-play-services-measurement-21.3.0/AndroidManifest.xml:31:13-35
+244            android:exported="false" >
+244-->[com.google.android.gms:play-services-measurement:21.3.0] /home/ramadan/.gradle/caches/transforms-4/58533b85df7ec4ec1668f0a74df4d437/transformed/jetified-play-services-measurement-21.3.0/AndroidManifest.xml:32:13-37
+245        </receiver>
+246
+247        <service
+247-->[com.google.android.gms:play-services-measurement:21.3.0] /home/ramadan/.gradle/caches/transforms-4/58533b85df7ec4ec1668f0a74df4d437/transformed/jetified-play-services-measurement-21.3.0/AndroidManifest.xml:35:9-38:40
+248            android:name="com.google.android.gms.measurement.AppMeasurementService"
+248-->[com.google.android.gms:play-services-measurement:21.3.0] /home/ramadan/.gradle/caches/transforms-4/58533b85df7ec4ec1668f0a74df4d437/transformed/jetified-play-services-measurement-21.3.0/AndroidManifest.xml:36:13-84
+249            android:enabled="true"
+249-->[com.google.android.gms:play-services-measurement:21.3.0] /home/ramadan/.gradle/caches/transforms-4/58533b85df7ec4ec1668f0a74df4d437/transformed/jetified-play-services-measurement-21.3.0/AndroidManifest.xml:37:13-35
+250            android:exported="false" />
+250-->[com.google.android.gms:play-services-measurement:21.3.0] /home/ramadan/.gradle/caches/transforms-4/58533b85df7ec4ec1668f0a74df4d437/transformed/jetified-play-services-measurement-21.3.0/AndroidManifest.xml:38:13-37
+251        <service
+251-->[com.google.android.gms:play-services-measurement:21.3.0] /home/ramadan/.gradle/caches/transforms-4/58533b85df7ec4ec1668f0a74df4d437/transformed/jetified-play-services-measurement-21.3.0/AndroidManifest.xml:39:9-43:72
+252            android:name="com.google.android.gms.measurement.AppMeasurementJobService"
+252-->[com.google.android.gms:play-services-measurement:21.3.0] /home/ramadan/.gradle/caches/transforms-4/58533b85df7ec4ec1668f0a74df4d437/transformed/jetified-play-services-measurement-21.3.0/AndroidManifest.xml:40:13-87
+253            android:enabled="true"
+253-->[com.google.android.gms:play-services-measurement:21.3.0] /home/ramadan/.gradle/caches/transforms-4/58533b85df7ec4ec1668f0a74df4d437/transformed/jetified-play-services-measurement-21.3.0/AndroidManifest.xml:41:13-35
+254            android:exported="false"
+254-->[com.google.android.gms:play-services-measurement:21.3.0] /home/ramadan/.gradle/caches/transforms-4/58533b85df7ec4ec1668f0a74df4d437/transformed/jetified-play-services-measurement-21.3.0/AndroidManifest.xml:42:13-37
+255            android:permission="android.permission.BIND_JOB_SERVICE" />
+255-->[com.google.android.gms:play-services-measurement:21.3.0] /home/ramadan/.gradle/caches/transforms-4/58533b85df7ec4ec1668f0a74df4d437/transformed/jetified-play-services-measurement-21.3.0/AndroidManifest.xml:43:13-69
+256
+257        <provider
+257-->[com.google.firebase:firebase-common:20.3.3] /home/ramadan/.gradle/caches/transforms-4/ce35520c6debf12d7a32d0c19e57ff76/transformed/jetified-firebase-common-20.3.3/AndroidManifest.xml:25:9-30:39
+258            android:name="com.google.firebase.provider.FirebaseInitProvider"
+258-->[com.google.firebase:firebase-common:20.3.3] /home/ramadan/.gradle/caches/transforms-4/ce35520c6debf12d7a32d0c19e57ff76/transformed/jetified-firebase-common-20.3.3/AndroidManifest.xml:26:13-77
+259            android:authorities="com.sugarcoachpremium.firebaseinitprovider"
+259-->[com.google.firebase:firebase-common:20.3.3] /home/ramadan/.gradle/caches/transforms-4/ce35520c6debf12d7a32d0c19e57ff76/transformed/jetified-firebase-common-20.3.3/AndroidManifest.xml:27:13-72
+260            android:directBootAware="true"
+260-->[com.google.firebase:firebase-common:20.3.3] /home/ramadan/.gradle/caches/transforms-4/ce35520c6debf12d7a32d0c19e57ff76/transformed/jetified-firebase-common-20.3.3/AndroidManifest.xml:28:13-43
+261            android:exported="false"
+261-->[com.google.firebase:firebase-common:20.3.3] /home/ramadan/.gradle/caches/transforms-4/ce35520c6debf12d7a32d0c19e57ff76/transformed/jetified-firebase-common-20.3.3/AndroidManifest.xml:29:13-37
+262            android:initOrder="100" />
+262-->[com.google.firebase:firebase-common:20.3.3] /home/ramadan/.gradle/caches/transforms-4/ce35520c6debf12d7a32d0c19e57ff76/transformed/jetified-firebase-common-20.3.3/AndroidManifest.xml:30:13-36
+263
+264        <meta-data
+264-->[com.google.android.gms:play-services-basement:18.2.0] /home/ramadan/.gradle/caches/transforms-4/1185e311603659e24a0c8516a00e9cd3/transformed/jetified-play-services-basement-18.2.0/AndroidManifest.xml:21:9-23:69
+265            android:name="com.google.android.gms.version"
+265-->[com.google.android.gms:play-services-basement:18.2.0] /home/ramadan/.gradle/caches/transforms-4/1185e311603659e24a0c8516a00e9cd3/transformed/jetified-play-services-basement-18.2.0/AndroidManifest.xml:22:13-58
+266            android:value="@integer/google_play_services_version" />
+266-->[com.google.android.gms:play-services-basement:18.2.0] /home/ramadan/.gradle/caches/transforms-4/1185e311603659e24a0c8516a00e9cd3/transformed/jetified-play-services-basement-18.2.0/AndroidManifest.xml:23:13-66
+267        <!--
+268         The initialization ContentProvider will call FacebookSdk.sdkInitialize automatically
+269         with the application context. This config is merged in with the host app's manifest,
+270         but there can only be one provider with the same authority activated at any given
+271         point; so if the end user has two or more different apps that use Facebook SDK, only the
+272         first one will be able to use the provider. To work around this problem, we use the
+273         following placeholder in the authority to identify each host application as if it was
+274         a completely different provider.
+275        -->
+276        <provider
+276-->[com.facebook.android:facebook-core:17.0.1] /home/ramadan/.gradle/caches/transforms-4/3877f85a83ee1f74273cf2b61238f10e/transformed/jetified-facebook-core-17.0.1/AndroidManifest.xml:29:9-32:40
+277            android:name="com.facebook.internal.FacebookInitProvider"
+277-->[com.facebook.android:facebook-core:17.0.1] /home/ramadan/.gradle/caches/transforms-4/3877f85a83ee1f74273cf2b61238f10e/transformed/jetified-facebook-core-17.0.1/AndroidManifest.xml:30:13-70
+278            android:authorities="com.sugarcoachpremium.FacebookInitProvider"
+278-->[com.facebook.android:facebook-core:17.0.1] /home/ramadan/.gradle/caches/transforms-4/3877f85a83ee1f74273cf2b61238f10e/transformed/jetified-facebook-core-17.0.1/AndroidManifest.xml:31:13-72
+279            android:exported="false" />
+279-->[com.facebook.android:facebook-core:17.0.1] /home/ramadan/.gradle/caches/transforms-4/3877f85a83ee1f74273cf2b61238f10e/transformed/jetified-facebook-core-17.0.1/AndroidManifest.xml:32:13-37
+280
+281        <receiver
+281-->[com.facebook.android:facebook-core:17.0.1] /home/ramadan/.gradle/caches/transforms-4/3877f85a83ee1f74273cf2b61238f10e/transformed/jetified-facebook-core-17.0.1/AndroidManifest.xml:34:9-40:20
+282            android:name="com.facebook.CurrentAccessTokenExpirationBroadcastReceiver"
+282-->[com.facebook.android:facebook-core:17.0.1] /home/ramadan/.gradle/caches/transforms-4/3877f85a83ee1f74273cf2b61238f10e/transformed/jetified-facebook-core-17.0.1/AndroidManifest.xml:35:13-86
+283            android:exported="false" >
+283-->[com.facebook.android:facebook-core:17.0.1] /home/ramadan/.gradle/caches/transforms-4/3877f85a83ee1f74273cf2b61238f10e/transformed/jetified-facebook-core-17.0.1/AndroidManifest.xml:36:13-37
+284            <intent-filter>
+284-->[com.facebook.android:facebook-core:17.0.1] /home/ramadan/.gradle/caches/transforms-4/3877f85a83ee1f74273cf2b61238f10e/transformed/jetified-facebook-core-17.0.1/AndroidManifest.xml:37:13-39:29
+285                <action android:name="com.facebook.sdk.ACTION_CURRENT_ACCESS_TOKEN_CHANGED" />
+285-->[com.facebook.android:facebook-core:17.0.1] /home/ramadan/.gradle/caches/transforms-4/3877f85a83ee1f74273cf2b61238f10e/transformed/jetified-facebook-core-17.0.1/AndroidManifest.xml:38:17-95
+285-->[com.facebook.android:facebook-core:17.0.1] /home/ramadan/.gradle/caches/transforms-4/3877f85a83ee1f74273cf2b61238f10e/transformed/jetified-facebook-core-17.0.1/AndroidManifest.xml:38:25-92
+286            </intent-filter>
+287        </receiver>
+288        <receiver
+288-->[com.facebook.android:facebook-core:17.0.1] /home/ramadan/.gradle/caches/transforms-4/3877f85a83ee1f74273cf2b61238f10e/transformed/jetified-facebook-core-17.0.1/AndroidManifest.xml:41:9-47:20
+289            android:name="com.facebook.AuthenticationTokenManager$CurrentAuthenticationTokenChangedBroadcastReceiver"
+289-->[com.facebook.android:facebook-core:17.0.1] /home/ramadan/.gradle/caches/transforms-4/3877f85a83ee1f74273cf2b61238f10e/transformed/jetified-facebook-core-17.0.1/AndroidManifest.xml:42:13-118
+290            android:exported="false" >
+290-->[com.facebook.android:facebook-core:17.0.1] /home/ramadan/.gradle/caches/transforms-4/3877f85a83ee1f74273cf2b61238f10e/transformed/jetified-facebook-core-17.0.1/AndroidManifest.xml:43:13-37
+291            <intent-filter>
+291-->[com.facebook.android:facebook-core:17.0.1] /home/ramadan/.gradle/caches/transforms-4/3877f85a83ee1f74273cf2b61238f10e/transformed/jetified-facebook-core-17.0.1/AndroidManifest.xml:44:13-46:29
+292                <action android:name="com.facebook.sdk.ACTION_CURRENT_AUTHENTICATION_TOKEN_CHANGED" />
+292-->[com.facebook.android:facebook-core:17.0.1] /home/ramadan/.gradle/caches/transforms-4/3877f85a83ee1f74273cf2b61238f10e/transformed/jetified-facebook-core-17.0.1/AndroidManifest.xml:45:17-103
+292-->[com.facebook.android:facebook-core:17.0.1] /home/ramadan/.gradle/caches/transforms-4/3877f85a83ee1f74273cf2b61238f10e/transformed/jetified-facebook-core-17.0.1/AndroidManifest.xml:45:25-100
+293            </intent-filter>
+294        </receiver>
+295
+296        <provider
+296-->[androidx.emoji2:emoji2:1.2.0] /home/ramadan/.gradle/caches/transforms-4/85724c271d01dc549768f8cd9a09bf1d/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:24:9-32:20
+297            android:name="androidx.startup.InitializationProvider"
+297-->[androidx.emoji2:emoji2:1.2.0] /home/ramadan/.gradle/caches/transforms-4/85724c271d01dc549768f8cd9a09bf1d/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:25:13-67
+298            android:authorities="com.sugarcoachpremium.androidx-startup"
+298-->[androidx.emoji2:emoji2:1.2.0] /home/ramadan/.gradle/caches/transforms-4/85724c271d01dc549768f8cd9a09bf1d/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:26:13-68
+299            android:exported="false" >
+299-->[androidx.emoji2:emoji2:1.2.0] /home/ramadan/.gradle/caches/transforms-4/85724c271d01dc549768f8cd9a09bf1d/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:27:13-37
+300            <meta-data
+300-->[androidx.emoji2:emoji2:1.2.0] /home/ramadan/.gradle/caches/transforms-4/85724c271d01dc549768f8cd9a09bf1d/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:29:13-31:52
+301                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+301-->[androidx.emoji2:emoji2:1.2.0] /home/ramadan/.gradle/caches/transforms-4/85724c271d01dc549768f8cd9a09bf1d/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:30:17-75
+302                android:value="androidx.startup" />
+302-->[androidx.emoji2:emoji2:1.2.0] /home/ramadan/.gradle/caches/transforms-4/85724c271d01dc549768f8cd9a09bf1d/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:31:17-49
+303            <meta-data
+303-->[androidx.lifecycle:lifecycle-process:2.6.1] /home/ramadan/.gradle/caches/transforms-4/7cf713b1e732898796f5384e47abbacf/transformed/jetified-lifecycle-process-2.6.1/AndroidManifest.xml:29:13-31:52
+304                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+304-->[androidx.lifecycle:lifecycle-process:2.6.1] /home/ramadan/.gradle/caches/transforms-4/7cf713b1e732898796f5384e47abbacf/transformed/jetified-lifecycle-process-2.6.1/AndroidManifest.xml:30:17-78
+305                android:value="androidx.startup" />
+305-->[androidx.lifecycle:lifecycle-process:2.6.1] /home/ramadan/.gradle/caches/transforms-4/7cf713b1e732898796f5384e47abbacf/transformed/jetified-lifecycle-process-2.6.1/AndroidManifest.xml:31:17-49
+306            <meta-data
+306-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/ramadan/.gradle/caches/transforms-4/0ead26ca60acf99434add60c2420ed06/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:29:13-31:52
+307                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+307-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/ramadan/.gradle/caches/transforms-4/0ead26ca60acf99434add60c2420ed06/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:30:17-85
+308                android:value="androidx.startup" />
+308-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/ramadan/.gradle/caches/transforms-4/0ead26ca60acf99434add60c2420ed06/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:31:17-49
+309        </provider>
+310
+311        <receiver
+311-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/ramadan/.gradle/caches/transforms-4/0ead26ca60acf99434add60c2420ed06/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:34:9-52:20
+312            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+312-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/ramadan/.gradle/caches/transforms-4/0ead26ca60acf99434add60c2420ed06/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:35:13-76
+313            android:directBootAware="false"
+313-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/ramadan/.gradle/caches/transforms-4/0ead26ca60acf99434add60c2420ed06/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:36:13-44
+314            android:enabled="true"
+314-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/ramadan/.gradle/caches/transforms-4/0ead26ca60acf99434add60c2420ed06/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:37:13-35
+315            android:exported="true"
+315-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/ramadan/.gradle/caches/transforms-4/0ead26ca60acf99434add60c2420ed06/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:38:13-36
+316            android:permission="android.permission.DUMP" >
+316-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/ramadan/.gradle/caches/transforms-4/0ead26ca60acf99434add60c2420ed06/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:39:13-57
+317            <intent-filter>
+317-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/ramadan/.gradle/caches/transforms-4/0ead26ca60acf99434add60c2420ed06/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:40:13-42:29
+318                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+318-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/ramadan/.gradle/caches/transforms-4/0ead26ca60acf99434add60c2420ed06/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:41:17-91
+318-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/ramadan/.gradle/caches/transforms-4/0ead26ca60acf99434add60c2420ed06/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:41:25-88
+319            </intent-filter>
+320            <intent-filter>
+320-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/ramadan/.gradle/caches/transforms-4/0ead26ca60acf99434add60c2420ed06/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:43:13-45:29
+321                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+321-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/ramadan/.gradle/caches/transforms-4/0ead26ca60acf99434add60c2420ed06/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:44:17-85
+321-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/ramadan/.gradle/caches/transforms-4/0ead26ca60acf99434add60c2420ed06/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:44:25-82
+322            </intent-filter>
+323            <intent-filter>
+323-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/ramadan/.gradle/caches/transforms-4/0ead26ca60acf99434add60c2420ed06/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:46:13-48:29
+324                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+324-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/ramadan/.gradle/caches/transforms-4/0ead26ca60acf99434add60c2420ed06/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:47:17-88
+324-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/ramadan/.gradle/caches/transforms-4/0ead26ca60acf99434add60c2420ed06/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:47:25-85
+325            </intent-filter>
+326            <intent-filter>
+326-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/ramadan/.gradle/caches/transforms-4/0ead26ca60acf99434add60c2420ed06/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:49:13-51:29
+327                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+327-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/ramadan/.gradle/caches/transforms-4/0ead26ca60acf99434add60c2420ed06/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:50:17-95
+327-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/ramadan/.gradle/caches/transforms-4/0ead26ca60acf99434add60c2420ed06/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:50:25-92
+328            </intent-filter>
+329        </receiver>
+330    </application>
+331
+332</manifest>
