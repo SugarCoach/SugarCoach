@@ -36,6 +36,7 @@ jobs:
         alias: ${{ secrets.ALIAS }}
         keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
         keyPassword: ${{ secrets.KEY_PASSWORD }}
+        run: ls ./app/build/outputs/bundle/release
     - name: Upload TabShop app bundle
       id: uploadArtifact
       uses: actions/upload-artifact@v3.2.1
