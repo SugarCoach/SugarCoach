@@ -28,6 +28,9 @@ jobs:
     - name: Install Dependencies
       run: yarn install
 
+    - name: Make ./gradlew executable
+      run: chmod +x ./gradlew
+
     - name: Run Unit Test
       run: ./gradlew test
 
@@ -45,8 +48,8 @@ jobs:
         key: ${{ runner.os }}-gradle-caches-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}
         restore-keys: |
           ${{ runner.os }}-gradle-caches-
-    - name: Make Gradlew Executable
-      run: cd android && chmod +x ./gradlew
+    - name: Get into Android file
+      run: cd android
 
     # Building and signing App
     - name: Build Android App Bundle
