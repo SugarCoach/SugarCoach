@@ -20,10 +20,10 @@ jobs:
     - uses: actions/setup-node@v3
 
     # Automatically overrides the version code and version name through the github actions
-    - name: Bump version
-      uses: chkfung/android-version-actions@v1.2.3
-      with:
-        gradlePath: android/app/build.gradle 
+    #- name: Bump version
+     # uses: chkfung/android-version-actions@v1.2.3
+      #with:
+       # gradlePath: android/app/build.gradle 
 
     - name: Install Dependencies
       run: yarn install
