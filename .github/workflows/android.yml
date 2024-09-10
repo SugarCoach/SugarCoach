@@ -24,7 +24,12 @@ jobs:
      # uses: chkfung/android-version-actions@v1.2.3
       #with:
        # gradlePath: android/app/build.gradle 
-
+    - name: set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: gradle
     - name: Install Dependencies
       run: yarn install
 
