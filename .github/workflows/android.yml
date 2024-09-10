@@ -54,7 +54,7 @@ jobs:
         # The package name, or Application Id, of the app you are uploading
         packageName: com.sugarcoachpremium
         # The Android release file(s) to upload (.apk or .aab). Separated by  a ',' for multiple artifacts. Supports glob
-        releaseFiles: app/build/outputs/bundle/release/app-release.abb
+        releaseFiles: android/app/build/outputs/bundle/release/app-release.abb
         # The track in which you want to assign the uploaded app.
         track: beta
         # The directory of localized whats new files
