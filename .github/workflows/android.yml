@@ -53,19 +53,20 @@ jobs:
         key: ${{ runner.os }}-gradle-caches-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}
         restore-keys: |
           ${{ runner.os }}-gradle-caches-
-    - name: Get into Android file
-      run: cd android
 
     # Building and signing App
     - name: Build Android App Bundle
-      run: ./gradlew bundleRelease 
-
+      run: ./gradlew bundleRelease
+      
+    - name: Get Actual Directories
+      run: ls
+      
     - name: Sign ABB
       uses: r0adkll/sign-android-release@v1
       # ID used to access action output
       id: sign_app
       with:
-        releaseDirectory: android/app/build/outputs/bundle/release
+        releaseDirectory: ./app/build/outputs/bundle/release
         signingKeyBase64: ${{ secrets.SIGNING_KEY }}
         alias: ${{ secrets.ALIAS }}
         keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
@@ -104,9 +105,9 @@ jobs:
     - name: Publish to Play Store internal test track
       uses: r0adkll/upload-google-play@v1.0.15
       with:
-        serviceAccountJsonPlainText: ${{ secrets.ANDROID_SERVICE_ACCOUNT_JSON }}
+        serviceAccountJsonPlainText: ${{ secrets.SERVICE_ACCOUNT_JSON }}
         packageName: com.sugarcoachpremium
-        releaseFiles: android/app/build/outputs/bundle/release/app-release.aab
+        releaseFiles: ./app/build/outputs/bundle/release/app-release.aab
         track: internal
         inAppUpdatePriority: 3
           
