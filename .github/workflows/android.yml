@@ -26,6 +26,8 @@ jobs:
       uses: chkfung/android-version-actions@v1.2.3
       with:
         gradlePath: app/build.gradle
+    - name: Set git credentials
+      run: git config --global user.email "isabelberizzo@sugar.coach" && git config --global user.name "SugarCoach Github Actions"
     - name: Push the new version code
       run: git add . && git commit -m "New version code" && git push
 
