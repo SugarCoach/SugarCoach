@@ -110,4 +110,5 @@ jobs:
         releaseFiles: ./app/build/outputs/bundle/release/app-release.aab
         track: internal
         inAppUpdatePriority: 3
+        status: draft
           
