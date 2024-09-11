@@ -29,6 +29,8 @@ jobs:
       #run: |
        # VERSION=$(grep -oP 'versionName "\K[^\"]+' app/build.gradle)
         #echo "VERSION=$VERSION" >> $GITHUB_ENV
+    - name: Pull data
+      run: git pull origin main
     - name: Upgrade version code
       uses: MattiaFailla/android-version-autobump-action@v1.0.0
       with:
