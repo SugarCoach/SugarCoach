@@ -120,7 +120,7 @@ jobs:
         serviceAccountJsonPlainText: ${{ secrets.SERVICE_ACCOUNT_JSON }}
         packageName: com.sugarcoachpremium
         releaseFiles: ./app/build/outputs/bundle/release/app-release.aab
-        track: alpha
+        track: beta
         inAppUpdatePriority: 3
         status: draft
     #
