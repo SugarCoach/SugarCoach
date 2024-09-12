@@ -128,4 +128,5 @@ jobs:
         track: beta
         inAppUpdatePriority: 3
         status: draft
+        changesNotSentForReview: true
     #
