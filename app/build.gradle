@@ -41,7 +41,7 @@ android {
         }
         release {
             minifyEnabled false
-        //    buildConfigField("String", "BASE_URL", "\"http://ec2-13-59-253-95.us-east-2.compute.amazonaws.com:1337\"")
+            buildConfigField("String", "BASE_URL", "\"http://ec2-13-59-253-95.us-east-2.compute.amazonaws.com:1337\"")
         }
     }
 
