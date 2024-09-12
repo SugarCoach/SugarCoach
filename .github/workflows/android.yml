@@ -78,7 +78,7 @@ jobs:
       # ID used to access action output
       id: sign_app
       with:
-        releaseDirectory: ./app/release
+        releaseDirectory: ./app/build/outputs/bundle/release
         signingKeyBase64: ${{ secrets.SIGNING_KEY }}
         alias: ${{ secrets.ALIAS }}
         keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
@@ -119,7 +119,7 @@ jobs:
       with:
         serviceAccountJsonPlainText: ${{ secrets.SERVICE_ACCOUNT_JSON }}
         packageName: com.sugarcoachpremium
-        releaseFiles: ./app/build/outputs//app-release.aab
+        releaseFiles: ./app/build/outputs/bundle/release/app-release.aab
         track: beta
         inAppUpdatePriority: 3
         status: draft
