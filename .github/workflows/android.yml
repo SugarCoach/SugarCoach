@@ -114,13 +114,13 @@ jobs:
         asset_content_type: application/zip
 
       # Distribute  App to google play
-    - name: Publish to Play Store internal test track
-      uses: r0adkll/upload-google-play@v1.0.19
-      with:
-        serviceAccountJsonPlainText: ${{ secrets.SERVICE_ACCOUNT_JSON }}
-        packageName: com.sugarcoachpremium
-        releaseFiles: ./app/release/app-release.aab
-        track: beta
-        inAppUpdatePriority: 3
-        status: draft
+   # - name: Publish to Play Store internal test track
+    #  uses: r0adkll/upload-google-play@v1.0.19
+     # with:
+        #serviceAccountJsonPlainText: ${{ secrets.SERVICE_ACCOUNT_JSON }}
+        #packageName: com.sugarcoachpremium
+       # releaseFiles: ./app/build/outputs//app-release.aab
+       # track: beta
+       # inAppUpdatePriority: 3
+       # status: draft
     #
