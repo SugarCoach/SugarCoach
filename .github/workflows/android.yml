@@ -88,7 +88,8 @@ jobs:
       uses: actions/upload-artifact@v3.2.1
       with:
         name: Signed app bundle
-        path: ${{steps.sign_app.outputs.signedReleaseFile}}
+        #path: ${{steps.sign_app.outputs.signedReleaseFile}}
+        path: ./app/build/outputs/bundle/release
         retention-days: 4
 
     - name: Create Release
@@ -109,7 +110,8 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ${{steps.sign_app.outputs.signedReleaseFile}}
+        #asset_path: ${{steps.sign_app.outputs.signedReleaseFile}}
+        asset_path: ./app/build/outputs/bundle/release
         asset_name: app-release-v${{ github.run_number }}.zip
         asset_content_type: application/zip
 
