@@ -73,6 +73,9 @@ jobs:
     - name: Get Actual Directories
       run: ls
       
+    - name: Clean all the signatures
+      run: zip -d ./app/build/outputs/bundle/release/app-release.abb 'META-INF/*'
+      
     - name: Sign ABB
       uses: r0adkll/sign-android-release@v1.0.4
        #ID used to access action output
