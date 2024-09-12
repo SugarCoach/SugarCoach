@@ -68,7 +68,7 @@ jobs:
 
     # Building and signing App
     - name: Build Android App Bundle
-      run: ./gradlew bundleRelease -x signReleaseBundle
+      run: ./gradlew clean bundleRelease
       
     - name: Get Actual Directories
       run: ls
