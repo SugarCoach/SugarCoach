@@ -42,7 +42,7 @@ android {
             //proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             //signingConfig signingConfigs.release
             buildConfigField("String", "BASE_URL", "\"http://ec2-13-59-253-95.us-east-2.compute.amazonaws.com:1337\"")
-            signingConfig signingConfigs.debug
+            //signingConfig signingConfigs.debug
             //buildConfigField("String", "API_KEY", "\"ABCXYZ123TEST\"")
         }
     }
