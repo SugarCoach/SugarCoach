@@ -128,5 +128,4 @@ jobs:
         track: production
         inAppUpdatePriority: 3
         status: draft
-        changesNotSentForReview: true
     #
