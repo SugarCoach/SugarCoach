@@ -43,6 +43,7 @@ import com.sugarcoachpremium.databinding.DialogCongratulationBinding
 import com.sugarcoachpremium.databinding.DialogControlBinding
 import com.sugarcoachpremium.databinding.DialogInfoBinding
 import com.sugarcoachpremium.ui.main.view.MainActivity
+import com.sugarcoachpremium.ui.private_policy.view.PrivacyPolicyActivity
 import com.sugarcoachpremium.util.AppConstants
 import com.sugarcoachpremium.util.extensions.openNewTabWindow
 import com.sugarcoachpremium.util.extensions.resIdByName
@@ -77,6 +78,10 @@ class ConfigActivity: BaseActivity(), ConfigView {
         super.onCreate(savedInstanceState)
         binding = ActivityConfigBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.privacyPolicyButton.setOnClickListener {
+            val intent = Intent(this, PrivacyPolicyActivity::class.java)
+            startActivity(intent)
+        }
         configureVariables()
         presenter.onAttach(this)
         menuListeners()
