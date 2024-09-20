@@ -15,7 +15,7 @@ class PrivacyPolicyActivity : AppCompatActivity() {
         setContentView(R.layout.activity_privacy_policy)
         val webView: WebView = findViewById(R.id.webView)
         webView.webViewClient = WebViewClient()
-        webView.loadUrl("https://docs.google.com/document/d/1f0ftNuO-Ss5M_IgKZ9733SS3EIPKvfR-sy74-2gABn0/edit")
+        webView.loadUrl("https://www.privacypolicies.com/live/b8257e8c-36ab-4671-8e21-0dded04d7cad")
         /*ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
