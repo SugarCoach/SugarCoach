@@ -1,5 +1,7 @@
 package com.sugarcoach.ui.treatment.presenter
 
+import android.app.Activity
+import android.view.View
 import com.sugarcoach.ui.base.presenter.Presenter
 import com.sugarcoach.ui.treatment.interactor.TreatmentInteractorImp
 import com.sugarcoach.ui.treatment.view.BasalHoraItem
@@ -10,6 +12,8 @@ import com.sugarcoach.ui.treatment.view.TreatmentView
 
 interface TreatmentPresenterImp<V : TreatmentView, I : TreatmentInteractorImp> : Presenter<V, I> {
     fun saveBasal(item: BasalItem)
+    fun getScreenShot(context: Activity, view: View)
+    fun checkAndRequestPermissions(context: Activity): Boolean
     fun saveCorrectora(item: BasalItem)
     fun saveCategory(item: HorarioItem)
     fun saveHoraBasal(item: BasalHoraItem)

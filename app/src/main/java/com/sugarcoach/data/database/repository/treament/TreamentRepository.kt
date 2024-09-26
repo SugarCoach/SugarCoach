@@ -1,5 +1,7 @@
 package com.sugarcoach.data.database.repository.treament
 
+import android.annotation.SuppressLint
+import android.util.Log
 import com.sugarcoach.data.database.repository.dailyregister.DailyRegisterInsuline
 import io.reactivex.Observable
 import io.reactivex.Single
@@ -53,9 +55,20 @@ class TreamentRepository @Inject constructor(private val treamentDao: TreamentDa
             = Single.fromCallable{treamentDao.loadAll()}
 
     override fun load(): Single<TreatmentBasalCorrectora>
-            = Single.fromCallable { treamentDao.loadById(1) }
+    {
+        val response = Single.fromCallable {
+            Log.i("OnTreatmentRepository", "Se esta llamando al treatmenDao")
+            treamentDao.loadById(1)
+        }
+        val result = response.doOnSuccess {
+            Log.i("OnSuccess", "La respuesta fue:$it")
+        }
+        Log.i("OnResult","El result fue: ${result.subscribe({data -> Log.i("OnData","La data es: $data")}, {error -> Log.i("OnError","El error fue:$error")})}")
+        return response
+    }
 
     override fun insertTreament(treament: Treament): Observable<Boolean> {
+        Log.i("OnInsertTreatment", "Se esta insertando: $treament")
         treamentDao.insert(treament)
         return Observable.just(true)
     }

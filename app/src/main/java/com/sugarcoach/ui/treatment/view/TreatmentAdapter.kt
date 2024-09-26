@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.sugarcoach.R
+import com.sugarcoach.databinding.EmotionsItemBinding
 import com.sugarcoach.databinding.TreatmentItemBinding
 import java.util.*
 import kotlin.collections.ArrayList
@@ -18,6 +19,7 @@ class TreatmentAdapter(private val activity: TreatmentActivity) : RecyclerView.A
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater: LayoutInflater = LayoutInflater.from(activity)
+        binding = TreatmentItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         var holder = TreatmentHolder(binding)
         this.holder = holder
         return holder

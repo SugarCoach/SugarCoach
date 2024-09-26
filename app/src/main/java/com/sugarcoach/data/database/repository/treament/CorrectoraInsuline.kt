@@ -10,5 +10,5 @@ import java.util.*
 data class CorrectoraInsuline (
     @PrimaryKey(autoGenerate = true) var cid: Int,
     @Expose
-    @ColumnInfo(name = "cname") var cname:String
+    @ColumnInfo(name = "cname") var cname:String //Nombre del tipo de insulina correctora o rápida
 )

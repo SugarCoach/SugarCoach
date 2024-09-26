@@ -6,4 +6,7 @@ interface Interactor {
 
     fun perfomLogout()
 
+    fun getCurrentId(): String?
+
+    fun setUserId(id: String)
 }

@@ -20,6 +20,7 @@ class BombaAdapter (private val activity: TreatmentActivity) : RecyclerView.Adap
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater: LayoutInflater = LayoutInflater.from(activity)
+        binding = BasalItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         var holder = MedidorHolder(binding)
         this.holder = holder
         return holder

@@ -7,6 +7,6 @@ interface BaseView {
 
     fun hideProgress()
 
-    fun showErrorToast()
+    fun showErrorToast(msg: String = "Intente Nuevamente")
 
 }

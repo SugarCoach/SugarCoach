@@ -1,0 +1,28 @@
+query Treatment($userId: ID){
+    treatments(filters:{
+        users_permissions_user:{
+            id:{
+                eq:$userId
+            }
+        }
+    }){
+        data{
+            id
+            attributes{
+                bomb
+                insulina_unit
+                object_glucose
+                correctora
+                correctora_unit
+                hyperglucose
+                hipoglucose
+                carbono
+                basal_insuline
+                medidor
+                bomba_infusora
+                correctora_insuline
+            }
+        }
+    }
+
+}

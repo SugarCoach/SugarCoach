@@ -4,8 +4,14 @@ plugins{
     id 'kotlin-kapt'
     id("com.google.gms.google-services")
     //id 'com.appspector.sdk'
+    id("com.apollographql.apollo3").version("3.8.2")
 }
 
+apollo{
+    service("service"){
+        packageName.set("com.sugarcoach")
+    }
+}
 
 android {
     compileSdk rootProject.compileSdkVersion
@@ -191,6 +197,9 @@ dependencies {
 
     //CORUTINAS
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1")
+
+    //GRAPHQL
+    implementation("com.apollographql.apollo3:apollo-runtime:3.8.2")
 }
 
 

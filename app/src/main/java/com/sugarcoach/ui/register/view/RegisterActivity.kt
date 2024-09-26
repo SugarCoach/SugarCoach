@@ -15,6 +15,7 @@ import com.sugarcoach.ui.register.presenter.RegisterPresenterImp
 import com.sugarcoach.util.AppConstants
 import javax.inject.Inject
 import android.os.Handler
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.inputmethod.EditorInfo
 import androidx.appcompat.app.AlertDialog
@@ -97,7 +98,7 @@ class RegisterActivity : BaseActivity(), RegisterView, TimePickerDialog.OnTimeSe
         }
     }
 
-    override fun showErrorToast() {
+    override fun showErrorToast(msg: String) {
         Toast.makeText(this, getString(R.string.login_failure), Toast.LENGTH_LONG).show()
     }
 
@@ -411,6 +412,7 @@ class RegisterActivity : BaseActivity(), RegisterView, TimePickerDialog.OnTimeSe
 
         val formatter = SimpleDateFormat("dd.M.yy", Locale.getDefault())
         val formatterTime = SimpleDateFormat("hh:mm a", Locale.getDefault())
+        Log.i("OnRegisterActivity", "La hora es: $date y las categories: $categories")
         val formattedDate = formatter.format(date)
         val formattedTime = formatterTime.format(date)
         binding.registerTimeTxt.text = formattedTime

@@ -25,16 +25,16 @@ import java.util.*
 data class Treament (
     @PrimaryKey(autoGenerate = true) var id: Int,
     @ColumnInfo(name = "bomb") var bomb: Boolean?,
-    @ColumnInfo(name = "object_glucose") var object_glucose:Float,
-    @ColumnInfo(name = "correctora_unit") var correctora_unit:Float,
+    @ColumnInfo(name = "object_glucose") var object_glucose:Float, //Objetivo de glucosa
+    @ColumnInfo(name = "correctora_unit") var correctora_unit:Float, //Cuantas unidades de correción por glusemia alta
     @ColumnInfo(name = "hipoglucose") var hipoglucose:Float,
     @ColumnInfo(name = "hyperglucose") var hyperglucose:Float,
     @ColumnInfo(name = "basal_id" , index = true) var basal_id:Int?,
     @ColumnInfo(name = "medidor_id" , index = true) var medidor_id:Int?,
     @ColumnInfo(name = "bomba_id" , index = true) var bomba_id:Int?,
     @ColumnInfo(name = "correctora_id", index = true) var correctora_id:Int?,
-    @ColumnInfo(name = "correctora") var correctora:Float,
-    @ColumnInfo(name = "insulina_unit") var insulina_unit:Float,
-    @ColumnInfo(name = "carbono") var carbono:Float,
+    @ColumnInfo(name = "correctora") var correctora:Float, //Cada cuanto g/ml de glusemia por encima del objetivo hay que corregir
+    @ColumnInfo(name = "insulina_unit") var insulina_unit:Float, //Unidad de correción por carbs
+    @ColumnInfo(name = "carbono") var carbono:Float, //Cada cuantos g de carbs hay que corregir
     @ColumnInfo(name = "created") var created: Date
 )

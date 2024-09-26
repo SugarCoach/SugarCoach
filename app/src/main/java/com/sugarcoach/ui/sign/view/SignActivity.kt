@@ -39,7 +39,7 @@ class SignActivity: BaseActivity(), SignView {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun showErrorToast() {
+    override fun showErrorToast(msg: String) {
         Toast.makeText(this, getString(R.string.sign_failure), Toast.LENGTH_LONG).show()
     }
     override fun onGoogleLogin() {

@@ -6,6 +6,9 @@ import com.sugarcoach.R
 import com.sugarcoach.data.database.repository.dailyregister.DailyRegister
 import com.sugarcoach.data.network.RegistersResponse
 import com.sugarcoach.ui.base.presenter.BasePresenter
+import com.sugarcoach.ui.login.interactor.LoginInteractorImp
+import com.sugarcoach.ui.login.presenter.LoginPresenterImp
+import com.sugarcoach.ui.login.view.LoginView
 import com.sugarcoach.ui.splash.interactor.SplashInteractorImp
 import com.sugarcoach.ui.splash.view.SplashView
 import com.sugarcoach.util.SchedulerProvider
@@ -23,7 +26,6 @@ import kotlin.collections.ArrayList
 
 
 class SplashPresenter<V : SplashView, I : SplashInteractorImp> @Inject internal constructor(interactor: I, schedulerProvider: SchedulerProvider, disposable: CompositeDisposable) : BasePresenter<V, I>(interactor = interactor, schedulerProvider = schedulerProvider, compositeDisposable = disposable), SplashPresenterImp<V, I> {
-
 
     override fun onAttach(view: V?) {
         super.onAttach(view)

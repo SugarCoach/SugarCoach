@@ -11,6 +11,9 @@ interface ProfileInteractorImp : Interactor {
 
     fun getUser(): Single<User>
     fun updateUser(user: User): Observable<Boolean>
+
+    suspend fun getDataId(): Result<String>
+    suspend fun updateApiUser(user: User, id: String): Result<Boolean>
     fun deleteUser(): Observable<Boolean>
     fun deleteAll(): Observable<Boolean>
     fun deleteTreament(): Observable<Boolean>

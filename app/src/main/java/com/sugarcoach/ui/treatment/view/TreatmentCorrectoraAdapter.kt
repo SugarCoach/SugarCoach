@@ -14,6 +14,7 @@ class TreatmentCorrectoraAdapter(private val activity: TreatmentActivity) : Recy
     lateinit var binding: TreatmentCorrectoraItemBinding
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater: LayoutInflater = LayoutInflater.from(activity)
+        binding = TreatmentCorrectoraItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         var holder = TreatmentCorrectoraHolder(binding)
         this.holder = holder
         return holder

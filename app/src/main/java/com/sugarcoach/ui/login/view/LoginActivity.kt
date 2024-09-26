@@ -17,6 +17,8 @@ import com.sugarcoach.ui.login.presenter.LoginPresenterImp
 import com.sugarcoach.ui.main.view.MainActivity
 import com.sugarcoach.ui.signEmail.view.SignEmailActivity
 import com.sugarcoach.util.AppConstants
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.coroutineScope
 import javax.inject.Inject
 import kotlinx.coroutines.async
@@ -27,17 +29,20 @@ class LoginActivity: BaseActivity(), LoginView {
     @Inject
     lateinit var presenter: LoginPresenterImp<LoginView,LoginInteractorImp>
     lateinit var binding: ActivityLoginBinding
-    lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        auth = Firebase.auth
         presenter.onAttach(this)
         setOnClickListeners()
     }
 
+    override fun feedDatabase() {
+        CoroutineScope(Dispatchers.IO).launch {
+            presenter.feedInDatabase()
+        }
+    }
     override fun onDestroy() {
         presenter.onDetach()
         super.onDestroy()
@@ -52,7 +57,7 @@ class LoginActivity: BaseActivity(), LoginView {
         }
     }
 
-    override fun showErrorToast() {
+    override fun showErrorToast(msg: String) {
         Toast.makeText(this, getString(R.string.login_failure), Toast.LENGTH_LONG).show()
     }
     override fun onLogin() {
@@ -64,14 +69,16 @@ class LoginActivity: BaseActivity(), LoginView {
 
     private fun setOnClickListeners() {
 
-        binding.loginBt.setOnClickListener { runBlocking {
-            presenter.onLogin(binding.loginMail.text.toString(),
-                binding.loginPass.text.toString(),false, false)}
+        binding.loginBt.setOnClickListener {
+            runBlocking {
+                presenter.onLogin(binding.loginMail.text.toString(),
+                    binding.loginPass.text.toString(),false, false)
+            }
         }
         binding.loginSignin.setOnClickListener { presenter.emailSign() }
         binding.loginForgot.setOnClickListener { presenter.forgot() }
-        binding.loginScan.setOnClickListener{scanQR()}
-        binding.loginMedicoScan.setOnClickListener{scanQR()}
+        binding.loginScan.setOnClickListener{ scanQR() }
+        binding.loginMedicoScan.setOnClickListener{ scanQR() }
     }
     override fun onEmailSign() {
         val intent = Intent(this, SignEmailActivity::class.java)
