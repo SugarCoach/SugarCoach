@@ -20,7 +20,7 @@ public final class SignEmailInteractor extends com.sugarcoachpremium.data.ui.bas
     com.sugarcoachpremium.data.database.repository.user.UserRepo userRepoHelper, @org.jetbrains.annotations.NotNull
     com.sugarcoachpremium.di.preferences.PreferenceHelper preferenceHelper, @org.jetbrains.annotations.NotNull
     com.sugarcoachpremium.data.network.ApiHelper apiHelper) {
-        super(null, null, null);
+        super();
     }
     
     @org.jetbrains.annotations.NotNull

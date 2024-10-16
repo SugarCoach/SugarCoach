@@ -4,7 +4,7 @@
             "outputFile": "com.sugarcoachpremium.app-mergeDebugResources-66:/values-sw360dp-v13/values-sw360dp-v13.xml",
             "map": [
                 {
-                    "source": "/home/ramadan/.gradle/caches/transforms-4/c04e05245ff25ec517ce7132bcf597af/transformed/preference-1.1.1/res/values-sw360dp-v13/values-sw360dp-v13.xml",
+                    "source": "C:\\Users\\sc2\\.gradle\\caches\\transforms-4\\c04e05245ff25ec517ce7132bcf597af\\transformed\\preference-1.1.1\\res\\values-sw360dp-v13\\values-sw360dp-v13.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

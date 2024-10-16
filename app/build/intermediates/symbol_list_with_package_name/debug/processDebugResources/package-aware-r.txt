@@ -4635,6 +4635,7 @@ id premium_url
 id premium_value
 id pressed
 id preview
+id privacy_policy_button
 id profile_avatar
 id profile_avatars
 id profile_date_txt
@@ -4949,6 +4950,7 @@ id view_tree_saved_state_registry_owner
 id view_tree_view_model_store_owner
 id visible
 id visible_removing_fragment_view_tag
+id webView
 id west
 id wide
 id withText
@@ -5093,6 +5095,7 @@ layout activity_forgot
 layout activity_login
 layout activity_main
 layout activity_onboarding
+layout activity_privacy_policy
 layout activity_profile
 layout activity_register
 layout activity_sign_email

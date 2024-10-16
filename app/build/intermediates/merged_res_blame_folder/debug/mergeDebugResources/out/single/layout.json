@@ -1,178 +1,178 @@
 [
     {
-        "merged": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-mergeDebugResources-67:/layout/dialog_sex.xml",
-        "source": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-main-70:/layout/dialog_sex.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-67:/layout/activity_statistics_detail.xml",
+        "source": "com.sugarcoachpremium.app-main-70:/layout/activity_statistics_detail.xml"
     },
     {
-        "merged": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-mergeDebugResources-67:/layout/activity_splash.xml",
-        "source": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-main-70:/layout/activity_splash.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-67:/layout/activity_table.xml",
+        "source": "com.sugarcoachpremium.app-main-70:/layout/activity_table.xml"
     },
     {
-        "merged": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-mergeDebugResources-67:/layout/dialog_congratulation.xml",
-        "source": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-main-70:/layout/dialog_congratulation.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-67:/layout/dialog_treatment_save.xml",
+        "source": "com.sugarcoachpremium.app-main-70:/layout/dialog_treatment_save.xml"
     },
     {
-        "merged": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-mergeDebugResources-67:/layout/statistics_item.xml",
-        "source": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-main-70:/layout/statistics_item.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-67:/layout/dialog_config_delete.xml",
+        "source": "com.sugarcoachpremium.app-main-70:/layout/dialog_config_delete.xml"
     },
     {
-        "merged": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-mergeDebugResources-67:/layout/dialog_congratulation_premium.xml",
-        "source": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-main-70:/layout/dialog_congratulation_premium.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-67:/layout/daily_parent.xml",
+        "source": "com.sugarcoachpremium.app-main-70:/layout/daily_parent.xml"
     },
     {
-        "merged": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-mergeDebugResources-67:/layout/activity_estadisticas.xml",
-        "source": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-main-70:/layout/activity_estadisticas.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-67:/layout/treatment_header.xml",
+        "source": "com.sugarcoachpremium.app-main-70:/layout/treatment_header.xml"
     },
     {
-        "merged": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-mergeDebugResources-67:/layout/treatment_basal_item.xml",
-        "source": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-main-70:/layout/treatment_basal_item.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-67:/layout/daily_item.xml",
+        "source": "com.sugarcoachpremium.app-main-70:/layout/daily_item.xml"
     },
     {
-        "merged": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-mergeDebugResources-67:/layout/dialog_comentary.xml",
-        "source": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-main-70:/layout/dialog_comentary.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-67:/layout/activity_login.xml",
+        "source": "com.sugarcoachpremium.app-main-70:/layout/activity_login.xml"
     },
     {
-        "merged": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-mergeDebugResources-67:/layout/activity_onboarding.xml",
-        "source": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-main-70:/layout/activity_onboarding.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-67:/layout/dialog_congratulation_premium.xml",
+        "source": "com.sugarcoachpremium.app-main-70:/layout/dialog_congratulation_premium.xml"
     },
     {
-        "merged": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-mergeDebugResources-67:/layout/progress.xml",
-        "source": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-main-70:/layout/progress.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-67:/layout/treatment_item.xml",
+        "source": "com.sugarcoachpremium.app-main-70:/layout/treatment_item.xml"
     },
     {
-        "merged": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-mergeDebugResources-67:/layout/dialog_treatment_save.xml",
-        "source": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-main-70:/layout/dialog_treatment_save.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-67:/layout/treatment_basal_item.xml",
+        "source": "com.sugarcoachpremium.app-main-70:/layout/treatment_basal_item.xml"
     },
     {
-        "merged": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-mergeDebugResources-67:/layout/fragment_register_values.xml",
-        "source": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-main-70:/layout/fragment_register_values.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-67:/layout/dialog_control.xml",
+        "source": "com.sugarcoachpremium.app-main-70:/layout/dialog_control.xml"
     },
     {
-        "merged": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-mergeDebugResources-67:/layout/dialog_upgrade.xml",
-        "source": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-main-70:/layout/dialog_upgrade.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-67:/layout/progress.xml",
+        "source": "com.sugarcoachpremium.app-main-70:/layout/progress.xml"
     },
     {
-        "merged": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-mergeDebugResources-67:/layout/activity_forgot.xml",
-        "source": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-main-70:/layout/activity_forgot.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-67:/layout/fragment_register_values.xml",
+        "source": "com.sugarcoachpremium.app-main-70:/layout/fragment_register_values.xml"
     },
     {
-        "merged": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-mergeDebugResources-67:/layout/activity_login.xml",
-        "source": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-main-70:/layout/activity_login.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-67:/layout/category_item.xml",
+        "source": "com.sugarcoachpremium.app-main-70:/layout/category_item.xml"
     },
     {
-        "merged": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-mergeDebugResources-67:/layout/activity_treatment.xml",
-        "source": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-main-70:/layout/activity_treatment.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-67:/layout/activity_splash.xml",
+        "source": "com.sugarcoachpremium.app-main-70:/layout/activity_splash.xml"
     },
     {
-        "merged": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-mergeDebugResources-67:/layout/activity_daily.xml",
-        "source": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-main-70:/layout/activity_daily.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-67:/layout/activity_main.xml",
+        "source": "com.sugarcoachpremium.app-main-70:/layout/activity_main.xml"
     },
     {
-        "merged": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-mergeDebugResources-67:/layout/fragment_onboarding_item.xml",
-        "source": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-main-70:/layout/fragment_onboarding_item.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-67:/layout/treatment_correctora_item.xml",
+        "source": "com.sugarcoachpremium.app-main-70:/layout/treatment_correctora_item.xml"
     },
     {
-        "merged": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-mergeDebugResources-67:/layout/activity_main.xml",
-        "source": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-main-70:/layout/activity_main.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-67:/layout/basal_item.xml",
+        "source": "com.sugarcoachpremium.app-main-70:/layout/basal_item.xml"
     },
     {
-        "merged": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-mergeDebugResources-67:/layout/category_item.xml",
-        "source": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-main-70:/layout/category_item.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-67:/layout/dialog_emotions.xml",
+        "source": "com.sugarcoachpremium.app-main-70:/layout/dialog_emotions.xml"
     },
     {
-        "merged": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-mergeDebugResources-67:/layout/daily_item.xml",
-        "source": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-main-70:/layout/daily_item.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-67:/layout/dialog_sex.xml",
+        "source": "com.sugarcoachpremium.app-main-70:/layout/dialog_sex.xml"
     },
     {
-        "merged": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-mergeDebugResources-67:/layout/activity_table.xml",
-        "source": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-main-70:/layout/activity_table.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-67:/layout/statistics_item.xml",
+        "source": "com.sugarcoachpremium.app-main-70:/layout/statistics_item.xml"
     },
     {
-        "merged": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-mergeDebugResources-67:/layout/activity_config.xml",
-        "source": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-main-70:/layout/activity_config.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-67:/layout/activity_signin.xml",
+        "source": "com.sugarcoachpremium.app-main-70:/layout/activity_signin.xml"
     },
     {
-        "merged": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-mergeDebugResources-67:/layout/profile_item.xml",
-        "source": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-main-70:/layout/profile_item.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-67:/layout/dialog_info.xml",
+        "source": "com.sugarcoachpremium.app-main-70:/layout/dialog_info.xml"
     },
     {
-        "merged": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-mergeDebugResources-67:/layout/treatment_header.xml",
-        "source": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-main-70:/layout/treatment_header.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-67:/layout/fragment_onboarding_item.xml",
+        "source": "com.sugarcoachpremium.app-main-70:/layout/fragment_onboarding_item.xml"
     },
     {
-        "merged": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-mergeDebugResources-67:/layout/activity_profile.xml",
-        "source": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-main-70:/layout/activity_profile.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-67:/layout/activity_privacy_policy.xml",
+        "source": "com.sugarcoachpremium.app-main-70:/layout/activity_privacy_policy.xml"
     },
     {
-        "merged": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-mergeDebugResources-67:/layout/basal_item.xml",
-        "source": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-main-70:/layout/basal_item.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-67:/layout/activity_treatment.xml",
+        "source": "com.sugarcoachpremium.app-main-70:/layout/activity_treatment.xml"
     },
     {
-        "merged": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-mergeDebugResources-67:/layout/dialog_category.xml",
-        "source": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-main-70:/layout/dialog_category.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-67:/layout/emotions_item.xml",
+        "source": "com.sugarcoachpremium.app-main-70:/layout/emotions_item.xml"
     },
     {
-        "merged": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-mergeDebugResources-67:/layout/emotions_item.xml",
-        "source": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-main-70:/layout/emotions_item.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-67:/layout/dialog_upgrade.xml",
+        "source": "com.sugarcoachpremium.app-main-70:/layout/dialog_upgrade.xml"
     },
     {
-        "merged": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-mergeDebugResources-67:/layout/treatment_item.xml",
-        "source": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-main-70:/layout/treatment_item.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-67:/layout/activity_daily.xml",
+        "source": "com.sugarcoachpremium.app-main-70:/layout/activity_daily.xml"
     },
     {
-        "merged": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-mergeDebugResources-67:/layout/activity_register.xml",
-        "source": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-main-70:/layout/activity_register.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-67:/layout/dialog_comentary.xml",
+        "source": "com.sugarcoachpremium.app-main-70:/layout/dialog_comentary.xml"
+    },
+    {
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-67:/layout/activity_profile.xml",
+        "source": "com.sugarcoachpremium.app-main-70:/layout/activity_profile.xml"
     },
     {
         "merged": "com.sugarcoachpremium.app-mergeDebugResources-67:/layout/activity_sign_email.xml",
         "source": "com.sugarcoachpremium.app-main-70:/layout/activity_sign_email.xml"
     },
     {
-        "merged": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-mergeDebugResources-67:/layout/activity_sign_email.xml",
-        "source": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-main-70:/layout/activity_sign_email.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-67:/layout/activity_register.xml",
+        "source": "com.sugarcoachpremium.app-main-70:/layout/activity_register.xml"
     },
     {
-        "merged": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-mergeDebugResources-67:/layout/activity_signin.xml",
-        "source": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-main-70:/layout/activity_signin.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-67:/layout/activity_daily_detail.xml",
+        "source": "com.sugarcoachpremium.app-main-70:/layout/activity_daily_detail.xml"
     },
     {
-        "merged": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-mergeDebugResources-67:/layout/activity_statistics_detail.xml",
-        "source": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-main-70:/layout/activity_statistics_detail.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-67:/layout/activity_config.xml",
+        "source": "com.sugarcoachpremium.app-main-70:/layout/activity_config.xml"
     },
     {
-        "merged": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-mergeDebugResources-67:/layout/dialog_config_delete.xml",
-        "source": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-main-70:/layout/dialog_config_delete.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-67:/layout/activity_estadisticas.xml",
+        "source": "com.sugarcoachpremium.app-main-70:/layout/activity_estadisticas.xml"
     },
     {
-        "merged": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-mergeDebugResources-67:/layout/dialog_control.xml",
-        "source": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-main-70:/layout/dialog_control.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-67:/layout/profile_item.xml",
+        "source": "com.sugarcoachpremium.app-main-70:/layout/profile_item.xml"
     },
     {
-        "merged": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-mergeDebugResources-67:/layout/dialog_codigo.xml",
-        "source": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-main-70:/layout/dialog_codigo.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-67:/layout/activity_onboarding.xml",
+        "source": "com.sugarcoachpremium.app-main-70:/layout/activity_onboarding.xml"
     },
     {
-        "merged": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-mergeDebugResources-67:/layout/treatment_correctora_item.xml",
-        "source": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-main-70:/layout/treatment_correctora_item.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-67:/layout/dialog_category.xml",
+        "source": "com.sugarcoachpremium.app-main-70:/layout/dialog_category.xml"
     },
     {
-        "merged": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-mergeDebugResources-67:/layout/dialog_values.xml",
-        "source": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-main-70:/layout/dialog_values.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-67:/layout/dialog_codigo.xml",
+        "source": "com.sugarcoachpremium.app-main-70:/layout/dialog_codigo.xml"
     },
     {
-        "merged": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-mergeDebugResources-67:/layout/activity_daily_detail.xml",
-        "source": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-main-70:/layout/activity_daily_detail.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-67:/layout/dialog_congratulation.xml",
+        "source": "com.sugarcoachpremium.app-main-70:/layout/dialog_congratulation.xml"
     },
     {
-        "merged": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-mergeDebugResources-67:/layout/daily_parent.xml",
-        "source": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-main-70:/layout/daily_parent.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-67:/layout/activity_forgot.xml",
+        "source": "com.sugarcoachpremium.app-main-70:/layout/activity_forgot.xml"
     },
     {
-        "merged": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-mergeDebugResources-67:/layout/dialog_emotions.xml",
-        "source": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-main-70:/layout/dialog_emotions.xml"
-    },
-    {
-        "merged": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-mergeDebugResources-67:/layout/dialog_info.xml",
-        "source": "/home/ramadan/.gradle/daemon/8.7/com.sugarcoachpremium.app-main-70:/layout/dialog_info.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-67:/layout/dialog_values.xml",
+        "source": "com.sugarcoachpremium.app-main-70:/layout/dialog_values.xml"
     }
 ]
