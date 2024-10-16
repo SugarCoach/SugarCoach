@@ -107,7 +107,10 @@ class DailyActivity : BaseActivity(), DailyView {
     }
 
     fun setListeners(){
-        binding.dailyPdfIv.setOnClickListener { showErrorToast() }
+        binding.dailyPdfIv.setOnClickListener {
+            val path=presenter.getPdfPath()
+            Toast.makeText(this, "PDF descargado en: $path", Toast.LENGTH_LONG).show()
+        }
     }
 
     override fun openDailyDetailActivity(id: Int) {

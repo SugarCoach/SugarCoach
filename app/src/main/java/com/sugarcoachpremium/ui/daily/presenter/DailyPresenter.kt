@@ -1,5 +1,6 @@
 package com.sugarcoachpremium.ui.daily.presenter
 
+import android.graphics.Paint
 import android.util.Log
 import com.hominoid.expandablerecyclerviewlib.models.ExpandableListItem
 import com.sugarcoachpremium.R
@@ -21,10 +22,14 @@ import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
 import kotlin.collections.ArrayList
+import android.graphics.pdf.PdfDocument
+import android.os.Environment
+import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
 
 class DailyPresenter<V : DailyView, I : DailyInteractorImp> @Inject internal constructor(interactor: I, schedulerProvider: SchedulerProvider, disposable: CompositeDisposable) : BasePresenter<V, I>(interactor = interactor, schedulerProvider = schedulerProvider, compositeDisposable = disposable),
     DailyPresenterImp<V,I> {
-
     lateinit var treament: Treament
     var colors =  ArrayList<Int>()
     lateinit var exercices: List<Exercises>
@@ -36,7 +41,8 @@ class DailyPresenter<V : DailyView, I : DailyInteractorImp> @Inject internal con
         getMedition()
         Log.i("OnAttach", "Se inicio el attach")
     }
-
+    private lateinit var registers: MutableList<ExpandableListItem<DailyHeader, DailyItem>>
+    private lateinit var path:String
     private fun getTreatment(){
         interactor?.let {
             compositeDisposable.add(it.getTreatment()
@@ -89,6 +95,7 @@ class DailyPresenter<V : DailyView, I : DailyInteractorImp> @Inject internal con
             }, { err -> println(err) }))
     }
 
+
     override fun getRegisters() {
         interactor?.let {
             compositeDisposable.add(it.getAllDates()
@@ -121,7 +128,7 @@ class DailyPresenter<V : DailyView, I : DailyInteractorImp> @Inject internal con
     }
 
     private fun getData(dailyRegister: List<DailyRegisterCategory>, date: List<Date>) {
-        var registers: MutableList<ExpandableListItem<DailyHeader, DailyItem>> = ArrayList()
+        registers = ArrayList()
         for (i in date.indices) {
             var item: MutableList<DailyItem> = ArrayList()
             val color = generateRandomColor()
@@ -163,6 +170,7 @@ class DailyPresenter<V : DailyView, I : DailyInteractorImp> @Inject internal con
         }
 
         getView()?.getRegisters(registers)
+        path=createPdf(registers)
 
     }
 
@@ -219,4 +227,50 @@ class DailyPresenter<V : DailyView, I : DailyInteractorImp> @Inject internal con
     override fun goToActivityRegister() {
         getView()?.openRegisterActivity()
     }
+
+    override fun getPdfPath():String{
+        return path
+    }
+
+    fun createPdf(registers: List<ExpandableListItem<DailyHeader, DailyItem>>):String {
+
+        val pdfDocument = PdfDocument()
+        val pageInfo = PdfDocument.PageInfo.Builder(595, 842, 1).create() // A4
+        val page = pdfDocument.startPage(pageInfo)
+        val canvas = page.canvas
+        val paint = Paint()
+        paint.textSize = 12f
+        var yPos = 25
+
+        for (item in registers) {
+            val header = item.groupData
+            val date = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(header.date)
+            canvas.drawText("Fecha: $date", 10f, yPos.toFloat(), paint)
+            yPos += 20
+
+            for (dailyItem in item.childDataList!!) {
+                val category = dailyItem.category
+                val insulin = dailyItem.insulin
+                val glucose = dailyItem.glucose
+                canvas.drawText("Categoría: $category, Insulina: $insulin, Glucosa: $glucose", 10f, yPos.toFloat(), paint)
+                yPos += 20
+            }
+            yPos += 20
+        }
+
+        pdfDocument.finishPage(page)
+
+        val filePath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS).absolutePath + "/DailyRecords.pdf"
+        val file = File(filePath)
+
+        try {
+            pdfDocument.writeTo(FileOutputStream(file))
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+
+        pdfDocument.close()
+        return file.absolutePath
+    }
+
 }
