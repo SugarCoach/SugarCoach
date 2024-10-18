@@ -24,6 +24,7 @@ import javax.inject.Inject
 import kotlin.collections.ArrayList
 import android.graphics.pdf.PdfDocument
 import android.os.Environment
+import com.sugarcoachpremium.ui.daily.view.DayItem
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
@@ -165,10 +166,11 @@ class DailyPresenter<V : DailyView, I : DailyInteractorImp> @Inject internal con
                     .build()
 
                 item.add(content)
+                Log.i("gg", category.cate_name)
             }
             registers.add(ExpandableListItem(header,item))
         }
-
+        Log.i("gg", registers[0].childDataList!!.toString())
         getView()?.getRegisters(registers)
         path=createPdf(registers)
 
@@ -231,7 +233,7 @@ class DailyPresenter<V : DailyView, I : DailyInteractorImp> @Inject internal con
     override fun getPdfPath():String{
         return path
     }
-
+/*
     fun createPdf(registers: List<ExpandableListItem<DailyHeader, DailyItem>>):String {
 
         val pdfDocument = PdfDocument()
@@ -271,6 +273,84 @@ class DailyPresenter<V : DailyView, I : DailyInteractorImp> @Inject internal con
 
         pdfDocument.close()
         return file.absolutePath
+    }
+
+ */
+    fun createPdf(registers: List<ExpandableListItem<DailyHeader, DailyItem>>): String {
+
+        val pdfDocument = PdfDocument()
+        val pageInfo = PdfDocument.PageInfo.Builder(595, 842, 1).create() // A4
+        val page = pdfDocument.startPage(pageInfo)
+        val canvas = page.canvas
+        val paint = Paint()
+        paint.textSize = 12f
+        var yPos = 25
+
+        for (item in registers) {
+            val header = item.groupData
+            val date = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(header.date)
+            canvas.drawText("Fecha: $date", 10f, yPos.toFloat(), paint)
+            yPos += 20
+            canvas.drawText("Breakfast | Lunch | Snack | Dinner", 10f, yPos.toFloat(), paint)
+            yPos += 20
+            for (dailyItem in item.childDataList!!) {
+                val time = SimpleDateFormat("HH:mm", Locale.getDefault()).format(dailyItem.date)
+                val glycemia = dailyItem.glucose
+                val hc = dailyItem.carbohydrates
+                val cor = dailyItem.insulin
+                val basal = dailyItem.basal
+                canvas.drawText("$time Glyc: $glycemia, HC: $hc, Correct: $cor, Basal: $basal", 10f, yPos.toFloat(), paint)
+                yPos += 20
+            }
+            yPos += 40
+        }
+
+        pdfDocument.finishPage(page)
+
+        val filePath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS).absolutePath + "/DailyRecords.pdf"
+        val file = File(filePath)
+
+        try {
+            pdfDocument.writeTo(FileOutputStream(file))
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+
+        pdfDocument.close()
+        return file.absolutePath
+    }
+    fun separateByDate(registers: MutableList<ExpandableListItem<DailyHeader, DailyItem>>): List<List<DayItem>> {
+        val resultMap = mutableMapOf<String, MutableList<DayItem>>() // Map to store DayItems by date
+
+        for (item in registers) {
+            val header = item.groupData
+            val dateString = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(header.date)
+
+            for (dailyItem in item.childDataList!!) {
+                val time = SimpleDateFormat("HH:mm", Locale.getDefault()).format(dailyItem.date)
+                val dayItem = DayItem(
+                    time = time,
+                    glyc = dailyItem.glucose!!,
+                    hc = dailyItem.carbohydrates!!,
+                    cor = dailyItem.insulin!!,
+                    basal = dailyItem.basal!!
+                )
+
+                val categoryList = resultMap.getOrPut(dateString) { mutableListOf() }
+                when (dailyItem.category) {
+                    "register_breakfast_label" -> categoryList.add(0, dayItem)
+                    "register_pbreakfast_label" -> categoryList.add(1, dayItem)
+                    "register_lunch_label" -> categoryList.add(2, dayItem)
+                    "register_plunch_label" -> categoryList.add(3, dayItem)
+                    "register_snack_label" -> categoryList.add(4, dayItem)
+                    "register_psnack_label" -> categoryList.add(5, dayItem)
+                    "register_dinner_label" -> categoryList.add(6, dayItem)
+                    "register_pdinner_label" -> categoryList.add(7, dayItem)
+                }
+            }
+        }
+
+        return resultMap.values.toList()
     }
 
 }
