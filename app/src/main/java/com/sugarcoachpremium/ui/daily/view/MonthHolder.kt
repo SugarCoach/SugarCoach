@@ -5,7 +5,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.hominoid.expandablerecyclerviewlib.models.ExpandableListItem
 import com.sugarcoachpremium.R
-
+/*
 class MonthHolder (itemView: View) : RecyclerView.ViewHolder(itemView) {
     val textViewDate: TextView = itemView.findViewById(R.id.tvDate)
     val textViewTime: TextView = itemView.findViewById(R.id.tvBreakfastTime)
@@ -42,3 +42,6 @@ class MonthHolder (itemView: View) : RecyclerView.ViewHolder(itemView) {
     val textViewBasal: TextView = itemView.findViewById(R.id.tvPostDinnerBasal)
 }
 
+
+
+ */

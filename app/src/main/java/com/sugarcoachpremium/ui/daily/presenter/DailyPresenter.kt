@@ -169,10 +169,12 @@ class DailyPresenter<V : DailyView, I : DailyInteractorImp> @Inject internal con
                 Log.i("gg", category.cate_name)
             }
             registers.add(ExpandableListItem(header,item))
+            //Log.i("gg", registers[0].childDataList!![0].category.toString()+" sisoy")
         }
         Log.i("gg", registers[0].childDataList!!.toString())
         getView()?.getRegisters(registers)
-        path=createPdf(registers)
+        //path=createPdf(registers)
+        separateByDate(registers)
 
     }
 
@@ -319,13 +321,14 @@ class DailyPresenter<V : DailyView, I : DailyInteractorImp> @Inject internal con
         pdfDocument.close()
         return file.absolutePath
     }
-    fun separateByDate(registers: MutableList<ExpandableListItem<DailyHeader, DailyItem>>): List<List<DayItem>> {
-        val resultMap = mutableMapOf<String, MutableList<DayItem>>() // Map to store DayItems by date
-
+    fun separateByDate(registers: MutableList<ExpandableListItem<DailyHeader, DailyItem>>): MutableList<MutableList<DayItem?>?> {
+        val result:MutableList<MutableList<DayItem?>?> = MutableList(registers.size){ null }
+        var i= 0
         for (item in registers) {
+            Log.i("gg", registers.size.toString())
             val header = item.groupData
             val dateString = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(header.date)
-
+            val categoryList: MutableList<DayItem?> = MutableList(8) { null }
             for (dailyItem in item.childDataList!!) {
                 val time = SimpleDateFormat("HH:mm", Locale.getDefault()).format(dailyItem.date)
                 val dayItem = DayItem(
@@ -335,22 +338,27 @@ class DailyPresenter<V : DailyView, I : DailyInteractorImp> @Inject internal con
                     cor = dailyItem.insulin!!,
                     basal = dailyItem.basal!!
                 )
+                //var categoryList = resultMap.getOrPut(dateString) { mutableListOf() }
+                //var categoryList:MutableList<DayItem>
 
-                val categoryList = resultMap.getOrPut(dateString) { mutableListOf() }
                 when (dailyItem.category) {
-                    "register_breakfast_label" -> categoryList.add(0, dayItem)
-                    "register_pbreakfast_label" -> categoryList.add(1, dayItem)
-                    "register_lunch_label" -> categoryList.add(2, dayItem)
-                    "register_plunch_label" -> categoryList.add(3, dayItem)
-                    "register_snack_label" -> categoryList.add(4, dayItem)
-                    "register_psnack_label" -> categoryList.add(5, dayItem)
-                    "register_dinner_label" -> categoryList.add(6, dayItem)
-                    "register_pdinner_label" -> categoryList.add(7, dayItem)
+                    "Desayuno" -> categoryList[0]=dayItem
+                    "Post Desayuno" -> categoryList[1]= dayItem
+                    "Almuerzo" -> categoryList[2]= dayItem
+                    "Post Almuerzo" -> categoryList[3]= dayItem
+                    "Merienda" -> categoryList[4]= dayItem
+                    "Post Merienda" -> categoryList[5]= dayItem
+                    "Cena" -> categoryList[6]= dayItem
+                    "Post Cena" -> categoryList[7]= dayItem
                 }
             }
-        }
+            result[i] = categoryList
+            i++
 
-        return resultMap.values.toList()
+        }
+        Log.i("gg", result.toString())
+
+        return result
     }
 
 }
