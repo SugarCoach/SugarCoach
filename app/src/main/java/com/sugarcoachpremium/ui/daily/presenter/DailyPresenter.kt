@@ -24,6 +24,7 @@ import javax.inject.Inject
 import kotlin.collections.ArrayList
 import android.graphics.pdf.PdfDocument
 import android.os.Environment
+import androidx.recyclerview.widget.RecyclerView
 import com.sugarcoachpremium.ui.daily.view.DayItem
 import java.io.File
 import java.io.FileOutputStream
@@ -174,7 +175,8 @@ class DailyPresenter<V : DailyView, I : DailyInteractorImp> @Inject internal con
         Log.i("gg", registers[0].childDataList!!.toString())
         getView()?.getRegisters(registers)
         //path=createPdf(registers)
-        separateByDate(registers)
+        val organizedDays= separateByDate(registers)
+        val rvDays= findViewById<RecyclerView>(R.id.rvDays)
 
     }
 
@@ -235,49 +237,6 @@ class DailyPresenter<V : DailyView, I : DailyInteractorImp> @Inject internal con
     override fun getPdfPath():String{
         return path
     }
-/*
-    fun createPdf(registers: List<ExpandableListItem<DailyHeader, DailyItem>>):String {
-
-        val pdfDocument = PdfDocument()
-        val pageInfo = PdfDocument.PageInfo.Builder(595, 842, 1).create() // A4
-        val page = pdfDocument.startPage(pageInfo)
-        val canvas = page.canvas
-        val paint = Paint()
-        paint.textSize = 12f
-        var yPos = 25
-
-        for (item in registers) {
-            val header = item.groupData
-            val date = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(header.date)
-            canvas.drawText("Fecha: $date", 10f, yPos.toFloat(), paint)
-            yPos += 20
-
-            for (dailyItem in item.childDataList!!) {
-                val category = dailyItem.category
-                val insulin = dailyItem.insulin
-                val glucose = dailyItem.glucose
-                canvas.drawText("Categoría: $category, Insulina: $insulin, Glucosa: $glucose", 10f, yPos.toFloat(), paint)
-                yPos += 20
-            }
-            yPos += 20
-        }
-
-        pdfDocument.finishPage(page)
-
-        val filePath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS).absolutePath + "/DailyRecords.pdf"
-        val file = File(filePath)
-
-        try {
-            pdfDocument.writeTo(FileOutputStream(file))
-        } catch (e: IOException) {
-            e.printStackTrace()
-        }
-
-        pdfDocument.close()
-        return file.absolutePath
-    }
-
- */
     fun createPdf(registers: List<ExpandableListItem<DailyHeader, DailyItem>>): String {
 
         val pdfDocument = PdfDocument()
@@ -336,7 +295,8 @@ class DailyPresenter<V : DailyView, I : DailyInteractorImp> @Inject internal con
                     glyc = dailyItem.glucose!!,
                     hc = dailyItem.carbohydrates!!,
                     cor = dailyItem.insulin!!,
-                    basal = dailyItem.basal!!
+                    basal = dailyItem.basal!!,
+                    day = dateString
                 )
                 //var categoryList = resultMap.getOrPut(dateString) { mutableListOf() }
                 //var categoryList:MutableList<DayItem>

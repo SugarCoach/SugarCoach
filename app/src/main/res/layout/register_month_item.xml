@@ -37,14 +37,14 @@
                         android:id="@+id/tvBreakfastTime"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="12:10"
+                        android:text="--:--"
                         android:textSize="16sp" />
 
                 <TextView
                         android:id="@+id/tvBreakfastGlyc"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="86.0"
+                        android:text="--"
                         android:textSize="18sp"
                         android:textColor="@color/green" />
 
@@ -58,7 +58,7 @@
                         android:id="@+id/tvBreakfastCor"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="3.4"
+                        android:text="--"
                         android:textSize="18sp"
                         android:textColor="@color/green" />
 
@@ -71,7 +71,7 @@
                         android:id="@+id/tvBreakfastBasal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="5.4"
+                        android:text="--"
                         android:textSize="18sp"
                         android:textColor="@color/green" />
 
@@ -94,14 +94,14 @@
                         android:id="@+id/tvPostBreakfastTime"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="12:10"
+                        android:text="--:--"
                         android:textSize="16sp" />
 
                 <TextView
                         android:id="@+id/tvPostBreakfastGlyc"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="86.0"
+                        android:text="--"
                         android:textSize="18sp"
                         android:textColor="@color/green" />
 
@@ -115,7 +115,7 @@
                         android:id="@+id/tvPostBreakfastCor"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="3.4"
+                        android:text="--"
                         android:textSize="18sp"
                         android:textColor="@color/green" />
 
@@ -128,7 +128,7 @@
                         android:id="@+id/tvPostBreakfastBasal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="5.4"
+                        android:text="--"
                         android:textSize="18sp"
                         android:textColor="@color/green" />
 
@@ -152,14 +152,14 @@
                         android:id="@+id/tvLunchTime"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="14:29"
+                        android:text="--:--"
                         android:textSize="16sp" />
 
                 <TextView
                         android:id="@+id/tvLunchGlyc"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="149.0"
+                        android:text="--"
                         android:textSize="18sp"
                         android:textColor="@color/green" />
 
@@ -173,7 +173,7 @@
                         android:id="@+id/tvLunchCor"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="5.3"
+                        android:text="--"
                         android:textSize="18sp"
                         android:textColor="@color/green" />
 
@@ -186,7 +186,7 @@
                         android:id="@+id/tvLunchBasal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="5.4"
+                        android:text="--"
                         android:textSize="18sp"
                         android:textColor="@color/green" />
 
@@ -209,14 +209,14 @@
                         android:id="@+id/tvPostLunchTime"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="14:29"
+                        android:text="--:--"
                         android:textSize="16sp" />
 
                 <TextView
                         android:id="@+id/tvPostLunchGlyc"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="149.0"
+                        android:text="--"
                         android:textSize="18sp"
                         android:textColor="@color/green" />
 
@@ -230,7 +230,7 @@
                         android:id="@+id/tvPostLunchCor"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="5.3"
+                        android:text="--"
                         android:textSize="18sp"
                         android:textColor="@color/green" />
 
@@ -243,7 +243,7 @@
                         android:id="@+id/tvPostLunchBasal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="5.4"
+                        android:text="--"
                         android:textSize="18sp"
                         android:textColor="@color/green" />
 
@@ -266,14 +266,14 @@
                         android:id="@+id/tvSnackTime"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="17:52"
+                        android:text="--:--"
                         android:textSize="16sp" />
 
                 <TextView
                         android:id="@+id/tvSnackGlyc"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="236.0"
+                        android:text="--"
                         android:textSize="18sp"
                         android:textColor="@color/green" />
 
@@ -287,7 +287,7 @@
                         android:id="@+id/tvSnackCor"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="5.4"
+                        android:text="--"
                         android:textSize="18sp"
                         android:textColor="@color/green" />
 
@@ -300,7 +300,7 @@
                         android:id="@+id/tvSnackBasal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="5.4"
+                        android:text="--"
                         android:textSize="18sp"
                         android:textColor="@color/green" />
 
@@ -323,14 +323,14 @@
                         android:id="@+id/tvPostSnackTime"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="17:52"
+                        android:text="--:--"
                         android:textSize="16sp" />
 
                 <TextView
                         android:id="@+id/tvSPostSnackGlyc"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="236.0"
+                        android:text="--"
                         android:textSize="18sp"
                         android:textColor="@color/green" />
 
@@ -344,7 +344,7 @@
                         android:id="@+id/tvPostSnackCor"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="5.4"
+                        android:text="--"
                         android:textSize="18sp"
                         android:textColor="@color/green" />
 
@@ -357,7 +357,7 @@
                         android:id="@+id/tvPostSnackBasal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="5.4"
+                        android:text="--"
                         android:textSize="18sp"
                         android:textColor="@color/green" />
 
@@ -380,14 +380,14 @@
                         android:id="@+id/tvDinnerTime"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="21:54"
+                        android:text="--:--"
                         android:textSize="16sp" />
 
                 <TextView
                         android:id="@+id/tvDinnerGlyc"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="155.0"
+                        android:text="--"
                         android:textSize="18sp"
                         android:textColor="@color/green" />
 
@@ -401,7 +401,7 @@
                         android:id="@+id/tvDinnerCor"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="4.7"
+                        android:text="--"
                         android:textSize="18sp"
                         android:textColor="@color/green" />
 
@@ -414,7 +414,7 @@
                         android:id="@+id/tvDinnerBasal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="5.4"
+                        android:text="--"
                         android:textSize="18sp"
                         android:textColor="@color/green" />
 
@@ -437,14 +437,14 @@
                         android:id="@+id/tvPostDinnerTime"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="21:54"
+                        android:text="--:--"
                         android:textSize="16sp" />
 
                 <TextView
                         android:id="@+id/tvPostDinnerGlyc"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="155.0"
+                        android:text="--"
                         android:textSize="18sp"
                         android:textColor="@color/green" />
 
@@ -458,7 +458,7 @@
                         android:id="@+id/tvPostDinnerCor"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="4.7"
+                        android:text="--"
                         android:textSize="18sp"
                         android:textColor="@color/green" />
 
@@ -471,7 +471,7 @@
                         android:id="@+id/tvPostDinnerBasal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="5.4"
+                        android:text="--"
                         android:textSize="18sp"
                         android:textColor="@color/green" />
 

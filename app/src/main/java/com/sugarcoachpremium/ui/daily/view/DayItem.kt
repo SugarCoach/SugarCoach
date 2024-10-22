@@ -6,4 +6,5 @@ data class DayItem(
     val hc: String,
     val cor: String,
     val basal: String,
+    val day: String
 )
