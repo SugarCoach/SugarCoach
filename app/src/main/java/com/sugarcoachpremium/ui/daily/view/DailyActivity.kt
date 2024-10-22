@@ -13,6 +13,7 @@ import com.hominoid.expandablerecyclerviewlib.models.ExpandableListItem
 import com.sugarcoachpremium.R
 import com.sugarcoachpremium.data.database.repository.user.User
 import com.sugarcoachpremium.databinding.ActivityDailyBinding
+import com.sugarcoachpremium.databinding.RegisterMonthBinding
 import com.sugarcoachpremium.ui.base.view.BaseActivity
 import com.sugarcoachpremium.ui.daily.interactor.DailyInteractorImp
 import com.sugarcoachpremium.ui.daily.presenter.DailyPresenterImp
@@ -40,6 +41,7 @@ class DailyActivity : BaseActivity(), DailyView {
     @Inject
     lateinit var linearLayoutManager: LinearLayoutManager
 
+    private lateinit var binding2: RegisterMonthBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDailyBinding.inflate(layoutInflater)
@@ -179,5 +181,10 @@ class DailyActivity : BaseActivity(), DailyView {
         colors.add(ContextCompat.getColor(this, R.color.yellow))
         colors.add(ContextCompat.getColor(this, R.color.purple))
         return colors
+    }
+    override fun displayDailyItems(organizedDays: MutableList<MutableList<DayItem?>?>) {
+        val rvDays = binding2.rvDays
+        rvDays.layoutManager = LinearLayoutManager(this)
+        rvDays.adapter = DayAdapter(organizedDays)
     }
 }

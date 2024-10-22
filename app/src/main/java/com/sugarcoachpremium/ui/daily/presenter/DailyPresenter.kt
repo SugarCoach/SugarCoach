@@ -24,7 +24,10 @@ import javax.inject.Inject
 import kotlin.collections.ArrayList
 import android.graphics.pdf.PdfDocument
 import android.os.Environment
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.sugarcoachpremium.databinding.RegisterMonthBinding
+import com.sugarcoachpremium.ui.daily.view.DayAdapter
 import com.sugarcoachpremium.ui.daily.view.DayItem
 import java.io.File
 import java.io.FileOutputStream
@@ -36,6 +39,7 @@ class DailyPresenter<V : DailyView, I : DailyInteractorImp> @Inject internal con
     var colors =  ArrayList<Int>()
     lateinit var exercices: List<Exercises>
     lateinit var emotions: List<States>
+    private lateinit var binding2: RegisterMonthBinding
     override fun onAttach(view: V?) {
         super.onAttach(view)
         getExercices()
@@ -176,7 +180,8 @@ class DailyPresenter<V : DailyView, I : DailyInteractorImp> @Inject internal con
         getView()?.getRegisters(registers)
         //path=createPdf(registers)
         val organizedDays= separateByDate(registers)
-        val rvDays= findViewById<RecyclerView>(R.id.rvDays)
+        getView()?.displayDailyItems(organizedDays)
+
 
     }
 

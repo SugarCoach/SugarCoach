@@ -7,14 +7,14 @@ import com.bumptech.glide.Glide
 import com.sugarcoachpremium.databinding.RegisterMonthBinding
 import com.sugarcoachpremium.databinding.RegisterMonthItemBinding
 
-class ItemAdapter(private val dayList: MutableList<MutableList<DayItem?>?>) : RecyclerView.Adapter<ItemAdapter.ItemViewHolder>() {
+class DayAdapter(private val dayList: MutableList<MutableList<DayItem?>?>) : RecyclerView.Adapter<DayAdapter.DayViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
-        val binding = RegisterMonthBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ItemViewHolder(binding)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DayViewHolder {
+        val binding = RegisterMonthItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return DayViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: DayViewHolder, position: Int) {
         val day = dayList[position]
         holder.bind(day)
     }
@@ -23,7 +23,7 @@ class ItemAdapter(private val dayList: MutableList<MutableList<DayItem?>?>) : Re
         return dayList.size
     }
 
-    inner class ItemViewHolder(private val binding: RegisterMonthItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class DayViewHolder(private val binding: RegisterMonthItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(day: MutableList<DayItem?>?) {
             binding.tvDate.text = day!![0]?.day
             binding.tvBreakfastTime.text = day!![0]?.time

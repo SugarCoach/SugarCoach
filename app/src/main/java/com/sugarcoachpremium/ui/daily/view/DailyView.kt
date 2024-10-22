@@ -24,5 +24,6 @@ interface DailyView : BaseView {
     fun mirrorAccount()
     fun getColorsCategory(): ArrayList<Int>
     fun getDrawable(name: String): Drawable?
+    fun displayDailyItems(organizedDays: MutableList<MutableList<DayItem?>?>)
 
 }
