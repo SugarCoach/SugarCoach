@@ -1,6 +1,8 @@
 package com.sugarcoachpremium.ui.daily.view
 
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.Canvas
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Log
@@ -23,6 +25,9 @@ import com.sugarcoachpremium.ui.register.view.RegisterActivity
 import com.sugarcoachpremium.ui.statistics.view.StatisticsActivity
 import com.sugarcoachpremium.ui.treatment.view.TreatmentActivity
 import com.sugarcoachpremium.util.extensions.resIdByName
+import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
@@ -110,8 +115,10 @@ class DailyActivity : BaseActivity(), DailyView {
 
     fun setListeners(){
         binding.dailyPdfIv.setOnClickListener {
-            val path=presenter.getPdfPath()
-            Toast.makeText(this, "PDF descargado en: $path", Toast.LENGTH_LONG).show()
+            Log.d("gg", "¿Está binding2.root en la jerarquía de vistas?: ${binding2.root.isAttachedToWindow}")
+            captureBinding2AsImage()
+            //val path=presenter.getPdfPath()
+            //Toast.makeText(this, "PDF descargado en: $path", Toast.LENGTH_LONG).show()
         }
     }
 
@@ -183,8 +190,57 @@ class DailyActivity : BaseActivity(), DailyView {
         return colors
     }
     override fun displayDailyItems(organizedDays: MutableList<MutableList<DayItem?>?>) {
+        binding2= RegisterMonthBinding.inflate(layoutInflater)
         val rvDays = binding2.rvDays
         rvDays.layoutManager = LinearLayoutManager(this)
         rvDays.adapter = DayAdapter(organizedDays)
+        val rootView = binding2.root
+
+        if (rootView != null) {
+            Log.d("gg", "binding2.root se ha inflado correctamente")
+        } else {
+            Log.e("gg", "Error inflando binding2.root")
+        }
+    }
+    private fun captureBinding2AsImage() {
+        Log.d("gg", "Intentando capturar la imagen de la vista oculta...")
+
+        binding2.root.measure(
+            View.MeasureSpec.makeMeasureSpec(binding2.root.width, View.MeasureSpec.EXACTLY),
+            View.MeasureSpec.makeMeasureSpec(binding2.root.height, View.MeasureSpec.EXACTLY)
+        )
+        binding2.root.layout(0, 0, binding2.root.measuredWidth, binding2.root.measuredHeight)
+
+        Log.d("gg", "Medidas después de layout: ancho = ${binding2.root.measuredWidth}, alto = ${binding2.root.measuredHeight}")
+
+        if (binding2.root.measuredWidth > 0 && binding2.root.measuredHeight > 0) {
+            val bitmap = Bitmap.createBitmap(binding2.root.measuredWidth, binding2.root.measuredHeight, Bitmap.Config.ARGB_8888)
+            val canvas = Canvas(bitmap)
+            binding2.root.draw(canvas)
+
+            saveBitmapAsImage(bitmap)
+        } else {
+            Log.e("gg", "La vista no tiene dimensiones válidas.")
+        }
+    }
+
+    private fun saveBitmapAsImage(bitmap: Bitmap) {
+        val fileName = "captured_image.png"
+        val file = File(filesDir, fileName)
+
+        try {
+            val fileOutputStream = FileOutputStream(file)
+
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, fileOutputStream)
+
+            fileOutputStream.flush()
+            fileOutputStream.close()
+
+            Toast.makeText(this, "Imagen guardada en: ${file.absolutePath}", Toast.LENGTH_LONG).show()
+            Log.d("gg", "Imagen guardada en ${file.absolutePath}")
+        } catch (e: IOException) {
+            // Si ocurre un error, lo mostramos
+            Log.e("gg", "Error al guardar la imagen: $e")
+        }
     }
 }

@@ -39,7 +39,6 @@ class DailyPresenter<V : DailyView, I : DailyInteractorImp> @Inject internal con
     var colors =  ArrayList<Int>()
     lateinit var exercices: List<Exercises>
     lateinit var emotions: List<States>
-    private lateinit var binding2: RegisterMonthBinding
     override fun onAttach(view: V?) {
         super.onAttach(view)
         getExercices()

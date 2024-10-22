@@ -4661,7 +4661,6 @@ int id profile_weight_tv 0x7f0a028e
 int id progress_bar 0x7f0a028f
 int id progress_circular 0x7f0a0290
 int id progress_horizontal 0x7f0a0291
-int id rView 0x7f0a03bf
 int id radio 0x7f0a0292
 int id rangeEndBackView 0x7f0a0293
 int id rangeEndTextView 0x7f0a0294
@@ -4710,6 +4709,7 @@ int id right_side 0x7f0a02be
 int id roundSquare 0x7f0a02bf
 int id rounded 0x7f0a02c0
 int id row_index_key 0x7f0a02c1
+int id rvDays 0x7f0a03e1
 int id save_non_transition_alpha 0x7f0a02c2
 int id save_overlay_view 0x7f0a02c3
 int id sawtooth 0x7f0a02c4
@@ -4864,6 +4864,7 @@ int id time 0x7f0a0358
 int id title 0x7f0a0359
 int id titleDividerNoCustom 0x7f0a035a
 int id title_template 0x7f0a035b
+int id titles 0x7f0a03e2
 int id todayButton 0x7f0a035c
 int id todayTwoLineTextView 0x7f0a035d
 int id toggle 0x7f0a035e
@@ -4939,6 +4940,7 @@ int id tvDinnerBasal 0x7f0a03c5
 int id tvDinnerCor 0x7f0a03c6
 int id tvDinnerGlyc 0x7f0a03c7
 int id tvDinnerTime 0x7f0a03c8
+int id tvFecha 0x7f0a03e3
 int id tvLunchBasal 0x7f0a03c9
 int id tvLunchCor 0x7f0a03ca
 int id tvLunchGlyc 0x7f0a03cb

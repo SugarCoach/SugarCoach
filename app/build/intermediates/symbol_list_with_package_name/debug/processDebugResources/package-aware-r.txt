@@ -4662,7 +4662,6 @@ id profile_weight_tv
 id progress_bar
 id progress_circular
 id progress_horizontal
-id rView
 id radio
 id rangeEndBackView
 id rangeEndTextView
@@ -4711,6 +4710,7 @@ id right_side
 id roundSquare
 id rounded
 id row_index_key
+id rvDays
 id save_non_transition_alpha
 id save_overlay_view
 id sawtooth
@@ -4865,6 +4865,7 @@ id time
 id title
 id titleDividerNoCustom
 id title_template
+id titles
 id todayButton
 id todayTwoLineTextView
 id toggle
@@ -4940,6 +4941,7 @@ id tvDinnerBasal
 id tvDinnerCor
 id tvDinnerGlyc
 id tvDinnerTime
+id tvFecha
 id tvLunchBasal
 id tvLunchCor
 id tvLunchGlyc

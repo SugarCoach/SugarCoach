@@ -4,29 +4,47 @@ package com.sugarcoachpremium.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
+import androidx.viewbinding.ViewBindings;
 import com.sugarcoachpremium.R;
 import java.lang.NullPointerException;
 import java.lang.Override;
+import java.lang.String;
 
 public final class RegisterMonthBinding implements ViewBinding {
   @NonNull
-  private final RecyclerView rootView;
+  private final CardView rootView;
 
   @NonNull
-  public final RecyclerView rView;
+  public final CardView main;
 
-  private RegisterMonthBinding(@NonNull RecyclerView rootView, @NonNull RecyclerView rView) {
+  @NonNull
+  public final RecyclerView rvDays;
+
+  @NonNull
+  public final LinearLayout titles;
+
+  @NonNull
+  public final TextView tvFecha;
+
+  private RegisterMonthBinding(@NonNull CardView rootView, @NonNull CardView main,
+      @NonNull RecyclerView rvDays, @NonNull LinearLayout titles, @NonNull TextView tvFecha) {
     this.rootView = rootView;
-    this.rView = rView;
+    this.main = main;
+    this.rvDays = rvDays;
+    this.titles = titles;
+    this.tvFecha = tvFecha;
   }
 
   @Override
   @NonNull
-  public RecyclerView getRoot() {
+  public CardView getRoot() {
     return rootView;
   }
 
@@ -47,12 +65,33 @@ public final class RegisterMonthBinding implements ViewBinding {
 
   @NonNull
   public static RegisterMonthBinding bind(@NonNull View rootView) {
-    if (rootView == null) {
-      throw new NullPointerException("rootView");
+    // The body of this method is generated in a way you would not otherwise write.
+    // This is done to optimize the compiled bytecode for size and performance.
+    int id;
+    missingId: {
+      CardView main = (CardView) rootView;
+
+      id = R.id.rvDays;
+      RecyclerView rvDays = ViewBindings.findChildViewById(rootView, id);
+      if (rvDays == null) {
+        break missingId;
+      }
+
+      id = R.id.titles;
+      LinearLayout titles = ViewBindings.findChildViewById(rootView, id);
+      if (titles == null) {
+        break missingId;
+      }
+
+      id = R.id.tvFecha;
+      TextView tvFecha = ViewBindings.findChildViewById(rootView, id);
+      if (tvFecha == null) {
+        break missingId;
+      }
+
+      return new RegisterMonthBinding((CardView) rootView, main, rvDays, titles, tvFecha);
     }
-
-    RecyclerView rView = (RecyclerView) rootView;
-
-    return new RegisterMonthBinding((RecyclerView) rootView, rView);
+    String missingId = rootView.getResources().getResourceName(id);
+    throw new NullPointerException("Missing required view with ID: ".concat(missingId));
   }
 }
