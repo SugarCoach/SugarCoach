@@ -40,12 +40,12 @@
         "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\activity_sign_email.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-mergeDebugResources-67:\\layout\\treatment_correctora_item.xml",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\treatment_correctora_item.xml"
-    },
-    {
         "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-mergeDebugResources-67:\\layout\\dialog_config_delete.xml",
         "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\dialog_config_delete.xml"
+    },
+    {
+        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-mergeDebugResources-67:\\layout\\treatment_correctora_item.xml",
+        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\treatment_correctora_item.xml"
     },
     {
         "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-mergeDebugResources-67:\\layout\\profile_item.xml",
@@ -56,12 +56,12 @@
         "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\activity_treatment.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-mergeDebugResources-67:\\layout\\activity_privacy_policy.xml",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\activity_privacy_policy.xml"
-    },
-    {
         "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-mergeDebugResources-67:\\layout\\activity_statistics_detail.xml",
         "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\activity_statistics_detail.xml"
+    },
+    {
+        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-mergeDebugResources-67:\\layout\\activity_privacy_policy.xml",
+        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\activity_privacy_policy.xml"
     },
     {
         "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-mergeDebugResources-67:\\layout\\register_month_item.xml",
@@ -132,12 +132,12 @@
         "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\treatment_basal_item.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-mergeDebugResources-67:\\layout\\dialog_emotions.xml",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\dialog_emotions.xml"
-    },
-    {
         "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-mergeDebugResources-67:\\layout\\activity_table.xml",
         "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\activity_table.xml"
+    },
+    {
+        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-mergeDebugResources-67:\\layout\\dialog_emotions.xml",
+        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\dialog_emotions.xml"
     },
     {
         "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-mergeDebugResources-67:\\layout\\activity_splash.xml",
@@ -154,10 +154,6 @@
     {
         "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-mergeDebugResources-67:\\layout\\statistics_item.xml",
         "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\statistics_item.xml"
-    },
-    {
-        "merged": "com.sugarcoachpremium.app-mergeDebugResources-67:/layout/register_month.xml",
-        "source": "com.sugarcoachpremium.app-main-70:/layout/register_month.xml"
     },
     {
         "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-mergeDebugResources-67:\\layout\\activity_profile.xml",

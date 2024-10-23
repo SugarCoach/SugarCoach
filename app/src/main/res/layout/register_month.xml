@@ -9,54 +9,64 @@
         android:layout_height="wrap_content">
     <LinearLayout
             android:id="@+id/titles"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="10dp"
+            android:padding="5dp"
             tools:ignore="MissingConstraints">
         <TextView
                 android:id="@+id/tvFecha"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Fecha"
-                android:paddingRight="10dp">
+                android:text="Date"
+                android:paddingLeft="15dp"
+                android:paddingRight="20dp">
 
         </TextView>
         <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="63dp"
                 android:layout_height="wrap_content"
-                android:text="Lunes"
+                android:text="Breakfast"
                 android:paddingRight="10dp"/>
+        <TextView
+                android:layout_width="63dp"
+                android:layout_height="wrap_content"
+                android:text="Post Breakfast"
+                android:paddingRight="10dp"
+                android:textAlignment="center"/>
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Martes"
+                android:text="Lunch"
                 android:paddingRight="10dp"/>
+        <TextView
+                android:layout_width="43dp"
+                android:layout_height="wrap_content"
+                android:text="Post Lunch"
+                android:paddingRight="10dp"
+                android:textAlignment="center"/>
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Miércoles"
+                android:text="Snack"
                 android:paddingRight="10dp"/>
+        <TextView
+                android:layout_width="45dp"
+                android:layout_height="wrap_content"
+                android:text="Post Snack"
+                android:paddingRight="10dp"
+                android:textAlignment="center"/>
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Jueves"
+                android:text="Dinner"
                 android:paddingRight="10dp"/>
         <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="46dp"
                 android:layout_height="wrap_content"
-                android:text="Viernes"
-                android:paddingRight="10dp"/>
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Sábado"
-                android:paddingRight="10dp"/>
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Domingo"
-                android:paddingRight="10dp"/>
+                android:text="Post Dinner"
+                android:paddingRight="10dp"
+                android:textAlignment="center"/>
     </LinearLayout>
 
 
@@ -64,7 +74,7 @@
             android:id="@+id/rvDays"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="40dp"
+            android:paddingTop="30dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/titles"
             app:layout_constraintStart_toStartOf="parent"

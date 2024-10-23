@@ -5,6 +5,7 @@ import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.os.Environment
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -206,8 +207,8 @@ class DailyActivity : BaseActivity(), DailyView {
         Log.d("gg", "Intentando capturar la imagen de la vista oculta...")
 
         binding2.root.measure(
-            View.MeasureSpec.makeMeasureSpec(binding2.root.width, View.MeasureSpec.EXACTLY),
-            View.MeasureSpec.makeMeasureSpec(binding2.root.height, View.MeasureSpec.EXACTLY)
+            View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
+            View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
         )
         binding2.root.layout(0, 0, binding2.root.measuredWidth, binding2.root.measuredHeight)
 
@@ -225,8 +226,10 @@ class DailyActivity : BaseActivity(), DailyView {
     }
 
     private fun saveBitmapAsImage(bitmap: Bitmap) {
-        val fileName = "captured_image.png"
-        val file = File(filesDir, fileName)
+        val fileName = "register.png"
+        val picturesDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
+        val file = File(picturesDir, fileName)
+
 
         try {
             val fileOutputStream = FileOutputStream(file)
