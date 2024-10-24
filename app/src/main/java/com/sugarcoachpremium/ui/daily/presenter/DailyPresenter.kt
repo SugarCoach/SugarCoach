@@ -173,11 +173,10 @@ class DailyPresenter<V : DailyView, I : DailyInteractorImp> @Inject internal con
                 Log.i("gg", category.cate_name)
             }
             registers.add(ExpandableListItem(header,item))
-            //Log.i("gg", registers[0].childDataList!![0].category.toString()+" sisoy")
+
         }
         Log.i("gg", registers[0].childDataList!!.toString())
         getView()?.getRegisters(registers)
-        //path=createPdf(registers)
         val organizedDays= separateByDate(registers)
         getView()?.displayDailyItems(organizedDays)
 
@@ -241,49 +240,7 @@ class DailyPresenter<V : DailyView, I : DailyInteractorImp> @Inject internal con
     override fun getPdfPath():String{
         return path
     }
-    fun createPdf(registers: List<ExpandableListItem<DailyHeader, DailyItem>>): String {
 
-        val pdfDocument = PdfDocument()
-        val pageInfo = PdfDocument.PageInfo.Builder(595, 842, 1).create() // A4
-        val page = pdfDocument.startPage(pageInfo)
-        val canvas = page.canvas
-        val paint = Paint()
-        paint.textSize = 12f
-        var yPos = 25
-
-        for (item in registers) {
-            val header = item.groupData
-            val date = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(header.date)
-            canvas.drawText("Fecha: $date", 10f, yPos.toFloat(), paint)
-            yPos += 20
-            canvas.drawText("Breakfast | Lunch | Snack | Dinner", 10f, yPos.toFloat(), paint)
-            yPos += 20
-            for (dailyItem in item.childDataList!!) {
-                val time = SimpleDateFormat("HH:mm", Locale.getDefault()).format(dailyItem.date)
-                val glycemia = dailyItem.glucose
-                val hc = dailyItem.carbohydrates
-                val cor = dailyItem.insulin
-                val basal = dailyItem.basal
-                canvas.drawText("$time Glyc: $glycemia, HC: $hc, Correct: $cor, Basal: $basal", 10f, yPos.toFloat(), paint)
-                yPos += 20
-            }
-            yPos += 40
-        }
-
-        pdfDocument.finishPage(page)
-
-        val filePath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS).absolutePath + "/DailyRecords.pdf"
-        val file = File(filePath)
-
-        try {
-            pdfDocument.writeTo(FileOutputStream(file))
-        } catch (e: IOException) {
-            e.printStackTrace()
-        }
-
-        pdfDocument.close()
-        return file.absolutePath
-    }
     fun separateByDate(registers: MutableList<ExpandableListItem<DailyHeader, DailyItem>>): MutableList<MutableList<DayItem?>?> {
         val result:MutableList<MutableList<DayItem?>?> = MutableList(registers.size){ null }
         var i= 0
@@ -302,8 +259,6 @@ class DailyPresenter<V : DailyView, I : DailyInteractorImp> @Inject internal con
                     basal = dailyItem.basal!!,
                     day = dateString
                 )
-                //var categoryList = resultMap.getOrPut(dateString) { mutableListOf() }
-                //var categoryList:MutableList<DayItem>
 
                 when (dailyItem.category) {
                     "Desayuno" -> categoryList[0]=dayItem

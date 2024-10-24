@@ -18,54 +18,64 @@
                 android:id="@+id/tvFecha"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Date"
+                android:text="\nDate"
+                android:textSize="12sp"
                 android:paddingLeft="15dp"
-                android:paddingRight="20dp">
+                android:paddingRight="12dp"
+                android:layout_marginRight="45dp">
 
         </TextView>
         <TextView
-                android:layout_width="63dp"
+                android:layout_width="48dp"
                 android:layout_height="wrap_content"
-                android:text="Breakfast"
-                android:paddingRight="10dp"/>
+                android:text="\nBreakfast"
+                android:textSize="12sp"
+                android:layout_marginRight="12dp"/>
         <TextView
-                android:layout_width="63dp"
+                android:layout_width="48dp"
                 android:layout_height="wrap_content"
-                android:text="Post Breakfast"
-                android:paddingRight="10dp"
-                android:textAlignment="center"/>
+                android:text="Post\nBreakfast"
+                android:textSize="12sp"
+                android:textAlignment="center"
+                android:layout_marginRight="0dp"/>
         <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="48dp"
                 android:layout_height="wrap_content"
-                android:text="Lunch"
-                android:paddingRight="10dp"/>
+                android:text="\nLunch"
+                android:textAlignment="center"
+                android:textSize="12sp"
+                android:layout_marginRight="5dp"/>
         <TextView
-                android:layout_width="43dp"
+                android:layout_width="48dp"
                 android:layout_height="wrap_content"
                 android:text="Post Lunch"
-                android:paddingRight="10dp"
+                android:textSize="12sp"
+                android:layout_marginRight="15dp"
                 android:textAlignment="center"/>
         <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="48dp"
                 android:layout_height="wrap_content"
-                android:text="Snack"
-                android:paddingRight="10dp"/>
+                android:text="\nSnack"
+                android:textSize="12sp"/>
         <TextView
-                android:layout_width="45dp"
+                android:layout_width="48dp"
                 android:layout_height="wrap_content"
-                android:text="Post Snack"
-                android:paddingRight="10dp"
+                android:text="Pos\nSnack"
+                android:textSize="12sp"
+                android:layout_marginRight="10dp"
                 android:textAlignment="center"/>
         <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="48dp"
                 android:layout_height="wrap_content"
-                android:text="Dinner"
-                android:paddingRight="10dp"/>
+                android:text="\nDinner"
+                android:textSize="12sp"
+                android:layout_marginLeft="10dp"/>
         <TextView
-                android:layout_width="46dp"
+                android:layout_width="48dp"
                 android:layout_height="wrap_content"
                 android:text="Post Dinner"
-                android:paddingRight="10dp"
+                android:textSize="12sp"
+                android:layout_marginRight="20dp"
                 android:textAlignment="center"/>
     </LinearLayout>
 
