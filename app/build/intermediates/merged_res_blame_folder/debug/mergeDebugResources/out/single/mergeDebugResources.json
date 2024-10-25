@@ -864,10 +864,6 @@
         "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\activity_register.xml"
     },
     {
-        "merged": "com.sugarcoachpremium.app-debug-68:/layout_register_month.xml.flat",
-        "source": "com.sugarcoachpremium.app-main-70:/layout/register_month.xml"
-    },
-    {
         "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-mdpi_ic_add_register_aqua.png.flat",
         "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-mdpi\\ic_add_register_aqua.png"
     },
@@ -1182,6 +1178,10 @@
     {
         "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xhdpi_ic_preocupado.png.flat",
         "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xhdpi\\ic_preocupado.png"
+    },
+    {
+        "merged": "com.sugarcoachpremium.app-debug-68:/layout_register_month_item.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-70:/layout/register_month_item.xml"
     },
     {
         "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-nodpi_circle_gray.png.flat",

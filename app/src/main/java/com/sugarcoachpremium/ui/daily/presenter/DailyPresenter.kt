@@ -1,5 +1,6 @@
 package com.sugarcoachpremium.ui.daily.presenter
 
+import android.graphics.Color
 import android.graphics.Paint
 import android.util.Log
 import com.hominoid.expandablerecyclerviewlib.models.ExpandableListItem
@@ -170,12 +171,12 @@ class DailyPresenter<V : DailyView, I : DailyInteractorImp> @Inject internal con
                     .build()
 
                 item.add(content)
-                Log.i("gg", category.cate_name)
+                //Log.i("gg", category.cate_name)
             }
             registers.add(ExpandableListItem(header,item))
 
         }
-        Log.i("gg", registers[0].childDataList!!.toString())
+        //Log.i("gg", registers[3].childDataList!!.toString())
         getView()?.getRegisters(registers)
         val organizedDays= separateByDate(registers)
         getView()?.displayDailyItems(organizedDays)
@@ -245,21 +246,26 @@ class DailyPresenter<V : DailyView, I : DailyInteractorImp> @Inject internal con
         val result:MutableList<MutableList<DayItem?>?> = MutableList(registers.size){ null }
         var i= 0
         for (item in registers) {
-            Log.i("gg", registers.size.toString())
+            //Log.i("gg", registers.size.toString())
             val header = item.groupData
             val dateString = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(header.date)
             val categoryList: MutableList<DayItem?> = MutableList(8) { null }
             for (dailyItem in item.childDataList!!) {
                 val time = SimpleDateFormat("HH:mm", Locale.getDefault()).format(dailyItem.date)
+                var gluColor= Color.parseColor("#000000")
+                if(dailyItem.gluColor==2131100809){gluColor= Color.parseColor("#FFC107")}
+                if(dailyItem.gluColor==2131100740){gluColor= Color.parseColor("#FF0000")}
+                if((dailyItem.gluColor!=2131100740)&&(dailyItem.gluColor!=2131100809)){gluColor= Color.parseColor("#00FF00")}
                 val dayItem = DayItem(
                     time = time,
                     glyc = dailyItem.glucose!!,
                     hc = dailyItem.carbohydrates!!,
                     cor = dailyItem.insulin!!,
                     basal = dailyItem.basal!!,
-                    day = dateString
+                    day = dateString,
+                    gluColor = gluColor
                 )
-
+                Log.i("gg", dayItem.gluColor.toString()+" Color")
                 when (dailyItem.category) {
                     "Desayuno" -> categoryList[0]=dayItem
                     "Post Desayuno" -> categoryList[1]= dayItem

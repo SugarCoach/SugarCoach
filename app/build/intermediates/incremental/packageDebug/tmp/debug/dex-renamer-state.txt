@@ -1,4 +1,4 @@
-#Thu Oct 24 11:08:00 ART 2024
+#Fri Oct 25 10:11:15 ART 2024
 base.0=C\:\\Users\\sc2\\Desktop\\SugarCoach\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
 base.1=C\:\\Users\\sc2\\Desktop\\SugarCoach\\app\\build\\intermediates\\dex\\debug\\mergeLibDexDebug\\10\\classes.dex
 base.10=C\:\\Users\\sc2\\Desktop\\SugarCoach\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\1\\classes.dex
