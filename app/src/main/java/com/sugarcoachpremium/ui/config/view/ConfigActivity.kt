@@ -250,7 +250,7 @@ class ConfigActivity: BaseActivity(), ConfigView {
         binding.configGeoTitle.setOnClickListener{createDialogInfo(getString(R.string.info_geo))}
         binding.configControlTitle.setOnClickListener{createDialogInfo(getString(R.string.info_control))}
         binding.configMedicoTitle.setOnClickListener{createDialogInfo(getString(R.string.info_medico))}
-
+        //binding.premiumValue
 
 
     }
@@ -404,6 +404,9 @@ class ConfigActivity: BaseActivity(), ConfigView {
         when (errorCode) {
             AppConstants.EMPTY_PHONE_ERROR -> Toast.makeText(this, getString(R.string.invalid_phone_error_message), Toast.LENGTH_LONG).show()
         }
+    }
+    override fun showInvalidPromoCodeMessage() {
+        Toast.makeText(this, "Código de promoción inválido", Toast.LENGTH_SHORT).show()
     }
 
 }

@@ -103,18 +103,24 @@ class ConfigPresenter <V : ConfigView, I : ConfigInteractorImp> @Inject internal
         }
     }
 
-    override fun updateType(value: String?) {
-        user.typeAccount = "2"
-        interactor?.let {
-            compositeDisposable.add(it.updateUser(user)
-                .compose(schedulerProvider.ioToMainObservableScheduler())
-                .subscribe({ getView()?.createDialogCongratulation()
-                }, { throwable ->
-                    showException(throwable)
-                })
-            )
+    override fun updateType(promoCode: String?) {
+        val validPromoCode = "SPECIAL_CODE"
+
+        if (promoCode == validPromoCode) {
+            user.typeAccount = "2"
+            interactor?.let {
+                compositeDisposable.add(it.updateUser(user)
+                    .compose(schedulerProvider.ioToMainObservableScheduler())
+                    .subscribe(
+                        { getView()?.createDialogCongratulation() },
+                        { throwable -> showException(throwable) }
+                    ))
+            }
+        } else {
+            getView()?.showInvalidPromoCodeMessage()
         }
     }
+
 
     private fun getUser() = interactor?.let {
         compositeDisposable.add(it.getUser()
