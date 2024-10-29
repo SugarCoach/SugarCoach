@@ -101,529 +101,530 @@
 53-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:29:13-58
 54        android:supportsRtl="true"
 54-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:30:13-39
-55        android:theme="@style/AppTheme" >
-55-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:31:13-44
-56        <activity
-56-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:32:9-34:44
-57            android:name="com.sugarcoachpremium.ui.private_policy.view.PrivacyPolicyActivity"
-57-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:33:17-77
-58            android:exported="false" />
-58-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:34:17-41
-59        <activity
-59-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:35:9-37:44
-60            android:name="com.sugarcoachpremium.ui.private_policy.PrivatePolicyModule"
-60-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:36:17-70
-61            android:exported="false" />
-61-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:37:17-41
-62        <activity
-62-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:38:9-40:44
-63            android:name="com.sugarcoachpremium.ui.table.view.TableActivity"
-63-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:39:17-60
-64            android:exported="false" />
-64-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:40:17-41
-65        <activity
-65-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:41:9-50:20
-66            android:name="com.sugarcoachpremium.ui.splash.view.SplashActivity"
-66-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:42:17-62
-67            android:exported="true" >
-67-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:43:17-40
-68            <intent-filter>
-68-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:44:13-49:29
-69                <action android:name="android.intent.action.MAIN" />
-69-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:45:17-69
-69-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:45:25-66
-70                <action android:name="android.intent.action.VIEW" />
-70-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:46:17-69
-70-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:46:25-66
-71
-72                <category android:name="android.intent.category.LAUNCHER" />
-72-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:48:17-77
-72-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:48:27-74
-73            </intent-filter>
-74        </activity>
-75        <activity
-75-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:51:9-53:62
-76            android:name="com.sugarcoachpremium.ui.main.view.MainActivity"
-76-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:52:17-58
-77            android:theme="@style/AppTheme.FullScreen" />
-77-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:53:17-59
-78        <activity
-78-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:54:9-56:62
-79            android:name="com.sugarcoachpremium.ui.register.view.RegisterActivity"
-79-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:55:17-66
-80            android:theme="@style/AppTheme.FullScreen" />
-80-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:56:17-59
-81        <activity
-81-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:57:9-59:62
-82            android:name="com.sugarcoachpremium.ui.treatment.view.TreatmentActivity"
-82-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:58:17-68
-83            android:theme="@style/AppTheme.FullScreen" />
-83-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:59:17-59
-84        <activity
-84-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:60:9-62:62
-85            android:name="com.sugarcoachpremium.ui.sign.view.SignActivity"
-85-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:61:17-58
-86            android:theme="@style/AppTheme.FullScreen" />
-86-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:62:17-59
-87        <activity
-87-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:63:9-65:62
-88            android:name="com.sugarcoachpremium.ui.login.view.LoginActivity"
-88-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:64:17-60
-89            android:theme="@style/AppTheme.FullScreen" />
-89-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:65:17-59
-90        <activity android:name="com.sugarcoachpremium.ui.onboarding.view.OnBoardingActivity" />
-90-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:66:9-75
-90-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:66:19-72
-91        <activity
-91-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:67:9-69:62
-92            android:name="com.sugarcoachpremium.ui.signEmail.view.SignEmailActivity"
-92-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:68:17-68
-93            android:theme="@style/AppTheme.FullScreen" />
-93-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:69:17-59
-94        <activity
-94-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:70:9-72:62
-95            android:name="com.sugarcoachpremium.ui.daily.view.DailyActivity"
-95-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:71:17-60
-96            android:theme="@style/AppTheme.FullScreen" />
-96-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:72:17-59
-97        <activity
-97-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:73:9-75:62
-98            android:name="com.sugarcoachpremium.ui.daily_detail.view.DailyDetailActivity"
-98-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:74:17-73
-99            android:theme="@style/AppTheme.FullScreen" />
-99-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:75:17-59
-100        <activity
-100-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:76:9-78:62
-101            android:name="com.sugarcoachpremium.ui.profile.view.ProfileActivity"
-101-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:77:17-64
-102            android:theme="@style/AppTheme.FullScreen" />
-102-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:78:17-59
-103        <activity
-103-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:79:9-81:62
-104            android:name="com.sugarcoachpremium.ui.config.view.ConfigActivity"
-104-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:80:17-62
-105            android:theme="@style/AppTheme.FullScreen" />
-105-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:81:17-59
-106        <activity
-106-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:82:9-84:62
-107            android:name="com.sugarcoachpremium.ui.statistics.view.StatisticsActivity"
-107-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:83:17-70
-108            android:theme="@style/AppTheme.FullScreen" />
-108-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:84:17-59
-109        <activity
-109-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:85:9-87:62
-110            android:name="com.sugarcoachpremium.ui.forgot.view.ForgotActivity"
-110-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:86:17-62
-111            android:theme="@style/AppTheme.FullScreen" />
-111-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:87:17-59
-112        <activity
-112-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:88:9-91:52
-113            android:name="com.facebook.FacebookActivity"
-113-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:89:17-61
-114            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-114-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:90:17-100
-115            android:label="@string/app_name"
-115-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:91:17-49
-116            android:theme="@style/com_facebook_activity_theme" />
-116-->[com.facebook.android:facebook-common:17.0.2] C:\Users\sc2\.gradle\caches\transforms-4\777fcb3cb6ea49a1541121dfcaaf3cea\transformed\jetified-facebook-common-17.0.2\AndroidManifest.xml:25:13-63
-117        <activity
-117-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:92:9-103:20
-118            android:name="com.facebook.CustomTabActivity"
-118-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:93:17-62
-119            android:exported="true" >
-119-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:94:17-40
-120            <intent-filter>
-120-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:95:13-102:29
-121                <action android:name="android.intent.action.VIEW" />
-121-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:46:17-69
-121-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:46:25-66
-122
-123                <category android:name="android.intent.category.DEFAULT" />
-123-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:98:17-76
-123-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:98:27-73
-124                <category android:name="android.intent.category.BROWSABLE" />
-124-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:99:17-78
-124-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:99:27-75
-125
-126                <data android:scheme="@string/fb_login_protocol_scheme" />
-126-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:101:17-75
-126-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:101:23-72
-127            </intent-filter>
-128            <intent-filter>
-128-->[com.facebook.android:facebook-common:17.0.2] C:\Users\sc2\.gradle\caches\transforms-4\777fcb3cb6ea49a1541121dfcaaf3cea\transformed\jetified-facebook-common-17.0.2\AndroidManifest.xml:31:13-40:29
-129                <action android:name="android.intent.action.VIEW" />
-129-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:46:17-69
-129-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:46:25-66
-130
-131                <category android:name="android.intent.category.DEFAULT" />
-131-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:98:17-76
-131-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:98:27-73
-132                <category android:name="android.intent.category.BROWSABLE" />
-132-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:99:17-78
-132-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:99:27-75
-133
-134                <data
-134-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:101:17-75
-135                    android:host="cct.com.sugarcoachpremium"
-136                    android:scheme="fbconnect" />
-136-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:101:23-72
-137            </intent-filter>
-138        </activity>
-139
-140        <meta-data
-140-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:105:9-107:59
-141            android:name="com.facebook.sdk.ApplicationId"
-141-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:106:17-62
-142            android:value="@string/facebook_app_id" />
-142-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:107:17-56
-143        <meta-data
-143-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:108:9-110:65
-144            android:name="com.facebook.sdk.ClientToken"
-144-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:109:17-60
-145            android:value="@string/facebook_client_token" />
-145-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:110:17-62
-146        <meta-data
-146-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:111:9-113:40
-147            android:name="com.facebook.sdk.AutoLogAppEventsEnabled"
-147-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:112:17-72
-148            android:value="true" />
-148-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:113:17-37
-149        <meta-data
-149-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:114:9-116:40
-150            android:name="com.facebook.sdk.AdvertiserIDCollectionEnabled"
-150-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:115:17-78
-151            android:value="true" />
-151-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:116:17-37
-152
-153        <provider
-154            android:name="com.sugarcoachpremium.util.GenericFileProvider"
-154-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:119:17-57
-155            android:authorities="com.sugarcoachpremium.provider"
-155-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:120:17-64
-156            android:exported="false"
-156-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:121:17-41
-157            android:grantUriPermissions="true" >
-157-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:122:17-51
-158            <meta-data
-158-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:123:13-125:62
-159                android:name="android.support.FILE_PROVIDER_PATHS"
-159-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:124:21-71
-160                android:resource="@xml/provider_paths" />
-160-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:125:21-59
-161        </provider>
-162
-163        <service
-163-->[androidx.room:room-runtime:2.5.0] C:\Users\sc2\.gradle\caches\transforms-4\246dc2817b9ee0ec482f6937d4ec3e80\transformed\room-runtime-2.5.0\AndroidManifest.xml:24:9-28:63
-164            android:name="androidx.room.MultiInstanceInvalidationService"
-164-->[androidx.room:room-runtime:2.5.0] C:\Users\sc2\.gradle\caches\transforms-4\246dc2817b9ee0ec482f6937d4ec3e80\transformed\room-runtime-2.5.0\AndroidManifest.xml:25:13-74
-165            android:directBootAware="true"
-165-->[androidx.room:room-runtime:2.5.0] C:\Users\sc2\.gradle\caches\transforms-4\246dc2817b9ee0ec482f6937d4ec3e80\transformed\room-runtime-2.5.0\AndroidManifest.xml:26:13-43
-166            android:exported="false" />
-166-->[androidx.room:room-runtime:2.5.0] C:\Users\sc2\.gradle\caches\transforms-4\246dc2817b9ee0ec482f6937d4ec3e80\transformed\room-runtime-2.5.0\AndroidManifest.xml:27:13-37
-167
-168        <activity android:name="com.notbytes.barcode_reader.BarcodeReaderActivity" />
-168-->[:barcode-reader] C:\Users\sc2\Desktop\SugarCoach\barcode-reader\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:12:9-86
-168-->[:barcode-reader] C:\Users\sc2\Desktop\SugarCoach\barcode-reader\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:12:19-83
-169        <activity android:name="com.facebook.CustomTabMainActivity" />
-169-->[com.facebook.android:facebook-common:17.0.2] C:\Users\sc2\.gradle\caches\transforms-4\777fcb3cb6ea49a1541121dfcaaf3cea\transformed\jetified-facebook-common-17.0.2\AndroidManifest.xml:26:9-71
-169-->[com.facebook.android:facebook-common:17.0.2] C:\Users\sc2\.gradle\caches\transforms-4\777fcb3cb6ea49a1541121dfcaaf3cea\transformed\jetified-facebook-common-17.0.2\AndroidManifest.xml:26:19-68
-170        <activity
-170-->[com.google.android.gms:play-services-auth:20.7.0] C:\Users\sc2\.gradle\caches\transforms-4\5d6e0f38bbeb51da886b59cc396214ef\transformed\jetified-play-services-auth-20.7.0\AndroidManifest.xml:23:9-27:75
-171            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
-171-->[com.google.android.gms:play-services-auth:20.7.0] C:\Users\sc2\.gradle\caches\transforms-4\5d6e0f38bbeb51da886b59cc396214ef\transformed\jetified-play-services-auth-20.7.0\AndroidManifest.xml:24:13-93
-172            android:excludeFromRecents="true"
-172-->[com.google.android.gms:play-services-auth:20.7.0] C:\Users\sc2\.gradle\caches\transforms-4\5d6e0f38bbeb51da886b59cc396214ef\transformed\jetified-play-services-auth-20.7.0\AndroidManifest.xml:25:13-46
-173            android:exported="false"
-173-->[com.google.android.gms:play-services-auth:20.7.0] C:\Users\sc2\.gradle\caches\transforms-4\5d6e0f38bbeb51da886b59cc396214ef\transformed\jetified-play-services-auth-20.7.0\AndroidManifest.xml:26:13-37
-174            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-174-->[com.google.android.gms:play-services-auth:20.7.0] C:\Users\sc2\.gradle\caches\transforms-4\5d6e0f38bbeb51da886b59cc396214ef\transformed\jetified-play-services-auth-20.7.0\AndroidManifest.xml:27:13-72
-175        <!--
-176            Service handling Google Sign-In user revocation. For apps that do not integrate with
-177            Google Sign-In, this service will never be started.
-178        -->
-179        <service
-179-->[com.google.android.gms:play-services-auth:20.7.0] C:\Users\sc2\.gradle\caches\transforms-4\5d6e0f38bbeb51da886b59cc396214ef\transformed\jetified-play-services-auth-20.7.0\AndroidManifest.xml:33:9-37:51
-180            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
-180-->[com.google.android.gms:play-services-auth:20.7.0] C:\Users\sc2\.gradle\caches\transforms-4\5d6e0f38bbeb51da886b59cc396214ef\transformed\jetified-play-services-auth-20.7.0\AndroidManifest.xml:34:13-89
-181            android:exported="true"
-181-->[com.google.android.gms:play-services-auth:20.7.0] C:\Users\sc2\.gradle\caches\transforms-4\5d6e0f38bbeb51da886b59cc396214ef\transformed\jetified-play-services-auth-20.7.0\AndroidManifest.xml:35:13-36
-182            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION"
-182-->[com.google.android.gms:play-services-auth:20.7.0] C:\Users\sc2\.gradle\caches\transforms-4\5d6e0f38bbeb51da886b59cc396214ef\transformed\jetified-play-services-auth-20.7.0\AndroidManifest.xml:36:13-107
-183            android:visibleToInstantApps="true" />
-183-->[com.google.android.gms:play-services-auth:20.7.0] C:\Users\sc2\.gradle\caches\transforms-4\5d6e0f38bbeb51da886b59cc396214ef\transformed\jetified-play-services-auth-20.7.0\AndroidManifest.xml:37:13-48
-184        <service
-184-->[com.google.firebase:firebase-auth-ktx:22.1.2] C:\Users\sc2\.gradle\caches\transforms-4\c6b9e80c2b61d73057591cf17dfa320d\transformed\jetified-firebase-auth-ktx-22.1.2\AndroidManifest.xml:8:9-14:19
-185            android:name="com.google.firebase.components.ComponentDiscoveryService"
-185-->[com.google.firebase:firebase-auth-ktx:22.1.2] C:\Users\sc2\.gradle\caches\transforms-4\c6b9e80c2b61d73057591cf17dfa320d\transformed\jetified-firebase-auth-ktx-22.1.2\AndroidManifest.xml:9:13-84
-186            android:directBootAware="true"
-186-->[com.google.firebase:firebase-common:20.3.3] C:\Users\sc2\.gradle\caches\transforms-4\ce35520c6debf12d7a32d0c19e57ff76\transformed\jetified-firebase-common-20.3.3\AndroidManifest.xml:34:13-43
-187            android:exported="false" >
-187-->[com.google.firebase:firebase-auth-ktx:22.1.2] C:\Users\sc2\.gradle\caches\transforms-4\c6b9e80c2b61d73057591cf17dfa320d\transformed\jetified-firebase-auth-ktx-22.1.2\AndroidManifest.xml:10:13-37
-188            <meta-data
-188-->[com.google.firebase:firebase-auth-ktx:22.1.2] C:\Users\sc2\.gradle\caches\transforms-4\c6b9e80c2b61d73057591cf17dfa320d\transformed\jetified-firebase-auth-ktx-22.1.2\AndroidManifest.xml:11:13-13:85
-189                android:name="com.google.firebase.components:com.google.firebase.auth.ktx.FirebaseAuthKtxRegistrar"
-189-->[com.google.firebase:firebase-auth-ktx:22.1.2] C:\Users\sc2\.gradle\caches\transforms-4\c6b9e80c2b61d73057591cf17dfa320d\transformed\jetified-firebase-auth-ktx-22.1.2\AndroidManifest.xml:12:17-116
-190                android:value="com.google.firebase.components.ComponentRegistrar" />
-190-->[com.google.firebase:firebase-auth-ktx:22.1.2] C:\Users\sc2\.gradle\caches\transforms-4\c6b9e80c2b61d73057591cf17dfa320d\transformed\jetified-firebase-auth-ktx-22.1.2\AndroidManifest.xml:13:17-82
-191            <meta-data
-191-->[com.google.firebase:firebase-auth:22.1.2] C:\Users\sc2\.gradle\caches\transforms-4\a451a49ac2deed4f045e21957902563a\transformed\jetified-firebase-auth-22.1.2\AndroidManifest.xml:69:13-71:85
-192                android:name="com.google.firebase.components:com.google.firebase.auth.FirebaseAuthRegistrar"
-192-->[com.google.firebase:firebase-auth:22.1.2] C:\Users\sc2\.gradle\caches\transforms-4\a451a49ac2deed4f045e21957902563a\transformed\jetified-firebase-auth-22.1.2\AndroidManifest.xml:70:17-109
-193                android:value="com.google.firebase.components.ComponentRegistrar" />
-193-->[com.google.firebase:firebase-auth:22.1.2] C:\Users\sc2\.gradle\caches\transforms-4\a451a49ac2deed4f045e21957902563a\transformed\jetified-firebase-auth-22.1.2\AndroidManifest.xml:71:17-82
-194            <meta-data
-194-->[com.google.android.gms:play-services-measurement-api:21.3.0] C:\Users\sc2\.gradle\caches\transforms-4\998e208d67f4d39ceba8a9d42924b29a\transformed\jetified-play-services-measurement-api-21.3.0\AndroidManifest.xml:31:13-33:85
-195                android:name="com.google.firebase.components:com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar"
-195-->[com.google.android.gms:play-services-measurement-api:21.3.0] C:\Users\sc2\.gradle\caches\transforms-4\998e208d67f4d39ceba8a9d42924b29a\transformed\jetified-play-services-measurement-api-21.3.0\AndroidManifest.xml:32:17-139
-196                android:value="com.google.firebase.components.ComponentRegistrar" />
-196-->[com.google.android.gms:play-services-measurement-api:21.3.0] C:\Users\sc2\.gradle\caches\transforms-4\998e208d67f4d39ceba8a9d42924b29a\transformed\jetified-play-services-measurement-api-21.3.0\AndroidManifest.xml:33:17-82
-197            <meta-data
-197-->[com.google.firebase:firebase-common-ktx:20.3.3] C:\Users\sc2\.gradle\caches\transforms-4\9ec0c47244d3c5a033e59aad6fce2007\transformed\jetified-firebase-common-ktx-20.3.3\AndroidManifest.xml:14:13-16:85
-198                android:name="com.google.firebase.components:com.google.firebase.ktx.FirebaseCommonKtxRegistrar"
-198-->[com.google.firebase:firebase-common-ktx:20.3.3] C:\Users\sc2\.gradle\caches\transforms-4\9ec0c47244d3c5a033e59aad6fce2007\transformed\jetified-firebase-common-ktx-20.3.3\AndroidManifest.xml:15:17-113
-199                android:value="com.google.firebase.components.ComponentRegistrar" />
-199-->[com.google.firebase:firebase-common-ktx:20.3.3] C:\Users\sc2\.gradle\caches\transforms-4\9ec0c47244d3c5a033e59aad6fce2007\transformed\jetified-firebase-common-ktx-20.3.3\AndroidManifest.xml:16:17-82
-200            <meta-data
-200-->[com.google.firebase:firebase-installations:17.1.4] C:\Users\sc2\.gradle\caches\transforms-4\49905de1e8d35f4810a720bb833007e1\transformed\jetified-firebase-installations-17.1.4\AndroidManifest.xml:15:13-17:85
-201                android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsRegistrar"
-201-->[com.google.firebase:firebase-installations:17.1.4] C:\Users\sc2\.gradle\caches\transforms-4\49905de1e8d35f4810a720bb833007e1\transformed\jetified-firebase-installations-17.1.4\AndroidManifest.xml:16:17-127
-202                android:value="com.google.firebase.components.ComponentRegistrar" />
-202-->[com.google.firebase:firebase-installations:17.1.4] C:\Users\sc2\.gradle\caches\transforms-4\49905de1e8d35f4810a720bb833007e1\transformed\jetified-firebase-installations-17.1.4\AndroidManifest.xml:17:17-82
-203        </service>
-204
-205        <activity
-205-->[com.google.firebase:firebase-auth:22.1.2] C:\Users\sc2\.gradle\caches\transforms-4\a451a49ac2deed4f045e21957902563a\transformed\jetified-firebase-auth-22.1.2\AndroidManifest.xml:29:9-46:20
-206            android:name="com.google.firebase.auth.internal.GenericIdpActivity"
-206-->[com.google.firebase:firebase-auth:22.1.2] C:\Users\sc2\.gradle\caches\transforms-4\a451a49ac2deed4f045e21957902563a\transformed\jetified-firebase-auth-22.1.2\AndroidManifest.xml:30:13-80
-207            android:excludeFromRecents="true"
-207-->[com.google.firebase:firebase-auth:22.1.2] C:\Users\sc2\.gradle\caches\transforms-4\a451a49ac2deed4f045e21957902563a\transformed\jetified-firebase-auth-22.1.2\AndroidManifest.xml:31:13-46
-208            android:exported="true"
-208-->[com.google.firebase:firebase-auth:22.1.2] C:\Users\sc2\.gradle\caches\transforms-4\a451a49ac2deed4f045e21957902563a\transformed\jetified-firebase-auth-22.1.2\AndroidManifest.xml:32:13-36
-209            android:launchMode="singleTask"
-209-->[com.google.firebase:firebase-auth:22.1.2] C:\Users\sc2\.gradle\caches\transforms-4\a451a49ac2deed4f045e21957902563a\transformed\jetified-firebase-auth-22.1.2\AndroidManifest.xml:33:13-44
-210            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
-210-->[com.google.firebase:firebase-auth:22.1.2] C:\Users\sc2\.gradle\caches\transforms-4\a451a49ac2deed4f045e21957902563a\transformed\jetified-firebase-auth-22.1.2\AndroidManifest.xml:34:13-72
-211            <intent-filter>
-211-->[com.google.firebase:firebase-auth:22.1.2] C:\Users\sc2\.gradle\caches\transforms-4\a451a49ac2deed4f045e21957902563a\transformed\jetified-firebase-auth-22.1.2\AndroidManifest.xml:35:13-45:29
-212                <action android:name="android.intent.action.VIEW" />
-212-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:46:17-69
-212-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:46:25-66
-213
-214                <category android:name="android.intent.category.DEFAULT" />
-214-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:98:17-76
-214-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:98:27-73
-215                <category android:name="android.intent.category.BROWSABLE" />
-215-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:99:17-78
-215-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:99:27-75
-216
-217                <data
-217-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:101:17-75
-218                    android:host="firebase.auth"
-219                    android:path="/"
-220                    android:scheme="genericidp" />
-220-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:101:23-72
-221            </intent-filter>
-222        </activity>
-223        <activity
-223-->[com.google.firebase:firebase-auth:22.1.2] C:\Users\sc2\.gradle\caches\transforms-4\a451a49ac2deed4f045e21957902563a\transformed\jetified-firebase-auth-22.1.2\AndroidManifest.xml:47:9-64:20
-224            android:name="com.google.firebase.auth.internal.RecaptchaActivity"
-224-->[com.google.firebase:firebase-auth:22.1.2] C:\Users\sc2\.gradle\caches\transforms-4\a451a49ac2deed4f045e21957902563a\transformed\jetified-firebase-auth-22.1.2\AndroidManifest.xml:48:13-79
-225            android:excludeFromRecents="true"
-225-->[com.google.firebase:firebase-auth:22.1.2] C:\Users\sc2\.gradle\caches\transforms-4\a451a49ac2deed4f045e21957902563a\transformed\jetified-firebase-auth-22.1.2\AndroidManifest.xml:49:13-46
-226            android:exported="true"
-226-->[com.google.firebase:firebase-auth:22.1.2] C:\Users\sc2\.gradle\caches\transforms-4\a451a49ac2deed4f045e21957902563a\transformed\jetified-firebase-auth-22.1.2\AndroidManifest.xml:50:13-36
-227            android:launchMode="singleTask"
-227-->[com.google.firebase:firebase-auth:22.1.2] C:\Users\sc2\.gradle\caches\transforms-4\a451a49ac2deed4f045e21957902563a\transformed\jetified-firebase-auth-22.1.2\AndroidManifest.xml:51:13-44
-228            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
-228-->[com.google.firebase:firebase-auth:22.1.2] C:\Users\sc2\.gradle\caches\transforms-4\a451a49ac2deed4f045e21957902563a\transformed\jetified-firebase-auth-22.1.2\AndroidManifest.xml:52:13-72
-229            <intent-filter>
-229-->[com.google.firebase:firebase-auth:22.1.2] C:\Users\sc2\.gradle\caches\transforms-4\a451a49ac2deed4f045e21957902563a\transformed\jetified-firebase-auth-22.1.2\AndroidManifest.xml:53:13-63:29
-230                <action android:name="android.intent.action.VIEW" />
-230-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:46:17-69
-230-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:46:25-66
-231
-232                <category android:name="android.intent.category.DEFAULT" />
-232-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:98:17-76
-232-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:98:27-73
-233                <category android:name="android.intent.category.BROWSABLE" />
-233-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:99:17-78
-233-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:99:27-75
-234
-235                <data
-235-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:101:17-75
-236                    android:host="firebase.auth"
-237                    android:path="/"
-238                    android:scheme="recaptcha" />
-238-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:101:23-72
-239            </intent-filter>
-240        </activity>
-241        <activity
-241-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\sc2\.gradle\caches\transforms-4\3c3d0c1a7251ce292d33069dacb3f91e\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:20:9-22:45
-242            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-242-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\sc2\.gradle\caches\transforms-4\3c3d0c1a7251ce292d33069dacb3f91e\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:20:19-85
-243            android:exported="false"
-243-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\sc2\.gradle\caches\transforms-4\3c3d0c1a7251ce292d33069dacb3f91e\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:22:19-43
-244            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-244-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\sc2\.gradle\caches\transforms-4\3c3d0c1a7251ce292d33069dacb3f91e\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:21:19-78
-245
-246        <receiver
-246-->[com.google.android.gms:play-services-measurement:21.3.0] C:\Users\sc2\.gradle\caches\transforms-4\58533b85df7ec4ec1668f0a74df4d437\transformed\jetified-play-services-measurement-21.3.0\AndroidManifest.xml:29:9-33:20
-247            android:name="com.google.android.gms.measurement.AppMeasurementReceiver"
-247-->[com.google.android.gms:play-services-measurement:21.3.0] C:\Users\sc2\.gradle\caches\transforms-4\58533b85df7ec4ec1668f0a74df4d437\transformed\jetified-play-services-measurement-21.3.0\AndroidManifest.xml:30:13-85
-248            android:enabled="true"
-248-->[com.google.android.gms:play-services-measurement:21.3.0] C:\Users\sc2\.gradle\caches\transforms-4\58533b85df7ec4ec1668f0a74df4d437\transformed\jetified-play-services-measurement-21.3.0\AndroidManifest.xml:31:13-35
-249            android:exported="false" >
-249-->[com.google.android.gms:play-services-measurement:21.3.0] C:\Users\sc2\.gradle\caches\transforms-4\58533b85df7ec4ec1668f0a74df4d437\transformed\jetified-play-services-measurement-21.3.0\AndroidManifest.xml:32:13-37
-250        </receiver>
-251
-252        <service
-252-->[com.google.android.gms:play-services-measurement:21.3.0] C:\Users\sc2\.gradle\caches\transforms-4\58533b85df7ec4ec1668f0a74df4d437\transformed\jetified-play-services-measurement-21.3.0\AndroidManifest.xml:35:9-38:40
-253            android:name="com.google.android.gms.measurement.AppMeasurementService"
-253-->[com.google.android.gms:play-services-measurement:21.3.0] C:\Users\sc2\.gradle\caches\transforms-4\58533b85df7ec4ec1668f0a74df4d437\transformed\jetified-play-services-measurement-21.3.0\AndroidManifest.xml:36:13-84
-254            android:enabled="true"
-254-->[com.google.android.gms:play-services-measurement:21.3.0] C:\Users\sc2\.gradle\caches\transforms-4\58533b85df7ec4ec1668f0a74df4d437\transformed\jetified-play-services-measurement-21.3.0\AndroidManifest.xml:37:13-35
-255            android:exported="false" />
-255-->[com.google.android.gms:play-services-measurement:21.3.0] C:\Users\sc2\.gradle\caches\transforms-4\58533b85df7ec4ec1668f0a74df4d437\transformed\jetified-play-services-measurement-21.3.0\AndroidManifest.xml:38:13-37
-256        <service
-256-->[com.google.android.gms:play-services-measurement:21.3.0] C:\Users\sc2\.gradle\caches\transforms-4\58533b85df7ec4ec1668f0a74df4d437\transformed\jetified-play-services-measurement-21.3.0\AndroidManifest.xml:39:9-43:72
-257            android:name="com.google.android.gms.measurement.AppMeasurementJobService"
-257-->[com.google.android.gms:play-services-measurement:21.3.0] C:\Users\sc2\.gradle\caches\transforms-4\58533b85df7ec4ec1668f0a74df4d437\transformed\jetified-play-services-measurement-21.3.0\AndroidManifest.xml:40:13-87
-258            android:enabled="true"
-258-->[com.google.android.gms:play-services-measurement:21.3.0] C:\Users\sc2\.gradle\caches\transforms-4\58533b85df7ec4ec1668f0a74df4d437\transformed\jetified-play-services-measurement-21.3.0\AndroidManifest.xml:41:13-35
-259            android:exported="false"
-259-->[com.google.android.gms:play-services-measurement:21.3.0] C:\Users\sc2\.gradle\caches\transforms-4\58533b85df7ec4ec1668f0a74df4d437\transformed\jetified-play-services-measurement-21.3.0\AndroidManifest.xml:42:13-37
-260            android:permission="android.permission.BIND_JOB_SERVICE" />
-260-->[com.google.android.gms:play-services-measurement:21.3.0] C:\Users\sc2\.gradle\caches\transforms-4\58533b85df7ec4ec1668f0a74df4d437\transformed\jetified-play-services-measurement-21.3.0\AndroidManifest.xml:43:13-69
-261
-262        <provider
-262-->[com.google.firebase:firebase-common:20.3.3] C:\Users\sc2\.gradle\caches\transforms-4\ce35520c6debf12d7a32d0c19e57ff76\transformed\jetified-firebase-common-20.3.3\AndroidManifest.xml:25:9-30:39
-263            android:name="com.google.firebase.provider.FirebaseInitProvider"
-263-->[com.google.firebase:firebase-common:20.3.3] C:\Users\sc2\.gradle\caches\transforms-4\ce35520c6debf12d7a32d0c19e57ff76\transformed\jetified-firebase-common-20.3.3\AndroidManifest.xml:26:13-77
-264            android:authorities="com.sugarcoachpremium.firebaseinitprovider"
-264-->[com.google.firebase:firebase-common:20.3.3] C:\Users\sc2\.gradle\caches\transforms-4\ce35520c6debf12d7a32d0c19e57ff76\transformed\jetified-firebase-common-20.3.3\AndroidManifest.xml:27:13-72
-265            android:directBootAware="true"
-265-->[com.google.firebase:firebase-common:20.3.3] C:\Users\sc2\.gradle\caches\transforms-4\ce35520c6debf12d7a32d0c19e57ff76\transformed\jetified-firebase-common-20.3.3\AndroidManifest.xml:28:13-43
-266            android:exported="false"
-266-->[com.google.firebase:firebase-common:20.3.3] C:\Users\sc2\.gradle\caches\transforms-4\ce35520c6debf12d7a32d0c19e57ff76\transformed\jetified-firebase-common-20.3.3\AndroidManifest.xml:29:13-37
-267            android:initOrder="100" />
-267-->[com.google.firebase:firebase-common:20.3.3] C:\Users\sc2\.gradle\caches\transforms-4\ce35520c6debf12d7a32d0c19e57ff76\transformed\jetified-firebase-common-20.3.3\AndroidManifest.xml:30:13-36
-268
-269        <meta-data
-269-->[com.google.android.gms:play-services-basement:18.2.0] C:\Users\sc2\.gradle\caches\transforms-4\1185e311603659e24a0c8516a00e9cd3\transformed\jetified-play-services-basement-18.2.0\AndroidManifest.xml:21:9-23:69
-270            android:name="com.google.android.gms.version"
-270-->[com.google.android.gms:play-services-basement:18.2.0] C:\Users\sc2\.gradle\caches\transforms-4\1185e311603659e24a0c8516a00e9cd3\transformed\jetified-play-services-basement-18.2.0\AndroidManifest.xml:22:13-58
-271            android:value="@integer/google_play_services_version" />
-271-->[com.google.android.gms:play-services-basement:18.2.0] C:\Users\sc2\.gradle\caches\transforms-4\1185e311603659e24a0c8516a00e9cd3\transformed\jetified-play-services-basement-18.2.0\AndroidManifest.xml:23:13-66
-272        <!--
-273         The initialization ContentProvider will call FacebookSdk.sdkInitialize automatically
-274         with the application context. This config is merged in with the host app's manifest,
-275         but there can only be one provider with the same authority activated at any given
-276         point; so if the end user has two or more different apps that use Facebook SDK, only the
-277         first one will be able to use the provider. To work around this problem, we use the
-278         following placeholder in the authority to identify each host application as if it was
-279         a completely different provider.
-280        -->
-281        <provider
-281-->[com.facebook.android:facebook-core:17.0.2] C:\Users\sc2\.gradle\caches\transforms-4\e4f752478c7f2619c70880f7ece65095\transformed\jetified-facebook-core-17.0.2\AndroidManifest.xml:29:9-32:40
-282            android:name="com.facebook.internal.FacebookInitProvider"
-282-->[com.facebook.android:facebook-core:17.0.2] C:\Users\sc2\.gradle\caches\transforms-4\e4f752478c7f2619c70880f7ece65095\transformed\jetified-facebook-core-17.0.2\AndroidManifest.xml:30:13-70
-283            android:authorities="com.sugarcoachpremium.FacebookInitProvider"
-283-->[com.facebook.android:facebook-core:17.0.2] C:\Users\sc2\.gradle\caches\transforms-4\e4f752478c7f2619c70880f7ece65095\transformed\jetified-facebook-core-17.0.2\AndroidManifest.xml:31:13-72
-284            android:exported="false" />
-284-->[com.facebook.android:facebook-core:17.0.2] C:\Users\sc2\.gradle\caches\transforms-4\e4f752478c7f2619c70880f7ece65095\transformed\jetified-facebook-core-17.0.2\AndroidManifest.xml:32:13-37
-285
-286        <receiver
-286-->[com.facebook.android:facebook-core:17.0.2] C:\Users\sc2\.gradle\caches\transforms-4\e4f752478c7f2619c70880f7ece65095\transformed\jetified-facebook-core-17.0.2\AndroidManifest.xml:34:9-40:20
-287            android:name="com.facebook.CurrentAccessTokenExpirationBroadcastReceiver"
-287-->[com.facebook.android:facebook-core:17.0.2] C:\Users\sc2\.gradle\caches\transforms-4\e4f752478c7f2619c70880f7ece65095\transformed\jetified-facebook-core-17.0.2\AndroidManifest.xml:35:13-86
-288            android:exported="false" >
-288-->[com.facebook.android:facebook-core:17.0.2] C:\Users\sc2\.gradle\caches\transforms-4\e4f752478c7f2619c70880f7ece65095\transformed\jetified-facebook-core-17.0.2\AndroidManifest.xml:36:13-37
-289            <intent-filter>
-289-->[com.facebook.android:facebook-core:17.0.2] C:\Users\sc2\.gradle\caches\transforms-4\e4f752478c7f2619c70880f7ece65095\transformed\jetified-facebook-core-17.0.2\AndroidManifest.xml:37:13-39:29
-290                <action android:name="com.facebook.sdk.ACTION_CURRENT_ACCESS_TOKEN_CHANGED" />
-290-->[com.facebook.android:facebook-core:17.0.2] C:\Users\sc2\.gradle\caches\transforms-4\e4f752478c7f2619c70880f7ece65095\transformed\jetified-facebook-core-17.0.2\AndroidManifest.xml:38:17-95
-290-->[com.facebook.android:facebook-core:17.0.2] C:\Users\sc2\.gradle\caches\transforms-4\e4f752478c7f2619c70880f7ece65095\transformed\jetified-facebook-core-17.0.2\AndroidManifest.xml:38:25-92
-291            </intent-filter>
-292        </receiver>
-293        <receiver
-293-->[com.facebook.android:facebook-core:17.0.2] C:\Users\sc2\.gradle\caches\transforms-4\e4f752478c7f2619c70880f7ece65095\transformed\jetified-facebook-core-17.0.2\AndroidManifest.xml:41:9-47:20
-294            android:name="com.facebook.AuthenticationTokenManager$CurrentAuthenticationTokenChangedBroadcastReceiver"
-294-->[com.facebook.android:facebook-core:17.0.2] C:\Users\sc2\.gradle\caches\transforms-4\e4f752478c7f2619c70880f7ece65095\transformed\jetified-facebook-core-17.0.2\AndroidManifest.xml:42:13-118
-295            android:exported="false" >
-295-->[com.facebook.android:facebook-core:17.0.2] C:\Users\sc2\.gradle\caches\transforms-4\e4f752478c7f2619c70880f7ece65095\transformed\jetified-facebook-core-17.0.2\AndroidManifest.xml:43:13-37
-296            <intent-filter>
-296-->[com.facebook.android:facebook-core:17.0.2] C:\Users\sc2\.gradle\caches\transforms-4\e4f752478c7f2619c70880f7ece65095\transformed\jetified-facebook-core-17.0.2\AndroidManifest.xml:44:13-46:29
-297                <action android:name="com.facebook.sdk.ACTION_CURRENT_AUTHENTICATION_TOKEN_CHANGED" />
-297-->[com.facebook.android:facebook-core:17.0.2] C:\Users\sc2\.gradle\caches\transforms-4\e4f752478c7f2619c70880f7ece65095\transformed\jetified-facebook-core-17.0.2\AndroidManifest.xml:45:17-103
-297-->[com.facebook.android:facebook-core:17.0.2] C:\Users\sc2\.gradle\caches\transforms-4\e4f752478c7f2619c70880f7ece65095\transformed\jetified-facebook-core-17.0.2\AndroidManifest.xml:45:25-100
-298            </intent-filter>
-299        </receiver>
-300
-301        <provider
-301-->[androidx.emoji2:emoji2:1.2.0] C:\Users\sc2\.gradle\caches\transforms-4\85724c271d01dc549768f8cd9a09bf1d\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
-302            android:name="androidx.startup.InitializationProvider"
-302-->[androidx.emoji2:emoji2:1.2.0] C:\Users\sc2\.gradle\caches\transforms-4\85724c271d01dc549768f8cd9a09bf1d\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:25:13-67
-303            android:authorities="com.sugarcoachpremium.androidx-startup"
-303-->[androidx.emoji2:emoji2:1.2.0] C:\Users\sc2\.gradle\caches\transforms-4\85724c271d01dc549768f8cd9a09bf1d\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:26:13-68
-304            android:exported="false" >
-304-->[androidx.emoji2:emoji2:1.2.0] C:\Users\sc2\.gradle\caches\transforms-4\85724c271d01dc549768f8cd9a09bf1d\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:27:13-37
-305            <meta-data
-305-->[androidx.emoji2:emoji2:1.2.0] C:\Users\sc2\.gradle\caches\transforms-4\85724c271d01dc549768f8cd9a09bf1d\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
-306                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-306-->[androidx.emoji2:emoji2:1.2.0] C:\Users\sc2\.gradle\caches\transforms-4\85724c271d01dc549768f8cd9a09bf1d\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:30:17-75
-307                android:value="androidx.startup" />
-307-->[androidx.emoji2:emoji2:1.2.0] C:\Users\sc2\.gradle\caches\transforms-4\85724c271d01dc549768f8cd9a09bf1d\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:31:17-49
-308            <meta-data
-308-->[androidx.lifecycle:lifecycle-process:2.6.1] C:\Users\sc2\.gradle\caches\transforms-4\7cf713b1e732898796f5384e47abbacf\transformed\jetified-lifecycle-process-2.6.1\AndroidManifest.xml:29:13-31:52
-309                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-309-->[androidx.lifecycle:lifecycle-process:2.6.1] C:\Users\sc2\.gradle\caches\transforms-4\7cf713b1e732898796f5384e47abbacf\transformed\jetified-lifecycle-process-2.6.1\AndroidManifest.xml:30:17-78
-310                android:value="androidx.startup" />
-310-->[androidx.lifecycle:lifecycle-process:2.6.1] C:\Users\sc2\.gradle\caches\transforms-4\7cf713b1e732898796f5384e47abbacf\transformed\jetified-lifecycle-process-2.6.1\AndroidManifest.xml:31:17-49
-311            <meta-data
-311-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sc2\.gradle\caches\transforms-4\0ead26ca60acf99434add60c2420ed06\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:29:13-31:52
-312                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
-312-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sc2\.gradle\caches\transforms-4\0ead26ca60acf99434add60c2420ed06\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:30:17-85
-313                android:value="androidx.startup" />
-313-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sc2\.gradle\caches\transforms-4\0ead26ca60acf99434add60c2420ed06\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:31:17-49
-314        </provider>
-315
-316        <receiver
-316-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sc2\.gradle\caches\transforms-4\0ead26ca60acf99434add60c2420ed06\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:34:9-52:20
-317            android:name="androidx.profileinstaller.ProfileInstallReceiver"
-317-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sc2\.gradle\caches\transforms-4\0ead26ca60acf99434add60c2420ed06\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:35:13-76
-318            android:directBootAware="false"
-318-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sc2\.gradle\caches\transforms-4\0ead26ca60acf99434add60c2420ed06\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:36:13-44
-319            android:enabled="true"
-319-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sc2\.gradle\caches\transforms-4\0ead26ca60acf99434add60c2420ed06\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:37:13-35
-320            android:exported="true"
-320-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sc2\.gradle\caches\transforms-4\0ead26ca60acf99434add60c2420ed06\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:38:13-36
-321            android:permission="android.permission.DUMP" >
-321-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sc2\.gradle\caches\transforms-4\0ead26ca60acf99434add60c2420ed06\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:39:13-57
-322            <intent-filter>
-322-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sc2\.gradle\caches\transforms-4\0ead26ca60acf99434add60c2420ed06\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:40:13-42:29
-323                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
-323-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sc2\.gradle\caches\transforms-4\0ead26ca60acf99434add60c2420ed06\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:41:17-91
-323-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sc2\.gradle\caches\transforms-4\0ead26ca60acf99434add60c2420ed06\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:41:25-88
-324            </intent-filter>
-325            <intent-filter>
-325-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sc2\.gradle\caches\transforms-4\0ead26ca60acf99434add60c2420ed06\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:43:13-45:29
-326                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
-326-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sc2\.gradle\caches\transforms-4\0ead26ca60acf99434add60c2420ed06\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:44:17-85
-326-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sc2\.gradle\caches\transforms-4\0ead26ca60acf99434add60c2420ed06\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:44:25-82
-327            </intent-filter>
-328            <intent-filter>
-328-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sc2\.gradle\caches\transforms-4\0ead26ca60acf99434add60c2420ed06\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:46:13-48:29
-329                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
-329-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sc2\.gradle\caches\transforms-4\0ead26ca60acf99434add60c2420ed06\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:47:17-88
-329-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sc2\.gradle\caches\transforms-4\0ead26ca60acf99434add60c2420ed06\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:47:25-85
-330            </intent-filter>
-331            <intent-filter>
-331-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sc2\.gradle\caches\transforms-4\0ead26ca60acf99434add60c2420ed06\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:49:13-51:29
-332                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
-332-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sc2\.gradle\caches\transforms-4\0ead26ca60acf99434add60c2420ed06\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:50:17-95
-332-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sc2\.gradle\caches\transforms-4\0ead26ca60acf99434add60c2420ed06\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:50:25-92
-333            </intent-filter>
-334        </receiver>
-335    </application>
-336
-337</manifest>
+55        android:testOnly="true"
+56        android:theme="@style/AppTheme" >
+56-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:31:13-44
+57        <activity
+57-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:32:9-34:44
+58            android:name="com.sugarcoachpremium.ui.private_policy.view.PrivacyPolicyActivity"
+58-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:33:17-77
+59            android:exported="false" />
+59-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:34:17-41
+60        <activity
+60-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:35:9-37:44
+61            android:name="com.sugarcoachpremium.ui.private_policy.PrivatePolicyModule"
+61-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:36:17-70
+62            android:exported="false" />
+62-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:37:17-41
+63        <activity
+63-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:38:9-40:44
+64            android:name="com.sugarcoachpremium.ui.table.view.TableActivity"
+64-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:39:17-60
+65            android:exported="false" />
+65-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:40:17-41
+66        <activity
+66-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:41:9-50:20
+67            android:name="com.sugarcoachpremium.ui.splash.view.SplashActivity"
+67-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:42:17-62
+68            android:exported="true" >
+68-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:43:17-40
+69            <intent-filter>
+69-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:44:13-49:29
+70                <action android:name="android.intent.action.MAIN" />
+70-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:45:17-69
+70-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:45:25-66
+71                <action android:name="android.intent.action.VIEW" />
+71-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:46:17-69
+71-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:46:25-66
+72
+73                <category android:name="android.intent.category.LAUNCHER" />
+73-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:48:17-77
+73-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:48:27-74
+74            </intent-filter>
+75        </activity>
+76        <activity
+76-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:51:9-53:62
+77            android:name="com.sugarcoachpremium.ui.main.view.MainActivity"
+77-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:52:17-58
+78            android:theme="@style/AppTheme.FullScreen" />
+78-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:53:17-59
+79        <activity
+79-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:54:9-56:62
+80            android:name="com.sugarcoachpremium.ui.register.view.RegisterActivity"
+80-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:55:17-66
+81            android:theme="@style/AppTheme.FullScreen" />
+81-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:56:17-59
+82        <activity
+82-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:57:9-59:62
+83            android:name="com.sugarcoachpremium.ui.treatment.view.TreatmentActivity"
+83-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:58:17-68
+84            android:theme="@style/AppTheme.FullScreen" />
+84-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:59:17-59
+85        <activity
+85-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:60:9-62:62
+86            android:name="com.sugarcoachpremium.ui.sign.view.SignActivity"
+86-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:61:17-58
+87            android:theme="@style/AppTheme.FullScreen" />
+87-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:62:17-59
+88        <activity
+88-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:63:9-65:62
+89            android:name="com.sugarcoachpremium.ui.login.view.LoginActivity"
+89-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:64:17-60
+90            android:theme="@style/AppTheme.FullScreen" />
+90-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:65:17-59
+91        <activity android:name="com.sugarcoachpremium.ui.onboarding.view.OnBoardingActivity" />
+91-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:66:9-75
+91-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:66:19-72
+92        <activity
+92-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:67:9-69:62
+93            android:name="com.sugarcoachpremium.ui.signEmail.view.SignEmailActivity"
+93-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:68:17-68
+94            android:theme="@style/AppTheme.FullScreen" />
+94-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:69:17-59
+95        <activity
+95-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:70:9-72:62
+96            android:name="com.sugarcoachpremium.ui.daily.view.DailyActivity"
+96-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:71:17-60
+97            android:theme="@style/AppTheme.FullScreen" />
+97-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:72:17-59
+98        <activity
+98-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:73:9-75:62
+99            android:name="com.sugarcoachpremium.ui.daily_detail.view.DailyDetailActivity"
+99-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:74:17-73
+100            android:theme="@style/AppTheme.FullScreen" />
+100-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:75:17-59
+101        <activity
+101-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:76:9-78:62
+102            android:name="com.sugarcoachpremium.ui.profile.view.ProfileActivity"
+102-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:77:17-64
+103            android:theme="@style/AppTheme.FullScreen" />
+103-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:78:17-59
+104        <activity
+104-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:79:9-81:62
+105            android:name="com.sugarcoachpremium.ui.config.view.ConfigActivity"
+105-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:80:17-62
+106            android:theme="@style/AppTheme.FullScreen" />
+106-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:81:17-59
+107        <activity
+107-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:82:9-84:62
+108            android:name="com.sugarcoachpremium.ui.statistics.view.StatisticsActivity"
+108-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:83:17-70
+109            android:theme="@style/AppTheme.FullScreen" />
+109-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:84:17-59
+110        <activity
+110-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:85:9-87:62
+111            android:name="com.sugarcoachpremium.ui.forgot.view.ForgotActivity"
+111-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:86:17-62
+112            android:theme="@style/AppTheme.FullScreen" />
+112-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:87:17-59
+113        <activity
+113-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:88:9-91:52
+114            android:name="com.facebook.FacebookActivity"
+114-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:89:17-61
+115            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+115-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:90:17-100
+116            android:label="@string/app_name"
+116-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:91:17-49
+117            android:theme="@style/com_facebook_activity_theme" />
+117-->[com.facebook.android:facebook-common:17.0.2] C:\Users\sc2\.gradle\caches\transforms-4\777fcb3cb6ea49a1541121dfcaaf3cea\transformed\jetified-facebook-common-17.0.2\AndroidManifest.xml:25:13-63
+118        <activity
+118-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:92:9-103:20
+119            android:name="com.facebook.CustomTabActivity"
+119-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:93:17-62
+120            android:exported="true" >
+120-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:94:17-40
+121            <intent-filter>
+121-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:95:13-102:29
+122                <action android:name="android.intent.action.VIEW" />
+122-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:46:17-69
+122-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:46:25-66
+123
+124                <category android:name="android.intent.category.DEFAULT" />
+124-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:98:17-76
+124-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:98:27-73
+125                <category android:name="android.intent.category.BROWSABLE" />
+125-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:99:17-78
+125-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:99:27-75
+126
+127                <data android:scheme="@string/fb_login_protocol_scheme" />
+127-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:101:17-75
+127-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:101:23-72
+128            </intent-filter>
+129            <intent-filter>
+129-->[com.facebook.android:facebook-common:17.0.2] C:\Users\sc2\.gradle\caches\transforms-4\777fcb3cb6ea49a1541121dfcaaf3cea\transformed\jetified-facebook-common-17.0.2\AndroidManifest.xml:31:13-40:29
+130                <action android:name="android.intent.action.VIEW" />
+130-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:46:17-69
+130-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:46:25-66
+131
+132                <category android:name="android.intent.category.DEFAULT" />
+132-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:98:17-76
+132-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:98:27-73
+133                <category android:name="android.intent.category.BROWSABLE" />
+133-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:99:17-78
+133-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:99:27-75
+134
+135                <data
+135-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:101:17-75
+136                    android:host="cct.com.sugarcoachpremium"
+137                    android:scheme="fbconnect" />
+137-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:101:23-72
+138            </intent-filter>
+139        </activity>
+140
+141        <meta-data
+141-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:105:9-107:59
+142            android:name="com.facebook.sdk.ApplicationId"
+142-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:106:17-62
+143            android:value="@string/facebook_app_id" />
+143-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:107:17-56
+144        <meta-data
+144-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:108:9-110:65
+145            android:name="com.facebook.sdk.ClientToken"
+145-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:109:17-60
+146            android:value="@string/facebook_client_token" />
+146-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:110:17-62
+147        <meta-data
+147-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:111:9-113:40
+148            android:name="com.facebook.sdk.AutoLogAppEventsEnabled"
+148-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:112:17-72
+149            android:value="true" />
+149-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:113:17-37
+150        <meta-data
+150-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:114:9-116:40
+151            android:name="com.facebook.sdk.AdvertiserIDCollectionEnabled"
+151-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:115:17-78
+152            android:value="true" />
+152-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:116:17-37
+153
+154        <provider
+155            android:name="com.sugarcoachpremium.util.GenericFileProvider"
+155-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:119:17-57
+156            android:authorities="com.sugarcoachpremium.provider"
+156-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:120:17-64
+157            android:exported="false"
+157-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:121:17-41
+158            android:grantUriPermissions="true" >
+158-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:122:17-51
+159            <meta-data
+159-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:123:13-125:62
+160                android:name="android.support.FILE_PROVIDER_PATHS"
+160-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:124:21-71
+161                android:resource="@xml/provider_paths" />
+161-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:125:21-59
+162        </provider>
+163
+164        <service
+164-->[androidx.room:room-runtime:2.5.0] C:\Users\sc2\.gradle\caches\transforms-4\246dc2817b9ee0ec482f6937d4ec3e80\transformed\room-runtime-2.5.0\AndroidManifest.xml:24:9-28:63
+165            android:name="androidx.room.MultiInstanceInvalidationService"
+165-->[androidx.room:room-runtime:2.5.0] C:\Users\sc2\.gradle\caches\transforms-4\246dc2817b9ee0ec482f6937d4ec3e80\transformed\room-runtime-2.5.0\AndroidManifest.xml:25:13-74
+166            android:directBootAware="true"
+166-->[androidx.room:room-runtime:2.5.0] C:\Users\sc2\.gradle\caches\transforms-4\246dc2817b9ee0ec482f6937d4ec3e80\transformed\room-runtime-2.5.0\AndroidManifest.xml:26:13-43
+167            android:exported="false" />
+167-->[androidx.room:room-runtime:2.5.0] C:\Users\sc2\.gradle\caches\transforms-4\246dc2817b9ee0ec482f6937d4ec3e80\transformed\room-runtime-2.5.0\AndroidManifest.xml:27:13-37
+168
+169        <activity android:name="com.notbytes.barcode_reader.BarcodeReaderActivity" />
+169-->[:barcode-reader] C:\Users\sc2\Desktop\SugarCoach\barcode-reader\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:12:9-86
+169-->[:barcode-reader] C:\Users\sc2\Desktop\SugarCoach\barcode-reader\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:12:19-83
+170        <activity android:name="com.facebook.CustomTabMainActivity" />
+170-->[com.facebook.android:facebook-common:17.0.2] C:\Users\sc2\.gradle\caches\transforms-4\777fcb3cb6ea49a1541121dfcaaf3cea\transformed\jetified-facebook-common-17.0.2\AndroidManifest.xml:26:9-71
+170-->[com.facebook.android:facebook-common:17.0.2] C:\Users\sc2\.gradle\caches\transforms-4\777fcb3cb6ea49a1541121dfcaaf3cea\transformed\jetified-facebook-common-17.0.2\AndroidManifest.xml:26:19-68
+171        <activity
+171-->[com.google.android.gms:play-services-auth:20.7.0] C:\Users\sc2\.gradle\caches\transforms-4\5d6e0f38bbeb51da886b59cc396214ef\transformed\jetified-play-services-auth-20.7.0\AndroidManifest.xml:23:9-27:75
+172            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
+172-->[com.google.android.gms:play-services-auth:20.7.0] C:\Users\sc2\.gradle\caches\transforms-4\5d6e0f38bbeb51da886b59cc396214ef\transformed\jetified-play-services-auth-20.7.0\AndroidManifest.xml:24:13-93
+173            android:excludeFromRecents="true"
+173-->[com.google.android.gms:play-services-auth:20.7.0] C:\Users\sc2\.gradle\caches\transforms-4\5d6e0f38bbeb51da886b59cc396214ef\transformed\jetified-play-services-auth-20.7.0\AndroidManifest.xml:25:13-46
+174            android:exported="false"
+174-->[com.google.android.gms:play-services-auth:20.7.0] C:\Users\sc2\.gradle\caches\transforms-4\5d6e0f38bbeb51da886b59cc396214ef\transformed\jetified-play-services-auth-20.7.0\AndroidManifest.xml:26:13-37
+175            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+175-->[com.google.android.gms:play-services-auth:20.7.0] C:\Users\sc2\.gradle\caches\transforms-4\5d6e0f38bbeb51da886b59cc396214ef\transformed\jetified-play-services-auth-20.7.0\AndroidManifest.xml:27:13-72
+176        <!--
+177            Service handling Google Sign-In user revocation. For apps that do not integrate with
+178            Google Sign-In, this service will never be started.
+179        -->
+180        <service
+180-->[com.google.android.gms:play-services-auth:20.7.0] C:\Users\sc2\.gradle\caches\transforms-4\5d6e0f38bbeb51da886b59cc396214ef\transformed\jetified-play-services-auth-20.7.0\AndroidManifest.xml:33:9-37:51
+181            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
+181-->[com.google.android.gms:play-services-auth:20.7.0] C:\Users\sc2\.gradle\caches\transforms-4\5d6e0f38bbeb51da886b59cc396214ef\transformed\jetified-play-services-auth-20.7.0\AndroidManifest.xml:34:13-89
+182            android:exported="true"
+182-->[com.google.android.gms:play-services-auth:20.7.0] C:\Users\sc2\.gradle\caches\transforms-4\5d6e0f38bbeb51da886b59cc396214ef\transformed\jetified-play-services-auth-20.7.0\AndroidManifest.xml:35:13-36
+183            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION"
+183-->[com.google.android.gms:play-services-auth:20.7.0] C:\Users\sc2\.gradle\caches\transforms-4\5d6e0f38bbeb51da886b59cc396214ef\transformed\jetified-play-services-auth-20.7.0\AndroidManifest.xml:36:13-107
+184            android:visibleToInstantApps="true" />
+184-->[com.google.android.gms:play-services-auth:20.7.0] C:\Users\sc2\.gradle\caches\transforms-4\5d6e0f38bbeb51da886b59cc396214ef\transformed\jetified-play-services-auth-20.7.0\AndroidManifest.xml:37:13-48
+185        <service
+185-->[com.google.firebase:firebase-auth-ktx:22.1.2] C:\Users\sc2\.gradle\caches\transforms-4\c6b9e80c2b61d73057591cf17dfa320d\transformed\jetified-firebase-auth-ktx-22.1.2\AndroidManifest.xml:8:9-14:19
+186            android:name="com.google.firebase.components.ComponentDiscoveryService"
+186-->[com.google.firebase:firebase-auth-ktx:22.1.2] C:\Users\sc2\.gradle\caches\transforms-4\c6b9e80c2b61d73057591cf17dfa320d\transformed\jetified-firebase-auth-ktx-22.1.2\AndroidManifest.xml:9:13-84
+187            android:directBootAware="true"
+187-->[com.google.firebase:firebase-common:20.3.3] C:\Users\sc2\.gradle\caches\transforms-4\ce35520c6debf12d7a32d0c19e57ff76\transformed\jetified-firebase-common-20.3.3\AndroidManifest.xml:34:13-43
+188            android:exported="false" >
+188-->[com.google.firebase:firebase-auth-ktx:22.1.2] C:\Users\sc2\.gradle\caches\transforms-4\c6b9e80c2b61d73057591cf17dfa320d\transformed\jetified-firebase-auth-ktx-22.1.2\AndroidManifest.xml:10:13-37
+189            <meta-data
+189-->[com.google.firebase:firebase-auth-ktx:22.1.2] C:\Users\sc2\.gradle\caches\transforms-4\c6b9e80c2b61d73057591cf17dfa320d\transformed\jetified-firebase-auth-ktx-22.1.2\AndroidManifest.xml:11:13-13:85
+190                android:name="com.google.firebase.components:com.google.firebase.auth.ktx.FirebaseAuthKtxRegistrar"
+190-->[com.google.firebase:firebase-auth-ktx:22.1.2] C:\Users\sc2\.gradle\caches\transforms-4\c6b9e80c2b61d73057591cf17dfa320d\transformed\jetified-firebase-auth-ktx-22.1.2\AndroidManifest.xml:12:17-116
+191                android:value="com.google.firebase.components.ComponentRegistrar" />
+191-->[com.google.firebase:firebase-auth-ktx:22.1.2] C:\Users\sc2\.gradle\caches\transforms-4\c6b9e80c2b61d73057591cf17dfa320d\transformed\jetified-firebase-auth-ktx-22.1.2\AndroidManifest.xml:13:17-82
+192            <meta-data
+192-->[com.google.firebase:firebase-auth:22.1.2] C:\Users\sc2\.gradle\caches\transforms-4\a451a49ac2deed4f045e21957902563a\transformed\jetified-firebase-auth-22.1.2\AndroidManifest.xml:69:13-71:85
+193                android:name="com.google.firebase.components:com.google.firebase.auth.FirebaseAuthRegistrar"
+193-->[com.google.firebase:firebase-auth:22.1.2] C:\Users\sc2\.gradle\caches\transforms-4\a451a49ac2deed4f045e21957902563a\transformed\jetified-firebase-auth-22.1.2\AndroidManifest.xml:70:17-109
+194                android:value="com.google.firebase.components.ComponentRegistrar" />
+194-->[com.google.firebase:firebase-auth:22.1.2] C:\Users\sc2\.gradle\caches\transforms-4\a451a49ac2deed4f045e21957902563a\transformed\jetified-firebase-auth-22.1.2\AndroidManifest.xml:71:17-82
+195            <meta-data
+195-->[com.google.android.gms:play-services-measurement-api:21.3.0] C:\Users\sc2\.gradle\caches\transforms-4\998e208d67f4d39ceba8a9d42924b29a\transformed\jetified-play-services-measurement-api-21.3.0\AndroidManifest.xml:31:13-33:85
+196                android:name="com.google.firebase.components:com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar"
+196-->[com.google.android.gms:play-services-measurement-api:21.3.0] C:\Users\sc2\.gradle\caches\transforms-4\998e208d67f4d39ceba8a9d42924b29a\transformed\jetified-play-services-measurement-api-21.3.0\AndroidManifest.xml:32:17-139
+197                android:value="com.google.firebase.components.ComponentRegistrar" />
+197-->[com.google.android.gms:play-services-measurement-api:21.3.0] C:\Users\sc2\.gradle\caches\transforms-4\998e208d67f4d39ceba8a9d42924b29a\transformed\jetified-play-services-measurement-api-21.3.0\AndroidManifest.xml:33:17-82
+198            <meta-data
+198-->[com.google.firebase:firebase-common-ktx:20.3.3] C:\Users\sc2\.gradle\caches\transforms-4\9ec0c47244d3c5a033e59aad6fce2007\transformed\jetified-firebase-common-ktx-20.3.3\AndroidManifest.xml:14:13-16:85
+199                android:name="com.google.firebase.components:com.google.firebase.ktx.FirebaseCommonKtxRegistrar"
+199-->[com.google.firebase:firebase-common-ktx:20.3.3] C:\Users\sc2\.gradle\caches\transforms-4\9ec0c47244d3c5a033e59aad6fce2007\transformed\jetified-firebase-common-ktx-20.3.3\AndroidManifest.xml:15:17-113
+200                android:value="com.google.firebase.components.ComponentRegistrar" />
+200-->[com.google.firebase:firebase-common-ktx:20.3.3] C:\Users\sc2\.gradle\caches\transforms-4\9ec0c47244d3c5a033e59aad6fce2007\transformed\jetified-firebase-common-ktx-20.3.3\AndroidManifest.xml:16:17-82
+201            <meta-data
+201-->[com.google.firebase:firebase-installations:17.1.4] C:\Users\sc2\.gradle\caches\transforms-4\49905de1e8d35f4810a720bb833007e1\transformed\jetified-firebase-installations-17.1.4\AndroidManifest.xml:15:13-17:85
+202                android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsRegistrar"
+202-->[com.google.firebase:firebase-installations:17.1.4] C:\Users\sc2\.gradle\caches\transforms-4\49905de1e8d35f4810a720bb833007e1\transformed\jetified-firebase-installations-17.1.4\AndroidManifest.xml:16:17-127
+203                android:value="com.google.firebase.components.ComponentRegistrar" />
+203-->[com.google.firebase:firebase-installations:17.1.4] C:\Users\sc2\.gradle\caches\transforms-4\49905de1e8d35f4810a720bb833007e1\transformed\jetified-firebase-installations-17.1.4\AndroidManifest.xml:17:17-82
+204        </service>
+205
+206        <activity
+206-->[com.google.firebase:firebase-auth:22.1.2] C:\Users\sc2\.gradle\caches\transforms-4\a451a49ac2deed4f045e21957902563a\transformed\jetified-firebase-auth-22.1.2\AndroidManifest.xml:29:9-46:20
+207            android:name="com.google.firebase.auth.internal.GenericIdpActivity"
+207-->[com.google.firebase:firebase-auth:22.1.2] C:\Users\sc2\.gradle\caches\transforms-4\a451a49ac2deed4f045e21957902563a\transformed\jetified-firebase-auth-22.1.2\AndroidManifest.xml:30:13-80
+208            android:excludeFromRecents="true"
+208-->[com.google.firebase:firebase-auth:22.1.2] C:\Users\sc2\.gradle\caches\transforms-4\a451a49ac2deed4f045e21957902563a\transformed\jetified-firebase-auth-22.1.2\AndroidManifest.xml:31:13-46
+209            android:exported="true"
+209-->[com.google.firebase:firebase-auth:22.1.2] C:\Users\sc2\.gradle\caches\transforms-4\a451a49ac2deed4f045e21957902563a\transformed\jetified-firebase-auth-22.1.2\AndroidManifest.xml:32:13-36
+210            android:launchMode="singleTask"
+210-->[com.google.firebase:firebase-auth:22.1.2] C:\Users\sc2\.gradle\caches\transforms-4\a451a49ac2deed4f045e21957902563a\transformed\jetified-firebase-auth-22.1.2\AndroidManifest.xml:33:13-44
+211            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+211-->[com.google.firebase:firebase-auth:22.1.2] C:\Users\sc2\.gradle\caches\transforms-4\a451a49ac2deed4f045e21957902563a\transformed\jetified-firebase-auth-22.1.2\AndroidManifest.xml:34:13-72
+212            <intent-filter>
+212-->[com.google.firebase:firebase-auth:22.1.2] C:\Users\sc2\.gradle\caches\transforms-4\a451a49ac2deed4f045e21957902563a\transformed\jetified-firebase-auth-22.1.2\AndroidManifest.xml:35:13-45:29
+213                <action android:name="android.intent.action.VIEW" />
+213-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:46:17-69
+213-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:46:25-66
+214
+215                <category android:name="android.intent.category.DEFAULT" />
+215-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:98:17-76
+215-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:98:27-73
+216                <category android:name="android.intent.category.BROWSABLE" />
+216-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:99:17-78
+216-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:99:27-75
+217
+218                <data
+218-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:101:17-75
+219                    android:host="firebase.auth"
+220                    android:path="/"
+221                    android:scheme="genericidp" />
+221-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:101:23-72
+222            </intent-filter>
+223        </activity>
+224        <activity
+224-->[com.google.firebase:firebase-auth:22.1.2] C:\Users\sc2\.gradle\caches\transforms-4\a451a49ac2deed4f045e21957902563a\transformed\jetified-firebase-auth-22.1.2\AndroidManifest.xml:47:9-64:20
+225            android:name="com.google.firebase.auth.internal.RecaptchaActivity"
+225-->[com.google.firebase:firebase-auth:22.1.2] C:\Users\sc2\.gradle\caches\transforms-4\a451a49ac2deed4f045e21957902563a\transformed\jetified-firebase-auth-22.1.2\AndroidManifest.xml:48:13-79
+226            android:excludeFromRecents="true"
+226-->[com.google.firebase:firebase-auth:22.1.2] C:\Users\sc2\.gradle\caches\transforms-4\a451a49ac2deed4f045e21957902563a\transformed\jetified-firebase-auth-22.1.2\AndroidManifest.xml:49:13-46
+227            android:exported="true"
+227-->[com.google.firebase:firebase-auth:22.1.2] C:\Users\sc2\.gradle\caches\transforms-4\a451a49ac2deed4f045e21957902563a\transformed\jetified-firebase-auth-22.1.2\AndroidManifest.xml:50:13-36
+228            android:launchMode="singleTask"
+228-->[com.google.firebase:firebase-auth:22.1.2] C:\Users\sc2\.gradle\caches\transforms-4\a451a49ac2deed4f045e21957902563a\transformed\jetified-firebase-auth-22.1.2\AndroidManifest.xml:51:13-44
+229            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+229-->[com.google.firebase:firebase-auth:22.1.2] C:\Users\sc2\.gradle\caches\transforms-4\a451a49ac2deed4f045e21957902563a\transformed\jetified-firebase-auth-22.1.2\AndroidManifest.xml:52:13-72
+230            <intent-filter>
+230-->[com.google.firebase:firebase-auth:22.1.2] C:\Users\sc2\.gradle\caches\transforms-4\a451a49ac2deed4f045e21957902563a\transformed\jetified-firebase-auth-22.1.2\AndroidManifest.xml:53:13-63:29
+231                <action android:name="android.intent.action.VIEW" />
+231-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:46:17-69
+231-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:46:25-66
+232
+233                <category android:name="android.intent.category.DEFAULT" />
+233-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:98:17-76
+233-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:98:27-73
+234                <category android:name="android.intent.category.BROWSABLE" />
+234-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:99:17-78
+234-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:99:27-75
+235
+236                <data
+236-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:101:17-75
+237                    android:host="firebase.auth"
+238                    android:path="/"
+239                    android:scheme="recaptcha" />
+239-->C:\Users\sc2\Desktop\SugarCoach\app\src\main\AndroidManifest.xml:101:23-72
+240            </intent-filter>
+241        </activity>
+242        <activity
+242-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\sc2\.gradle\caches\transforms-4\3c3d0c1a7251ce292d33069dacb3f91e\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:20:9-22:45
+243            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+243-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\sc2\.gradle\caches\transforms-4\3c3d0c1a7251ce292d33069dacb3f91e\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:20:19-85
+244            android:exported="false"
+244-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\sc2\.gradle\caches\transforms-4\3c3d0c1a7251ce292d33069dacb3f91e\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:22:19-43
+245            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+245-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\sc2\.gradle\caches\transforms-4\3c3d0c1a7251ce292d33069dacb3f91e\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:21:19-78
+246
+247        <receiver
+247-->[com.google.android.gms:play-services-measurement:21.3.0] C:\Users\sc2\.gradle\caches\transforms-4\58533b85df7ec4ec1668f0a74df4d437\transformed\jetified-play-services-measurement-21.3.0\AndroidManifest.xml:29:9-33:20
+248            android:name="com.google.android.gms.measurement.AppMeasurementReceiver"
+248-->[com.google.android.gms:play-services-measurement:21.3.0] C:\Users\sc2\.gradle\caches\transforms-4\58533b85df7ec4ec1668f0a74df4d437\transformed\jetified-play-services-measurement-21.3.0\AndroidManifest.xml:30:13-85
+249            android:enabled="true"
+249-->[com.google.android.gms:play-services-measurement:21.3.0] C:\Users\sc2\.gradle\caches\transforms-4\58533b85df7ec4ec1668f0a74df4d437\transformed\jetified-play-services-measurement-21.3.0\AndroidManifest.xml:31:13-35
+250            android:exported="false" >
+250-->[com.google.android.gms:play-services-measurement:21.3.0] C:\Users\sc2\.gradle\caches\transforms-4\58533b85df7ec4ec1668f0a74df4d437\transformed\jetified-play-services-measurement-21.3.0\AndroidManifest.xml:32:13-37
+251        </receiver>
+252
+253        <service
+253-->[com.google.android.gms:play-services-measurement:21.3.0] C:\Users\sc2\.gradle\caches\transforms-4\58533b85df7ec4ec1668f0a74df4d437\transformed\jetified-play-services-measurement-21.3.0\AndroidManifest.xml:35:9-38:40
+254            android:name="com.google.android.gms.measurement.AppMeasurementService"
+254-->[com.google.android.gms:play-services-measurement:21.3.0] C:\Users\sc2\.gradle\caches\transforms-4\58533b85df7ec4ec1668f0a74df4d437\transformed\jetified-play-services-measurement-21.3.0\AndroidManifest.xml:36:13-84
+255            android:enabled="true"
+255-->[com.google.android.gms:play-services-measurement:21.3.0] C:\Users\sc2\.gradle\caches\transforms-4\58533b85df7ec4ec1668f0a74df4d437\transformed\jetified-play-services-measurement-21.3.0\AndroidManifest.xml:37:13-35
+256            android:exported="false" />
+256-->[com.google.android.gms:play-services-measurement:21.3.0] C:\Users\sc2\.gradle\caches\transforms-4\58533b85df7ec4ec1668f0a74df4d437\transformed\jetified-play-services-measurement-21.3.0\AndroidManifest.xml:38:13-37
+257        <service
+257-->[com.google.android.gms:play-services-measurement:21.3.0] C:\Users\sc2\.gradle\caches\transforms-4\58533b85df7ec4ec1668f0a74df4d437\transformed\jetified-play-services-measurement-21.3.0\AndroidManifest.xml:39:9-43:72
+258            android:name="com.google.android.gms.measurement.AppMeasurementJobService"
+258-->[com.google.android.gms:play-services-measurement:21.3.0] C:\Users\sc2\.gradle\caches\transforms-4\58533b85df7ec4ec1668f0a74df4d437\transformed\jetified-play-services-measurement-21.3.0\AndroidManifest.xml:40:13-87
+259            android:enabled="true"
+259-->[com.google.android.gms:play-services-measurement:21.3.0] C:\Users\sc2\.gradle\caches\transforms-4\58533b85df7ec4ec1668f0a74df4d437\transformed\jetified-play-services-measurement-21.3.0\AndroidManifest.xml:41:13-35
+260            android:exported="false"
+260-->[com.google.android.gms:play-services-measurement:21.3.0] C:\Users\sc2\.gradle\caches\transforms-4\58533b85df7ec4ec1668f0a74df4d437\transformed\jetified-play-services-measurement-21.3.0\AndroidManifest.xml:42:13-37
+261            android:permission="android.permission.BIND_JOB_SERVICE" />
+261-->[com.google.android.gms:play-services-measurement:21.3.0] C:\Users\sc2\.gradle\caches\transforms-4\58533b85df7ec4ec1668f0a74df4d437\transformed\jetified-play-services-measurement-21.3.0\AndroidManifest.xml:43:13-69
+262
+263        <provider
+263-->[com.google.firebase:firebase-common:20.3.3] C:\Users\sc2\.gradle\caches\transforms-4\ce35520c6debf12d7a32d0c19e57ff76\transformed\jetified-firebase-common-20.3.3\AndroidManifest.xml:25:9-30:39
+264            android:name="com.google.firebase.provider.FirebaseInitProvider"
+264-->[com.google.firebase:firebase-common:20.3.3] C:\Users\sc2\.gradle\caches\transforms-4\ce35520c6debf12d7a32d0c19e57ff76\transformed\jetified-firebase-common-20.3.3\AndroidManifest.xml:26:13-77
+265            android:authorities="com.sugarcoachpremium.firebaseinitprovider"
+265-->[com.google.firebase:firebase-common:20.3.3] C:\Users\sc2\.gradle\caches\transforms-4\ce35520c6debf12d7a32d0c19e57ff76\transformed\jetified-firebase-common-20.3.3\AndroidManifest.xml:27:13-72
+266            android:directBootAware="true"
+266-->[com.google.firebase:firebase-common:20.3.3] C:\Users\sc2\.gradle\caches\transforms-4\ce35520c6debf12d7a32d0c19e57ff76\transformed\jetified-firebase-common-20.3.3\AndroidManifest.xml:28:13-43
+267            android:exported="false"
+267-->[com.google.firebase:firebase-common:20.3.3] C:\Users\sc2\.gradle\caches\transforms-4\ce35520c6debf12d7a32d0c19e57ff76\transformed\jetified-firebase-common-20.3.3\AndroidManifest.xml:29:13-37
+268            android:initOrder="100" />
+268-->[com.google.firebase:firebase-common:20.3.3] C:\Users\sc2\.gradle\caches\transforms-4\ce35520c6debf12d7a32d0c19e57ff76\transformed\jetified-firebase-common-20.3.3\AndroidManifest.xml:30:13-36
+269
+270        <meta-data
+270-->[com.google.android.gms:play-services-basement:18.2.0] C:\Users\sc2\.gradle\caches\transforms-4\1185e311603659e24a0c8516a00e9cd3\transformed\jetified-play-services-basement-18.2.0\AndroidManifest.xml:21:9-23:69
+271            android:name="com.google.android.gms.version"
+271-->[com.google.android.gms:play-services-basement:18.2.0] C:\Users\sc2\.gradle\caches\transforms-4\1185e311603659e24a0c8516a00e9cd3\transformed\jetified-play-services-basement-18.2.0\AndroidManifest.xml:22:13-58
+272            android:value="@integer/google_play_services_version" />
+272-->[com.google.android.gms:play-services-basement:18.2.0] C:\Users\sc2\.gradle\caches\transforms-4\1185e311603659e24a0c8516a00e9cd3\transformed\jetified-play-services-basement-18.2.0\AndroidManifest.xml:23:13-66
+273        <!--
+274         The initialization ContentProvider will call FacebookSdk.sdkInitialize automatically
+275         with the application context. This config is merged in with the host app's manifest,
+276         but there can only be one provider with the same authority activated at any given
+277         point; so if the end user has two or more different apps that use Facebook SDK, only the
+278         first one will be able to use the provider. To work around this problem, we use the
+279         following placeholder in the authority to identify each host application as if it was
+280         a completely different provider.
+281        -->
+282        <provider
+282-->[com.facebook.android:facebook-core:17.0.2] C:\Users\sc2\.gradle\caches\transforms-4\e4f752478c7f2619c70880f7ece65095\transformed\jetified-facebook-core-17.0.2\AndroidManifest.xml:29:9-32:40
+283            android:name="com.facebook.internal.FacebookInitProvider"
+283-->[com.facebook.android:facebook-core:17.0.2] C:\Users\sc2\.gradle\caches\transforms-4\e4f752478c7f2619c70880f7ece65095\transformed\jetified-facebook-core-17.0.2\AndroidManifest.xml:30:13-70
+284            android:authorities="com.sugarcoachpremium.FacebookInitProvider"
+284-->[com.facebook.android:facebook-core:17.0.2] C:\Users\sc2\.gradle\caches\transforms-4\e4f752478c7f2619c70880f7ece65095\transformed\jetified-facebook-core-17.0.2\AndroidManifest.xml:31:13-72
+285            android:exported="false" />
+285-->[com.facebook.android:facebook-core:17.0.2] C:\Users\sc2\.gradle\caches\transforms-4\e4f752478c7f2619c70880f7ece65095\transformed\jetified-facebook-core-17.0.2\AndroidManifest.xml:32:13-37
+286
+287        <receiver
+287-->[com.facebook.android:facebook-core:17.0.2] C:\Users\sc2\.gradle\caches\transforms-4\e4f752478c7f2619c70880f7ece65095\transformed\jetified-facebook-core-17.0.2\AndroidManifest.xml:34:9-40:20
+288            android:name="com.facebook.CurrentAccessTokenExpirationBroadcastReceiver"
+288-->[com.facebook.android:facebook-core:17.0.2] C:\Users\sc2\.gradle\caches\transforms-4\e4f752478c7f2619c70880f7ece65095\transformed\jetified-facebook-core-17.0.2\AndroidManifest.xml:35:13-86
+289            android:exported="false" >
+289-->[com.facebook.android:facebook-core:17.0.2] C:\Users\sc2\.gradle\caches\transforms-4\e4f752478c7f2619c70880f7ece65095\transformed\jetified-facebook-core-17.0.2\AndroidManifest.xml:36:13-37
+290            <intent-filter>
+290-->[com.facebook.android:facebook-core:17.0.2] C:\Users\sc2\.gradle\caches\transforms-4\e4f752478c7f2619c70880f7ece65095\transformed\jetified-facebook-core-17.0.2\AndroidManifest.xml:37:13-39:29
+291                <action android:name="com.facebook.sdk.ACTION_CURRENT_ACCESS_TOKEN_CHANGED" />
+291-->[com.facebook.android:facebook-core:17.0.2] C:\Users\sc2\.gradle\caches\transforms-4\e4f752478c7f2619c70880f7ece65095\transformed\jetified-facebook-core-17.0.2\AndroidManifest.xml:38:17-95
+291-->[com.facebook.android:facebook-core:17.0.2] C:\Users\sc2\.gradle\caches\transforms-4\e4f752478c7f2619c70880f7ece65095\transformed\jetified-facebook-core-17.0.2\AndroidManifest.xml:38:25-92
+292            </intent-filter>
+293        </receiver>
+294        <receiver
+294-->[com.facebook.android:facebook-core:17.0.2] C:\Users\sc2\.gradle\caches\transforms-4\e4f752478c7f2619c70880f7ece65095\transformed\jetified-facebook-core-17.0.2\AndroidManifest.xml:41:9-47:20
+295            android:name="com.facebook.AuthenticationTokenManager$CurrentAuthenticationTokenChangedBroadcastReceiver"
+295-->[com.facebook.android:facebook-core:17.0.2] C:\Users\sc2\.gradle\caches\transforms-4\e4f752478c7f2619c70880f7ece65095\transformed\jetified-facebook-core-17.0.2\AndroidManifest.xml:42:13-118
+296            android:exported="false" >
+296-->[com.facebook.android:facebook-core:17.0.2] C:\Users\sc2\.gradle\caches\transforms-4\e4f752478c7f2619c70880f7ece65095\transformed\jetified-facebook-core-17.0.2\AndroidManifest.xml:43:13-37
+297            <intent-filter>
+297-->[com.facebook.android:facebook-core:17.0.2] C:\Users\sc2\.gradle\caches\transforms-4\e4f752478c7f2619c70880f7ece65095\transformed\jetified-facebook-core-17.0.2\AndroidManifest.xml:44:13-46:29
+298                <action android:name="com.facebook.sdk.ACTION_CURRENT_AUTHENTICATION_TOKEN_CHANGED" />
+298-->[com.facebook.android:facebook-core:17.0.2] C:\Users\sc2\.gradle\caches\transforms-4\e4f752478c7f2619c70880f7ece65095\transformed\jetified-facebook-core-17.0.2\AndroidManifest.xml:45:17-103
+298-->[com.facebook.android:facebook-core:17.0.2] C:\Users\sc2\.gradle\caches\transforms-4\e4f752478c7f2619c70880f7ece65095\transformed\jetified-facebook-core-17.0.2\AndroidManifest.xml:45:25-100
+299            </intent-filter>
+300        </receiver>
+301
+302        <provider
+302-->[androidx.emoji2:emoji2:1.2.0] C:\Users\sc2\.gradle\caches\transforms-4\85724c271d01dc549768f8cd9a09bf1d\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
+303            android:name="androidx.startup.InitializationProvider"
+303-->[androidx.emoji2:emoji2:1.2.0] C:\Users\sc2\.gradle\caches\transforms-4\85724c271d01dc549768f8cd9a09bf1d\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:25:13-67
+304            android:authorities="com.sugarcoachpremium.androidx-startup"
+304-->[androidx.emoji2:emoji2:1.2.0] C:\Users\sc2\.gradle\caches\transforms-4\85724c271d01dc549768f8cd9a09bf1d\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:26:13-68
+305            android:exported="false" >
+305-->[androidx.emoji2:emoji2:1.2.0] C:\Users\sc2\.gradle\caches\transforms-4\85724c271d01dc549768f8cd9a09bf1d\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:27:13-37
+306            <meta-data
+306-->[androidx.emoji2:emoji2:1.2.0] C:\Users\sc2\.gradle\caches\transforms-4\85724c271d01dc549768f8cd9a09bf1d\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
+307                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+307-->[androidx.emoji2:emoji2:1.2.0] C:\Users\sc2\.gradle\caches\transforms-4\85724c271d01dc549768f8cd9a09bf1d\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:30:17-75
+308                android:value="androidx.startup" />
+308-->[androidx.emoji2:emoji2:1.2.0] C:\Users\sc2\.gradle\caches\transforms-4\85724c271d01dc549768f8cd9a09bf1d\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:31:17-49
+309            <meta-data
+309-->[androidx.lifecycle:lifecycle-process:2.6.1] C:\Users\sc2\.gradle\caches\transforms-4\7cf713b1e732898796f5384e47abbacf\transformed\jetified-lifecycle-process-2.6.1\AndroidManifest.xml:29:13-31:52
+310                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+310-->[androidx.lifecycle:lifecycle-process:2.6.1] C:\Users\sc2\.gradle\caches\transforms-4\7cf713b1e732898796f5384e47abbacf\transformed\jetified-lifecycle-process-2.6.1\AndroidManifest.xml:30:17-78
+311                android:value="androidx.startup" />
+311-->[androidx.lifecycle:lifecycle-process:2.6.1] C:\Users\sc2\.gradle\caches\transforms-4\7cf713b1e732898796f5384e47abbacf\transformed\jetified-lifecycle-process-2.6.1\AndroidManifest.xml:31:17-49
+312            <meta-data
+312-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sc2\.gradle\caches\transforms-4\0ead26ca60acf99434add60c2420ed06\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:29:13-31:52
+313                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+313-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sc2\.gradle\caches\transforms-4\0ead26ca60acf99434add60c2420ed06\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:30:17-85
+314                android:value="androidx.startup" />
+314-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sc2\.gradle\caches\transforms-4\0ead26ca60acf99434add60c2420ed06\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:31:17-49
+315        </provider>
+316
+317        <receiver
+317-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sc2\.gradle\caches\transforms-4\0ead26ca60acf99434add60c2420ed06\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:34:9-52:20
+318            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+318-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sc2\.gradle\caches\transforms-4\0ead26ca60acf99434add60c2420ed06\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:35:13-76
+319            android:directBootAware="false"
+319-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sc2\.gradle\caches\transforms-4\0ead26ca60acf99434add60c2420ed06\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:36:13-44
+320            android:enabled="true"
+320-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sc2\.gradle\caches\transforms-4\0ead26ca60acf99434add60c2420ed06\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:37:13-35
+321            android:exported="true"
+321-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sc2\.gradle\caches\transforms-4\0ead26ca60acf99434add60c2420ed06\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:38:13-36
+322            android:permission="android.permission.DUMP" >
+322-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sc2\.gradle\caches\transforms-4\0ead26ca60acf99434add60c2420ed06\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:39:13-57
+323            <intent-filter>
+323-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sc2\.gradle\caches\transforms-4\0ead26ca60acf99434add60c2420ed06\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:40:13-42:29
+324                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+324-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sc2\.gradle\caches\transforms-4\0ead26ca60acf99434add60c2420ed06\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:41:17-91
+324-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sc2\.gradle\caches\transforms-4\0ead26ca60acf99434add60c2420ed06\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:41:25-88
+325            </intent-filter>
+326            <intent-filter>
+326-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sc2\.gradle\caches\transforms-4\0ead26ca60acf99434add60c2420ed06\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:43:13-45:29
+327                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+327-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sc2\.gradle\caches\transforms-4\0ead26ca60acf99434add60c2420ed06\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:44:17-85
+327-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sc2\.gradle\caches\transforms-4\0ead26ca60acf99434add60c2420ed06\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:44:25-82
+328            </intent-filter>
+329            <intent-filter>
+329-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sc2\.gradle\caches\transforms-4\0ead26ca60acf99434add60c2420ed06\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:46:13-48:29
+330                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+330-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sc2\.gradle\caches\transforms-4\0ead26ca60acf99434add60c2420ed06\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:47:17-88
+330-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sc2\.gradle\caches\transforms-4\0ead26ca60acf99434add60c2420ed06\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:47:25-85
+331            </intent-filter>
+332            <intent-filter>
+332-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sc2\.gradle\caches\transforms-4\0ead26ca60acf99434add60c2420ed06\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:49:13-51:29
+333                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+333-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sc2\.gradle\caches\transforms-4\0ead26ca60acf99434add60c2420ed06\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:50:17-95
+333-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sc2\.gradle\caches\transforms-4\0ead26ca60acf99434add60c2420ed06\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:50:25-92
+334            </intent-filter>
+335        </receiver>
+336    </application>
+337
+338</manifest>

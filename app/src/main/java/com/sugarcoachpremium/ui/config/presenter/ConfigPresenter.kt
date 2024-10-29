@@ -2,8 +2,10 @@ package com.sugarcoachpremium.ui.config.presenter
 
 import android.app.Activity
 import android.content.pm.PackageManager
+import android.util.Log
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.apollographql.apollo3.api.BooleanExpression
 import com.sugarcoachpremium.R
 import com.sugarcoachpremium.data.database.repository.user.User
 import com.sugarcoachpremium.ui.base.presenter.BasePresenter
@@ -26,6 +28,7 @@ class ConfigPresenter <V : ConfigView, I : ConfigInteractorImp> @Inject internal
     override fun onAttach(view: V?) {
         super.onAttach(view)
         getUser()
+
     }
 
 
@@ -62,7 +65,8 @@ class ConfigPresenter <V : ConfigView, I : ConfigInteractorImp> @Inject internal
             compositeDisposable.add(it.updateUser(user)
                 .compose(schedulerProvider.ioToMainObservableScheduler())
                 .subscribe({ getView()?.showSuccessToast()
-                   // checkAndRequestPermissions(context,Manifest.permission.ACCESS_FINE_LOCATION)
+                    Log.i("gg", "se chequeo?")
+                   //checkAndRequestPermissions(context,Manifest.permission.ACCESS_FINE_LOCATION)
                 }, { throwable ->
                     showException(throwable)
                 })
@@ -103,21 +107,16 @@ class ConfigPresenter <V : ConfigView, I : ConfigInteractorImp> @Inject internal
         }
     }
 
-    override fun updateType(promoCode: String?) {
-        val validPromoCode = "SPECIAL_CODE"
-
-        if (promoCode == validPromoCode) {
-            user.typeAccount = "2"
-            interactor?.let {
-                compositeDisposable.add(it.updateUser(user)
-                    .compose(schedulerProvider.ioToMainObservableScheduler())
-                    .subscribe(
-                        { getView()?.createDialogCongratulation() },
-                        { throwable -> showException(throwable) }
-                    ))
-            }
-        } else {
-            getView()?.showInvalidPromoCodeMessage()
+    override fun updateType(value: String?) {
+        user.typeAccount = "1"
+        interactor?.let {
+            compositeDisposable.add(it.updateUser(user)
+                .compose(schedulerProvider.ioToMainObservableScheduler())
+                .subscribe({ getView()?.createDialogCongratulation()
+                }, { throwable ->
+                    showException(throwable)
+                })
+            )
         }
     }
 
@@ -128,7 +127,10 @@ class ConfigPresenter <V : ConfigView, I : ConfigInteractorImp> @Inject internal
             .subscribe({ userData ->
                 getView()?.let {
                     user = userData
+                    Log.i("gg", userData.toString())
                     getView()?.getUserData(userData)
+                    if(user.typeAccount=="1"){getView()?.setType(true)}
+                    else{getView()?.setType(false)}
                 }
             }, { err -> println(err) }))
     }
