@@ -19,7 +19,7 @@ public final class LoginInteractor extends com.sugarcoachpremium.data.ui.base.in
     com.sugarcoachpremium.data.database.repository.user.UserRepo userRepoHelper, @org.jetbrains.annotations.NotNull
     com.sugarcoachpremium.di.preferences.PreferenceHelper preferenceHelper, @org.jetbrains.annotations.NotNull
     com.sugarcoachpremium.data.network.ApiHelper apiHelper) {
-        super(null, null, null);
+        super();
     }
     
     @org.jetbrains.annotations.NotNull

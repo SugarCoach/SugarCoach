@@ -108,15 +108,19 @@ class ConfigPresenter <V : ConfigView, I : ConfigInteractorImp> @Inject internal
     }
 
     override fun updateType(value: String?) {
-        user.typeAccount = "1"
-        interactor?.let {
-            compositeDisposable.add(it.updateUser(user)
-                .compose(schedulerProvider.ioToMainObservableScheduler())
-                .subscribe({ getView()?.createDialogCongratulation()
-                }, { throwable ->
-                    showException(throwable)
-                })
-            )
+        //ponerle un condicional cuando se reconozca una forma de promoción a premium
+        val code="ABC00001"
+        if(value==code){
+            user.typeAccount = "1"
+            interactor?.let {
+                compositeDisposable.add(it.updateUser(user)
+                    .compose(schedulerProvider.ioToMainObservableScheduler())
+                    .subscribe({ getView()?.createDialogCongratulation()
+                    }, { throwable ->
+                        showException(throwable)
+                    })
+                )
+            }
         }
     }
 
@@ -129,8 +133,10 @@ class ConfigPresenter <V : ConfigView, I : ConfigInteractorImp> @Inject internal
                     user = userData
                     Log.i("gg", userData.toString())
                     getView()?.getUserData(userData)
+                    //user.typeAccount="2"
                     if(user.typeAccount=="1"){getView()?.setType(true)}
                     else{getView()?.setType(false)}
+                    Log.i("gg", user.typeAccount.toString())
                 }
             }, { err -> println(err) }))
     }

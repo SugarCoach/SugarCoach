@@ -206,8 +206,8 @@ class ConfigActivity: BaseActivity(), ConfigView {
 
 
     private fun setOnClickListeners() {
-        Log.i("gg", "I'm in")
-        Log.d("gg", "configSms isEnabled: ${binding.configSms.isEnabled}, isVisible: ${binding.configSms.visibility == View.VISIBLE}")
+        //Log.i("gg", "I'm in")
+        //Log.d("gg", "configSms isEnabled: ${binding.configSms.isEnabled}, isVisible: ${binding.configSms.visibility == View.VISIBLE}")
         config_number.setOnEditorActionListener { v, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_DONE){
                 presenter.updateNumber(config_number.text.toString())
