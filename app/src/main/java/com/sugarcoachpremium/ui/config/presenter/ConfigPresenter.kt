@@ -111,7 +111,8 @@ class ConfigPresenter <V : ConfigView, I : ConfigInteractorImp> @Inject internal
         //ponerle un condicional cuando se reconozca una forma de promoción a premium
         val code="ABC00001"
         if(value==code){
-            user.typeAccount = "1"
+            //dependiendo de como se genere el usuario por defecto cambiar por un 2, si el default es un 1 poner un 2, si el default es un 2, poner un 1
+            user.typeAccount = "2"
             interactor?.let {
                 compositeDisposable.add(it.updateUser(user)
                     .compose(schedulerProvider.ioToMainObservableScheduler())
@@ -133,8 +134,8 @@ class ConfigPresenter <V : ConfigView, I : ConfigInteractorImp> @Inject internal
                     user = userData
                     Log.i("gg", userData.toString())
                     getView()?.getUserData(userData)
-                    //user.typeAccount="2"
-                    if(user.typeAccount=="1"){getView()?.setType(true)}
+                    //dependiendo de como se genere el usuario por defecto cambiar por un 2, si el default es un 1 poner un 2, si el default es un 2, poner un 1
+                    if(user.typeAccount=="2"){getView()?.setType(true)}
                     else{getView()?.setType(false)}
                     Log.i("gg", user.typeAccount.toString())
                 }
