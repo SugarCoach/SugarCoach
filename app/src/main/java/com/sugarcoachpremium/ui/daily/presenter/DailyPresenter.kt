@@ -1,5 +1,7 @@
 package com.sugarcoachpremium.ui.daily.presenter
 
+import android.graphics.Color
+import android.graphics.Paint
 import android.util.Log
 import com.hominoid.expandablerecyclerviewlib.models.ExpandableListItem
 import com.sugarcoachpremium.R
@@ -21,10 +23,19 @@ import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
 import kotlin.collections.ArrayList
+import android.graphics.pdf.PdfDocument
+import android.os.Environment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.sugarcoachpremium.databinding.RegisterMonthBinding
+import com.sugarcoachpremium.ui.daily.view.DayAdapter
+import com.sugarcoachpremium.ui.daily.view.DayItem
+import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
 
 class DailyPresenter<V : DailyView, I : DailyInteractorImp> @Inject internal constructor(interactor: I, schedulerProvider: SchedulerProvider, disposable: CompositeDisposable) : BasePresenter<V, I>(interactor = interactor, schedulerProvider = schedulerProvider, compositeDisposable = disposable),
     DailyPresenterImp<V,I> {
-
     lateinit var treament: Treament
     var colors =  ArrayList<Int>()
     lateinit var exercices: List<Exercises>
@@ -36,7 +47,8 @@ class DailyPresenter<V : DailyView, I : DailyInteractorImp> @Inject internal con
         getMedition()
         Log.i("OnAttach", "Se inicio el attach")
     }
-
+    private lateinit var registers: MutableList<ExpandableListItem<DailyHeader, DailyItem>>
+    private lateinit var path:String
     private fun getTreatment(){
         interactor?.let {
             compositeDisposable.add(it.getTreatment()
@@ -89,6 +101,7 @@ class DailyPresenter<V : DailyView, I : DailyInteractorImp> @Inject internal con
             }, { err -> println(err) }))
     }
 
+
     override fun getRegisters() {
         interactor?.let {
             compositeDisposable.add(it.getAllDates()
@@ -121,7 +134,7 @@ class DailyPresenter<V : DailyView, I : DailyInteractorImp> @Inject internal con
     }
 
     private fun getData(dailyRegister: List<DailyRegisterCategory>, date: List<Date>) {
-        var registers: MutableList<ExpandableListItem<DailyHeader, DailyItem>> = ArrayList()
+        registers = ArrayList()
         for (i in date.indices) {
             var item: MutableList<DailyItem> = ArrayList()
             val color = generateRandomColor()
@@ -158,11 +171,16 @@ class DailyPresenter<V : DailyView, I : DailyInteractorImp> @Inject internal con
                     .build()
 
                 item.add(content)
+                //Log.i("gg", category.cate_name)
             }
             registers.add(ExpandableListItem(header,item))
-        }
 
+        }
+        //Log.i("gg", registers[3].childDataList!!.toString())
         getView()?.getRegisters(registers)
+        val organizedDays= separateByDate(registers)
+        getView()?.displayDailyItems(organizedDays)
+
 
     }
 
@@ -219,4 +237,53 @@ class DailyPresenter<V : DailyView, I : DailyInteractorImp> @Inject internal con
     override fun goToActivityRegister() {
         getView()?.openRegisterActivity()
     }
+
+    override fun getPdfPath():String{
+        return path
+    }
+
+    fun separateByDate(registers: MutableList<ExpandableListItem<DailyHeader, DailyItem>>): MutableList<MutableList<DayItem?>?> {
+        val result:MutableList<MutableList<DayItem?>?> = MutableList(registers.size){ null }
+        var i= 0
+        for (item in registers) {
+            //Log.i("gg", registers.size.toString())
+            val header = item.groupData
+            val dateString = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(header.date)
+            val categoryList: MutableList<DayItem?> = MutableList(8) { null }
+            for (dailyItem in item.childDataList!!) {
+                val time = SimpleDateFormat("HH:mm", Locale.getDefault()).format(dailyItem.date)
+                var gluColor= Color.parseColor("#000000")
+                if(dailyItem.gluColor==2131100809){gluColor= Color.parseColor("#FFC107")}
+                if(dailyItem.gluColor==2131100740){gluColor= Color.parseColor("#FF0000")}
+                if((dailyItem.gluColor!=2131100740)&&(dailyItem.gluColor!=2131100809)){gluColor= Color.parseColor("#00FF00")}
+                val dayItem = DayItem(
+                    time = time,
+                    glyc = dailyItem.glucose!!,
+                    hc = dailyItem.carbohydrates!!,
+                    cor = dailyItem.insulin!!,
+                    basal = dailyItem.basal!!,
+                    day = dateString,
+                    gluColor = gluColor
+                )
+                Log.i("gg", dayItem.gluColor.toString()+" Color")
+                when (dailyItem.category) {
+                    "Desayuno" -> categoryList[0]=dayItem
+                    "Post Desayuno" -> categoryList[1]= dayItem
+                    "Almuerzo" -> categoryList[2]= dayItem
+                    "Post Almuerzo" -> categoryList[3]= dayItem
+                    "Merienda" -> categoryList[4]= dayItem
+                    "Post Merienda" -> categoryList[5]= dayItem
+                    "Cena" -> categoryList[6]= dayItem
+                    "Post Cena" -> categoryList[7]= dayItem
+                }
+            }
+            result[i] = categoryList
+            i++
+
+        }
+        Log.i("gg", result.toString())
+
+        return result
+    }
+
 }

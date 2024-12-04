@@ -4,7 +4,7 @@
             "outputFile": "com.sugarcoachpremium.app-mergeDebugResources-66:/values-et-rEE/values-et-rEE.xml",
             "map": [
                 {
-                    "source": "/home/ramadan/.gradle/caches/transforms-4/955fbd1fa769e291d2d6c6105f067248/transformed/jetified-materialdatetimepicker-4.2.3/res/values-et-rEE/values-et-rEE.xml",
+                    "source": "C:\\Users\\sc2\\.gradle\\caches\\transforms-4\\955fbd1fa769e291d2d6c6105f067248\\transformed\\jetified-materialdatetimepicker-4.2.3\\res\\values-et-rEE\\values-et-rEE.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4",

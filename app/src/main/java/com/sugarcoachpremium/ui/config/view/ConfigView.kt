@@ -20,5 +20,6 @@ interface ConfigView : BaseView {
     fun setControl(value: Boolean)
     fun setControlMedico(value: Boolean)
     fun createDialogCongratulation()
+    fun showInvalidPromoCodeMessage()
 
 }

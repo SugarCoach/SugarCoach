@@ -4,6 +4,7 @@ package com.sugarcoachpremium.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -106,6 +107,9 @@ public final class ActivityConfigBinding implements ViewBinding {
   public final LinearLayout linearLayout;
 
   @NonNull
+  public final Button privacyPolicyButton;
+
+  @NonNull
   public final LinearLayout statistics;
 
   @NonNull
@@ -124,7 +128,8 @@ public final class ActivityConfigBinding implements ViewBinding {
       @NonNull AppCompatTextView configUsernameTxt, @NonNull ConstraintLayout constraintLayout,
       @NonNull LinearLayout dailyRegister, @NonNull Guideline guideline, @NonNull LinearLayout home,
       @NonNull LinearLayout linear, @NonNull LinearLayout linearLayout,
-      @NonNull LinearLayout statistics, @NonNull LinearLayout treament) {
+      @NonNull Button privacyPolicyButton, @NonNull LinearLayout statistics,
+      @NonNull LinearLayout treament) {
     this.rootView = rootView;
     this.bg = bg;
     this.configControl = configControl;
@@ -152,6 +157,7 @@ public final class ActivityConfigBinding implements ViewBinding {
     this.home = home;
     this.linear = linear;
     this.linearLayout = linearLayout;
+    this.privacyPolicyButton = privacyPolicyButton;
     this.statistics = statistics;
     this.treament = treament;
   }
@@ -339,6 +345,12 @@ public final class ActivityConfigBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.privacy_policy_button;
+      Button privacyPolicyButton = ViewBindings.findChildViewById(rootView, id);
+      if (privacyPolicyButton == null) {
+        break missingId;
+      }
+
       id = R.id.statistics;
       LinearLayout statistics = ViewBindings.findChildViewById(rootView, id);
       if (statistics == null) {
@@ -356,7 +368,7 @@ public final class ActivityConfigBinding implements ViewBinding {
           configMedico, configMedicoLinear, configMedicoQr, configMedicoTitle, configNumber,
           configQuestions, configSms, configSmsInfo, configSmsTitle, configType, configUpgrade,
           configUserimgIv, configUsernameTxt, constraintLayout, dailyRegister, guideline, home,
-          linear, linearLayout, statistics, treament);
+          linear, linearLayout, privacyPolicyButton, statistics, treament);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

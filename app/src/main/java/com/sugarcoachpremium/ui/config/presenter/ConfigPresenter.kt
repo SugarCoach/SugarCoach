@@ -2,8 +2,10 @@ package com.sugarcoachpremium.ui.config.presenter
 
 import android.app.Activity
 import android.content.pm.PackageManager
+import android.util.Log
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.apollographql.apollo3.api.BooleanExpression
 import com.sugarcoachpremium.R
 import com.sugarcoachpremium.data.database.repository.user.User
 import com.sugarcoachpremium.ui.base.presenter.BasePresenter
@@ -26,6 +28,7 @@ class ConfigPresenter <V : ConfigView, I : ConfigInteractorImp> @Inject internal
     override fun onAttach(view: V?) {
         super.onAttach(view)
         getUser()
+
     }
 
 
@@ -62,7 +65,8 @@ class ConfigPresenter <V : ConfigView, I : ConfigInteractorImp> @Inject internal
             compositeDisposable.add(it.updateUser(user)
                 .compose(schedulerProvider.ioToMainObservableScheduler())
                 .subscribe({ getView()?.showSuccessToast()
-                   // checkAndRequestPermissions(context,Manifest.permission.ACCESS_FINE_LOCATION)
+                    Log.i("gg", "se chequeo?")
+                   //checkAndRequestPermissions(context,Manifest.permission.ACCESS_FINE_LOCATION)
                 }, { throwable ->
                     showException(throwable)
                 })
@@ -104,17 +108,23 @@ class ConfigPresenter <V : ConfigView, I : ConfigInteractorImp> @Inject internal
     }
 
     override fun updateType(value: String?) {
-        user.typeAccount = "2"
-        interactor?.let {
-            compositeDisposable.add(it.updateUser(user)
-                .compose(schedulerProvider.ioToMainObservableScheduler())
-                .subscribe({ getView()?.createDialogCongratulation()
-                }, { throwable ->
-                    showException(throwable)
-                })
-            )
+        //ponerle un condicional cuando se reconozca una forma de promoción a premium
+        val code="ABC00001"
+        if(value==code){
+            //dependiendo de como se genere el usuario por defecto cambiar por un 2, si el default es un 1 poner un 2, si el default es un 2, poner un 1
+            user.typeAccount = "2"
+            interactor?.let {
+                compositeDisposable.add(it.updateUser(user)
+                    .compose(schedulerProvider.ioToMainObservableScheduler())
+                    .subscribe({ getView()?.createDialogCongratulation()
+                    }, { throwable ->
+                        showException(throwable)
+                    })
+                )
+            }
         }
     }
+
 
     private fun getUser() = interactor?.let {
         compositeDisposable.add(it.getUser()
@@ -122,7 +132,12 @@ class ConfigPresenter <V : ConfigView, I : ConfigInteractorImp> @Inject internal
             .subscribe({ userData ->
                 getView()?.let {
                     user = userData
+                    Log.i("gg", userData.toString())
                     getView()?.getUserData(userData)
+                    //dependiendo de como se genere el usuario por defecto cambiar por un 2, si el default es un 1 poner un 2, si el default es un 2, poner un 1
+                    if(user.typeAccount=="2"){getView()?.setType(true)}
+                    else{getView()?.setType(false)}
+                    Log.i("gg", user.typeAccount.toString())
                 }
             }, { err -> println(err) }))
     }

@@ -31,6 +31,7 @@ import androidmads.library.qrgenearator.QRGContents
 import androidmads.library.qrgenearator.QRGEncoder
 import android.os.Build
 import android.os.Environment
+import android.util.Log
 import android.view.WindowManager
 import android.widget.TextView
 import androidmads.library.qrgenearator.QRGSaver
@@ -66,12 +67,12 @@ class ConfigActivity: BaseActivity(), ConfigView {
     lateinit var user: User
     var isMedicoEnable = false
     var isControlEnable = false
-    lateinit var config_upgrade: CardView
-    lateinit var config_type: TextView
-    lateinit var config_control: SwitchCompat
-    lateinit var config_medico: SwitchCompat
-    lateinit var config_sms: SwitchCompat
-    lateinit var config_geo: SwitchCompat
+    //lateinit var config_upgrade: CardView
+    //lateinit var config_type: TextView
+    //lateinit var config_control: SwitchCompat
+    //lateinit var config_medico: SwitchCompat
+    //lateinit var config_sms: SwitchCompat
+    //lateinit var config_geo: SwitchCompat
     lateinit var config_number: MaskedEditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -89,12 +90,12 @@ class ConfigActivity: BaseActivity(), ConfigView {
     }
 
     private fun configureVariables(){
-        config_upgrade = binding.configUpgrade
-        config_type = binding.configType
-        config_control = binding.configControl
-         config_medico = binding.configMedico
-        config_sms = binding.configSms
-         config_geo = binding.configGeo
+        //config_upgrade = binding.configUpgrade
+        //config_type = binding.configType
+        //config_control = binding.configControl
+         //config_medico = binding.configMedico
+        //config_sms = binding.configSms
+         //config_geo = binding.configGeo
         config_number = binding.configNumber
     }
     override fun onDestroy() {
@@ -126,12 +127,12 @@ class ConfigActivity: BaseActivity(), ConfigView {
             binding.configGeo.isEnabled = true
             binding.configNumber.isEnabled = true
         }else{
-            config_upgrade.visibility = View.VISIBLE
-            config_type.text = getString(R.string.config_standard_label)
-            config_medico.isEnabled = false
-            config_control.isEnabled = false
-            config_sms.isEnabled = false
-            config_geo.isEnabled = false
+            binding.configUpgrade.visibility = View.VISIBLE
+            binding.configType.text = getString(R.string.config_standard_label)
+            binding.configMedico.isEnabled = false
+            binding.configControl.isEnabled = false
+            binding.configSms.isEnabled = false
+            binding.configGeo.isEnabled = false
             config_number.isEnabled = false
         }
     }
@@ -205,6 +206,8 @@ class ConfigActivity: BaseActivity(), ConfigView {
 
 
     private fun setOnClickListeners() {
+        //Log.i("gg", "I'm in")
+        //Log.d("gg", "configSms isEnabled: ${binding.configSms.isEnabled}, isVisible: ${binding.configSms.visibility == View.VISIBLE}")
         config_number.setOnEditorActionListener { v, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_DONE){
                 presenter.updateNumber(config_number.text.toString())
@@ -212,18 +215,18 @@ class ConfigActivity: BaseActivity(), ConfigView {
             false
         }
 
-        config_sms.setOnCheckedChangeListener { buttonView, isChecked ->
+        binding.configSms.setOnCheckedChangeListener { buttonView, isChecked ->
             config_number.isEnabled = isChecked
             presenter.updateSms(this,isChecked)
         }
-        config_control.setOnCheckedChangeListener { buttonView, isChecked ->
+        binding.configControl.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked){
                 dialogControl(getString(R.string.config_control_dialog), false)
             }else{
                 presenter.updateControl(isChecked)
             }
         }
-        config_medico.setOnCheckedChangeListener { buttonView, isChecked ->
+        binding.configMedico.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked){
                 dialogControl(getString(R.string.config_medico_dialog), true)
             }else{
@@ -250,7 +253,7 @@ class ConfigActivity: BaseActivity(), ConfigView {
         binding.configGeoTitle.setOnClickListener{createDialogInfo(getString(R.string.info_geo))}
         binding.configControlTitle.setOnClickListener{createDialogInfo(getString(R.string.info_control))}
         binding.configMedicoTitle.setOnClickListener{createDialogInfo(getString(R.string.info_medico))}
-
+        //binding.premiumValue
 
 
     }
@@ -259,19 +262,19 @@ class ConfigActivity: BaseActivity(), ConfigView {
     override fun getUserData(user: User) {
         this.user = user
         user.control?.let {
-            config_control.isChecked = it
+            binding.configControl.isChecked = it
             setControl(it)
         }
         user.medico?.let {
-            config_medico.isChecked = it
+            binding.configMedico.isChecked = it
             setControlMedico(it)
 
         }
         user.geolocalizacion?.let {
-            config_geo.isChecked = it
+            binding.configGeo.isChecked = it
         }
         user.sms?.let {
-            config_sms.isChecked = it
+            binding.configSms.isChecked = it
             if(it){
                 config_number.visibility = View.VISIBLE
             }
@@ -282,7 +285,7 @@ class ConfigActivity: BaseActivity(), ConfigView {
         user.number.let {
             config_number.setText(it)
         }
-        if (user.typeAccount == "2"){
+        if (user.typeAccount == "1"){
             premiumAccount()
         }
         user.avatar?.let {
@@ -396,14 +399,17 @@ class ConfigActivity: BaseActivity(), ConfigView {
     }
 
     override fun premiumAccount() {
-        config_upgrade.visibility = View.INVISIBLE
-        config_type.text = getString(R.string.config_premium_label)
+        binding.configUpgrade.visibility = View.INVISIBLE
+        binding.configType.text = getString(R.string.config_premium_label)
     }
 
     override fun showValidationMessage(errorCode: Int) {
         when (errorCode) {
             AppConstants.EMPTY_PHONE_ERROR -> Toast.makeText(this, getString(R.string.invalid_phone_error_message), Toast.LENGTH_LONG).show()
         }
+    }
+    override fun showInvalidPromoCodeMessage() {
+        Toast.makeText(this, "Código de promoción inválido", Toast.LENGTH_SHORT).show()
     }
 
 }

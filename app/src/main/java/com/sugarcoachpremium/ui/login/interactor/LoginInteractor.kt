@@ -82,7 +82,7 @@ class LoginInteractor @Inject constructor(private val mContext: Context, private
             false,
             "",
             "",
-            "2",
+            "1",
             cloudUser.id.toInt(),
             data.sugar_points!!
         )
