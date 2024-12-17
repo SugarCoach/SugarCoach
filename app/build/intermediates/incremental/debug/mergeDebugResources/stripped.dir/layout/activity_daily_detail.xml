@@ -1,0 +1,812 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools" android:orientation="vertical"
+              android:background="@color/white"
+              android:fitsSystemWindows="true"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/constraintLayout"
+            android:background="@color/white">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/daily_detail_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:backgroundTint="@color/aqua"
+                android:clickable="true"
+                android:visibility="gone"
+                app:borderWidth="0dp"
+                app:elevation="5dp"
+                app:fabSize="mini"
+                app:layout_constraintBottom_toTopOf="@+id/daily_detail_delete"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:srcCompat="@drawable/ic_edit" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/daily_detail_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:backgroundTint="@color/aqua"
+                android:clickable="true"
+                android:visibility="gone"
+                app:borderWidth="0dp"
+                app:elevation="5dp"
+                app:fabSize="mini"
+                app:layout_constraintBottom_toTopOf="@+id/daily_detail_shared"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:srcCompat="@drawable/trash" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/daily_detail_shared"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:backgroundTint="@color/aqua"
+                android:clickable="true"
+                android:visibility="gone"
+                app:borderWidth="0dp"
+                app:elevation="5dp"
+                app:fabSize="mini"
+                app:layout_constraintBottom_toTopOf="@+id/daily_menu"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:srcCompat="@drawable/share" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/daily_menu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:backgroundTint="@color/aqua"
+                android:clickable="true"
+                app:borderWidth="0dp"
+                app:elevation="5dp"
+                app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:srcCompat="@drawable/ic_hand" />
+
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:id="@+id/linearLayout">
+            <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:gravity="center"
+                    android:layout_gravity="bottom"
+                    android:background="@color/aqua"
+                    android:layout_height="64dp"
+                    android:id="@+id/home"
+                    android:layout_weight="0.20">
+                <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="33dp"
+                        android:layout_height="33dp"
+                        android:layout_gravity="center"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/ic_profile"/>
+            </LinearLayout>
+            <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:gravity="center"
+                    android:id="@+id/statistics"
+                    android:layout_gravity="bottom"
+                    android:background="@color/aqua"
+                    android:layout_height="64dp"
+                    android:layout_weight="0.20">
+                <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="33dp"
+                        android:layout_height="33dp"
+                        android:layout_gravity="center"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/ic_statistics"/>
+            </LinearLayout>
+            <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_gravity="bottom"
+                    android:background="@color/aqua"
+                    android:gravity="center"
+                    android:layout_height="64dp"
+                    android:layout_weight="0.20">
+                <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="33dp">
+                    <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            app:srcCompat="@drawable/bold_shape"/>
+                    <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="33dp"
+                            android:layout_height="33dp"
+                            android:layout_gravity="center"
+                            android:scaleType="centerCrop"
+                            android:tint="@color/aqua"
+                            app:srcCompat="@drawable/ic_add_register" />
+                </FrameLayout>
+
+                <TextView
+                        style="@style/TextStyle.Title"
+                        android:textSize="10dp"
+                        android:layout_gravity="center"
+                        android:text="@string/main_daily_register_txt"
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+            <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:gravity="center"
+                    android:layout_gravity="bottom"
+                    android:background="@color/aqua"
+                    android:id="@+id/register"
+                    android:layout_height="64dp"
+                    android:layout_weight="0.20">
+                <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="38dp"
+                        android:layout_height="33dp"
+                        android:layout_gravity="center"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/ic_control"/>
+            </LinearLayout>
+            <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:gravity="center"
+                    android:layout_gravity="bottom"
+                    android:background="@color/aqua"
+                    android:id="@+id/tratamiento"
+                    android:layout_height="64dp"
+                    android:layout_weight="0.20">
+                <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="33dp"
+                        android:layout_height="33dp"
+                        android:layout_gravity="center"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/ic_treatment"/>
+            </LinearLayout>
+        </LinearLayout>
+        <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="80dp"
+                style="@style/TextStyle.Date"
+                android:gravity="center"
+                android:layout_height="43dp"
+                android:id="@+id/daily_date_txt"
+                android:background="@drawable/date_right_bg"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+        <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                style="@style/TextStyle.Date"
+                android:gravity="center"
+                android:paddingLeft="5dp"
+                android:minWidth="80dp"
+                android:layout_height="43dp"
+                android:id="@+id/daily_time_txt"
+                android:background="@drawable/date_left_bg"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="0dp" app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@+id/daily_date_txt"
+                app:layout_constraintBottom_toTopOf="@+id/linearLayout" android:background="@color/white"
+                android:id="@+id/linearLayout4">
+            <androidx.core.widget.NestedScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" android:fillViewport="true">
+                <LinearLayout android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:orientation="vertical"
+                              android:layout_marginRight="5dp"
+                              android:layout_marginLeft="5dp">
+                    <LinearLayout android:layout_width="match_parent"
+                                  android:orientation="vertical"
+                                  android:id="@+id/daily_detail_ll"
+                                  android:paddingBottom="5dp"
+                                  android:paddingTop="5dp"
+                                  android:layout_marginTop="10dp"
+                                  android:layout_height="wrap_content" android:padding="5dp">
+
+                        <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:orientation="horizontal">
+
+                            <androidx.cardview.widget.CardView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginEnd="5dp"
+                                    android:layout_weight="0.50"
+                                    app:cardBackgroundColor="@color/blue"
+                                    app:cardCornerRadius="10dp"
+                                    app:cardElevation="2dp"
+                                    app:cardPreventCornerOverlap="true"
+                                    app:layout_constraintEnd_toStartOf="@+id/daily_time_txt"
+                                    app:layout_constraintStart_toEndOf="@+id/daily_date_txt"
+                                    app:layout_constraintTop_toBottomOf="@+id/daily_date_txt">
+
+                                <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginLeft="10dp"
+                                        android:layout_marginRight="10dp"
+                                        android:gravity="center"
+                                        android:orientation="vertical">
+
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                            style="@style/TextStyle.Heading"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center"
+                                            android:gravity="center"
+                                            android:text="@string/daily_detail_date"
+                                            android:textSize="14dp" />
+
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                            android:id="@+id/daily_detail_date_tv"
+                                            style="@style/TextStyle.Heading"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center"
+                                            android:layout_marginBottom="5dp"
+                                            android:gravity="center"
+                                            android:textSize="18dp" />
+
+                                </LinearLayout>
+                            </androidx.cardview.widget.CardView>
+
+                            <androidx.cardview.widget.CardView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginStart="5dp"
+                                    android:layout_weight="0.50"
+                                    app:cardBackgroundColor="@color/blue"
+                                    app:cardCornerRadius="10dp"
+                                    app:cardElevation="2dp"
+                                    app:cardPreventCornerOverlap="true"
+                                    app:layout_constraintEnd_toStartOf="@+id/daily_time_txt"
+                                    app:layout_constraintStart_toEndOf="@+id/daily_date_txt"
+                                    app:layout_constraintTop_toBottomOf="@+id/daily_date_txt">
+
+                                <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginLeft="10dp"
+                                        android:layout_marginRight="10dp"
+                                        android:gravity="center"
+                                        android:orientation="vertical">
+
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                            style="@style/TextStyle.Heading"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center"
+                                            android:gravity="center"
+                                            android:text="@string/daily_detail_hora"
+                                            android:textSize="14dp" />
+
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                            android:id="@+id/daily_detail_time_tv"
+                                            style="@style/TextStyle.Heading"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center"
+                                            android:layout_marginBottom="5dp"
+                                            android:gravity="center"
+                                            android:textSize="18dp" />
+
+                                </LinearLayout>
+                            </androidx.cardview.widget.CardView>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="120dp" android:layout_marginTop="10dp">
+                            <androidx.cardview.widget.CardView
+                                    android:layout_width="0dp"
+                                    app:cardBackgroundColor="@color/pink"
+                                    app:cardCornerRadius="10dp"
+                                    app:cardElevation="2dp"
+                                    app:cardPreventCornerOverlap="true"
+                                    android:layout_height="match_parent"
+                                    app:layout_constraintStart_toEndOf="@+id/daily_date_txt"
+                                    android:layout_marginEnd="5dp"
+                                    app:layout_constraintEnd_toStartOf="@+id/daily_time_txt"
+                                    app:layout_constraintTop_toBottomOf="@+id/daily_date_txt"
+                                    android:layout_weight="0.50">
+                                <LinearLayout
+                                        android:orientation="vertical"
+                                        android:layout_width="match_parent"
+                                        android:gravity="center"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginLeft="10dp"
+                                        android:layout_marginRight="10dp">
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                            android:text="@string/daily_detail_gluc"
+                                            style="@style/TextStyle.Heading"
+                                            android:layout_gravity="center"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:textSize="14dp" android:gravity="center"/>
+                                    <androidx.appcompat.widget.AppCompatEditText
+                                            style="@style/TextStyle.Heading"
+                                            android:textSize="36dp"
+                                            android:inputType="number|numberDecimal"
+                                            android:imeOptions="actionDone"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center"
+                                            android:gravity="center"
+                                            android:hint="0.0"
+                                            android:textColorHint="@color/pink"
+                                            android:textColor="@color/pink"
+                                            android:id="@+id/daily_detail_gluc_tv"
+                                            android:layout_marginTop="10dp"
+                                            android:layout_marginBottom="5dp"
+                                            android:padding="5dp" android:background="@drawable/rectangle_white"/>
+
+                                </LinearLayout>
+                            </androidx.cardview.widget.CardView>
+                            <androidx.cardview.widget.CardView
+                                    android:layout_width="0dp"
+                                    app:cardBackgroundColor="@color/pink"
+                                    app:cardCornerRadius="10dp"
+                                    app:cardElevation="2dp"
+                                    app:cardPreventCornerOverlap="true"
+                                    android:layout_height="match_parent"
+                                    app:layout_constraintStart_toEndOf="@+id/daily_date_txt"
+                                    app:layout_constraintEnd_toStartOf="@+id/daily_time_txt"
+                                    app:layout_constraintTop_toBottomOf="@+id/daily_date_txt"
+                                    android:layout_weight="0.50"
+                                    android:layout_marginStart="5dp">
+                                <LinearLayout
+                                        android:orientation="vertical"
+                                        android:layout_width="match_parent"
+                                        android:gravity="center"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginLeft="10dp"
+                                        android:layout_marginRight="10dp">
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                            android:text="@string/daily_detail_category"
+                                            style="@style/TextStyle.Heading"
+                                            android:layout_gravity="center"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:textSize="14dp" android:gravity="center"/>
+                                    <com.skydoves.powerspinner.PowerSpinnerView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="35dp"
+                                            android:background="@color/white"
+                                            android:gravity="center"
+                                            android:padding="10dp"
+                                            android:textColor="@color/black"
+                                            android:textColorHint="@color/black"
+                                            android:textSize="14sp"
+                                            android:hint="Seleccione una"
+                                            app:spinner_arrow_gravity="end"
+                                            app:spinner_arrow_tint="@color/pink"
+                                            app:spinner_arrow_padding="8dp"
+                                            app:spinner_divider_color="@color/gray_letter"
+                                            app:spinner_divider_show="true"
+                                            app:spinner_divider_size="0.4dp"
+                                            app:fontFamily="@font/folks_normal"
+                                            app:spinner_popup_animation="dropdown"
+                                            app:spinner_popup_background="@color/white"
+                                            app:spinner_popup_elevation="14dp"
+                                            android:layout_marginTop="10dp"
+                                            android:layout_marginBottom="5dp"
+                                            android:id="@+id/daily_detail_category_tv"/>
+                                </LinearLayout>
+                            </androidx.cardview.widget.CardView>
+
+                        </LinearLayout>
+                        <androidx.cardview.widget.CardView
+                                android:layout_width="match_parent"
+                                app:cardBackgroundColor="@color/aqua"
+                                app:cardCornerRadius="10dp"
+                                app:cardElevation="2dp"
+                                app:cardPreventCornerOverlap="true"
+                                android:layout_height="60dp"
+                                app:layout_constraintStart_toEndOf="@+id/daily_date_txt"
+                                android:layout_marginEnd="5dp"
+                                app:layout_constraintEnd_toStartOf="@+id/daily_time_txt"
+                                app:layout_constraintTop_toBottomOf="@+id/daily_date_txt"
+                                android:layout_marginTop="10dp">
+                            <LinearLayout
+                                    android:orientation="horizontal"
+                                    android:layout_width="match_parent"
+                                    android:gravity="center"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp">
+                                <androidx.appcompat.widget.AppCompatTextView
+                                        android:text="@string/daily_basal_label"
+                                        style="@style/TextStyle.Heading"
+                                        android:layout_gravity="center"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="18dp"
+                                        android:layout_weight="0.50"/>
+                                <LinearLayout
+                                        android:orientation="horizontal"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent" android:layout_weight="0.50"
+                                        android:gravity="center">
+                                    <androidx.appcompat.widget.AppCompatEditText
+                                            style="@style/TextStyle.Heading"
+                                            android:background="@android:color/transparent"
+                                            android:layout_gravity="center"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:imeOptions="actionDone"
+                                            android:hint="0.0"
+                                            android:textColorHint="@color/white"
+                                            android:inputType="number|numberDecimal"
+                                            android:textSize="36dp" android:gravity="center"
+                                            android:id="@+id/daily_detail_basal"/>
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                            android:text="@string/register_basal_unidad_label"
+                                            style="@style/TextStyle.Heading"
+                                            android:layout_gravity="center"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="match_parent"
+                                            android:textSize="12dp"
+                                            android:layout_marginStart="5dp" android:gravity="bottom"
+                                            android:layout_marginBottom="8dp"/>
+                                </LinearLayout>
+
+                            </LinearLayout>
+                        </androidx.cardview.widget.CardView>
+                        <androidx.cardview.widget.CardView
+                                android:layout_width="match_parent"
+                                app:cardBackgroundColor="@color/aqua"
+                                app:cardCornerRadius="10dp"
+                                app:cardElevation="2dp"
+                                app:cardPreventCornerOverlap="true"
+                                android:layout_height="60dp"
+                                app:layout_constraintStart_toEndOf="@+id/daily_date_txt"
+                                android:layout_marginEnd="5dp"
+                                app:layout_constraintEnd_toStartOf="@+id/daily_time_txt"
+                                app:layout_constraintTop_toBottomOf="@+id/daily_date_txt"
+                                android:layout_marginTop="10dp">
+                            <LinearLayout
+                                    android:orientation="horizontal"
+                                    android:layout_width="match_parent"
+                                    android:gravity="center"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp">
+                                <androidx.appcompat.widget.AppCompatTextView
+                                        android:text="@string/register_insulina_label"
+                                        style="@style/TextStyle.Heading"
+                                        android:layout_gravity="center"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="18dp"
+                                        android:layout_weight="0.50"/>
+                                <LinearLayout
+                                        android:orientation="horizontal"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent" android:layout_weight="0.50"
+                                        android:gravity="center">
+                                    <androidx.appcompat.widget.AppCompatEditText
+                                            style="@style/TextStyle.Heading"
+                                            android:layout_gravity="center"
+                                            android:background="@android:color/transparent"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:imeOptions="actionDone"
+                                            android:hint="0.0"
+                                            android:textColorHint="@color/white"
+                                            android:inputType="number|numberDecimal"
+                                            android:textSize="36dp" android:gravity="center"
+                                            android:id="@+id/daily_detail_insul"/>
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                            android:text="@string/register_basal_unidad_label"
+                                            style="@style/TextStyle.Heading"
+                                            android:layout_gravity="center"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="match_parent"
+                                            android:textSize="12dp"
+                                            android:layout_marginStart="5dp" android:gravity="bottom"
+                                            android:layout_marginBottom="8dp"/>
+                                </LinearLayout>
+
+                            </LinearLayout>
+                        </androidx.cardview.widget.CardView>
+                        <androidx.cardview.widget.CardView
+                                android:layout_width="match_parent"
+                                app:cardBackgroundColor="@color/aqua"
+                                app:cardCornerRadius="10dp"
+                                app:cardElevation="2dp"
+                                app:cardPreventCornerOverlap="true"
+                                android:layout_height="60dp"
+                                app:layout_constraintStart_toEndOf="@+id/daily_date_txt"
+                                android:layout_marginEnd="5dp"
+                                app:layout_constraintEnd_toStartOf="@+id/daily_time_txt"
+                                app:layout_constraintTop_toBottomOf="@+id/daily_date_txt"
+                                android:layout_marginTop="10dp">
+                            <LinearLayout
+                                    android:orientation="horizontal"
+                                    android:layout_width="match_parent"
+                                    android:gravity="center"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp">
+                                <androidx.appcompat.widget.AppCompatTextView
+                                        android:text="@string/register_carbohidratos_label"
+                                        style="@style/TextStyle.Heading"
+                                        android:layout_gravity="center"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="18dp"
+                                        android:layout_weight="0.50"/>
+                                <LinearLayout
+                                        android:orientation="horizontal"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent" android:layout_weight="0.50"
+                                        android:gravity="center">
+                                    <androidx.appcompat.widget.AppCompatEditText
+                                            android:background="@android:color/transparent"
+                                            style="@style/TextStyle.Heading"
+                                            android:layout_gravity="center"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:imeOptions="actionDone"
+                                            android:hint="0.0"
+                                            android:textColorHint="@color/white"
+                                            android:inputType="number|numberDecimal"
+                                            android:textSize="36dp" android:gravity="center"
+                                            android:id="@+id/daily_detail_car"/>
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                            android:text="@string/register_car_unidad_label"
+                                            style="@style/TextStyle.Heading"
+                                            android:layout_gravity="center"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="match_parent"
+                                            android:textSize="12dp"
+                                            android:layout_marginStart="5dp" android:gravity="bottom"
+                                            android:layout_marginBottom="8dp"/>
+                                </LinearLayout>
+
+                            </LinearLayout>
+                        </androidx.cardview.widget.CardView>
+
+                        <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="150dp"
+                                android:layout_marginTop="10dp"
+                                android:orientation="horizontal">
+
+                            <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.50"
+                                    android:orientation="vertical">
+
+                                <androidx.cardview.widget.CardView
+                                        android:id="@+id/daily_detail_exercises_cv"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="0dp"
+                                        android:layout_marginEnd="5dp"
+                                        android:layout_weight="0.50"
+                                        app:cardBackgroundColor="@color/purple"
+                                        app:cardCornerRadius="10dp"
+                                        app:cardElevation="2dp"
+                                        app:cardPreventCornerOverlap="true">
+
+                                    <LinearLayout
+                                            android:id="@+id/daily_detail_exercises_ll"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_marginLeft="10dp"
+                                            android:layout_marginRight="10dp"
+                                            android:gravity="center"
+                                            android:orientation="vertical">
+
+                                        <androidx.appcompat.widget.AppCompatTextView
+                                                android:id="@+id/daily_detail_exercises_label"
+                                                style="@style/TextStyle.Heading"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_gravity="center"
+                                                android:gravity="center"
+                                                android:text="@string/register_exercises_label"
+                                                android:textSize="16dp" />
+
+                                        <androidx.appcompat.widget.AppCompatImageView
+                                                android:id="@+id/daily_detail_exercises"
+                                                android:layout_width="25dp"
+                                                android:layout_height="25dp"
+                                                android:tint="@color/white" />
+                                        <androidx.appcompat.widget.AppCompatTextView
+                                                android:id="@+id/daily_detail_exercises_tv"
+                                                style="@style/TextStyle.Heading"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_gravity="center"
+                                                android:gravity="center"
+                                                android:textSize="12dp" />
+
+                                    </LinearLayout>
+                                </androidx.cardview.widget.CardView>
+
+                                <androidx.cardview.widget.CardView
+                                        android:id="@+id/daily_detail_state_cv"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="0dp"
+                                        android:layout_marginTop="10dp"
+                                        android:layout_marginEnd="5dp"
+                                        android:layout_weight="0.50"
+                                        app:cardBackgroundColor="@color/purple"
+                                        app:cardCornerRadius="10dp"
+                                        app:cardElevation="2dp"
+                                        app:cardPreventCornerOverlap="true"
+                                        app:layout_constraintEnd_toStartOf="@+id/daily_time_txt"
+                                        app:layout_constraintStart_toEndOf="@+id/daily_date_txt"
+                                        app:layout_constraintTop_toBottomOf="@+id/daily_date_txt">
+
+                                    <LinearLayout
+                                            android:id="@+id/daily_detail_emotional_ll"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_marginLeft="10dp"
+                                            android:layout_marginRight="10dp"
+                                            android:gravity="center"
+                                            android:orientation="vertical">
+
+                                        <androidx.appcompat.widget.AppCompatTextView
+                                                android:id="@+id/daily_detail_emotional_label"
+                                                style="@style/TextStyle.Heading"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_gravity="center"
+                                                android:gravity="center"
+                                                android:text="@string/register_emotional_label"
+                                                android:textSize="16dp" />
+
+                                        <androidx.appcompat.widget.AppCompatImageView
+                                                android:id="@+id/daily_detail_emotional"
+                                                android:layout_width="25dp"
+                                                android:layout_height="25dp"
+                                                android:tint="@color/white" />
+                                        <androidx.appcompat.widget.AppCompatTextView
+                                                android:id="@+id/daily_detail_emotional_tv"
+                                                style="@style/TextStyle.Heading"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_gravity="center"
+                                                android:gravity="center"
+                                                android:textSize="12dp" />
+
+                                    </LinearLayout>
+                                </androidx.cardview.widget.CardView>
+                            </LinearLayout>
+
+                            <androidx.cardview.widget.CardView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginStart="5dp"
+                                    android:layout_weight="0.50"
+                                    app:cardBackgroundColor="@color/yellow"
+                                    app:cardCornerRadius="10dp"
+                                    app:cardElevation="2dp"
+                                    app:cardPreventCornerOverlap="true">
+
+                                <FrameLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent">
+
+                                    <androidx.appcompat.widget.AppCompatImageView
+                                            android:id="@+id/daily_detail_img"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_gravity="center"
+                                            android:scaleType="centerCrop"
+                                            android:visibility="gone" />
+
+                                    <LinearLayout
+                                            android:id="@+id/daily_detail_img_empty_ll"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_marginLeft="10dp"
+                                            android:layout_marginRight="10dp"
+                                            android:gravity="center"
+                                            android:orientation="vertical">
+
+                                        <androidx.appcompat.widget.AppCompatImageView
+                                                android:layout_width="40dp"
+                                                android:layout_height="40dp"
+                                                android:layout_gravity="center"
+                                                android:layout_marginTop="5dp"
+                                                android:src="@drawable/ic_min_picture"
+                                                app:srcCompat="@drawable/ic_min_picture" />
+
+                                        <androidx.appcompat.widget.AppCompatTextView
+                                                style="@style/TextStyle.Heading"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_gravity="center"
+                                                android:layout_marginTop="10dp"
+                                                android:layout_marginBottom="5dp"
+                                                android:text="@string/daily_detail_photo"
+                                                android:textSize="16dp" />
+
+                                    </LinearLayout>
+                                </FrameLayout>
+
+                            </androidx.cardview.widget.CardView>
+
+                        </LinearLayout>
+
+                        <androidx.cardview.widget.CardView
+                                android:id="@+id/daily_detail_comment_cv"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginEnd="5dp"
+                                android:layout_weight="0.50"
+                                app:cardBackgroundColor="@color/purple"
+                                app:cardCornerRadius="10dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp"
+                                app:cardElevation="2dp"
+                                app:cardPreventCornerOverlap="true">
+
+                            <LinearLayout
+                                    android:id="@+id/daily_detail_comment_ll"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:layout_marginBottom="10dp"
+                                    android:gravity="center"
+                                    android:orientation="vertical">
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                        android:id="@+id/daily_detail_comment_title"
+                                        style="@style/TextStyle.Heading"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:gravity="center"
+                                        android:text="@string/nota_label"
+                                        android:textSize="16dp" />
+                                <androidx.appcompat.widget.AppCompatTextView
+                                        android:id="@+id/daily_detail_comment"
+                                        style="@style/TextStyle.Heading"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:gravity="center"
+                                        android:textSize="14dp" />
+
+                            </LinearLayout>
+                        </androidx.cardview.widget.CardView>
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.core.widget.NestedScrollView>
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
