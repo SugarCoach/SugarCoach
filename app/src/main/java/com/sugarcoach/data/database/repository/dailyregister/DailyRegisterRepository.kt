@@ -1,5 +1,6 @@
 package com.sugarcoach.data.database.repository.dailyregister
 
+import android.util.Log
 import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.internal.operators.single.SingleFromCallable
@@ -8,6 +9,7 @@ import java.util.*
 import javax.inject.Inject
 
 class DailyRegisterRepository @Inject constructor(private val dailyRegisterDao: DailyRegisterDao): DailyRegisterRepo {
+
 
     override fun insertRegisters(dailyRegister: List<DailyRegister>): Observable<Boolean> {
         val dispoded = Observable.just(dailyRegisterDao)
@@ -18,6 +20,7 @@ class DailyRegisterRepository @Inject constructor(private val dailyRegisterDao: 
     }
 
     override fun insertCategories(category: List<Category>): Observable<Boolean> {
+        Log.i("OnInsertCategories", "Se estan insertando: $category")
         val dispoded = Observable.just(dailyRegisterDao)
             .subscribeOn(Schedulers.io())
             .subscribe { dailyRegisterDao ->   dailyRegisterDao.insertAllCategories(category)}
@@ -85,7 +88,14 @@ class DailyRegisterRepository @Inject constructor(private val dailyRegisterDao: 
     override fun loadDailyRegistersDATES(): Single<List<Date>>
             = Single.fromCallable { dailyRegisterDao.loadDates() }
 
-    override fun isRegisterRepoEmpty(): Boolean =  dailyRegisterDao.loadAll().isEmpty()
+    override fun isRegisterRepoEmpty(): Boolean {
+        try {
+            return dailyRegisterDao.loadAll().isEmpty()
+        }catch(e: Exception){
+            Log.i("OnRegisterRepository", "Ocurrió un error al llamar loadAll() $e")
+            return true
+        }
+    }
 
     override fun isCategoriesRepoEmpty(): Observable<Boolean> =   Observable.just(dailyRegisterDao.loadAllCategories().isEmpty())
 

@@ -89,6 +89,7 @@ class MainPresenter<V : MainView, I : MainInteractorImp> @Inject internal constr
     }
 
     override fun goToActivityConfig() {
+        Log.i("OnConfig", "Se inicia el Config activity")
         getView()?.openConfigActivity()
     }
 
@@ -169,6 +170,7 @@ class MainPresenter<V : MainView, I : MainInteractorImp> @Inject internal constr
             compositeDisposable.add(it.getCategories()
                 .compose(schedulerProvider.ioToMainSingleScheduler())
                 .subscribe({ categories ->
+                    Log.i("OnMainPresenter", "Las categories fueron: $categories")
                     getMedition(dailyRegister, categories)
                 }, { err -> println("error" + err) })
             )

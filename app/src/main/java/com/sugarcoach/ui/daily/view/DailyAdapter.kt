@@ -43,6 +43,7 @@ class DailyAdapter(private val context: DailyActivity,groups: List<ExpandableLis
 
     override fun onCreateChildViewHolder(parent: ViewGroup, viewType: Int): DailyHolder {
         val inflater: LayoutInflater = LayoutInflater.from(context)
+        binding = DailyItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return DailyHolder(binding)
 
     }

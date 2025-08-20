@@ -4,9 +4,11 @@ import android.content.Intent
 import android.graphics.PorterDuff
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import com.sugarcoach.R
+import com.sugarcoach.data.api_db.ApiRepository
 import com.sugarcoach.data.database.repository.user.User
 import com.sugarcoach.databinding.ActivityMainBinding
 import com.sugarcoach.ui.base.view.BaseActivity
@@ -20,8 +22,13 @@ import com.sugarcoach.ui.register.view.RegisterActivity
 import com.sugarcoach.ui.statistics.view.StatisticsActivity
 import com.sugarcoach.ui.treatment.view.TreatmentActivity
 import com.sugarcoach.util.extensions.resIdByName
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Date
+import java.util.Locale
+
 import javax.inject.Inject
 
 class MainActivity : BaseActivity(), MainView {
@@ -30,6 +37,9 @@ class MainActivity : BaseActivity(), MainView {
     @Inject
     lateinit var presenter: MainPresenterImp<MainView, MainInteractorImp>
     lateinit var binding: ActivityMainBinding
+
+    @Inject
+    lateinit var apiRepository: ApiRepository
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -46,7 +56,7 @@ class MainActivity : BaseActivity(), MainView {
     override fun showSuccessToast() {
     }
 
-    override fun showErrorToast() {
+    override fun showErrorToast(msg: String) {
     }
 
     override fun openLoginActivity() {
@@ -88,6 +98,14 @@ class MainActivity : BaseActivity(), MainView {
         binding.mainDailyCv.setOnClickListener { presenter.goToActivityDaily() }
         binding.mainConfigCv.setOnClickListener { presenter.goToActivityConfig() }
         binding.mainStatisticsCv.setOnClickListener { presenter.goToActivityStatistics() }
+        //binding.callAPI.setOnClickListener { apiCall() }
+    }
+
+    private fun apiCall(){
+        CoroutineScope(Dispatchers.IO).launch {
+            //val response = apiRepository.createUser("asdasd", "asdas@gmail.com")
+            //Log.i("OnApiResponse", "$response")
+        }
     }
 
     override fun setMedition(label: String) {

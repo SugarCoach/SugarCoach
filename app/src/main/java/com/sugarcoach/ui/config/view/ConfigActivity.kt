@@ -126,7 +126,7 @@ class ConfigActivity: BaseActivity(), ConfigView {
         Toast.makeText(this, getString(R.string.update_success), Toast.LENGTH_LONG).show()
     }
 
-    override fun showErrorToast() {
+    override fun showErrorToast(msg: String) {
         Toast.makeText(this, getString(R.string.empty_codigo_error_message), Toast.LENGTH_LONG).show()
     }
 
@@ -221,7 +221,6 @@ class ConfigActivity: BaseActivity(), ConfigView {
         binding.statistics.setOnClickListener { presenter.goToActivityStatistic() }
         binding.dailyRegister.setOnClickListener { presenter.goToActivityDaily() }
         binding.treament.setOnClickListener { presenter.goToActivityTreament() }
-
     }
 
 

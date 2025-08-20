@@ -22,6 +22,7 @@ class StatisticsAdapter(private val activity: StatisticsActivity) : RecyclerView
     lateinit var binding: StatisticsItemBinding
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater: LayoutInflater = LayoutInflater.from(activity)
+        binding = StatisticsItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         var holder = StatisticsHolder(binding)
         this.holder = holder
         return holder

@@ -70,7 +70,6 @@ data class User(
     @ColumnInfo(name = "mirror_id")
     var mirror_id: String?,
 
-
     @ColumnInfo(name = "type_account")
     var typeAccount: String?
 )

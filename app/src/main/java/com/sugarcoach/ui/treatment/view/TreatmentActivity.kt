@@ -1,10 +1,12 @@
 package com.sugarcoach.ui.treatment.view
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.PorterDuff
 import android.graphics.drawable.ColorDrawable
+import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -18,6 +20,8 @@ import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.play.core.integrity.e
+import com.skydoves.powerspinner.PowerSpinnerInterface
 import com.sugarcoach.R
 import com.sugarcoach.data.database.repository.treament.TreatmentBasalCorrectora
 import com.sugarcoach.data.database.repository.user.User
@@ -33,6 +37,7 @@ import com.sugarcoach.ui.treatment.interactor.TreatmentInteractorImp
 import com.sugarcoach.ui.treatment.presenter.TreatmentPresenterImp
 import com.sugarcoach.util.extensions.resIdByName
 import org.joda.time.LocalTime
+import java.lang.reflect.TypeVariable
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
@@ -48,7 +53,6 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
 
     @Inject
     lateinit var manager: LinearLayoutManager
-
 
     @Inject
     lateinit var cmanager: LinearLayoutManager
@@ -90,6 +94,7 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
     var initialbasal = false
     var initialMedidor = false
     var initialBomba = false
+    var isFabOpen = false
     lateinit var user: User
 
     lateinit var binding: ActivityTreatmentBinding
@@ -108,14 +113,16 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
         super.onDestroy()
     }
 
-
     override fun showSuccessToast() {
         Toast.makeText(this, getString(R.string.update_success), Toast.LENGTH_LONG).show()
     }
 
-    override fun showErrorToast() {
+    fun showErrorToast2(context: Context, msg: String) {
+        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
     }
 
+    override fun showErrorToast(msg: String) {
+    }
 
     override fun setData(user: User, date: Date) {
         this.user = user
@@ -150,14 +157,14 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
 
     override fun setInsulinasBasales(basalInsuline: List<BasalItem>) {
         adapter.setPowerView(binding.treatmentBasal)
-        //binding.treatmentBasal.setSpinnerAdapter(adapter)
+        binding.treatmentBasal.setSpinnerAdapter(adapter)
         binding.treatmentBasal.getSpinnerRecyclerView().layoutManager = linearLayoutManager
         binding.treatmentBasal.setItems(basalInsuline)
     }
 
     override fun setInsulinasCorrectoras(basalInsuline: List<BasalItem>) {
         adapterCorrectora.setPowerView(binding.treatmentCorrectora)
-        //binding.treatmentCorrectora.setSpinnerAdapter(adapterCorrectora)
+        binding.treatmentCorrectora.setSpinnerAdapter(adapterCorrectora)
         binding.treatmentCorrectora.getSpinnerRecyclerView().layoutManager = cmanager
         binding.treatmentCorrectora.setItems(basalInsuline)
     }
@@ -177,7 +184,7 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
     }
 
     override fun showDataSave() {
-        TODO("Not yet implemented")
+        createDialogCongratulation()
     }
 
     private fun createDialogCongratulation(){
@@ -198,7 +205,7 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
     }
 
     override fun setTreatment(treament: TreatmentBasalCorrectora) {
-        var tratamiento = treament.treament!!
+        val tratamiento = treament.treament!!
         binding.treatmentObjTxt.setText(tratamiento.object_glucose.toInt().toString())
         binding.treatmentHiperTxt.setText(tratamiento.hyperglucose.toInt().toString())
         binding.treatmentHipoTxt.setText(tratamiento.hipoglucose.toInt().toString())
@@ -290,47 +297,79 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
 
     fun setListeners(){
         binding.treatmentObjTxt.setOnEditorActionListener { v, actionId, event ->
-            if (actionId == EditorInfo.IME_ACTION_DONE){
-                presenter.saveAll(binding.treatmentObjTxt.text.toString().toFloat(), binding.treatmentHipoTxt.text.toString().toFloat(),binding.treatmentHiperTxt.text.toString().toFloat())
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                presenter.saveAll(
+                    binding.treatmentObjTxt.text.toString().toFloat(),
+                    binding.treatmentHipoTxt.text.toString().toFloat(),
+                    binding.treatmentHiperTxt.text.toString().toFloat()
+                )
             }
             false
         }
         binding.treatmentHipoTxt.setOnEditorActionListener { v, actionId, event ->
-            if (actionId == EditorInfo.IME_ACTION_DONE){
-                presenter.saveAll(binding.treatmentObjTxt.text.toString().toFloat(), binding.treatmentHipoTxt.text.toString().toFloat(),binding.treatmentHiperTxt.text.toString().toFloat())
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                presenter.saveAll(
+                    binding.treatmentObjTxt.text.toString().toFloat(),
+                    binding.treatmentHipoTxt.text.toString().toFloat(),
+                    binding.treatmentHiperTxt.text.toString().toFloat()
+                )
             }
             false
         }
         binding.treatmentHiperTxt.setOnEditorActionListener { v, actionId, event ->
-            if (actionId == EditorInfo.IME_ACTION_DONE){
-                presenter.saveAll(binding.treatmentObjTxt.text.toString().toFloat(), binding.treatmentHipoTxt.text.toString().toFloat(),binding.treatmentHiperTxt.text.toString().toFloat())
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                presenter.saveAll(
+                    binding.treatmentObjTxt.text.toString().toFloat(),
+                    binding.treatmentHipoTxt.text.toString().toFloat(),
+                    binding.treatmentHiperTxt.text.toString().toFloat()
+                )
             }
             false
         }
         binding.treatmentGluMayorUd.setOnEditorActionListener { v, actionId, event ->
-            if (actionId == EditorInfo.IME_ACTION_DONE){
-                presenter.saveUnitCorrectora(binding.treatmentGluMayorUd.text.toString().toFloat())
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                presenter.saveUnitCorrectora(
+                    binding.treatmentGluMayorUd.text.toString().toFloat()
+                )
             }
             false
         }
         binding.treatmentGluMayor.setOnEditorActionListener { v, actionId, event ->
-            if (actionId == EditorInfo.IME_ACTION_DONE){
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
                 presenter.saveCorrectoraGlu(binding.treatmentGluMayor.text.toString().toFloat())
             }
             false
         }
         binding.treatmentCarbonoUd.setOnEditorActionListener { v, actionId, event ->
-            if (actionId == EditorInfo.IME_ACTION_DONE){
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
                 presenter.saveUnitInsulina(binding.treatmentCarbonoUd.text.toString().toFloat())
             }
             false
         }
         binding.treatmentCarbono.setOnEditorActionListener { v, actionId, event ->
-            if (actionId == EditorInfo.IME_ACTION_DONE){
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
                 presenter.saveCarbono(binding.treatmentCarbono.text.toString().toFloat())
             }
             false
         }
+
+        binding.treatmentMenu.setOnClickListener{
+            if (isFabOpen){
+                hideMenu()
+            }else{
+                showMenu()
+            }
+        }
+
+        binding.treatmentShared.setOnClickListener {
+            hideMenu()
+            presenter.getScreenShot(this, binding.treatmentLl)
+        }
+
+        binding.treatmentEdit.setOnClickListener {
+            presenter.updateAll()
+        }
+
         binding.treatmentBomb.setOnCheckedChangeListener { buttonView, isChecked ->
             selectBomb(isChecked)
         }
@@ -366,12 +405,33 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
         binding.treatmentRecordatorioTitle.setOnClickListener { v ->
             createDialogInfo(getString(R.string.info_recordatorio))
         }
+
+    }
+    fun hideMenu(){
+        isFabOpen = false
+        binding.treatmentMenu.setImageResource(R.drawable.ic_hand)
+        binding.treatmentEdit.visibility = View.GONE
+        binding.treatmentShared.visibility = View.GONE
+    }
+    fun showMenu(){
+        isFabOpen = true
+        binding.treatmentMenu.setImageResource(R.drawable.cancel)
+        binding.treatmentEdit.visibility = View.VISIBLE
+        binding.treatmentShared.visibility = View.VISIBLE
+    }
+
+    override fun sharedScreenShot(uri: Uri) {
+        val shareIntent: Intent = Intent().apply {
+            action = Intent.ACTION_SEND
+            putExtra(Intent.EXTRA_STREAM, uri)
+            type = "image/jpeg"
+        }
+        startActivity(Intent.createChooser(shareIntent, resources.getText(R.string.daily_detail_share)))
     }
     fun menuListeners(){
         binding.home.setOnClickListener { presenter.goToActivityMain() }
         binding.statistics.setOnClickListener { presenter.goToActivityStatistic() }
         binding.dailyRegister.setOnClickListener { presenter.goToActivityDaily() }
-
     }
     private fun createDialogInfo(info: String){
         val view = DialogInfoBinding.inflate(layoutInflater)

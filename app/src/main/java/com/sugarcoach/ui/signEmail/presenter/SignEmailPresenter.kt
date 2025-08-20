@@ -1,43 +1,41 @@
 package com.sugarcoach.ui.signEmail.presenter
 
-import android.app.Activity
-import android.content.Intent
-import android.content.IntentSender
-import android.net.wifi.hotspot2.pps.Credential
+import android.annotation.SuppressLint
 import android.util.Log
-import androidx.core.app.ActivityCompat.startActivityForResult
-import androidx.fragment.app.Fragment
 import com.facebook.*
-import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
-import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import com.sugarcoach.BuildConfig
 import com.sugarcoach.data.database.repository.dailyregister.DailyRegister
 import com.sugarcoach.data.database.repository.treament.Treament
 import com.sugarcoach.data.network.LoginResponse
 import com.sugarcoach.data.network.RegistersResponse
-import com.sugarcoach.data.network.SignResponse
 import com.sugarcoach.databinding.ActivitySignEmailBinding
 import com.sugarcoach.ui.base.presenter.BasePresenter
 import com.sugarcoach.ui.signEmail.interactor.SignEmailInteractorImp
 import com.sugarcoach.ui.signEmail.view.SignEmailView
 import com.sugarcoach.util.AppConstants
 import com.sugarcoach.util.SchedulerProvider
+import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.joda.time.DateTime
-import retrofit2.HttpException
-import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
@@ -47,7 +45,8 @@ class SignEmailPresenter <V : SignEmailView, I : SignEmailInteractorImp> @Inject
     SignEmailPresenterImp<V, I> {
 
     private val permissionNeeds = listOf("public_profile", "email")
-    lateinit var mGoogleSignInClient: GoogleSignInClient
+
+    lateinit var user: FirebaseUser
 
     var RC_SIGN_IN: Int = 123
 
@@ -90,8 +89,8 @@ class SignEmailPresenter <V : SignEmailView, I : SignEmailInteractorImp> @Inject
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d("OnPresenter", "signInWithCredential:success")
-                    val user = FirebaseAuth.getInstance().currentUser
-                    getView()?.onGoogleLogin()
+                    user = auth.currentUser!!
+                    updateUser(user)
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.i("OnPresenter", "signInWithCredential:failure", task.exception)
@@ -110,9 +109,8 @@ class SignEmailPresenter <V : SignEmailView, I : SignEmailInteractorImp> @Inject
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d("TAG", "signInWithCredential:success")
-                    val user = auth.currentUser
-                    Log.i("CurrentUser", "El usuario actual es:$user")
-                    getView()?.onFacebookLogin()
+                    user = auth.currentUser!!
+                    updateUser(user)
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w("TAG", "signInWithCredential:failure", task.exception)
@@ -146,7 +144,7 @@ class SignEmailPresenter <V : SignEmailView, I : SignEmailInteractorImp> @Inject
         }
     }*/
 
-    private fun googleSuccess(task: Task<GoogleSignInAccount>){
+    /*private fun googleSuccess(task: Task<GoogleSignInAccount>){
         val account = task.getResult(ApiException::class.java)
         val token: String? = account?.idToken
         Log.e("token", token!!)
@@ -159,14 +157,14 @@ class SignEmailPresenter <V : SignEmailView, I : SignEmailInteractorImp> @Inject
                     updateUserSocial(loginResponse)
                     getView()?.let {
                         it.hideProgress()
-                        it.onFacebookLogin()
+                        it.onSign()
                     }
                 }, {err -> println(err)})
             )
         }
-    }
-    private fun updateUserSocial(loginResponse: LoginResponse) =
-        interactor?.updateUserSocial(loginResponse)
+    }*/
+    /*private fun updateUserSocial(loginResponse: LoginResponse) =
+        interactor?.updateUserSocial(loginResponse)*/
 
 
     override fun signIn(username: String, email: String, password: String, auth: FirebaseAuth) {
@@ -181,8 +179,8 @@ class SignEmailPresenter <V : SignEmailView, I : SignEmailInteractorImp> @Inject
                     .addOnCompleteListener(){ task ->
                         if(task.isSuccessful){
                             Log.i("OnSuccessful", "Se registro correctamente")
-                            val user = auth.currentUser
-                            getView()?.startMain()
+                            user = auth.currentUser!!
+                            updateUser(user)
                         }else{
                             Log.i("OnFailure", "Ocurrió un error al registrar el mail")
                             getView()?.showErrorToast()
@@ -207,6 +205,8 @@ class SignEmailPresenter <V : SignEmailView, I : SignEmailInteractorImp> @Inject
     }
 
     private fun feedInDatabase() = interactor?.let {
+        Log.i("OnFeedDb", "Se esta llenando la Db")
+        getView()?.showProgress()
         compositeDisposable.add(it.getCorrectora()
             .flatMap { interactor?.getBasal() }
             .flatMap { interactor?.getMedidor() }
@@ -218,23 +218,37 @@ class SignEmailPresenter <V : SignEmailView, I : SignEmailInteractorImp> @Inject
     }
 
     private fun createdTreament() {
+        var treament = Treament(1, false, 120f,0f, 60f, 180f, null, null,null,null, 0f, 0f, 0f, DateTime.now().toDate())
         interactor?.let {
-            var treament = Treament(1, false, 120f,0f, 60f, 180f, null, null,null,null, 0f, 0f, 0f, DateTime.now().toDate())
             compositeDisposable.add(it.treament(treament)
                 .compose(schedulerProvider.ioToMainObservableScheduler())
                 .subscribe {
+                    Log.i("OnCreatedTreatment", "El result fue: $it")
                     if (it) {
-                        createdCategories()
+                        CoroutineScope(Dispatchers.IO).launch {
+                            interactor!!.insertTreatment(treament).onSuccess {
+                                if (it){
+                                    interactor!!.createUserData().onSuccess {
+                                        Log.i("OnCreateUserData", "El response fue: $it")
+                                        if(it){
+                                            createdCategories()
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                 })
         }
     }
 
     private fun createdCategories() {
+        Log.i("OnCreatedCategories", "Se estan creando las categories")
         interactor?.let {
             compositeDisposable.add(it.category()
                 .compose(schedulerProvider.ioToMainObservableScheduler())
                 .subscribe {
+                    Log.i("OnCreatedCategories", "El category trajo respuesta: $it")
                     createdExercises()
                 })
         }
@@ -242,6 +256,7 @@ class SignEmailPresenter <V : SignEmailView, I : SignEmailInteractorImp> @Inject
     }
 
     private fun createdExercises() {
+        Log.i("OnCreatedExercises", "Se estan creando los ejercicios")
         interactor?.let {
             compositeDisposable.add(it.exercises()
                 .compose(schedulerProvider.ioToMainObservableScheduler())
@@ -253,6 +268,7 @@ class SignEmailPresenter <V : SignEmailView, I : SignEmailInteractorImp> @Inject
     }
 
     private fun createdStates() {
+        Log.i("OnCreatedStates", "Se estan creando los estados")
         interactor?.let {
             compositeDisposable.add(it.states()
                 .compose(schedulerProvider.ioToMainObservableScheduler())
@@ -271,6 +287,7 @@ class SignEmailPresenter <V : SignEmailView, I : SignEmailInteractorImp> @Inject
                 .compose(schedulerProvider.ioToMainObservableScheduler())
                 .subscribe {
                     getView()?.onSign()
+                    getView()?.hideProgress()
                 })
         }
 
@@ -287,30 +304,46 @@ class SignEmailPresenter <V : SignEmailView, I : SignEmailInteractorImp> @Inject
 
     }
 
-    private fun updateUser(signResponse: SignResponse) =
-        interactor?.updateUser(signResponse)
+    private fun updateUser(signResponse: FirebaseUser?) {
+        getView()?.showProgress()
+        interactor?.updateUser(signResponse)?.subscribe(object: Observer<Boolean>{
+            override fun onSubscribe(d: Disposable) {
+                Log.i("OnUpdateUser", "Se suscribió")
+            }
 
+            override fun onNext(t: Boolean) {
+                Log.i("OnUpdateUser", "Se ejecuto el next")
+            }
 
-    fun getRegisters() {
-        interactor?.let {
-            compositeDisposable.add(it.getRegistersCall()
-                .doOnSubscribe { getView()?.showProgress() }
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ response ->
-                    saveRegisters(response)
-                }, { throwable ->
-                    getView()?.showErrorToast()
-                })
-            )
-        }
+            override fun onError(e: Throwable){
+                Log.i("OnUpdateUser", "Ocurrió un error: $e")
+                FirebaseAuth.getInstance().signOut()
+                getView()?.showErrorToast()
+            }
 
+            //@SuppressLint("CheckResult")
+            override fun onComplete() {
+                CoroutineScope(Dispatchers.IO).launch {
+                    interactor?.updateCloudUser(signResponse)!!.fold({
+                        feedInDatabase()
+                    },{
+                        Log.i("OnUpdateUser", "Ocurrió un error: $it")
+                        withContext(Dispatchers.Main) {
+                            FirebaseAuth.getInstance().signOut()
+                            getView()?.showErrorToast()
+                            getView()?.hideProgress()
+                        }
+                    })
+                }
+            }
+        })
     }
 
     fun saveRegisters(registers: List<RegistersResponse>) {
 
         val parser =  SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
         val parser2 =  SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-        var dailyRegisters: List<DailyRegister> = registers.map { register ->
+        val dailyRegisters: List<DailyRegister> = registers.map { register ->
             DailyRegister(0, register.id.toString(), register.glucose, register.insulin, register.carbohydrates, register.emotional_state, register.exercise, 1,  "", register.photo?.let { BuildConfig.BASE_URL + it.url }?: "" , true , parser.parse(register.createdAt), parser2.format(parser.parse(register.createdAt)),0f,"")
         }
 
@@ -332,6 +365,4 @@ class SignEmailPresenter <V : SignEmailView, I : SignEmailInteractorImp> @Inject
         }
 
     }
-
-
 }

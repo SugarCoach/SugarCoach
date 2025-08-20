@@ -11,8 +11,8 @@ import com.sugarcoach.ui.daily_detail.view.CategoriesHolder
 import com.sugarcoach.ui.daily_detail.view.DailyDetailActivity
 
 class BasalHolder(private val binding: BasalItemBinding) : RecyclerView.ViewHolder(binding.root) {
-    fun bind(item: BasalItem, activity: TreatmentActivity) {
-        binding.basalValue.text = activity.getLabel(item.name)
+    fun bind(item: BasalItem) {
+        binding.basalValue.text = item.name
     }
 
     companion object {

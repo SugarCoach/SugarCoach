@@ -1,0 +1,7 @@
+mutation UpdateDailyRegister($id: ID!, $dailyRegister: DailyRegisterInput! ){
+    updateDailyRegister(id:$id, data:$dailyRegister){
+        data {
+            id
+        }
+    }
+}

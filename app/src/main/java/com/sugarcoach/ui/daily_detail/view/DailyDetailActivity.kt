@@ -78,7 +78,6 @@ class DailyDetailActivity : BaseActivity(), DailyDetailView, TimePickerDialog.On
     @Inject
     lateinit var adapterExercices: ItemAdapter
 
-
     lateinit var dialogEmotions: AlertDialog
 
     lateinit var dialogExercises: AlertDialog
@@ -116,10 +115,9 @@ class DailyDetailActivity : BaseActivity(), DailyDetailView, TimePickerDialog.On
     override fun showSuccessToast() {
         Toast.makeText(this, getString(R.string.delete_success), Toast.LENGTH_LONG).show()
         finish()
-
     }
 
-    override fun showErrorToast() {
+    override fun showErrorToast(msg:String) {
         Toast.makeText(this, getString(R.string.login_failure), Toast.LENGTH_LONG).show()
         hideProgress()
     }
@@ -168,7 +166,6 @@ class DailyDetailActivity : BaseActivity(), DailyDetailView, TimePickerDialog.On
     fun setListeners(){
         binding.dailyDetailEmotionalLl.setOnClickListener {
             showHideEmotionalCard(true)
-
         }
         binding.dailyDetailExercisesLl.setOnClickListener {
             showHideExerciseCard(true)
@@ -360,6 +357,7 @@ class DailyDetailActivity : BaseActivity(), DailyDetailView, TimePickerDialog.On
     }
 
     override fun setCategories(categories: List<Category>, index: Int) {
+        adapter.setPowerView(binding.dailyDetailCategoryTv)
         binding.dailyDetailCategoryTv.setSpinnerAdapter(adapter)
         binding.dailyDetailCategoryTv.getSpinnerRecyclerView().layoutManager = manager
         binding.dailyDetailCategoryTv.setItems(categories)
@@ -393,7 +391,7 @@ class DailyDetailActivity : BaseActivity(), DailyDetailView, TimePickerDialog.On
         dialog = builder.create()
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         view.deleteAccept.setOnClickListener {
-            presenter.deleteRegister(daily!!)
+            presenter.deleteRegister()
             dialog.dismiss()
         }
         view.deleteCancel.setOnClickListener {

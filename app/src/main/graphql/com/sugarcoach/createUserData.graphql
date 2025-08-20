@@ -1,0 +1,7 @@
+mutation CreateUserData($id: ID!){
+    createUserData(data: {users_permissions_user: $id}){
+        data {
+            id
+        }
+    }
+}

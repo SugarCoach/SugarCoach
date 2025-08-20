@@ -1,0 +1,109 @@
+package com.sugarcoach.util.extensions
+
+import android.util.Log
+import com.apollographql.apollo3.api.Optional
+import com.apollographql.apollo3.api.create
+import com.sugarcoach.CreateUserMutation
+import com.sugarcoach.DailyRegisterQuery
+import com.sugarcoach.TreatmentQuery
+import com.sugarcoach.data.api_db.DailyRegister.DailyRegisterResponse
+import com.sugarcoach.data.api_db.DailyRegister.domain.DailyRegisterComponent
+import com.sugarcoach.data.api_db.Treatment.TreatmentResponse
+import com.sugarcoach.data.api_db.user.UserResponse
+import com.sugarcoach.data.database.repository.dailyregister.DailyRegister
+import com.sugarcoach.data.database.repository.dailyregister.States
+import com.sugarcoach.data.database.repository.treament.CorrectoraInsuline
+import com.sugarcoach.data.database.repository.treament.Treament
+import com.sugarcoach.data.database.repository.user.User
+import com.sugarcoach.type.DailyRegisterInput
+import com.sugarcoach.type.Treatment
+import com.sugarcoach.type.TreatmentInput
+import com.sugarcoach.type.UserDataInput
+
+fun CreateUserMutation.Attributes?.toUser(id: String): UserResponse {
+    return UserResponse(
+        username = this?.username!!,
+        email = this.email,
+        id = id
+    )
+}
+
+fun TreatmentQuery.Attributes?.toTreatment(id: String): TreatmentResponse {
+    return TreatmentResponse(
+        bomb = this?.bomb,
+        insuline_unit = this?.insulina_unit?.toFloat(),
+        object_glucose = this?.object_glucose?.toFloat(),
+        correctora = this?.correctora?.toFloat(),
+        correctora_unit = this?.correctora_unit?.toFloat(),
+        hyperglucose = this?.hyperglucose?.toFloat(),
+        hipoglucose = this?.hipoglucose?.toFloat(),
+        carbono = this?.carbono?.toFloat(),
+        basal_insuline = this?.basal_insuline,
+        medidor = this?.medidor,
+        bomba_infusora = this?.bomba_infusora,
+        correctora_insuline = this?.correctora_insuline,
+        id = id
+    )
+}
+
+fun DailyRegisterQuery.Attributes?.toDailyRegister(): DailyRegisterResponse {
+    return DailyRegisterResponse(
+        glucose = this?.glucose,
+        insulin = this?.insulin,
+        carbohydrates = this?.carbohydrates,
+        comment = this?.comment,
+        basal = this?.basal,
+        colors = this?.colors,
+        emotionalState = this?.emotional_state,
+        excersise = this?.excercise
+    )
+}
+
+fun DailyComponentTrans(name: String?, icon: String?): DailyRegisterComponent{
+    return DailyRegisterComponent(
+        name = name,
+        icon = icon
+    )
+}
+fun DailyRegister.toDailyInput(id: String?): DailyRegisterInput{
+    Log.i("OnDBFunctions","El ejercicio es: $exercise")
+    return DailyRegisterInput(
+        glucose = Optional.present(glucose?.toDouble()),
+        insulin = Optional.present(insulin?.toDouble()),
+        carbohydrates = Optional.present(carbohydrates?.toDouble()),
+        comment = Optional.present(comment),
+        basal = Optional.present(basal?.toDouble()),
+        colors = Optional.present(colors),
+        excercise = Optional.present(exercise),
+        emotional_state = Optional.present(emotionalState),
+        users_permissions_user = Optional.present(id)
+    )
+}
+
+fun Treament.toTreatmentInput(id: String, basalInsuline: String = "", correctoraInsuline: String = ""): TreatmentInput{
+    return TreatmentInput(
+        bomb = Optional.present(bomb),
+        object_glucose = Optional.present(object_glucose.toDouble()),
+        correctora_unit = Optional.present(correctora_unit.toDouble()),
+        hyperglucose = Optional.present(hyperglucose.toDouble()),
+        hipoglucose = Optional.present(hipoglucose.toDouble()),
+        correctora = Optional.present(correctora.toDouble()),
+        insulina_unit = Optional.present(insulina_unit.toDouble()),
+        carbono = Optional.present(carbono.toDouble()),
+        basal_insuline = Optional.present(basalInsuline),
+        correctora_insuline = Optional.present(correctoraInsuline),
+        users_permissions_user = Optional.present(id)
+    )
+}
+
+fun User.toDataInput(id: String): UserDataInput{
+    return UserDataInput(
+        name = Optional.present(name),
+        birth_date = Optional.present(birthday.toString()),
+        sex = Optional.present(sex),
+        height = Optional.present(height?.toDouble()),
+        weight = Optional.present(weight?.toDouble()),
+        debut_date = Optional.present(debut.toString()),
+        users_permissions_user = Optional.present(id),
+    )
+}
