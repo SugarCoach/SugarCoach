@@ -69,14 +69,16 @@ android {
      //maven { url "https://maven.appspector.com/artifactory/android-sdk" }
      mavenCentral()// Para la Mask y aminography
      maven { url 'https://jitpack.io' }
-     jcenter()
+     mavenCentral()
  }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    //noinspection GradleDependency
     implementation ("org.jetbrains.kotlin:kotlin-stdlib-jdk7:$rootProject.kotlin_version")
 
     // android support libraries
+    //noinspection GradleDependency
     implementation "androidx.appcompat:appcompat:$rootProject.supportLibraryVersion"
     implementation "androidx.recyclerview:recyclerview:$rootProject.recyclerviewVersion"
     implementation "androidx.cardview:cardview:$rootProject.cardviewVersion"
