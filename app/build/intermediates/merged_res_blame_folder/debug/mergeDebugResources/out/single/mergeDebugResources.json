@@ -1,1690 +1,1686 @@
 [
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\layout_activity_daily_detail.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\activity_daily_detail.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable_border_dark_color.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable/border_dark_color.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-nodpi_planet_carbohidratos.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-nodpi\\planet_carbohidratos.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable_ic_angry_selected.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable/ic_angry_selected.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\layout_fragment_register_values.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\fragment_register_values.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/layout_category_item.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/layout/category_item.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\layout_dialog_control.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\dialog_control.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/anim_slide.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/anim/slide.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xhdpi_ic_moderado.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xhdpi\\ic_moderado.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/layout_treatment_header.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/layout/treatment_header.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-v24_ic_launcher_foreground.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-v24\\ic_launcher_foreground.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-nodpi_happy.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-nodpi/happy.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-hdpi_ic_finish_purple.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-hdpi\\ic_finish_purple.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxxhdpi_ic_config_aqua.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxxhdpi/ic_config_aqua.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxhdpi_icon_prev.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxhdpi\\icon_prev.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxxhdpi_icon_next.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxxhdpi/icon_next.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-hdpi_ic_add_register.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-hdpi\\ic_add_register.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxhdpi_ic_preocupado.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxhdpi/ic_preocupado.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-nodpi_ic_edit_white.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-nodpi\\ic_edit_white.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable_ic_moderate_selected.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable/ic_moderate_selected.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-mdpi_ic_config_aqua.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-mdpi\\ic_config_aqua.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/layout_profile_item.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/layout/profile_item.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxhdpi_ic_edit_yellow.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxhdpi\\ic_edit_yellow.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xhdpi_ic_add_photo.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xhdpi/ic_add_photo.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable_button_borde_blue.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable\\button_borde_blue.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/mipmap-xxhdpi/ic_launcher.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xhdpi_ic_twitter.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xhdpi\\ic_twitter.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xhdpi_ic_delete_yellow.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xhdpi/ic_delete_yellow.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\layout_register_month_item.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\register_month_item.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable_ic_sedentary_selected.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable/ic_sedentary_selected.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xhdpi_ic_config_aqua.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xhdpi\\ic_config_aqua.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxxhdpi_ic_next_red.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxxhdpi/ic_next_red.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxhdpi_ic_actividad.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxhdpi\\ic_actividad.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-ldpi_ic_arrow_down_blue.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-ldpi/ic_arrow_down_blue.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-nodpi_planet_glucemia.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-nodpi\\planet_glucemia.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-nodpi_camera.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-nodpi/camera.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-mdpi_ic_moderado.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-mdpi\\ic_moderado.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxhdpi_ic_arrow_down_purple.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxhdpi/ic_arrow_down_purple.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\layout_dialog_info.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\dialog_info.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xhdpi_ic_user_nophoto.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xhdpi/ic_user_nophoto.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable_bold_up_shape.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable\\bold_up_shape.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-hdpi_ic_enojado.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-hdpi/ic_enojado.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxhdpi_ic_next_purple.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxhdpi\\ic_next_purple.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-mdpi_ic_add_register.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-mdpi/ic_add_register.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxhdpi_ic_shared_yellow.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxhdpi\\ic_shared_yellow.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xhdpi_ic_google.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xhdpi/ic_google.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\color_register_text_color.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\color\\register_text_color.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-hdpi_ic_back_purple.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-hdpi/ic_back_purple.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxhdpi_ic_party.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxhdpi\\ic_party.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-mdpi_ic_enojado.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-mdpi/ic_enojado.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxxhdpi_ic_intenso.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxxhdpi\\ic_intenso.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxxhdpi_ic_arrow_down_purple.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxxhdpi/ic_arrow_down_purple.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-nodpi_walking.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-nodpi\\walking.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxxhdpi_ic_comment.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxxhdpi/ic_comment.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-hdpi_ic_actividad.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-hdpi\\ic_actividad.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable_button_facebook.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable/button_facebook.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-hdpi_ic_config_aqua.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-hdpi\\ic_config_aqua.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-mdpi_ic_emotions.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-mdpi/ic_emotions.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-ldpi_ic_arrow_down_purple.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-ldpi\\ic_arrow_down_purple.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxxhdpi_ic_config.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxxhdpi/ic_config.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-nodpi_swimming.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-nodpi\\swimming.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-nodpi_mad.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-nodpi/mad.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable_info.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable\\info.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xhdpi_ic_sedentario.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xhdpi/ic_sedentario.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\layout_treatment_correctora_item.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\treatment_correctora_item.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-hdpi_ic_add_photo.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-hdpi/ic_add_photo.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxxhdpi_ic_actividad.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxxhdpi\\ic_actividad.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxhdpi_icon_again.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxhdpi/icon_again.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable_button_google.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable\\button_google.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxhdpi_ic_back_purple.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxhdpi/ic_back_purple.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxhdpi_ic_completed_red.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxhdpi\\ic_completed_red.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-mdpi_ic_moderado.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-mdpi/ic_moderado.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxhdpi_ic_treatment.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxhdpi\\ic_treatment.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/layout_activity_login.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/layout/activity_login.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\anim_slide.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\anim\\slide.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/xml_provider_paths.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/xml/provider_paths.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxxhdpi_ic_treatment.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxxhdpi\\ic_treatment.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-mdpi_ic_shared_yellow.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-mdpi/ic_shared_yellow.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xhdpi_ic_add_photo.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xhdpi\\ic_add_photo.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-mdpi_ic_preocupado.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-mdpi/ic_preocupado.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-hdpi_ic_preocupado.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-hdpi\\ic_preocupado.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-mdpi_ic_profile.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-mdpi/ic_profile.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xhdpi_ic_google.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xhdpi\\ic_google.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-hdpi_ic_preocupado.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-hdpi/ic_preocupado.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-mdpi_ic_google.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-mdpi\\ic_google.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable_rectangle_white.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable/rectangle_white.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable_date_right_bg.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable\\date_right_bg.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/mipmap-xxxhdpi_ic_launcher_round.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/mipmap-xxxhdpi/ic_launcher_round.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-ldpi_ic_add_register.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-ldpi\\ic_add_register.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xhdpi_ic_twitter.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xhdpi/ic_twitter.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-nodpi_happy.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-nodpi\\happy.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxhdpi_ic_add_register.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxhdpi/ic_add_register.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-hdpi_ic_arrow_down_purple.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-hdpi\\ic_arrow_down_purple.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxhdpi_ic_intenso.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxhdpi/ic_intenso.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-hdpi_ic_qr.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-hdpi\\ic_qr.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-nodpi_sad.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-nodpi/sad.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\layout_treatment_header.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\treatment_header.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable_spinner_custom_blue.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable/spinner_custom_blue.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-hdpi_ic_treatment.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-hdpi\\ic_treatment.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxhdpi_ic_upgrade.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxhdpi/ic_upgrade.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-mdpi_ic_enojado.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-mdpi\\ic_enojado.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-mdpi_ic_control.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-mdpi/ic_control.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-hdpi_ic_edit_yellow.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-hdpi\\ic_edit_yellow.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/mipmap-hdpi_ic_launcher_round.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/mipmap-hdpi/ic_launcher_round.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxxhdpi_ic_moderado.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxxhdpi\\ic_moderado.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable_avatar_2.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable/avatar_2.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-ldpi_icon_finish.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-ldpi\\icon_finish.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable_bold_shape.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable/bold_shape.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable_avatar_1.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable\\avatar_1.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxhdpi_ic_config.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxhdpi/ic_config.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xhdpi_ic_add_register_aqua.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xhdpi\\ic_add_register_aqua.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxhdpi_ic_party.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxhdpi/ic_party.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xhdpi_ic_again_red.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xhdpi\\ic_again_red.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-nodpi_swimming.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-nodpi/swimming.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\layout_register_summary.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\register_summary.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxhdpi_icon_prev.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxhdpi/icon_prev.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-hdpi_ic_enojado.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-hdpi\\ic_enojado.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xhdpi_ic_contento.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xhdpi/ic_contento.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-mdpi_ic_sedentario.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-mdpi\\ic_sedentario.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable_infopink.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable/infopink.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable_rectangle_white.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable\\rectangle_white.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-hdpi_ic_control.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-hdpi/ic_control.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\layout-sw380dp_activity_register.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout-sw380dp\\activity_register.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xhdpi_icon_again.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xhdpi/icon_again.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-mdpi_ic_next_purple.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-mdpi\\ic_next_purple.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxxhdpi_ic_edit_yellow.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxxhdpi/ic_edit_yellow.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xhdpi_icon_prev.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xhdpi\\icon_prev.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-mdpi_ic_sedentario.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-mdpi/ic_sedentario.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\layout_emotions_item.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\emotions_item.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xhdpi_ic_arrow_down_blue.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xhdpi/ic_arrow_down_blue.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxxhdpi_ic_emotions.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxxhdpi\\ic_emotions.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-mdpi_ic_hand.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-mdpi/ic_hand.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-hdpi_ic_again_purple.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-hdpi\\ic_again_purple.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/font_folks_bold.ttf.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/font/folks_bold.ttf"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\layout_activity_splash.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\activity_splash.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxhdpi_ic_profile_aqua.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxhdpi/ic_profile_aqua.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable_avatar_3.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable\\avatar_3.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-nodpi_circle_pink.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-nodpi/circle_pink.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xhdpi_ic_intenso.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xhdpi\\ic_intenso.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-hdpi_ic_arrow_down_blue.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-hdpi/ic_arrow_down_blue.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-hdpi_ic_profile_aqua.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-hdpi\\ic_profile_aqua.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/mipmap-xhdpi/ic_launcher.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-hdpi_ic_next_red.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-hdpi\\ic_next_red.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/layout_dialog_control.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/layout/dialog_control.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxxhdpi_ic_twitter.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxxhdpi\\ic_twitter.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxxhdpi_ic_party.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxxhdpi/ic_party.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxhdpi_ic_arrow_down_blue.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxhdpi\\ic_arrow_down_blue.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-hdpi_ic_next_red.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-hdpi/ic_next_red.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xhdpi_ic_edit_yellow.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xhdpi\\ic_edit_yellow.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-hdpi_ic_contento.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-hdpi/ic_contento.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-mdpi_ic_preocupado.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-mdpi\\ic_preocupado.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxhdpi_ic_contento.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxhdpi/ic_contento.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-nodpi_confused.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-nodpi\\confused.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/color_register_text_color.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/color/register_text_color.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\layout_dialog_sex.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\dialog_sex.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xhdpi_ic_next_purple.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xhdpi/ic_next_purple.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxhdpi_ic_control.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxhdpi\\ic_control.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxxhdpi_icon_again.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxxhdpi/icon_again.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xhdpi_ic_finish_purple.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xhdpi\\ic_finish_purple.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-ldpi_ic_completed_red.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-ldpi/ic_completed_red.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-mdpi_ic_profile.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-mdpi\\ic_profile.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable_button_twitter.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable/button_twitter.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxhdpi_ic_hand.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxhdpi\\ic_hand.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable_spinner_custom.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable/spinner_custom.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xhdpi_ic_emotions.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xhdpi\\ic_emotions.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxxhdpi_ic_again_red.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxxhdpi/ic_again_red.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xhdpi_icon_finish.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xhdpi\\icon_finish.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-ldpi_ic_check_blue.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-ldpi/ic_check_blue.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxhdpi_icon_again.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxhdpi\\icon_again.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xhdpi_ic_hand.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xhdpi/ic_hand.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\layout_register_month.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\register_month.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xhdpi_ic_actividad.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xhdpi/ic_actividad.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable_button_twitter.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable\\button_twitter.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-ldpi_ic_next_red.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-ldpi/ic_next_red.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-mdpi_ic_arrow_down_blue.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-mdpi\\ic_arrow_down_blue.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/font_floks_heavy.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/font/floks_heavy.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-ldpi_ic_next_red.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-ldpi\\ic_next_red.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xhdpi_ic_statistics.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xhdpi/ic_statistics.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\layout_activity_signin.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\activity_signin.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-nodpi_planet_estado.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-nodpi/planet_estado.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\font_folks_normal.ttf.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\font\\folks_normal.ttf"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxhdpi_ic_again_purple.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxhdpi/ic_again_purple.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxhdpi_ic_comment.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxhdpi\\ic_comment.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-ldpi_ic_user_nophoto.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-ldpi/ic_user_nophoto.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\layout_dialog_category.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\dialog_category.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxxhdpi_ic_add_photo.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxxhdpi/ic_add_photo.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-hdpi_ic_info_blue.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-hdpi\\ic_info_blue.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-mdpi_ic_google.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-mdpi/ic_google.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxhdpi_ic_google.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxhdpi\\ic_google.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xhdpi_ic_intenso.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xhdpi/ic_intenso.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxxhdpi_ic_info_blue.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxxhdpi\\ic_info_blue.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-mdpi_ic_add_register_aqua.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-mdpi/ic_add_register_aqua.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\layout_category_item.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\category_item.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxhdpi_ic_twitter.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxhdpi/ic_twitter.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxhdpi_ic_profile.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxhdpi\\ic_profile.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxxhdpi_ic_intenso.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxxhdpi/ic_intenso.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxxhdpi_ic_next_purple.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxxhdpi\\ic_next_purple.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxxhdpi_ic_hand.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxxhdpi/ic_hand.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable_button_facebook.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable\\button_facebook.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxxhdpi_ic_arrow_down_blue.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxxhdpi/ic_arrow_down_blue.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable_avatar_8.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable\\avatar_8.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/layout_register_month_item.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/layout/register_month_item.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxxhdpi_ic_upgrade.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxxhdpi\\ic_upgrade.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-mdpi_ic_statistics.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-mdpi/ic_statistics.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxxhdpi_icon_finish.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxxhdpi\\icon_finish.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxhdpi_ic_sedentario.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxhdpi/ic_sedentario.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\mipmap-anydpi-v26_ic_launcher.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\mipmap-anydpi-v26\\ic_launcher.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable_button_borde_bg.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable/button_borde_bg.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\layout_dialog_congratulation.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\dialog_congratulation.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxhdpi_ic_finish_purple.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxhdpi/ic_finish_purple.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\mipmap-xxhdpi_ic_launcher.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\mipmap-xxhdpi\\ic_launcher.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xhdpi_ic_add_register_aqua.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xhdpi/ic_add_register_aqua.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxhdpi_ic_config.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxhdpi\\ic_config.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-nodpi_walking.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-nodpi/walking.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-ldpi_ic_next_purple.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-ldpi\\ic_next_purple.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-hdpi_ic_actividad.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-hdpi/ic_actividad.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxhdpi_ic_info_blue.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxhdpi\\ic_info_blue.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable_button_borde_blue.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable/button_borde_blue.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxxhdpi_ic_party.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxxhdpi\\ic_party.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxhdpi_ic_hand.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxhdpi/ic_hand.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-nodpi_envelope.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-nodpi\\envelope.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-mdpi_ic_info_blue.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-mdpi/ic_info_blue.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxxhdpi_ic_facebook.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxxhdpi\\ic_facebook.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/layout_activity_signin.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/layout/activity_signin.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xhdpi_icon_again.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xhdpi\\icon_again.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable_avatar_7.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable/avatar_7.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxxhdpi_ic_add_register.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxxhdpi\\ic_add_register.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xhdpi_ic_next_red.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xhdpi/ic_next_red.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxhdpi_ic_next_red.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxhdpi\\ic_next_red.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-mdpi_icon_prev.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-mdpi/icon_prev.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable_avatar_7.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable\\avatar_7.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xhdpi_ic_check_blue.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xhdpi/ic_check_blue.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\layout_activity_login.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\activity_login.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable_avatar_5.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable/avatar_5.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-mdpi_ic_check_blue.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-mdpi\\ic_check_blue.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/layout_daily_parent.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/layout/daily_parent.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-hdpi_ic_party.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-hdpi\\ic_party.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-mdpi_ic_contento.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-mdpi/ic_contento.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxxhdpi_ic_finish_purple.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxxhdpi\\ic_finish_purple.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/layout_register_summary.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/layout/register_summary.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-nodpi_planet_insulina.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-nodpi\\planet_insulina.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxhdpi_ic_arrow_down_blue.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxhdpi/ic_arrow_down_blue.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\mipmap-xxxhdpi_ic_launcher.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\mipmap-xxxhdpi\\ic_launcher.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-mdpi_ic_twitter.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-mdpi/ic_twitter.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-hdpi_ic_add_photo.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-hdpi\\ic_add_photo.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-nodpi_ic_edit.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-nodpi/ic_edit.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxhdpi_ic_qr.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxhdpi\\ic_qr.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-v24_ic_launcher_foreground.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-v24/ic_launcher_foreground.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-mdpi_ic_arrow_down_purple.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-mdpi\\ic_arrow_down_purple.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/layout_emotions_item.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/layout/emotions_item.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\font_folks_heavy.ttf.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\font\\folks_heavy.ttf"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-ldpi_icon_finish.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-ldpi/icon_finish.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\layout-sw440dp_activity_register.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout-sw440dp\\activity_register.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xhdpi_ic_preocupado.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xhdpi/ic_preocupado.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-mdpi_ic_control.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-mdpi\\ic_control.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xhdpi_ic_comment.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xhdpi/ic_comment.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxhdpi_ic_check_blue.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxhdpi\\ic_check_blue.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-nodpi_space_bg.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-nodpi/space_bg.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable_logo.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable\\logo.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-nodpi_circle_gray.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-nodpi/circle_gray.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-hdpi_ic_min_picture.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-hdpi\\ic_min_picture.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xhdpi_ic_profile_aqua.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xhdpi/ic_profile_aqua.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-nodpi_planet_estado.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-nodpi\\planet_estado.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-mdpi_ic_again_red.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-mdpi/ic_again_red.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\layout_activity_config.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\activity_config.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable_close.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable/close.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable_avatar_6.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable\\avatar_6.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxhdpi_ic_next_purple.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxhdpi/ic_next_purple.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxxhdpi_ic_preocupado.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxxhdpi\\ic_preocupado.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/layout_activity_treatment.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/layout/activity_treatment.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxhdpi_ic_user_nophoto.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxhdpi\\ic_user_nophoto.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/layout_fragment_register_values.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/layout/fragment_register_values.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxhdpi_ic_again_purple.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxhdpi\\ic_again_purple.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-ldpi_ic_profile.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-ldpi/ic_profile.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\font_floks_bold.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\font\\floks_bold.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable_button_blue.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable/button_blue.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-hdpi_ic_profile.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-hdpi\\ic_profile.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/font_folks_light.ttf.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/font/folks_light.ttf"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxhdpi_ic_intenso.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxhdpi\\ic_intenso.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxxhdpi_ic_relajado.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxxhdpi/ic_relajado.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xhdpi_ic_actividad.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xhdpi\\ic_actividad.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-mdpi_ic_relajado.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-mdpi/ic_relajado.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable_ic_launcher_background.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable\\ic_launcher_background.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-nodpi_confused.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-nodpi/confused.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\layout_activity_estadisticas.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\activity_estadisticas.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/layout-sw440dp_activity_register.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/layout-sw440dp/activity_register.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxhdpi_ic_add_register.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxhdpi\\ic_add_register.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable_ic_happy_selected.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable/ic_happy_selected.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxhdpi_ic_preocupado.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxhdpi\\ic_preocupado.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-ldpi_ic_treatment.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-ldpi/ic_treatment.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\mipmap-mdpi_ic_launcher_round.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\mipmap-mdpi\\ic_launcher_round.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-mdpi_ic_profile_aqua.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-mdpi/ic_profile_aqua.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xhdpi_ic_treatment.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xhdpi\\ic_treatment.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxxhdpi_ic_add_register_aqua.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxxhdpi/ic_add_register_aqua.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-mdpi_ic_relajado.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-mdpi\\ic_relajado.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xhdpi_ic_completed_red.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xhdpi/ic_completed_red.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxxhdpi_ic_config.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxxhdpi\\ic_config.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable_avatar_3.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable/avatar_3.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable_button_primary_bg.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable\\button_primary_bg.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/layout_dialog_emotions.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/layout/dialog_emotions.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\layout_basal_item.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\basal_item.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxxhdpi_ic_twitter.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxxhdpi/ic_twitter.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xhdpi_icon_next.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xhdpi\\icon_next.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/font_folks.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/font/folks.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-mdpi_ic_intenso.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-mdpi\\ic_intenso.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxhdpi_ic_emotions.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxhdpi/ic_emotions.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxhdpi_ic_add_photo.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxhdpi\\ic_add_photo.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable_date_right_bg.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable/date_right_bg.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\mipmap-hdpi_ic_launcher.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\mipmap-hdpi\\ic_launcher.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/layout_activity_main.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/layout/activity_main.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xhdpi_ic_profile.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xhdpi\\ic_profile.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable_avatar_6.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable/avatar_6.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-mdpi_icon_finish.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-mdpi\\icon_finish.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable_avatar_11.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable/avatar_11.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxxhdpi_ic_again_red.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxxhdpi\\ic_again_red.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable_ic_relax_selected.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable/ic_relax_selected.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxxhdpi_ic_user_nophoto.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxxhdpi\\ic_user_nophoto.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/layout_activity_sign_email.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/layout/activity_sign_email.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\xml_network_security_config.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\xml\\network_security_config.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-hdpi_ic_config.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-hdpi/ic_config.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-mdpi_ic_qr.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-mdpi\\ic_qr.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxxhdpi_ic_completed_red.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxxhdpi/ic_completed_red.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xhdpi_ic_facebook.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xhdpi\\ic_facebook.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-mdpi_icon_finish.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-mdpi/icon_finish.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\mipmap-mdpi_ic_launcher.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\mipmap-mdpi\\ic_launcher.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxhdpi_ic_shared_yellow.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxhdpi/ic_shared_yellow.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable_avatar_4.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable\\avatar_4.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-mdpi_ic_edit_yellow.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-mdpi/ic_edit_yellow.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\font_floks_light.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\font\\floks_light.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/layout_activity_register.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/layout/activity_register.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable_ic_sedentary_selected.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable\\ic_sedentary_selected.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxxhdpi_ic_upgrade.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxxhdpi/ic_upgrade.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable_ic_party_selected.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable\\ic_party_selected.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-hdpi_ic_profile.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-hdpi/ic_profile.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xhdpi_ic_comment.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xhdpi\\ic_comment.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxhdpi_ic_statistics.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxhdpi/ic_statistics.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxxhdpi_ic_arrow_down_purple.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxxhdpi\\ic_arrow_down_purple.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/font_floks_light.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/font/floks_light.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\layout_treatment_basal_item.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\treatment_basal_item.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-mdpi_ic_again_purple.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-mdpi/ic_again_purple.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-hdpi_ic_next_purple.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-hdpi\\ic_next_purple.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxhdpi_ic_again_red.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxhdpi/ic_again_red.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-mdpi_ic_contento.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-mdpi\\ic_contento.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/font_floks_regular.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/font/floks_regular.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-hdpi_ic_shared_yellow.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-hdpi\\ic_shared_yellow.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxhdpi_ic_delete_yellow.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxhdpi/ic_delete_yellow.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\layout_activity_sign_email.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\activity_sign_email.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxhdpi_ic_comment.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxhdpi/ic_comment.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxhdpi_ic_contento.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxhdpi\\ic_contento.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-hdpi_ic_sedentario.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-hdpi/ic_sedentario.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable_border_buttom.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable\\border_buttom.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxxhdpi_ic_qr.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxxhdpi/ic_qr.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-hdpi_icon_finish.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-hdpi\\icon_finish.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-mdpi_ic_qr.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-mdpi/ic_qr.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-hdpi_ic_delete_yellow.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-hdpi\\ic_delete_yellow.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xhdpi_ic_again_red.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xhdpi/ic_again_red.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxxhdpi_ic_comment.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxxhdpi\\ic_comment.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-ldpi_ic_statistics.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-ldpi/ic_statistics.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxxhdpi_ic_back_purple.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxxhdpi\\ic_back_purple.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xhdpi_ic_arrow_down_purple.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xhdpi/ic_arrow_down_purple.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-nodpi_running.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-nodpi\\running.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable_avatar_4.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable/avatar_4.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\layout_treatment_item.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\treatment_item.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-ldpi_icon_again.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-ldpi/icon_again.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-ldpi_ic_finish_purple.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-ldpi\\ic_finish_purple.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable_bottom_border_shadow.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable/bottom_border_shadow.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\layout_dialog_codigo.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\dialog_codigo.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-hdpi_ic_treatment.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-hdpi/ic_treatment.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable_close.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable\\close.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/layout_activity_profile.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/layout/activity_profile.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable_ic_intense_selected.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable\\ic_intense_selected.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable_ic_launcher_background.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable/ic_launcher_background.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxhdpi_ic_min_picture.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxhdpi\\ic_min_picture.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-nodpi_emotions.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-nodpi/emotions.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxxhdpi_ic_again_purple.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxxhdpi\\ic_again_purple.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/layout_activity_forgot.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/layout/activity_forgot.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xhdpi_ic_arrow_down_blue.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xhdpi\\ic_arrow_down_blue.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xhdpi_icon_finish.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xhdpi/icon_finish.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\layout_dialog_values.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\dialog_values.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable_avatar_10.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable/avatar_10.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\layout_dialog_config_delete.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\dialog_config_delete.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xhdpi_ic_min_picture.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xhdpi/ic_min_picture.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\layout_activity_daily.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\activity_daily.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-mdpi_ic_next_red.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-mdpi/ic_next_red.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-nodpi_check.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-nodpi\\check.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxhdpi_ic_prev_red.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxhdpi/ic_prev_red.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxxhdpi_ic_config_aqua.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxxhdpi\\ic_config_aqua.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable_input_border_bottom.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable/input_border_bottom.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable_avatar_5.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable\\avatar_5.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxxhdpi_ic_enojado.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxxhdpi/ic_enojado.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxhdpi_ic_profile_aqua.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxhdpi\\ic_profile_aqua.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxhdpi_ic_qr.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxhdpi/ic_qr.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\mipmap-hdpi_ic_launcher_round.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\mipmap-hdpi\\ic_launcher_round.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-hdpi_ic_add_register_aqua.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-hdpi/ic_add_register_aqua.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\font_floks_heavy.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\font\\floks_heavy.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xhdpi_ic_edit_yellow.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xhdpi/ic_edit_yellow.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable_button_bg.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable\\button_bg.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/layout_treatment_item.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/layout/treatment_item.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-mdpi_ic_again_red.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-mdpi\\ic_again_red.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/layout_dialog_treatment_save.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/layout/dialog_treatment_save.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxxhdpi_icon_again.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxxhdpi\\icon_again.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/mipmap-xhdpi_ic_launcher_round.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/mipmap-xhdpi/ic_launcher_round.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-nodpi_share.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-nodpi\\share.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-mdpi_ic_arrow_down_blue.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-mdpi/ic_arrow_down_blue.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-ldpi_ic_check_blue.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-ldpi\\ic_check_blue.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/font_folks_heavy.ttf.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/font/folks_heavy.ttf"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-hdpi_icon_next.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-hdpi\\icon_next.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-ldpi_ic_config.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-ldpi/ic_config.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-hdpi_ic_twitter.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-hdpi\\ic_twitter.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-mdpi_ic_min_picture.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-mdpi/ic_min_picture.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\mipmap-xxhdpi_ic_launcher_round.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\mipmap-xxhdpi\\ic_launcher_round.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-mdpi_icon_next.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-mdpi/icon_next.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-nodpi_circle_pink.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-nodpi\\circle_pink.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/layout_activity_privacy_policy.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/layout/activity_privacy_policy.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-hdpi_ic_arrow_down_blue.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-hdpi\\ic_arrow_down_blue.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-ldpi_ic_back_purple.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-ldpi/ic_back_purple.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable_circle_aqua.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable\\circle_aqua.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-mdpi_ic_completed_red.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-mdpi/ic_completed_red.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable_border_dark_color.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable\\border_dark_color.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxxhdpi_ic_prev_red.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxxhdpi/ic_prev_red.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\mipmap-anydpi-v26\\ic_launcher_round.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxhdpi_ic_add_register_aqua.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxhdpi/ic_add_register_aqua.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-ldpi_ic_add_register_aqua.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-ldpi\\ic_add_register_aqua.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/layout_activity_daily.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/layout/activity_daily.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-nodpi_smiling.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-nodpi\\smiling.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxhdpi_ic_actividad.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxhdpi/ic_actividad.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-mdpi_ic_next_red.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-mdpi\\ic_next_red.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxhdpi_ic_user_nophoto.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxhdpi/ic_user_nophoto.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxhdpi_ic_facebook.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxhdpi\\ic_facebook.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/layout_activity_config.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/layout/activity_config.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\layout_activity_register.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\activity_register.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/mipmap-xxxhdpi/ic_launcher.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-mdpi_ic_add_register_aqua.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-mdpi\\ic_add_register_aqua.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-mdpi_ic_config_aqua.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-mdpi/ic_config_aqua.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-nodpi_ic_edit.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-nodpi\\ic_edit.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-ldpi_icon_prev.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-ldpi/icon_prev.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-nodpi_sitting.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-nodpi\\sitting.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-hdpi_icon_again.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-hdpi/icon_again.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxxhdpi_ic_profile.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxxhdpi\\ic_profile.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxxhdpi_ic_info_blue.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxxhdpi/ic_info_blue.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxxhdpi_ic_next_red.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxxhdpi\\ic_next_red.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-nodpi_ic_edit_white.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-nodpi/ic_edit_white.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxxhdpi_ic_arrow_down_blue.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxxhdpi\\ic_arrow_down_blue.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxxhdpi_ic_moderado.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxxhdpi/ic_moderado.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-hdpi_icon_prev.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-hdpi\\icon_prev.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xhdpi_ic_config.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xhdpi/ic_config.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-nodpi_planet_actividad.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-nodpi\\planet_actividad.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-hdpi_ic_comment.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-hdpi/ic_comment.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-ldpi_ic_user_nophoto.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-ldpi\\ic_user_nophoto.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-mdpi_ic_user_nophoto.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-mdpi/ic_user_nophoto.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xhdpi_ic_completed_red.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xhdpi\\ic_completed_red.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xhdpi_ic_facebook.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xhdpi/ic_facebook.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xhdpi_ic_hand.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xhdpi\\ic_hand.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-hdpi_ic_check_blue.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-hdpi/ic_check_blue.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxhdpi_icon_finish.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxhdpi\\icon_finish.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-mdpi_icon_again.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-mdpi/icon_again.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\layout_dialog_congratulation_premium.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\dialog_congratulation_premium.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable_custom_checkbox.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable/custom_checkbox.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxxhdpi_ic_control.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxxhdpi\\ic_control.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxhdpi_ic_profile.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxhdpi/ic_profile.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-hdpi_ic_hand.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-hdpi\\ic_hand.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable_ic_party_selected.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable/ic_party_selected.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxxhdpi_ic_statistics.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxxhdpi\\ic_statistics.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xhdpi_ic_relajado.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xhdpi/ic_relajado.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-ldpi_ic_treatment.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-ldpi\\ic_treatment.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxhdpi_ic_config_aqua.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxhdpi/ic_config_aqua.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-hdpi_ic_emotions.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-hdpi\\ic_emotions.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable_date_left_bg.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable/date_left_bg.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxhdpi_ic_relajado.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxhdpi\\ic_relajado.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxhdpi_ic_relajado.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxhdpi/ic_relajado.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-mdpi_ic_comment.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-mdpi\\ic_comment.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/layout_dialog_category.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/layout/dialog_category.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\layout_activity_statistics_detail.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\activity_statistics_detail.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xhdpi_ic_add_register.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xhdpi/ic_add_register.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-nodpi_sad.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-nodpi\\sad.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable_bold_up_shape_border.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable/bold_up_shape_border.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-mdpi_ic_completed_red.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-mdpi\\ic_completed_red.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/mipmap-mdpi_ic_launcher_round.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/mipmap-mdpi/ic_launcher_round.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxhdpi_ic_twitter.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxhdpi\\ic_twitter.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-mdpi_ic_actividad.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-mdpi/ic_actividad.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxhdpi_ic_sedentario.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxhdpi\\ic_sedentario.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-mdpi_ic_arrow_down_purple.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-mdpi/ic_arrow_down_purple.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xhdpi_ic_sedentario.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xhdpi\\ic_sedentario.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-ldpi_ic_next_purple.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-ldpi/ic_next_purple.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-mdpi_ic_back_purple.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-mdpi\\ic_back_purple.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/mipmap-anydpi-v26/ic_launcher.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\layout_statistics_item.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\statistics_item.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-hdpi_ic_qr.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-hdpi/ic_qr.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable_bold_shape.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable\\bold_shape.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-hdpi_ic_party.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-hdpi/ic_party.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xhdpi_ic_back_purple.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xhdpi\\ic_back_purple.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xhdpi_ic_again_purple.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xhdpi/ic_again_purple.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-hdpi_icon_again.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-hdpi\\icon_again.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-hdpi_ic_google.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-hdpi/ic_google.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-hdpi_ic_user_nophoto.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-hdpi\\ic_user_nophoto.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable_base_puntos_alpha.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable/base_puntos_alpha.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-hdpi_ic_upgrade.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-hdpi\\ic_upgrade.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxxhdpi_ic_back_purple.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxxhdpi/ic_back_purple.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-mdpi_ic_info_blue.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-mdpi\\ic_info_blue.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-hdpi_ic_facebook.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-hdpi/ic_facebook.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-mdpi_icon_again.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-mdpi\\icon_again.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-mdpi_ic_worried_selected.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-mdpi/ic_worried_selected.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-ldpi_icon_next.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-ldpi\\icon_next.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxhdpi_ic_facebook.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxhdpi/ic_facebook.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable_button_blue.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable\\button_blue.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxhdpi_icon_finish.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxhdpi/icon_finish.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-nodpi_pencil.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-nodpi\\pencil.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/font_floks_bold.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/font/floks_bold.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxxhdpi_ic_shared_yellow.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxxhdpi\\ic_shared_yellow.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-hdpi_ic_upgrade.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-hdpi/ic_upgrade.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-mdpi_ic_upgrade.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-mdpi\\ic_upgrade.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable_ic_intense_selected.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable/ic_intense_selected.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\layout_activity_treatment.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\activity_treatment.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable_button_primary_bg.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable/button_primary_bg.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-hdpi_ic_back_purple.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-hdpi\\ic_back_purple.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxhdpi_ic_control.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxhdpi/ic_control.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxxhdpi_ic_profile_aqua.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxxhdpi\\ic_profile_aqua.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-mdpi_ic_upgrade.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-mdpi/ic_upgrade.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable_custom_checkbox.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable\\custom_checkbox.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxhdpi_ic_treatment.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxhdpi/ic_treatment.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable_ic_relax_selected.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable\\ic_relax_selected.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xhdpi_ic_profile.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xhdpi/ic_profile.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable_spinner_custom_blue.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable\\spinner_custom_blue.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxxhdpi_ic_profile.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxxhdpi/ic_profile.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-nodpi_riding.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-nodpi\\riding.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/color_register_card_color.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/color/register_card_color.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable_infopink.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable\\infopink.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/layout_activity_splash.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/layout/activity_splash.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xhdpi_ic_control.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xhdpi\\ic_control.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-mdpi_ic_finish_purple.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-mdpi/ic_finish_purple.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-mdpi_ic_hand.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-mdpi\\ic_hand.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxxhdpi_ic_again_purple.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxxhdpi/ic_again_purple.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable_border_aqua.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable\\border_aqua.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable_avatar_12.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable/avatar_12.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-mdpi_ic_prev_red.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-mdpi\\ic_prev_red.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-mdpi_ic_comment.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-mdpi/ic_comment.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-hdpi_ic_completed_red.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-hdpi\\ic_completed_red.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable_border_aqua.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable/border_aqua.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxxhdpi_ic_delete_yellow.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxxhdpi\\ic_delete_yellow.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/layout_dialog_info.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/layout/dialog_info.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxhdpi_ic_prev_red.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxhdpi\\ic_prev_red.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-hdpi_icon_finish.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-hdpi/icon_finish.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\color_register_card_color.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\color\\register_card_color.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable_progress_circular.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable/progress_circular.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-ldpi_ic_arrow_down_blue.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-ldpi\\ic_arrow_down_blue.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/layout_progress.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/layout/progress.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxhdpi_ic_finish_purple.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxhdpi\\ic_finish_purple.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxhdpi_ic_check_blue.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxhdpi/ic_check_blue.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-mdpi_ic_party.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-mdpi\\ic_party.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-hdpi_ic_emotions.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-hdpi/ic_emotions.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xhdpi_ic_statistics.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xhdpi\\ic_statistics.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxhdpi_ic_enojado.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxhdpi/ic_enojado.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\xml_provider_paths.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\xml\\provider_paths.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-hdpi_ic_delete_yellow.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-hdpi/ic_delete_yellow.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxhdpi_ic_statistics.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxhdpi\\ic_statistics.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-mdpi_ic_treatment.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-mdpi/ic_treatment.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-hdpi_ic_facebook.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-hdpi\\ic_facebook.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xhdpi_ic_party.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xhdpi/ic_party.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-ldpi_icon_prev.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-ldpi\\icon_prev.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxxhdpi_ic_shared_yellow.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxxhdpi/ic_shared_yellow.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxxhdpi_ic_enojado.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxxhdpi\\ic_enojado.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-hdpi_icon_prev.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-hdpi/icon_prev.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\layout_daily_item.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\daily_item.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxxhdpi_ic_google.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxxhdpi/ic_google.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\mipmap-xxxhdpi_ic_launcher_round.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\mipmap-xxxhdpi\\ic_launcher_round.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-nodpi_pencil.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-nodpi/pencil.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable_ic_happy_selected.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable\\ic_happy_selected.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-ldpi_ic_again_purple.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-ldpi/ic_again_purple.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-mdpi_ic_config.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-mdpi\\ic_config.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xhdpi_ic_prev_red.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xhdpi/ic_prev_red.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxxhdpi_ic_google.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxxhdpi\\ic_google.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxxhdpi_ic_treatment.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxxhdpi/ic_treatment.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-hdpi_ic_comment.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-hdpi\\ic_comment.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/font_folks_normal.ttf.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/font/folks_normal.ttf"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxxhdpi_ic_add_register_aqua.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxxhdpi\\ic_add_register_aqua.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/layout_activity_onboarding.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/layout/activity_onboarding.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\layout_dialog_comentary.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\dialog_comentary.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/mipmap-xxhdpi_ic_launcher_round.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/mipmap-xxhdpi/ic_launcher_round.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable_avatar_9.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable\\avatar_9.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxxhdpi_ic_emotions.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxxhdpi/ic_emotions.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xhdpi_ic_qr.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xhdpi\\ic_qr.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxxhdpi_ic_delete_yellow.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxxhdpi/ic_delete_yellow.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable_button_borde_bg.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable\\button_borde_bg.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/layout_treatment_basal_item.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/layout/treatment_basal_item.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-nodpi_mad.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-nodpi\\mad.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-hdpi_ic_finish_purple.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-hdpi/ic_finish_purple.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\layout_daily_parent.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\daily_parent.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-hdpi_ic_edit_yellow.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-hdpi/ic_edit_yellow.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xhdpi_ic_preocupado.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xhdpi\\ic_preocupado.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-nodpi_planet_glucemia.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-nodpi/planet_glucemia.png"
     },
     {
-        "merged": "com.sugarcoachpremium.app-debug-68:/layout_register_month_item.xml.flat",
-        "source": "com.sugarcoachpremium.app-main-70:/layout/register_month_item.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-mdpi_ic_delete_yellow.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-mdpi/ic_delete_yellow.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-nodpi_circle_gray.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-nodpi\\circle_gray.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xhdpi_ic_info_blue.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xhdpi/ic_info_blue.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable_avatar_2.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable\\avatar_2.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xhdpi_ic_qr.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xhdpi/ic_qr.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable_date_left_bg.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable\\date_left_bg.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxxhdpi_ic_contento.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxxhdpi/ic_contento.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-ldpi_ic_control.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-ldpi\\ic_control.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/layout_dialog_congratulation.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/layout/dialog_congratulation.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-hdpi_ic_check_blue.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-hdpi\\ic_check_blue.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-hdpi_ic_moderado.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-hdpi/ic_moderado.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xhdpi_ic_party.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xhdpi\\ic_party.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-mdpi_ic_add_photo.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-mdpi/ic_add_photo.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-nodpi_exercises.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-nodpi\\exercises.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/layout_basal_item.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/layout/basal_item.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-hdpi_ic_moderado.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-hdpi\\ic_moderado.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-mdpi_ic_intenso.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-mdpi/ic_intenso.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-mdpi_ic_actividad.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-mdpi\\ic_actividad.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-hdpi_ic_intenso.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-hdpi/ic_intenso.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-hdpi_ic_contento.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-hdpi\\ic_contento.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-hdpi_ic_relajado.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-hdpi/ic_relajado.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-nodpi_space_bg.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-nodpi\\space_bg.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-hdpi_ic_arrow_down_purple.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-hdpi/ic_arrow_down_purple.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-mdpi_ic_worried_selected.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-mdpi\\ic_worried_selected.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable_logo_b.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable/logo_b.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xhdpi_ic_next_red.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xhdpi\\ic_next_red.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable_avatar_1.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable/avatar_1.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxxhdpi_ic_sedentario.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxxhdpi\\ic_sedentario.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxhdpi_ic_info_blue.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxhdpi/ic_info_blue.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-nodpi_trash.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-nodpi\\trash.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-mdpi_ic_prev_red.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-mdpi/ic_prev_red.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxxhdpi_icon_prev.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxxhdpi\\icon_prev.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable_avatar_8.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable/avatar_8.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\layout_fragment_onboarding_item.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\fragment_onboarding_item.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxhdpi_ic_next_red.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxhdpi/ic_next_red.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxhdpi_ic_add_register_aqua.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxhdpi\\ic_add_register_aqua.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-mdpi_ic_config.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-mdpi/ic_config.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-hdpi_ic_google.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-hdpi\\ic_google.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-ldpi_ic_arrow_down_purple.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-ldpi/ic_arrow_down_purple.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable_avatar_11.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable\\avatar_11.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-ldpi_icon_next.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-ldpi/icon_next.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-mdpi_ic_facebook.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-mdpi\\ic_facebook.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-nodpi_planet_carbohidratos.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-nodpi/planet_carbohidratos.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\layout_progress.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\progress.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxxhdpi_ic_control.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxxhdpi/ic_control.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxxhdpi_ic_hand.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxxhdpi\\ic_hand.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-hdpi_ic_min_picture.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-hdpi/ic_min_picture.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xhdpi_ic_enojado.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xhdpi\\ic_enojado.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-nodpi_trash.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-nodpi/trash.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable_ic_angry_selected.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable\\ic_angry_selected.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xhdpi_ic_control.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xhdpi/ic_control.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-hdpi_ic_control.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-hdpi\\ic_control.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxhdpi_ic_google.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxhdpi/ic_google.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-mdpi_ic_min_picture.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-mdpi\\ic_min_picture.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-mdpi_ic_next_purple.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-mdpi/ic_next_purple.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-hdpi_ic_relajado.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-hdpi\\ic_relajado.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-hdpi_ic_config_aqua.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-hdpi/ic_config_aqua.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-ldpi_icon_again.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-ldpi\\icon_again.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-hdpi_ic_hand.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-hdpi/ic_hand.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable_avatar_12.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable\\avatar_12.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxxhdpi_ic_check_blue.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxxhdpi/ic_check_blue.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-hdpi_ic_config.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-hdpi\\ic_config.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/layout_dialog_sex.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/layout/dialog_sex.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxhdpi_ic_enojado.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxhdpi\\ic_enojado.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-nodpi_riding.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-nodpi/riding.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\layout_activity_privacy_policy.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\activity_privacy_policy.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/layout_activity_daily_detail.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/layout/activity_daily_detail.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-mdpi_ic_statistics.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-mdpi\\ic_statistics.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxhdpi_ic_completed_red.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxhdpi/ic_completed_red.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-nodpi_emotions.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-nodpi\\emotions.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-hdpi_ic_statistics.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-hdpi/ic_statistics.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-hdpi_ic_prev_red.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-hdpi\\ic_prev_red.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-hdpi_ic_twitter.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-hdpi/ic_twitter.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable_base_puntos_alpha.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable\\base_puntos_alpha.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-ldpi_ic_add_register.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-ldpi/ic_add_register.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xhdpi_ic_min_picture.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xhdpi\\ic_min_picture.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xhdpi_ic_moderado.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xhdpi/ic_moderado.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxxhdpi_icon_next.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxxhdpi\\icon_next.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxxhdpi_ic_finish_purple.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxxhdpi/ic_finish_purple.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxhdpi_ic_arrow_down_purple.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxhdpi\\ic_arrow_down_purple.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xhdpi_ic_shared_yellow.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xhdpi/ic_shared_yellow.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\mipmap-xhdpi_ic_launcher_round.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\mipmap-xhdpi\\ic_launcher_round.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxhdpi_ic_min_picture.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxhdpi/ic_min_picture.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xhdpi_ic_upgrade.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xhdpi\\ic_upgrade.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/layout_register_month.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/layout/register_month.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable_ic_moderate_selected.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable\\ic_moderate_selected.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xhdpi_ic_back_purple.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xhdpi/ic_back_purple.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-mdpi_ic_finish_purple.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-mdpi\\ic_finish_purple.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-hdpi_ic_completed_red.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-hdpi/ic_completed_red.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\layout_activity_profile.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\activity_profile.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/layout_dialog_values.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/layout/dialog_values.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxxhdpi_ic_add_photo.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxxhdpi\\ic_add_photo.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/layout_dialog_comentary.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/layout/dialog_comentary.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-hdpi_ic_sedentario.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-hdpi\\ic_sedentario.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxxhdpi_ic_facebook.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxxhdpi/ic_facebook.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\layout_dialog_upgrade.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\dialog_upgrade.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxxhdpi_ic_min_picture.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxxhdpi/ic_min_picture.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-mdpi_ic_again_purple.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-mdpi\\ic_again_purple.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxxhdpi_ic_profile_aqua.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxxhdpi/ic_profile_aqua.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable_bold_up_shape_border.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable\\bold_up_shape_border.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xhdpi_ic_upgrade.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xhdpi/ic_upgrade.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\layout_activity_main.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\activity_main.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/layout_dialog_config_delete.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/layout/dialog_config_delete.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxxhdpi_ic_qr.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxxhdpi\\ic_qr.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xhdpi_ic_treatment.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xhdpi/ic_treatment.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-mdpi_icon_next.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-mdpi\\icon_next.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/color_profile_avatar_color.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/color/profile_avatar_color.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xhdpi_ic_again_purple.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xhdpi\\ic_again_purple.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/layout_dialog_congratulation_premium.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/layout/dialog_congratulation_premium.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxxhdpi_ic_relajado.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxxhdpi\\ic_relajado.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-nodpi_sitting.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-nodpi/sitting.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-nodpi_camera.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-nodpi\\camera.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-hdpi_ic_add_register.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-hdpi/ic_add_register.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxhdpi_ic_moderado.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxhdpi\\ic_moderado.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/mipmap-hdpi_ic_launcher.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/mipmap-hdpi/ic_launcher.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xhdpi_ic_relajado.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xhdpi\\ic_relajado.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxhdpi_ic_moderado.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxhdpi/ic_moderado.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-ldpi_ic_statistics.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-ldpi\\ic_statistics.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxxhdpi_icon_prev.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxxhdpi/icon_prev.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\font_folks_light.ttf.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\font\\folks_light.ttf"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-hdpi_icon_next.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-hdpi/icon_next.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable_bottom_border_shadow.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable\\bottom_border_shadow.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable_button_google.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable/button_google.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xhdpi_ic_contento.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xhdpi\\ic_contento.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-ldpi_ic_finish_purple.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-ldpi/ic_finish_purple.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxhdpi_ic_delete_yellow.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxhdpi\\ic_delete_yellow.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable_logo.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable/logo.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-mdpi_ic_emotions.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-mdpi\\ic_emotions.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-mdpi_ic_check_blue.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-mdpi/ic_check_blue.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxhdpi_ic_again_red.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxhdpi\\ic_again_red.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxxhdpi_ic_statistics.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxxhdpi/ic_statistics.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-hdpi_ic_intenso.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-hdpi\\ic_intenso.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxxhdpi_icon_finish.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxxhdpi/icon_finish.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\font_folks.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\font\\folks.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-ldpi_ic_hand.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-ldpi/ic_hand.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-hdpi_ic_again_red.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-hdpi\\ic_again_red.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-nodpi_planet_actividad.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-nodpi/planet_actividad.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxxhdpi_ic_contento.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxxhdpi\\ic_contento.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-hdpi_ic_shared_yellow.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-hdpi/ic_shared_yellow.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-ldpi_ic_completed_red.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-ldpi\\ic_completed_red.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable_avatar_9.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable/avatar_9.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable_spinner_custom.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable\\spinner_custom.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/layout_daily_item.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/layout/daily_item.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxhdpi_ic_config_aqua.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxhdpi\\ic_config_aqua.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-mdpi_ic_facebook.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-mdpi/ic_facebook.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxhdpi_ic_upgrade.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxhdpi\\ic_upgrade.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-ldpi_ic_again_red.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-ldpi/ic_again_red.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxxhdpi_ic_completed_red.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxxhdpi\\ic_completed_red.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable_border_buttom.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable/border_buttom.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xhdpi_ic_next_purple.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xhdpi\\ic_next_purple.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xhdpi_icon_prev.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xhdpi/icon_prev.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xhdpi_ic_user_nophoto.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xhdpi\\ic_user_nophoto.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-nodpi_envelope.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-nodpi/envelope.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\layout_dialog_emotions.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\dialog_emotions.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxhdpi_ic_edit_yellow.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxhdpi/ic_edit_yellow.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-ldpi_ic_profile.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-ldpi\\ic_profile.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/layout_treatment_correctora_item.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/layout/treatment_correctora_item.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-ldpi_ic_config.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-ldpi\\ic_config.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/layout_statistics_item.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/layout/statistics_item.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-mdpi_icon_prev.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-mdpi\\icon_prev.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-mdpi_ic_party.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-mdpi/ic_party.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-nodpi_cancel.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-nodpi\\cancel.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/layout_activity_estadisticas.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/layout/activity_estadisticas.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-hdpi_ic_add_register_aqua.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-hdpi\\ic_add_register_aqua.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xhdpi_ic_emotions.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xhdpi/ic_emotions.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxxhdpi_ic_check_blue.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxxhdpi\\ic_check_blue.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxxhdpi_ic_sedentario.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxxhdpi/ic_sedentario.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xhdpi_ic_add_register.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xhdpi\\ic_add_register.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxxhdpi_ic_add_register.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxxhdpi/ic_add_register.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xhdpi_ic_prev_red.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xhdpi\\ic_prev_red.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxxhdpi_ic_user_nophoto.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxxhdpi/ic_user_nophoto.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-mdpi_ic_edit_yellow.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-mdpi\\ic_edit_yellow.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxxhdpi_ic_preocupado.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxxhdpi/ic_preocupado.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xhdpi_ic_arrow_down_purple.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xhdpi\\ic_arrow_down_purple.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-nodpi_check.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-nodpi/check.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable_input_border_bottom.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable\\input_border_bottom.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/layout_dialog_upgrade.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/layout/dialog_upgrade.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable_progress_circular.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable\\progress_circular.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xhdpi_ic_finish_purple.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xhdpi/ic_finish_purple.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-mdpi_ic_treatment.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-mdpi\\ic_treatment.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/mipmap-mdpi_ic_launcher.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/mipmap-mdpi/ic_launcher.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\layout_dialog_treatment_save.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\dialog_treatment_save.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-ldpi_ic_add_register_aqua.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-ldpi/ic_add_register_aqua.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\font_folks_bold.ttf.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\font\\folks_bold.ttf"
+        "merged": "com.sugarcoachpremium.app-debug-69:/xml_network_security_config.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/xml/network_security_config.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxxhdpi_ic_prev_red.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxxhdpi\\ic_prev_red.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-nodpi_planet_insulina.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-nodpi/planet_insulina.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-ldpi_ic_hand.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-ldpi\\ic_hand.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-nodpi_running.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-nodpi/running.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\layout_activity_forgot.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\activity_forgot.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xhdpi_ic_config_aqua.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xhdpi/ic_config_aqua.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xhdpi_ic_config.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xhdpi\\ic_config.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-hdpi_ic_again_red.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-hdpi/ic_again_red.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-hdpi_ic_statistics.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-hdpi\\ic_statistics.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-hdpi_ic_info_blue.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-hdpi/ic_info_blue.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxhdpi_ic_emotions.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxhdpi\\ic_emotions.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-nodpi_exercises.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-nodpi/exercises.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-ldpi_ic_back_purple.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-ldpi\\ic_back_purple.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/layout_activity_table.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/layout/activity_table.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable_logo_b.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable\\logo_b.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xhdpi_icon_next.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xhdpi/icon_next.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-mdpi_ic_add_register.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-mdpi\\ic_add_register.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-hdpi_ic_again_purple.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-hdpi/ic_again_purple.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxhdpi_ic_back_purple.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxhdpi\\ic_back_purple.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-nodpi_smiling.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-nodpi/smiling.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-mdpi_ic_shared_yellow.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-mdpi\\ic_shared_yellow.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxxhdpi_ic_actividad.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxxhdpi/ic_actividad.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-ldpi_ic_again_purple.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-ldpi\\ic_again_purple.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable_circle_aqua.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable/circle_aqua.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\layout_profile_item.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\profile_item.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/layout_activity_statistics_detail.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/layout/activity_statistics_detail.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-ldpi_ic_again_red.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-ldpi\\ic_again_red.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-mdpi_ic_back_purple.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-mdpi/ic_back_purple.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-ldpi_ic_prev_red.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-ldpi\\ic_prev_red.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/layout_dialog_codigo.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/layout/dialog_codigo.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-mdpi_ic_twitter.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-mdpi\\ic_twitter.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-nodpi_cancel.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-nodpi/cancel.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xhdpi_ic_profile_aqua.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xhdpi\\ic_profile_aqua.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxhdpi_ic_add_photo.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxhdpi/ic_add_photo.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xhdpi_ic_info_blue.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xhdpi\\ic_info_blue.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable_info.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable/info.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxhdpi_icon_next.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxhdpi\\icon_next.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/mipmap-anydpi-v26/ic_launcher_round.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-mdpi_ic_profile_aqua.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-mdpi\\ic_profile_aqua.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable_button_bg.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable/button_bg.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\mipmap-xhdpi_ic_launcher.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\mipmap-xhdpi\\ic_launcher.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/layout_fragment_onboarding_item.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/layout/fragment_onboarding_item.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xhdpi_ic_delete_yellow.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xhdpi\\ic_delete_yellow.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-hdpi_ic_user_nophoto.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-hdpi/ic_user_nophoto.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xhdpi_ic_check_blue.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xhdpi\\ic_check_blue.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-hdpi_ic_prev_red.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-hdpi/ic_prev_red.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxxhdpi_ic_min_picture.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxxhdpi\\ic_min_picture.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-hdpi_ic_profile_aqua.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-hdpi/ic_profile_aqua.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable_avatar_10.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable\\avatar_10.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxhdpi_icon_next.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxhdpi/icon_next.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\font_floks_regular.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\font\\floks_regular.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xhdpi_ic_enojado.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xhdpi/ic_enojado.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xxxhdpi_ic_edit_yellow.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xxxhdpi\\ic_edit_yellow.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-nodpi_share.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-nodpi/share.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-xhdpi_ic_shared_yellow.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-xhdpi\\ic_shared_yellow.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/layout-sw380dp_activity_register.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/layout-sw380dp/activity_register.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\layout_activity_table.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\activity_table.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-hdpi_ic_next_purple.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-hdpi/ic_next_purple.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\color_profile_avatar_color.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\color\\profile_avatar_color.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-xxxhdpi_ic_next_purple.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-xxxhdpi/ic_next_purple.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-mdpi_ic_add_photo.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-mdpi\\ic_add_photo.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-ldpi_ic_control.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-ldpi/ic_control.png"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\layout_activity_onboarding.xml.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\activity_onboarding.xml"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable_bold_up_shape.xml.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable/bold_up_shape.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-mdpi_ic_user_nophoto.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-mdpi\\ic_user_nophoto.png"
-    },
-    {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-debug-68:\\drawable-mdpi_ic_delete_yellow.png.flat",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\drawable-mdpi\\ic_delete_yellow.png"
+        "merged": "com.sugarcoachpremium.app-debug-69:/drawable-ldpi_ic_prev_red.png.flat",
+        "source": "com.sugarcoachpremium.app-main-71:/drawable-ldpi/ic_prev_red.png"
     }
 ]

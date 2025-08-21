@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.sugarcoachpremium.app-mergeDebugResources-66:/values-id/values-id.xml",
+            "outputFile": "com.sugarcoachpremium.app-mergeDebugResources-67:/values-id/values-id.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\sc2\\.gradle\\caches\\transforms-4\\777fcb3cb6ea49a1541121dfcaaf3cea\\transformed\\jetified-facebook-common-17.0.2\\res\\values-id\\values-id.xml",
+                    "source": "C:\\Users\\isaro\\.gradle\\caches\\transforms-4\\858a02b03ff05dc8e0b84deae3ea4396\\transformed\\jetified-facebook-common-18.0.1\\res\\values-id\\values-id.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",

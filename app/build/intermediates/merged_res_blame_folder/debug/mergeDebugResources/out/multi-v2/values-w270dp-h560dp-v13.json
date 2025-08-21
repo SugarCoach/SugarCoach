@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.sugarcoachpremium.app-mergeDebugResources-66:/values-w270dp-h560dp-v13/values-w270dp-h560dp-v13.xml",
+            "outputFile": "com.sugarcoachpremium.app-mergeDebugResources-67:/values-w270dp-h560dp-v13/values-w270dp-h560dp-v13.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\sc2\\.gradle\\caches\\transforms-4\\955fbd1fa769e291d2d6c6105f067248\\transformed\\jetified-materialdatetimepicker-4.2.3\\res\\values-w270dp-h560dp-v13\\values-w270dp-h560dp-v13.xml",
+                    "source": "C:\\Users\\isaro\\.gradle\\caches\\transforms-4\\955fbd1fa769e291d2d6c6105f067248\\transformed\\jetified-materialdatetimepicker-4.2.3\\res\\values-w270dp-h560dp-v13\\values-w270dp-h560dp-v13.xml",
                     "from": {
                         "startLines": "2,3,4,5,6",
                         "startColumns": "4,4,4,4,4",

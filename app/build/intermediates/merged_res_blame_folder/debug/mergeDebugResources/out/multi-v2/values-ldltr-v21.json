@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.sugarcoachpremium.app-mergeDebugResources-66:/values-ldltr-v21/values-ldltr-v21.xml",
+            "outputFile": "com.sugarcoachpremium.app-mergeDebugResources-67:/values-ldltr-v21/values-ldltr-v21.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\sc2\\.gradle\\caches\\transforms-4\\b608ec51446d50d340888811c9f870f0\\transformed\\appcompat-1.6.1\\res\\values-ldltr-v21\\values-ldltr-v21.xml",
+                    "source": "C:\\Users\\isaro\\.gradle\\caches\\transforms-4\\b608ec51446d50d340888811c9f870f0\\transformed\\appcompat-1.6.1\\res\\values-ldltr-v21\\values-ldltr-v21.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

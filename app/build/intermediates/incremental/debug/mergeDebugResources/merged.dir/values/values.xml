@@ -26,6 +26,7 @@
         <item>Lorem Lipsum</item>
         <item>Lorem Lipsum</item>
     </string-array>
+    <attr format="color" name="adjacentMonthDayLabelTextColor"/>
     <attr format="enum" name="animateCircleAngleTo">
         <enum name="bestChoice" value="0"/>
         <enum name="closest" value="1"/>
@@ -534,8 +535,15 @@
     </attr>
     <attr format="float" name="path_percent"/>
     <attr format="float" name="perpendicularPath_percent"/>
-    <attr format="color" name="pickedDayCircleColor"/>
+    <attr format="color" name="pickedDayBackgroundColor"/>
+    <attr format="enum" name="pickedDayBackgroundShapeType">
+        <enum name="circle" value="0"/>
+        <enum name="roundSquare" value="1"/>
+    </attr>
+    <attr format="color" name="pickedDayInRangeBackgroundColor"/>
+    <attr format="color" name="pickedDayInRangeLabelTextColor"/>
     <attr format="color" name="pickedDayLabelTextColor"/>
+    <attr format="dimension" name="pickedDayRoundSquareCornerRadius"/>
     <attr format="reference|enum" name="pivotAnchor">
         <enum name="parent" value="0"/>
     </attr>
@@ -574,6 +582,7 @@
     <enum name="rounded" value="0"/>
     <enum name="cut" value="1"/>
   </attr>
+    <attr format="boolean" name="showAdjacentMonthDays"/>
     <attr format="reference" name="showMotionSpec"/>
     <attr format="boolean" name="showTwoWeeksInLandscape"/>
     <attr format="reference" name="sideSheetDialogTheme"/>
@@ -686,7 +695,8 @@
     <bool name="abc_action_bar_embed_tabs">true</bool>
     <bool name="abc_config_actionMenuItemAllCaps">true</bool>
     <bool name="config_materialPreferenceIconSpaceReserved">false</bool>
-    <bool name="defaultAnimateSelection">false</bool>
+    <bool name="defaultAnimateSelection">true</bool>
+    <bool name="defaultShowAdjacentMonthDays">false</bool>
     <bool name="defaultShowTwoWeeksInLandscape">true</bool>
     <bool name="mdtp_title_all_caps">true</bool>
     <bool name="mtrl_btn_textappearance_all_caps">true</bool>
@@ -697,6 +707,20 @@
     <color name="abc_search_url_text_selected">@android:color/black</color>
     <color name="accent_material_dark">@color/material_deep_teal_200</color>
     <color name="accent_material_light">@color/material_deep_teal_500</color>
+    <color name="amber100">#FFECB3</color>
+    <color name="amber200">#FFE082</color>
+    <color name="amber300">#FFD54F</color>
+    <color name="amber400">#FFCA28</color>
+    <color name="amber50">#FFF8E1</color>
+    <color name="amber500">#FFC107</color>
+    <color name="amber600">#FFB300</color>
+    <color name="amber700">#FFA000</color>
+    <color name="amber800">#FF8F00</color>
+    <color name="amber900">#FF6F00</color>
+    <color name="amberA100">#FFE57F</color>
+    <color name="amberA200">#FFD740</color>
+    <color name="amberA400">#FFC400</color>
+    <color name="amberA700">#FFAB00</color>
     <color name="androidx_core_ripple_material_light">#1f000000</color>
     <color name="androidx_core_secondary_text_default_material_light">#8a000000</color>
     <color name="aqua">#00DDBF</color>
@@ -706,16 +730,47 @@
     <color name="background_material_light">@color/material_grey_50</color>
     <color name="black">#000</color>
     <color name="blue">#00BCF2</color>
+    <color name="blue100">#BBDEFB</color>
+    <color name="blue200">#90CAF9</color>
+    <color name="blue300">#64B5F6</color>
+    <color name="blue400">#42A5F5</color>
+    <color name="blue50">#E3F2FD</color>
+    <color name="blue500">#2196F3</color>
+    <color name="blue600">#1E88E5</color>
+    <color name="blue700">#1976D2</color>
+    <color name="blue800">#1565C0</color>
+    <color name="blue900">#0D47A1</color>
+    <color name="blueA100">#82B1FF</color>
+    <color name="blueA200">#448AFF</color>
+    <color name="blueA400">#2979FF</color>
+    <color name="blueA700">#2962FF</color>
     <color name="blueDark">#2c5f9f</color>
+    <color name="blueGray100">#CFD8DC</color>
     <color name="blueGray200">#B0BEC5</color>
     <color name="blueGray300">#90A4AE</color>
     <color name="blueGray400">#78909C</color>
+    <color name="blueGray50">#ECEFF1</color>
+    <color name="blueGray500">#607D8B</color>
+    <color name="blueGray600">#546E7A</color>
+    <color name="blueGray700">#455A64</color>
+    <color name="blueGray800">#37474F</color>
+    <color name="blueGray900">#263238</color>
     <color name="bright_foreground_disabled_material_dark">#80ffffff</color>
     <color name="bright_foreground_disabled_material_light">#80000000</color>
     <color name="bright_foreground_inverse_material_dark">@color/bright_foreground_material_light</color>
     <color name="bright_foreground_inverse_material_light">@color/bright_foreground_material_dark</color>
     <color name="bright_foreground_material_dark">@android:color/white</color>
     <color name="bright_foreground_material_light">@android:color/black</color>
+    <color name="brown100">#D7CCC8</color>
+    <color name="brown200">#BCAAA4</color>
+    <color name="brown300">#A1887F</color>
+    <color name="brown400">#8D6E63</color>
+    <color name="brown50">#EFEBE9</color>
+    <color name="brown500">#795548</color>
+    <color name="brown600">#6D4C41</color>
+    <color name="brown700">#5D4037</color>
+    <color name="brown800">#4E342E</color>
+    <color name="brown900">#3E2723</color>
     <color name="browser_actions_bg_grey">#F5F5F5</color>
     <color name="browser_actions_divider_color">#1E000000</color>
     <color name="browser_actions_text_color">#DE000000</color>
@@ -729,7 +784,6 @@
     <color name="cardview_shadow_end_color">#03000000</color>
     <color name="cardview_shadow_start_color">#37000000</color>
     <color name="colorAccent">#00DDBF</color>
-    <color name="colorControlHighlight">#DFDFDF</color>
     <color name="colorPrimary">#00DDBF</color>
     <color name="colorPrimaryDark">#000</color>
     <color name="com_facebook_blue">#1877F2</color>
@@ -752,14 +806,78 @@
     <color name="common_google_signin_btn_text_light_disabled">#1F000000</color>
     <color name="common_google_signin_btn_text_light_focused">#90000000</color>
     <color name="common_google_signin_btn_text_light_pressed">#DE000000</color>
-    <color name="defaultDayLabelTextColor">@color/textColorPrimary</color>
-    <color name="defaultDisabledDayLabelTextColor">@color/textColorSecondary</color>
-    <color name="defaultDividerColor">#BDBDBD</color>
-    <color name="defaultMonthLabelTextColor">@color/blueGray200</color>
-    <color name="defaultSelectedDayCircleColor">@color/colorAccent</color>
-    <color name="defaultSelectedDayLabelTextColor">@color/white</color>
-    <color name="defaultTodayLabelTextColor">@color/textColorGreen</color>
-    <color name="defaultWeekLabelTextColor">@color/colorAccent</color>
+    <color name="cyan100">#B2EBF2</color>
+    <color name="cyan200">#80DEEA</color>
+    <color name="cyan300">#4DD0E1</color>
+    <color name="cyan400">#26C6DA</color>
+    <color name="cyan50">#E0F7FA</color>
+    <color name="cyan500">#00BCD4</color>
+    <color name="cyan600">#00ACC1</color>
+    <color name="cyan700">#0097A7</color>
+    <color name="cyan800">#00838F</color>
+    <color name="cyan900">#006064</color>
+    <color name="cyanA100">#84FFFF</color>
+    <color name="cyanA200">#18FFFF</color>
+    <color name="cyanA400">#00E5FF</color>
+    <color name="cyanA700">#00B8D4</color>
+    <color name="darkAdjacentMonthDayLabelTextColor">@color/gray600</color>
+    <color name="darkButtonBarBackgroundColor">@color/deepDark</color>
+    <color name="darkButtonBarNegativeTextColor">@color/red400</color>
+    <color name="darkButtonBarPositiveTextColor">@color/green400</color>
+    <color name="darkButtonBarTodayTextColor">@color/white</color>
+    <color name="darkDayLabelTextColor">@color/white</color>
+    <color name="darkDisabledDayLabelTextColor">@color/gray600</color>
+    <color name="darkDividerColor">@color/gray400</color>
+    <color name="darkElementBackgroundColor">@color/deepDark</color>
+    <color name="darkGotoViewBackgroundColor">@color/teal700</color>
+    <color name="darkGotoViewDividerColor">@color/white</color>
+    <color name="darkGotoViewTextColor">@color/white</color>
+    <color name="darkMonthLabelTextColor">@color/blueGray300</color>
+    <color name="darkPickedDayBackgroundColor">@color/teal700</color>
+    <color name="darkPickedDayInRangeBackgroundColor">@color/teal700</color>
+    <color name="darkPickedDayInRangeLabelTextColor">@color/white</color>
+    <color name="darkPickedDayLabelTextColor">@color/white</color>
+    <color name="darkSelectionBarBackgroundColor">@color/blueGray800</color>
+    <color name="darkSelectionBarMultipleDaysItemBackgroundColor">@color/blueGray600</color>
+    <color name="darkSelectionBarMultipleDaysItemBottomLabelTextColor">@color/white</color>
+    <color name="darkSelectionBarMultipleDaysItemTopLabelTextColor">@color/white</color>
+    <color name="darkSelectionBarRangeDaysItemBackgroundColor">@color/blueGray600</color>
+    <color name="darkSelectionBarRangeDaysItemBottomLabelTextColor">@color/white</color>
+    <color name="darkSelectionBarRangeDaysItemTopLabelTextColor">@color/blueGray200</color>
+    <color name="darkSelectionBarSingleDayItemBottomLabelTextColor">@color/white</color>
+    <color name="darkSelectionBarSingleDayItemTopLabelTextColor">@color/blueGray200</color>
+    <color name="darkTodayLabelTextColor">@color/orange800</color>
+    <color name="darkWeekLabelTextColor">@color/blue700</color>
+    <color name="deepDark">#2A2B2F</color>
+    <color name="deepOrange100">#FFCCBC</color>
+    <color name="deepOrange200">#FFAB91</color>
+    <color name="deepOrange300">#FF8A65</color>
+    <color name="deepOrange400">#FF7043</color>
+    <color name="deepOrange50">#FBE9E7</color>
+    <color name="deepOrange500">#FF5722</color>
+    <color name="deepOrange600">#F4511E</color>
+    <color name="deepOrange700">#E64A19</color>
+    <color name="deepOrange800">#D84315</color>
+    <color name="deepOrange900">#BF360C</color>
+    <color name="deepOrangeA100">#FF9E80</color>
+    <color name="deepOrangeA200">#FF6E40</color>
+    <color name="deepOrangeA400">#FF3D00</color>
+    <color name="deepOrangeA700">#DD2C00</color>
+    <color name="deepPurple100">#D1C4E9</color>
+    <color name="deepPurple200">#B39DDB</color>
+    <color name="deepPurple300">#9575CD</color>
+    <color name="deepPurple400">#7E57C2</color>
+    <color name="deepPurple50">#EDE7F6</color>
+    <color name="deepPurple500">#673AB7</color>
+    <color name="deepPurple600">#5E35B1</color>
+    <color name="deepPurple700">#512DA8</color>
+    <color name="deepPurple800">#4527A0</color>
+    <color name="deepPurple900">#311B92</color>
+    <color name="deepPurpleA100">#B388FF</color>
+    <color name="deepPurpleA200">#7C4DFF</color>
+    <color name="deepPurpleA400">#651FFF</color>
+    <color name="deepPurpleA700">#6200EA</color>
+    <color name="defaultTwoLineTextColor">@color/white</color>
     <color name="design_bottom_navigation_shadow_color">#14000000</color>
     <color name="design_dark_default_color_background">#121212</color>
     <color name="design_dark_default_color_error">#CF6679</color>
@@ -802,22 +920,129 @@
     <color name="error_color_material_dark">#ff7043</color>
     <color name="error_color_material_light">#ff5722</color>
     <color name="fb">#295ca3</color>
-    <color name="focusColorHighlight">#1F717171</color>
     <color name="foreground_material_dark">@android:color/white</color>
     <color name="foreground_material_light">@android:color/black</color>
     <color name="google">#d34836</color>
     <color name="grass">#008577</color>
     <color name="grassDark">#00574B</color>
     <color name="gray">#D7D7D7</color>
+    <color name="gray100">#F5F5F5</color>
+    <color name="gray200">#EEEEEE</color>
+    <color name="gray300">#E0E0E0</color>
+    <color name="gray400">#BDBDBD</color>
+    <color name="gray50">#FAFAFA</color>
+    <color name="gray500">#9E9E9E</color>
+    <color name="gray600">#757575</color>
+    <color name="gray700">#616161</color>
+    <color name="gray800">#424242</color>
+    <color name="gray900">#212121</color>
     <color name="grayDark">#4b4b4b</color>
     <color name="gray_border">#c5c7cb</color>
     <color name="gray_letter">#c4c6ca</color>
     <color name="green">#4caf50</color>
+    <color name="green100">#C8E6C9</color>
+    <color name="green200">#A5D6A7</color>
+    <color name="green300">#81C784</color>
+    <color name="green400">#66BB6A</color>
+    <color name="green50">#E8F5E9</color>
+    <color name="green500">#4CAF50</color>
+    <color name="green600">#43A047</color>
+    <color name="green700">#388E3C</color>
+    <color name="green800">#2E7D32</color>
+    <color name="green900">#1B5E20</color>
+    <color name="greenA100">#B9F6CA</color>
+    <color name="greenA200">#69F0AE</color>
+    <color name="greenA400">#00E676</color>
+    <color name="greenA700">#00C853</color>
     <color name="greyConfig">#ccdce2</color>
     <color name="highlighted_text_material_dark">#6680cbc4</color>
     <color name="highlighted_text_material_light">#66009688</color>
+    <color name="indigo100">#C5CAE9</color>
+    <color name="indigo200">#9FA8DA</color>
+    <color name="indigo300">#7986CB</color>
+    <color name="indigo400">#5C6BC0</color>
+    <color name="indigo50">#E8EAF6</color>
+    <color name="indigo500">#3F51B5</color>
+    <color name="indigo600">#3949AB</color>
+    <color name="indigo700">#303F9F</color>
+    <color name="indigo800">#283593</color>
+    <color name="indigo900">#1A237E</color>
+    <color name="indigoA100">#8C9EFF</color>
+    <color name="indigoA200">#536DFE</color>
+    <color name="indigoA400">#3D5AFE</color>
+    <color name="indigoA700">#304FFE</color>
     <color name="lavender">#e5de63b3</color>
+    <color name="lightAdjacentMonthDayLabelTextColor">@color/gray400</color>
+    <color name="lightBlue100">#B3E5FC</color>
+    <color name="lightBlue200">#81D4FA</color>
+    <color name="lightBlue300">#4FC3F7</color>
+    <color name="lightBlue400">#29B6F6</color>
+    <color name="lightBlue50">#E1F5FE</color>
+    <color name="lightBlue500">#03A9F4</color>
+    <color name="lightBlue600">#039BE5</color>
+    <color name="lightBlue700">#0288D1</color>
+    <color name="lightBlue800">#0277BD</color>
+    <color name="lightBlue900">#01579B</color>
+    <color name="lightBlueA100">#80D8FF</color>
+    <color name="lightBlueA200">#40C4FF</color>
+    <color name="lightBlueA400">#00B0FF</color>
+    <color name="lightBlueA700">#0091EA</color>
+    <color name="lightButtonBarBackgroundColor">@color/white</color>
+    <color name="lightButtonBarNegativeTextColor">@color/red400</color>
+    <color name="lightButtonBarPositiveTextColor">@color/green400</color>
+    <color name="lightButtonBarTodayTextColor">@color/gray900</color>
+    <color name="lightDayLabelTextColor">@color/gray900</color>
+    <color name="lightDisabledDayLabelTextColor">@color/gray400</color>
+    <color name="lightDividerColor">@color/gray400</color>
+    <color name="lightElementBackgroundColor">@color/white</color>
+    <color name="lightGotoBackgroundColor">@color/red300</color>
+    <color name="lightGotoDividerColor">@color/white</color>
+    <color name="lightGotoTextColor">@color/white</color>
+    <color name="lightGreen100">#DCEDC8</color>
+    <color name="lightGreen200">#C5E1A5</color>
+    <color name="lightGreen300">#AED581</color>
+    <color name="lightGreen400">#9CCC65</color>
+    <color name="lightGreen50">#F1F8E9</color>
+    <color name="lightGreen500">#8BC34A</color>
+    <color name="lightGreen600">#7CB342</color>
+    <color name="lightGreen700">#689F38</color>
+    <color name="lightGreen800">#558B2F</color>
+    <color name="lightGreen900">#33691E</color>
+    <color name="lightGreenA100">#CCFF90</color>
+    <color name="lightGreenA200">#B2FF59</color>
+    <color name="lightGreenA400">#76FF03</color>
+    <color name="lightGreenA700">#64DD17</color>
+    <color name="lightMonthLabelTextColor">@color/blueGray200</color>
+    <color name="lightPickedDayBackgroundColor">@color/red300</color>
+    <color name="lightPickedDayInRangeBackgroundColor">@color/red300</color>
+    <color name="lightPickedDayInRangeLabelTextColor">@color/white</color>
+    <color name="lightPickedDayLabelTextColor">@color/white</color>
+    <color name="lightSelectionBarBackgroundColor">@color/blueGray500</color>
+    <color name="lightSelectionBarMultipleDaysItemBackgroundColor">@color/blueGray300</color>
+    <color name="lightSelectionBarMultipleDaysItemBottomLabelTextColor">@color/white</color>
+    <color name="lightSelectionBarMultipleDaysItemTopLabelTextColor">@color/white</color>
+    <color name="lightSelectionBarRangeDaysItemBackgroundColor">@color/blueGray300</color>
+    <color name="lightSelectionBarRangeDaysItemBottomLabelTextColor">@color/white</color>
+    <color name="lightSelectionBarRangeDaysItemTopLabelTextColor">@color/blueGray50</color>
+    <color name="lightSelectionBarSingleDayItemBottomLabelTextColor">@color/white</color>
+    <color name="lightSelectionBarSingleDayItemTopLabelTextColor">@color/blueGray50</color>
+    <color name="lightTodayLabelTextColor">@color/green400</color>
+    <color name="lightWeekLabelTextColor">@color/red300</color>
     <color name="light_gray">#c9cacf</color>
+    <color name="lime100">#F0F4C3</color>
+    <color name="lime200">#E6EE9C</color>
+    <color name="lime300">#DCE775</color>
+    <color name="lime400">#D4E157</color>
+    <color name="lime50">#F9FBE7</color>
+    <color name="lime500">#CDDC39</color>
+    <color name="lime600">#C0CA33</color>
+    <color name="lime700">#AFB42B</color>
+    <color name="lime800">#9E9D24</color>
+    <color name="lime900">#827717</color>
+    <color name="limeA100">#F4FF81</color>
+    <color name="limeA200">#EEFF41</color>
+    <color name="limeA400">#C6FF00</color>
+    <color name="limeA700">#AEEA00</color>
     <color name="m3_ref_palette_black">#ff000000</color>
     <color name="m3_ref_palette_error0">#ff000000</color>
     <color name="m3_ref_palette_error10">#ff410e0b</color>
@@ -1095,9 +1320,36 @@
     <color name="notification_action_color_filter">#ffffffff</color>
     <color name="notification_icon_bg_color">#ff9e9e9e</color>
     <color name="notification_material_background_media_default_color">#ff424242</color>
+    <color name="orange100">#FFE0B2</color>
+    <color name="orange200">#FFCC80</color>
+    <color name="orange300">#FFB74D</color>
+    <color name="orange400">#FFA726</color>
+    <color name="orange50">#FFF3E0</color>
+    <color name="orange500">#FF9800</color>
+    <color name="orange600">#FB8C00</color>
+    <color name="orange700">#F57C00</color>
+    <color name="orange800">#EF6C00</color>
+    <color name="orange900">#E65100</color>
+    <color name="orangeA100">#FFD180</color>
+    <color name="orangeA200">#FFAB40</color>
+    <color name="orangeA400">#FF9100</color>
+    <color name="orangeA700">#FF6D00</color>
     <color name="pink">#ff4fbe</color>
+    <color name="pink100">#F8BBD0</color>
+    <color name="pink200">#F48FB1</color>
+    <color name="pink300">#F06292</color>
+    <color name="pink400">#EC407A</color>
+    <color name="pink50">#FCE4EC</color>
+    <color name="pink500">#E91E63</color>
+    <color name="pink600">#D81B60</color>
+    <color name="pink700">#C2185B</color>
+    <color name="pink800">#AD1457</color>
+    <color name="pink900">#880E4F</color>
+    <color name="pinkA100">#FF80AB</color>
+    <color name="pinkA200">#FF4081</color>
+    <color name="pinkA400">#F50057</color>
+    <color name="pinkA700">#C51162</color>
     <color name="preference_fallback_accent_color">#ff008577</color>
-    <color name="pressColorHighlight">#1F515151</color>
     <color name="primary_dark_material_dark">@android:color/black</color>
     <color name="primary_dark_material_light">@color/material_grey_600</color>
     <color name="primary_material_dark">@color/material_grey_900</color>
@@ -1107,9 +1359,36 @@
     <color name="primary_text_disabled_material_dark">#4Dffffff</color>
     <color name="primary_text_disabled_material_light">#39000000</color>
     <color name="purple">#CF74FF</color>
+    <color name="purple100">#E1BEE7</color>
+    <color name="purple200">#CE93D8</color>
+    <color name="purple300">#BA68C8</color>
+    <color name="purple400">#AB47BC</color>
+    <color name="purple50">#F3E5F5</color>
+    <color name="purple500">#9C27B0</color>
+    <color name="purple600">#8E24AA</color>
+    <color name="purple700">#7B1FA2</color>
+    <color name="purple800">#6A1B9A</color>
+    <color name="purple900">#4A148C</color>
+    <color name="purpleA100">#EA80FC</color>
+    <color name="purpleA200">#E040FB</color>
+    <color name="purpleA400">#D500F9</color>
+    <color name="purpleA700">#AA00FF</color>
     <color name="purpleDark">#c860ff</color>
     <color name="red">#f44336</color>
-    <color name="rippleColorHighlight">#7F717171</color>
+    <color name="red100">#FFCDD2</color>
+    <color name="red200">#EF9A9A</color>
+    <color name="red300">#E57373</color>
+    <color name="red400">#EF5350</color>
+    <color name="red50">#FFEBEE</color>
+    <color name="red500">#F44336</color>
+    <color name="red600">#E53935</color>
+    <color name="red700">#D32F2F</color>
+    <color name="red800">#C62828</color>
+    <color name="red900">#B71C1C</color>
+    <color name="redA100">#FF8A80</color>
+    <color name="redA200">#FF5252</color>
+    <color name="redA400">#FF1744</color>
+    <color name="redA700">#D50000</color>
     <color name="ripple_material_dark">#33ffffff</color>
     <color name="ripple_material_light">#1f000000</color>
     <color name="rose">#ff4fbe</color>
@@ -1125,18 +1404,41 @@
     <color name="switch_thumb_disabled_material_light">#ffbdbdbd</color>
     <color name="switch_thumb_normal_material_dark">#ffbdbdbd</color>
     <color name="switch_thumb_normal_material_light">#fff1f1f1</color>
-    <color name="textColorGreen">#66BB6A</color>
-    <color name="textColorPrimary">#212121</color>
-    <color name="textColorRed">#EF5350</color>
-    <color name="textColorSecondary">#9A9A9A</color>
+    <color name="teal100">#B2DFDB</color>
+    <color name="teal200">#80CBC4</color>
+    <color name="teal300">#4DB6AC</color>
+    <color name="teal400">#26A69A</color>
+    <color name="teal50">#E0F2F1</color>
+    <color name="teal500">#009688</color>
+    <color name="teal600">#00897B</color>
+    <color name="teal700">#00796B</color>
+    <color name="teal800">#00695C</color>
+    <color name="teal900">#004D40</color>
+    <color name="tealA100">#A7FFEB</color>
+    <color name="tealA200">#64FFDA</color>
+    <color name="tealA400">#1DE9B6</color>
+    <color name="tealA700">#00BFA5</color>
     <color name="tooltip_background_dark">#e6616161</color>
     <color name="tooltip_background_light">#e6FFFFFF</color>
-    <color name="transWhite">#33FFFFFF</color>
     <color name="transparent">#00000000</color>
     <color name="twitter">#00bcf2</color>
     <color name="white">#FFFFFF</color>
     <color name="white_three">#f4f4f4</color>
     <color name="yellow">#FEB900</color>
+    <color name="yellow100">#FFF9C4</color>
+    <color name="yellow200">#FFF59D</color>
+    <color name="yellow300">#FFF176</color>
+    <color name="yellow400">#FFEE58</color>
+    <color name="yellow50">#FFFDE7</color>
+    <color name="yellow500">#FFEB3B</color>
+    <color name="yellow600">#FDD835</color>
+    <color name="yellow700">#FBC02D</color>
+    <color name="yellow800">#F9A825</color>
+    <color name="yellow900">#F57F17</color>
+    <color name="yellowA100">#FFFF8D</color>
+    <color name="yellowA200">#FFFF00</color>
+    <color name="yellowA400">#FFEA00</color>
+    <color name="yellowA700">#FFD600</color>
     <color name="yellowLight">#ffd54f</color>
     <dimen name="abc_action_bar_content_inset_material">16dp</dimen>
     <dimen name="abc_action_bar_content_inset_with_nav">72dp</dimen>
@@ -1251,6 +1553,7 @@
     <dimen name="compat_notification_large_icon_max_height">320dp</dimen>
     <dimen name="compat_notification_large_icon_max_width">320dp</dimen>
     <dimen name="def_drawer_elevation">10dp</dimen>
+    <dimen name="defaultButtonTextSize">15sp</dimen>
     <dimen name="defaultDayLabelTextSize">13sp</dimen>
     <dimen name="defaultDayLabelVerticalPadding">10dp</dimen>
     <dimen name="defaultDividerInsetBottom">0dp</dimen>
@@ -1258,9 +1561,17 @@
     <dimen name="defaultDividerInsetRight">0dp</dimen>
     <dimen name="defaultDividerInsetTop">0dp</dimen>
     <dimen name="defaultDividerThickness">1px</dimen>
+    <dimen name="defaultElementPaddingBottom">16dp</dimen>
+    <dimen name="defaultElementPaddingLeft">16dp</dimen>
+    <dimen name="defaultElementPaddingRight">16dp</dimen>
+    <dimen name="defaultElementPaddingTop">16dp</dimen>
+    <dimen name="defaultGapBetweenLines">6dp</dimen>
+    <dimen name="defaultGotoTextSize">20sp</dimen>
     <dimen name="defaultMonthLabelBottomPadding">16dp</dimen>
     <dimen name="defaultMonthLabelTextSize">20sp</dimen>
     <dimen name="defaultMonthLabelTopPadding">16dp</dimen>
+    <dimen name="defaultPickedDayRoundSquareCornerRadius">8dp</dimen>
+    <dimen name="defaultTwoLineTextSize">15sp</dimen>
     <dimen name="defaultWeekLabelBottomPadding">8dp</dimen>
     <dimen name="defaultWeekLabelTextSize">13sp</dimen>
     <dimen name="defaultWeekLabelTopPadding">8dp</dimen>
@@ -1722,12 +2033,14 @@
     <dimen name="material_helper_text_font_1_3_padding_horizontal">12dp</dimen>
     <dimen name="material_helper_text_font_1_3_padding_top">8dp</dimen>
     <dimen name="material_input_text_to_prefix_suffix_padding">2dp</dimen>
+    <dimen name="material_size_12">12dp</dimen>
     <dimen name="material_size_16">16dp</dimen>
     <dimen name="material_size_2">2dp</dimen>
     <dimen name="material_size_24">24dp</dimen>
     <dimen name="material_size_32">32dp</dimen>
     <dimen name="material_size_4">4dp</dimen>
     <dimen name="material_size_48">48dp</dimen>
+    <dimen name="material_size_64">64dp</dimen>
     <dimen name="material_size_8">8dp</dimen>
     <dimen name="material_textinput_default_width">245dp</dimen>
     <dimen name="material_textinput_max_width">488dp</dimen>
@@ -2007,6 +2320,8 @@
     <dimen name="subtitle_outline_width">2dp</dimen>
     <dimen name="subtitle_shadow_offset">2dp</dimen>
     <dimen name="subtitle_shadow_radius">2dp</dimen>
+    <dimen name="text_size_header_multi_large">26sp</dimen>
+    <dimen name="text_size_header_multi_small">12sp</dimen>
     <dimen name="text_size_large">20sp</dimen>
     <dimen name="text_size_normal">15sp</dimen>
     <dimen name="text_size_small">12sp</dimen>
@@ -2092,6 +2407,7 @@
     <item name="pooling_container_listener_holder_tag" type="id"/>
     <item name="progress_circular" type="id"/>
     <item name="progress_horizontal" type="id"/>
+    <item name="report_drawn" type="id"/>
     <item name="row_index_key" type="id"/>
     <item name="save_non_transition_alpha" type="id"/>
     <item name="save_overlay_view" type="id"/>
@@ -2244,11 +2560,11 @@
     <string name="abc_shareactionprovider_share_with_application">Share with <ns2:g example="Mail" id="application_name">%s</ns2:g></string>
     <string name="abc_toolbar_collapse_description">Collapse</string>
     <string name="accept_txt">Aceptar</string>
-    <string name="action_cancel">Cancel</string>
+    <string name="action_cancel">CANCEL</string>
     <string name="action_close">Cerrar</string>
     <string name="action_ok">OK</string>
-    <string name="action_select">Select</string>
-    <string name="action_today">Today</string>
+    <string name="action_select">SELECT</string>
+    <string name="action_today">TODAY</string>
     <string name="activity_intense">Intenso</string>
     <string name="activity_moderate">Moderado</string>
     <string name="activity_party">Festejo</string>
@@ -2362,7 +2678,7 @@
     <string name="daily_glu_label">Glucemia mg/dl</string>
     <string name="daily_hc_label">Gramos Carbohidratos</string>
     <string name="daily_share">Compartir</string>
-    <string name="defaultTransitionSpeedFactor">1.0</string>
+    <string name="defaultTransitionSpeedFactor" translatable="false">1.0</string>
     <string name="default_web_client_id" translatable="false">341853924281-84dftkcod2nu7r03g2c3mnog014imaag.apps.googleusercontent.com</string>
     <string name="delete_success">Eliminado exitosamente</string>
     <string name="dialog_category_label">Selecciona un tipo de medición</string>
@@ -6254,9 +6570,6 @@
     <item name="android:layout_gravity">center</item>
     <item name="android:textAlignment" ns1:ignore="NewApi">center</item>
   </style>
-    <style name="MyItemBackgroundStyle">
-        <item name="android:background">@drawable/ripple</item>
-    </style>
     <style name="Platform.AppCompat" parent="android:Theme.Holo">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowActionBar">false</item>
@@ -11238,16 +11551,6 @@
     <attr format="reference" name="checkedChip"/>
 
   </declare-styleable>
-    <declare-styleable name="ChoosePhotoHelper">
-        <attr format="dimension" name="curveWidth"/>
-        <attr format="dimension" name="flatWidth"/>
-        <attr format="dimension" name="flatHeight"/>
-        <attr format="color" name="bulgeColor"/>
-        <attr format="enum" name="bulgeType">
-            <enum name="bulge" value="0"/>
-            <enum name="notch" value="1"/>
-        </attr>
-    </declare-styleable>
     <declare-styleable name="CircleImageView">
         <attr format="dimension" name="civ_border_width"/>
         <attr format="color" name="civ_border_color"/>
@@ -13754,9 +14057,12 @@
         <attr name="weekLabelTextColor"/>
         <attr name="dayLabelTextColor"/>
         <attr name="todayLabelTextColor"/>
-        <attr name="pickedDayLabelTextColor"/>
-        <attr name="pickedDayCircleColor"/>
         <attr name="disabledDayLabelTextColor"/>
+        <attr name="adjacentMonthDayLabelTextColor"/>
+        <attr name="pickedDayLabelTextColor"/>
+        <attr name="pickedDayInRangeLabelTextColor"/>
+        <attr name="pickedDayBackgroundColor"/>
+        <attr name="pickedDayInRangeBackgroundColor"/>
 
         <attr name="monthLabelTextSize"/>
         <attr name="weekLabelTextSize"/>
@@ -13768,8 +14074,12 @@
         <attr name="weekLabelBottomPadding"/>
         <attr name="dayLabelVerticalPadding"/>
 
-        <attr name="showTwoWeeksInLandscape"/>
+        <attr name="pickedDayRoundSquareCornerRadius"/>
 
+        <attr name="showTwoWeeksInLandscape"/>
+        <attr name="showAdjacentMonthDays"/>
+
+        <attr name="pickedDayBackgroundShapeType"/>
         <attr name="calendarType"/>
 
         <attr name="animateSelection"/>
@@ -13786,6 +14096,11 @@
         <attr format="dimension" name="dividerInsetTop"/>
         <attr format="dimension" name="dividerInsetBottom"/>
 
+        <attr format="dimension" name="elementPaddingLeft"/>
+        <attr format="dimension" name="elementPaddingRight"/>
+        <attr format="dimension" name="elementPaddingTop"/>
+        <attr format="dimension" name="elementPaddingBottom"/>
+
         <attr format="enum" name="flingOrientation">
             <enum name="vertical" value="0"/>
             <enum name="horizontal" value="0"/>
@@ -13797,9 +14112,12 @@
         <attr name="weekLabelTextColor"/>
         <attr name="dayLabelTextColor"/>
         <attr name="todayLabelTextColor"/>
-        <attr name="pickedDayLabelTextColor"/>
-        <attr name="pickedDayCircleColor"/>
         <attr name="disabledDayLabelTextColor"/>
+        <attr name="adjacentMonthDayLabelTextColor"/>
+        <attr name="pickedDayLabelTextColor"/>
+        <attr name="pickedDayInRangeLabelTextColor"/>
+        <attr name="pickedDayBackgroundColor"/>
+        <attr name="pickedDayInRangeBackgroundColor"/>
 
         <attr name="monthLabelTextSize"/>
         <attr name="weekLabelTextSize"/>
@@ -13811,8 +14129,12 @@
         <attr name="weekLabelBottomPadding"/>
         <attr name="dayLabelVerticalPadding"/>
 
-        <attr name="showTwoWeeksInLandscape"/>
+        <attr name="pickedDayRoundSquareCornerRadius"/>
 
+        <attr name="showTwoWeeksInLandscape"/>
+        <attr name="showAdjacentMonthDays"/>
+
+        <attr name="pickedDayBackgroundShapeType"/>
         <attr name="calendarType"/>
 
         <attr name="animateSelection"/>
@@ -14016,6 +14338,33 @@
 
 <attr format="reference|string" name="scopeUris"/>
 </declare-styleable>
+    <declare-styleable name="SimpleMonthView">
+
+        <attr name="dayLabelTextColor"/>
+        <attr name="todayLabelTextColor"/>
+        <attr name="disabledDayLabelTextColor"/>
+        <attr name="adjacentMonthDayLabelTextColor"/>
+        <attr name="pickedDayLabelTextColor"/>
+        <attr name="pickedDayInRangeLabelTextColor"/>
+        <attr name="pickedDayBackgroundColor"/>
+        <attr name="pickedDayInRangeBackgroundColor"/>
+
+        <attr name="dayLabelTextSize"/>
+
+        <attr name="dayLabelVerticalPadding"/>
+
+        <attr name="pickedDayRoundSquareCornerRadius"/>
+
+        <attr name="showTwoWeeksInLandscape"/>
+        <attr name="showAdjacentMonthDays"/>
+
+        <attr name="pickedDayBackgroundShapeType"/>
+        <attr name="calendarType"/>
+
+        <attr name="animateSelection"/>
+        <attr name="animationDuration"/>
+
+    </declare-styleable>
     <declare-styleable name="Slider">
     <attr name="android:value"/>
     <attr name="android:valueFrom"/>
@@ -14848,6 +15197,19 @@
             <flag name="disableIntraAutoTransition" value="2"/>
             <flag name="onInterceptTouchReturnSwipe" value="4"/>
         </attr>
+    </declare-styleable>
+    <declare-styleable name="TwoLinesTextView">
+        <attr format="string" name="topLabelText"/>
+        <attr format="string" name="bottomLabelText"/>
+
+        <attr format="color" name="topLabelTextColor"/>
+        <attr format="color" name="bottomLabelTextColor"/>
+
+        <attr format="dimension" name="topLabelTextSize"/>
+        <attr format="dimension" name="bottomLabelTextSize"/>
+
+        <attr format="dimension" name="preferredMinWidth"/>
+        <attr format="dimension" name="gapBetweenLines"/>
     </declare-styleable>
     <declare-styleable name="Variant">
         <attr format="dimension" name="region_widthLessThan"/>

@@ -1,5 +1,6 @@
-com.sugarcoachpremium:xml/provider_paths = 0x7f150002
-com.sugarcoachpremium:xml/image_share_filepaths = 0x7f150000
+com.sugarcoachpremium:xml/provider_paths = 0x7f150003
+com.sugarcoachpremium:xml/image_share_filepaths = 0x7f150001
+com.sugarcoachpremium:xml/ad_services_config = 0x7f150000
 com.sugarcoachpremium:styleable/com_facebook_login_view = 0x7f1400bc
 com.sugarcoachpremium:styleable/ViewTransition = 0x7f1400b9
 com.sugarcoachpremium:styleable/ViewStubCompat = 0x7f1400b8
@@ -2034,7 +2035,7 @@ com.sugarcoachpremium:color/m3_navigation_bar_item_with_indicator_icon_tint = 0x
 com.sugarcoachpremium:string/treatment_insu_basal_label = 0x7f1201f0
 com.sugarcoachpremium:id/treatment_sincronizar_medidor = 0x7f0a039e
 com.sugarcoachpremium:id/mtrl_internal_children_alpha_tag = 0x7f0a022d
-com.sugarcoachpremium:xml/network_security_config = 0x7f150001
+com.sugarcoachpremium:xml/network_security_config = 0x7f150002
 com.sugarcoachpremium:macro/m3_comp_filled_card_container_color = 0x7f0e0031
 com.sugarcoachpremium:id/mtrl_calendar_year_selector_frame = 0x7f0a022a
 com.sugarcoachpremium:dimen/defaultWeekLabelTopPadding = 0x7f070086
