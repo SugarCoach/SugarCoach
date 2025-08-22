@@ -56,6 +56,7 @@ android {
     }
     buildFeatures {
         viewBinding true
+        buildConfig true  // AGREGADO NUEVO
     }
     namespace 'com.sugarcoachpremium'
     lint {
@@ -150,7 +151,7 @@ dependencies {
 
     //google
     implementation(platform('com.google.firebase:firebase-bom:34.1.0'))
-    implementation("com.google.firebase:firebase-auth-ktx")
+    implementation('com.google.firebase:firebase-auth-ktx:23.2.1')
     implementation('com.google.android.gms:play-services-auth:21.4.0')
     //implementation("com.google.gms:google-services:4.4.0")
 

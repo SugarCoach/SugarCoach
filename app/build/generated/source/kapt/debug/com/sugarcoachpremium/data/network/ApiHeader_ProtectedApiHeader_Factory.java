@@ -2,10 +2,11 @@ package com.sugarcoachpremium.data.network;
 
 import dagger.internal.DaggerGenerated;
 import dagger.internal.Factory;
+import dagger.internal.Provider;
 import dagger.internal.QualifierMetadata;
 import dagger.internal.ScopeMetadata;
 import javax.annotation.processing.Generated;
-import javax.inject.Provider;
+import org.jetbrains.annotations.Nullable;
 
 @ScopeMetadata
 @QualifierMetadata
@@ -18,12 +19,15 @@ import javax.inject.Provider;
     "unchecked",
     "rawtypes",
     "KotlinInternal",
-    "KotlinInternalInJava"
+    "KotlinInternalInJava",
+    "cast",
+    "deprecation",
+    "nullness:initialization.field.uninitialized"
 })
 public final class ApiHeader_ProtectedApiHeader_Factory implements Factory<ApiHeader.ProtectedApiHeader> {
   private final Provider<String> accessTokenProvider;
 
-  public ApiHeader_ProtectedApiHeader_Factory(Provider<String> accessTokenProvider) {
+  private ApiHeader_ProtectedApiHeader_Factory(Provider<String> accessTokenProvider) {
     this.accessTokenProvider = accessTokenProvider;
   }
 
@@ -36,7 +40,7 @@ public final class ApiHeader_ProtectedApiHeader_Factory implements Factory<ApiHe
     return new ApiHeader_ProtectedApiHeader_Factory(accessTokenProvider);
   }
 
-  public static ApiHeader.ProtectedApiHeader newInstance(String accessToken) {
+  public static ApiHeader.ProtectedApiHeader newInstance(@Nullable String accessToken) {
     return new ApiHeader.ProtectedApiHeader(accessToken);
   }
 }

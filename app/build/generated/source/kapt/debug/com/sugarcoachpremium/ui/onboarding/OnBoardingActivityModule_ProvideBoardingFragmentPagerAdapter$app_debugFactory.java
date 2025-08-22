@@ -5,10 +5,10 @@ import com.sugarcoachpremium.ui.onboarding.view.OnBoardingActivity;
 import dagger.internal.DaggerGenerated;
 import dagger.internal.Factory;
 import dagger.internal.Preconditions;
+import dagger.internal.Provider;
 import dagger.internal.QualifierMetadata;
 import dagger.internal.ScopeMetadata;
 import javax.annotation.processing.Generated;
-import javax.inject.Provider;
 
 @ScopeMetadata
 @QualifierMetadata
@@ -21,14 +21,17 @@ import javax.inject.Provider;
     "unchecked",
     "rawtypes",
     "KotlinInternal",
-    "KotlinInternalInJava"
+    "KotlinInternalInJava",
+    "cast",
+    "deprecation",
+    "nullness:initialization.field.uninitialized"
 })
 public final class OnBoardingActivityModule_ProvideBoardingFragmentPagerAdapter$app_debugFactory implements Factory<BoardingFragmentPagerAdapter> {
   private final OnBoardingActivityModule module;
 
   private final Provider<OnBoardingActivity> contextProvider;
 
-  public OnBoardingActivityModule_ProvideBoardingFragmentPagerAdapter$app_debugFactory(
+  private OnBoardingActivityModule_ProvideBoardingFragmentPagerAdapter$app_debugFactory(
       OnBoardingActivityModule module, Provider<OnBoardingActivity> contextProvider) {
     this.module = module;
     this.contextProvider = contextProvider;

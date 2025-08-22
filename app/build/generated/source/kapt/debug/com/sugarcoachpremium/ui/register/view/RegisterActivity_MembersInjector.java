@@ -6,9 +6,9 @@ import com.sugarcoachpremium.ui.register.presenter.RegisterPresenterImp;
 import dagger.MembersInjector;
 import dagger.internal.DaggerGenerated;
 import dagger.internal.InjectedFieldSignature;
+import dagger.internal.Provider;
 import dagger.internal.QualifierMetadata;
 import javax.annotation.processing.Generated;
-import javax.inject.Provider;
 
 @QualifierMetadata
 @DaggerGenerated
@@ -20,7 +20,10 @@ import javax.inject.Provider;
     "unchecked",
     "rawtypes",
     "KotlinInternal",
-    "KotlinInternalInJava"
+    "KotlinInternalInJava",
+    "cast",
+    "deprecation",
+    "nullness:initialization.field.uninitialized"
 })
 public final class RegisterActivity_MembersInjector implements MembersInjector<RegisterActivity> {
   private final Provider<RegisterPresenterImp<RegisterView, RegisterInteractorImp>> presenterProvider;
@@ -37,7 +40,7 @@ public final class RegisterActivity_MembersInjector implements MembersInjector<R
 
   private final Provider<CategoryAdapter> adapterProvider;
 
-  public RegisterActivity_MembersInjector(
+  private RegisterActivity_MembersInjector(
       Provider<RegisterPresenterImp<RegisterView, RegisterInteractorImp>> presenterProvider,
       Provider<LinearLayoutManager> managerProvider,
       Provider<LinearLayoutManager> managerEmotionsProvider,

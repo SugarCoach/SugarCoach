@@ -5,10 +5,10 @@ import com.sugarcoachpremium.ui.splash.interactor.SplashInteractorImp;
 import dagger.internal.DaggerGenerated;
 import dagger.internal.Factory;
 import dagger.internal.Preconditions;
+import dagger.internal.Provider;
 import dagger.internal.QualifierMetadata;
 import dagger.internal.ScopeMetadata;
 import javax.annotation.processing.Generated;
-import javax.inject.Provider;
 
 @ScopeMetadata
 @QualifierMetadata
@@ -21,14 +21,17 @@ import javax.inject.Provider;
     "unchecked",
     "rawtypes",
     "KotlinInternal",
-    "KotlinInternalInJava"
+    "KotlinInternalInJava",
+    "cast",
+    "deprecation",
+    "nullness:initialization.field.uninitialized"
 })
 public final class SplashActivityModule_ProvideSplashInteractor$app_debugFactory implements Factory<SplashInteractorImp> {
   private final SplashActivityModule module;
 
   private final Provider<SplashInteractor> splashInteractorProvider;
 
-  public SplashActivityModule_ProvideSplashInteractor$app_debugFactory(SplashActivityModule module,
+  private SplashActivityModule_ProvideSplashInteractor$app_debugFactory(SplashActivityModule module,
       Provider<SplashInteractor> splashInteractorProvider) {
     this.module = module;
     this.splashInteractorProvider = splashInteractorProvider;

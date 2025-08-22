@@ -5,9 +5,9 @@ import com.sugarcoachpremium.ui.forgot.presenter.ForgotPresenterImp;
 import dagger.MembersInjector;
 import dagger.internal.DaggerGenerated;
 import dagger.internal.InjectedFieldSignature;
+import dagger.internal.Provider;
 import dagger.internal.QualifierMetadata;
 import javax.annotation.processing.Generated;
-import javax.inject.Provider;
 
 @QualifierMetadata
 @DaggerGenerated
@@ -19,12 +19,15 @@ import javax.inject.Provider;
     "unchecked",
     "rawtypes",
     "KotlinInternal",
-    "KotlinInternalInJava"
+    "KotlinInternalInJava",
+    "cast",
+    "deprecation",
+    "nullness:initialization.field.uninitialized"
 })
 public final class ForgotActivity_MembersInjector implements MembersInjector<ForgotActivity> {
   private final Provider<ForgotPresenterImp<ForgotView, ForgotInteractorImp>> presenterProvider;
 
-  public ForgotActivity_MembersInjector(
+  private ForgotActivity_MembersInjector(
       Provider<ForgotPresenterImp<ForgotView, ForgotInteractorImp>> presenterProvider) {
     this.presenterProvider = presenterProvider;
   }

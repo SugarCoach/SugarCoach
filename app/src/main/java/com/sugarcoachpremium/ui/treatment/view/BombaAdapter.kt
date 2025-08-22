@@ -11,6 +11,8 @@ import java.util.*
 
 class BombaAdapter (private val activity: TreatmentActivity) : RecyclerView.Adapter<RecyclerView.ViewHolder>(),
     PowerSpinnerInterface<BasalItem> {
+
+    override var index: Int = 0
     override lateinit var spinnerView: PowerSpinnerView
     override var onSpinnerItemSelectedListener: OnSpinnerItemSelectedListener<BasalItem>? = null
     private var itemList: MutableList<BasalItem> = Collections.emptyList()

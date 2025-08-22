@@ -1,10 +1,20 @@
 {
     "logs": [
         {
-            "outputFile": "com.sugarcoachpremium.app-mergeDebugResources-67:/values-sw600dp-v13/values-sw600dp-v13.xml",
+            "outputFile": "com.sugarcoachpremium.app-mergeDebugResources-101:/values-sw600dp-v13/values-sw600dp-v13.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\isaro\\.gradle\\caches\\transforms-4\\955fbd1fa769e291d2d6c6105f067248\\transformed\\jetified-materialdatetimepicker-4.2.3\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+                    "source": "C:\\Users\\Deb-PC\\.gradle\\caches\\8.13\\transforms\\6cbeae85c9de8820ec18c256803d515c\\transformed\\appcompat-1.7.0\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,124,193,263,337,413,472,543",
+                        "endColumns": "68,68,69,73,75,58,70,67",
+                        "endOffsets": "119,188,258,332,408,467,538,606"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Deb-PC\\.gradle\\caches\\8.13\\transforms\\867c3b8bd832cb6ae1355f75f3750e2a\\transformed\\jetified-materialdatetimepicker-4.2.3\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -21,17 +31,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\isaro\\.gradle\\caches\\transforms-4\\b608ec51446d50d340888811c9f870f0\\transformed\\appcompat-1.6.1\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,124,193,263,337,413,472,543",
-                        "endColumns": "68,68,69,73,75,58,70,67",
-                        "endOffsets": "119,188,258,332,408,467,538,606"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\isaro\\.gradle\\caches\\transforms-4\\5ddf11f8c314c0cbe74a05ff34b940fb\\transformed\\material-1.9.0\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+                    "source": "C:\\Users\\Deb-PC\\.gradle\\caches\\8.13\\transforms\\12dc262608126979a07cdb0a5f2a57b3\\transformed\\material-1.9.0\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,10,11,12,13,14",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4",

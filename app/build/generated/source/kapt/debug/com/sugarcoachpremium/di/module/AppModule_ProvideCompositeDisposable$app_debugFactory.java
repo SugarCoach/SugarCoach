@@ -19,12 +19,15 @@ import javax.annotation.processing.Generated;
     "unchecked",
     "rawtypes",
     "KotlinInternal",
-    "KotlinInternalInJava"
+    "KotlinInternalInJava",
+    "cast",
+    "deprecation",
+    "nullness:initialization.field.uninitialized"
 })
 public final class AppModule_ProvideCompositeDisposable$app_debugFactory implements Factory<CompositeDisposable> {
   private final AppModule module;
 
-  public AppModule_ProvideCompositeDisposable$app_debugFactory(AppModule module) {
+  private AppModule_ProvideCompositeDisposable$app_debugFactory(AppModule module) {
     this.module = module;
   }
 

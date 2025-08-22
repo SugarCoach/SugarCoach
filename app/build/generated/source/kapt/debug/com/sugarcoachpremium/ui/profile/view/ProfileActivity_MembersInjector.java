@@ -6,9 +6,9 @@ import com.sugarcoachpremium.ui.profile.presenter.ProfilePresenterImp;
 import dagger.MembersInjector;
 import dagger.internal.DaggerGenerated;
 import dagger.internal.InjectedFieldSignature;
+import dagger.internal.Provider;
 import dagger.internal.QualifierMetadata;
 import javax.annotation.processing.Generated;
-import javax.inject.Provider;
 
 @QualifierMetadata
 @DaggerGenerated
@@ -20,7 +20,10 @@ import javax.inject.Provider;
     "unchecked",
     "rawtypes",
     "KotlinInternal",
-    "KotlinInternalInJava"
+    "KotlinInternalInJava",
+    "cast",
+    "deprecation",
+    "nullness:initialization.field.uninitialized"
 })
 public final class ProfileActivity_MembersInjector implements MembersInjector<ProfileActivity> {
   private final Provider<ProfilePresenterImp<ProfileView, ProfileInteractorImp>> presenterProvider;
@@ -29,7 +32,7 @@ public final class ProfileActivity_MembersInjector implements MembersInjector<Pr
 
   private final Provider<ProfileAdapter> adapterProvider;
 
-  public ProfileActivity_MembersInjector(
+  private ProfileActivity_MembersInjector(
       Provider<ProfilePresenterImp<ProfileView, ProfileInteractorImp>> presenterProvider,
       Provider<GridLayoutManager> managerProvider, Provider<ProfileAdapter> adapterProvider) {
     this.presenterProvider = presenterProvider;

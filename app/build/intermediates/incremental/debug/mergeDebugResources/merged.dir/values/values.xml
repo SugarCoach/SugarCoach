@@ -590,6 +590,14 @@
     <attr format="boolean" name="singleSelection"/>
     <attr format="float" name="sizePercent"/>
     <attr format="reference" name="sliderStyle"/>
+    <attr format="enum" name="splitLayoutDirection">
+        <enum name="locale" value="0"/>
+        <enum name="ltr" value="1"/>
+        <enum name="rtl" value="2"/>
+    </attr>
+    <attr format="dimension" name="splitMinSmallestWidth"/>
+    <attr format="dimension" name="splitMinWidth"/>
+    <attr format="float" name="splitRatio"/>
     <attr format="boolean" name="state_with_icon"/>
     <attr format="float" name="stiffness"/>
     <attr format="color" name="strokeColor"/>
@@ -923,8 +931,6 @@
     <color name="foreground_material_dark">@android:color/white</color>
     <color name="foreground_material_light">@android:color/black</color>
     <color name="google">#d34836</color>
-    <color name="grass">#008577</color>
-    <color name="grassDark">#00574B</color>
     <color name="gray">#D7D7D7</color>
     <color name="gray100">#F5F5F5</color>
     <color name="gray200">#EEEEEE</color>
@@ -971,7 +977,6 @@
     <color name="indigoA200">#536DFE</color>
     <color name="indigoA400">#3D5AFE</color>
     <color name="indigoA700">#304FFE</color>
-    <color name="lavender">#e5de63b3</color>
     <color name="lightAdjacentMonthDayLabelTextColor">@color/gray400</color>
     <color name="lightBlue100">#B3E5FC</color>
     <color name="lightBlue200">#81D4FA</color>
@@ -1349,6 +1354,7 @@
     <color name="pinkA200">#FF4081</color>
     <color name="pinkA400">#F50057</color>
     <color name="pinkA700">#C51162</color>
+    <color name="powerspinner_scrollbar">@android:color/transparent</color>
     <color name="preference_fallback_accent_color">#ff008577</color>
     <color name="primary_dark_material_dark">@android:color/black</color>
     <color name="primary_dark_material_light">@color/material_grey_600</color>
@@ -1423,7 +1429,6 @@
     <color name="transparent">#00000000</color>
     <color name="twitter">#00bcf2</color>
     <color name="white">#FFFFFF</color>
-    <color name="white_three">#f4f4f4</color>
     <color name="yellow">#FEB900</color>
     <color name="yellow100">#FFF9C4</color>
     <color name="yellow200">#FFF59D</color>
@@ -2305,7 +2310,7 @@
     <dimen name="notification_main_column_padding_top">10dp</dimen>
     <dimen name="notification_media_narrow_margin">@dimen/notification_content_margin_start</dimen>
     <dimen name="notification_right_icon_size">16dp</dimen>
-    <dimen name="notification_right_side_padding_top">2dp</dimen>
+    <dimen name="notification_right_side_padding_top">4dp</dimen>
     <dimen name="notification_small_icon_background_padding">3dp</dimen>
     <dimen name="notification_small_icon_size_as_large">24dp</dimen>
     <dimen name="notification_subtext_size">13sp</dimen>
@@ -2316,6 +2321,8 @@
     <dimen name="preference_seekbar_padding_horizontal">0dp</dimen>
     <dimen name="preference_seekbar_padding_vertical">15dp</dimen>
     <dimen name="preference_seekbar_value_minWidth">36dp</dimen>
+    <dimen name="preferences_detail_width">300dp</dimen>
+    <dimen name="preferences_header_width">384dp</dimen>
     <dimen name="subtitle_corner_radius">2dp</dimen>
     <dimen name="subtitle_outline_width">2dp</dimen>
     <dimen name="subtitle_shadow_offset">2dp</dimen>
@@ -2374,13 +2381,20 @@
     <item name="action_bar_spinner" type="id"/>
     <item name="action_menu_divider" type="id"/>
     <item name="action_menu_presenter" type="id"/>
+    <item name="androidx_compose_ui_view_composition_context" type="id"/>
+    <item name="androidx_window_activity_scope" type="id"/>
     <item name="calligraphy_tag_id" type="id"/>
+    <item name="compose_view_saveable_id_tag" type="id"/>
+    <item name="consume_window_insets_tag" type="id"/>
     <item name="dataBinding" type="id"/>
     <item name="fragment_container_view_tag" type="id"/>
     <item name="ghost_view" type="id"/>
     <item name="ghost_view_holder" type="id"/>
     <item name="glide_custom_view_target_tag" type="id"/>
+    <item name="hide_graphics_layer_in_inspector_tag" type="id"/>
+    <item name="hide_in_inspector_tag" type="id"/>
     <item name="home" type="id"/>
+    <item name="inspection_slot_table_set" type="id"/>
     <item name="is_pooling_container_tag" type="id"/>
     <item name="item_touch_helper_previous_elevation" type="id"/>
     <item name="line1" type="id"/>
@@ -2405,6 +2419,9 @@
     <item name="onDateChanged" type="id"/>
     <item name="parent_matrix" type="id"/>
     <item name="pooling_container_listener_holder_tag" type="id"/>
+    <item name="preferences_detail" type="id"/>
+    <item name="preferences_header" type="id"/>
+    <item name="preferences_sliding_pane_layout" type="id"/>
     <item name="progress_circular" type="id"/>
     <item name="progress_horizontal" type="id"/>
     <item name="report_drawn" type="id"/>
@@ -2448,11 +2465,13 @@
     <item name="up" type="id"/>
     <item name="view_offset_helper" type="id"/>
     <item name="view_transition" type="id"/>
+    <id name="view_tree_disjoint_parent"/>
     <id name="view_tree_lifecycle_owner"/>
     <id name="view_tree_on_back_pressed_dispatcher_owner"/>
     <id name="view_tree_saved_state_registry_owner"/>
     <id name="view_tree_view_model_store_owner"/>
     <item name="visible_removing_fragment_view_tag" type="id"/>
+    <item name="wrapped_composition_tag" type="id"/>
     <integer name="abc_config_activityDefaultDur">220</integer>
     <integer name="abc_config_activityShortDur">150</integer>
     <integer name="app_bar_elevation_anim_duration">150</integer>
@@ -2496,6 +2515,7 @@
     <integer name="m3_sys_shape_corner_large_corner_family">0</integer>
     <integer name="m3_sys_shape_corner_medium_corner_family">0</integer>
     <integer name="m3_sys_shape_corner_small_corner_family">0</integer>
+    <integer name="m3c_window_layout_in_display_cutout_mode">1</integer>
     <integer name="material_motion_duration_long_1">300</integer>
     <integer name="material_motion_duration_long_2">350</integer>
     <integer name="material_motion_duration_medium_1">200</integer>
@@ -2524,6 +2544,8 @@
     <integer name="mtrl_view_gone">2</integer>
     <integer name="mtrl_view_invisible">1</integer>
     <integer name="mtrl_view_visible">0</integer>
+    <integer name="preferences_detail_pane_weight">1</integer>
+    <integer name="preferences_header_pane_weight">0</integer>
     <integer name="scanner_rect_height">230</integer>
     <integer name="scanner_rect_width">230</integer>
     <integer name="show_password_duration">200</integer>
@@ -2569,7 +2591,9 @@
     <string name="activity_moderate">Moderado</string>
     <string name="activity_party">Festejo</string>
     <string name="activity_sedentary">Sedentario</string>
+    <string name="android.credentials.TYPE_PASSWORD_CREDENTIAL">Password</string>
     <string name="android_animations_lib_name">AndroidAnimations</string>
+    <string name="androidx.credentials.TYPE_PUBLIC_KEY_CREDENTIAL">Passkey</string>
     <string name="androidx_startup" translatable="false">androidx.startup</string>
     <string name="app_name">SugarCoach</string>
     <string name="appbar_scrolling_view_behavior" translatable="false">com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior</string>
@@ -2601,7 +2625,10 @@
     <string name="character_counter_pattern" translatable="false">%1$d/%2$d</string>
     <string name="choose_photo_using">Tomar foto con …</string>
     <string name="clear_text_end_icon_content_description">Clear text</string>
-    <string name="com.crashlytics.android.build_id" ns1:ignore="UnusedResources,TypographyDashes" translatable="false">00000000000000000000000000000000</string>
+    <string name="close_drawer">"Close navigation menu"</string>
+    <string name="close_sheet">"Close sheet"</string>
+    <string name="com.google.firebase.crashlytics.mapping_file_id" ns1:ignore="UnusedResources,TypographyDashes" translatable="false">00000000000000000000000000000000</string>
+    <string name="com.google.firebase.crashlytics.version_control_info">""</string>
     <string name="com_facebook_device_auth_instructions">Visit &lt;b>facebook.com/device&lt;/b> and enter the code shown above.</string>
     <string name="com_facebook_image_download_unknown_error">Unexpected error while downloading an image.</string>
     <string name="com_facebook_internet_permission_error_message">WebView login requires INTERNET permission</string>
@@ -2679,12 +2706,15 @@
     <string name="daily_hc_label">Gramos Carbohidratos</string>
     <string name="daily_share">Compartir</string>
     <string name="defaultTransitionSpeedFactor" translatable="false">1.0</string>
+    <string name="default_error_message">"Invalid input"</string>
+    <string name="default_popup_window_title" ns1:ignore="ExtraTranslation">"Pop-Up Window"</string>
     <string name="default_web_client_id" translatable="false">341853924281-84dftkcod2nu7r03g2c3mnog014imaag.apps.googleusercontent.com</string>
     <string name="delete_success">Eliminado exitosamente</string>
     <string name="dialog_category_label">Selecciona un tipo de medición</string>
     <string name="dialog_comentary_hint">Escribe un comentario</string>
     <string name="dialog_comentary_label">Agrega un comentario</string>
     <string name="dialog_comentary_save">Guardar</string>
+    <string name="dropdown_menu">"Dropdown menu"</string>
     <string name="email">Email</string>
     <string name="empty_codigo_error_message">El codigo no puede estar vacio</string>
     <string name="empty_email_error_message">El mail no puede estar vacio</string>
@@ -2720,6 +2750,8 @@
     <string name="hide_bottom_view_on_scroll_behavior" translatable="false">com.google.android.material.behavior.HideBottomViewOnScrollBehavior</string>
     <string name="hint">Lorem</string>
     <string description="Content description for an icon that appears in the title area of a dialog" name="icon_content_description">Dialog Icon</string>
+    <string name="in_progress">In progress</string>
+    <string name="indeterminate">Partially checked</string>
     <string name="info_carbono">Acá debes registrar las unidades de insulina rápida que debes aplicarte respecto a los carbohidratos que estas por ingerir según las indicaciones del médico. Esta corrección por Hidratos se denomina Bolo.</string>
     <string name="info_control">El control parental permite que los padres puedan conocer el estado de salud de su hijo en cualquier momento y en cualquier lugar. Funciona como un perfil espejo de la cuenta principal. Le permite ver los valores cargados, pero no le permite editar, ni cambiar nada. El padre, debe descargar primero la aplicación y leer el código QR de la cuenta principal, cuando hacen Login por primera vez. En la pantalla Login encontrará la opción Soy Padre y eso le permitirá escanear el código QR mostrado a continuación.</string>
     <string name="info_geo">En caso de enviar un SMS de emergencia, esta opción activa también la geolocalización del usuario, para permitir que llegue atención urgente.</string>
@@ -2763,6 +2795,67 @@
     <string name="m3_sys_motion_easing_standard" translatable="false">cubic-bezier(0.2, 0, 0, 1)</string>
     <string name="m3_sys_motion_easing_standard_accelerate" translatable="false">cubic-bezier(0.3, 0, 1, 1)</string>
     <string name="m3_sys_motion_easing_standard_decelerate" translatable="false">cubic-bezier(0, 0, 0, 1)</string>
+    <string name="m3c_bottom_sheet_collapse_description">Collapse bottom sheet</string>
+    <string name="m3c_bottom_sheet_dismiss_description">Dismiss bottom sheet</string>
+    <string name="m3c_bottom_sheet_drag_handle_description">Drag handle</string>
+    <string name="m3c_bottom_sheet_expand_description">Expand bottom sheet</string>
+    <string name="m3c_bottom_sheet_pane_title">Bottom Sheet</string>
+    <string name="m3c_date_input_headline">Entered date</string>
+    <string name="m3c_date_input_headline_description">Entered date: %1$s</string>
+    <string name="m3c_date_input_invalid_for_pattern">Date does not match expected pattern: %1$s</string>
+    <string name="m3c_date_input_invalid_not_allowed">Date not allowed: %1$s</string>
+    <string name="m3c_date_input_invalid_year_range">
+        Date out of expected year range %1$s - %2$s
+    </string>
+    <string name="m3c_date_input_label">Date</string>
+    <string name="m3c_date_input_no_input_description">None</string>
+    <string name="m3c_date_input_title">Select date</string>
+    <string name="m3c_date_picker_headline">"Selected date"</string>
+    <string name="m3c_date_picker_headline_description">Current selection: %1$s</string>
+    <string name="m3c_date_picker_navigate_to_year_description">Navigate to year %1$s</string>
+    <string name="m3c_date_picker_no_selection_description">None</string>
+    <string name="m3c_date_picker_scroll_to_earlier_years">Scroll to show earlier years</string>
+    <string name="m3c_date_picker_scroll_to_later_years">Scroll to show later years</string>
+    <string name="m3c_date_picker_switch_to_calendar_mode">Switch to calendar input mode</string>
+    <string name="m3c_date_picker_switch_to_day_selection">
+        "Swipe to select a year, or tap to switch back to selecting a day"
+    </string>
+    <string name="m3c_date_picker_switch_to_input_mode">Switch to text input mode</string>
+    <string name="m3c_date_picker_switch_to_next_month">"Change to next month"</string>
+    <string name="m3c_date_picker_switch_to_previous_month">"Change to previous month"</string>
+    <string name="m3c_date_picker_switch_to_year_selection">"Switch to selecting a year"</string>
+    <string name="m3c_date_picker_title">"Select date"</string>
+    <string name="m3c_date_picker_today_description">Today</string>
+    <string name="m3c_date_picker_year_picker_pane_title">Year picker visible</string>
+    <string name="m3c_date_range_input_invalid_range_input">Invalid date range input</string>
+    <string name="m3c_date_range_input_title">Enter dates</string>
+    <string name="m3c_date_range_picker_day_in_range">In range</string>
+    <string name="m3c_date_range_picker_end_headline">End date</string>
+    <string name="m3c_date_range_picker_scroll_to_next_month">Scroll to show the next month</string>
+    <string name="m3c_date_range_picker_scroll_to_previous_month">Scroll to show the previous month</string>
+    <string name="m3c_date_range_picker_start_headline">Start date</string>
+    <string name="m3c_date_range_picker_title">Select dates</string>
+    <string name="m3c_dialog">"Dialog"</string>
+    <string name="m3c_dropdown_menu_collapsed">Collapsed</string>
+    <string name="m3c_dropdown_menu_expanded">Expanded</string>
+    <string name="m3c_dropdown_menu_toggle">Toggle dropdown menu</string>
+    <string name="m3c_search_bar_search">Search</string>
+    <string name="m3c_snackbar_dismiss">Dismiss</string>
+    <string name="m3c_suggestions_available">Suggestions below</string>
+    <string name="m3c_time_picker_am">AM</string>
+    <string name="m3c_time_picker_hour">Hour</string>
+    <string name="m3c_time_picker_hour_24h_suffix">%1$d hours</string>
+    <string name="m3c_time_picker_hour_selection">Select hour</string>
+    <string name="m3c_time_picker_hour_suffix">%1$d o\'clock</string>
+    <string name="m3c_time_picker_hour_text_field">for hour</string>
+    <string name="m3c_time_picker_minute">Minute</string>
+    <string name="m3c_time_picker_minute_selection">Select minutes</string>
+    <string name="m3c_time_picker_minute_suffix">%1$d minutes</string>
+    <string name="m3c_time_picker_minute_text_field">for minutes</string>
+    <string name="m3c_time_picker_period_toggle_description">Select AM or PM</string>
+    <string name="m3c_time_picker_pm">PM</string>
+    <string name="m3c_tooltip_long_press_label">Show tooltip</string>
+    <string name="m3c_tooltip_pane_description">Tooltip</string>
     <string name="main_config_txt">Configuración</string>
     <string name="main_daily_register_txt">Registro Diario</string>
     <string name="main_glucemia_txt">Glucemia</string>
@@ -2904,9 +2997,11 @@
     <string name="mtrl_switch_track_path" translatable="false">M0,16 A16,16 0 0,1 16,0 H36 A16,16 0 0,1 36,32 H16 A16,16 0 0,1 0,16</string>
     <string description="Button text to indicate that the widget will ignore the user&apos;s selection [CHAR_LIMIT=16]" name="mtrl_timepicker_cancel">Cancel</string>
     <string description="Button text to indicate that the widget will save the user&apos;s selection [CHAR_LIMIT=16]" name="mtrl_timepicker_confirm">OK</string>
+    <string name="navigation_menu">"Navigation menu"</string>
     <string name="no_camera_permission">This application cannot run because it does not have the camera permission.  The application will now exit.</string>
     <string name="no_day_is_selected">No day is selected!</string>
     <string name="no_range_is_selected">No range is selected!</string>
+    <string name="not_selected">Not selected</string>
     <string name="not_set">Not set</string>
     <string name="nota_label">Nota</string>
     <string name="ok">OK</string>
@@ -2957,6 +3052,8 @@
     <string name="profile_weight_label">Peso</string>
     <string name="project_id" translatable="false">sugarcoach-1614000290164</string>
     <string name="qr_success">Codigo escaneado exitosamente</string>
+    <string name="range_end">"Range end"</string>
+    <string name="range_start">"Range start"</string>
     <string name="read_barcode">Read Barcode</string>
     <string name="register_add_comment">Agregar Comentario</string>
     <string name="register_add_photo">Sacar foto</string>
@@ -3003,6 +3100,7 @@
   </string>
     <string description="Content description for the X button to clear text [CHAR_LIMIT=NONE]" name="searchview_clear_text_content_description">Clear text</string>
     <string description="Content description for the navigation button to return to the previous screen [CHAR_LIMIT=NONE]" name="searchview_navigation_content_description">Back</string>
+    <string name="selected">Selected</string>
     <string description="Title of the side sheet&apos;s accessibility pane that is spoken by TalkBack when the side sheet appears on screen. [CHAR_LIMIT=NONE]" name="side_sheet_accessibility_pane_title">Side Sheet</string>
     <string name="side_sheet_behavior" translatable="false">com.google.android.material.sidesheet.SideSheetBehavior</string>
     <string name="sign_bt_label">Registrarse</string>
@@ -3014,7 +3112,10 @@
     <string name="sign_no_account_label">No tenes cuenta? <b>Crea una</b></string>
     <string name="sign_twitter_label">Twitter</string>
     <string name="state_angry">Enojado</string>
+    <string name="state_empty">Empty</string>
     <string name="state_happy">Contento</string>
+    <string name="state_off">Off</string>
+    <string name="state_on">On</string>
     <string name="state_relax">Relajado</string>
     <string name="state_worried">Preocupado</string>
     <string name="statistics_carbohidratos_label">Carbohidratos</string>
@@ -3027,9 +3128,14 @@
     <string name="statistics_sd_label">Insulina Rápida(S/D)</string>
     <string name="status_bar_notification_info_overflow">999+</string>
     <string name="summary_collapsed_preference_list"><ns2:g id="current_items">%1$s</ns2:g>, <ns2:g id="added_items">%2$s</ns2:g></string>
+    <string name="switch_role">Switch</string>
+    <string name="tab">Tab</string>
     <string name="take_photo_rationale">Tomar una foto necesita permisos!</string>
+    <string name="template_percent"><ns2:g id="percentage">%1$d</ns2:g> percent.</string>
     <string name="test">Lorem Lipsum</string>
     <string name="title_activity_main">Barcode Reader Sample</string>
+    <string name="tooltip_description">tooltip</string>
+    <string name="tooltip_label">show tooltip</string>
     <string name="treatment_bomb_txt">¿Usa bomba?</string>
     <string name="treatment_bomba_infusora_txt">¿Cuál es la Marca de tu Bomba Infusora de Insulina?</string>
     <string name="treatment_correcion_sensibilidad_txt">Cada</string>
@@ -6452,6 +6558,23 @@
     <item name="shapeAppearanceOverlay">@null</item>
   </style>
     <style name="Base.Widget.MaterialComponents.TextView" parent="Widget.AppCompat.TextView"/>
+    <style name="BasePreferenceThemeOverlay">
+        <item name="android:scrollbars">vertical</item>
+        <item name="checkBoxPreferenceStyle">@style/Preference.CheckBoxPreference.Material</item>
+        <item name="dialogPreferenceStyle">@style/Preference.DialogPreference.Material</item>
+        <item name="dropdownPreferenceStyle">@style/Preference.DropDown.Material</item>
+        <item name="editTextPreferenceStyle">@style/Preference.DialogPreference.EditTextPreference.Material</item>
+        <item name="preferenceCategoryStyle">@style/Preference.Category.Material</item>
+        <item name="preferenceFragmentCompatStyle">@style/PreferenceFragment.Material</item>
+        <item name="preferenceFragmentListStyle">@style/PreferenceFragmentList.Material</item>
+        <item name="preferenceFragmentStyle">@style/PreferenceFragment.Material</item>
+        <item name="preferenceScreenStyle">@style/Preference.PreferenceScreen.Material</item>
+        <item name="preferenceStyle">@style/Preference.Material</item>
+        <item name="seekBarPreferenceStyle">@style/Preference.SeekBarPreference.Material</item>
+        <item name="switchPreferenceCompatStyle">@style/Preference.SwitchPreferenceCompat.Material</item>
+        <item name="switchPreferenceStyle">@style/Preference.SwitchPreference.Material</item>
+        <item name="preferenceCategoryTitleTextAppearance">@style/TextAppearance.AppCompat.Body2</item>
+    </style>
     <style name="CardView" parent="Base.CardView">
     </style>
     <style name="CardView.Dark">
@@ -6466,18 +6589,29 @@
         <item name="android:textColorPrimaryDisableOnly">@color/white</item>
         <item name="colorAccent">@color/white</item>
     </style>
-    <style name="DropDown">
-    <item name="android:windowEnterAnimation">@anim/show_down_center</item>
-    <item name="android:windowExitAnimation">@anim/fade_out</item>
-  </style>
-    <style name="Elastic">
-    <item name="android:windowEnterAnimation">@anim/elastic_down</item>
-    <item name="android:windowExitAnimation">@anim/fade_out</item>
-  </style>
-    <style name="Fade">
-    <item name="android:windowEnterAnimation">@anim/fade_in</item>
-    <item name="android:windowExitAnimation">@anim/fade_out</item>
-  </style>
+    <style name="DialogWindowTheme">
+        <item name="android:windowClipToOutline">false</item>
+    </style>
+    <style name="EdgeToEdgeFloatingDialogTheme" parent="android:Theme.DeviceDefault.Dialog">
+        <item name="android:windowLayoutInDisplayCutoutMode" ns1:targetApi="27">@integer/m3c_window_layout_in_display_cutout_mode</item>
+        <item name="android:windowClipToOutline">false</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowElevation">0dp</item>
+    </style>
+    <style name="EdgeToEdgeFloatingDialogWindowTheme">
+        <item name="android:dialogTheme">@style/EdgeToEdgeFloatingDialogTheme</item>
+    </style>
+    <style name="FloatingDialogTheme">
+        <item name="android:windowIsFloating">false</item>
+    </style>
+    <style name="FloatingDialogWindowTheme">
+        <item name="android:windowClipToOutline">false</item>
+        <item name="android:dialogTheme">@style/FloatingDialogTheme</item>
+    </style>
     <style name="MaterialAlertDialog.Material3" parent="MaterialAlertDialog.MaterialComponents">
     <item name="enforceMaterialTheme">true</item>
     <item name="android:layout">@layout/m3_alert_dialog</item>
@@ -6734,6 +6868,24 @@
         <item name="android:dropDownItemStyle">@style/Widget.AppCompat.DropDownItem.Spinner</item>
     </style>
     <style name="Platform.Widget.AppCompat.Spinner" parent="android:Widget.Holo.Spinner"/>
+    <style name="PowerSpinnerStyle">
+    <item name="android:scrollbarAlwaysDrawVerticalTrack">true</item>
+    <item name="android:scrollbars">vertical</item>
+    <item name="android:fadeScrollbars">true</item>
+    <item name="android:scrollbarThumbVertical">@drawable/powerspinner_scrollbar</item>
+  </style>
+    <style name="PowerSpinner_DropDown">
+    <item name="android:windowEnterAnimation">@anim/powerspinner_show_down_center</item>
+    <item name="android:windowExitAnimation">@anim/powerspinner_fade_out</item>
+  </style>
+    <style name="PowerSpinner_Elastic">
+    <item name="android:windowEnterAnimation">@anim/powerspinner_elastic_down</item>
+    <item name="android:windowExitAnimation">@anim/powerspinner_fade_out</item>
+  </style>
+    <style name="PowerSpinner_Fade">
+    <item name="android:windowEnterAnimation">@anim/powerspinner_fade_in</item>
+    <item name="android:windowExitAnimation">@anim/powerspinner_fade_out</item>
+  </style>
     <style name="Preference">
         <item name="android:layout">@layout/preference</item>
     </style>
@@ -6851,7 +7003,7 @@
     </style>
     <style name="PreferenceCategoryTitleTextStyle">
         <item name="android:textAppearance">?attr/preferenceCategoryTitleTextAppearance</item>
-        <item name="android:textColor">@color/preference_fallback_accent_color</item>
+        <item name="android:textColor">?attr/preferenceCategoryTitleTextColor</item>
     </style>
     <style name="PreferenceFragment">
         <item name="android:paddingLeft">0dp</item>
@@ -6879,22 +7031,9 @@
     <style name="PreferenceSummaryTextStyle">
         <item name="android:textAppearance">?android:attr/textAppearanceSmall</item>
     </style>
-    <style name="PreferenceThemeOverlay">
-        <item name="android:scrollbars">vertical</item>
-        <item name="checkBoxPreferenceStyle">@style/Preference.CheckBoxPreference.Material</item>
-        <item name="dialogPreferenceStyle">@style/Preference.DialogPreference.Material</item>
-        <item name="dropdownPreferenceStyle">@style/Preference.DropDown.Material</item>
-        <item name="editTextPreferenceStyle">@style/Preference.DialogPreference.EditTextPreference.Material</item>
-        <item name="preferenceCategoryStyle">@style/Preference.Category.Material</item>
-        <item name="preferenceFragmentCompatStyle">@style/PreferenceFragment.Material</item>
-        <item name="preferenceFragmentListStyle">@style/PreferenceFragmentList.Material</item>
-        <item name="preferenceFragmentStyle">@style/PreferenceFragment.Material</item>
-        <item name="preferenceScreenStyle">@style/Preference.PreferenceScreen.Material</item>
-        <item name="preferenceStyle">@style/Preference.Material</item>
-        <item name="seekBarPreferenceStyle">@style/Preference.SeekBarPreference.Material</item>
-        <item name="switchPreferenceCompatStyle">@style/Preference.SwitchPreferenceCompat.Material</item>
-        <item name="switchPreferenceStyle">@style/Preference.SwitchPreference.Material</item>
-        <item name="preferenceCategoryTitleTextAppearance">@style/TextAppearance.AppCompat.Body2</item>
+    <style name="PreferenceThemeOverlay" parent="BasePreferenceThemeOverlay">
+        
+        <item name="preferenceCategoryTitleTextColor">@color/preference_fallback_accent_color</item>
     </style>
     <style name="PreferenceThemeOverlay.v14"/>
     <style name="PreferenceThemeOverlay.v14.Material"/>
@@ -7546,6 +7685,10 @@
     <item name="windowActionBar">false</item>
     <item name="windowNoTitle">true</item>
   </style>
+    <style name="Theme.Hidden" parent="@android:style/Theme.DeviceDefault">
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+    </style>
     <style name="Theme.Material3.Dark" parent="Base.Theme.Material3.Dark"/>
     <style name="Theme.Material3.Dark.BottomSheetDialog" parent="Base.Theme.Material3.Dark.BottomSheetDialog"/>
     <style name="Theme.Material3.Dark.Dialog" parent="Base.Theme.Material3.Dark.Dialog"/>
@@ -7682,6 +7825,14 @@
     <item name="windowActionBar">false</item>
     <item name="windowNoTitle">true</item>
   </style>
+    <style name="Theme.PlayCore.Transparent" parent="android:Theme">
+<item name="android:windowIsTranslucent">true</item>
+<item name="android:windowBackground">@android:color/transparent</item>
+<item name="android:windowContentOverlay">@null</item>
+<item name="android:windowNoTitle">true</item>
+<item name="android:windowIsFloating">true</item>
+<item name="android:backgroundDimEnabled">false</item>
+</style>
     <style name="ThemeOverlay.AppCompat" parent="Base.ThemeOverlay.AppCompat"/>
     <style name="ThemeOverlay.AppCompat.ActionBar" parent="Base.ThemeOverlay.AppCompat.ActionBar"/>
     <style name="ThemeOverlay.AppCompat.Dark" parent="Base.ThemeOverlay.AppCompat.Dark"/>
@@ -10456,6 +10607,16 @@
         
         <attr format="reference" name="expandActivityOverflowButtonDrawable"/>
     </declare-styleable>
+    <declare-styleable name="ActivityFilter">
+        
+        <attr format="string" name="activityName"/>
+        
+        <attr format="string" name="activityAction"/>
+    </declare-styleable>
+    <declare-styleable name="ActivityRule">
+        
+        <attr format="boolean" name="alwaysExpand"/>
+    </declare-styleable>
     <declare-styleable name="AlertDialog">
         <attr name="android:layout"/>
         <attr format="reference" name="buttonPanelSideLayout"/>
@@ -12502,12 +12663,23 @@
     <attr format="reference" name="expandable_parentLayout"/>
     <attr format="reference" name="expandable_secondLayout"/>
     <attr format="integer" name="expandable_duration"/>
-    <attr format="reference" name="expandable_spinner"/>
+    <attr format="integer" name="expandable_spinner"/>
     <attr format="boolean" name="expandable_showSpinner"/>
     <attr format="boolean" name="expandable_spinner_animate"/>
     <attr format="integer" name="expandable_spinner_rotation"/>
     <attr format="dimension" name="expandable_spinner_size"/>
     <attr format="dimension" name="expandable_spinner_margin"/>
+    <attr format="color" name="expandable_spinner_color"/>
+    <attr format="enum" name="expandable_spinner_gravity">
+      <enum name="start" value="0"/>
+      <enum name="end" value="1"/>
+    </attr>
+    <attr format="enum" name="expandable_animation">
+      <enum name="normal" value="0"/>
+      <enum name="accelerate" value="1"/>
+      <enum name="bounce" value="2"/>
+      <enum name="overshoot" value="3"/>
+    </attr>
   </declare-styleable>
     <declare-styleable name="ExtendedFloatingActionButton">
     
@@ -13861,7 +14033,7 @@
         
         <attr format="boolean" name="state_above_anchor"/>
     </declare-styleable>
-    <declare-styleable name="PowerSpinnerView">
+    <declare-styleable name="PowerSpinnerView" ns1:ignore="ResourceName">
     
     <attr format="reference" name="spinner_arrow_drawable"/>
     
@@ -13903,6 +14075,22 @@
     
     <attr format="dimension" name="spinner_popup_height"/>
     
+    <attr format="dimension" name="spinner_popup_max_height"/>
+    
+    <attr format="dimension" name="spinner_popup_top_padding"/>
+    
+    <attr format="dimension" name="spinner_popup_end_padding"/>
+    
+    <attr format="dimension" name="spinner_popup_bottom_padding"/>
+    
+    <attr format="dimension" name="spinner_popup_start_padding"/>
+    
+    <attr format="dimension" name="spinner_popup_padding"/>
+    
+    <attr format="dimension" name="spinner_item_height"/>
+    
+    <attr format="color|reference" name="spinner_selected_item_background"/>
+    
     <attr format="dimension" name="spinner_popup_elevation"/>
     
     <attr format="reference" name="spinner_item_array"/>
@@ -13912,6 +14100,8 @@
     <attr format="integer" name="spinner_debounce_duration"/>
     
     <attr format="string" name="spinner_preference_name"/>
+    
+    <attr format="boolean" name="spinner_popup_focusable"/>
   </declare-styleable>
     <declare-styleable name="Preference">
         
@@ -14016,12 +14206,13 @@
         
         
         <eat-comment/>
-
         
         <attr format="reference" name="preferenceTheme"/>
 
         
         <attr format="reference" name="preferenceCategoryTitleTextAppearance"/>
+        
+        <attr format="color|reference" name="preferenceCategoryTitleTextColor"/>
 
         
         <attr format="reference" name="preferenceScreenStyle"/>
@@ -14465,6 +14656,34 @@
         <attr name="android:dropDownWidth"/>
         
         <attr name="android:entries"/>
+    </declare-styleable>
+    <declare-styleable name="SplitPairFilter">
+        
+        <attr format="string" name="primaryActivityName"/>
+        
+        <attr format="string" name="secondaryActivityName"/>
+        
+        <attr format="string" name="secondaryActivityAction"/>
+    </declare-styleable>
+    <declare-styleable name="SplitPairRule">
+        
+        <attr format="boolean" name="finishPrimaryWithSecondary"/>
+        
+        <attr format="boolean" name="finishSecondaryWithPrimary"/>
+        
+        <attr format="boolean" name="clearTop"/>
+        <attr name="splitRatio"/>
+        <attr name="splitMinWidth"/>
+        <attr name="splitMinSmallestWidth"/>
+        <attr name="splitLayoutDirection"/>
+    </declare-styleable>
+    <declare-styleable name="SplitPlaceholderRule">
+        
+        <attr format="string" name="placeholderActivityName"/>
+        <attr name="splitRatio"/>
+        <attr name="splitMinWidth"/>
+        <attr name="splitMinSmallestWidth"/>
+        <attr name="splitLayoutDirection"/>
     </declare-styleable>
     <declare-styleable name="SpringDotsIndicator">
         <attr name="dotsColor"/>

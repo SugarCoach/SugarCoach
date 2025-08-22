@@ -1,13 +1,12 @@
 package com.sugarcoachpremium.ui.forgot.presenter
 
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
+import com.google.firebase.Firebase
+import com.google.firebase.auth.auth
 import com.sugarcoachpremium.ui.base.presenter.BasePresenter
 import com.sugarcoachpremium.ui.forgot.interactor.ForgotInteractorImp
 import com.sugarcoachpremium.ui.forgot.view.ForgotView
 import com.sugarcoachpremium.util.AppConstants
 import com.sugarcoachpremium.util.SchedulerProvider
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 

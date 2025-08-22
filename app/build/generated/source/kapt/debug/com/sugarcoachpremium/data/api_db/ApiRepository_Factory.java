@@ -3,10 +3,10 @@ package com.sugarcoachpremium.data.api_db;
 import com.apollographql.apollo3.ApolloClient;
 import dagger.internal.DaggerGenerated;
 import dagger.internal.Factory;
+import dagger.internal.Provider;
 import dagger.internal.QualifierMetadata;
 import dagger.internal.ScopeMetadata;
 import javax.annotation.processing.Generated;
-import javax.inject.Provider;
 
 @ScopeMetadata
 @QualifierMetadata
@@ -19,12 +19,15 @@ import javax.inject.Provider;
     "unchecked",
     "rawtypes",
     "KotlinInternal",
-    "KotlinInternalInJava"
+    "KotlinInternalInJava",
+    "cast",
+    "deprecation",
+    "nullness:initialization.field.uninitialized"
 })
 public final class ApiRepository_Factory implements Factory<ApiRepository> {
   private final Provider<ApolloClient> apolloClientProvider;
 
-  public ApiRepository_Factory(Provider<ApolloClient> apolloClientProvider) {
+  private ApiRepository_Factory(Provider<ApolloClient> apolloClientProvider) {
     this.apolloClientProvider = apolloClientProvider;
   }
 

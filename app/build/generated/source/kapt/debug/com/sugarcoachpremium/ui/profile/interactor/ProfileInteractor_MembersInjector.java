@@ -4,9 +4,9 @@ import com.sugarcoachpremium.data.api_db.ApiRepository;
 import dagger.MembersInjector;
 import dagger.internal.DaggerGenerated;
 import dagger.internal.InjectedFieldSignature;
+import dagger.internal.Provider;
 import dagger.internal.QualifierMetadata;
 import javax.annotation.processing.Generated;
-import javax.inject.Provider;
 
 @QualifierMetadata
 @DaggerGenerated
@@ -18,12 +18,15 @@ import javax.inject.Provider;
     "unchecked",
     "rawtypes",
     "KotlinInternal",
-    "KotlinInternalInJava"
+    "KotlinInternalInJava",
+    "cast",
+    "deprecation",
+    "nullness:initialization.field.uninitialized"
 })
 public final class ProfileInteractor_MembersInjector implements MembersInjector<ProfileInteractor> {
   private final Provider<ApiRepository> apiRepoProvider;
 
-  public ProfileInteractor_MembersInjector(Provider<ApiRepository> apiRepoProvider) {
+  private ProfileInteractor_MembersInjector(Provider<ApiRepository> apiRepoProvider) {
     this.apiRepoProvider = apiRepoProvider;
   }
 

@@ -9,10 +9,10 @@ import com.sugarcoachpremium.data.network.ApiHelper;
 import com.sugarcoachpremium.di.preferences.PreferenceHelper;
 import dagger.internal.DaggerGenerated;
 import dagger.internal.Factory;
+import dagger.internal.Provider;
 import dagger.internal.QualifierMetadata;
 import dagger.internal.ScopeMetadata;
 import javax.annotation.processing.Generated;
-import javax.inject.Provider;
 
 @ScopeMetadata
 @QualifierMetadata
@@ -25,7 +25,10 @@ import javax.inject.Provider;
     "unchecked",
     "rawtypes",
     "KotlinInternal",
-    "KotlinInternalInJava"
+    "KotlinInternalInJava",
+    "cast",
+    "deprecation",
+    "nullness:initialization.field.uninitialized"
 })
 public final class SignEmailInteractor_Factory implements Factory<SignEmailInteractor> {
   private final Provider<Context> mContextProvider;
@@ -42,7 +45,7 @@ public final class SignEmailInteractor_Factory implements Factory<SignEmailInter
 
   private final Provider<ApiRepository> apiRepositoryProvider;
 
-  public SignEmailInteractor_Factory(Provider<Context> mContextProvider,
+  private SignEmailInteractor_Factory(Provider<Context> mContextProvider,
       Provider<TreamentRepo> treamentRepoHelperProvider,
       Provider<DailyRegisterRepo> dailyRepoHelperProvider,
       Provider<UserRepo> userRepoHelperProvider,

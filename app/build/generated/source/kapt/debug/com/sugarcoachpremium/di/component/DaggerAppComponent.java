@@ -5,6 +5,7 @@ import android.content.Context;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import com.apollographql.apollo3.ApolloClient;
+import com.google.common.collect.ImmutableMap;
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import com.sugarcoachpremium.SugarApp;
 import com.sugarcoachpremium.SugarApp_MembersInjector;
@@ -232,12 +233,10 @@ import dagger.android.DispatchingAndroidInjector_Factory;
 import dagger.internal.DaggerGenerated;
 import dagger.internal.DoubleCheck;
 import dagger.internal.InstanceFactory;
-import dagger.internal.MapBuilder;
 import dagger.internal.Preconditions;
-import java.util.Collections;
+import dagger.internal.Provider;
 import java.util.Map;
 import javax.annotation.processing.Generated;
-import javax.inject.Provider;
 import retrofit2.Retrofit;
 
 @DaggerGenerated
@@ -249,7 +248,10 @@ import retrofit2.Retrofit;
     "unchecked",
     "rawtypes",
     "KotlinInternal",
-    "KotlinInternalInJava"
+    "KotlinInternalInJava",
+    "cast",
+    "deprecation",
+    "nullness:initialization.field.uninitialized"
 })
 public final class DaggerAppComponent {
   private DaggerAppComponent() {
@@ -284,9 +286,9 @@ public final class DaggerAppComponent {
 
     @Override
     public ActivityBuilder_BindSplashActivity.SplashActivitySubcomponent create(
-        SplashActivity arg0) {
-      Preconditions.checkNotNull(arg0);
-      return new SplashActivitySubcomponentImpl(appComponentImpl, new SplashActivityModule(), arg0);
+        SplashActivity instance) {
+      Preconditions.checkNotNull(instance);
+      return new SplashActivitySubcomponentImpl(appComponentImpl, new SplashActivityModule(), instance);
     }
   }
 
@@ -298,9 +300,9 @@ public final class DaggerAppComponent {
     }
 
     @Override
-    public ActivityBuilder_BindMainActivity.MainActivitySubcomponent create(MainActivity arg0) {
-      Preconditions.checkNotNull(arg0);
-      return new MainActivitySubcomponentImpl(appComponentImpl, new MainActivityModule(), arg0);
+    public ActivityBuilder_BindMainActivity.MainActivitySubcomponent create(MainActivity instance) {
+      Preconditions.checkNotNull(instance);
+      return new MainActivitySubcomponentImpl(appComponentImpl, new MainActivityModule(), instance);
     }
   }
 
@@ -313,9 +315,9 @@ public final class DaggerAppComponent {
 
     @Override
     public ActivityBuilder_BindRegisterActivity.RegisterActivitySubcomponent create(
-        RegisterActivity arg0) {
-      Preconditions.checkNotNull(arg0);
-      return new RegisterActivitySubcomponentImpl(appComponentImpl, new RegisterActivityModule(), arg0);
+        RegisterActivity instance) {
+      Preconditions.checkNotNull(instance);
+      return new RegisterActivitySubcomponentImpl(appComponentImpl, new RegisterActivityModule(), instance);
     }
   }
 
@@ -328,9 +330,9 @@ public final class DaggerAppComponent {
 
     @Override
     public ActivityBuilder_BindTreatmentActivity.TreatmentActivitySubcomponent create(
-        TreatmentActivity arg0) {
-      Preconditions.checkNotNull(arg0);
-      return new TreatmentActivitySubcomponentImpl(appComponentImpl, new TreatmentActivityModule(), arg0);
+        TreatmentActivity instance) {
+      Preconditions.checkNotNull(instance);
+      return new TreatmentActivitySubcomponentImpl(appComponentImpl, new TreatmentActivityModule(), instance);
     }
   }
 
@@ -342,9 +344,10 @@ public final class DaggerAppComponent {
     }
 
     @Override
-    public ActivityBuilder_BindLoginActivity.LoginActivitySubcomponent create(LoginActivity arg0) {
-      Preconditions.checkNotNull(arg0);
-      return new LoginActivitySubcomponentImpl(appComponentImpl, new LoginActivityModule(), arg0);
+    public ActivityBuilder_BindLoginActivity.LoginActivitySubcomponent create(
+        LoginActivity instance) {
+      Preconditions.checkNotNull(instance);
+      return new LoginActivitySubcomponentImpl(appComponentImpl, new LoginActivityModule(), instance);
     }
   }
 
@@ -356,9 +359,9 @@ public final class DaggerAppComponent {
     }
 
     @Override
-    public ActivityBuilder_BindSignActivity.SignActivitySubcomponent create(SignActivity arg0) {
-      Preconditions.checkNotNull(arg0);
-      return new SignActivitySubcomponentImpl(appComponentImpl, new SignActivityModule(), arg0);
+    public ActivityBuilder_BindSignActivity.SignActivitySubcomponent create(SignActivity instance) {
+      Preconditions.checkNotNull(instance);
+      return new SignActivitySubcomponentImpl(appComponentImpl, new SignActivityModule(), instance);
     }
   }
 
@@ -371,9 +374,9 @@ public final class DaggerAppComponent {
 
     @Override
     public ActivityBuilder_BindSignEmailctivity.SignEmailActivitySubcomponent create(
-        SignEmailActivity arg0) {
-      Preconditions.checkNotNull(arg0);
-      return new SignEmailActivitySubcomponentImpl(appComponentImpl, new SignEmailActivityModule(), arg0);
+        SignEmailActivity instance) {
+      Preconditions.checkNotNull(instance);
+      return new SignEmailActivitySubcomponentImpl(appComponentImpl, new SignEmailActivityModule(), instance);
     }
   }
 
@@ -386,9 +389,9 @@ public final class DaggerAppComponent {
 
     @Override
     public ActivityBuilder_BindOnBoardingActivity.OnBoardingActivitySubcomponent create(
-        OnBoardingActivity arg0) {
-      Preconditions.checkNotNull(arg0);
-      return new OnBoardingActivitySubcomponentImpl(appComponentImpl, new OnBoardingActivityModule(), arg0);
+        OnBoardingActivity instance) {
+      Preconditions.checkNotNull(instance);
+      return new OnBoardingActivitySubcomponentImpl(appComponentImpl, new OnBoardingActivityModule(), instance);
     }
   }
 
@@ -400,9 +403,10 @@ public final class DaggerAppComponent {
     }
 
     @Override
-    public ActivityBuilder_BindDailyActivity.DailyActivitySubcomponent create(DailyActivity arg0) {
-      Preconditions.checkNotNull(arg0);
-      return new DailyActivitySubcomponentImpl(appComponentImpl, new DailyActivityModule(), arg0);
+    public ActivityBuilder_BindDailyActivity.DailyActivitySubcomponent create(
+        DailyActivity instance) {
+      Preconditions.checkNotNull(instance);
+      return new DailyActivitySubcomponentImpl(appComponentImpl, new DailyActivityModule(), instance);
     }
   }
 
@@ -415,9 +419,9 @@ public final class DaggerAppComponent {
 
     @Override
     public ActivityBuilder_BindDailyDetailActivity.DailyDetailActivitySubcomponent create(
-        DailyDetailActivity arg0) {
-      Preconditions.checkNotNull(arg0);
-      return new DailyDetailActivitySubcomponentImpl(appComponentImpl, new DailyDetailActivityModule(), arg0);
+        DailyDetailActivity instance) {
+      Preconditions.checkNotNull(instance);
+      return new DailyDetailActivitySubcomponentImpl(appComponentImpl, new DailyDetailActivityModule(), instance);
     }
   }
 
@@ -430,9 +434,9 @@ public final class DaggerAppComponent {
 
     @Override
     public ActivityBuilder_BindProfileActivity.ProfileActivitySubcomponent create(
-        ProfileActivity arg0) {
-      Preconditions.checkNotNull(arg0);
-      return new ProfileActivitySubcomponentImpl(appComponentImpl, new ProfileActivityModule(), arg0);
+        ProfileActivity instance) {
+      Preconditions.checkNotNull(instance);
+      return new ProfileActivitySubcomponentImpl(appComponentImpl, new ProfileActivityModule(), instance);
     }
   }
 
@@ -445,9 +449,9 @@ public final class DaggerAppComponent {
 
     @Override
     public ActivityBuilder_BindConfigActivity.ConfigActivitySubcomponent create(
-        ConfigActivity arg0) {
-      Preconditions.checkNotNull(arg0);
-      return new ConfigActivitySubcomponentImpl(appComponentImpl, new ConfigActivityModule(), arg0);
+        ConfigActivity instance) {
+      Preconditions.checkNotNull(instance);
+      return new ConfigActivitySubcomponentImpl(appComponentImpl, new ConfigActivityModule(), instance);
     }
   }
 
@@ -460,9 +464,9 @@ public final class DaggerAppComponent {
 
     @Override
     public ActivityBuilder_BindStatisticsActivity.StatisticsActivitySubcomponent create(
-        StatisticsActivity arg0) {
-      Preconditions.checkNotNull(arg0);
-      return new StatisticsActivitySubcomponentImpl(appComponentImpl, new StatisticsActivityModule(), arg0);
+        StatisticsActivity instance) {
+      Preconditions.checkNotNull(instance);
+      return new StatisticsActivitySubcomponentImpl(appComponentImpl, new StatisticsActivityModule(), instance);
     }
   }
 
@@ -475,9 +479,9 @@ public final class DaggerAppComponent {
 
     @Override
     public ActivityBuilder_BindForgotActivity.ForgotActivitySubcomponent create(
-        ForgotActivity arg0) {
-      Preconditions.checkNotNull(arg0);
-      return new ForgotActivitySubcomponentImpl(appComponentImpl, new ForgotActivityModule(), arg0);
+        ForgotActivity instance) {
+      Preconditions.checkNotNull(instance);
+      return new ForgotActivitySubcomponentImpl(appComponentImpl, new ForgotActivityModule(), instance);
     }
   }
 
@@ -488,34 +492,34 @@ public final class DaggerAppComponent {
 
     private final SplashActivitySubcomponentImpl splashActivitySubcomponentImpl = this;
 
-    private SplashActivitySubcomponentImpl(AppComponentImpl appComponentImpl,
-        SplashActivityModule splashActivityModuleParam, SplashActivity arg0Param) {
+    SplashActivitySubcomponentImpl(AppComponentImpl appComponentImpl,
+        SplashActivityModule splashActivityModuleParam, SplashActivity instanceParam) {
       this.appComponentImpl = appComponentImpl;
       this.splashActivityModule = splashActivityModuleParam;
 
     }
 
-    private SplashInteractor splashInteractor() {
+    SplashInteractor splashInteractor() {
       return new SplashInteractor(appComponentImpl.provideContext$app_debugProvider.get(), appComponentImpl.provideDailyRepoHelper$app_debugProvider.get(), appComponentImpl.provideTreamentRepoHelper$app_debugProvider.get(), appComponentImpl.provideUserRepoHelper$app_debugProvider.get(), appComponentImpl.providePrefHelper$app_debugProvider.get(), appComponentImpl.provideApiHelper$app_debugProvider.get());
     }
 
-    private SplashInteractorImp splashInteractorImp() {
+    SplashInteractorImp splashInteractorImp() {
       return SplashActivityModule_ProvideSplashInteractor$app_debugFactory.provideSplashInteractor$app_debug(splashActivityModule, splashInteractor());
     }
 
-    private SplashPresenter<SplashView, SplashInteractorImp> splashPresenterOfSplashViewAndSplashInteractorImp(
+    SplashPresenter<SplashView, SplashInteractorImp> splashPresenterOfSplashViewAndSplashInteractorImp(
         ) {
       return new SplashPresenter<SplashView, SplashInteractorImp>(splashInteractorImp(), AppModule_ProvideSchedulerProvider$app_debugFactory.provideSchedulerProvider$app_debug(appComponentImpl.appModule), AppModule_ProvideCompositeDisposable$app_debugFactory.provideCompositeDisposable$app_debug(appComponentImpl.appModule));
     }
 
-    private SplashPresenterImp<SplashView, SplashInteractorImp> splashPresenterImpOfSplashViewAndSplashInteractorImp(
+    SplashPresenterImp<SplashView, SplashInteractorImp> splashPresenterImpOfSplashViewAndSplashInteractorImp(
         ) {
       return SplashActivityModule_ProvideSplashPresenter$app_debugFactory.provideSplashPresenter$app_debug(splashActivityModule, splashPresenterOfSplashViewAndSplashInteractorImp());
     }
 
     @Override
-    public void inject(SplashActivity arg0) {
-      injectSplashActivity(arg0);
+    public void inject(SplashActivity instance) {
+      injectSplashActivity(instance);
     }
 
     @CanIgnoreReturnValue
@@ -532,38 +536,36 @@ public final class DaggerAppComponent {
 
     private final MainActivitySubcomponentImpl mainActivitySubcomponentImpl = this;
 
-    private MainActivitySubcomponentImpl(AppComponentImpl appComponentImpl,
-        MainActivityModule mainActivityModuleParam, MainActivity arg0Param) {
+    MainActivitySubcomponentImpl(AppComponentImpl appComponentImpl,
+        MainActivityModule mainActivityModuleParam, MainActivity instanceParam) {
       this.appComponentImpl = appComponentImpl;
       this.mainActivityModule = mainActivityModuleParam;
 
     }
 
-    private MainInteractor mainInteractor() {
+    MainInteractor mainInteractor() {
       return new MainInteractor(appComponentImpl.provideTreamentRepoHelper$app_debugProvider.get(), appComponentImpl.provideDailyRepoHelper$app_debugProvider.get(), appComponentImpl.provideAppDatabase$app_debugProvider.get(), appComponentImpl.provideUserRepoHelper$app_debugProvider.get(), appComponentImpl.providePrefHelper$app_debugProvider.get(), appComponentImpl.provideApiHelper$app_debugProvider.get());
     }
 
-    private MainInteractorImp mainInteractorImp() {
+    MainInteractorImp mainInteractorImp() {
       return MainActivityModule_ProvideMainInteractor$app_debugFactory.provideMainInteractor$app_debug(mainActivityModule, mainInteractor());
     }
 
-    private MainPresenter<MainView, MainInteractorImp> mainPresenterOfMainViewAndMainInteractorImp(
-        ) {
+    MainPresenter<MainView, MainInteractorImp> mainPresenterOfMainViewAndMainInteractorImp() {
       return new MainPresenter<MainView, MainInteractorImp>(mainInteractorImp(), AppModule_ProvideSchedulerProvider$app_debugFactory.provideSchedulerProvider$app_debug(appComponentImpl.appModule), AppModule_ProvideCompositeDisposable$app_debugFactory.provideCompositeDisposable$app_debug(appComponentImpl.appModule));
     }
 
-    private MainPresenterImp<MainView, MainInteractorImp> mainPresenterImpOfMainViewAndMainInteractorImp(
-        ) {
+    MainPresenterImp<MainView, MainInteractorImp> mainPresenterImpOfMainViewAndMainInteractorImp() {
       return MainActivityModule_ProvideMainPresenter$app_debugFactory.provideMainPresenter$app_debug(mainActivityModule, mainPresenterOfMainViewAndMainInteractorImp());
     }
 
-    private ApiRepository apiRepository() {
+    ApiRepository apiRepository() {
       return new ApiRepository(appComponentImpl.provideApolloClient$app_debugProvider.get());
     }
 
     @Override
-    public void inject(MainActivity arg0) {
-      injectMainActivity(arg0);
+    public void inject(MainActivity instance) {
+      injectMainActivity(instance);
     }
 
     @CanIgnoreReturnValue
@@ -577,70 +579,70 @@ public final class DaggerAppComponent {
   private static final class RegisterActivitySubcomponentImpl implements ActivityBuilder_BindRegisterActivity.RegisterActivitySubcomponent {
     private final RegisterActivityModule registerActivityModule;
 
-    private final RegisterActivity arg0;
+    private final RegisterActivity instance4;
 
     private final AppComponentImpl appComponentImpl;
 
     private final RegisterActivitySubcomponentImpl registerActivitySubcomponentImpl = this;
 
-    private RegisterActivitySubcomponentImpl(AppComponentImpl appComponentImpl,
-        RegisterActivityModule registerActivityModuleParam, RegisterActivity arg0Param) {
+    RegisterActivitySubcomponentImpl(AppComponentImpl appComponentImpl,
+        RegisterActivityModule registerActivityModuleParam, RegisterActivity instanceParam) {
       this.appComponentImpl = appComponentImpl;
       this.registerActivityModule = registerActivityModuleParam;
-      this.arg0 = arg0Param;
+      this.instance4 = instanceParam;
 
     }
 
-    private ApiRepository apiRepository() {
+    ApiRepository apiRepository() {
       return new ApiRepository(appComponentImpl.provideApolloClient$app_debugProvider.get());
     }
 
-    private RegisterInteractor registerInteractor() {
+    RegisterInteractor registerInteractor() {
       return injectRegisterInteractor(RegisterInteractor_Factory.newInstance(appComponentImpl.provideTreamentRepoHelper$app_debugProvider.get(), appComponentImpl.provideDailyRepoHelper$app_debugProvider.get(), appComponentImpl.provideUserRepoHelper$app_debugProvider.get(), appComponentImpl.providePrefHelper$app_debugProvider.get(), appComponentImpl.provideApiHelper$app_debugProvider.get()));
     }
 
-    private RegisterInteractorImp registerInteractorImp() {
+    RegisterInteractorImp registerInteractorImp() {
       return RegisterActivityModule_ProvideRegisterInteractor$app_debugFactory.provideRegisterInteractor$app_debug(registerActivityModule, registerInteractor());
     }
 
-    private RegisterPresenter<RegisterView, RegisterInteractorImp> registerPresenterOfRegisterViewAndRegisterInteractorImp(
+    RegisterPresenter<RegisterView, RegisterInteractorImp> registerPresenterOfRegisterViewAndRegisterInteractorImp(
         ) {
       return injectRegisterPresenter(RegisterPresenter_Factory.newInstance(registerInteractorImp(), AppModule_ProvideSchedulerProvider$app_debugFactory.provideSchedulerProvider$app_debug(appComponentImpl.appModule), AppModule_ProvideCompositeDisposable$app_debugFactory.provideCompositeDisposable$app_debug(appComponentImpl.appModule)));
     }
 
-    private RegisterPresenterImp<RegisterView, RegisterInteractorImp> registerPresenterImpOfRegisterViewAndRegisterInteractorImp(
+    RegisterPresenterImp<RegisterView, RegisterInteractorImp> registerPresenterImpOfRegisterViewAndRegisterInteractorImp(
         ) {
       return RegisterActivityModule_ProvideRegisterPresenter$app_debugFactory.provideRegisterPresenter$app_debug(registerActivityModule, registerPresenterOfRegisterViewAndRegisterInteractorImp());
     }
 
-    private LinearLayoutManager linearLayoutManager() {
-      return RegisterActivityModule_ProvideLinearLayoutManager$app_debugFactory.provideLinearLayoutManager$app_debug(registerActivityModule, arg0);
+    LinearLayoutManager linearLayoutManager() {
+      return RegisterActivityModule_ProvideLinearLayoutManager$app_debugFactory.provideLinearLayoutManager$app_debug(registerActivityModule, instance4);
     }
 
-    private ItemAdapter itemAdapter() {
-      return RegisterActivityModule_ProvideItemAdapter$app_debugFactory.provideItemAdapter$app_debug(registerActivityModule, arg0);
+    ItemAdapter itemAdapter() {
+      return RegisterActivityModule_ProvideItemAdapter$app_debugFactory.provideItemAdapter$app_debug(registerActivityModule, instance4);
     }
 
-    private CategoryAdapter categoryAdapter() {
-      return RegisterActivityModule_ProvideCategoryAdapter$app_debugFactory.provideCategoryAdapter$app_debug(registerActivityModule, arg0);
+    CategoryAdapter categoryAdapter() {
+      return RegisterActivityModule_ProvideCategoryAdapter$app_debugFactory.provideCategoryAdapter$app_debug(registerActivityModule, instance4);
     }
 
     @Override
-    public void inject(RegisterActivity arg0) {
-      injectRegisterActivity(arg0);
+    public void inject(RegisterActivity instance) {
+      injectRegisterActivity(instance);
     }
 
     @CanIgnoreReturnValue
-    private RegisterInteractor injectRegisterInteractor(RegisterInteractor instance) {
-      RegisterInteractor_MembersInjector.injectApiRepository(instance, apiRepository());
-      return instance;
+    private RegisterInteractor injectRegisterInteractor(RegisterInteractor instance2) {
+      RegisterInteractor_MembersInjector.injectApiRepository(instance2, apiRepository());
+      return instance2;
     }
 
     @CanIgnoreReturnValue
     private RegisterPresenter<RegisterView, RegisterInteractorImp> injectRegisterPresenter(
-        RegisterPresenter<RegisterView, RegisterInteractorImp> instance) {
-      RegisterPresenter_MembersInjector.injectDate(instance, RegisterActivityModule_ProvideCurrentDate$app_debugFactory.provideCurrentDate$app_debug(registerActivityModule));
-      return instance;
+        RegisterPresenter<RegisterView, RegisterInteractorImp> instance3) {
+      RegisterPresenter_MembersInjector.injectDate(instance3, RegisterActivityModule_ProvideCurrentDate$app_debugFactory.provideCurrentDate$app_debug(registerActivityModule));
+      return instance3;
     }
 
     @CanIgnoreReturnValue
@@ -659,79 +661,79 @@ public final class DaggerAppComponent {
   private static final class TreatmentActivitySubcomponentImpl implements ActivityBuilder_BindTreatmentActivity.TreatmentActivitySubcomponent {
     private final TreatmentActivityModule treatmentActivityModule;
 
-    private final TreatmentActivity arg0;
+    private final TreatmentActivity instance3;
 
     private final AppComponentImpl appComponentImpl;
 
     private final TreatmentActivitySubcomponentImpl treatmentActivitySubcomponentImpl = this;
 
-    private TreatmentActivitySubcomponentImpl(AppComponentImpl appComponentImpl,
-        TreatmentActivityModule treatmentActivityModuleParam, TreatmentActivity arg0Param) {
+    TreatmentActivitySubcomponentImpl(AppComponentImpl appComponentImpl,
+        TreatmentActivityModule treatmentActivityModuleParam, TreatmentActivity instanceParam) {
       this.appComponentImpl = appComponentImpl;
       this.treatmentActivityModule = treatmentActivityModuleParam;
-      this.arg0 = arg0Param;
+      this.instance3 = instanceParam;
 
     }
 
-    private ApiRepository apiRepository() {
+    ApiRepository apiRepository() {
       return new ApiRepository(appComponentImpl.provideApolloClient$app_debugProvider.get());
     }
 
-    private TreatmentInteractor treatmentInteractor() {
+    TreatmentInteractor treatmentInteractor() {
       return injectTreatmentInteractor(TreatmentInteractor_Factory.newInstance(appComponentImpl.provideTreamentRepoHelper$app_debugProvider.get(), appComponentImpl.provideDailyRepoHelper$app_debugProvider.get(), appComponentImpl.provideUserRepoHelper$app_debugProvider.get(), appComponentImpl.providePrefHelper$app_debugProvider.get(), appComponentImpl.provideApiHelper$app_debugProvider.get()));
     }
 
-    private TreatmentInteractorImp treatmentInteractorImp() {
+    TreatmentInteractorImp treatmentInteractorImp() {
       return TreatmentActivityModule_ProvideTreatmentInteractor$app_debugFactory.provideTreatmentInteractor$app_debug(treatmentActivityModule, treatmentInteractor());
     }
 
-    private TreatmentPresenter<TreatmentView, TreatmentInteractorImp> treatmentPresenterOfTreatmentViewAndTreatmentInteractorImp(
+    TreatmentPresenter<TreatmentView, TreatmentInteractorImp> treatmentPresenterOfTreatmentViewAndTreatmentInteractorImp(
         ) {
       return new TreatmentPresenter<TreatmentView, TreatmentInteractorImp>(treatmentInteractorImp(), AppModule_ProvideSchedulerProvider$app_debugFactory.provideSchedulerProvider$app_debug(appComponentImpl.appModule), AppModule_ProvideCompositeDisposable$app_debugFactory.provideCompositeDisposable$app_debug(appComponentImpl.appModule));
     }
 
-    private TreatmentPresenterImp<TreatmentView, TreatmentInteractorImp> treatmentPresenterImpOfTreatmentViewAndTreatmentInteractorImp(
+    TreatmentPresenterImp<TreatmentView, TreatmentInteractorImp> treatmentPresenterImpOfTreatmentViewAndTreatmentInteractorImp(
         ) {
       return TreatmentActivityModule_ProvideTreatmentPresenter$app_debugFactory.provideTreatmentPresenter$app_debug(treatmentActivityModule, treatmentPresenterOfTreatmentViewAndTreatmentInteractorImp());
     }
 
-    private LinearLayoutManager linearLayoutManager() {
-      return TreatmentActivityModule_ProvideLinearLayoutManager$app_debugFactory.provideLinearLayoutManager$app_debug(treatmentActivityModule, arg0);
+    LinearLayoutManager linearLayoutManager() {
+      return TreatmentActivityModule_ProvideLinearLayoutManager$app_debugFactory.provideLinearLayoutManager$app_debug(treatmentActivityModule, instance3);
     }
 
-    private BasalAdapter basalAdapter() {
-      return TreatmentActivityModule_ProvideBasalAdapter$app_debugFactory.provideBasalAdapter$app_debug(treatmentActivityModule, arg0);
+    BasalAdapter basalAdapter() {
+      return TreatmentActivityModule_ProvideBasalAdapter$app_debugFactory.provideBasalAdapter$app_debug(treatmentActivityModule, instance3);
     }
 
-    private MedidorAdapter medidorAdapter() {
-      return TreatmentActivityModule_ProvideMedidorAdapter$app_debugFactory.provideMedidorAdapter$app_debug(treatmentActivityModule, arg0);
+    MedidorAdapter medidorAdapter() {
+      return TreatmentActivityModule_ProvideMedidorAdapter$app_debugFactory.provideMedidorAdapter$app_debug(treatmentActivityModule, instance3);
     }
 
-    private BombaAdapter bombaAdapter() {
-      return TreatmentActivityModule_ProvideBombaAdapter$app_debugFactory.provideBombaAdapter$app_debug(treatmentActivityModule, arg0);
+    BombaAdapter bombaAdapter() {
+      return TreatmentActivityModule_ProvideBombaAdapter$app_debugFactory.provideBombaAdapter$app_debug(treatmentActivityModule, instance3);
     }
 
-    private TreatmentAdapter treatmentAdapter() {
-      return TreatmentActivityModule_ProvideTreatmentAdapter$app_debugFactory.provideTreatmentAdapter$app_debug(treatmentActivityModule, arg0);
+    TreatmentAdapter treatmentAdapter() {
+      return TreatmentActivityModule_ProvideTreatmentAdapter$app_debugFactory.provideTreatmentAdapter$app_debug(treatmentActivityModule, instance3);
     }
 
-    private TreatmentCorrectoraAdapter treatmentCorrectoraAdapter() {
-      return TreatmentActivityModule_ProvideTreatmentCorrectoraAdapter$app_debugFactory.provideTreatmentCorrectoraAdapter$app_debug(treatmentActivityModule, arg0);
+    TreatmentCorrectoraAdapter treatmentCorrectoraAdapter() {
+      return TreatmentActivityModule_ProvideTreatmentCorrectoraAdapter$app_debugFactory.provideTreatmentCorrectoraAdapter$app_debug(treatmentActivityModule, instance3);
     }
 
-    private TreatmentBasalHoraAdapter treatmentBasalHoraAdapter() {
-      return TreatmentActivityModule_ProvideTreatmentBasalHoraAdapter$app_debugFactory.provideTreatmentBasalHoraAdapter$app_debug(treatmentActivityModule, arg0);
+    TreatmentBasalHoraAdapter treatmentBasalHoraAdapter() {
+      return TreatmentActivityModule_ProvideTreatmentBasalHoraAdapter$app_debugFactory.provideTreatmentBasalHoraAdapter$app_debug(treatmentActivityModule, instance3);
     }
 
     @Override
-    public void inject(TreatmentActivity arg0) {
-      injectTreatmentActivity(arg0);
+    public void inject(TreatmentActivity instance) {
+      injectTreatmentActivity(instance);
     }
 
     @CanIgnoreReturnValue
-    private TreatmentInteractor injectTreatmentInteractor(TreatmentInteractor instance) {
-      TreatmentInteractor_MembersInjector.injectApiRepository(instance, apiRepository());
-      return instance;
+    private TreatmentInteractor injectTreatmentInteractor(TreatmentInteractor instance2) {
+      TreatmentInteractor_MembersInjector.injectApiRepository(instance2, apiRepository());
+      return instance2;
     }
 
     @CanIgnoreReturnValue
@@ -762,44 +764,43 @@ public final class DaggerAppComponent {
 
     private final LoginActivitySubcomponentImpl loginActivitySubcomponentImpl = this;
 
-    private LoginActivitySubcomponentImpl(AppComponentImpl appComponentImpl,
-        LoginActivityModule loginActivityModuleParam, LoginActivity arg0Param) {
+    LoginActivitySubcomponentImpl(AppComponentImpl appComponentImpl,
+        LoginActivityModule loginActivityModuleParam, LoginActivity instanceParam) {
       this.appComponentImpl = appComponentImpl;
       this.loginActivityModule = loginActivityModuleParam;
 
     }
 
-    private ApiRepository apiRepository() {
+    ApiRepository apiRepository() {
       return new ApiRepository(appComponentImpl.provideApolloClient$app_debugProvider.get());
     }
 
-    private LoginInteractor loginInteractor() {
+    LoginInteractor loginInteractor() {
       return injectLoginInteractor(LoginInteractor_Factory.newInstance(appComponentImpl.provideContext$app_debugProvider.get(), appComponentImpl.provideDailyRepoHelper$app_debugProvider.get(), appComponentImpl.provideTreamentRepoHelper$app_debugProvider.get(), appComponentImpl.provideUserRepoHelper$app_debugProvider.get(), appComponentImpl.providePrefHelper$app_debugProvider.get(), appComponentImpl.provideApiHelper$app_debugProvider.get()));
     }
 
-    private LoginInteractorImp loginInteractorImp() {
+    LoginInteractorImp loginInteractorImp() {
       return LoginActivityModule_ProvideloginInteractor$app_debugFactory.provideloginInteractor$app_debug(loginActivityModule, loginInteractor());
     }
 
-    private LoginPresenter<LoginView, LoginInteractorImp> loginPresenterOfLoginViewAndLoginInteractorImp(
-        ) {
+    LoginPresenter<LoginView, LoginInteractorImp> loginPresenterOfLoginViewAndLoginInteractorImp() {
       return new LoginPresenter<LoginView, LoginInteractorImp>(loginInteractorImp(), AppModule_ProvideSchedulerProvider$app_debugFactory.provideSchedulerProvider$app_debug(appComponentImpl.appModule), AppModule_ProvideCompositeDisposable$app_debugFactory.provideCompositeDisposable$app_debug(appComponentImpl.appModule));
     }
 
-    private LoginPresenterImp<LoginView, LoginInteractorImp> loginPresenterImpOfLoginViewAndLoginInteractorImp(
+    LoginPresenterImp<LoginView, LoginInteractorImp> loginPresenterImpOfLoginViewAndLoginInteractorImp(
         ) {
       return LoginActivityModule_ProvideloginPresenter$app_debugFactory.provideloginPresenter$app_debug(loginActivityModule, loginPresenterOfLoginViewAndLoginInteractorImp());
     }
 
     @Override
-    public void inject(LoginActivity arg0) {
-      injectLoginActivity(arg0);
+    public void inject(LoginActivity instance) {
+      injectLoginActivity(instance);
     }
 
     @CanIgnoreReturnValue
-    private LoginInteractor injectLoginInteractor(LoginInteractor instance) {
-      LoginInteractor_MembersInjector.injectApiRepository(instance, apiRepository());
-      return instance;
+    private LoginInteractor injectLoginInteractor(LoginInteractor instance2) {
+      LoginInteractor_MembersInjector.injectApiRepository(instance2, apiRepository());
+      return instance2;
     }
 
     @CanIgnoreReturnValue
@@ -816,34 +817,32 @@ public final class DaggerAppComponent {
 
     private final SignActivitySubcomponentImpl signActivitySubcomponentImpl = this;
 
-    private SignActivitySubcomponentImpl(AppComponentImpl appComponentImpl,
-        SignActivityModule signActivityModuleParam, SignActivity arg0Param) {
+    SignActivitySubcomponentImpl(AppComponentImpl appComponentImpl,
+        SignActivityModule signActivityModuleParam, SignActivity instanceParam) {
       this.appComponentImpl = appComponentImpl;
       this.signActivityModule = signActivityModuleParam;
 
     }
 
-    private SignInteractor signInteractor() {
+    SignInteractor signInteractor() {
       return new SignInteractor(appComponentImpl.provideUserRepoHelper$app_debugProvider.get(), appComponentImpl.providePrefHelper$app_debugProvider.get(), appComponentImpl.provideApiHelper$app_debugProvider.get());
     }
 
-    private SignInteractorImp signInteractorImp() {
+    SignInteractorImp signInteractorImp() {
       return SignActivityModule_ProvidesignInteractor$app_debugFactory.providesignInteractor$app_debug(signActivityModule, signInteractor());
     }
 
-    private SignPresenter<SignView, SignInteractorImp> signPresenterOfSignViewAndSignInteractorImp(
-        ) {
+    SignPresenter<SignView, SignInteractorImp> signPresenterOfSignViewAndSignInteractorImp() {
       return new SignPresenter<SignView, SignInteractorImp>(signInteractorImp(), AppModule_ProvideSchedulerProvider$app_debugFactory.provideSchedulerProvider$app_debug(appComponentImpl.appModule), AppModule_ProvideCompositeDisposable$app_debugFactory.provideCompositeDisposable$app_debug(appComponentImpl.appModule));
     }
 
-    private SignPresenterImp<SignView, SignInteractorImp> signPresenterImpOfSignViewAndSignInteractorImp(
-        ) {
+    SignPresenterImp<SignView, SignInteractorImp> signPresenterImpOfSignViewAndSignInteractorImp() {
       return SignActivityModule_ProvidesignPresenter$app_debugFactory.providesignPresenter$app_debug(signActivityModule, signPresenterOfSignViewAndSignInteractorImp());
     }
 
     @Override
-    public void inject(SignActivity arg0) {
-      injectSignActivity(arg0);
+    public void inject(SignActivity instance) {
+      injectSignActivity(instance);
     }
 
     @CanIgnoreReturnValue
@@ -860,44 +859,44 @@ public final class DaggerAppComponent {
 
     private final SignEmailActivitySubcomponentImpl signEmailActivitySubcomponentImpl = this;
 
-    private SignEmailActivitySubcomponentImpl(AppComponentImpl appComponentImpl,
-        SignEmailActivityModule signEmailActivityModuleParam, SignEmailActivity arg0Param) {
+    SignEmailActivitySubcomponentImpl(AppComponentImpl appComponentImpl,
+        SignEmailActivityModule signEmailActivityModuleParam, SignEmailActivity instanceParam) {
       this.appComponentImpl = appComponentImpl;
       this.signEmailActivityModule = signEmailActivityModuleParam;
 
     }
 
-    private ApiRepository apiRepository() {
+    ApiRepository apiRepository() {
       return new ApiRepository(appComponentImpl.provideApolloClient$app_debugProvider.get());
     }
 
-    private SignEmailInteractor signEmailInteractor() {
+    SignEmailInteractor signEmailInteractor() {
       return injectSignEmailInteractor(SignEmailInteractor_Factory.newInstance(appComponentImpl.provideContext$app_debugProvider.get(), appComponentImpl.provideTreamentRepoHelper$app_debugProvider.get(), appComponentImpl.provideDailyRepoHelper$app_debugProvider.get(), appComponentImpl.provideUserRepoHelper$app_debugProvider.get(), appComponentImpl.providePrefHelper$app_debugProvider.get(), appComponentImpl.provideApiHelper$app_debugProvider.get()));
     }
 
-    private SignEmailInteractorImp signEmailInteractorImp() {
+    SignEmailInteractorImp signEmailInteractorImp() {
       return SignEmailActivityModule_ProvidesignInteractor$app_debugFactory.providesignInteractor$app_debug(signEmailActivityModule, signEmailInteractor());
     }
 
-    private SignEmailPresenter<SignEmailView, SignEmailInteractorImp> signEmailPresenterOfSignEmailViewAndSignEmailInteractorImp(
+    SignEmailPresenter<SignEmailView, SignEmailInteractorImp> signEmailPresenterOfSignEmailViewAndSignEmailInteractorImp(
         ) {
       return new SignEmailPresenter<SignEmailView, SignEmailInteractorImp>(signEmailInteractorImp(), AppModule_ProvideSchedulerProvider$app_debugFactory.provideSchedulerProvider$app_debug(appComponentImpl.appModule), AppModule_ProvideCompositeDisposable$app_debugFactory.provideCompositeDisposable$app_debug(appComponentImpl.appModule));
     }
 
-    private SignEmailPresenterImp<SignEmailView, SignEmailInteractorImp> signEmailPresenterImpOfSignEmailViewAndSignEmailInteractorImp(
+    SignEmailPresenterImp<SignEmailView, SignEmailInteractorImp> signEmailPresenterImpOfSignEmailViewAndSignEmailInteractorImp(
         ) {
       return SignEmailActivityModule_ProvidesignPresenter$app_debugFactory.providesignPresenter$app_debug(signEmailActivityModule, signEmailPresenterOfSignEmailViewAndSignEmailInteractorImp());
     }
 
     @Override
-    public void inject(SignEmailActivity arg0) {
-      injectSignEmailActivity(arg0);
+    public void inject(SignEmailActivity instance) {
+      injectSignEmailActivity(instance);
     }
 
     @CanIgnoreReturnValue
-    private SignEmailInteractor injectSignEmailInteractor(SignEmailInteractor instance) {
-      SignEmailInteractor_MembersInjector.injectApiRepository(instance, apiRepository());
-      return instance;
+    private SignEmailInteractor injectSignEmailInteractor(SignEmailInteractor instance2) {
+      SignEmailInteractor_MembersInjector.injectApiRepository(instance2, apiRepository());
+      return instance2;
     }
 
     @CanIgnoreReturnValue
@@ -910,45 +909,45 @@ public final class DaggerAppComponent {
   private static final class OnBoardingActivitySubcomponentImpl implements ActivityBuilder_BindOnBoardingActivity.OnBoardingActivitySubcomponent {
     private final OnBoardingActivityModule onBoardingActivityModule;
 
-    private final OnBoardingActivity arg0;
+    private final OnBoardingActivity instance2;
 
     private final AppComponentImpl appComponentImpl;
 
     private final OnBoardingActivitySubcomponentImpl onBoardingActivitySubcomponentImpl = this;
 
-    private OnBoardingActivitySubcomponentImpl(AppComponentImpl appComponentImpl,
-        OnBoardingActivityModule onBoardingActivityModuleParam, OnBoardingActivity arg0Param) {
+    OnBoardingActivitySubcomponentImpl(AppComponentImpl appComponentImpl,
+        OnBoardingActivityModule onBoardingActivityModuleParam, OnBoardingActivity instanceParam) {
       this.appComponentImpl = appComponentImpl;
       this.onBoardingActivityModule = onBoardingActivityModuleParam;
-      this.arg0 = arg0Param;
+      this.instance2 = instanceParam;
 
     }
 
-    private OnBoardingInteractor onBoardingInteractor() {
+    OnBoardingInteractor onBoardingInteractor() {
       return new OnBoardingInteractor(appComponentImpl.provideUserRepoHelper$app_debugProvider.get(), appComponentImpl.providePrefHelper$app_debugProvider.get(), appComponentImpl.provideApiHelper$app_debugProvider.get());
     }
 
-    private OnBoardingInteractorImp onBoardingInteractorImp() {
+    OnBoardingInteractorImp onBoardingInteractorImp() {
       return OnBoardingActivityModule_ProvideOnBoardingInteractor$app_debugFactory.provideOnBoardingInteractor$app_debug(onBoardingActivityModule, onBoardingInteractor());
     }
 
-    private OnBoardingPresenter<OnBoardingView, OnBoardingInteractorImp> onBoardingPresenterOfOnBoardingViewAndOnBoardingInteractorImp(
+    OnBoardingPresenter<OnBoardingView, OnBoardingInteractorImp> onBoardingPresenterOfOnBoardingViewAndOnBoardingInteractorImp(
         ) {
       return new OnBoardingPresenter<OnBoardingView, OnBoardingInteractorImp>(onBoardingInteractorImp(), AppModule_ProvideSchedulerProvider$app_debugFactory.provideSchedulerProvider$app_debug(appComponentImpl.appModule), AppModule_ProvideCompositeDisposable$app_debugFactory.provideCompositeDisposable$app_debug(appComponentImpl.appModule));
     }
 
-    private OnBoardingPresenterImp<OnBoardingView, OnBoardingInteractorImp> onBoardingPresenterImpOfOnBoardingViewAndOnBoardingInteractorImp(
+    OnBoardingPresenterImp<OnBoardingView, OnBoardingInteractorImp> onBoardingPresenterImpOfOnBoardingViewAndOnBoardingInteractorImp(
         ) {
       return OnBoardingActivityModule_ProvideOnBoardingPresenter$app_debugFactory.provideOnBoardingPresenter$app_debug(onBoardingActivityModule, onBoardingPresenterOfOnBoardingViewAndOnBoardingInteractorImp());
     }
 
-    private BoardingFragmentPagerAdapter boardingFragmentPagerAdapter() {
-      return OnBoardingActivityModule_ProvideBoardingFragmentPagerAdapter$app_debugFactory.provideBoardingFragmentPagerAdapter$app_debug(onBoardingActivityModule, arg0);
+    BoardingFragmentPagerAdapter boardingFragmentPagerAdapter() {
+      return OnBoardingActivityModule_ProvideBoardingFragmentPagerAdapter$app_debugFactory.provideBoardingFragmentPagerAdapter$app_debug(onBoardingActivityModule, instance2);
     }
 
     @Override
-    public void inject(OnBoardingActivity arg0) {
-      injectOnBoardingActivity(arg0);
+    public void inject(OnBoardingActivity instance) {
+      injectOnBoardingActivity(instance);
     }
 
     @CanIgnoreReturnValue
@@ -962,45 +961,44 @@ public final class DaggerAppComponent {
   private static final class DailyActivitySubcomponentImpl implements ActivityBuilder_BindDailyActivity.DailyActivitySubcomponent {
     private final DailyActivityModule dailyActivityModule;
 
-    private final DailyActivity arg0;
+    private final DailyActivity instance2;
 
     private final AppComponentImpl appComponentImpl;
 
     private final DailyActivitySubcomponentImpl dailyActivitySubcomponentImpl = this;
 
-    private DailyActivitySubcomponentImpl(AppComponentImpl appComponentImpl,
-        DailyActivityModule dailyActivityModuleParam, DailyActivity arg0Param) {
+    DailyActivitySubcomponentImpl(AppComponentImpl appComponentImpl,
+        DailyActivityModule dailyActivityModuleParam, DailyActivity instanceParam) {
       this.appComponentImpl = appComponentImpl;
       this.dailyActivityModule = dailyActivityModuleParam;
-      this.arg0 = arg0Param;
+      this.instance2 = instanceParam;
 
     }
 
-    private DailyInteractor dailyInteractor() {
+    DailyInteractor dailyInteractor() {
       return new DailyInteractor(appComponentImpl.provideTreamentRepoHelper$app_debugProvider.get(), appComponentImpl.provideDailyRepoHelper$app_debugProvider.get(), appComponentImpl.provideUserRepoHelper$app_debugProvider.get(), appComponentImpl.providePrefHelper$app_debugProvider.get(), appComponentImpl.provideApiHelper$app_debugProvider.get());
     }
 
-    private DailyInteractorImp dailyInteractorImp() {
+    DailyInteractorImp dailyInteractorImp() {
       return DailyActivityModule_ProvideDailyInteractor$app_debugFactory.provideDailyInteractor$app_debug(dailyActivityModule, dailyInteractor());
     }
 
-    private DailyPresenter<DailyView, DailyInteractorImp> dailyPresenterOfDailyViewAndDailyInteractorImp(
-        ) {
+    DailyPresenter<DailyView, DailyInteractorImp> dailyPresenterOfDailyViewAndDailyInteractorImp() {
       return new DailyPresenter<DailyView, DailyInteractorImp>(dailyInteractorImp(), AppModule_ProvideSchedulerProvider$app_debugFactory.provideSchedulerProvider$app_debug(appComponentImpl.appModule), AppModule_ProvideCompositeDisposable$app_debugFactory.provideCompositeDisposable$app_debug(appComponentImpl.appModule));
     }
 
-    private DailyPresenterImp<DailyView, DailyInteractorImp> dailyPresenterImpOfDailyViewAndDailyInteractorImp(
+    DailyPresenterImp<DailyView, DailyInteractorImp> dailyPresenterImpOfDailyViewAndDailyInteractorImp(
         ) {
       return DailyActivityModule_ProvideDailyPresenter$app_debugFactory.provideDailyPresenter$app_debug(dailyActivityModule, dailyPresenterOfDailyViewAndDailyInteractorImp());
     }
 
-    private LinearLayoutManager linearLayoutManager() {
-      return DailyActivityModule_ProvideLinearLayoutManager$app_debugFactory.provideLinearLayoutManager$app_debug(dailyActivityModule, arg0);
+    LinearLayoutManager linearLayoutManager() {
+      return DailyActivityModule_ProvideLinearLayoutManager$app_debugFactory.provideLinearLayoutManager$app_debug(dailyActivityModule, instance2);
     }
 
     @Override
-    public void inject(DailyActivity arg0) {
-      injectDailyActivity(arg0);
+    public void inject(DailyActivity instance) {
+      injectDailyActivity(instance);
     }
 
     @CanIgnoreReturnValue
@@ -1014,58 +1012,59 @@ public final class DaggerAppComponent {
   private static final class DailyDetailActivitySubcomponentImpl implements ActivityBuilder_BindDailyDetailActivity.DailyDetailActivitySubcomponent {
     private final DailyDetailActivityModule dailyDetailActivityModule;
 
-    private final DailyDetailActivity arg0;
+    private final DailyDetailActivity instance3;
 
     private final AppComponentImpl appComponentImpl;
 
     private final DailyDetailActivitySubcomponentImpl dailyDetailActivitySubcomponentImpl = this;
 
-    private DailyDetailActivitySubcomponentImpl(AppComponentImpl appComponentImpl,
-        DailyDetailActivityModule dailyDetailActivityModuleParam, DailyDetailActivity arg0Param) {
+    DailyDetailActivitySubcomponentImpl(AppComponentImpl appComponentImpl,
+        DailyDetailActivityModule dailyDetailActivityModuleParam,
+        DailyDetailActivity instanceParam) {
       this.appComponentImpl = appComponentImpl;
       this.dailyDetailActivityModule = dailyDetailActivityModuleParam;
-      this.arg0 = arg0Param;
+      this.instance3 = instanceParam;
 
     }
 
-    private ApiRepository apiRepository() {
+    ApiRepository apiRepository() {
       return new ApiRepository(appComponentImpl.provideApolloClient$app_debugProvider.get());
     }
 
-    private DailyDetailInterador dailyDetailInterador() {
+    DailyDetailInterador dailyDetailInterador() {
       return injectDailyDetailInterador(DailyDetailInterador_Factory.newInstance(appComponentImpl.provideTreamentRepoHelper$app_debugProvider.get(), appComponentImpl.provideDailyRepoHelper$app_debugProvider.get(), appComponentImpl.provideUserRepoHelper$app_debugProvider.get(), appComponentImpl.providePrefHelper$app_debugProvider.get(), appComponentImpl.provideApiHelper$app_debugProvider.get()));
     }
 
-    private DailyDetailInteractorImp dailyDetailInteractorImp() {
+    DailyDetailInteractorImp dailyDetailInteractorImp() {
       return DailyDetailActivityModule_ProvideDailyDetailInteractor$app_debugFactory.provideDailyDetailInteractor$app_debug(dailyDetailActivityModule, dailyDetailInterador());
     }
 
-    private DailyDetailPresenter<DailyDetailView, DailyDetailInteractorImp> dailyDetailPresenterOfDailyDetailViewAndDailyDetailInteractorImp(
+    DailyDetailPresenter<DailyDetailView, DailyDetailInteractorImp> dailyDetailPresenterOfDailyDetailViewAndDailyDetailInteractorImp(
         ) {
       return new DailyDetailPresenter<DailyDetailView, DailyDetailInteractorImp>(dailyDetailInteractorImp(), AppModule_ProvideSchedulerProvider$app_debugFactory.provideSchedulerProvider$app_debug(appComponentImpl.appModule), AppModule_ProvideCompositeDisposable$app_debugFactory.provideCompositeDisposable$app_debug(appComponentImpl.appModule));
     }
 
-    private LinearLayoutManager linearLayoutManager() {
-      return DailyDetailActivityModule_ProvideLinearLayoutManager$app_debugFactory.provideLinearLayoutManager$app_debug(dailyDetailActivityModule, arg0);
+    LinearLayoutManager linearLayoutManager() {
+      return DailyDetailActivityModule_ProvideLinearLayoutManager$app_debugFactory.provideLinearLayoutManager$app_debug(dailyDetailActivityModule, instance3);
     }
 
-    private com.sugarcoachpremium.ui.daily_detail.view.CategoryAdapter categoryAdapter() {
-      return DailyDetailActivityModule_ProvideCategoryAdapter$app_debugFactory.provideCategoryAdapter$app_debug(dailyDetailActivityModule, arg0);
+    com.sugarcoachpremium.ui.daily_detail.view.CategoryAdapter categoryAdapter() {
+      return DailyDetailActivityModule_ProvideCategoryAdapter$app_debugFactory.provideCategoryAdapter$app_debug(dailyDetailActivityModule, instance3);
     }
 
-    private com.sugarcoachpremium.ui.daily_detail.view.ItemAdapter itemAdapter() {
-      return DailyDetailActivityModule_ProvideItemAdapter$app_debugFactory.provideItemAdapter$app_debug(dailyDetailActivityModule, arg0);
+    com.sugarcoachpremium.ui.daily_detail.view.ItemAdapter itemAdapter() {
+      return DailyDetailActivityModule_ProvideItemAdapter$app_debugFactory.provideItemAdapter$app_debug(dailyDetailActivityModule, instance3);
     }
 
     @Override
-    public void inject(DailyDetailActivity arg0) {
-      injectDailyDetailActivity(arg0);
+    public void inject(DailyDetailActivity instance) {
+      injectDailyDetailActivity(instance);
     }
 
     @CanIgnoreReturnValue
-    private DailyDetailInterador injectDailyDetailInterador(DailyDetailInterador instance) {
-      DailyDetailInterador_MembersInjector.injectApiRepository(instance, apiRepository());
-      return instance;
+    private DailyDetailInterador injectDailyDetailInterador(DailyDetailInterador instance2) {
+      DailyDetailInterador_MembersInjector.injectApiRepository(instance2, apiRepository());
+      return instance2;
     }
 
     @CanIgnoreReturnValue
@@ -1084,59 +1083,59 @@ public final class DaggerAppComponent {
   private static final class ProfileActivitySubcomponentImpl implements ActivityBuilder_BindProfileActivity.ProfileActivitySubcomponent {
     private final ProfileActivityModule profileActivityModule;
 
-    private final ProfileActivity arg0;
+    private final ProfileActivity instance3;
 
     private final AppComponentImpl appComponentImpl;
 
     private final ProfileActivitySubcomponentImpl profileActivitySubcomponentImpl = this;
 
-    private ProfileActivitySubcomponentImpl(AppComponentImpl appComponentImpl,
-        ProfileActivityModule profileActivityModuleParam, ProfileActivity arg0Param) {
+    ProfileActivitySubcomponentImpl(AppComponentImpl appComponentImpl,
+        ProfileActivityModule profileActivityModuleParam, ProfileActivity instanceParam) {
       this.appComponentImpl = appComponentImpl;
       this.profileActivityModule = profileActivityModuleParam;
-      this.arg0 = arg0Param;
+      this.instance3 = instanceParam;
 
     }
 
-    private ApiRepository apiRepository() {
+    ApiRepository apiRepository() {
       return new ApiRepository(appComponentImpl.provideApolloClient$app_debugProvider.get());
     }
 
-    private ProfileInteractor profileInteractor() {
+    ProfileInteractor profileInteractor() {
       return injectProfileInteractor(ProfileInteractor_Factory.newInstance(appComponentImpl.provideDailyRepoHelper$app_debugProvider.get(), appComponentImpl.provideTreamentRepoHelper$app_debugProvider.get(), appComponentImpl.provideUserRepoHelper$app_debugProvider.get(), appComponentImpl.providePrefHelper$app_debugProvider.get(), appComponentImpl.provideApiHelper$app_debugProvider.get()));
     }
 
-    private ProfileInteractorImp profileInteractorImp() {
+    ProfileInteractorImp profileInteractorImp() {
       return ProfileActivityModule_ProvideProfileInteractor$app_debugFactory.provideProfileInteractor$app_debug(profileActivityModule, profileInteractor());
     }
 
-    private ProfilePresenter<ProfileView, ProfileInteractorImp> profilePresenterOfProfileViewAndProfileInteractorImp(
+    ProfilePresenter<ProfileView, ProfileInteractorImp> profilePresenterOfProfileViewAndProfileInteractorImp(
         ) {
       return new ProfilePresenter<ProfileView, ProfileInteractorImp>(profileInteractorImp(), AppModule_ProvideSchedulerProvider$app_debugFactory.provideSchedulerProvider$app_debug(appComponentImpl.appModule), AppModule_ProvideCompositeDisposable$app_debugFactory.provideCompositeDisposable$app_debug(appComponentImpl.appModule));
     }
 
-    private ProfilePresenterImp<ProfileView, ProfileInteractorImp> profilePresenterImpOfProfileViewAndProfileInteractorImp(
+    ProfilePresenterImp<ProfileView, ProfileInteractorImp> profilePresenterImpOfProfileViewAndProfileInteractorImp(
         ) {
       return ProfileActivityModule_ProvideProfilePresenter$app_debugFactory.provideProfilePresenter$app_debug(profileActivityModule, profilePresenterOfProfileViewAndProfileInteractorImp());
     }
 
-    private GridLayoutManager gridLayoutManager() {
-      return ProfileActivityModule_ProvideGridLayoutManager$app_debugFactory.provideGridLayoutManager$app_debug(profileActivityModule, arg0);
+    GridLayoutManager gridLayoutManager() {
+      return ProfileActivityModule_ProvideGridLayoutManager$app_debugFactory.provideGridLayoutManager$app_debug(profileActivityModule, instance3);
     }
 
-    private ProfileAdapter profileAdapter() {
-      return ProfileActivityModule_ProvideProfileAdapter$app_debugFactory.provideProfileAdapter$app_debug(profileActivityModule, arg0);
+    ProfileAdapter profileAdapter() {
+      return ProfileActivityModule_ProvideProfileAdapter$app_debugFactory.provideProfileAdapter$app_debug(profileActivityModule, instance3);
     }
 
     @Override
-    public void inject(ProfileActivity arg0) {
-      injectProfileActivity(arg0);
+    public void inject(ProfileActivity instance) {
+      injectProfileActivity(instance);
     }
 
     @CanIgnoreReturnValue
-    private ProfileInteractor injectProfileInteractor(ProfileInteractor instance) {
-      ProfileInteractor_MembersInjector.injectApiRepo(instance, apiRepository());
-      return instance;
+    private ProfileInteractor injectProfileInteractor(ProfileInteractor instance2) {
+      ProfileInteractor_MembersInjector.injectApiRepo(instance2, apiRepository());
+      return instance2;
     }
 
     @CanIgnoreReturnValue
@@ -1155,34 +1154,34 @@ public final class DaggerAppComponent {
 
     private final ConfigActivitySubcomponentImpl configActivitySubcomponentImpl = this;
 
-    private ConfigActivitySubcomponentImpl(AppComponentImpl appComponentImpl,
-        ConfigActivityModule configActivityModuleParam, ConfigActivity arg0Param) {
+    ConfigActivitySubcomponentImpl(AppComponentImpl appComponentImpl,
+        ConfigActivityModule configActivityModuleParam, ConfigActivity instanceParam) {
       this.appComponentImpl = appComponentImpl;
       this.configActivityModule = configActivityModuleParam;
 
     }
 
-    private ConfigInteractor configInteractor() {
+    ConfigInteractor configInteractor() {
       return new ConfigInteractor(appComponentImpl.provideContext$app_debugProvider.get(), appComponentImpl.provideTreamentRepoHelper$app_debugProvider.get(), appComponentImpl.provideDailyRepoHelper$app_debugProvider.get(), appComponentImpl.provideUserRepoHelper$app_debugProvider.get(), appComponentImpl.providePrefHelper$app_debugProvider.get(), appComponentImpl.provideApiHelper$app_debugProvider.get());
     }
 
-    private ConfigInteractorImp configInteractorImp() {
+    ConfigInteractorImp configInteractorImp() {
       return ConfigActivityModule_ProvideConfigInteractor$app_debugFactory.provideConfigInteractor$app_debug(configActivityModule, configInteractor());
     }
 
-    private ConfigPresenter<ConfigView, ConfigInteractorImp> configPresenterOfConfigViewAndConfigInteractorImp(
+    ConfigPresenter<ConfigView, ConfigInteractorImp> configPresenterOfConfigViewAndConfigInteractorImp(
         ) {
       return new ConfigPresenter<ConfigView, ConfigInteractorImp>(configInteractorImp(), AppModule_ProvideSchedulerProvider$app_debugFactory.provideSchedulerProvider$app_debug(appComponentImpl.appModule), AppModule_ProvideCompositeDisposable$app_debugFactory.provideCompositeDisposable$app_debug(appComponentImpl.appModule));
     }
 
-    private ConfigPresenterImp<ConfigView, ConfigInteractorImp> configPresenterImpOfConfigViewAndConfigInteractorImp(
+    ConfigPresenterImp<ConfigView, ConfigInteractorImp> configPresenterImpOfConfigViewAndConfigInteractorImp(
         ) {
       return ConfigActivityModule_ProvideConfigPresenter$app_debugFactory.provideConfigPresenter$app_debug(configActivityModule, configPresenterOfConfigViewAndConfigInteractorImp());
     }
 
     @Override
-    public void inject(ConfigActivity arg0) {
-      injectConfigActivity(arg0);
+    public void inject(ConfigActivity instance) {
+      injectConfigActivity(instance);
     }
 
     @CanIgnoreReturnValue
@@ -1195,49 +1194,49 @@ public final class DaggerAppComponent {
   private static final class StatisticsActivitySubcomponentImpl implements ActivityBuilder_BindStatisticsActivity.StatisticsActivitySubcomponent {
     private final StatisticsActivityModule statisticsActivityModule;
 
-    private final StatisticsActivity arg0;
+    private final StatisticsActivity instance2;
 
     private final AppComponentImpl appComponentImpl;
 
     private final StatisticsActivitySubcomponentImpl statisticsActivitySubcomponentImpl = this;
 
-    private StatisticsActivitySubcomponentImpl(AppComponentImpl appComponentImpl,
-        StatisticsActivityModule statisticsActivityModuleParam, StatisticsActivity arg0Param) {
+    StatisticsActivitySubcomponentImpl(AppComponentImpl appComponentImpl,
+        StatisticsActivityModule statisticsActivityModuleParam, StatisticsActivity instanceParam) {
       this.appComponentImpl = appComponentImpl;
       this.statisticsActivityModule = statisticsActivityModuleParam;
-      this.arg0 = arg0Param;
+      this.instance2 = instanceParam;
 
     }
 
-    private StatisticsInteractor statisticsInteractor() {
+    StatisticsInteractor statisticsInteractor() {
       return new StatisticsInteractor(appComponentImpl.provideTreamentRepoHelper$app_debugProvider.get(), appComponentImpl.provideDailyRepoHelper$app_debugProvider.get(), appComponentImpl.provideUserRepoHelper$app_debugProvider.get(), appComponentImpl.providePrefHelper$app_debugProvider.get(), appComponentImpl.provideApiHelper$app_debugProvider.get());
     }
 
-    private StatisticsInteractorImp statisticsInteractorImp() {
+    StatisticsInteractorImp statisticsInteractorImp() {
       return StatisticsActivityModule_ProvideStatisticsInteractor$app_debugFactory.provideStatisticsInteractor$app_debug(statisticsActivityModule, statisticsInteractor());
     }
 
-    private StatisticsPresenter<StatisticsView, StatisticsInteractorImp> statisticsPresenterOfStatisticsViewAndStatisticsInteractorImp(
+    StatisticsPresenter<StatisticsView, StatisticsInteractorImp> statisticsPresenterOfStatisticsViewAndStatisticsInteractorImp(
         ) {
       return new StatisticsPresenter<StatisticsView, StatisticsInteractorImp>(statisticsInteractorImp(), AppModule_ProvideSchedulerProvider$app_debugFactory.provideSchedulerProvider$app_debug(appComponentImpl.appModule), AppModule_ProvideCompositeDisposable$app_debugFactory.provideCompositeDisposable$app_debug(appComponentImpl.appModule));
     }
 
-    private StatisticsPresenterImp<StatisticsView, StatisticsInteractorImp> statisticsPresenterImpOfStatisticsViewAndStatisticsInteractorImp(
+    StatisticsPresenterImp<StatisticsView, StatisticsInteractorImp> statisticsPresenterImpOfStatisticsViewAndStatisticsInteractorImp(
         ) {
       return StatisticsActivityModule_ProvideStatisticsPresenter$app_debugFactory.provideStatisticsPresenter$app_debug(statisticsActivityModule, statisticsPresenterOfStatisticsViewAndStatisticsInteractorImp());
     }
 
-    private StatisticsAdapter statisticsAdapter() {
-      return StatisticsActivityModule_ProvideStatisticsAdapter$app_debugFactory.provideStatisticsAdapter$app_debug(statisticsActivityModule, arg0);
+    StatisticsAdapter statisticsAdapter() {
+      return StatisticsActivityModule_ProvideStatisticsAdapter$app_debugFactory.provideStatisticsAdapter$app_debug(statisticsActivityModule, instance2);
     }
 
-    private LinearLayoutManager linearLayoutManager() {
-      return StatisticsActivityModule_ProvideLinearLayoutManager$app_debugFactory.provideLinearLayoutManager$app_debug(statisticsActivityModule, arg0);
+    LinearLayoutManager linearLayoutManager() {
+      return StatisticsActivityModule_ProvideLinearLayoutManager$app_debugFactory.provideLinearLayoutManager$app_debug(statisticsActivityModule, instance2);
     }
 
     @Override
-    public void inject(StatisticsActivity arg0) {
-      injectStatisticsActivity(arg0);
+    public void inject(StatisticsActivity instance) {
+      injectStatisticsActivity(instance);
     }
 
     @CanIgnoreReturnValue
@@ -1256,34 +1255,34 @@ public final class DaggerAppComponent {
 
     private final ForgotActivitySubcomponentImpl forgotActivitySubcomponentImpl = this;
 
-    private ForgotActivitySubcomponentImpl(AppComponentImpl appComponentImpl,
-        ForgotActivityModule forgotActivityModuleParam, ForgotActivity arg0Param) {
+    ForgotActivitySubcomponentImpl(AppComponentImpl appComponentImpl,
+        ForgotActivityModule forgotActivityModuleParam, ForgotActivity instanceParam) {
       this.appComponentImpl = appComponentImpl;
       this.forgotActivityModule = forgotActivityModuleParam;
 
     }
 
-    private ForgotInteractor forgotInteractor() {
+    ForgotInteractor forgotInteractor() {
       return new ForgotInteractor(appComponentImpl.provideDailyRepoHelper$app_debugProvider.get(), appComponentImpl.provideUserRepoHelper$app_debugProvider.get(), appComponentImpl.providePrefHelper$app_debugProvider.get(), appComponentImpl.provideApiHelper$app_debugProvider.get());
     }
 
-    private ForgotInteractorImp forgotInteractorImp() {
+    ForgotInteractorImp forgotInteractorImp() {
       return ForgotActivityModule_ProvideforgotInteractor$app_debugFactory.provideforgotInteractor$app_debug(forgotActivityModule, forgotInteractor());
     }
 
-    private ForgotPresenter<ForgotView, ForgotInteractorImp> forgotPresenterOfForgotViewAndForgotInteractorImp(
+    ForgotPresenter<ForgotView, ForgotInteractorImp> forgotPresenterOfForgotViewAndForgotInteractorImp(
         ) {
       return new ForgotPresenter<ForgotView, ForgotInteractorImp>(forgotInteractorImp(), AppModule_ProvideSchedulerProvider$app_debugFactory.provideSchedulerProvider$app_debug(appComponentImpl.appModule), AppModule_ProvideCompositeDisposable$app_debugFactory.provideCompositeDisposable$app_debug(appComponentImpl.appModule));
     }
 
-    private ForgotPresenterImp<ForgotView, ForgotInteractorImp> forgotPresenterImpOfForgotViewAndForgotInteractorImp(
+    ForgotPresenterImp<ForgotView, ForgotInteractorImp> forgotPresenterImpOfForgotViewAndForgotInteractorImp(
         ) {
       return ForgotActivityModule_ProvideforgotPresenter$app_debugFactory.provideforgotPresenter$app_debug(forgotActivityModule, forgotPresenterOfForgotViewAndForgotInteractorImp());
     }
 
     @Override
-    public void inject(ForgotActivity arg0) {
-      injectForgotActivity(arg0);
+    public void inject(ForgotActivity instance) {
+      injectForgotActivity(instance);
     }
 
     @CanIgnoreReturnValue
@@ -1298,71 +1297,72 @@ public final class DaggerAppComponent {
 
     private final AppComponentImpl appComponentImpl = this;
 
-    private Provider<ActivityBuilder_BindSplashActivity.SplashActivitySubcomponent.Factory> splashActivitySubcomponentFactoryProvider;
+    Provider<ActivityBuilder_BindSplashActivity.SplashActivitySubcomponent.Factory> splashActivitySubcomponentFactoryProvider;
 
-    private Provider<ActivityBuilder_BindMainActivity.MainActivitySubcomponent.Factory> mainActivitySubcomponentFactoryProvider;
+    Provider<ActivityBuilder_BindMainActivity.MainActivitySubcomponent.Factory> mainActivitySubcomponentFactoryProvider;
 
-    private Provider<ActivityBuilder_BindRegisterActivity.RegisterActivitySubcomponent.Factory> registerActivitySubcomponentFactoryProvider;
+    Provider<ActivityBuilder_BindRegisterActivity.RegisterActivitySubcomponent.Factory> registerActivitySubcomponentFactoryProvider;
 
-    private Provider<ActivityBuilder_BindTreatmentActivity.TreatmentActivitySubcomponent.Factory> treatmentActivitySubcomponentFactoryProvider;
+    Provider<ActivityBuilder_BindTreatmentActivity.TreatmentActivitySubcomponent.Factory> treatmentActivitySubcomponentFactoryProvider;
 
-    private Provider<ActivityBuilder_BindLoginActivity.LoginActivitySubcomponent.Factory> loginActivitySubcomponentFactoryProvider;
+    Provider<ActivityBuilder_BindLoginActivity.LoginActivitySubcomponent.Factory> loginActivitySubcomponentFactoryProvider;
 
-    private Provider<ActivityBuilder_BindSignActivity.SignActivitySubcomponent.Factory> signActivitySubcomponentFactoryProvider;
+    Provider<ActivityBuilder_BindSignActivity.SignActivitySubcomponent.Factory> signActivitySubcomponentFactoryProvider;
 
-    private Provider<ActivityBuilder_BindSignEmailctivity.SignEmailActivitySubcomponent.Factory> signEmailActivitySubcomponentFactoryProvider;
+    Provider<ActivityBuilder_BindSignEmailctivity.SignEmailActivitySubcomponent.Factory> signEmailActivitySubcomponentFactoryProvider;
 
-    private Provider<ActivityBuilder_BindOnBoardingActivity.OnBoardingActivitySubcomponent.Factory> onBoardingActivitySubcomponentFactoryProvider;
+    Provider<ActivityBuilder_BindOnBoardingActivity.OnBoardingActivitySubcomponent.Factory> onBoardingActivitySubcomponentFactoryProvider;
 
-    private Provider<ActivityBuilder_BindDailyActivity.DailyActivitySubcomponent.Factory> dailyActivitySubcomponentFactoryProvider;
+    Provider<ActivityBuilder_BindDailyActivity.DailyActivitySubcomponent.Factory> dailyActivitySubcomponentFactoryProvider;
 
-    private Provider<ActivityBuilder_BindDailyDetailActivity.DailyDetailActivitySubcomponent.Factory> dailyDetailActivitySubcomponentFactoryProvider;
+    Provider<ActivityBuilder_BindDailyDetailActivity.DailyDetailActivitySubcomponent.Factory> dailyDetailActivitySubcomponentFactoryProvider;
 
-    private Provider<ActivityBuilder_BindProfileActivity.ProfileActivitySubcomponent.Factory> profileActivitySubcomponentFactoryProvider;
+    Provider<ActivityBuilder_BindProfileActivity.ProfileActivitySubcomponent.Factory> profileActivitySubcomponentFactoryProvider;
 
-    private Provider<ActivityBuilder_BindConfigActivity.ConfigActivitySubcomponent.Factory> configActivitySubcomponentFactoryProvider;
+    Provider<ActivityBuilder_BindConfigActivity.ConfigActivitySubcomponent.Factory> configActivitySubcomponentFactoryProvider;
 
-    private Provider<ActivityBuilder_BindStatisticsActivity.StatisticsActivitySubcomponent.Factory> statisticsActivitySubcomponentFactoryProvider;
+    Provider<ActivityBuilder_BindStatisticsActivity.StatisticsActivitySubcomponent.Factory> statisticsActivitySubcomponentFactoryProvider;
 
-    private Provider<ActivityBuilder_BindForgotActivity.ForgotActivitySubcomponent.Factory> forgotActivitySubcomponentFactoryProvider;
+    Provider<ActivityBuilder_BindForgotActivity.ForgotActivitySubcomponent.Factory> forgotActivitySubcomponentFactoryProvider;
 
-    private Provider<Application> applicationProvider;
+    Provider<Application> applicationProvider;
 
-    private Provider<Context> provideContext$app_debugProvider;
+    Provider<Context> provideContext$app_debugProvider;
 
-    private Provider<AppDatabase> provideAppDatabase$app_debugProvider;
+    Provider<AppDatabase> provideAppDatabase$app_debugProvider;
 
-    private Provider<DailyRegisterRepo> provideDailyRepoHelper$app_debugProvider;
+    Provider<DailyRegisterRepo> provideDailyRepoHelper$app_debugProvider;
 
-    private Provider<TreamentRepo> provideTreamentRepoHelper$app_debugProvider;
+    Provider<TreamentRepo> provideTreamentRepoHelper$app_debugProvider;
 
-    private Provider<UserRepo> provideUserRepoHelper$app_debugProvider;
+    Provider<UserRepo> provideUserRepoHelper$app_debugProvider;
 
-    private Provider<String> provideprefFileName$app_debugProvider;
+    Provider<String> provideprefFileName$app_debugProvider;
 
-    private Provider<AppPreferenceHelper> appPreferenceHelperProvider;
+    Provider<AppPreferenceHelper> appPreferenceHelperProvider;
 
-    private Provider<PreferenceHelper> providePrefHelper$app_debugProvider;
+    Provider<PreferenceHelper> providePrefHelper$app_debugProvider;
 
-    private Provider<Retrofit> provideRetrofitProvider;
+    Provider<Retrofit> provideRetrofitProvider;
 
-    private Provider<ApiHelper> provideApiHelper$app_debugProvider;
+    Provider<ApiHelper> provideApiHelper$app_debugProvider;
 
-    private Provider<ApolloClient> provideApolloClient$app_debugProvider;
+    Provider<ApolloClient> provideApolloClient$app_debugProvider;
 
-    private AppComponentImpl(AppModule appModuleParam, Application applicationParam) {
+    AppComponentImpl(AppModule appModuleParam, Application applicationParam) {
       this.appModule = appModuleParam;
       initialize(appModuleParam, applicationParam);
+      initialize2(appModuleParam, applicationParam);
 
     }
 
-    private Map<Class<?>, Provider<dagger.android.AndroidInjector.Factory<?>>> mapOfClassOfAndProviderOfAndroidInjectorFactoryOf(
+    Map<Class<?>, javax.inject.Provider<dagger.android.AndroidInjector.Factory<?>>> mapOfClassOfAndProviderOfAndroidInjectorFactoryOf(
         ) {
-      return MapBuilder.<Class<?>, Provider<dagger.android.AndroidInjector.Factory<?>>>newMapBuilder(14).put(SplashActivity.class, ((Provider) splashActivitySubcomponentFactoryProvider)).put(MainActivity.class, ((Provider) mainActivitySubcomponentFactoryProvider)).put(RegisterActivity.class, ((Provider) registerActivitySubcomponentFactoryProvider)).put(TreatmentActivity.class, ((Provider) treatmentActivitySubcomponentFactoryProvider)).put(LoginActivity.class, ((Provider) loginActivitySubcomponentFactoryProvider)).put(SignActivity.class, ((Provider) signActivitySubcomponentFactoryProvider)).put(SignEmailActivity.class, ((Provider) signEmailActivitySubcomponentFactoryProvider)).put(OnBoardingActivity.class, ((Provider) onBoardingActivitySubcomponentFactoryProvider)).put(DailyActivity.class, ((Provider) dailyActivitySubcomponentFactoryProvider)).put(DailyDetailActivity.class, ((Provider) dailyDetailActivitySubcomponentFactoryProvider)).put(ProfileActivity.class, ((Provider) profileActivitySubcomponentFactoryProvider)).put(ConfigActivity.class, ((Provider) configActivitySubcomponentFactoryProvider)).put(StatisticsActivity.class, ((Provider) statisticsActivitySubcomponentFactoryProvider)).put(ForgotActivity.class, ((Provider) forgotActivitySubcomponentFactoryProvider)).build();
+      return ImmutableMap.<Class<?>, javax.inject.Provider<dagger.android.AndroidInjector.Factory<?>>>builderWithExpectedSize(14).put(SplashActivity.class, ((Provider) (splashActivitySubcomponentFactoryProvider))).put(MainActivity.class, ((Provider) (mainActivitySubcomponentFactoryProvider))).put(RegisterActivity.class, ((Provider) (registerActivitySubcomponentFactoryProvider))).put(TreatmentActivity.class, ((Provider) (treatmentActivitySubcomponentFactoryProvider))).put(LoginActivity.class, ((Provider) (loginActivitySubcomponentFactoryProvider))).put(SignActivity.class, ((Provider) (signActivitySubcomponentFactoryProvider))).put(SignEmailActivity.class, ((Provider) (signEmailActivitySubcomponentFactoryProvider))).put(OnBoardingActivity.class, ((Provider) (onBoardingActivitySubcomponentFactoryProvider))).put(DailyActivity.class, ((Provider) (dailyActivitySubcomponentFactoryProvider))).put(DailyDetailActivity.class, ((Provider) (dailyDetailActivitySubcomponentFactoryProvider))).put(ProfileActivity.class, ((Provider) (profileActivitySubcomponentFactoryProvider))).put(ConfigActivity.class, ((Provider) (configActivitySubcomponentFactoryProvider))).put(StatisticsActivity.class, ((Provider) (statisticsActivitySubcomponentFactoryProvider))).put(ForgotActivity.class, ((Provider) (forgotActivitySubcomponentFactoryProvider))).build();
     }
 
-    private DispatchingAndroidInjector<Object> dispatchingAndroidInjectorOfObject() {
-      return DispatchingAndroidInjector_Factory.newInstance(mapOfClassOfAndProviderOfAndroidInjectorFactoryOf(), Collections.<String, Provider<dagger.android.AndroidInjector.Factory<?>>>emptyMap());
+    DispatchingAndroidInjector<Object> dispatchingAndroidInjectorOfObject() {
+      return DispatchingAndroidInjector_Factory.newInstance(mapOfClassOfAndProviderOfAndroidInjectorFactoryOf(), ImmutableMap.<String, javax.inject.Provider<dagger.android.AndroidInjector.Factory<?>>>of());
     }
 
     @SuppressWarnings("unchecked")
@@ -1463,6 +1463,10 @@ public final class DaggerAppComponent {
       this.providePrefHelper$app_debugProvider = DoubleCheck.provider(AppModule_ProvidePrefHelper$app_debugFactory.create(appModuleParam, appPreferenceHelperProvider));
       this.provideRetrofitProvider = DoubleCheck.provider(AppModule_ProvideRetrofitFactory.create(appModuleParam));
       this.provideApiHelper$app_debugProvider = DoubleCheck.provider(AppModule_ProvideApiHelper$app_debugFactory.create(appModuleParam, provideRetrofitProvider));
+    }
+
+    @SuppressWarnings("unchecked")
+    private void initialize2(final AppModule appModuleParam, final Application applicationParam) {
       this.provideApolloClient$app_debugProvider = DoubleCheck.provider(AppModule_ProvideApolloClient$app_debugFactory.create(appModuleParam));
     }
 

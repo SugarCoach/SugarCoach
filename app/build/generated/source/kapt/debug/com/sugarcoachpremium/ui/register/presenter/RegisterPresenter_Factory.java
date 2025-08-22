@@ -5,11 +5,11 @@ import com.sugarcoachpremium.ui.register.view.RegisterView;
 import com.sugarcoachpremium.util.SchedulerProvider;
 import dagger.internal.DaggerGenerated;
 import dagger.internal.Factory;
+import dagger.internal.Provider;
 import dagger.internal.QualifierMetadata;
 import dagger.internal.ScopeMetadata;
 import io.reactivex.disposables.CompositeDisposable;
 import javax.annotation.processing.Generated;
-import javax.inject.Provider;
 import org.joda.time.LocalDateTime;
 
 @ScopeMetadata
@@ -23,7 +23,10 @@ import org.joda.time.LocalDateTime;
     "unchecked",
     "rawtypes",
     "KotlinInternal",
-    "KotlinInternalInJava"
+    "KotlinInternalInJava",
+    "cast",
+    "deprecation",
+    "nullness:initialization.field.uninitialized"
 })
 public final class RegisterPresenter_Factory<V extends RegisterView, I extends RegisterInteractorImp> implements Factory<RegisterPresenter<V, I>> {
   private final Provider<I> interactorProvider;
@@ -34,7 +37,7 @@ public final class RegisterPresenter_Factory<V extends RegisterView, I extends R
 
   private final Provider<LocalDateTime> dateProvider;
 
-  public RegisterPresenter_Factory(Provider<I> interactorProvider,
+  private RegisterPresenter_Factory(Provider<I> interactorProvider,
       Provider<SchedulerProvider> schedulerProvider,
       Provider<CompositeDisposable> disposableProvider, Provider<LocalDateTime> dateProvider) {
     this.interactorProvider = interactorProvider;
