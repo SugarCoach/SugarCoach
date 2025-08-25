@@ -30,18 +30,36 @@ class TreatmentHolder(private val binding: TreatmentItemBinding) : RecyclerView.
                 binding.treatmentItemUnidad.selectItemByIndex(item.units.toInt()-1)
             }
         }
-        binding.treatmentItemUnidad.setOnSpinnerItemSelectedListener<String> { index, unit ->
+
+        //ORIGINAL
+//        binding.treatmentItemUnidad.setOnSpinnerItemSelectedListener<String> { index, unit ->
+//            if (binding.treatmentItemHorario.isChecked){
+//                val category = HorarioItem.Builder()
+//                    .id(item.id)
+//                    .name(item.name)
+//                    .selected(true)
+//                    .units(unit)
+//                    .categoryId(item.categoryId)
+//                    .build()
+//                activity.presenter.saveCategory(category)
+//            }
+//        }
+
+
+        //SUSTITUCION 25/08/2025
+        binding.treatmentItemUnidad.setOnSpinnerItemSelectedListener<String> { index, unit, parentIndex, parentText ->
             if (binding.treatmentItemHorario.isChecked){
                 val category = HorarioItem.Builder()
                     .id(item.id)
                     .name(item.name)
                     .selected(true)
-                    .units(unit)
+                    .units(unit ?: "")
                     .categoryId(item.categoryId)
                     .build()
                 activity.presenter.saveCategory(category)
             }
         }
+
     }
 
     companion object {

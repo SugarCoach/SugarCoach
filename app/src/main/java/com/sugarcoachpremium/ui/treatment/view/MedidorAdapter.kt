@@ -50,10 +50,16 @@ class MedidorAdapter (private val activity: TreatmentActivity) : RecyclerView.Ad
     }
 
     // we must call the spinnerView.notifyItemSelected method to let PowerSpinnerView know about changed information.
+//    override fun notifyItemSelected(index: Int) {
+//        this.spinnerView.notifyItemSelected(index, this.itemList[index].name)
+//        this.onSpinnerItemSelectedListener?.onItemSelected(index, this.itemList[index])
+//    }
+
     override fun notifyItemSelected(index: Int) {
         this.spinnerView.notifyItemSelected(index, this.itemList[index].name)
-        this.onSpinnerItemSelectedListener?.onItemSelected(index, this.itemList[index])
+        this.onSpinnerItemSelectedListener?.onItemSelected(index, this.itemList[index], index, this.itemList[index])
     }
+
     private fun bind(holder: MedidorHolder, item: BasalItem) {
         holder.bind(item)
     }

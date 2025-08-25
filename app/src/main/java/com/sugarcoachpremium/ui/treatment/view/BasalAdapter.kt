@@ -55,13 +55,20 @@ class BasalAdapter (private val activity: TreatmentActivity) : RecyclerView.Adap
     }
 
     // we must call the spinnerView.notifyItemSelected method to let PowerSpinnerView know about changed information.
+//    override fun notifyItemSelected(index: Int) {
+//        this.spinnerView.notifyItemSelected(index, this.items[index].name)
+//        this.onSpinnerItemSelectedListener?.onItemSelected(index, this.items[index]) // LINEA ORIGINAL = ?.onItemSelected(index, this.items[index])
+//    }
+
     override fun notifyItemSelected(index: Int) {
         this.spinnerView.notifyItemSelected(index, this.items[index].name)
-        this.onSpinnerItemSelectedListener?.onItemSelected(index, this.items[index]) // LINEA ORIGINAL = ?.onItemSelected(index, this.items[index])
+        this.onSpinnerItemSelectedListener?.onItemSelected(index, this.items[index], index, this.items[index])
     }
+
     private fun bind(holder: BasalHolder, item: BasalItem) {
         holder.bind(item)
     }
 
 }
+
 
