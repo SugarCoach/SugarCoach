@@ -5,11 +5,11 @@ import com.sugarcoachpremium.ui.daily_detail.view.DailyDetailView;
 import com.sugarcoachpremium.util.SchedulerProvider;
 import dagger.internal.DaggerGenerated;
 import dagger.internal.Factory;
+import dagger.internal.Provider;
 import dagger.internal.QualifierMetadata;
 import dagger.internal.ScopeMetadata;
 import io.reactivex.disposables.CompositeDisposable;
 import javax.annotation.processing.Generated;
-import javax.inject.Provider;
 
 @ScopeMetadata
 @QualifierMetadata
@@ -22,7 +22,10 @@ import javax.inject.Provider;
     "unchecked",
     "rawtypes",
     "KotlinInternal",
-    "KotlinInternalInJava"
+    "KotlinInternalInJava",
+    "cast",
+    "deprecation",
+    "nullness:initialization.field.uninitialized"
 })
 public final class DailyDetailPresenter_Factory<V extends DailyDetailView, I extends DailyDetailInteractorImp> implements Factory<DailyDetailPresenter<V, I>> {
   private final Provider<I> interactorProvider;
@@ -31,7 +34,7 @@ public final class DailyDetailPresenter_Factory<V extends DailyDetailView, I ext
 
   private final Provider<CompositeDisposable> disposableProvider;
 
-  public DailyDetailPresenter_Factory(Provider<I> interactorProvider,
+  private DailyDetailPresenter_Factory(Provider<I> interactorProvider,
       Provider<SchedulerProvider> schedulerProvider,
       Provider<CompositeDisposable> disposableProvider) {
     this.interactorProvider = interactorProvider;

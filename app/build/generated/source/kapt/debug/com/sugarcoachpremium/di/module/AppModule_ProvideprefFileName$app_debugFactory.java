@@ -18,12 +18,15 @@ import javax.annotation.processing.Generated;
     "unchecked",
     "rawtypes",
     "KotlinInternal",
-    "KotlinInternalInJava"
+    "KotlinInternalInJava",
+    "cast",
+    "deprecation",
+    "nullness:initialization.field.uninitialized"
 })
 public final class AppModule_ProvideprefFileName$app_debugFactory implements Factory<String> {
   private final AppModule module;
 
-  public AppModule_ProvideprefFileName$app_debugFactory(AppModule module) {
+  private AppModule_ProvideprefFileName$app_debugFactory(AppModule module) {
     this.module = module;
   }
 

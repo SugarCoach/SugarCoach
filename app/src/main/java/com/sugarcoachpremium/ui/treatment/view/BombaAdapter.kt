@@ -11,10 +11,13 @@ import java.util.*
 
 class BombaAdapter (private val activity: TreatmentActivity) : RecyclerView.Adapter<RecyclerView.ViewHolder>(),
     PowerSpinnerInterface<BasalItem> {
+
+    override var index: Int = 0
     override lateinit var spinnerView: PowerSpinnerView
     override var onSpinnerItemSelectedListener: OnSpinnerItemSelectedListener<BasalItem>? = null
     private var itemList: MutableList<BasalItem> = Collections.emptyList()
-    lateinit var holder: MedidorHolder
+    lateinit var holder:  MedidorHolder
+    //lateinit var holder: BombaHolder
     lateinit var binding: BasalItemBinding
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -49,10 +52,16 @@ class BombaAdapter (private val activity: TreatmentActivity) : RecyclerView.Adap
     }
 
     // we must call the spinnerView.notifyItemSelected method to let PowerSpinnerView know about changed information.
+//    override fun notifyItemSelected(index: Int) {
+//        this.spinnerView.notifyItemSelected(index, this.itemList[index].name)
+//        this.onSpinnerItemSelectedListener?.onItemSelected(index, this.itemList[index])
+//    }
+
     override fun notifyItemSelected(index: Int) {
         this.spinnerView.notifyItemSelected(index, this.itemList[index].name)
-        this.onSpinnerItemSelectedListener?.onItemSelected(index, this.itemList[index])
+        this.onSpinnerItemSelectedListener?.onItemSelected(index, this.itemList[index], index, this.itemList[index])
     }
+
     private fun bind(holder: MedidorHolder, item: BasalItem) {
         holder.bind(item)
     }

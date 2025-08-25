@@ -7,10 +7,10 @@ import com.sugarcoachpremium.data.network.ApiHelper;
 import com.sugarcoachpremium.di.preferences.PreferenceHelper;
 import dagger.internal.DaggerGenerated;
 import dagger.internal.Factory;
+import dagger.internal.Provider;
 import dagger.internal.QualifierMetadata;
 import dagger.internal.ScopeMetadata;
 import javax.annotation.processing.Generated;
-import javax.inject.Provider;
 
 @ScopeMetadata
 @QualifierMetadata
@@ -23,7 +23,10 @@ import javax.inject.Provider;
     "unchecked",
     "rawtypes",
     "KotlinInternal",
-    "KotlinInternalInJava"
+    "KotlinInternalInJava",
+    "cast",
+    "deprecation",
+    "nullness:initialization.field.uninitialized"
 })
 public final class StatisticsInteractor_Factory implements Factory<StatisticsInteractor> {
   private final Provider<TreamentRepo> treamentRepoHelperProvider;
@@ -36,7 +39,7 @@ public final class StatisticsInteractor_Factory implements Factory<StatisticsInt
 
   private final Provider<ApiHelper> apiHelperProvider;
 
-  public StatisticsInteractor_Factory(Provider<TreamentRepo> treamentRepoHelperProvider,
+  private StatisticsInteractor_Factory(Provider<TreamentRepo> treamentRepoHelperProvider,
       Provider<DailyRegisterRepo> dailyRepoHelperProvider,
       Provider<UserRepo> userRepoHelperProvider,
       Provider<PreferenceHelper> preferenceHelperProvider, Provider<ApiHelper> apiHelperProvider) {

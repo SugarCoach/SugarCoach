@@ -6,10 +6,10 @@ import com.sugarcoachpremium.data.network.ApiHelper;
 import com.sugarcoachpremium.di.preferences.PreferenceHelper;
 import dagger.internal.DaggerGenerated;
 import dagger.internal.Factory;
+import dagger.internal.Provider;
 import dagger.internal.QualifierMetadata;
 import dagger.internal.ScopeMetadata;
 import javax.annotation.processing.Generated;
-import javax.inject.Provider;
 
 @ScopeMetadata
 @QualifierMetadata
@@ -22,7 +22,10 @@ import javax.inject.Provider;
     "unchecked",
     "rawtypes",
     "KotlinInternal",
-    "KotlinInternalInJava"
+    "KotlinInternalInJava",
+    "cast",
+    "deprecation",
+    "nullness:initialization.field.uninitialized"
 })
 public final class ForgotInteractor_Factory implements Factory<ForgotInteractor> {
   private final Provider<DailyRegisterRepo> dailyRepoHelperProvider;
@@ -33,7 +36,7 @@ public final class ForgotInteractor_Factory implements Factory<ForgotInteractor>
 
   private final Provider<ApiHelper> apiHelperProvider;
 
-  public ForgotInteractor_Factory(Provider<DailyRegisterRepo> dailyRepoHelperProvider,
+  private ForgotInteractor_Factory(Provider<DailyRegisterRepo> dailyRepoHelperProvider,
       Provider<UserRepo> userRepoHelperProvider,
       Provider<PreferenceHelper> preferenceHelperProvider, Provider<ApiHelper> apiHelperProvider) {
     this.dailyRepoHelperProvider = dailyRepoHelperProvider;

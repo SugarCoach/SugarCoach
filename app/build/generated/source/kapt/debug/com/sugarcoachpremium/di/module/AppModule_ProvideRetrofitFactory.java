@@ -19,12 +19,15 @@ import retrofit2.Retrofit;
     "unchecked",
     "rawtypes",
     "KotlinInternal",
-    "KotlinInternalInJava"
+    "KotlinInternalInJava",
+    "cast",
+    "deprecation",
+    "nullness:initialization.field.uninitialized"
 })
 public final class AppModule_ProvideRetrofitFactory implements Factory<Retrofit> {
   private final AppModule module;
 
-  public AppModule_ProvideRetrofitFactory(AppModule module) {
+  private AppModule_ProvideRetrofitFactory(AppModule module) {
     this.module = module;
   }
 

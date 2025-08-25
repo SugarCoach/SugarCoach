@@ -4,9 +4,9 @@ import dagger.MembersInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.internal.DaggerGenerated;
 import dagger.internal.InjectedFieldSignature;
+import dagger.internal.Provider;
 import dagger.internal.QualifierMetadata;
 import javax.annotation.processing.Generated;
-import javax.inject.Provider;
 
 @QualifierMetadata
 @DaggerGenerated
@@ -18,12 +18,15 @@ import javax.inject.Provider;
     "unchecked",
     "rawtypes",
     "KotlinInternal",
-    "KotlinInternalInJava"
+    "KotlinInternalInJava",
+    "cast",
+    "deprecation",
+    "nullness:initialization.field.uninitialized"
 })
 public final class SugarApp_MembersInjector implements MembersInjector<SugarApp> {
   private final Provider<DispatchingAndroidInjector<Object>> dispatchingAndroidInjectorProvider;
 
-  public SugarApp_MembersInjector(
+  private SugarApp_MembersInjector(
       Provider<DispatchingAndroidInjector<Object>> dispatchingAndroidInjectorProvider) {
     this.dispatchingAndroidInjectorProvider = dispatchingAndroidInjectorProvider;
   }

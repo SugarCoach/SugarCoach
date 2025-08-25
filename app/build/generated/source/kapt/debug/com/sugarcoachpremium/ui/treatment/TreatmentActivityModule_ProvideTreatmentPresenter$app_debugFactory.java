@@ -7,10 +7,10 @@ import com.sugarcoachpremium.ui.treatment.view.TreatmentView;
 import dagger.internal.DaggerGenerated;
 import dagger.internal.Factory;
 import dagger.internal.Preconditions;
+import dagger.internal.Provider;
 import dagger.internal.QualifierMetadata;
 import dagger.internal.ScopeMetadata;
 import javax.annotation.processing.Generated;
-import javax.inject.Provider;
 
 @ScopeMetadata
 @QualifierMetadata
@@ -23,14 +23,17 @@ import javax.inject.Provider;
     "unchecked",
     "rawtypes",
     "KotlinInternal",
-    "KotlinInternalInJava"
+    "KotlinInternalInJava",
+    "cast",
+    "deprecation",
+    "nullness:initialization.field.uninitialized"
 })
 public final class TreatmentActivityModule_ProvideTreatmentPresenter$app_debugFactory implements Factory<TreatmentPresenterImp<TreatmentView, TreatmentInteractorImp>> {
   private final TreatmentActivityModule module;
 
   private final Provider<TreatmentPresenter<TreatmentView, TreatmentInteractorImp>> registerPresenterProvider;
 
-  public TreatmentActivityModule_ProvideTreatmentPresenter$app_debugFactory(
+  private TreatmentActivityModule_ProvideTreatmentPresenter$app_debugFactory(
       TreatmentActivityModule module,
       Provider<TreatmentPresenter<TreatmentView, TreatmentInteractorImp>> registerPresenterProvider) {
     this.module = module;

@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.sugarcoachpremium.app-mergeDebugResources-66:/values-b+es+419/values-b+es+419.xml",
+            "outputFile": "com.sugarcoachpremium.app-mergeDebugResources-101:/values-b+es+419/values-b+es+419.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\sc2\\.gradle\\caches\\transforms-4\\5ddf11f8c314c0cbe74a05ff34b940fb\\transformed\\material-1.9.0\\res\\values-b+es+419\\values-b+es+419.xml",
+                    "source": "C:\\Users\\Deb-PC\\.gradle\\caches\\8.13\\transforms\\12dc262608126979a07cdb0a5f2a57b3\\transformed\\material-1.9.0\\res\\values-b+es+419\\values-b+es+419.xml",
                     "from": {
                         "startLines": "2,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",

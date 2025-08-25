@@ -346,8 +346,8 @@ class DailyDetailActivity : BaseActivity(), DailyDetailView, TimePickerDialog.On
         binding.dailyDetailCategoryTv.getSpinnerRecyclerView().layoutManager = manager
         binding.dailyDetailCategoryTv.setItems(categories)
         binding.dailyDetailCategoryTv.selectItemByIndex(index-1)
-        binding.dailyDetailCategoryTv.setOnSpinnerItemSelectedListener<Category> { position, item ->
-            presenter.updateLabel(item.cate_id)
+        binding.dailyDetailCategoryTv.setOnSpinnerItemSelectedListener<Category> { oldIndex, oldItem, newIndex, newItem ->
+            presenter.updateLabel(newItem?.cate_id)
             Toast.makeText(this, getString(R.string.register_category_warning), Toast.LENGTH_SHORT).show()
         }
     }

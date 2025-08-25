@@ -6,9 +6,9 @@ import com.sugarcoachpremium.ui.statistics.presenter.StatisticsPresenterImp;
 import dagger.MembersInjector;
 import dagger.internal.DaggerGenerated;
 import dagger.internal.InjectedFieldSignature;
+import dagger.internal.Provider;
 import dagger.internal.QualifierMetadata;
 import javax.annotation.processing.Generated;
-import javax.inject.Provider;
 
 @QualifierMetadata
 @DaggerGenerated
@@ -20,7 +20,10 @@ import javax.inject.Provider;
     "unchecked",
     "rawtypes",
     "KotlinInternal",
-    "KotlinInternalInJava"
+    "KotlinInternalInJava",
+    "cast",
+    "deprecation",
+    "nullness:initialization.field.uninitialized"
 })
 public final class StatisticsActivity_MembersInjector implements MembersInjector<StatisticsActivity> {
   private final Provider<StatisticsPresenterImp<StatisticsView, StatisticsInteractorImp>> presenterProvider;
@@ -29,7 +32,7 @@ public final class StatisticsActivity_MembersInjector implements MembersInjector
 
   private final Provider<LinearLayoutManager> linearLayoutManagerProvider;
 
-  public StatisticsActivity_MembersInjector(
+  private StatisticsActivity_MembersInjector(
       Provider<StatisticsPresenterImp<StatisticsView, StatisticsInteractorImp>> presenterProvider,
       Provider<StatisticsAdapter> adapterProvider,
       Provider<LinearLayoutManager> linearLayoutManagerProvider) {

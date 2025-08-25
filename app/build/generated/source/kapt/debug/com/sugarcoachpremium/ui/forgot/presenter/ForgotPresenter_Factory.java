@@ -5,11 +5,11 @@ import com.sugarcoachpremium.ui.forgot.view.ForgotView;
 import com.sugarcoachpremium.util.SchedulerProvider;
 import dagger.internal.DaggerGenerated;
 import dagger.internal.Factory;
+import dagger.internal.Provider;
 import dagger.internal.QualifierMetadata;
 import dagger.internal.ScopeMetadata;
 import io.reactivex.disposables.CompositeDisposable;
 import javax.annotation.processing.Generated;
-import javax.inject.Provider;
 
 @ScopeMetadata
 @QualifierMetadata
@@ -22,7 +22,10 @@ import javax.inject.Provider;
     "unchecked",
     "rawtypes",
     "KotlinInternal",
-    "KotlinInternalInJava"
+    "KotlinInternalInJava",
+    "cast",
+    "deprecation",
+    "nullness:initialization.field.uninitialized"
 })
 public final class ForgotPresenter_Factory<V extends ForgotView, I extends ForgotInteractorImp> implements Factory<ForgotPresenter<V, I>> {
   private final Provider<I> interactorProvider;
@@ -31,7 +34,7 @@ public final class ForgotPresenter_Factory<V extends ForgotView, I extends Forgo
 
   private final Provider<CompositeDisposable> disposableProvider;
 
-  public ForgotPresenter_Factory(Provider<I> interactorProvider,
+  private ForgotPresenter_Factory(Provider<I> interactorProvider,
       Provider<SchedulerProvider> schedulerProvider,
       Provider<CompositeDisposable> disposableProvider) {
     this.interactorProvider = interactorProvider;

@@ -5,9 +5,9 @@ import com.sugarcoachpremium.ui.splash.presenter.SplashPresenterImp;
 import dagger.MembersInjector;
 import dagger.internal.DaggerGenerated;
 import dagger.internal.InjectedFieldSignature;
+import dagger.internal.Provider;
 import dagger.internal.QualifierMetadata;
 import javax.annotation.processing.Generated;
-import javax.inject.Provider;
 
 @QualifierMetadata
 @DaggerGenerated
@@ -19,12 +19,15 @@ import javax.inject.Provider;
     "unchecked",
     "rawtypes",
     "KotlinInternal",
-    "KotlinInternalInJava"
+    "KotlinInternalInJava",
+    "cast",
+    "deprecation",
+    "nullness:initialization.field.uninitialized"
 })
 public final class SplashActivity_MembersInjector implements MembersInjector<SplashActivity> {
   private final Provider<SplashPresenterImp<SplashView, SplashInteractorImp>> presenterProvider;
 
-  public SplashActivity_MembersInjector(
+  private SplashActivity_MembersInjector(
       Provider<SplashPresenterImp<SplashView, SplashInteractorImp>> presenterProvider) {
     this.presenterProvider = presenterProvider;
   }

@@ -3,10 +3,10 @@ package com.sugarcoachpremium.data.preferences;
 import android.content.Context;
 import dagger.internal.DaggerGenerated;
 import dagger.internal.Factory;
+import dagger.internal.Provider;
 import dagger.internal.QualifierMetadata;
 import dagger.internal.ScopeMetadata;
 import javax.annotation.processing.Generated;
-import javax.inject.Provider;
 
 @ScopeMetadata
 @QualifierMetadata("com.sugarcoachpremium.di.PreferenceInfo")
@@ -19,14 +19,17 @@ import javax.inject.Provider;
     "unchecked",
     "rawtypes",
     "KotlinInternal",
-    "KotlinInternalInJava"
+    "KotlinInternalInJava",
+    "cast",
+    "deprecation",
+    "nullness:initialization.field.uninitialized"
 })
 public final class AppPreferenceHelper_Factory implements Factory<AppPreferenceHelper> {
   private final Provider<Context> contextProvider;
 
   private final Provider<String> prefFileNameProvider;
 
-  public AppPreferenceHelper_Factory(Provider<Context> contextProvider,
+  private AppPreferenceHelper_Factory(Provider<Context> contextProvider,
       Provider<String> prefFileNameProvider) {
     this.contextProvider = contextProvider;
     this.prefFileNameProvider = prefFileNameProvider;

@@ -12,6 +12,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" android:id="@+id/constraintLayout">
 
+
+
         <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -164,6 +166,50 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                        android:id="@+id/treatment_edit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:backgroundTint="@color/aqua"
+                        android:clickable="true"
+                        android:visibility="gone"
+                        app:borderWidth="0dp"
+                        app:elevation="5dp"
+                        app:fabSize="mini"
+                        app:layout_constraintBottom_toTopOf="@+id/treatment_shared"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:srcCompat="@drawable/check" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                        android:id="@+id/treatment_shared"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:backgroundTint="@color/aqua"
+                        android:clickable="true"
+                        android:visibility="gone"
+                        app:borderWidth="0dp"
+                        app:elevation="5dp"
+                        app:fabSize="mini"
+                        app:layout_constraintBottom_toTopOf="@+id/treatment_menu"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:srcCompat="@drawable/share" />
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                        android:id="@+id/treatment_menu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="60dp"
+                        android:backgroundTint="@color/aqua"
+                        android:clickable="true"
+                        app:borderWidth="0dp"
+                        app:elevation="10dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:srcCompat="@drawable/ic_hand" />
                 <androidx.core.widget.NestedScrollView
                         android:layout_width="match_parent"
                         android:layout_height="0dp" android:fillViewport="true"
@@ -176,6 +222,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
+
+
 
                         <LinearLayout
                                 android:layout_width="match_parent"
@@ -1387,51 +1435,9 @@
                             </androidx.cardview.widget.CardView>
 
                         </LinearLayout>
-                            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                                    android:id="@+id/treatment_edit"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginEnd="10dp"
-                                    android:layout_marginBottom="10dp"
-                                    android:backgroundTint="@color/aqua"
-                                    android:clickable="true"
-                                    android:visibility="gone"
-                                    app:borderWidth="0dp"
-                                    app:elevation="5dp"
-                                    app:fabSize="mini"
-                                    app:layout_constraintBottom_toTopOf="@+id/treatment_shared"
-                                    app:layout_constraintEnd_toEndOf="parent"
-                                    app:srcCompat="@drawable/check" />
 
-                            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                                    android:id="@+id/treatment_shared"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginEnd="10dp"
-                                    android:layout_marginBottom="10dp"
-                                    android:backgroundTint="@color/aqua"
-                                    android:clickable="true"
-                                    android:visibility="gone"
-                                    app:borderWidth="0dp"
-                                    app:elevation="5dp"
-                                    app:fabSize="mini"
-                                    app:layout_constraintBottom_toTopOf="@+id/treatment_menu"
-                                    app:layout_constraintEnd_toEndOf="parent"
-                                    app:srcCompat="@drawable/share" />
 
-                            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                                    android:id="@+id/treatment_menu"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginEnd="10dp"
-                                    android:layout_marginBottom="16dp"
-                                    android:backgroundTint="@color/aqua"
-                                    android:clickable="true"
-                                    app:borderWidth="0dp"
-                                    app:elevation="10dp"
-                                    app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintEnd_toStartOf="parent"
-                                    app:srcCompat="@drawable/ic_hand" />
+
 
                     </LinearLayout>
                 </androidx.core.widget.NestedScrollView>

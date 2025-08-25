@@ -5,10 +5,10 @@ import com.sugarcoachpremium.ui.signEmail.interactor.SignEmailInteractorImp;
 import dagger.internal.DaggerGenerated;
 import dagger.internal.Factory;
 import dagger.internal.Preconditions;
+import dagger.internal.Provider;
 import dagger.internal.QualifierMetadata;
 import dagger.internal.ScopeMetadata;
 import javax.annotation.processing.Generated;
-import javax.inject.Provider;
 
 @ScopeMetadata
 @QualifierMetadata
@@ -21,14 +21,17 @@ import javax.inject.Provider;
     "unchecked",
     "rawtypes",
     "KotlinInternal",
-    "KotlinInternalInJava"
+    "KotlinInternalInJava",
+    "cast",
+    "deprecation",
+    "nullness:initialization.field.uninitialized"
 })
 public final class SignEmailActivityModule_ProvidesignInteractor$app_debugFactory implements Factory<SignEmailInteractorImp> {
   private final SignEmailActivityModule module;
 
   private final Provider<SignEmailInteractor> signEmailInteractorProvider;
 
-  public SignEmailActivityModule_ProvidesignInteractor$app_debugFactory(
+  private SignEmailActivityModule_ProvidesignInteractor$app_debugFactory(
       SignEmailActivityModule module, Provider<SignEmailInteractor> signEmailInteractorProvider) {
     this.module = module;
     this.signEmailInteractorProvider = signEmailInteractorProvider;

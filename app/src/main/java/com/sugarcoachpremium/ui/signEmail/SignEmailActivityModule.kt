@@ -2,9 +2,9 @@ package com.sugarcoachpremium.ui.signEmail
 
 
 
+import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
+import com.google.firebase.auth.auth
 import com.sugarcoachpremium.ui.signEmail.interactor.SignEmailInteractor
 import com.sugarcoachpremium.ui.signEmail.interactor.SignEmailInteractorImp
 import com.sugarcoachpremium.ui.signEmail.presenter.SignEmailPresenter

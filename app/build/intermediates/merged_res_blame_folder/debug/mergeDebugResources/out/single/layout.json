@@ -1,194 +1,190 @@
 [
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-mergeDebugResources-67:\\layout\\activity_signin.xml",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\activity_signin.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-102:/layout/activity_daily_detail.xml",
+        "source": "com.sugarcoachpremium.app-main-105:/layout/activity_daily_detail.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-mergeDebugResources-67:\\layout\\register_summary.xml",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\register_summary.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-102:/layout/activity_daily.xml",
+        "source": "com.sugarcoachpremium.app-main-105:/layout/activity_daily.xml"
     },
     {
-        "merged": "com.sugarcoachpremium.app-mergeDebugResources-67:/layout/register_month_item.xml",
-        "source": "com.sugarcoachpremium.app-main-70:/layout/register_month_item.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-102:/layout/dialog_category.xml",
+        "source": "com.sugarcoachpremium.app-main-105:/layout/dialog_category.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-mergeDebugResources-67:\\layout\\activity_register.xml",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\activity_register.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-102:/layout/register_month.xml",
+        "source": "com.sugarcoachpremium.app-main-105:/layout/register_month.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-mergeDebugResources-67:\\layout\\dialog_comentary.xml",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\dialog_comentary.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-102:/layout/dialog_upgrade.xml",
+        "source": "com.sugarcoachpremium.app-main-105:/layout/dialog_upgrade.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-mergeDebugResources-67:\\layout\\activity_estadisticas.xml",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\activity_estadisticas.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-102:/layout/activity_config.xml",
+        "source": "com.sugarcoachpremium.app-main-105:/layout/activity_config.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-mergeDebugResources-67:\\layout\\progress.xml",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\progress.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-102:/layout/activity_treatment.xml",
+        "source": "com.sugarcoachpremium.app-main-105:/layout/activity_treatment.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-mergeDebugResources-67:\\layout\\activity_onboarding.xml",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\activity_onboarding.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-102:/layout/dialog_comentary.xml",
+        "source": "com.sugarcoachpremium.app-main-105:/layout/dialog_comentary.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-mergeDebugResources-67:\\layout\\activity_main.xml",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\activity_main.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-102:/layout/dialog_treatment_save.xml",
+        "source": "com.sugarcoachpremium.app-main-105:/layout/dialog_treatment_save.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-mergeDebugResources-67:\\layout\\activity_sign_email.xml",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\activity_sign_email.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-102:/layout/dialog_config_delete.xml",
+        "source": "com.sugarcoachpremium.app-main-105:/layout/dialog_config_delete.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-mergeDebugResources-67:\\layout\\treatment_correctora_item.xml",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\treatment_correctora_item.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-102:/layout/activity_forgot.xml",
+        "source": "com.sugarcoachpremium.app-main-105:/layout/activity_forgot.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-mergeDebugResources-67:\\layout\\dialog_config_delete.xml",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\dialog_config_delete.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-102:/layout/activity_privacy_policy.xml",
+        "source": "com.sugarcoachpremium.app-main-105:/layout/activity_privacy_policy.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-mergeDebugResources-67:\\layout\\profile_item.xml",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\profile_item.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-102:/layout/emotions_item.xml",
+        "source": "com.sugarcoachpremium.app-main-105:/layout/emotions_item.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-mergeDebugResources-67:\\layout\\activity_treatment.xml",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\activity_treatment.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-102:/layout/activity_sign_email.xml",
+        "source": "com.sugarcoachpremium.app-main-105:/layout/activity_sign_email.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-mergeDebugResources-67:\\layout\\activity_privacy_policy.xml",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\activity_privacy_policy.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-102:/layout/activity_statistics_detail.xml",
+        "source": "com.sugarcoachpremium.app-main-105:/layout/activity_statistics_detail.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-mergeDebugResources-67:\\layout\\activity_statistics_detail.xml",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\activity_statistics_detail.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-102:/layout/fragment_register_values.xml",
+        "source": "com.sugarcoachpremium.app-main-105:/layout/fragment_register_values.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-mergeDebugResources-67:\\layout\\register_month_item.xml",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\register_month_item.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-102:/layout/activity_onboarding.xml",
+        "source": "com.sugarcoachpremium.app-main-105:/layout/activity_onboarding.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-mergeDebugResources-67:\\layout\\register_month.xml",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\register_month.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-102:/layout/register_summary.xml",
+        "source": "com.sugarcoachpremium.app-main-105:/layout/register_summary.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-mergeDebugResources-67:\\layout\\emotions_item.xml",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\emotions_item.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-102:/layout/profile_item.xml",
+        "source": "com.sugarcoachpremium.app-main-105:/layout/profile_item.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-mergeDebugResources-67:\\layout\\activity_forgot.xml",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\activity_forgot.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-102:/layout/activity_profile.xml",
+        "source": "com.sugarcoachpremium.app-main-105:/layout/activity_profile.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-mergeDebugResources-67:\\layout\\activity_daily_detail.xml",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\activity_daily_detail.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-102:/layout/dialog_sex.xml",
+        "source": "com.sugarcoachpremium.app-main-105:/layout/dialog_sex.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-mergeDebugResources-67:\\layout\\treatment_item.xml",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\treatment_item.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-102:/layout/dialog_info.xml",
+        "source": "com.sugarcoachpremium.app-main-105:/layout/dialog_info.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-mergeDebugResources-67:\\layout\\fragment_register_values.xml",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\fragment_register_values.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-102:/layout/daily_parent.xml",
+        "source": "com.sugarcoachpremium.app-main-105:/layout/daily_parent.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-mergeDebugResources-67:\\layout\\activity_config.xml",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\activity_config.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-102:/layout/dialog_values.xml",
+        "source": "com.sugarcoachpremium.app-main-105:/layout/dialog_values.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-mergeDebugResources-67:\\layout\\dialog_codigo.xml",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\dialog_codigo.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-102:/layout/progress.xml",
+        "source": "com.sugarcoachpremium.app-main-105:/layout/progress.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-mergeDebugResources-67:\\layout\\fragment_onboarding_item.xml",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\fragment_onboarding_item.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-102:/layout/activity_login.xml",
+        "source": "com.sugarcoachpremium.app-main-105:/layout/activity_login.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-mergeDebugResources-67:\\layout\\dialog_info.xml",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\dialog_info.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-102:/layout/statistics_item.xml",
+        "source": "com.sugarcoachpremium.app-main-105:/layout/statistics_item.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-mergeDebugResources-67:\\layout\\daily_parent.xml",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\daily_parent.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-102:/layout/treatment_basal_item.xml",
+        "source": "com.sugarcoachpremium.app-main-105:/layout/treatment_basal_item.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-mergeDebugResources-67:\\layout\\basal_item.xml",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\basal_item.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-102:/layout/dialog_codigo.xml",
+        "source": "com.sugarcoachpremium.app-main-105:/layout/dialog_codigo.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-mergeDebugResources-67:\\layout\\activity_login.xml",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\activity_login.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-102:/layout/activity_estadisticas.xml",
+        "source": "com.sugarcoachpremium.app-main-105:/layout/activity_estadisticas.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-mergeDebugResources-67:\\layout\\activity_daily.xml",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\activity_daily.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-102:/layout/treatment_correctora_item.xml",
+        "source": "com.sugarcoachpremium.app-main-105:/layout/treatment_correctora_item.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-mergeDebugResources-67:\\layout\\dialog_congratulation_premium.xml",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\dialog_congratulation_premium.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-102:/layout/dialog_congratulation_premium.xml",
+        "source": "com.sugarcoachpremium.app-main-105:/layout/dialog_congratulation_premium.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-mergeDebugResources-67:\\layout\\treatment_basal_item.xml",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\treatment_basal_item.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-102:/layout/register_month_item.xml",
+        "source": "com.sugarcoachpremium.app-main-105:/layout/register_month_item.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-mergeDebugResources-67:\\layout\\dialog_emotions.xml",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\dialog_emotions.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-102:/layout/daily_item.xml",
+        "source": "com.sugarcoachpremium.app-main-105:/layout/daily_item.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-mergeDebugResources-67:\\layout\\activity_table.xml",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\activity_table.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-102:/layout/dialog_emotions.xml",
+        "source": "com.sugarcoachpremium.app-main-105:/layout/dialog_emotions.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-mergeDebugResources-67:\\layout\\activity_splash.xml",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\activity_splash.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-102:/layout/fragment_onboarding_item.xml",
+        "source": "com.sugarcoachpremium.app-main-105:/layout/fragment_onboarding_item.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-mergeDebugResources-67:\\layout\\dialog_control.xml",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\dialog_control.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-102:/layout/activity_splash.xml",
+        "source": "com.sugarcoachpremium.app-main-105:/layout/activity_splash.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-mergeDebugResources-67:\\layout\\dialog_sex.xml",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\dialog_sex.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-102:/layout/activity_table.xml",
+        "source": "com.sugarcoachpremium.app-main-105:/layout/activity_table.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-mergeDebugResources-67:\\layout\\statistics_item.xml",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\statistics_item.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-102:/layout/treatment_item.xml",
+        "source": "com.sugarcoachpremium.app-main-105:/layout/treatment_item.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-mergeDebugResources-67:\\layout\\activity_profile.xml",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\activity_profile.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-102:/layout/dialog_control.xml",
+        "source": "com.sugarcoachpremium.app-main-105:/layout/dialog_control.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-mergeDebugResources-67:\\layout\\category_item.xml",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\category_item.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-102:/layout/activity_signin.xml",
+        "source": "com.sugarcoachpremium.app-main-105:/layout/activity_signin.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-mergeDebugResources-67:\\layout\\treatment_header.xml",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\treatment_header.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-102:/layout/treatment_header.xml",
+        "source": "com.sugarcoachpremium.app-main-105:/layout/treatment_header.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-mergeDebugResources-67:\\layout\\dialog_treatment_save.xml",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\dialog_treatment_save.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-102:/layout/activity_register.xml",
+        "source": "com.sugarcoachpremium.app-main-105:/layout/activity_register.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-mergeDebugResources-67:\\layout\\dialog_category.xml",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\dialog_category.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-102:/layout/dialog_congratulation.xml",
+        "source": "com.sugarcoachpremium.app-main-105:/layout/dialog_congratulation.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-mergeDebugResources-67:\\layout\\dialog_congratulation.xml",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\dialog_congratulation.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-102:/layout/basal_item.xml",
+        "source": "com.sugarcoachpremium.app-main-105:/layout/basal_item.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-mergeDebugResources-67:\\layout\\daily_item.xml",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\daily_item.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-102:/layout/activity_main.xml",
+        "source": "com.sugarcoachpremium.app-main-105:/layout/activity_main.xml"
     },
     {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-mergeDebugResources-67:\\layout\\dialog_upgrade.xml",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\dialog_upgrade.xml"
-    },
-    {
-        "merged": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-mergeDebugResources-67:\\layout\\dialog_values.xml",
-        "source": "C:\\Users\\sc2\\.gradle\\daemon\\8.7\\com.sugarcoachpremium.app-main-70:\\layout\\dialog_values.xml"
+        "merged": "com.sugarcoachpremium.app-mergeDebugResources-102:/layout/category_item.xml",
+        "source": "com.sugarcoachpremium.app-main-105:/layout/category_item.xml"
     }
 ]

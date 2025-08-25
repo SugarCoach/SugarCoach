@@ -5,10 +5,10 @@ import com.sugarcoachpremium.ui.register.view.RegisterActivity;
 import dagger.internal.DaggerGenerated;
 import dagger.internal.Factory;
 import dagger.internal.Preconditions;
+import dagger.internal.Provider;
 import dagger.internal.QualifierMetadata;
 import dagger.internal.ScopeMetadata;
 import javax.annotation.processing.Generated;
-import javax.inject.Provider;
 
 @ScopeMetadata
 @QualifierMetadata
@@ -21,14 +21,17 @@ import javax.inject.Provider;
     "unchecked",
     "rawtypes",
     "KotlinInternal",
-    "KotlinInternalInJava"
+    "KotlinInternalInJava",
+    "cast",
+    "deprecation",
+    "nullness:initialization.field.uninitialized"
 })
 public final class RegisterActivityModule_ProvideLinearLayoutManager$app_debugFactory implements Factory<LinearLayoutManager> {
   private final RegisterActivityModule module;
 
   private final Provider<RegisterActivity> contextProvider;
 
-  public RegisterActivityModule_ProvideLinearLayoutManager$app_debugFactory(
+  private RegisterActivityModule_ProvideLinearLayoutManager$app_debugFactory(
       RegisterActivityModule module, Provider<RegisterActivity> contextProvider) {
     this.module = module;
     this.contextProvider = contextProvider;

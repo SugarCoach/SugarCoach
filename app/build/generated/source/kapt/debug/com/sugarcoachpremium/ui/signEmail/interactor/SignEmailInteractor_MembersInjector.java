@@ -4,9 +4,9 @@ import com.sugarcoachpremium.data.api_db.ApiRepository;
 import dagger.MembersInjector;
 import dagger.internal.DaggerGenerated;
 import dagger.internal.InjectedFieldSignature;
+import dagger.internal.Provider;
 import dagger.internal.QualifierMetadata;
 import javax.annotation.processing.Generated;
-import javax.inject.Provider;
 
 @QualifierMetadata
 @DaggerGenerated
@@ -18,12 +18,15 @@ import javax.inject.Provider;
     "unchecked",
     "rawtypes",
     "KotlinInternal",
-    "KotlinInternalInJava"
+    "KotlinInternalInJava",
+    "cast",
+    "deprecation",
+    "nullness:initialization.field.uninitialized"
 })
 public final class SignEmailInteractor_MembersInjector implements MembersInjector<SignEmailInteractor> {
   private final Provider<ApiRepository> apiRepositoryProvider;
 
-  public SignEmailInteractor_MembersInjector(Provider<ApiRepository> apiRepositoryProvider) {
+  private SignEmailInteractor_MembersInjector(Provider<ApiRepository> apiRepositoryProvider) {
     this.apiRepositoryProvider = apiRepositoryProvider;
   }
 

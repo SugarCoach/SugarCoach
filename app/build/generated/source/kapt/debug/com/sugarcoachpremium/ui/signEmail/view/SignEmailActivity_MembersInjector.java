@@ -5,9 +5,9 @@ import com.sugarcoachpremium.ui.signEmail.presenter.SignEmailPresenterImp;
 import dagger.MembersInjector;
 import dagger.internal.DaggerGenerated;
 import dagger.internal.InjectedFieldSignature;
+import dagger.internal.Provider;
 import dagger.internal.QualifierMetadata;
 import javax.annotation.processing.Generated;
-import javax.inject.Provider;
 
 @QualifierMetadata
 @DaggerGenerated
@@ -19,12 +19,15 @@ import javax.inject.Provider;
     "unchecked",
     "rawtypes",
     "KotlinInternal",
-    "KotlinInternalInJava"
+    "KotlinInternalInJava",
+    "cast",
+    "deprecation",
+    "nullness:initialization.field.uninitialized"
 })
 public final class SignEmailActivity_MembersInjector implements MembersInjector<SignEmailActivity> {
   private final Provider<SignEmailPresenterImp<SignEmailView, SignEmailInteractorImp>> presenterProvider;
 
-  public SignEmailActivity_MembersInjector(
+  private SignEmailActivity_MembersInjector(
       Provider<SignEmailPresenterImp<SignEmailView, SignEmailInteractorImp>> presenterProvider) {
     this.presenterProvider = presenterProvider;
   }
