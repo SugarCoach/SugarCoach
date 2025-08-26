@@ -1,0 +1,26 @@
+[
+  {
+    "cate_name": "register_breakfast_label"
+  },
+  {
+    "cate_name": "register_pbreakfast_label"
+  },
+  {
+    "cate_name": "register_lunch_label"
+  },
+  {
+    "cate_name": "register_plunch_label"
+  },
+  {
+    "cate_name": "register_snack_label"
+  },
+  {
+    "cate_name": "register_psnack_label"
+  },
+  {
+    "cate_name": "register_dinner_label"
+  },
+  {
+    "cate_name": "register_pdinner_label"
+  }
+]

@@ -5,10 +5,10 @@ import com.sugarcoachpremium.ui.config.interactor.ConfigInteractorImp;
 import dagger.internal.DaggerGenerated;
 import dagger.internal.Factory;
 import dagger.internal.Preconditions;
-import dagger.internal.Provider;
 import dagger.internal.QualifierMetadata;
 import dagger.internal.ScopeMetadata;
 import javax.annotation.processing.Generated;
+import javax.inject.Provider;
 
 @ScopeMetadata
 @QualifierMetadata
@@ -21,17 +21,14 @@ import javax.annotation.processing.Generated;
     "unchecked",
     "rawtypes",
     "KotlinInternal",
-    "KotlinInternalInJava",
-    "cast",
-    "deprecation",
-    "nullness:initialization.field.uninitialized"
+    "KotlinInternalInJava"
 })
 public final class ConfigActivityModule_ProvideConfigInteractor$app_debugFactory implements Factory<ConfigInteractorImp> {
   private final ConfigActivityModule module;
 
   private final Provider<ConfigInteractor> configInteractorProvider;
 
-  private ConfigActivityModule_ProvideConfigInteractor$app_debugFactory(ConfigActivityModule module,
+  public ConfigActivityModule_ProvideConfigInteractor$app_debugFactory(ConfigActivityModule module,
       Provider<ConfigInteractor> configInteractorProvider) {
     this.module = module;
     this.configInteractorProvider = configInteractorProvider;

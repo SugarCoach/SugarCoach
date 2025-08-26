@@ -5,10 +5,10 @@ import com.sugarcoachpremium.ui.statistics.interactor.StatisticsInteractorImp;
 import dagger.internal.DaggerGenerated;
 import dagger.internal.Factory;
 import dagger.internal.Preconditions;
-import dagger.internal.Provider;
 import dagger.internal.QualifierMetadata;
 import dagger.internal.ScopeMetadata;
 import javax.annotation.processing.Generated;
+import javax.inject.Provider;
 
 @ScopeMetadata
 @QualifierMetadata
@@ -21,17 +21,14 @@ import javax.annotation.processing.Generated;
     "unchecked",
     "rawtypes",
     "KotlinInternal",
-    "KotlinInternalInJava",
-    "cast",
-    "deprecation",
-    "nullness:initialization.field.uninitialized"
+    "KotlinInternalInJava"
 })
 public final class StatisticsActivityModule_ProvideStatisticsInteractor$app_debugFactory implements Factory<StatisticsInteractorImp> {
   private final StatisticsActivityModule module;
 
   private final Provider<StatisticsInteractor> statisticsInteractorProvider;
 
-  private StatisticsActivityModule_ProvideStatisticsInteractor$app_debugFactory(
+  public StatisticsActivityModule_ProvideStatisticsInteractor$app_debugFactory(
       StatisticsActivityModule module,
       Provider<StatisticsInteractor> statisticsInteractorProvider) {
     this.module = module;

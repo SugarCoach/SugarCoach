@@ -5,10 +5,10 @@ import com.sugarcoachpremium.ui.profile.interactor.ProfileInteractorImp;
 import dagger.internal.DaggerGenerated;
 import dagger.internal.Factory;
 import dagger.internal.Preconditions;
-import dagger.internal.Provider;
 import dagger.internal.QualifierMetadata;
 import dagger.internal.ScopeMetadata;
 import javax.annotation.processing.Generated;
+import javax.inject.Provider;
 
 @ScopeMetadata
 @QualifierMetadata
@@ -21,17 +21,14 @@ import javax.annotation.processing.Generated;
     "unchecked",
     "rawtypes",
     "KotlinInternal",
-    "KotlinInternalInJava",
-    "cast",
-    "deprecation",
-    "nullness:initialization.field.uninitialized"
+    "KotlinInternalInJava"
 })
 public final class ProfileActivityModule_ProvideProfileInteractor$app_debugFactory implements Factory<ProfileInteractorImp> {
   private final ProfileActivityModule module;
 
   private final Provider<ProfileInteractor> profileInteractorProvider;
 
-  private ProfileActivityModule_ProvideProfileInteractor$app_debugFactory(
+  public ProfileActivityModule_ProvideProfileInteractor$app_debugFactory(
       ProfileActivityModule module, Provider<ProfileInteractor> profileInteractorProvider) {
     this.module = module;
     this.profileInteractorProvider = profileInteractorProvider;

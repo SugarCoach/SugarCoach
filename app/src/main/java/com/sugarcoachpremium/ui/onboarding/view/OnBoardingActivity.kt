@@ -4,8 +4,8 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import com.google.firebase.Firebase
-import com.google.firebase.auth.auth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.mazenrashed.dotsindicator.DotsIndicator
 import com.sugarcoachpremium.databinding.ActivityOnboardingBinding
 import com.sugarcoachpremium.ui.base.view.BaseActivity

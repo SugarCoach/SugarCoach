@@ -5,10 +5,10 @@ import com.sugarcoachpremium.ui.login.interactor.LoginInteractorImp;
 import dagger.internal.DaggerGenerated;
 import dagger.internal.Factory;
 import dagger.internal.Preconditions;
-import dagger.internal.Provider;
 import dagger.internal.QualifierMetadata;
 import dagger.internal.ScopeMetadata;
 import javax.annotation.processing.Generated;
+import javax.inject.Provider;
 
 @ScopeMetadata
 @QualifierMetadata
@@ -21,17 +21,14 @@ import javax.annotation.processing.Generated;
     "unchecked",
     "rawtypes",
     "KotlinInternal",
-    "KotlinInternalInJava",
-    "cast",
-    "deprecation",
-    "nullness:initialization.field.uninitialized"
+    "KotlinInternalInJava"
 })
 public final class LoginActivityModule_ProvideloginInteractor$app_debugFactory implements Factory<LoginInteractorImp> {
   private final LoginActivityModule module;
 
   private final Provider<LoginInteractor> loginInteractorProvider;
 
-  private LoginActivityModule_ProvideloginInteractor$app_debugFactory(LoginActivityModule module,
+  public LoginActivityModule_ProvideloginInteractor$app_debugFactory(LoginActivityModule module,
       Provider<LoginInteractor> loginInteractorProvider) {
     this.module = module;
     this.loginInteractorProvider = loginInteractorProvider;

@@ -14,9 +14,10 @@ import android.view.View
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentManager
-import com.google.firebase.Firebase
-import com.google.firebase.auth.auth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.sugarcoachpremium.R
+import com.sugarcoachpremium.data.database.repository.dailyregister.DailyRegister
 import com.sugarcoachpremium.data.database.repository.user.User
 import com.sugarcoachpremium.ui.base.presenter.BasePresenter
 import com.sugarcoachpremium.ui.profile.interactor.ProfileInteractorImp
@@ -32,7 +33,9 @@ import kotlinx.coroutines.withContext
 import org.joda.time.LocalDate
 import org.joda.time.LocalDateTime
 import java.io.ByteArrayOutputStream
+import java.util.*
 import javax.inject.Inject
+import kotlin.collections.ArrayList
 import kotlin.reflect.full.memberProperties
 
 class ProfilePresenter <V : ProfileView, I : ProfileInteractorImp> @Inject internal constructor(interactor: I, schedulerProvider: SchedulerProvider, disposable: CompositeDisposable) : BasePresenter<V, I>(interactor = interactor, schedulerProvider = schedulerProvider, compositeDisposable = disposable),

@@ -19,16 +19,12 @@ import org.joda.time.LocalDateTime;
     "unchecked",
     "rawtypes",
     "KotlinInternal",
-    "KotlinInternalInJava",
-    "cast",
-    "deprecation",
-    "nullness:initialization.field.uninitialized"
+    "KotlinInternalInJava"
 })
 public final class RegisterActivityModule_ProvideCurrentDate$app_debugFactory implements Factory<LocalDateTime> {
   private final RegisterActivityModule module;
 
-  private RegisterActivityModule_ProvideCurrentDate$app_debugFactory(
-      RegisterActivityModule module) {
+  public RegisterActivityModule_ProvideCurrentDate$app_debugFactory(RegisterActivityModule module) {
     this.module = module;
   }
 

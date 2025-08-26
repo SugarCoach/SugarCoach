@@ -1,21 +1,14 @@
 package com.sugarcoachpremium.ui.register.interactor
 
 import android.util.Log
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.sugarcoachpremium.data.api_db.ApiRepository
-import com.sugarcoachpremium.data.database.repository.dailyregister.Category
-import com.sugarcoachpremium.data.database.repository.dailyregister.DailyRegister
-import com.sugarcoachpremium.data.database.repository.dailyregister.DailyRegisterRepo
-import com.sugarcoachpremium.data.database.repository.dailyregister.Exercises
-import com.sugarcoachpremium.data.database.repository.dailyregister.States
-import com.sugarcoachpremium.data.database.repository.treament.TreamentHorarios
-import com.sugarcoachpremium.data.database.repository.treament.TreamentRepo
-import com.sugarcoachpremium.data.database.repository.treament.TreatmentBasalCorrectora
+import com.sugarcoachpremium.data.database.repository.dailyregister.*
+import com.sugarcoachpremium.data.database.repository.treament.*
 import com.sugarcoachpremium.data.database.repository.user.User
 import com.sugarcoachpremium.data.database.repository.user.UserRepo
-import com.sugarcoachpremium.data.network.ApiHelper
-import com.sugarcoachpremium.data.network.RegisterSavePhotoRequest
-import com.sugarcoachpremium.data.network.RegisterSavePhotoResponse
-import com.sugarcoachpremium.data.network.RegisterSaveResponse
+import com.sugarcoachpremium.data.network.*
 import com.sugarcoachpremium.data.ui.base.interactor.BaseInteractor
 import com.sugarcoachpremium.di.preferences.PreferenceHelper
 import com.sugarcoachpremium.util.extensions.toDailyInput

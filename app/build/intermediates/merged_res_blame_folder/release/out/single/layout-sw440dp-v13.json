@@ -1,0 +1,6 @@
+[
+    {
+        "merged": "com.sugarcoachpremium.app-mergeReleaseResources-64:/layout-sw440dp-v13/activity_register.xml",
+        "source": "com.sugarcoachpremium.app-main-66:/layout-sw440dp/activity_register.xml"
+    }
+]

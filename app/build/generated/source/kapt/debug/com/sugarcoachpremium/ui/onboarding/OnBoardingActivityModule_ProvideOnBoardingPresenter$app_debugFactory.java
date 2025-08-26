@@ -7,10 +7,10 @@ import com.sugarcoachpremium.ui.onboarding.view.OnBoardingView;
 import dagger.internal.DaggerGenerated;
 import dagger.internal.Factory;
 import dagger.internal.Preconditions;
-import dagger.internal.Provider;
 import dagger.internal.QualifierMetadata;
 import dagger.internal.ScopeMetadata;
 import javax.annotation.processing.Generated;
+import javax.inject.Provider;
 
 @ScopeMetadata
 @QualifierMetadata
@@ -23,17 +23,14 @@ import javax.annotation.processing.Generated;
     "unchecked",
     "rawtypes",
     "KotlinInternal",
-    "KotlinInternalInJava",
-    "cast",
-    "deprecation",
-    "nullness:initialization.field.uninitialized"
+    "KotlinInternalInJava"
 })
 public final class OnBoardingActivityModule_ProvideOnBoardingPresenter$app_debugFactory implements Factory<OnBoardingPresenterImp<OnBoardingView, OnBoardingInteractorImp>> {
   private final OnBoardingActivityModule module;
 
   private final Provider<OnBoardingPresenter<OnBoardingView, OnBoardingInteractorImp>> onboardingPresenterProvider;
 
-  private OnBoardingActivityModule_ProvideOnBoardingPresenter$app_debugFactory(
+  public OnBoardingActivityModule_ProvideOnBoardingPresenter$app_debugFactory(
       OnBoardingActivityModule module,
       Provider<OnBoardingPresenter<OnBoardingView, OnBoardingInteractorImp>> onboardingPresenterProvider) {
     this.module = module;

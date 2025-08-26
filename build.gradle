@@ -2,9 +2,9 @@
 
 buildscript {
     ext {
-        agp_version = '8.12.1'
+        agp_version = '8.5.2'
     }
-    ext.kotlin_version = '2.2.10'
+    ext.kotlin_version = '1.8.0'
     repositories {
         google()
         mavenCentral()
@@ -16,15 +16,15 @@ buildscript {
     dependencies {
         classpath "com.android.tools.build:gradle:$agp_version"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath 'com.google.gms:google-services:4.4.3'
-        classpath 'com.google.firebase:firebase-crashlytics-gradle:3.0.6'
+        classpath 'com.google.gms:google-services:4.4.0'
+        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.5.2'
         //classpath "com.appspector:android-sdk-plugin:1.+"
     }
 }
 
 plugins {
-//    id "org.jetbrains.kotlin.kapt" version "2.2.10" apply false
-//    id 'org.jetbrains.kotlin.android' version '2.2.10' apply false
+    id "org.jetbrains.kotlin.kapt" version "1.9.0" apply false
+    id 'org.jetbrains.kotlin.android' version '1.9.0' apply false
 }
 
 allprojects {
@@ -44,7 +44,7 @@ ext {
     // Sdk and tools
     minSdkVersion = 24
     targetSdkVersion = 34
-    compileSdkVersion = 36
+    compileSdkVersion = 34
     buildToolsVersion = '28.0.2'
 
     // App dependencies
@@ -59,7 +59,7 @@ ext {
     gsonVersion = '2.10.1'
     calligraphyVersion = '2.3.0'
     glideVersion = '4.11.0'
-    dagger2Version = '2.57' // ACTUALIZADO 22/08/2025
+    dagger2Version = '2.48'
     rxjava2Version = '2.0.6'
     rxandroidVersion = '2.1.1'
     butterKnifeVersion = '10.2.3'

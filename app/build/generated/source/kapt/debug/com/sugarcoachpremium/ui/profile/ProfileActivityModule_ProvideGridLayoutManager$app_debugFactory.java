@@ -5,10 +5,10 @@ import com.sugarcoachpremium.ui.profile.view.ProfileActivity;
 import dagger.internal.DaggerGenerated;
 import dagger.internal.Factory;
 import dagger.internal.Preconditions;
-import dagger.internal.Provider;
 import dagger.internal.QualifierMetadata;
 import dagger.internal.ScopeMetadata;
 import javax.annotation.processing.Generated;
+import javax.inject.Provider;
 
 @ScopeMetadata
 @QualifierMetadata
@@ -21,17 +21,14 @@ import javax.annotation.processing.Generated;
     "unchecked",
     "rawtypes",
     "KotlinInternal",
-    "KotlinInternalInJava",
-    "cast",
-    "deprecation",
-    "nullness:initialization.field.uninitialized"
+    "KotlinInternalInJava"
 })
 public final class ProfileActivityModule_ProvideGridLayoutManager$app_debugFactory implements Factory<GridLayoutManager> {
   private final ProfileActivityModule module;
 
   private final Provider<ProfileActivity> contextProvider;
 
-  private ProfileActivityModule_ProvideGridLayoutManager$app_debugFactory(
+  public ProfileActivityModule_ProvideGridLayoutManager$app_debugFactory(
       ProfileActivityModule module, Provider<ProfileActivity> contextProvider) {
     this.module = module;
     this.contextProvider = contextProvider;

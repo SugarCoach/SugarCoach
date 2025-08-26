@@ -19,15 +19,12 @@ import javax.annotation.processing.Generated;
     "unchecked",
     "rawtypes",
     "KotlinInternal",
-    "KotlinInternalInJava",
-    "cast",
-    "deprecation",
-    "nullness:initialization.field.uninitialized"
+    "KotlinInternalInJava"
 })
 public final class AppModule_ProvideSchedulerProvider$app_debugFactory implements Factory<SchedulerProvider> {
   private final AppModule module;
 
-  private AppModule_ProvideSchedulerProvider$app_debugFactory(AppModule module) {
+  public AppModule_ProvideSchedulerProvider$app_debugFactory(AppModule module) {
     this.module = module;
   }
 
