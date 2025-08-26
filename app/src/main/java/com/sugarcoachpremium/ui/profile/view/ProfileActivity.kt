@@ -14,8 +14,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.Firebase
-import com.google.firebase.auth.auth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.sugarcoachpremium.R
 import com.sugarcoachpremium.data.database.repository.user.User
 import com.sugarcoachpremium.databinding.ActivityProfileBinding
@@ -29,8 +29,7 @@ import com.sugarcoachpremium.util.extensions.resIdByName
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog
 import org.joda.time.LocalDate
 import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
+import java.util.*
 import javax.inject.Inject
 
 

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content">
+
+
+    <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@android:color/transparent"
+            app:cardElevation="5dp"
+            android:layout_marginTop="30dp"
+            app:cardCornerRadius="10dp">
+        <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <ImageView
+                    android:id="@+id/bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="320dp"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@drawable/base_puntos_alpha" />
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_height="wrap_content">
+                <androidx.appcompat.widget.AppCompatTextView
+                        android:text="@string/congratulation_label"
+                        style="@style/TextStyle.Heading"
+                        android:gravity="center"
+                        android:textSize="60dp"
+                        android:shadowColor="@color/blue"
+                        android:shadowDx="2"
+                        android:shadowDy="2"
+                        android:layout_marginTop="10dp"
+                        android:shadowRadius="1"
+                        android:textColor="@color/white"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/congratulation_pts_txt"
+                        style="@style/TextStyle.Title"
+                        android:layout_width="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="30dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/premium_congrats_subtitle"
+                        android:textColor="@color/white"
+                        android:textSize="16dp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/TextStyle.Heading"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:shadowColor="@color/blue"
+                        android:shadowDx="2"
+                        android:shadowDy="2"
+                        android:shadowRadius="1"
+                        android:text="@string/premium_congrats_message"
+                        android:textColor="@color/white"
+                        android:textSize="25dp" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/congratulation_avatar"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:scaleType="centerCrop"
+                        android:layout_marginTop="10dp"
+                        android:src="@drawable/ic_user_nophoto"
+                        app:civ_border_color="@color/white"
+                        app:civ_border_width="3dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+            </LinearLayout>
+        </FrameLayout>
+    </androidx.cardview.widget.CardView>
+    <ImageView
+            android:id="@+id/congratulation_close"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:elevation="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="10dp"
+            android:layout_gravity="right"
+            app:srcCompat="@drawable/close" />
+
+</FrameLayout>

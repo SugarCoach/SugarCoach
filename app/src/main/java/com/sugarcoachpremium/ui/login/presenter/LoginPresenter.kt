@@ -4,12 +4,13 @@ import android.app.Activity
 import android.content.Intent
 import android.util.Log
 import com.google.android.gms.vision.barcode.Barcode
-import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.auth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.notbytes.barcode_reader.BarcodeReaderActivity
 import com.sugarcoachpremium.data.database.repository.dailyregister.DailyRegister
 import com.sugarcoachpremium.data.database.repository.treament.Treament
+import com.sugarcoachpremium.data.database.repository.user.User
 import com.sugarcoachpremium.data.network.LoginResponse
 import com.sugarcoachpremium.data.network.RegistersResponse
 import com.sugarcoachpremium.ui.base.presenter.BasePresenter
@@ -30,7 +31,7 @@ import kotlinx.coroutines.withContext
 import org.joda.time.DateTime
 import org.joda.time.LocalDate
 import java.text.SimpleDateFormat
-import java.util.Locale
+import java.util.*
 import javax.inject.Inject
 
 class LoginPresenter  <V : LoginView, I : LoginInteractorImp> @Inject internal constructor(interactor: I, schedulerProvider: SchedulerProvider, disposable: CompositeDisposable) : BasePresenter<V, I>(interactor = interactor, schedulerProvider = schedulerProvider,compositeDisposable = disposable),

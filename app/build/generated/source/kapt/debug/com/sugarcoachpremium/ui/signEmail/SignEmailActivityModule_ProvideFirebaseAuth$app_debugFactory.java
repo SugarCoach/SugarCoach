@@ -19,15 +19,12 @@ import javax.annotation.processing.Generated;
     "unchecked",
     "rawtypes",
     "KotlinInternal",
-    "KotlinInternalInJava",
-    "cast",
-    "deprecation",
-    "nullness:initialization.field.uninitialized"
+    "KotlinInternalInJava"
 })
 public final class SignEmailActivityModule_ProvideFirebaseAuth$app_debugFactory implements Factory<FirebaseAuth> {
   private final SignEmailActivityModule module;
 
-  private SignEmailActivityModule_ProvideFirebaseAuth$app_debugFactory(
+  public SignEmailActivityModule_ProvideFirebaseAuth$app_debugFactory(
       SignEmailActivityModule module) {
     this.module = module;
   }

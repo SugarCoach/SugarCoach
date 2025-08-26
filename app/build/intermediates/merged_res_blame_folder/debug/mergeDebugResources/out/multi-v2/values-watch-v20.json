@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.sugarcoachpremium.app-mergeDebugResources-101:/values-watch-v20/values-watch-v20.xml",
+            "outputFile": "com.sugarcoachpremium.app-mergeDebugResources-66:/values-watch-v20/values-watch-v20.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Deb-PC\\.gradle\\caches\\8.13\\transforms\\00137aa37437ca2c3c949f2038391746\\transformed\\jetified-play-services-auth-21.4.0\\res\\values-watch-v20\\values.xml",
+                    "source": "C:\\Users\\sc2\\.gradle\\caches\\transforms-4\\5d6e0f38bbeb51da886b59cc396214ef\\transformed\\jetified-play-services-auth-20.7.0\\res\\values-watch-v20\\values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11",
                         "startColumns": "0,0,0,0,0,0,0,0",
@@ -21,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Deb-PC\\.gradle\\caches\\8.13\\transforms\\6cbeae85c9de8820ec18c256803d515c\\transformed\\appcompat-1.7.0\\res\\values-watch-v20\\values-watch-v20.xml",
+                    "source": "C:\\Users\\sc2\\.gradle\\caches\\transforms-4\\b608ec51446d50d340888811c9f870f0\\transformed\\appcompat-1.6.1\\res\\values-watch-v20\\values-watch-v20.xml",
                     "from": {
                         "startLines": "2,5,8",
                         "startColumns": "4,4,4",

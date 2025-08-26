@@ -246,8 +246,8 @@ class ConfigActivity: BaseActivity(), ConfigView {
 
         binding.configQuestions.setOnClickListener { openNewTabWindow(getString(R.string.url_preguntas), this) }
         binding.configUpgrade.setOnClickListener { dialogUpgrade()  }
-        binding.configControlQr.setOnClickListener{( if (isControlEnable) sharedScreenShot("sugar") else TODO())}
-        binding.configMedicoQr.setOnClickListener{( if (isMedicoEnable) sharedScreenShot("sugar_medico") else TODO())}
+        binding.configControlQr.setOnClickListener{( if (isControlEnable) sharedScreenShot("sugar"))}
+        binding.configMedicoQr.setOnClickListener{( if (isMedicoEnable) sharedScreenShot("sugar_medico"))}
         binding.configSmsTitle.setOnClickListener{createDialogInfo(getString(R.string.info_sms))}
         binding.configSmsInfo.setOnClickListener{createDialogInfo(getString(R.string.info_sms_number))}
         binding.configGeoTitle.setOnClickListener{createDialogInfo(getString(R.string.info_geo))}

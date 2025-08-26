@@ -7,10 +7,10 @@ import com.sugarcoachpremium.ui.sign.view.SignView;
 import dagger.internal.DaggerGenerated;
 import dagger.internal.Factory;
 import dagger.internal.Preconditions;
-import dagger.internal.Provider;
 import dagger.internal.QualifierMetadata;
 import dagger.internal.ScopeMetadata;
 import javax.annotation.processing.Generated;
+import javax.inject.Provider;
 
 @ScopeMetadata
 @QualifierMetadata
@@ -23,17 +23,14 @@ import javax.annotation.processing.Generated;
     "unchecked",
     "rawtypes",
     "KotlinInternal",
-    "KotlinInternalInJava",
-    "cast",
-    "deprecation",
-    "nullness:initialization.field.uninitialized"
+    "KotlinInternalInJava"
 })
 public final class SignActivityModule_ProvidesignPresenter$app_debugFactory implements Factory<SignPresenterImp<SignView, SignInteractorImp>> {
   private final SignActivityModule module;
 
   private final Provider<SignPresenter<SignView, SignInteractorImp>> signPresenterProvider;
 
-  private SignActivityModule_ProvidesignPresenter$app_debugFactory(SignActivityModule module,
+  public SignActivityModule_ProvidesignPresenter$app_debugFactory(SignActivityModule module,
       Provider<SignPresenter<SignView, SignInteractorImp>> signPresenterProvider) {
     this.module = module;
     this.signPresenterProvider = signPresenterProvider;

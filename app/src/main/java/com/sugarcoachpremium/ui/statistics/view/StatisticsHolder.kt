@@ -12,7 +12,6 @@ import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.*
 import com.github.mikephil.charting.formatter.StackedValueFormatter
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet
-import com.google.common.collect.Multimaps.index
 import com.sugarcoachpremium.R
 import com.sugarcoachpremium.databinding.StatisticsItemBinding
 import com.sugarcoachpremium.util.CustomPercentFormatter
@@ -37,8 +36,8 @@ class StatisticsHolder(private val binding: StatisticsItemBinding) : RecyclerVie
                 binding.statisticsItemTypesState.visibility = View.GONE
                 binding.statisticsItemTypes.setItems(item.types)
                 binding.statisticsItemTypes.selectItemByIndex(item.index)
-                binding.statisticsItemTypes.setOnSpinnerItemSelectedListener<String> { oldIndex, oldItem, newIndex, newItem -> // version original "index, item ->"
-                    activity.showCalendar(position, newIndex)
+                binding.statisticsItemTypes.setOnSpinnerItemSelectedListener<String> { index, item ->
+                    activity.showCalendar(position, index)
                 }
                 showGlucemiaData(activity, item)
             }
@@ -52,8 +51,8 @@ class StatisticsHolder(private val binding: StatisticsItemBinding) : RecyclerVie
                 binding.statisticsItemTypesState.visibility = View.GONE
                 binding.statisticsItemTypesInsulina.setItems(item.types)
                 binding.statisticsItemTypesInsulina.selectItemByIndex(item.index)
-                binding.statisticsItemTypesInsulina.setOnSpinnerItemSelectedListener<String> { oldIndex, oldItem, newIndex, newItem -> // version original "index, item ->"
-                    activity.showCalendar(position, newIndex)
+                binding.statisticsItemTypesInsulina.setOnSpinnerItemSelectedListener<String> { index, item ->
+                    activity.showCalendar(position, index)
                 }
                 showInsulinaData(activity, item)
             }
@@ -67,8 +66,8 @@ class StatisticsHolder(private val binding: StatisticsItemBinding) : RecyclerVie
                 binding.statisticsItemTypesState.visibility = View.GONE
                 binding.statisticsItemTypesCar.setItems(item.types)
                 binding.statisticsItemTypesCar.selectItemByIndex(item.index)
-                binding.statisticsItemTypesCar.setOnSpinnerItemSelectedListener<String> { oldIndex, oldItem, newIndex, newItem -> // version original "index, item ->"
-                    activity.showCalendar(position, newIndex)
+                binding.statisticsItemTypesCar.setOnSpinnerItemSelectedListener<String> { index, item ->
+                    activity.showCalendar(position, index)
                 }
                 showCarbohidratosData(activity, item)
             }
@@ -82,8 +81,8 @@ class StatisticsHolder(private val binding: StatisticsItemBinding) : RecyclerVie
                 binding.statisticsItemTypesState.visibility = View.GONE
                 binding.statisticsItemTypesExercise.setItems(item.types)
                 binding.statisticsItemTypesExercise.selectItemByIndex(item.index)
-                binding.statisticsItemTypesExercise.setOnSpinnerItemSelectedListener<String> { oldIndex, oldItem, newIndex, newItem -> // version original "index, item ->"
-                    activity.showCalendar(position, newIndex)
+                binding.statisticsItemTypesExercise.setOnSpinnerItemSelectedListener<String> { index, item ->
+                    activity.showCalendar(position, index)
                 }
                 showExercisesData(activity, item)
             }
@@ -97,8 +96,8 @@ class StatisticsHolder(private val binding: StatisticsItemBinding) : RecyclerVie
                 binding.statisticsItemTypesState.visibility = View.VISIBLE
                 binding.statisticsItemTypesState.setItems(item.types)
                 binding.statisticsItemTypesState.selectItemByIndex(item.index)
-                binding.statisticsItemTypesState.setOnSpinnerItemSelectedListener<String> { oldIndex, oldItem, newIndex, newItem -> // version original "index, item ->"
-                    activity.showCalendar(position, newIndex)
+                binding.statisticsItemTypesState.setOnSpinnerItemSelectedListener<String> { index, item ->
+                    activity.showCalendar(position, index)
                 }
                 showStatesData(activity, item)
             }

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">341853924281-84dftkcod2nu7r03g2c3mnog014imaag.apps.googleusercontent.com</string>
+    <string name="firebase_database_url" translatable="false">https://sugarcoach-1614000290164-default-rtdb.firebaseio.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">341853924281</string>
+    <string name="google_api_key" translatable="false">AIzaSyCjAq1Ak09NB3X63sxcR1-NdPBUrCW3I00</string>
+    <string name="google_app_id" translatable="false">1:341853924281:android:953c1844f3b7512a19e468</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyCjAq1Ak09NB3X63sxcR1-NdPBUrCW3I00</string>
+    <string name="google_storage_bucket" translatable="false">sugarcoach-1614000290164.appspot.com</string>
+    <string name="project_id" translatable="false">sugarcoach-1614000290164</string>
+</resources>
