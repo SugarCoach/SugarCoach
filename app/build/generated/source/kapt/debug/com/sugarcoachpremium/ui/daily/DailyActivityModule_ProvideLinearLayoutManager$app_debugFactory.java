@@ -5,10 +5,10 @@ import com.sugarcoachpremium.ui.daily.view.DailyActivity;
 import dagger.internal.DaggerGenerated;
 import dagger.internal.Factory;
 import dagger.internal.Preconditions;
+import dagger.internal.Provider;
 import dagger.internal.QualifierMetadata;
 import dagger.internal.ScopeMetadata;
 import javax.annotation.processing.Generated;
-import javax.inject.Provider;
 
 @ScopeMetadata
 @QualifierMetadata
@@ -21,15 +21,18 @@ import javax.inject.Provider;
     "unchecked",
     "rawtypes",
     "KotlinInternal",
-    "KotlinInternalInJava"
+    "KotlinInternalInJava",
+    "cast",
+    "deprecation",
+    "nullness:initialization.field.uninitialized"
 })
 public final class DailyActivityModule_ProvideLinearLayoutManager$app_debugFactory implements Factory<LinearLayoutManager> {
   private final DailyActivityModule module;
 
   private final Provider<DailyActivity> contextProvider;
 
-  public DailyActivityModule_ProvideLinearLayoutManager$app_debugFactory(DailyActivityModule module,
-      Provider<DailyActivity> contextProvider) {
+  private DailyActivityModule_ProvideLinearLayoutManager$app_debugFactory(
+      DailyActivityModule module, Provider<DailyActivity> contextProvider) {
     this.module = module;
     this.contextProvider = contextProvider;
   }

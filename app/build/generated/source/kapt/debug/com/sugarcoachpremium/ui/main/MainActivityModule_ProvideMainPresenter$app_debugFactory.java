@@ -7,10 +7,10 @@ import com.sugarcoachpremium.ui.main.view.MainView;
 import dagger.internal.DaggerGenerated;
 import dagger.internal.Factory;
 import dagger.internal.Preconditions;
+import dagger.internal.Provider;
 import dagger.internal.QualifierMetadata;
 import dagger.internal.ScopeMetadata;
 import javax.annotation.processing.Generated;
-import javax.inject.Provider;
 
 @ScopeMetadata
 @QualifierMetadata
@@ -23,14 +23,17 @@ import javax.inject.Provider;
     "unchecked",
     "rawtypes",
     "KotlinInternal",
-    "KotlinInternalInJava"
+    "KotlinInternalInJava",
+    "cast",
+    "deprecation",
+    "nullness:initialization.field.uninitialized"
 })
 public final class MainActivityModule_ProvideMainPresenter$app_debugFactory implements Factory<MainPresenterImp<MainView, MainInteractorImp>> {
   private final MainActivityModule module;
 
   private final Provider<MainPresenter<MainView, MainInteractorImp>> mainPresenterProvider;
 
-  public MainActivityModule_ProvideMainPresenter$app_debugFactory(MainActivityModule module,
+  private MainActivityModule_ProvideMainPresenter$app_debugFactory(MainActivityModule module,
       Provider<MainPresenter<MainView, MainInteractorImp>> mainPresenterProvider) {
     this.module = module;
     this.mainPresenterProvider = mainPresenterProvider;

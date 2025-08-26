@@ -2,10 +2,10 @@ package com.sugarcoachpremium.data.database.repository.treament;
 
 import dagger.internal.DaggerGenerated;
 import dagger.internal.Factory;
+import dagger.internal.Provider;
 import dagger.internal.QualifierMetadata;
 import dagger.internal.ScopeMetadata;
 import javax.annotation.processing.Generated;
-import javax.inject.Provider;
 
 @ScopeMetadata
 @QualifierMetadata
@@ -18,12 +18,15 @@ import javax.inject.Provider;
     "unchecked",
     "rawtypes",
     "KotlinInternal",
-    "KotlinInternalInJava"
+    "KotlinInternalInJava",
+    "cast",
+    "deprecation",
+    "nullness:initialization.field.uninitialized"
 })
 public final class TreamentRepository_Factory implements Factory<TreamentRepository> {
   private final Provider<TreamentDao> treamentDaoProvider;
 
-  public TreamentRepository_Factory(Provider<TreamentDao> treamentDaoProvider) {
+  private TreamentRepository_Factory(Provider<TreamentDao> treamentDaoProvider) {
     this.treamentDaoProvider = treamentDaoProvider;
   }
 

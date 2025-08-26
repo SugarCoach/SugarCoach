@@ -17,15 +17,28 @@ class TreatmentBasalHoraHolder(private val binding: TreatmentBasalItemBinding) :
                 binding.treatmentItemBasalUnidad.selectItemByIndex(item.units.toInt()-1)
             }
         }
-        binding.treatmentItemBasalUnidad.setOnSpinnerItemSelectedListener<String> { index, unit ->
-                val category = BasalHoraItem.Builder()
-                    .id(item.id)
-                    .name(item.name)
-                    .units(unit)
-                    .build()
-                activity.presenter.saveHoraBasal(category)
 
+        //ORIGINAL
+//        binding.treatmentItemBasalUnidad.setOnSpinnerItemSelectedListener<String> { index, unit ->
+//                val category = BasalHoraItem.Builder()
+//                    .id(item.id)
+//                    .name(item.name)
+//                    .units(unit)
+//                    .build()
+//                activity.presenter.saveHoraBasal(category)
+//
+//        }
+
+        // SUSTITUCION 25/08/2025
+        binding.treatmentItemBasalUnidad.setOnSpinnerItemSelectedListener<String> { index, unit, parentIndex, parentText ->
+            val category = BasalHoraItem.Builder()
+                .id(item.id)
+                .name(item.name)
+                .units(unit ?: "")
+                .build()
+            activity.presenter.saveHoraBasal(category)
         }
+
     }
     companion object {
         fun create(parent: ViewGroup): TreatmentBasalHoraHolder {

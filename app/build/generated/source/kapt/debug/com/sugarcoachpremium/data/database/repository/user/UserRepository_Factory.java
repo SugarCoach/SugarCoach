@@ -2,10 +2,10 @@ package com.sugarcoachpremium.data.database.repository.user;
 
 import dagger.internal.DaggerGenerated;
 import dagger.internal.Factory;
+import dagger.internal.Provider;
 import dagger.internal.QualifierMetadata;
 import dagger.internal.ScopeMetadata;
 import javax.annotation.processing.Generated;
-import javax.inject.Provider;
 
 @ScopeMetadata
 @QualifierMetadata
@@ -18,12 +18,15 @@ import javax.inject.Provider;
     "unchecked",
     "rawtypes",
     "KotlinInternal",
-    "KotlinInternalInJava"
+    "KotlinInternalInJava",
+    "cast",
+    "deprecation",
+    "nullness:initialization.field.uninitialized"
 })
 public final class UserRepository_Factory implements Factory<UserRepository> {
   private final Provider<UserDao> userDaoProvider;
 
-  public UserRepository_Factory(Provider<UserDao> userDaoProvider) {
+  private UserRepository_Factory(Provider<UserDao> userDaoProvider) {
     this.userDaoProvider = userDaoProvider;
   }
 

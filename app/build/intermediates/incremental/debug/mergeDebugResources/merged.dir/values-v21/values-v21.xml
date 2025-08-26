@@ -346,12 +346,11 @@
         <item name="android:buttonBarStyle">?attr/buttonBarStyle</item>
         <item name="android:buttonBarButtonStyle">?attr/buttonBarButtonStyle</item>
     </style>
-    <style name="PreferenceCategoryTitleTextStyle">
-        <item name="android:textAppearance">?attr/preferenceCategoryTitleTextAppearance</item>
-        <item name="android:textColor">?android:attr/colorAccent</item>
-    </style>
     <style name="PreferenceSummaryTextStyle">
         <item name="android:textAppearance">?android:attr/textAppearanceListItemSecondary</item>
+    </style>
+    <style name="PreferenceThemeOverlay" parent="BasePreferenceThemeOverlay">
+        <item name="preferenceCategoryTitleTextColor">?android:attr/colorAccent</item>
     </style>
     <style name="TextAppearance.Compat.Notification" parent="@android:style/TextAppearance.Material.Notification"/>
     <style name="TextAppearance.Compat.Notification.Info" parent="@android:style/TextAppearance.Material.Notification.Info"/>
@@ -528,6 +527,14 @@
     <item name="android:fontFamily">sans-serif-medium</item>
     <item name="android:textStyle">normal</item>
   </style>
+    <style name="Theme.Hidden" parent="@android:style/Theme.DeviceDefault">
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+    </style>
     <style name="ThemeOverlay.Material3.Dialog.Alert.Framework" parent="ThemeOverlay.MaterialComponents.Dialog.Alert.Framework">
     <item name="android:windowElevation">@dimen/m3_alert_dialog_elevation</item>
     <item name="android:buttonBarButtonStyle">@style/Widget.Material3.Button.TextButton.Dialog.Flush</item>

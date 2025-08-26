@@ -6,9 +6,9 @@ import com.sugarcoachpremium.ui.main.presenter.MainPresenterImp;
 import dagger.MembersInjector;
 import dagger.internal.DaggerGenerated;
 import dagger.internal.InjectedFieldSignature;
+import dagger.internal.Provider;
 import dagger.internal.QualifierMetadata;
 import javax.annotation.processing.Generated;
-import javax.inject.Provider;
 
 @QualifierMetadata
 @DaggerGenerated
@@ -20,14 +20,17 @@ import javax.inject.Provider;
     "unchecked",
     "rawtypes",
     "KotlinInternal",
-    "KotlinInternalInJava"
+    "KotlinInternalInJava",
+    "cast",
+    "deprecation",
+    "nullness:initialization.field.uninitialized"
 })
 public final class MainActivity_MembersInjector implements MembersInjector<MainActivity> {
   private final Provider<MainPresenterImp<MainView, MainInteractorImp>> presenterProvider;
 
   private final Provider<ApiRepository> apiRepositoryProvider;
 
-  public MainActivity_MembersInjector(
+  private MainActivity_MembersInjector(
       Provider<MainPresenterImp<MainView, MainInteractorImp>> presenterProvider,
       Provider<ApiRepository> apiRepositoryProvider) {
     this.presenterProvider = presenterProvider;

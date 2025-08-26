@@ -6,9 +6,9 @@ import com.sugarcoachpremium.ui.daily.presenter.DailyPresenterImp;
 import dagger.MembersInjector;
 import dagger.internal.DaggerGenerated;
 import dagger.internal.InjectedFieldSignature;
+import dagger.internal.Provider;
 import dagger.internal.QualifierMetadata;
 import javax.annotation.processing.Generated;
-import javax.inject.Provider;
 
 @QualifierMetadata
 @DaggerGenerated
@@ -20,14 +20,17 @@ import javax.inject.Provider;
     "unchecked",
     "rawtypes",
     "KotlinInternal",
-    "KotlinInternalInJava"
+    "KotlinInternalInJava",
+    "cast",
+    "deprecation",
+    "nullness:initialization.field.uninitialized"
 })
 public final class DailyActivity_MembersInjector implements MembersInjector<DailyActivity> {
   private final Provider<DailyPresenterImp<DailyView, DailyInteractorImp>> presenterProvider;
 
   private final Provider<LinearLayoutManager> linearLayoutManagerProvider;
 
-  public DailyActivity_MembersInjector(
+  private DailyActivity_MembersInjector(
       Provider<DailyPresenterImp<DailyView, DailyInteractorImp>> presenterProvider,
       Provider<LinearLayoutManager> linearLayoutManagerProvider) {
     this.presenterProvider = presenterProvider;

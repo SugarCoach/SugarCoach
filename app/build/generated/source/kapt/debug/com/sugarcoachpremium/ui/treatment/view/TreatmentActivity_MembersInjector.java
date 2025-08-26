@@ -6,9 +6,9 @@ import com.sugarcoachpremium.ui.treatment.presenter.TreatmentPresenterImp;
 import dagger.MembersInjector;
 import dagger.internal.DaggerGenerated;
 import dagger.internal.InjectedFieldSignature;
+import dagger.internal.Provider;
 import dagger.internal.QualifierMetadata;
 import javax.annotation.processing.Generated;
-import javax.inject.Provider;
 
 @QualifierMetadata
 @DaggerGenerated
@@ -20,7 +20,10 @@ import javax.inject.Provider;
     "unchecked",
     "rawtypes",
     "KotlinInternal",
-    "KotlinInternalInJava"
+    "KotlinInternalInJava",
+    "cast",
+    "deprecation",
+    "nullness:initialization.field.uninitialized"
 })
 public final class TreatmentActivity_MembersInjector implements MembersInjector<TreatmentActivity> {
   private final Provider<TreatmentPresenterImp<TreatmentView, TreatmentInteractorImp>> presenterProvider;
@@ -53,7 +56,7 @@ public final class TreatmentActivity_MembersInjector implements MembersInjector<
 
   private final Provider<TreatmentBasalHoraAdapter> adapterBasalHoraAdapterProvider;
 
-  public TreatmentActivity_MembersInjector(
+  private TreatmentActivity_MembersInjector(
       Provider<TreatmentPresenterImp<TreatmentView, TreatmentInteractorImp>> presenterProvider,
       Provider<LinearLayoutManager> linearLayoutManagerProvider,
       Provider<LinearLayoutManager> managerProvider, Provider<LinearLayoutManager> cmanagerProvider,

@@ -19,12 +19,15 @@ import javax.annotation.processing.Generated;
     "unchecked",
     "rawtypes",
     "KotlinInternal",
-    "KotlinInternalInJava"
+    "KotlinInternalInJava",
+    "cast",
+    "deprecation",
+    "nullness:initialization.field.uninitialized"
 })
 public final class AppModule_ProvideApolloClient$app_debugFactory implements Factory<ApolloClient> {
   private final AppModule module;
 
-  public AppModule_ProvideApolloClient$app_debugFactory(AppModule module) {
+  private AppModule_ProvideApolloClient$app_debugFactory(AppModule module) {
     this.module = module;
   }
 

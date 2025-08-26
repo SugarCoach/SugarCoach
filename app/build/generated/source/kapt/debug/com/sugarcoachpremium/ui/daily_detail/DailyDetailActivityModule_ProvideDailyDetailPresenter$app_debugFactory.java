@@ -7,10 +7,10 @@ import com.sugarcoachpremium.ui.daily_detail.view.DailyDetailView;
 import dagger.internal.DaggerGenerated;
 import dagger.internal.Factory;
 import dagger.internal.Preconditions;
+import dagger.internal.Provider;
 import dagger.internal.QualifierMetadata;
 import dagger.internal.ScopeMetadata;
 import javax.annotation.processing.Generated;
-import javax.inject.Provider;
 
 @ScopeMetadata
 @QualifierMetadata
@@ -23,14 +23,17 @@ import javax.inject.Provider;
     "unchecked",
     "rawtypes",
     "KotlinInternal",
-    "KotlinInternalInJava"
+    "KotlinInternalInJava",
+    "cast",
+    "deprecation",
+    "nullness:initialization.field.uninitialized"
 })
 public final class DailyDetailActivityModule_ProvideDailyDetailPresenter$app_debugFactory implements Factory<DailyDetailPresenterImp<DailyDetailView, DailyDetailInteractorImp>> {
   private final DailyDetailActivityModule module;
 
   private final Provider<DailyDetailPresenter<DailyDetailView, DailyDetailInteractorImp>> dailyDetailPresenterProvider;
 
-  public DailyDetailActivityModule_ProvideDailyDetailPresenter$app_debugFactory(
+  private DailyDetailActivityModule_ProvideDailyDetailPresenter$app_debugFactory(
       DailyDetailActivityModule module,
       Provider<DailyDetailPresenter<DailyDetailView, DailyDetailInteractorImp>> dailyDetailPresenterProvider) {
     this.module = module;

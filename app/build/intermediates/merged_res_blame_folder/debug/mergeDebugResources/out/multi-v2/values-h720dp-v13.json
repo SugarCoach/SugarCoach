@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.sugarcoachpremium.app-mergeDebugResources-67:/values-h720dp-v13/values-h720dp-v13.xml",
+            "outputFile": "com.sugarcoachpremium.app-mergeDebugResources-101:/values-h720dp-v13/values-h720dp-v13.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\isaro\\.gradle\\caches\\transforms-4\\b608ec51446d50d340888811c9f870f0\\transformed\\appcompat-1.6.1\\res\\values-h720dp-v13\\values-h720dp-v13.xml",
+                    "source": "C:\\Users\\Deb-PC\\.gradle\\caches\\8.13\\transforms\\6cbeae85c9de8820ec18c256803d515c\\transformed\\appcompat-1.7.0\\res\\values-h720dp-v13\\values-h720dp-v13.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

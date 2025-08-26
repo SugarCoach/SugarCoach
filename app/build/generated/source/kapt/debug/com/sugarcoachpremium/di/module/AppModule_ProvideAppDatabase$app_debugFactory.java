@@ -5,10 +5,10 @@ import com.sugarcoachpremium.data.database.AppDatabase;
 import dagger.internal.DaggerGenerated;
 import dagger.internal.Factory;
 import dagger.internal.Preconditions;
+import dagger.internal.Provider;
 import dagger.internal.QualifierMetadata;
 import dagger.internal.ScopeMetadata;
 import javax.annotation.processing.Generated;
-import javax.inject.Provider;
 
 @ScopeMetadata("javax.inject.Singleton")
 @QualifierMetadata
@@ -21,14 +21,17 @@ import javax.inject.Provider;
     "unchecked",
     "rawtypes",
     "KotlinInternal",
-    "KotlinInternalInJava"
+    "KotlinInternalInJava",
+    "cast",
+    "deprecation",
+    "nullness:initialization.field.uninitialized"
 })
 public final class AppModule_ProvideAppDatabase$app_debugFactory implements Factory<AppDatabase> {
   private final AppModule module;
 
   private final Provider<Context> contextProvider;
 
-  public AppModule_ProvideAppDatabase$app_debugFactory(AppModule module,
+  private AppModule_ProvideAppDatabase$app_debugFactory(AppModule module,
       Provider<Context> contextProvider) {
     this.module = module;
     this.contextProvider = contextProvider;
