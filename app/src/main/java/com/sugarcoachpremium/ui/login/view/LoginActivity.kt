@@ -22,8 +22,24 @@ import kotlinx.coroutines.runBlocking
 
 class LoginActivity: BaseActivity(), LoginView {
     @Inject
-    lateinit var presenter: LoginPresenterImp<LoginView,LoginInteractorImp>
+    lateinit var presenter: LoginPresenterImp<LoginView, LoginInteractorImp>
     lateinit var binding: ActivityLoginBinding
+
+
+    private var loginExecuted = false // 🔹 bandera para controlar login
+
+    override fun onLogin() {
+        if (loginExecuted) return  // 🔹 si ya se ejecutó, no hacer nada
+        loginExecuted = true
+
+        hideProgress()                 // 🔹 ocultar loader
+        binding.loginBt.isEnabled = true // 🔹 habilitar botón
+        val intent = Intent(this, MainActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(intent)
+        finish()
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,12 +54,16 @@ class LoginActivity: BaseActivity(), LoginView {
             presenter.feedInDatabase()
         }
     }
+
     override fun onDestroy() {
         presenter.onDetach()
         super.onDestroy()
     }
 
+    // 🔹 Este método ahora oculta el loader y habilita el botón en cualquier error
     override fun showValidationMessage(errorCode: Int) {
+        hideProgress()
+        binding.loginBt.isEnabled = true
         when (errorCode) {
             AppConstants.EMPTY_EMAIL_ERROR -> Toast.makeText(this, getString(R.string.empty_email_error_message), Toast.LENGTH_LONG).show()
             AppConstants.INVALID_EMAIL_ERROR -> Toast.makeText(this, getString(R.string.invalid_email_error_message), Toast.LENGTH_LONG).show()
@@ -53,27 +73,45 @@ class LoginActivity: BaseActivity(), LoginView {
     }
 
     override fun showErrorToast(msg: String) {
-        Toast.makeText(this, getString(R.string.login_failure), Toast.LENGTH_LONG).show()
+        hideProgress() // 🔹 Oculta el loader o spinner que se mostraba mientras se procesaba el login.
+        binding.loginBt.isEnabled = true // 🔹 Habilita nuevamente el botón de login.
+        Toast.makeText(this, msg, Toast.LENGTH_LONG).show()
     }
-    override fun onLogin() {
-        val intent = Intent(this, MainActivity::class.java)
-        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-        startActivity(intent)
-        finish()
-    }
+
+
 
     private fun setOnClickListeners() {
 
         binding.loginBt.setOnClickListener {
+            val email = binding.loginMail.text.toString().trim()
+            val password = binding.loginPass.text.toString().trim()
+
+            // Validaciones antes de llamar al presenter
+            if (email.isEmpty()) {
+                Toast.makeText(this, getString(R.string.empty_email_error_message), Toast.LENGTH_LONG).show()
+                return@setOnClickListener
+            }
+            if (password.isEmpty()) {
+                Toast.makeText(this, getString(R.string.empty_password_error_message), Toast.LENGTH_LONG).show()
+                return@setOnClickListener
+            }
+
+            // Mostrar loader y deshabilitar botón
             showProgress()
-            presenter.onLogin(binding.loginMail.text.toString(),
-                binding.loginPass.text.toString(),false, false)
+            binding.loginBt.isEnabled = false
+
+            // Llamada al presenter
+            presenter.onLogin(email, password, false, false)
         }
+
         binding.loginSignin.setOnClickListener { presenter.emailSign() }
         binding.loginForgot.setOnClickListener { presenter.forgot() }
+
+        // Comentados QR scan
         //binding.loginScan.setOnClickListener{ scanQR() }
         //binding.loginMedicoScan.setOnClickListener{ scanQR() }
     }
+
     override fun onEmailSign() {
         val intent = Intent(this, SignEmailActivity::class.java)
         startActivity(intent)
@@ -86,7 +124,10 @@ class LoginActivity: BaseActivity(), LoginView {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        runBlocking { presenter.activityResult(requestCode, resultCode, data) }
+        // 🔹 Lanzar en un scope de UI para no bloquear el hilo principal
+        CoroutineScope(Dispatchers.Main).launch {
+            presenter.activityResult(requestCode, resultCode, data)
+        }
     }
 
     fun scanQR(){

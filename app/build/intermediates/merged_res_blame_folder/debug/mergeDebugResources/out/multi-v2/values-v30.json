@@ -4,7 +4,7 @@
             "outputFile": "com.sugarcoachpremium.app-mergeDebugResources-101:/values-v30/values-v30.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Deb-PC\\.gradle\\caches\\8.13\\transforms\\f340eb63613b043deceb0b6c27177b74\\transformed\\jetified-material3-release\\res\\values-v30\\values-v30.xml",
+                    "source": "/home/byariel/.gradle/caches/8.13/transforms/f340eb63613b043deceb0b6c27177b74/transformed/jetified-material3-release/res/values-v30/values-v30.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

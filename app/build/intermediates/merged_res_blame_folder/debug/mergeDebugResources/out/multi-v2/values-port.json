@@ -4,7 +4,7 @@
             "outputFile": "com.sugarcoachpremium.app-mergeDebugResources-101:/values-port/values-port.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Deb-PC\\.gradle\\caches\\8.13\\transforms\\6cbeae85c9de8820ec18c256803d515c\\transformed\\appcompat-1.7.0\\res\\values-port\\values-port.xml",
+                    "source": "/home/byariel/.gradle/caches/8.13/transforms/6cbeae85c9de8820ec18c256803d515c/transformed/appcompat-1.7.0/res/values-port/values-port.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

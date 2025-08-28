@@ -52,8 +52,15 @@ class LoginPresenter  <V : LoginView, I : LoginInteractorImp> @Inject internal c
                         if (task.isSuccessful) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.i("onLogin", "signInWithEmail:success")
-                            CoroutineScope(Dispatchers.IO).launch {
-                                updateUser(Firebase.auth.currentUser?.uid)
+                            val uid = Firebase.auth.currentUser?.uid
+                            if (uid != null) {
+                                // Actualizar usuario y guardar en local
+                                CoroutineScope(Dispatchers.IO).launch {
+                                    updateUser(uid, mirror, medico)
+                                }
+                            } else {
+                                getView()?.hideProgress()
+                                getView()?.showErrorToast("Usuario no encontrado")
                             }
                         } else {
                             // If sign in fails, display a message to the user.
@@ -62,54 +69,47 @@ class LoginPresenter  <V : LoginView, I : LoginInteractorImp> @Inject internal c
                             getView()?.hideProgress()
                         }
                     }
-                }
             }
         }
+    }
 
-    private suspend fun updateUser(firebaseUID: String?) {
-        interactor?.getUserData(firebaseUID)?.fold({
-            if (it == null) {
+    private suspend fun updateUser(firebaseUID: String, mirror: Boolean, medico: Boolean) {
+        interactor?.getUserData(firebaseUID)?.fold({ user ->
+            if (user == null) {
                 withContext(Dispatchers.Main) {
                     getView()?.hideProgress()
-                    getView()?.showErrorToast()
+                    getView()?.showErrorToast("Usuario no encontrado")
                 }
+                return@fold
             }
 
-            interactor?.makeLocalUser(it)?.subscribe(object: Observer<Boolean> {
-                override fun onSubscribe(d: Disposable) {
-                    Log.i("OnMakeLocal", "Se suscribió")
-                }
-
-                override fun onNext(t: Boolean) {
-                    Log.i("OnMakeLocal", "Se ejecuto el next")
-                }
-
-                override fun onError(e: Throwable){
-                    Log.i("OnMakeLocal", "Ocurrió un error: $e")
+            // Guardar usuario localmente
+            interactor?.makeLocalUser(user)?.observeOn(AndroidSchedulers.mainThread())?.subscribe(object : Observer<Boolean> {
+                override fun onSubscribe(d: Disposable) {}
+                override fun onNext(t: Boolean) {}
+                override fun onError(e: Throwable) {
                     Firebase.auth.currentUser?.delete()
                     getView()?.hideProgress()
-                    getView()?.showErrorToast()
+                    getView()?.showErrorToast("Error al guardar usuario")
                 }
-
-                //@SuppressLint("CheckResult")
                 override fun onComplete() {
-                    Log.i("OnMakeLocal", "Se encontró el usuario")
-                    try{
+                    // 🔹 Login exitoso: ir a MainActivity YA
+                    getView()?.onLogin()
+
+                    // 🔹 Continuar con el resto de la carga en background
+                    CoroutineScope(Dispatchers.IO).launch {
                         feedInDatabase()
-                    }catch (e: Exception){
-                        getView()?.hideProgress()
-                        getView()?.showErrorToast()
                     }
                 }
             })
-
         }, {
             withContext(Dispatchers.Main) {
                 getView()?.hideProgress()
-                getView()?.showErrorToast()
+                getView()?.showErrorToast("Error al obtener datos del usuario")
             }
         })
     }
+
     private suspend fun suspendLogin(email: String, password: String, mirror: Boolean, medico: Boolean) = coroutineScope{
          val waitResponse = async {
             interactor?.let {

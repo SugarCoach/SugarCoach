@@ -4,7 +4,7 @@
             "outputFile": "com.sugarcoachpremium.app-mergeDebugResources-101:/values-w600dp-land-v13/values-w600dp-land-v13.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Deb-PC\\.gradle\\caches\\8.13\\transforms\\12dc262608126979a07cdb0a5f2a57b3\\transformed\\material-1.9.0\\res\\values-w600dp-land-v13\\values-w600dp-land-v13.xml",
+                    "source": "/home/byariel/.gradle/caches/8.13/transforms/12dc262608126979a07cdb0a5f2a57b3/transformed/material-1.9.0/res/values-w600dp-land-v13/values-w600dp-land-v13.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
