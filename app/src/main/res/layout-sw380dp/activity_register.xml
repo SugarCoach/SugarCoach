@@ -26,7 +26,7 @@
                 android:layout_height="35dp"
                 android:background="@drawable/date_right_bg"
                 android:gravity="center"
-                android:textSize="14dp"
+                android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -38,8 +38,8 @@
                 android:background="@drawable/date_left_bg"
                 android:gravity="center"
                 android:minWidth="80dp"
-                android:paddingLeft="5dp"
-                android:textSize="14dp"
+                android:paddingStart="5dp"
+                android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -109,7 +109,7 @@
                     android:paddingRight="5dp"
                     android:text="@string/main_glucemia_txt"
                     android:textColor="@color/aqua"
-                    android:textSize="16dp" />
+                    android:textSize="16sp" />
 
             <com.mazenrashed.dotsindicator.DotsIndicator
                     android:id="@+id/register_dots"
@@ -117,6 +117,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:layout_marginBottom="5dp"
+                    android:enabled="false"
+                    android:clickable="false"
+                    android:focusable="false"
                     app:dot_height="10dp"
                     app:dot_width="10dp"
                     app:dots_count="5"
@@ -170,7 +173,7 @@
                             android:padding="5dp"
                             android:textColor="@color/black"
                             android:textColorHint="@color/black"
-                            android:textSize="14dp"
+                            android:textSize="14sp"
                             android:hint="Seleccione una"
                             app:spinner_arrow_gravity="end"
                             app:spinner_arrow_tint="@color/pink"
@@ -191,7 +194,7 @@
                         android:layout_width="match_parent"
                         android:gravity="center"
                         android:layout_height="20dp"
-                        android:textSize="14dp"/>
+                        android:textSize="14sp"/>
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -219,7 +222,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintLeft_toLeftOf="parent"
-                android:layout_marginLeft="32dp"
+                android:layout_marginStart="32dp"
                 android:layout_marginBottom="8dp"
                 android:id="@+id/register_username_txt"
                 app:layout_constraintBottom_toTopOf="@+id/guideline"/>
@@ -298,7 +301,7 @@
                         android:id="@+id/register_ptsText_txt"
                         style="@style/TextStyle.Heading"
                         android:layout_gravity="center"
-                        android:textSize="12dp"
+                        android:textSize="12sp"
                         android:textColor="@color/blue"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -334,7 +337,7 @@
                                 android:layout_width="wrap_content"
                                 style="@style/TextStyle.Actions"
                                 android:layout_height="wrap_content"
-                                android:textSize="12dp"
+                                android:textSize="12sp"
                                 android:textColor="@color/white"/>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -365,7 +368,7 @@
                                 android:layout_width="wrap_content"
                                 style="@style/TextStyle.Actions"
                                 android:layout_height="wrap_content"
-                                android:textSize="12dp"
+                                android:textSize="12sp"
                                 android:textColor="@color/white"/>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -396,7 +399,7 @@
                                 android:layout_width="wrap_content"
                                 style="@style/TextStyle.Actions"
                                 android:layout_height="wrap_content"
-                                android:textSize="12dp"
+                                android:textSize="12sp"
                                 android:textColor="@color/white"/>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -427,7 +430,7 @@
                                 android:layout_width="wrap_content"
                                 style="@style/TextStyle.Actions"
                                 android:layout_height="wrap_content"
-                                android:textSize="12dp"
+                                android:textSize="12sp"
                                 android:textColor="@color/white"/>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -480,16 +483,17 @@
                                     app:srcCompat="@drawable/bold_shape"/>
                             <androidx.appcompat.widget.AppCompatImageView
                                     android:layout_width="38dp"
-                                    android:layout_height="43dp"
+                                    android:layout_height="33dp"
                                     android:layout_gravity="center"
                                     android:scaleType="centerCrop"
-                                    app:srcCompat="@drawable/ic_add_register_aqua"/>
+                                    android:tint="@color/aqua"
+                                    app:srcCompat="@drawable/ic_control"/>
                         </FrameLayout>
 
                         <TextView
                                 android:text="@string/main_register_txt"
                                 style="@style/TextStyle.Title"
-                                android:textSize="10dp"
+                                android:textSize="10sp"
                                 android:textStyle="bold"
                                 android:layout_gravity="center"
                                 android:layout_width="wrap_content"
@@ -518,11 +522,11 @@
                             android:layout_height="match_parent"
                             android:layout_weight="0.20">
                         <androidx.appcompat.widget.AppCompatImageView
-                                android:layout_width="48dp"
-                                android:layout_height="43dp"
+                                android:layout_width="33dp"
+                                android:layout_height="33dp"
                                 android:layout_gravity="center"
                                 android:scaleType="centerCrop"
-                                app:srcCompat="@drawable/ic_control"/>
+                                app:srcCompat="@drawable/ic_add_register"/>
                     </LinearLayout>
                 </LinearLayout>
                 <FrameLayout android:layout_width="wrap_content"
@@ -555,7 +559,7 @@
                                     android:hint="0"
                                     style="@style/TextStyle.Heading"
                                     android:gravity="center"
-                                    android:textSize="36dp"
+                                    android:textSize="36sp"
                                     android:inputType="number|numberDecimal"
                                     android:imeOptions="actionDone"
                                     android:textColorHint="@color/gray"
@@ -567,7 +571,7 @@
                             <ImageView
                                     android:layout_width="50dp"
                                     app:srcCompat="@drawable/ic_actividad"
-                                    android:tint="@color/pink"
+                                    app:tint="@color/pink"
                                     android:id="@+id/register_exercise_img"
                                     android:layout_gravity="center"
                                     android:layout_height="50dp"
@@ -577,14 +581,14 @@
                                     app:srcCompat="@drawable/ic_emotions"
                                     android:id="@+id/register_emotional_img"
                                     android:layout_gravity="center"
-                                    android:tint="@color/pink"
+                                    app:tint="@color/pink"
                                     android:layout_height="50dp"
                                     android:visibility="gone"/>
                             <androidx.appcompat.widget.AppCompatTextView
                                     android:text="@string/register_emotional_label"
                                     style="@style/TextStyle.Heading"
                                     android:layout_gravity="center"
-                                    android:textSize="10dp"
+                                    android:textSize="10sp"
                                     android:visibility="gone"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -593,7 +597,7 @@
                                     android:text="@string/register_exercises_label"
                                     style="@style/TextStyle.Heading"
                                     android:layout_gravity="center"
-                                    android:textSize="10dp"
+                                    android:textSize="10sp"
                                     android:visibility="gone"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -602,7 +606,7 @@
                                     android:text="@string/register_new_register_txt"
                                     style="@style/TextStyle.Heading"
                                     android:layout_gravity="center"
-                                    android:textSize="14dp"
+                                    android:textSize="14sp"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:id="@+id/register_unidad_tv"/>
@@ -638,7 +642,7 @@
                                 android:text="1800"
                                 style="@style/TextStyle.Heading"
                                 android:gravity="center"
-                                android:textSize="18dp"
+                                android:textSize="18sp"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/register_pts_txt"/>
@@ -647,7 +651,7 @@
                                 android:id="@+id/register_level_txt"
                                 style="@style/TextStyle.Heading"
                                 android:layout_gravity="center"
-                                android:textSize="12dp"
+                                android:textSize="12sp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"/>
                     </LinearLayout>
