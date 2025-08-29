@@ -105,8 +105,8 @@ class RegisterActivity : BaseActivity(), RegisterView, TimePickerDialog.OnTimeSe
     override fun nextLoad(type: Int,value: Float?, position: String?) {
         when (type) {
             1 -> {
-                binding.registerValueTxt.setText("")
-                value?.let { if(it > 0) binding.registerValueTxt.setText(value.toInt().toString()) }
+                binding.registerValueTxt.setText("0")
+                value?.let { if(it >= 0) binding.registerValueTxt.setText(value.toInt().toString()) }
                 binding.registerType.setText(R.string.register_insulina_label)
                 binding.registerUnidadTv.setText(R.string.register_basal_unidad_label)
                 binding.registerPlanet.setImageResource(R.drawable.planet_insulina)
@@ -126,8 +126,8 @@ class RegisterActivity : BaseActivity(), RegisterView, TimePickerDialog.OnTimeSe
 
             }
             2 -> {
-                binding.registerValueTxt.setText("")
-                value?.let { if(it > 0) binding.registerValueTxt.setText(value.toString()) }
+                binding.registerValueTxt.setText("0")
+                value?.let { if(it >= 0) binding.registerValueTxt.setText(value.toString()) }
                 binding.registerType.setText(R.string.register_carbohidratos_label)
                 binding.registerUnidadTv.setText(R.string.register_car_unidad_label)
                 binding.registerEmotionalTv.visibility = View.GONE
@@ -150,7 +150,7 @@ class RegisterActivity : BaseActivity(), RegisterView, TimePickerDialog.OnTimeSe
                 binding.registerPlanet.setImageResource(R.drawable.planet_actividad)
                 binding.registerPlanetBefore.setImageResource(R.drawable.planet_carbohidratos)
                 binding.registerPlanetAfter.setImageResource(R.drawable.planet_estado)
-                binding.registerValueTxt.setText("")
+                binding.registerValueTxt.setText("0")
                 binding.registerDots.setDotSelection(3)
                 binding.registerEmotionalTv.setVisibility(View.GONE)
                 binding.registerExercicesTv.setVisibility(View.VISIBLE)
@@ -167,7 +167,7 @@ class RegisterActivity : BaseActivity(), RegisterView, TimePickerDialog.OnTimeSe
 
             }
             4 -> {
-                binding.registerValueTxt.setText("")
+                binding.registerValueTxt.setText("0")
                 binding.registerDots.setDotSelection(4)
                 binding.registerEmotionalTv.setVisibility(View.VISIBLE)
                 binding.registerExercicesTv.setVisibility(View.GONE)
@@ -199,8 +199,8 @@ class RegisterActivity : BaseActivity(), RegisterView, TimePickerDialog.OnTimeSe
                 binding.registerEmotionalTv.setVisibility(View.GONE)
                 binding.registerExercicesTv.setVisibility(View.GONE)
                 binding.registerUnidadTv.setVisibility(View.VISIBLE)
-                binding.registerValueTxt.setText("")
-                value?.let { if(it > 0) binding.registerValueTxt.setText(value.toInt().toString()) }
+                binding.registerValueTxt.setText("0")
+                value?.let { if(it >= 0) binding.registerValueTxt.setText(value.toInt().toString()) }
                 showHideExercise(false)
                 showHideEmotional(false)
                 showHideValue(true)
@@ -220,8 +220,8 @@ class RegisterActivity : BaseActivity(), RegisterView, TimePickerDialog.OnTimeSe
                 binding.registerEmotionalTv.visibility = View.GONE
                 binding.registerExercicesTv.visibility = View.GONE
                 binding.registerUnidadTv.visibility = View.VISIBLE
-                binding.registerValueTxt.setText("")
-                value?.let { if(it > 0) binding.registerValueTxt.setText(value.toString()) }
+                binding.registerValueTxt.setText("0")
+                value?.let { if(it >= 0) binding.registerValueTxt.setText(value.toString()) }
                 showHideExercise(false)
                 showHideEmotional(false)
                 showHideValue(true)
@@ -241,7 +241,7 @@ class RegisterActivity : BaseActivity(), RegisterView, TimePickerDialog.OnTimeSe
                 binding.registerEmotionalTv.setVisibility(View.GONE)
                 binding.registerExercicesTv.setVisibility(View.GONE)
                 binding.registerUnidadTv.setVisibility(View.VISIBLE)
-                value?.let { if(it > 0) binding.registerValueTxt.setText(value.toString()) }
+                value?.let { if(it >= 0) binding.registerValueTxt.setText(value.toString()) }
                 showHideExercise(false)
                 showHideEmotional(false)
                 showHideValue(true)
@@ -258,7 +258,7 @@ class RegisterActivity : BaseActivity(), RegisterView, TimePickerDialog.OnTimeSe
                 binding.registerEmotionalTv.visibility = View.GONE
                 binding.registerExercicesTv.visibility = View.VISIBLE
                 binding.registerUnidadTv.visibility = View.GONE
-                binding.registerValueTxt.setText("")
+                binding.registerValueTxt.setText("0")
                 binding.registerDots.setDotSelection(3)
                 binding.registerValueTxt.isEnabled = false
                 showHideExercise(true)
@@ -428,11 +428,8 @@ class RegisterActivity : BaseActivity(), RegisterView, TimePickerDialog.OnTimeSe
         binding.registerMedTxt.getSpinnerRecyclerView().layoutManager = manager
         binding.registerMedTxt.setItems(categories)
         binding.registerMedTxt.selectItemByIndex(medition-1)
-        binding.registerMedTxt.setOnSpinnerItemSelectedListener<Category> { oldIndex, oldItem, newIndex, newItem ->  // original " position, item -> "
-            if (newItem != null) {
-                presenter.setMedition(newItem.cate_id)
-            }
-            //presenter.setMedition(newItem?.cate_id?.let { presenter.setMedition(it) }) // original era "(item.cate_id)"
+        binding.registerMedTxt.setOnSpinnerItemSelectedListener<Category> { position, item ->
+            presenter.setMedition(item.cate_id)
             Toast.makeText(this, getString(R.string.register_category_warning),Toast.LENGTH_SHORT).show()
         }
     }
@@ -609,10 +606,10 @@ class RegisterActivity : BaseActivity(), RegisterView, TimePickerDialog.OnTimeSe
     }
 
     fun menuListeners(){
-         binding.home.setOnClickListener { presenter.goToActivityMain() }
-         binding.statistics.setOnClickListener { presenter.goToActivityStatistic() }
-         binding.dailyRegister.setOnClickListener { presenter.goToActivityDaily() }
-         binding.treament.setOnClickListener { presenter.goToActivityTreament() }
+        binding.home.setOnClickListener { presenter.goToActivityMain() }
+        binding.statistics.setOnClickListener { presenter.goToActivityStatistic() }
+        binding.dailyRegister.setOnClickListener { presenter.goToActivityDaily() }
+        binding.treament.setOnClickListener { presenter.goToActivityTreament() }
 
     }
 

@@ -488,10 +488,11 @@
                                     app:srcCompat="@drawable/bold_shape"/>
                             <androidx.appcompat.widget.AppCompatImageView
                                     android:layout_width="38dp"
-                                    android:layout_height="43dp"
+                                    android:layout_height="33dp"
                                     android:layout_gravity="center"
                                     android:scaleType="centerCrop"
-                                    app:srcCompat="@drawable/ic_add_register_aqua"/>
+                                    android:tint="@color/aqua"
+                                    app:srcCompat="@drawable/ic_control"/>
                         </FrameLayout>
 
                         <TextView
@@ -526,11 +527,11 @@
                             android:layout_height="match_parent"
                             android:layout_weight="0.20">
                         <androidx.appcompat.widget.AppCompatImageView
-                                android:layout_width="48dp"
-                                android:layout_height="43dp"
+                                android:layout_width="33dp"
+                                android:layout_height="33dp"
                                 android:layout_gravity="center"
                                 android:scaleType="centerCrop"
-                                app:srcCompat="@drawable/ic_control"/>
+                                app:srcCompat="@drawable/ic_add_register"/>
                     </LinearLayout>
                 </LinearLayout>
                 <FrameLayout android:layout_width="wrap_content"
@@ -561,7 +562,7 @@
                                 android:gravity="center"
                                 android:layout_height="match_parent">
                             <androidx.appcompat.widget.AppCompatEditText
-                                    android:hint="0"
+                                    android:text="0"
                                     style="@style/TextStyle.Heading"
                                     android:gravity="center"
                                     android:textSize="36dp"
