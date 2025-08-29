@@ -428,8 +428,8 @@ class RegisterActivity : BaseActivity(), RegisterView, TimePickerDialog.OnTimeSe
         binding.registerMedTxt.getSpinnerRecyclerView().layoutManager = manager
         binding.registerMedTxt.setItems(categories)
         binding.registerMedTxt.selectItemByIndex(medition-1)
-        binding.registerMedTxt.setOnSpinnerItemSelectedListener<Category> { position, item ->
-            presenter.setMedition(item.cate_id)
+        binding.registerMedTxt.setOnSpinnerItemSelectedListener<Category> { oldIndex, oldItem, newIndex, newItem ->
+            presenter.setMedition(newItem.cate_id)
             Toast.makeText(this, getString(R.string.register_category_warning),Toast.LENGTH_SHORT).show()
         }
     }
