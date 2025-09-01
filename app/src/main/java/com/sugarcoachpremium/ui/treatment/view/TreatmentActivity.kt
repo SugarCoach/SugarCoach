@@ -1,9 +1,9 @@
 package com.sugarcoachpremium.ui.treatment.view
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.PorterDuff
-import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
@@ -32,10 +32,10 @@ import com.sugarcoachpremium.util.extensions.resIdByName
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.io.Serializable
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
+import androidx.core.graphics.drawable.toDrawable
 
 class TreatmentActivity : BaseActivity(), TreatmentView {
 
@@ -115,9 +115,10 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
     override fun showErrorToast(msg: String) {
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     override fun setData(user: User, date: Date) {
         this.user = user
-        binding.treamentUsernameTxt.setText(user.username)
+        binding.treamentUsernameTxt.text = user.username
         val formatter = SimpleDateFormat("dd.M.yy", Locale.getDefault())
         val formatterTime = SimpleDateFormat("hh:mm a", Locale.getDefault())
         val formattedDate = formatter.format(date)
@@ -132,8 +133,8 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
         }
     }
 
-    override fun setPromedio(promedio: Float) {
-        binding.treatmentGluPromTxt.text = promedio.toInt().toString()
+    override fun setPromedio(prom: Float) {
+        binding.treatmentGluPromTxt.text = prom.toInt().toString()
     }
 
     override fun setPromedioBasal(total: Float) {
@@ -179,14 +180,15 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
         createDialogCongratulation(points, totalPoints)
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables", "SetTextI18n")
     private fun createDialogCongratulation(points: Int, totalPoints: Int) {
         val view = DialogCongratulationBinding.inflate(layoutInflater)
         val builder = AlertDialog.Builder(this)
         builder.setCancelable(false)
         builder.setView(view.root)
         dialog = builder.create()
-        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        view.congratulationPtsTxt.text = "+" + (points.toString())
+        dialog.window?.setBackgroundDrawable(Color.TRANSPARENT.toDrawable())
+        view.congratulationPtsTxt.text = "+$points"
         user.avatar?.let {
             view.congratulationAvatar.setImageDrawable(getDrawable(resIdByName(it, "drawable")))
         }
@@ -280,7 +282,7 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
         //TERCERA OPCION
 
         binding.treatmentCorrectora.setOnSpinnerItemSelectedListener<BasalItem> { oldIndex, oldItem, newIndex, newItem ->
-            newItem?.let {
+            newItem.let {
                 if (!initial) {
                     presenter.saveCorrectora(it)
                 } else {
@@ -314,7 +316,7 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
 
         //TERCERA OPCION
         binding.treatmentBasal.setOnSpinnerItemSelectedListener<BasalItem> { oldIndex, oldItem, newIndex, newItem ->
-            newItem?.let {
+            newItem.let {
                 if (!initialbasal) {
                     binding.treatmentInsuTxt.text = it.name
                     presenter.saveBasal(it)
@@ -346,7 +348,7 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
 
         //TERCERA OPCION
         binding.treatmentMedidor.setOnSpinnerItemSelectedListener<BasalItem> { oldIndex, oldItem, newIndex, newItem ->
-            newItem?.let {
+            newItem.let {
                 if (!initialMedidor) {
                     presenter.saveMedidor(it)
                 } else {
@@ -379,7 +381,7 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
 
         //TERCERA OPCION
         binding.treatmentBombInfusora.setOnSpinnerItemSelectedListener<BasalItem> { oldIndex, oldItem, newIndex, newItem ->
-            newItem?.let {
+            newItem.let {
                 if (!initialBomba) {
                     presenter.saveBomba(it)
                 } else {
@@ -394,7 +396,7 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
             lmanager.orientation = RecyclerView.VERTICAL
             binding.treatmentBasalList.layoutManager = lmanager
             binding.treatmentBasalList.adapter = adapterCategory
-            var items = ArrayList<String>()
+            val items = ArrayList<String>()
             for (i in 1 until 36) {
                 items.add(i.toString())
             }
@@ -571,8 +573,8 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
             val builder = AlertDialog.Builder(this)
             builder.setCancelable(false)
             builder.setView(view.root)
-            var dialog = builder.create()
-            dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            val dialog = builder.create()
+            dialog.window?.setBackgroundDrawable(Color.TRANSPARENT.toDrawable())
             view.infoSubtitle.text = info
             view.infoAccept.setOnClickListener {
                 dialog.dismiss()
@@ -648,7 +650,7 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
             val builder = AlertDialog.Builder(this)
             builder.setView(view.root)
             dialog = builder.create()
-            dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            dialog.window?.setBackgroundDrawable(Color.TRANSPARENT.toDrawable())
             view.treamentAccept.setOnClickListener {
                 presenter.updateAll()
                 dialog.dismiss()
