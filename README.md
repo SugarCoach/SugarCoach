@@ -1,4 +1,5 @@
 ## DOCUMENTACIÓN
+
 ### Día Lunes 26/08
 - Versión de Android Studio: Jiraffe 22 -> Koala 24
 - Versión de JAVA: 8 -> 17
