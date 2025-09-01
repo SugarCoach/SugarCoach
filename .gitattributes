@@ -1,0 +1,35 @@
+# Normalizar finales de línea: todo en LF (evita warnings LF↔CRLF)
+* text=auto eol=lf
+
+# Scripts de Windows con CRLF
+*.bat  text eol=crlf
+*.cmd  text eol=crlf
+
+# Binarios (no tocar EOL ni diffs)
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.webp binary
+*.pdf  binary
+*.jar  binary
+*.aab  binary
+*.apk  binary
+*.so   binary
+*.ttf  binary
+*.otf  binary
+*.jks  binary
+*.keystore binary
+
+# Textos comunes
+*.java   text eol=lf
+*.kt     text eol=lf
+*.gradle text eol=lf
+*.kts    text eol=lf
+*.xml    text eol=lf
+*.md     text eol=lf
+*.yaml   text eol=lf
+*.yml    text eol=lf
+*.json   text eol=lf
+*.properties text eol=lf
+*.svg    text eol=lf
