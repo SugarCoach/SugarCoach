@@ -1,12 +1,32 @@
+# === Android / Gradle ===
+**/build/
+.gradle/
+local.properties
+.externalNativeBuild/
+.cxx/
+captures/
+*.log
+
+# === IDE ===
+.idea/
 *.iml
-.gradle
-/local.properties
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
+.vscode/
+
+# === Artefactos ===
+*.apk
+*.aab
+*.ap_
+*.hprof
+
+# === Claves / secretos (no subir) ===
+app/google-services.json
+**/*.jks
+**/*.keystore
+keystore.properties
+
+# === SO ===
 .DS_Store
-/captures
-.externalNativeBuild
+Thumbs.db
+
+# (por si acaso, generados de Apollo dentro de build)
+app/build/generated/
