@@ -1,11 +1,18 @@
 # === Android / Gradle ===
 **/build/
-.gradle/
+**/outputs/
+**/.gradle/
+**/.externalNativeBuild/
+**/.cxx/
+**/captures/
 local.properties
-.externalNativeBuild/
-.cxx/
-captures/
 *.log
+
+# Asegurar que el wrapper de Gradle SÍ se versione
+!gradlew
+!gradlew.bat
+!gradle/wrapper/gradle-wrapper.jar
+!gradle/wrapper/gradle-wrapper.properties
 
 # === IDE ===
 .idea/
@@ -17,16 +24,18 @@ captures/
 *.aab
 *.ap_
 *.hprof
+*.aar
 
 # === Claves / secretos (no subir) ===
-app/google-services.json
+**/google-services.json
 **/*.jks
 **/*.keystore
 keystore.properties
+*.keystore.properties
 
 # === SO ===
 .DS_Store
 Thumbs.db
 
-# (por si acaso, generados de Apollo dentro de build)
-app/build/generated/
+# (ya lo cubre **/build/, ejemplo)
+# app/build/generated/
