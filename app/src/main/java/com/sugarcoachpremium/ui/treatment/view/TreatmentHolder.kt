@@ -9,11 +9,14 @@ import java.util.*
 
 class TreatmentHolder(private val binding: TreatmentItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
+    private var isProgrammaticChange = false
 
     fun inflateData(item: HorarioItem, position: Int, activity: TreatmentActivity, items: ArrayList<String>) {
         binding.treamentItemLabel.text = item.name
 
+        isProgrammaticChange = true
         binding.treatmentItemHorario.isChecked = item.selected
+        isProgrammaticChange = false
         binding.treatmentItemUnidad.setItems(items.toList())
 
 
@@ -23,15 +26,24 @@ class TreatmentHolder(private val binding: TreatmentItemBinding) : RecyclerView.
             }
         }
 
+
+
         binding.treatmentItemHorario.setOnCheckedChangeListener { _, isChecked ->
+            if (isProgrammaticChange) {
+                return@setOnCheckedChangeListener
+            }
+
             if (isChecked){
                 if (items.isNotEmpty()) {
-                    binding.treatmentItemUnidad.selectItemByIndex((item.units.toInt()) - 1)
+                    isProgrammaticChange = true
+                    binding.treatmentItemUnidad.selectItemByIndex(0)
+                    isProgrammaticChange = false
+
                     val category = HorarioItem.Builder()
                         .id(item.id)
                         .name(item.name)
                         .selected(true)
-                        .units(item.units)
+                        .units("1")
                         .categoryId(item.categoryId)
                         .build()
                     activity.presenter.saveCategory(category)
@@ -68,8 +80,10 @@ class TreatmentHolder(private val binding: TreatmentItemBinding) : RecyclerView.
 
         //SUSTITUCION 25/08/2025
         binding.treatmentItemUnidad.setOnSpinnerItemSelectedListener<String> { _, _, _, newItem ->
-
+            isProgrammaticChange = true
             binding.treatmentItemHorario.isChecked = true
+            isProgrammaticChange = false
+
             val category = HorarioItem.Builder()
                     .id(item.id)
                     .name(item.name)
