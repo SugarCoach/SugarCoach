@@ -193,7 +193,7 @@ class ProfilePresenter <V : ProfileView, I : ProfileInteractorImp> @Inject inter
         com.facebook.login.LoginManager.getInstance().logOut()
         interactor?.perfomLogout()
         getView()?.openLoginActivity()
-        /*interactor?.let {
+        interactor?.let {
             compositeDisposable.add(it.deleteUser()
                 .compose(schedulerProvider.ioToMainObservableScheduler())
                 .subscribe({ result ->
@@ -201,8 +201,8 @@ class ProfilePresenter <V : ProfileView, I : ProfileInteractorImp> @Inject inter
                     getView()?.openLoginActivity()
                 }, { err -> println(err) })
             )
-        }*/
-        /*interactor?.let {
+        }
+        interactor?.let {
             compositeDisposable.add(it.deleteUser()
                 .compose(schedulerProvider.ioToMainObservableScheduler())
                 .flatMap { interactor?.deleteTreament() }
@@ -210,7 +210,7 @@ class ProfilePresenter <V : ProfileView, I : ProfileInteractorImp> @Inject inter
                     interactor?.perfomLogout()
                     getView()?.openLoginActivity()
                 }, { err -> println(err) }))
-        }*/
+        }
     }
     fun deleteRegisters() {
         interactor?.let {
