@@ -24,7 +24,6 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
-
     signingConfigs{
         release {
 
@@ -33,6 +32,11 @@ android {
 
     buildTypes {
         debug {
+            // 👇 SOLO debug usa otro applicationId
+            applicationIdSuffix ".dev2"   // => com.sugarcoachpremium.dev
+            // (opcional) para distinguir la versión:
+            // versionNameSuffix "-dev2"
+
             buildConfigField("String", "BASE_URL", "\"http://ec2-13-59-253-95.us-east-2.compute.amazonaws.com:1337\"")
         }
         release {

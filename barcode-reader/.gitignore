@@ -1,1 +1,10 @@
-/build
+# Firebase configs (todas las carpetas)
+**/google-services.json
+
+# Builds de todos los módulos
+**/build/
+
+# Archivos locales que no van al repo
+local.properties
+*.jks
+*.keystore
