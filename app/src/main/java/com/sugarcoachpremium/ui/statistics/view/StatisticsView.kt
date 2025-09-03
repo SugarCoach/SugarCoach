@@ -22,4 +22,5 @@ interface StatisticsView : BaseView {
     fun openTreatmentActivity()
     fun sharedScreenShot(uri: Uri)
     fun explain(msg: Int)
+    fun openRegisterActivity()
 }

@@ -23,5 +23,5 @@ interface StatisticsPresenterImp<V : StatisticsView, I : StatisticsInteractorImp
     fun getDataStatesDates(start: String, end: String,position: Int)
     fun getScreenShot(context: Activity, view: RecyclerView)
     fun onRequestPermissionsResult(context: Activity, requestCode: Int, permissions: Array<String>, grantResults: IntArray)
-
+    fun goToActivityRegister()
 }

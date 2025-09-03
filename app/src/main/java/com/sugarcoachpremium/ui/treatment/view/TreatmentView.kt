@@ -30,6 +30,6 @@ interface TreatmentView : BaseView {
     fun setBomba(basalInsuline: List<BasalItem>)
     fun showDataSave(totalPoints: Int, points: Int)
     fun sharedScreenShot(uri: Uri)
-
+    fun openRegisterActivity()
 
 }

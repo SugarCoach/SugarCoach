@@ -36,6 +36,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
 import androidx.core.graphics.drawable.toDrawable
+import com.sugarcoachpremium.ui.register.view.RegisterActivity
 
 class TreatmentActivity : BaseActivity(), TreatmentView {
 
@@ -566,6 +567,7 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
             binding.home.setOnClickListener { presenter.goToActivityMain() }
             binding.statistics.setOnClickListener { presenter.goToActivityStatistic() }
             binding.dailyRegister.setOnClickListener { presenter.goToActivityDaily() }
+            binding.addRegister.setOnClickListener { presenter.goToActivityRegister() }
         }
 
         private fun createDialogInfo(info: String) {
@@ -611,6 +613,11 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
             startActivity(intent)
             finish()
         }
+        override fun openRegisterActivity() {
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
 
 
         override fun openMainActivity() {
@@ -638,9 +645,9 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
         }
 
         fun mirrorAccount() {
-            binding.addRegister.isEnabled = false
+            binding.addRegister.isEnabled = true
             binding.addRegisterImage.setColorFilter(
-                ContextCompat.getColor(this, R.color.gray),
+                ContextCompat.getColor(this, R.color.white),
                 PorterDuff.Mode.MULTIPLY
             )
         }

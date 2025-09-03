@@ -133,6 +133,10 @@ class StatisticsPresenter <V : StatisticsView, I : StatisticsInteractorImp> @Inj
         getView()?.openTreatmentActivity()
     }
 
+    override fun goToActivityRegister() {
+        getView()?.openRegisterActivity()
+    }
+
     fun getDataGlucose() {
 
         val values = ArrayList<Float>()

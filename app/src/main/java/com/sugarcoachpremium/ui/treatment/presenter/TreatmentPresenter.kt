@@ -155,6 +155,10 @@ class TreatmentPresenter<V : TreatmentView, I : TreatmentInteractorImp> @Inject 
         getView()?.openStatisticActivity()
     }
 
+    override fun goToActivityRegister() {
+        getView()?.openRegisterActivity()
+    }
+
 
     override fun saveBasal(item: BasalItem) {
         treatment.basal_id = item.id

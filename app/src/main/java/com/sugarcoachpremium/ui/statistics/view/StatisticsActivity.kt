@@ -20,6 +20,7 @@ import com.sugarcoachpremium.databinding.ActivityEstadisticasBinding
 import com.sugarcoachpremium.ui.base.view.BaseActivity
 import com.sugarcoachpremium.ui.daily.view.DailyActivity
 import com.sugarcoachpremium.ui.main.view.MainActivity
+import com.sugarcoachpremium.ui.register.view.RegisterActivity
 import com.sugarcoachpremium.ui.statistics.interactor.StatisticsInteractorImp
 import com.sugarcoachpremium.ui.statistics.presenter.StatisticsPresenterImp
 import com.sugarcoachpremium.ui.treatment.view.TreatmentActivity
@@ -77,6 +78,7 @@ class StatisticsActivity : BaseActivity(), StatisticsView {
 
     fun menuListeners(){
         binding.home.setOnClickListener { presenter.goToActivityMain() }
+        binding.addRegister.setOnClickListener { presenter.goToActivityRegister() }
         binding.dailyRegister.setOnClickListener { presenter.goToActivityDaily() }
         binding.treament.setOnClickListener { presenter.goToActivityTreament() }
 
@@ -137,9 +139,16 @@ class StatisticsActivity : BaseActivity(), StatisticsView {
         startActivity(intent)
         finish()
     }
+
+    override fun openRegisterActivity() {
+        val intent = Intent(this, RegisterActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
     override fun mirrorAccount() {
-        binding.addRegister.isEnabled = false
-        binding.addRegisterImage.setColorFilter(ContextCompat.getColor(this, R.color.gray), PorterDuff.Mode.MULTIPLY)
+        binding.addRegister.isEnabled = true
+        binding.addRegisterImage.setColorFilter(ContextCompat.getColor(this, R.color.white), PorterDuff.Mode.MULTIPLY)
     }
     fun showCalendar(position: Int, index: Int){
         val pickType = when(position) {

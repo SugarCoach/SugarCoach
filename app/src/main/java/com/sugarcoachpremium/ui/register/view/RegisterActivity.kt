@@ -26,6 +26,7 @@ import com.sugarcoachpremium.databinding.DialogCongratulationBinding
 import com.sugarcoachpremium.databinding.DialogEmotionsBinding
 import com.sugarcoachpremium.ui.daily.view.DailyActivity
 import com.sugarcoachpremium.ui.main.view.MainActivity
+import com.sugarcoachpremium.ui.statistics.view.StatisticsActivity
 import com.sugarcoachpremium.ui.treatment.view.TreatmentActivity
 import com.sugarcoachpremium.util.extensions.resIdByName
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog
@@ -574,6 +575,8 @@ class RegisterActivity : BaseActivity(), RegisterView, TimePickerDialog.OnTimeSe
     }
 
     override fun openStatisticActivity() {
+        val intent = Intent(this, StatisticsActivity::class.java)
+        startActivity(intent)
         finish()
     }
 
