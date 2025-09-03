@@ -33,7 +33,7 @@ android {
     buildTypes {
         debug {
             // 👇 SOLO debug usa otro applicationId
-            applicationIdSuffix ".dev2"   // => com.sugarcoachpremium.dev
+            applicationIdSuffix ""   // => com.sugarcoachpremium.dev
             // (opcional) para distinguir la versión:
             // versionNameSuffix "-dev2"
 
