@@ -171,23 +171,30 @@ class MainPresenter<V : MainView, I : MainInteractorImp> @Inject internal constr
 
     private fun getMedition(dailyRegister: DailyRegister?, category: List<Category>){
         var date = dailyRegister?.created
-        val breakfastname = category.filter { category -> category.cate_name.equals("register_breakfast_label")  }.single().cate_name
-        val pbreakfastname  = category.filter { category -> category.cate_name.equals("register_pbreakfast_label")  }.single().cate_name
-        val lunchname  = category.filter { category -> category.cate_name.equals("register_lunch_label")  }.single().cate_name
-        val plunchname  = category.filter { category -> category.cate_name.equals("register_plunch_label")  }.single().cate_name
-        val snackname  = category.filter { category -> category.cate_name.equals("register_snack_label")  }.single().cate_name
-        val psnackname  = category.filter { category -> category.cate_name.equals("register_psnack_label")  }.single().cate_name
-        val dinnername  = category.filter { category -> category.cate_name.equals("register_dinner_label")  }.single().cate_name
-        val pdinnername  = category.filter { category -> category.cate_name.equals("register_pdinner_label")  }.single().cate_name
 
-        val breakfastId = category.filter { category -> category.cate_name.equals("register_breakfast_label")  }.single().cate_id
-        val pbreakfastId  = category.filter { category -> category.cate_name.equals("register_pbreakfast_label")  }.single().cate_id
-        val lunchId  = category.filter { category -> category.cate_name.equals("register_lunch_label")  }.single().cate_id
-        val plunchId  = category.filter { category -> category.cate_name.equals("register_plunch_label")  }.single().cate_id
-        val snackId  = category.filter { category -> category.cate_name.equals("register_snack_label")  }.single().cate_id
-        val psnackId  = category.filter { category -> category.cate_name.equals("register_psnack_label")  }.single().cate_id
-        val dinnerId  = category.filter { category -> category.cate_name.equals("register_dinner_label")  }.single().cate_id
-        val pdinnerId  = category.filter { category -> category.cate_name.equals("register_pdinner_label")  }.single().cate_id
+        if (category.isEmpty()) {
+            Log.e("OnMainPresenter", "La lista de categorías vino vacía")
+            return
+        }
+
+        val breakfastname = category.firstOrNull { it.cate_name == "register_breakfast_label" }?.cate_name ?: "register_breakfast_label"
+        val pbreakfastname  = category.firstOrNull { it.cate_name == "register_pbreakfast_label" }?.cate_name ?: "register_pbreakfast_label"
+        val lunchname  = category.firstOrNull { it.cate_name == "register_lunch_label" }?.cate_name ?: "register_lunch_label"
+        val plunchname  = category.firstOrNull { it.cate_name == "register_plunch_label" }?.cate_name ?: "register_plunch_label"
+        val snackname  = category.firstOrNull { it.cate_name == "register_snack_label" }?.cate_name ?: "register_snack_label"
+        val psnackname  = category.firstOrNull { it.cate_name == "register_psnack_label" }?.cate_name ?: "register_psnack_label"
+        val dinnername  = category.firstOrNull { it.cate_name == "register_dinner_label" }?.cate_name ?: "register_dinner_label"
+        val pdinnername  = category.firstOrNull { it.cate_name == "register_pdinner_label" }?.cate_name ?: "register_pdinner_label"
+
+        val breakfastId = category.firstOrNull { it.cate_name == "register_breakfast_label" }?.cate_id
+        val pbreakfastId  = category.firstOrNull { it.cate_name == "register_pbreakfast_label" }?.cate_id
+        val lunchId  = category.firstOrNull { it.cate_name == "register_lunch_label" }?.cate_id
+        val plunchId  = category.firstOrNull { it.cate_name == "register_plunch_label" }?.cate_id
+        val snackId  = category.firstOrNull { it.cate_name == "register_snack_label" }?.cate_id
+        val psnackId  = category.firstOrNull { it.cate_name == "register_psnack_label" }?.cate_id
+        val dinnerId  = category.firstOrNull { it.cate_name == "register_dinner_label" }?.cate_id
+        val pdinnerId  = category.firstOrNull { it.cate_name == "register_pdinner_label" }?.cate_id
+
 
         val breakfast = LocalTime(6,0)
         val breakfastEnd = LocalTime(11,59)
