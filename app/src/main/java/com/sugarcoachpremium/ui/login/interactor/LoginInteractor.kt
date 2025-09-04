@@ -56,11 +56,19 @@ class LoginInteractor @Inject constructor(private val mContext: Context, private
     }
 
     /// makeLocalUser debe ser arreglado, algunos valores están siendo forzados
-    override suspend fun makeLocalUser(cloudUser: GetUserByUIDQuery.Data1?): Observable<Boolean>{
+    override suspend fun makeLocalUser(cloudUser: GetUserByUIDQuery.Data1?): Observable<Boolean> {
+        Log.d("LoginInteractor_Entry", "Entrando a makeLocalUser. cloudUser ID: ${cloudUser?.id}")
+
         val data = apiRepository.getUserData(cloudUser?.id!!)
+        Log.d("LoginInteractor_Debug", "Después de apiRepository.getUserData. data es null?: ${data == null}")
+
         if (data == null) {
+            Log.w("LoginInteractor_Debug", "data es null, retornando false temprano.")
             return Observable.just(false)
         }
+
+        Log.d("LoginInteractor_Debug", "Antes de construir el objeto User. birth_date de data: '${data.birth_date}', debut_date de data: '${data.debut_date}'")
+
         val user = User(
             id = 1,
             username = cloudUser.attributes!!.username,
@@ -70,11 +78,11 @@ class LoginInteractor @Inject constructor(private val mContext: Context, private
             confirmed = true,
             sex = data.sex,
             name = data.name,
-            avatar = "avatar_${data.icon!! + 1}", /// data.icon siempre es 0, arreglar bug
+            avatar = "avatar_${data.icon!!}",
             weight = data.weight?.toFloat(),
             height = data.height?.toFloat(),
-            birthday = data.birth_date?.let { SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy").parse(it) },
-            debut = data.debut_date?.let { SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy").parse(it) },
+            birthday = parseDateSafely(data.birth_date, "birthday"),
+            debut = parseDateSafely(data.debut_date, "debut"),
             control = null,
             medico = null,
             sms = false,
@@ -83,11 +91,38 @@ class LoginInteractor @Inject constructor(private val mContext: Context, private
             mirror_id = "",
             typeAccount = "",
             onlineId = cloudUser.id.toInt(),
-            points = data.sugar_points!!,
+            points = data.sugar_points!!
         )
-         Log.i("OnLoginInteractor", "El Id del user: ${cloudUser.id}")
+        Log.d("LoginInteractor_Debug", "Objeto User construido. birthday: ${user.birthday}, debut: ${user.debut}")
+
+        Log.i("OnLoginInteractor", "El Id del user: ${cloudUser.id}") // Este es el log que SÍ vimos antes
         setUserId(cloudUser.id)
         return userHelper.insertRegister(user)
+    }
+        //SE IMPLEMENTO FUNCION PARA MANEJO DE PARSEO DE FECHAS DE FORMA SEGURA Y CORRECTA
+    private fun parseDateSafely(dateString: String?, fieldName: String): Date? {
+        Log.e("!!!!_DATE_PARSE_ENTRY_!!!!", "ENTRANDO a parseDateSafely para campo: $fieldName, con string: $dateString")
+
+        if (dateString == null) {
+            Log.e("!!!!_DATE_PARSE_ERROR_!!!!", "$fieldName: Input date string es NULL.")
+            return null
+        }
+        val trimmedDateString = dateString.trim()
+        Log.e("!!!!_DATE_PARSE_ATTEMPT_!!!!", "$fieldName: INTENTANDO PARSEAR: '$trimmedDateString'")
+
+        val format = SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", java.util.Locale.US)
+
+        try {
+            val parsedDate = format.parse(trimmedDateString)
+            Log.e("!!!!_DATE_PARSE_SUCCESS_!!!!", "$fieldName: PARSEO EXITOSO a $parsedDate")
+            return parsedDate
+        } catch (e: java.text.ParseException) {
+            Log.e("!!!!_DATE_PARSE_FAIL_PARSE_EX_!!!!", "$fieldName: ParseException ATRAPADA! String era '$trimmedDateString'. Error: ${e.message}", e)
+            return null
+        } catch (t: Throwable) {
+            Log.e("!!!!_DATE_PARSE_FAIL_OTHER_EX_!!!!", "$fieldName: Throwable ATRAPADA! String era '$trimmedDateString'. Error: ${t.message}", t)
+            return null
+        }
     }
 
     override fun getRegistersCall(): Observable<List<RegistersResponse>> {
