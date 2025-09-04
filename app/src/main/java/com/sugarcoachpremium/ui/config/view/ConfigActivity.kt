@@ -86,7 +86,23 @@ class ConfigActivity: BaseActivity(), ConfigView {
         configureVariables()
         presenter.onAttach(this)
         menuListeners()
-        presenter.checkAndRequestPermissions(this, arrayListOf(android.Manifest.permission.READ_EXTERNAL_STORAGE, android.Manifest.permission.WRITE_EXTERNAL_STORAGE, android.Manifest.permission.ACCESS_FINE_LOCATION))
+
+        //04/09/2025
+        //DESCOMENTAMOS LA SIGUIENTE LINEA PARA QUE POSTERIOMENTE SOLO SOLICITE LOS PEDIDOS NECESESARIOS, ESTO ES LA LOCALIZACION, DESCARTANDO LOS OTROS.
+
+        //presenter.checkAndRequestPermissions(this, arrayListOf(android.Manifest.permission.READ_EXTERNAL_STORAGE, android.Manifest.permission.WRITE_EXTERNAL_STORAGE, android.Manifest.permission.ACCESS_FINE_LOCATION))
+
+        //04/09/2025
+
+        // NUEVA LINEA CON SOLICITACION DE SOLO LOCALIZACION
+        presenter.checkAndRequestPermissions(
+            this,
+            arrayListOf(
+                android.Manifest.permission.ACCESS_FINE_LOCATION
+                // Elimina las líneas de READ_EXTERNAL_STORAGE y WRITE_EXTERNAL_STORAGE
+            )
+        )
+
     }
 
     private fun configureVariables(){
