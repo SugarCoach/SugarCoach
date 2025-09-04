@@ -55,36 +55,35 @@ class LoginInteractor @Inject constructor(private val mContext: Context, private
         return loginResponse
     }
 
+    /// makeLocalUser debe ser arreglado, algunos valores están siendo forzados
     override suspend fun makeLocalUser(cloudUser: GetUserByUIDQuery.Data1?): Observable<Boolean>{
         val data = apiRepository.getUserData(cloudUser?.id!!)
         if (data == null) {
             return Observable.just(false)
         }
         val user = User(
-            1,
-            cloudUser.attributes!!.username,
-            false,
-            cloudUser.attributes.email,
-            "",
-            true,
-            data.sex,
-            data.name,
-            null,
-            data.weight?.toFloat(),
-            data.height?.toFloat(),
-            //data.birth_date?.let { SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy").parse(it) },
-            //data.debut_date?.let { SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy").parse(it) },
-            null,
-            null,
-            false,
-            false,
-            false,
-            false,
-            "",
-            "",
-            "1",
-            cloudUser.id.toInt(),
-            data.sugar_points!!
+            id = 1,
+            username = cloudUser.attributes!!.username,
+            blocked = false,
+            email = cloudUser.attributes.email,
+            provider = "",
+            confirmed = true,
+            sex = data.sex,
+            name = data.name,
+            avatar = "avatar_${data.icon!! + 1}", /// data.icon siempre es 0, arreglar bug
+            weight = data.weight?.toFloat(),
+            height = data.height?.toFloat(),
+            birthday = data.birth_date?.let { SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy").parse(it) },
+            debut = data.debut_date?.let { SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy").parse(it) },
+            control = null,
+            medico = null,
+            sms = false,
+            geolocalizacion = false,
+            number = "",
+            mirror_id = "",
+            typeAccount = "",
+            onlineId = cloudUser.id.toInt(),
+            points = data.sugar_points!!,
         )
          Log.i("OnLoginInteractor", "El Id del user: ${cloudUser.id}")
         setUserId(cloudUser.id)
