@@ -100,6 +100,11 @@ class ProfilePresenter <V : ProfileView, I : ProfileInteractorImp> @Inject inter
         getUser()
     }
     override fun updateAll(name: String?,weight: Float?,height: Float?,username: String?,mail: String?) {
+
+        // ---> AGREGA ESTA LÍNEA JUSTO AQUÍ <---
+        Log.i("UpdateAll", "Datos recibidos - name: $name, weight: $weight, height: $height, username: $username, mail: $mail")
+        // ---> FIN DE LA  LÍNEA JUSTO AQUÍ <---
+
         getView()?.showProgress()
 
         if(name != null){

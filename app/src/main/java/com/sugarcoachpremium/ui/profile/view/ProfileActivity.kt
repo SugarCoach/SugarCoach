@@ -135,11 +135,32 @@ class ProfileActivity: BaseActivity(), ProfileView, DatePickerDialog.OnDateSetLi
         binding.profileLogoutIv.setOnClickListener { presenter.logout() }
         binding.profileSave.setOnClickListener {
             Log.i("OnProfile", "Se esta guardando la data")
-            try{
-                presenter.updateAll(binding.profileNameTv.text.toString(), binding.profileWeightTv.text.toString().toFloat(), binding.profileHeightTv.text.toString().toFloat(), binding.profileUsernameTv.text.toString(), binding.profileMailTv.text.toString())
-            }catch (e: Exception){
-                showErrorToast()
-            }
+
+            /////////////////////////////////////////////////////////////////////////////////////////////
+            //DESACTIVADO EL 04/09/2025 PARA VER ERRORES EN LOGCAT
+//            try{
+//                presenter.updateAll(binding.profileNameTv.text.toString(), binding.profileWeightTv.text.toString().toFloat(), binding.profileHeightTv.text.toString().toFloat(), binding.profileUsernameTv.text.toString(), binding.profileMailTv.text.toString())
+//            }catch (e: Exception){
+//                showErrorToast()
+//            }
+
+            //AGREGADO EL 04/09/2025 PARA VER ERRORES
+
+            // Convierte los textos a Float de manera segura, permitiendo nulos
+            val weight = binding.profileWeightTv.text.toString().toFloatOrNull()
+            val height = binding.profileHeightTv.text.toString().toFloatOrNull()
+
+            // Llama al presenter. Ahora weight y height son Float? (pueden ser nulos)
+            presenter.updateAll(
+                binding.profileNameTv.text.toString(),
+                weight, // <-- Se pasa el Float? directamente
+                height, // <-- Se pasa el Float? directamente
+                binding.profileUsernameTv.text.toString(),
+                binding.profileMailTv.text.toString()
+            )
+
+            /////////////////////////////////////////////////////////////////////////////////////////////
+
         }
         binding.profileShared.setOnClickListener {
             hideMenu()
