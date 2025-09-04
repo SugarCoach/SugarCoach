@@ -15,6 +15,7 @@ import com.sugarcoachpremium.data.database.repository.user.User
 import com.sugarcoachpremium.type.DailyRegisterInput
 import com.sugarcoachpremium.type.TreatmentInput
 import com.sugarcoachpremium.type.UserDataInput
+import java.text.NumberFormat
 
 fun CreateUserMutation.Attributes?.toUser(id: String): UserResponse {
     return UserResponse(
@@ -96,6 +97,22 @@ fun Treament.toTreatmentInput(id: String, basalInsuline: String = "", correctora
 }
 
 fun User.toDataInput(id: String): UserDataInput{
+     // SE IMPLEMENTO LA EXTRACCION DEL ENTERO DEL STRING PARA CARGARLO A LA DB YA QUE POR DEFECTO CARGABA SIEMPRE 0
+
+    val iconInt = try{
+        if (avatar != null && avatar!!.startsWith("avatar_")){
+            val numberPart = avatar!!.substringAfter("avatar_") // extrae el numero luego de avatar_
+            numberPart.toInt() // convierte el numero a entero.
+        } else {
+            Log.w("toDataInput","Formato de avatar no esperado o nulo: $avatar. Usando 0 por defecto para icon.")
+            0
+        }
+    } catch (e: NumberFormatException){
+        Log.e("toDataInput", "Error al convertir a numero la parte del avatar: $avatar. Usando 0 ´pr defecto para icon.", e)
+        0
+    }
+    //
+
     return UserDataInput(
         name = Optional.present(name),
         birth_date = Optional.present(birthday.toString()),
@@ -103,7 +120,7 @@ fun User.toDataInput(id: String): UserDataInput{
         height = Optional.present(height?.toDouble()),
         weight = Optional.present(weight?.toDouble()),
         debut_date = Optional.present(debut.toString()),
-        icon = Optional.present(0),
+        icon = Optional.present(iconInt),
         sugar_points = Optional.present(points),
         users_permissions_user = Optional.present(id)
     )
