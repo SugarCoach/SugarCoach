@@ -31,6 +31,7 @@ interface RegisterView : BaseView {
     fun openMainActivity()
     fun openStatisticActivity()
     fun openTreatmentActivity()
+    fun rollBack()
 
 
 }
