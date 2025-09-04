@@ -157,30 +157,61 @@ class ConfigPresenter <V : ConfigView, I : ConfigInteractorImp> @Inject internal
         getView()?.openTreatmentActivity()
     }
 
+    //DESCCOMENTADO PARA PROBAR 04/09/2025
+
+//    override fun onRequestPermissionsResult(context: Activity, requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+//        when (requestCode) {
+//            permissionRequest -> {
+//
+//                val perms = HashMap<String, Int>()
+//                // Fill with actual results from user
+//                if (grantResults.size > 0) {
+//                    for (i in permissions.indices) {
+//                        perms[permissions[i]] = grantResults[i]
+//                    }
+//                    val listPermissionsNeeded = ArrayList<Int>()
+//                    for (i in perms.keys)
+//                    {
+//                        if (perms[i] == PackageManager.PERMISSION_GRANTED) {
+//                            listPermissionsNeeded.add(perms[i]!!)
+//                        }
+//                    }
+//                    if (listPermissionsNeeded.size != permissions.size) {
+//                        getView()?.explain(R.string.daily_detail_permission)
+//                    }
+//                }
+//            }
+//        }
+//    }
+
+    // SUSUTITUCION PARA PROBAR 04/09/2025 //*******************************************
+
     override fun onRequestPermissionsResult(context: Activity, requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
         when (requestCode) {
             permissionRequest -> {
-
-                val perms = HashMap<String, Int>()
-                // Fill with actual results from user
-                if (grantResults.size > 0) {
-                    for (i in permissions.indices) {
-                        perms[permissions[i]] = grantResults[i]
-                    }
-                    val listPermissionsNeeded = ArrayList<Int>()
-                    for (i in perms.keys)
-                    {
-                        if (perms[i] == PackageManager.PERMISSION_GRANTED) {
-                            listPermissionsNeeded.add(perms[i]!!)
+                // Verifica si todos los permisos fueron concedidos
+                var allGranted = true
+                if (grantResults.isNotEmpty()) {
+                    for (result in grantResults) {
+                        if (result != PackageManager.PERMISSION_GRANTED) {
+                            allGranted = false
+                            break
                         }
                     }
-                    if (listPermissionsNeeded.size != permissions.size) {
-                        getView()?.explain(R.string.daily_detail_permission)
-                    }
+                } else {
+                    allGranted = false
+                }
+                // Si NO todos fueron concedidos, muestra el mensaje
+                if (!allGranted) {
+                    getView()?.explain(R.string.daily_detail_permission)
                 }
             }
         }
     }
+
+    // FIN SUSUTITUCION PARA PROBAR 04/09/2025 //**************************************
+
+
 
     override fun checkAndRequestPermissions(context: Activity, permission: ArrayList<String>) {
         val listPermissionsNeeded = ArrayList<String>()
@@ -190,6 +221,13 @@ class ConfigPresenter <V : ConfigView, I : ConfigInteractorImp> @Inject internal
                 listPermissionsNeeded.add(permission[i])
             }
         }
+
+
+        // --- INICIO: AGREGAR PARA DEBUG ---
+        Log.d("PERMISOS_DEBUG", "Permisos solicitados: ${permission.joinToString()}")
+        Log.d("PERMISOS_DEBUG", "Permisos faltantes: ${listPermissionsNeeded.joinToString()}")
+        // --- FIN: AGREGAR PARA DEBUG ---
+
 
         if (listPermissionsNeeded.isNotEmpty()) {
             ActivityCompat.requestPermissions(context, listPermissionsNeeded.toTypedArray(), permissionRequest)
