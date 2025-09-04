@@ -26,7 +26,7 @@
                 android:layout_height="25dp"
                 android:background="@drawable/date_right_bg"
                 android:gravity="center"
-                android:textSize="14dp"
+                android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -38,8 +38,8 @@
                 android:background="@drawable/date_left_bg"
                 android:gravity="center"
                 android:minWidth="80dp"
-                android:paddingLeft="5dp"
-                android:textSize="14dp"
+                android:paddingStart="5dp"
+                android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -81,7 +81,7 @@
                             android:padding="5dp"
                             android:textColor="@color/black"
                             android:textColorHint="@color/black"
-                            android:textSize="12dp"
+                            android:textSize="12sp"
                             android:hint="Seleccione una"
                             app:spinner_arrow_gravity="end"
                             app:spinner_arrow_tint="@color/pink"
@@ -564,6 +564,7 @@
                                     android:gravity="center"
                                     android:textSize="26dp"
                                     android:inputType="number|numberDecimal"
+                                    android:maxLength="5"
                                     android:imeOptions="actionDone"
                                     android:textColorHint="@color/gray"
                                     android:background="@android:color/transparent"
@@ -574,7 +575,7 @@
                             <ImageView
                                     android:layout_width="40dp"
                                     app:srcCompat="@drawable/ic_actividad"
-                                    android:tint="@color/pink"
+                                    app:tint="@color/pink"
                                     android:id="@+id/register_exercise_img"
                                     android:layout_gravity="center"
                                     android:layout_height="40dp"
@@ -584,7 +585,7 @@
                                     app:srcCompat="@drawable/ic_emotions"
                                     android:id="@+id/register_emotional_img"
                                     android:layout_gravity="center"
-                                    android:tint="@color/pink"
+                                app:tint="@color/pink"
                                     android:layout_height="40dp"
                                     android:visibility="gone"/>
                             <androidx.appcompat.widget.AppCompatTextView
