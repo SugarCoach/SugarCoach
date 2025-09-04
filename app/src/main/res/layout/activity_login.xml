@@ -122,26 +122,46 @@
               android:layout_height="match_parent"
               android:layout_marginBottom="6dp"/>
       <com.google.android.material.card.MaterialCardView
-              app:cardElevation="5dp"
-              app:cardCornerRadius="10dp"
+          android:layout_width="match_parent"
+          android:layout_height="45dp"
+          app:cardElevation="5dp"
+          app:cardCornerRadius="10dp"
+          app:strokeColor="@color/pink"
+          app:strokeWidth="1dp"
+          app:cardBackgroundColor="@color/white"
+          app:cardForegroundColor="@android:color/transparent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+          <androidx.appcompat.widget.AppCompatEditText
+              android:id="@+id/login_pass"
               android:layout_width="match_parent"
-              android:layout_height="45dp"
-              app:strokeColor="@color/pink"
-              app:cardBackgroundColor="@color/white"
-              app:cardForegroundColor="@android:color/transparent"
-              app:strokeWidth="1dp">
-        <androidx.appcompat.widget.AppCompatEditText
-                android:gravity="center_vertical"
-                android:background="@color/white"
-                android:textSize="18dp"
-                android:padding="5dp"
-                android:layout_margin="4dp"
-                android:id="@+id/login_pass"
-                android:inputType="textPassword"
-                android:imeOptions="actionDone"
-                android:textColor="@color/blue"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+              android:layout_height="match_parent"
+              android:layout_toStartOf="@id/togglePassword"
+              android:gravity="center_vertical"
+              android:background="@color/white"
+              android:textSize="18sp"
+              android:padding="5dp"
+              android:layout_marginStart="4dp"
+              android:layout_marginEnd="40dp"
+              android:imeOptions="actionDone"
+              android:inputType="textPassword"
+              android:textColor="@color/blue" />
+
+          <ImageView
+              android:id="@+id/togglePassword"
+              android:layout_width="24dp"
+              android:layout_height="24dp"
+              android:layout_alignParentEnd="true"
+              android:layout_centerVertical="true"
+              android:padding="4dp"
+              android:src="@drawable/ic_eye_closed"
+              android:contentDescription="Mostrar contraseña" />
+
+        </RelativeLayout>
+
       </com.google.android.material.card.MaterialCardView>
       <TextView
               android:text="@string/login_forgot_label"

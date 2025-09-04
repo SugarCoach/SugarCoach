@@ -40,6 +40,28 @@ class LoginActivity: BaseActivity(), LoginView {
         finish()
     }
 
+    // Variable para guardar el estado
+    private var isPasswordVisible = false
+
+    private fun setupPasswordToggle() {
+        binding.togglePassword.setOnClickListener {
+            isPasswordVisible = !isPasswordVisible
+
+            if (isPasswordVisible) {
+                // Mostrar texto normal
+                binding.loginPass.transformationMethod = null
+                binding.togglePassword.setImageResource(R.drawable.ic_eye_open)
+            } else {
+                // Ocultar texto como contraseña
+                binding.loginPass.transformationMethod =
+                    android.text.method.PasswordTransformationMethod.getInstance()
+                binding.togglePassword.setImageResource(R.drawable.ic_eye_closed)
+            }
+
+            // Mantener el cursor al final
+            binding.loginPass.setSelection(binding.loginPass.text?.length ?: 0)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,6 +69,7 @@ class LoginActivity: BaseActivity(), LoginView {
         setContentView(binding.root)
         presenter.onAttach(this)
         setOnClickListeners()
+        setupPasswordToggle()
     }
 
     override fun feedDatabase() {
