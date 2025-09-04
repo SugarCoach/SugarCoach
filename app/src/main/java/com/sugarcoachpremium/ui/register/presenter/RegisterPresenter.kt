@@ -661,4 +661,7 @@ class RegisterPresenter<V : RegisterView, I : RegisterInteractorImp> @Inject int
         getView()?.openTreatmentActivity()
     }
 
+    override fun rollBack() {
+        getView()?.rollBack()
+    }
 }
