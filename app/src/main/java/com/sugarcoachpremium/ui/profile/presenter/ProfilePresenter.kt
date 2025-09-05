@@ -7,6 +7,7 @@ import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
+import java.util.Calendar // Aseguramos que esta sea la importación para Calendar
 import android.net.Uri
 import android.provider.MediaStore
 import android.util.Log
@@ -101,9 +102,7 @@ class ProfilePresenter <V : ProfileView, I : ProfileInteractorImp> @Inject inter
     }
     override fun updateAll(name: String?,weight: Float?,height: Float?,username: String?,mail: String?) {
 
-        // ---> AGREGA ESTA LÍNEA JUSTO AQUÍ <---
         Log.i("UpdateAll", "Datos recibidos - name: $name, weight: $weight, height: $height, username: $username, mail: $mail")
-        // ---> FIN DE LA  LÍNEA JUSTO AQUÍ <---
 
         getView()?.showProgress()
 
@@ -129,6 +128,14 @@ class ProfilePresenter <V : ProfileView, I : ProfileInteractorImp> @Inject inter
         }
         val points = cantParametersChanged(name,weight,height,username,mail)
         user.points += points
+
+        // Validación de fecha de debut vs nacimiento ANTES de guardar
+        if (user.birthday != null && user.debut != null && user.debut!!.before(user.birthday!!)) {
+            getView()?.showErrorToast("La fecha de debut no puede ser anterior a la de nacimiento.")
+            getView()?.hideProgress()
+            return
+        }
+
         interactor?.let {
             compositeDisposable.add(it.updateUser(user)
                 .compose(schedulerProvider.ioToMainObservableScheduler())
@@ -234,10 +241,33 @@ class ProfilePresenter <V : ProfileView, I : ProfileInteractorImp> @Inject inter
         getView()?.setDateMedition(currentDate.toDate())
     }
 
-    override fun showDateDialog(fragmentManager: FragmentManager, dateSetListener: DatePickerDialog.OnDateSetListener, tag: String, date: LocalDate) {
-        var dpd: DatePickerDialog = DatePickerDialog.newInstance(dateSetListener,date.year, date.monthOfYear-1, date.dayOfMonth)
+    override fun showDateDialog(
+        fragmentManager: FragmentManager,
+        dateSetListener: DatePickerDialog.OnDateSetListener,
+        tag: String,
+        date: LocalDate // Esta es la fecha inicial para el diálogo
+    ) {
+        val dpd = DatePickerDialog.newInstance(
+            dateSetListener,
+            date.year,
+            date.monthOfYear - 1, // joda-time month es 1-12, DatePickerDialog espera 0-11
+            date.dayOfMonth
+        )
         dpd.setCancelColor(Color.parseColor("#000000"))
         dpd.setOkColor(Color.parseColor("#000000"))
+
+        // --- RESTRICCIÓN GENERAL: NO FECHAS FUTURAS (aplica a ambos diálogos) ---
+        val todayCalendar = Calendar.getInstance() // Esto ahora será java.util.Calendar
+        dpd.maxDate = todayCalendar
+
+        // --- RESTRICCIÓN ESPECÍFICA PARA LA FECHA DE DEBUT ---
+        if (tag == "debut") {
+            if (this::user.isInitialized && user.birthday != null) {
+                val birthDateCalendar = Calendar.getInstance() // Esto ahora será java.util.Calendar
+                birthDateCalendar.time = user.birthday!!
+                dpd.minDate = birthDateCalendar
+            }
+        }
         dpd.show(fragmentManager, tag)
     }
     override fun getScreenShot(context: Activity, view: View) {
