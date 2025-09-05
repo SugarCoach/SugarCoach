@@ -170,6 +170,7 @@ class MainPresenter<V : MainView, I : MainInteractorImp> @Inject internal constr
     }
 
     private fun getMedition(dailyRegister: DailyRegister?, category: List<Category>){
+        var date = dailyRegister?.created
         if (category.isEmpty()) {
             Log.e("OnMainPresenter", "La lista de categorías vino vacía")
             return
