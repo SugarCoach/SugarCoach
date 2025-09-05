@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -102,6 +103,12 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
         presenter.onAttach(this)
         setListeners()
         menuListeners()
+
+        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                dialogSave()
+            }
+        })
     }
 
     override fun onDestroy() {
@@ -494,7 +501,7 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
             }
 
             binding.treatmentEdit.setOnClickListener {
-                presenter.updateAll()
+                presenter.commitChanges()
             }
 
             binding.treatmentBomb.setOnCheckedChangeListener { buttonView, isChecked ->
@@ -659,7 +666,7 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
             dialog = builder.create()
             dialog.window?.setBackgroundDrawable(Color.TRANSPARENT.toDrawable())
             view.treamentAccept.setOnClickListener {
-                presenter.updateAll()
+                presenter.commitChanges()
                 dialog.dismiss()
             }
             view.treamentCancel.setOnClickListener {
@@ -667,10 +674,5 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
                 dialog.dismiss()
             }
             dialog.show()
-        }
-
-        override fun onBackPressed() {
-            super.onBackPressed()
-            dialogSave()
         }
     }

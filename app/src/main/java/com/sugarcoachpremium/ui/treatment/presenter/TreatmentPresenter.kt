@@ -162,68 +162,77 @@ class TreatmentPresenter<V : TreatmentView, I : TreatmentInteractorImp> @Inject 
 
     override fun saveBasal(item: BasalItem) {
         treatment.basal_id = item.id
-    }
+        Log.i("OnSaveBasal", "Basal seteada en memoria: ${item.id}")    }
 
     override fun saveCorrectora(item: BasalItem) {
         treatment.correctora_id = item.id
+        Log.i("OnSaveCorrectora", "Correctora seteada en memoria: ${item.id}")
     }
     override fun saveCategory(item: HorarioItem) {
         basal = TreamentHorarios(item.id, item.categoryId, item.selected, treatment.id, item.units.toFloat())
-        interactor?.let {
-            compositeDisposable.add(it.editBasalCategory(basal)
-                .compose(schedulerProvider.ioToMainObservableScheduler())
-                .subscribe({ getView()?.showSuccessToast("Actualizo Correctamente")
-                }, { throwable ->
-                    showException(throwable)
-                })
-            )
-        }
+        Log.i("OnSaveCategory", "Categoría basal guardada en memoria: ${item.name}")
+
+//        interactor?.let {
+//            compositeDisposable.add(it.editBasalCategory(basal)
+//                .compose(schedulerProvider.ioToMainObservableScheduler())
+//                .subscribe({ getView()?.showSuccessToast("Actualizo Correctamente")
+//                }, { throwable ->
+//                    showException(throwable)
+//                })
+//            )
+//        }
     }
 
     override fun saveCorrectoraCategory(item: HorarioItem) {
         correctora = TreamentCorrectoraHorarios(item.id, item.categoryId,  treatment.id, item.selected)
-        interactor?.let {
-            compositeDisposable.add(it.editCorrectoraCategory(correctora)
-                .compose(schedulerProvider.ioToMainObservableScheduler())
-                .subscribe({ getView()?.showSuccessToast("Actualizo Correctamente")
-                }, { throwable ->
-                    showException(throwable)
-                })
-            )
-        }
+        Log.i("OnSaveCorrectoraCategory", "Categoría correctora guardada en memoria: ${item.name}")
+//        interactor?.let {
+//            compositeDisposable.add(it.editCorrectoraCategory(correctora)
+//                .compose(schedulerProvider.ioToMainObservableScheduler())
+//                .subscribe({ getView()?.showSuccessToast("Actualizo Correctamente")
+//                }, { throwable ->
+//                    showException(throwable)
+//                })
+//            )
+//        }
     }
 
     override fun saveUnitCorrectora(unit: Float) {
         treatment.correctora_unit = unit
+        Log.i("OnSaveUnitCorrectora", "Unidad correctora en memoria: $unit")
     }
     override fun saveHoraBasal(item: BasalHoraItem) {
         var hora = TreamentBasalHora(item.id, item.name,  treatment.id, item.units.toFloat())
-        interactor?.let {
-            compositeDisposable.add(it.editBasalHora(hora)
-                .compose(schedulerProvider.ioToMainObservableScheduler())
-                .subscribe({ getView()?.showSuccessToast("Actualizo Correctamente")
-                }, { throwable ->
-                    showException(throwable)
-                })
-            )
-        }
+        Log.i("OnSaveHoraBasal", "Hora basal guardada en memoria: ${item.name} con ${item.units}")
+//        interactor?.let {
+//            compositeDisposable.add(it.editBasalHora(hora)
+//                .compose(schedulerProvider.ioToMainObservableScheduler())
+//                .subscribe({ getView()?.showSuccessToast("Actualizo Correctamente")
+//                }, { throwable ->
+//                    showException(throwable)
+//                })
+//            )
+//        }
     }
 
     override fun saveMedidor(item: BasalItem) {
         treatment.medidor_id = item.id
+        Log.i("OnSaveMedidor", "Medidor guardado en memoria: ${item.id}")
     }
 
     override fun saveBomba(item: BasalItem) {
         treatment.bomba_id = item.id
+        Log.i("OnSaveBomba", "Bomba guardada en memoria: ${item.id}")
     }
 
     override fun saveCarbono(carbono: Float) {
         treatment.carbono = carbono
+        Log.i("OnSaveCarbono", "Carbono seteado en memoria: $carbono")
     }
 
     override fun saveUnitInsulina(unit: Float) {
         treatment.insulina_unit = unit
-        Log.i("OnSaveUnitInsulina", "Se guardo unit = $unit")
+        Log.i("OnSaveUnitInsulina", "Unidad insulina en memoria: $unit")
     }
 
 
@@ -641,4 +650,35 @@ class TreatmentPresenter<V : TreatmentView, I : TreatmentInteractorImp> @Inject 
         textView4.setTextColor(Color.BLACK)
         tableRow0.addView(textView0)
     }
+
+    override fun commitChanges() {
+        getView()?.showProgress()
+        interactor?.let {
+            CoroutineScope(Dispatchers.IO).launch {
+                try {
+                    compositeDisposable.add(
+                        it.editTreatment(treatment, basalInsuline, correctoraInsuline)
+                            .compose(schedulerProvider.ioToMainObservableScheduler())
+                            .subscribe({
+                                Log.i("OnCommitChanges", "Cambios guardados correctamente en DB")
+                                getView()?.hideProgress()
+                                getView()?.showSuccessToast("Datos actualizados")
+                                goToActivityMain()
+                            }, { throwable ->
+                                Log.e("OnCommitChanges", "Error al guardar cambios", throwable)
+                                getView()?.hideProgress()
+                                getView()?.showErrorToast()
+                            })
+                    )
+                } catch (e: Exception) {
+                    Log.e("OnCommitChanges", "Excepción: $e")
+                    withContext(Dispatchers.Main) {
+                        getView()?.hideProgress()
+                        getView()?.showErrorToast()
+                    }
+                }
+            }
+        }
+    }
+
 }

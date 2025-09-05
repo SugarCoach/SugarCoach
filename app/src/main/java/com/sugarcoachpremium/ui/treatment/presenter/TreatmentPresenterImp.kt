@@ -34,4 +34,5 @@ interface TreatmentPresenterImp<V : TreatmentView, I : TreatmentInteractorImp> :
     fun saveMedidor(item: BasalItem)
     fun saveBomba(item: BasalItem)
     fun goToActivityRegister()
+    fun commitChanges()
 }
