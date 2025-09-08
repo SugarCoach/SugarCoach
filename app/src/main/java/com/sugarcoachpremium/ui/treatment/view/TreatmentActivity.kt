@@ -133,7 +133,7 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
         val formattedTime = formatterTime.format(date)
         binding.treamentTimeTxt.text = formattedTime
         binding.treamentDateTxt.text = formattedDate
-        if (user.typeAccount == "3") {
+        if (user.typeAccount == "sponsored") {
             mirrorAccount()
         }
         user.avatar?.let {

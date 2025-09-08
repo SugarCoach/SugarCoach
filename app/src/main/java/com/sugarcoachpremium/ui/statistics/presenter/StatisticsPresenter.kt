@@ -84,7 +84,7 @@ class StatisticsPresenter <V : StatisticsView, I : StatisticsInteractorImp> @Inj
             .compose(schedulerProvider.ioToMainSingleScheduler())
             .subscribe({ userData ->
                 getView()?.let {
-                    if(userData.typeAccount == "2"){
+                    if(userData.typeAccount == "premium"){
                         getView()?.mirrorAccount()
                     }
                 }

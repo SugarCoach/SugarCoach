@@ -112,7 +112,7 @@ class ConfigPresenter <V : ConfigView, I : ConfigInteractorImp> @Inject internal
         val code="ABC00001"
         if(value==code){
             //dependiendo de como se genere el usuario por defecto cambiar por un 2, si el default es un 1 poner un 2, si el default es un 2, poner un 1
-            user.typeAccount = "2"
+            user.typeAccount = "premium"
             interactor?.let {
                 compositeDisposable.add(it.updateUser(user)
                     .compose(schedulerProvider.ioToMainObservableScheduler())
@@ -135,7 +135,7 @@ class ConfigPresenter <V : ConfigView, I : ConfigInteractorImp> @Inject internal
                     Log.i("gg", userData.toString())
                     getView()?.getUserData(userData)
                     //dependiendo de como se genere el usuario por defecto cambiar por un 2, si el default es un 1 poner un 2, si el default es un 2, poner un 1
-                    if(user.typeAccount=="2"){getView()?.setType(true)}
+                    if(user.typeAccount=="premium"){getView()?.setType(true)}
                     else{getView()?.setType(false)}
                     Log.i("gg", user.typeAccount.toString())
                 }
