@@ -94,7 +94,7 @@ class DailyPresenter<V : DailyView, I : DailyInteractorImp> @Inject internal con
             .subscribe({ userData ->
                 getView()?.let {
                     getView()?.getUserData(userData)
-                    if(userData.typeAccount == "2"){
+                    if(userData.typeAccount == "premium"){
                         getView()?.mirrorAccount()
                     }
                 }
