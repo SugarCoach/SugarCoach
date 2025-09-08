@@ -33,11 +33,13 @@ import android.os.Build
 import android.os.Environment
 import android.util.Log
 import android.view.WindowManager
+import android.widget.EditText
 import android.widget.TextView
 import androidmads.library.qrgenearator.QRGSaver
 import androidx.appcompat.widget.SwitchCompat
 import androidx.cardview.widget.CardView
 import androidx.core.content.FileProvider
+import androidx.core.widget.addTextChangedListener
 import com.sugarcoachpremium.databinding.ActivityConfigBinding
 import com.sugarcoachpremium.databinding.DialogCodigoBinding
 import com.sugarcoachpremium.databinding.DialogCongratulationBinding
@@ -73,7 +75,7 @@ class ConfigActivity: BaseActivity(), ConfigView {
     //lateinit var config_medico: SwitchCompat
     //lateinit var config_sms: SwitchCompat
     //lateinit var config_geo: SwitchCompat
-    lateinit var config_number: MaskedEditText
+    lateinit var config_number: EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -103,10 +105,23 @@ class ConfigActivity: BaseActivity(), ConfigView {
             )
         )
 
+        val ccp = binding.ccp
+        config_number = binding.configNumber
+
+        ccp.registerCarrierNumberEditText(config_number)
+
+// Validación en tiempo real
+        config_number.addTextChangedListener {
+            if (ccp.isValidFullNumber) {
+                config_number.error = null
+            } else {
+                config_number.error = "Número inválido"
+            }
+        }
+
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 
     private fun configureVariables(){
         //config_upgrade = binding.configUpgrade
@@ -267,7 +282,7 @@ class ConfigActivity: BaseActivity(), ConfigView {
         binding.configUpgrade.setOnClickListener { dialogUpgrade()  }
         binding.configControlQr.setOnClickListener{( if (isControlEnable) sharedScreenShot("sugar") else TODO())}
         binding.configMedicoQr.setOnClickListener{( if (isMedicoEnable) sharedScreenShot("sugar_medico") else TODO())}
-        binding.configSmsTitle.setOnClickListener{createDialogInfo(getString(R.string.info_sms))}
+        //binding.configSmsTitle.setOnClickListener{createDialogInfo(getString(R.string.info_sms))}
         binding.configSmsInfo.setOnClickListener{createDialogInfo(getString(R.string.info_sms_number))}
         binding.configGeoTitle.setOnClickListener{createDialogInfo(getString(R.string.info_geo))}
         binding.configControlTitle.setOnClickListener{createDialogInfo(getString(R.string.info_control))}

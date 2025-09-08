@@ -165,6 +165,9 @@ dependencies {
     //view pager indicador
     implementation "com.github.mazenrashed:DotsIndicatorWithoutViewpager:$rootProject.dotsVersion"
 
+    //numero telefonico
+    implementation 'com.hbb20:ccp:2.5.4'
+
     //emoji
     implementation "com.github.andob:emojilike-android:$rootProject.emojiVersion"
     implementation 'com.github.skydoves:submarine:1.0.7'
