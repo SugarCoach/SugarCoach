@@ -103,14 +103,14 @@ class LoginInteractor @Inject constructor(private val mContext: Context, private
     private fun parseDateSafely(dateString: String?, fieldName: String): Date? {
         Log.e("!!!!_DATE_PARSE_ENTRY_!!!!", "ENTRANDO a parseDateSafely para campo: $fieldName, con string: $dateString")
 
-        if (dateString == null) {
+        if (dateString == null || dateString.equals("null", ignoreCase = true) || dateString.isEmpty()) {
             Log.e("!!!!_DATE_PARSE_ERROR_!!!!", "$fieldName: Input date string es NULL.")
             return null
         }
         val trimmedDateString = dateString.trim()
         Log.e("!!!!_DATE_PARSE_ATTEMPT_!!!!", "$fieldName: INTENTANDO PARSEAR: '$trimmedDateString'")
 
-        val format = SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", java.util.Locale.US)
+        val format = SimpleDateFormat("yyyy-MM-dd", java.util.Locale.US)
 
         try {
             val parsedDate = format.parse(trimmedDateString)
