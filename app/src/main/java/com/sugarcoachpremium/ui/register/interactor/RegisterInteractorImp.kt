@@ -29,4 +29,5 @@ interface RegisterInteractorImp : Interactor {
     fun getExercises(): Single<List<Exercises>>
     fun getEmotions(): Single<List<States>>
 
+    fun getDailyByCategoryAndDate(categoryId: Int, date: String): Single<Boolean>
 }

@@ -222,10 +222,10 @@ class ProfileActivity: BaseActivity(), ProfileView, DatePickerDialog.OnDateSetLi
         user.sex?.let {
             binding.profileSexTv.setText(it)
         }
-        user.avatar?.let {
-            adapter.setAvatar(it)
-            binding.profileUserimgIv.setImageDrawable(getDrawable(resIdByName(it, "drawable")))
-        }
+//        user.avatar?.let {
+//            adapter.setAvatar(it)
+//            binding.profileUserimgIv.setImageDrawable(getDrawable(resIdByName(it, "drawable")))
+//        }
     }
 
     override fun onDateSet(view: DatePickerDialog?, year: Int, monthOfYear: Int, dayOfMonth: Int) {

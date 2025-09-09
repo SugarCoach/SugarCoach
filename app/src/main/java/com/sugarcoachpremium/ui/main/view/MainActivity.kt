@@ -118,9 +118,9 @@ class MainActivity : BaseActivity(), MainView {
             binding.mainPtsTxt.text = user.points.toString()
         }
 
-        user.avatar?.let {
-            binding.mainUserimgIv.setImageDrawable(getDrawable(resIdByName(it, "drawable")))
-        }
+//        user.avatar?.let {
+//            binding.mainUserimgIv.setImageDrawable(getDrawable(resIdByName(it, "drawable")))
+//        }
         var text = "Nivel 1"
         val levelPoints = 43400
         when{

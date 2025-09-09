@@ -330,9 +330,9 @@ class RegisterActivity : BaseActivity(), RegisterView, TimePickerDialog.OnTimeSe
     override fun getUserData(user: User) {
         this.user = user
         binding.registerUsernameTxt.setText(user.username)
-        user.avatar?.let {
-            binding.registerUserimgIv.setImageDrawable(getDrawable(resIdByName(it, "drawable")))
-        }
+//        user.avatar?.let {
+//            binding.registerUserimgIv.setImageDrawable(getDrawable(resIdByName(it, "drawable")))
+//        }
     }
 
 
