@@ -113,8 +113,9 @@ class ApiRepository @Inject constructor(
             response?.attributes
         }catch (e: Exception){
             Log.i("OnGetUserId", "Ocurrió un error: $e")
-            return GetUserDataQuery.Attributes("","","",
-                0.0,0.0,"", 0, 0)
+            return GetUserDataQuery.Attributes(name = "", birth_date = "", sex = "",
+                height = 0.0, weight = 0.0, debut_date = "", icon = 0, sugar_points = 0,
+                account_type = "standard")
         }
     }
 

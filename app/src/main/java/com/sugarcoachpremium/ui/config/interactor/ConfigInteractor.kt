@@ -71,7 +71,7 @@ class ConfigInteractor @Inject constructor(private val mContext: Context, privat
         var user: User = gson.fromJson(json.toString(), User::class.java)
         if (mirror){
             user.mirror_id ="12"
-            user.typeAccount="sponsored"
+            user.account_type = "sponsored"
         }
         userHelper.insertRegister(user)
         preferenceHelper.let {

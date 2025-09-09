@@ -10,7 +10,7 @@ import com.sugarcoachpremium.data.database.repository.user.UserDao
 import com.sugarcoachpremium.util.Converters
 
 
-@Database(entities = [(DailyRegister::class), (User::class), (Treament::class), (TreamentHorarios::class),(TreamentCorrectoraHorarios::class), (BasalInsuline::class), (CorrectoraInsuline::class), (Category::class), (States::class), (Exercises::class), (TreamentBasalHora::class), (Medidor::class), (BombaInfusora::class)], version = 49, exportSchema = false)
+@Database(entities = [(DailyRegister::class), (User::class), (Treament::class), (TreamentHorarios::class),(TreamentCorrectoraHorarios::class), (BasalInsuline::class), (CorrectoraInsuline::class), (Category::class), (States::class), (Exercises::class), (TreamentBasalHora::class), (Medidor::class), (BombaInfusora::class)], version = 50, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
 

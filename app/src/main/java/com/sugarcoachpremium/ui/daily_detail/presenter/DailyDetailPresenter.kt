@@ -506,7 +506,7 @@ class DailyDetailPresenter<V : DailyDetailView, I : DailyDetailInteractorImp> @I
             .compose(schedulerProvider.ioToMainSingleScheduler())
             .subscribe({ userData ->
                 getView()?.let {
-                   if(userData.typeAccount == "premium"){
+                   if(userData.account_type == "premium"){
                        getView()?.mirrorAccount()
                    }
                 }

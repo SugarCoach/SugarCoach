@@ -143,7 +143,7 @@ class MainActivity : BaseActivity(), MainView {
         binding.mainNivelTxt.text = text
 
         presenter.checkAndRequestPermissions(this)
-        if (user.typeAccount == "sponsored") {
+        if (user.account_type == "sponsored") {
             mirrorAccount()
         }
     }

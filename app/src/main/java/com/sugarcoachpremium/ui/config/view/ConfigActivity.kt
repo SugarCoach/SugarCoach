@@ -304,7 +304,7 @@ class ConfigActivity: BaseActivity(), ConfigView {
         user.number.let {
             config_number.setText(it)
         }
-        if (user.typeAccount == "standard"){
+        if (user.account_type == "standard"){
             premiumAccount()
         }
         user.avatar?.let {

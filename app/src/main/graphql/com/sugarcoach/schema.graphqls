@@ -348,6 +348,7 @@ input UserDataFiltersInput {
   icon: IntFilterInput
   users_permissions_user: UsersPermissionsUserFiltersInput
   sugar_points: IntFilterInput
+  account_type: StringFilterInput
   createdAt: DateTimeFilterInput
   updatedAt: DateTimeFilterInput
   and: [UserDataFiltersInput]
@@ -365,6 +366,7 @@ input UserDataInput {
   icon: Int
   users_permissions_user: ID
   sugar_points: Int
+  account_type: String
 }
 
 type UserData {
@@ -377,6 +379,7 @@ type UserData {
   icon: Int
   users_permissions_user: UsersPermissionsUserEntityResponse
   sugar_points: Int
+  account_type: String
   createdAt: DateTime
   updatedAt: DateTime
 }

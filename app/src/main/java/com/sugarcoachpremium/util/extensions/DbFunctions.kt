@@ -122,6 +122,7 @@ fun User.toDataInput(id: String): UserDataInput{
         debut_date = Optional.present(debut.toString()),
         icon = Optional.present(iconInt),
         sugar_points = Optional.present(points),
+        account_type = Optional.present(account_type),
         users_permissions_user = Optional.present(id)
     )
 }

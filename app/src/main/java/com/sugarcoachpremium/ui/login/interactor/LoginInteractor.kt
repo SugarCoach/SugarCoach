@@ -89,7 +89,7 @@ class LoginInteractor @Inject constructor(private val mContext: Context, private
             geolocalizacion = false,
             number = "",
             mirror_id = "",
-            typeAccount = "standard", // Se setea en standard, Todo cargar de base de datos
+            account_type = data.account_type?: "standard", // Se setea en standard, Todo cargar de base de datos
             onlineId = cloudUser.id.toInt(),
             points = data.sugar_points!!
         )
@@ -141,7 +141,7 @@ class LoginInteractor @Inject constructor(private val mContext: Context, private
         user.medico = medico
         if (mirror){
             user.mirror_id ="12"
-            user.typeAccount="sponsored"
+            user.account_type="sponsored"
         }
         userHelper.insertRegister(user)
         preferenceHelper.let {

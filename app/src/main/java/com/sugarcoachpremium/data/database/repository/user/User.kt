@@ -71,7 +71,7 @@ data class User(
     var mirror_id: String?,
 
     @ColumnInfo(name = "type_account")
-    var typeAccount: String?,
+    var account_type: String?,
 
     @ColumnInfo(name = "online_id")
     var onlineId: Int?,
