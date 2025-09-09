@@ -104,6 +104,7 @@ dependencies {
     // database
     implementation "androidx.room:room-runtime:$rootProject.roomDatabaseVersion"
     implementation 'androidx.activity:activity:1.10.1'
+    implementation 'androidx.compose.ui:ui-test:1.9.0'
     kapt "androidx.room:room-compiler:$rootProject.roomDatabaseVersion"
 
     // font
@@ -220,8 +221,14 @@ dependencies {
     //GRAPHQL
     implementation('com.apollographql.apollo3:apollo-runtime:3.8.6')
     implementation 'org.jetbrains.kotlin:kotlin-reflect:2.2.10'
+
+    //numero telefonico
+    implementation 'com.hbb20:ccp:2.5.4'
+
 }
 
 
 apply plugin: 'com.google.gms.google-services'
 apply plugin: 'com.google.firebase.crashlytics'
+
+
