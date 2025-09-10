@@ -60,6 +60,8 @@ class LoginInteractor @Inject constructor(private val mContext: Context, private
         Log.d("LoginInteractor_Entry", "Entrando a makeLocalUser. cloudUser ID: ${cloudUser?.id}")
 
         val data = apiRepository.getUserData(cloudUser?.id!!)
+        Log.i("OnLoginInteractor", "cloudUser: $cloudUser")
+        Log.i("OnLoginInteractor", "User data recibido en cloud: $data")
         Log.d("LoginInteractor_Debug", "Después de apiRepository.getUserData. data es null?: ${data == null}")
 
         if (data == null) {
@@ -67,7 +69,6 @@ class LoginInteractor @Inject constructor(private val mContext: Context, private
             return Observable.just(false)
         }
 
-        Log.d("LoginInteractor_Debug", "Antes de construir el objeto User. birth_date de data: '${data.birth_date}', debut_date de data: '${data.debut_date}'")
 
         val user = User(
             id = 1,
@@ -78,7 +79,7 @@ class LoginInteractor @Inject constructor(private val mContext: Context, private
             confirmed = true,
             sex = data.sex,
             name = data.name,
-            avatar = "avatar_${data.icon!!}",
+            avatar = "avatar_${data.icon?:0}",
             weight = data.weight?.toFloat(),
             height = data.height?.toFloat(),
             birthday = parseDateSafely(data.birth_date, "birthday"),
@@ -140,8 +141,8 @@ class LoginInteractor @Inject constructor(private val mContext: Context, private
         var user: User = gson.fromJson(json.toString(), User::class.java)
         user.medico = medico
         if (mirror){
-            user.mirror_id ="12"
-            user.account_type="sponsored"
+            user.mirror_id = "12"
+            user.account_type = "sponsored"
         }
         userHelper.insertRegister(user)
         preferenceHelper.let {
