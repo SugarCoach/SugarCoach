@@ -78,7 +78,7 @@ class LoginInteractor @Inject constructor(private val mContext: Context, private
             confirmed = true,
             sex = data.sex,
             name = data.name,
-            avatar = "avatar_${data.icon!!}",
+            avatar = "avatar_${ if ((data.icon?: 0) == 0) 1 else data.icon }", // Verifica si el usuario es null o 0 y le da un icono default, sino deja el de la db
             weight = data.weight?.toFloat(),
             height = data.height?.toFloat(),
             birthday = parseDateSafely(data.birth_date, "birthday"),
