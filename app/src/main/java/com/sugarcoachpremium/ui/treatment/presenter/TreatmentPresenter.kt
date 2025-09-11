@@ -201,9 +201,19 @@ class TreatmentPresenter<V : TreatmentView, I : TreatmentInteractorImp> @Inject 
         treatment.correctora_unit = unit
         Log.i("OnSaveUnitCorrectora", "Unidad correctora en memoria: $unit")
     }
+
+    // Todo hacer que se guarde en la db los datos de horas del tratamiento
     override fun saveHoraBasal(item: BasalHoraItem) {
-        var hora = TreamentBasalHora(item.id, item.name,  treatment.id, item.units.toFloat())
-        Log.i("OnSaveHoraBasal", "Hora basal guardada en memoria: ${item.name} con ${item.units}")
+        Log.i("OnSaveHoraBasal", "Entré a la función saveHoraBasal")
+        Log.i("OnSaveHoraBasal", "El item es: $item")
+        val unitsFloat = item.units.toFloatOrNull()
+        if (unitsFloat == null) {
+            Log.e("OnSaveHoraBasal", "Units vacío o inválido: '${item.units}'")
+            getView()?.showErrorToast("La unidad basal no puede estar vacía o ser inválida")
+            return
+        }
+        var hora = TreamentBasalHora(item.id, item.name,  treatment.id, unitsFloat)
+        // Log.i("OnSaveHoraBasal", "Hora basal guardada en memoria: ${item.name} con ${item.units}")
 //        interactor?.let {
 //            compositeDisposable.add(it.editBasalHora(hora)
 //                .compose(schedulerProvider.ioToMainObservableScheduler())
