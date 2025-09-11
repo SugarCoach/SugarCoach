@@ -1,5 +1,6 @@
 package com.sugarcoachpremium.ui.register.view
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -34,6 +35,7 @@ import com.wdullaer.materialdatetimepicker.date.DatePickerDialog
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog
 import java.text.SimpleDateFormat
 import java.util.*
+import androidx.core.graphics.drawable.toDrawable
 
 
 class RegisterActivity : BaseActivity(), RegisterView, TimePickerDialog.OnTimeSetListener,
@@ -187,8 +189,8 @@ class RegisterActivity : BaseActivity(), RegisterView, TimePickerDialog.OnTimeSe
                 binding.registerValueTxt.setText("0")
                 binding.registerDots.setDotSelection(3)
                 binding.registerEmotionalTv.visibility = View.GONE
-                binding.registerExercicesTv.setVisibility(View.VISIBLE)
-                binding.registerUnidadTv.setVisibility(View.GONE)
+                binding.registerExercicesTv.visibility = View.VISIBLE
+                binding.registerUnidadTv.visibility = View.GONE
                 binding.registerValueTxt.setEnabled(false)
                 binding.registerType.visibility = View.GONE
                 showHideExercise(true)
@@ -204,9 +206,9 @@ class RegisterActivity : BaseActivity(), RegisterView, TimePickerDialog.OnTimeSe
             4 -> {
                 binding.registerValueTxt.setText("0")
                 binding.registerDots.setDotSelection(4)
-                binding.registerEmotionalTv.setVisibility(View.VISIBLE)
-                binding.registerExercicesTv.setVisibility(View.GONE)
-                binding.registerUnidadTv.setVisibility(View.GONE)
+                binding.registerEmotionalTv.visibility = View.VISIBLE
+                binding.registerExercicesTv.visibility = View.GONE
+                binding.registerUnidadTv.visibility = View.GONE
                 binding.registerValueTxt.setEnabled(false)
                 binding.registerPlanet.setImageResource(R.drawable.planet_estado)
                 binding.registerPlanetBefore.setImageResource(R.drawable.planet_actividad)
@@ -232,9 +234,9 @@ class RegisterActivity : BaseActivity(), RegisterView, TimePickerDialog.OnTimeSe
                 binding.registerPlanet.setImageResource(R.drawable.planet_glucemia)
                 binding.registerPlanetAfter.setImageResource(R.drawable.planet_insulina)
                 binding.registerValueTxt.setEnabled(true)
-                binding.registerEmotionalTv.setVisibility(View.GONE)
-                binding.registerExercicesTv.setVisibility(View.GONE)
-                binding.registerUnidadTv.setVisibility(View.VISIBLE)
+                binding.registerEmotionalTv.visibility = View.GONE
+                binding.registerExercicesTv.visibility = View.GONE
+                binding.registerUnidadTv.visibility = View.VISIBLE
                 binding.registerValueTxt.setText("0")
                 value?.let {
                     if (it >= 0) binding.registerValueTxt.setText(
@@ -282,9 +284,9 @@ class RegisterActivity : BaseActivity(), RegisterView, TimePickerDialog.OnTimeSe
                 binding.registerPlanetAfter.setImageResource(R.drawable.planet_actividad)
                 binding.registerUnidadTv.setText(R.string.register_car_unidad_label)
                 binding.registerValueTxt.setEnabled(true)
-                binding.registerEmotionalTv.setVisibility(View.GONE)
-                binding.registerExercicesTv.setVisibility(View.GONE)
-                binding.registerUnidadTv.setVisibility(View.VISIBLE)
+                binding.registerEmotionalTv.visibility = View.GONE
+                binding.registerExercicesTv.visibility = View.GONE
+                binding.registerUnidadTv.visibility = View.VISIBLE
                 value?.let { if (it >= 0) binding.registerValueTxt.setText(value.toString()) }
                 showHideExercise(false)
                 showHideEmotional(false)
@@ -327,9 +329,10 @@ class RegisterActivity : BaseActivity(), RegisterView, TimePickerDialog.OnTimeSe
         finish()
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     override fun getUserData(user: User) {
         this.user = user
-        binding.registerUsernameTxt.setText(user.username)
+        binding.registerUsernameTxt.text = user.username
         user.avatar?.let {
             binding.registerUserimgIv.setImageDrawable(getDrawable(resIdByName(it, "drawable")))
         }
@@ -505,14 +508,15 @@ class RegisterActivity : BaseActivity(), RegisterView, TimePickerDialog.OnTimeSe
         }
     }
 
+    @SuppressLint("SetTextI18n", "UseKtx", "UseCompatLoadingForDrawables")
     private fun createDialogCongratulation(points: Int, totalPoints: Int) {
         val view = DialogCongratulationBinding.inflate(layoutInflater)
         val builder = AlertDialog.Builder(this)
         builder.setCancelable(false)
         builder.setView(view.root)
         dialog = builder.create()
-        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        view.congratulationPtsTxt.text = "+" + (points.toString())
+        dialog.window?.setBackgroundDrawable(Color.TRANSPARENT.toDrawable())
+        view.congratulationPtsTxt.text = "+${points}"
         user.avatar?.let {
             view.congratulationAvatar.setImageDrawable(getDrawable(resIdByName(it, "drawable")))
         }
@@ -552,7 +556,7 @@ class RegisterActivity : BaseActivity(), RegisterView, TimePickerDialog.OnTimeSe
         builder.setCancelable(false)
         builder.setView(view.root)
         dialogComment = builder.create()
-        dialogComment.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialogComment.window?.setBackgroundDrawable(Color.TRANSPARENT.toDrawable())
         view.comentarySave.setOnClickListener {
             presenter.saveComment(view.comentaryValue.text.toString())
             binding.registerComentarioTv.text = view.comentaryValue.text.toString()
@@ -581,7 +585,7 @@ class RegisterActivity : BaseActivity(), RegisterView, TimePickerDialog.OnTimeSe
         builder.setCancelable(false)
         builder.setView(view.root)
         dialogExercises = builder.create()
-        dialogExercises.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialogExercises.window?.setBackgroundDrawable(Color.TRANSPARENT.toDrawable())
         adapterExercices.setData(items, 2)
         view.emotionsTitle.text = getString(R.string.register_new_activity_txt)
         view.emotionsList.layoutManager = managerExercices
@@ -678,6 +682,7 @@ class RegisterActivity : BaseActivity(), RegisterView, TimePickerDialog.OnTimeSe
         return getString(resIdByName(name, "string"))
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     override fun getDrawable(name: String): Drawable? {
         return getDrawable(resIdByName(name, "drawable"))
     }

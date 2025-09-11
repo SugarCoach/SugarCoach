@@ -1,6 +1,7 @@
 package com.sugarcoachpremium.data.database.repository.dailyregister
 
 import androidx.room.*
+import io.reactivex.Single
 import java.util.*
 
 @Dao
@@ -83,5 +84,8 @@ interface DailyRegisterDao {
 
     @Query("DELETE FROM daily_register WHERE id = :id")
     fun deleteRegister(id: Int)
+
+    @Query("SELECT * FROM daily_register WHERE dateS = :dateS AND category_id = :categoryId LIMIT 1")
+    fun getByDateAndCategory(dateS: String, categoryId: Int): Single<DailyRegister?>
 
 }

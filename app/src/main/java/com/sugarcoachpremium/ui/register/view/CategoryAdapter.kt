@@ -90,11 +90,8 @@ class CategoryAdapter(private val activity: RegisterActivity) : RecyclerView.Ada
     lateinit var binding: CategoryItemBinding
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val inflater: LayoutInflater = LayoutInflater.from(activity)
-        binding = CategoryItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        var holder = CategoriesHolder(binding)
-        this.holder = holder
-        return holder
+        val binding = CategoryItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return CategoriesHolder(binding)
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {

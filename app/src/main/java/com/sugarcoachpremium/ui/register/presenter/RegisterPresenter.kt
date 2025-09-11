@@ -94,7 +94,7 @@ class RegisterPresenter<V : RegisterView, I : RegisterInteractorImp> @Inject int
 
     override fun prevLoad() {
         if(type >= 0) {
-                type--
+            type--
             when(type) {
                 0 -> {
                     getView()?.prevLoad(type,glucose.toFloat(), null)
@@ -203,6 +203,7 @@ class RegisterPresenter<V : RegisterView, I : RegisterInteractorImp> @Inject int
             )
         }
     }
+
     private fun getTreatmentHorario(){
         Log.i("OnGetHorario", "Se esta obteniendo el horario ${dailyRegister.category_id}")
         interactor?.let {
@@ -251,38 +252,59 @@ class RegisterPresenter<V : RegisterView, I : RegisterInteractorImp> @Inject int
         getTreatmentHorario()
     }
 
-    fun finishRegister(){
-        Log.i("OnFinish","Se estan cargando los datos a la db")
-        getView()?.showProgress()
+    private fun checkIfRegisterExists(categoryId: Int, date: LocalDateTime, onResult: (Boolean) -> Unit) {
         interactor?.let {
-            CoroutineScope(Dispatchers.IO).launch {
-                compositeDisposable.add(it.saveRegisterCall(dailyRegister)
-                    .compose(schedulerProvider.ioToMainObservableScheduler())
-                    .subscribe({ response ->
-                        if(response.id != ""){
-                            if (photo.isNotEmpty()){
+            compositeDisposable.add(
+                it.getDailyByCategoryAndDate(categoryId, date.toString("yyyy-MM-dd"))
+                    .compose(schedulerProvider.ioToMainSingleScheduler())
+                    .subscribe({ exists ->
+                        onResult(exists) // true si ya existe, false si no
+                    }, { err ->
+                        Log.e("RegisterPresenter", "Error validando duplicados", err)
+                        onResult(false) // en caso de error, dejamos pasar
+                    })
+            )
+        }
+    }
 
-                                var file = File(photo)
-                                dailyRegister.idOnline = response.id
-                                dailyRegister.online = true
-                                uploadPhoto(response.id, file, dailyRegister)
-                            }else{
-                                dailyRegister.idOnline = response.id
-                                dailyRegister.online = true
+    fun finishRegister(){
+        checkIfRegisterExists(dailyRegister.category_id, date) { exists ->
+            if (exists){
+                getView()?.showErrorToast("Ya cargaste un registro en este horario")
+            }else{
+                Log.i("OnFinish","Se estan cargando los datos a la db")
+                getView()?.showProgress()
+                interactor?.let {
+                    CoroutineScope(Dispatchers.IO).launch {
+                        compositeDisposable.add(it.saveRegisterCall(dailyRegister)
+                            .compose(schedulerProvider.ioToMainObservableScheduler())
+                            .subscribe({ response ->
+                                if(response.id != ""){
+                                    if (photo.isNotEmpty()){
 
+                                        var file = File(photo)
+                                        dailyRegister.idOnline = response.id
+                                        dailyRegister.online = true
+                                        uploadPhoto(response.id, file, dailyRegister)
+                                    }else{
+                                        dailyRegister.idOnline = response.id
+                                        dailyRegister.online = true
+
+                                        saveRegister(null, dailyRegister)
+                                    }
+                                }else{
+                                    getView()?.hideProgress()
+                                    getView()?.showErrorToast()
+                                    getView()?.openMainActivity()
+                                }
+
+                            }, {
+                                getView()?.hideProgress()
+                                getView()?.showErrorToast()
                                 saveRegister(null, dailyRegister)
-                            }
-                        }else{
-                            getView()?.hideProgress()
-                            getView()?.showErrorToast()
-                            getView()?.openMainActivity()
-                        }
-
-                    }, {
-                        getView()?.hideProgress()
-                        getView()?.showErrorToast()
-                        saveRegister(null, dailyRegister)
-                    }))
+                            }))
+                    }
+                }
             }
         }
     }
@@ -293,13 +315,13 @@ class RegisterPresenter<V : RegisterView, I : RegisterInteractorImp> @Inject int
             compositeDisposable.add(it.insertDaily(dailyRegister)
                 .compose(schedulerProvider.ioToMainObservableScheduler())
                 .subscribe({dispose ->
-                        if (!dispose) {
-                            updatePoints(cantParametersChanged())
-                        }else {
-                            getView()?.hideProgress()
-                            goToActivityMain()
-                            getView()?.showErrorToast()
-                        }
+                    if (!dispose) {
+                        updatePoints(cantParametersChanged())
+                    }else {
+                        getView()?.hideProgress()
+                        goToActivityMain()
+                        getView()?.showErrorToast()
+                    }
 
                 }, { throwable ->
                     getView()?.hideProgress()

@@ -12,8 +12,7 @@ class ItemAdapter(private val activity: RegisterActivity) : RecyclerView.Adapter
     private var type= 0;
     lateinit var binding: EmotionsItemBinding
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val inflater: LayoutInflater = LayoutInflater.from(activity)
-        binding = EmotionsItemBinding.inflate(inflater)
+        val binding = EmotionsItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ItemHolder(binding)
     }
 

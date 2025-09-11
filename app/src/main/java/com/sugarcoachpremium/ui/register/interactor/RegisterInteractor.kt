@@ -4,13 +4,16 @@ import android.util.Log
 import com.sugarcoachpremium.data.api_db.ApiRepository
 import com.sugarcoachpremium.data.database.repository.dailyregister.Category
 import com.sugarcoachpremium.data.database.repository.dailyregister.DailyRegister
+import com.sugarcoachpremium.data.database.repository.dailyregister.DailyRegisterDao
 import com.sugarcoachpremium.data.database.repository.dailyregister.DailyRegisterRepo
 import com.sugarcoachpremium.data.database.repository.dailyregister.Exercises
 import com.sugarcoachpremium.data.database.repository.dailyregister.States
+import com.sugarcoachpremium.data.database.repository.treament.TreamentDao
 import com.sugarcoachpremium.data.database.repository.treament.TreamentHorarios
 import com.sugarcoachpremium.data.database.repository.treament.TreamentRepo
 import com.sugarcoachpremium.data.database.repository.treament.TreatmentBasalCorrectora
 import com.sugarcoachpremium.data.database.repository.user.User
+import com.sugarcoachpremium.data.database.repository.user.UserDao
 import com.sugarcoachpremium.data.database.repository.user.UserRepo
 import com.sugarcoachpremium.data.network.ApiHelper
 import com.sugarcoachpremium.data.network.RegisterSavePhotoRequest
@@ -33,9 +36,14 @@ import javax.inject.Inject
 class RegisterInteractor @Inject constructor(private val treamentRepo: TreamentRepo,
                                              private  val dailyRepoHelper: DailyRegisterRepo,
                                              userRepoHelper: UserRepo, preferenceHelper: PreferenceHelper,
-                                             apiHelper: ApiHelper)
+                                             apiHelper: ApiHelper,
+                                             private val dao: DailyRegisterDao,
+                                             private val userDao: UserDao,
+                                             private val treamentDao: TreamentDao
+)
     : BaseInteractor(userRepoHelper,preferenceHelper,apiHelper),
-    RegisterInteractorImp {
+    RegisterInteractorImp
+{
     @Inject
     lateinit var apiRepository: ApiRepository
     lateinit var user: User
@@ -44,7 +52,7 @@ class RegisterInteractor @Inject constructor(private val treamentRepo: TreamentR
 
         val apiRes = CoroutineScope(Dispatchers.IO).async {
             apiRepository.createDailyRegister(dailyRegister.toDailyInput(getCurrentId())).fold({
-                response ->
+                    response ->
                 Log.i("OnInsertDaily", "El id del register es: ${response.id}")
                 saveResponse = RegisterSaveResponse().apply {
                     id = response.id
@@ -117,4 +125,10 @@ class RegisterInteractor @Inject constructor(private val treamentRepo: TreamentR
     override fun getTreatment(): Single<TreatmentBasalCorrectora> = treamentRepo.load()
     override fun getTreatmentHorarios(id: Int):Single<TreamentHorarios> = treamentRepo.loadTreatmentByCategory(id)
 
+
+    override fun getDailyByCategoryAndDate(categoryId: Int, date: String): Single<Boolean> {
+        return dao.getByDateAndCategory(date, categoryId)
+            .subscribeOn(Schedulers.io())
+            .map { it != null }
+    }
 }
