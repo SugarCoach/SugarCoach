@@ -336,6 +336,36 @@ class RegisterActivity : BaseActivity(), RegisterView, TimePickerDialog.OnTimeSe
         user.avatar?.let {
             binding.registerUserimgIv.setImageDrawable(getDrawable(resIdByName(it, "drawable")))
         }
+
+        //dejaron los puntos por default jaja YA LO ARREGLE
+        binding.registerPtsTxt.text = user.points.toString() // este muestra los puntos totalesp
+
+        var text = "Nivel 1"
+
+        val levelPoints = 43400
+        when {
+            (user.points in levelPoints until levelPoints * 2) -> {
+                text = "Nivel 2"
+            }
+
+            (user.points in levelPoints * 2 until levelPoints * 4) -> {
+                text = "Nivel 3"
+            }
+
+            (user.points in levelPoints * 4 until levelPoints * 8) -> {
+                text = "Nivel 4"
+            }
+
+            (user.points in levelPoints * 8 until levelPoints * 16) -> {
+                text = "Nivel 5"
+            }
+
+            (user.points >= levelPoints * 16) -> {
+                text = "Nivel 6"
+            }
+        }
+
+        binding.registerLevelTxt.text = text //este muestra que nivel sos
     }
 
 
