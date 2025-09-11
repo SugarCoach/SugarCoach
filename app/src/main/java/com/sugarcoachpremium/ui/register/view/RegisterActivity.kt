@@ -3,7 +3,6 @@ package com.sugarcoachpremium.ui.register.view
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.View
@@ -15,7 +14,6 @@ import com.sugarcoachpremium.ui.register.interactor.RegisterInteractorImp
 import com.sugarcoachpremium.ui.register.presenter.RegisterPresenterImp
 import com.sugarcoachpremium.util.AppConstants
 import javax.inject.Inject
-import android.util.Log
 import android.view.inputmethod.EditorInfo
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -25,7 +23,6 @@ import com.sugarcoachpremium.databinding.ActivityRegisterBinding
 import com.sugarcoachpremium.databinding.DialogComentaryBinding
 import com.sugarcoachpremium.databinding.DialogCongratulationBinding
 import com.sugarcoachpremium.databinding.DialogEmotionsBinding
-import com.sugarcoachpremium.type.DailyRegister.Companion.type
 import com.sugarcoachpremium.ui.daily.view.DailyActivity
 import com.sugarcoachpremium.ui.main.view.MainActivity
 import com.sugarcoachpremium.ui.statistics.view.StatisticsActivity
@@ -405,45 +402,45 @@ class RegisterActivity : BaseActivity(), RegisterView, TimePickerDialog.OnTimeSe
 
     private fun showHideImgCar(show: Boolean) {
         if (show) {
-            binding.registerImgLy.setVisibility(View.VISIBLE)
+            binding.registerImgLy.visibility = View.VISIBLE
         } else {
-            binding.registerImgLy.setVisibility(View.GONE)
+            binding.registerImgLy.visibility = View.GONE
         }
     }
 
     private fun showHideComentario(show: Boolean) {
         if (show) {
-            binding.registerComentario.setVisibility(View.VISIBLE)
+            binding.registerComentario.visibility = View.VISIBLE
         } else {
-            binding.registerComentario.setVisibility(View.GONE)
+            binding.registerComentario.visibility = View.GONE
         }
     }
 
     private fun showHideNext(show: Boolean) {
         if (show) {
-            binding.registerNextIv.setVisibility(View.VISIBLE)
+            binding.registerNextIv.visibility = View.VISIBLE
             binding.registerPlanetAfter.setVisibility(View.VISIBLE)
         } else {
-            binding.registerNextIv.setVisibility(View.INVISIBLE)
+            binding.registerNextIv.visibility = View.INVISIBLE
             binding.registerPlanetAfter.setVisibility(View.INVISIBLE)
         }
     }
 
     private fun showHidePrev(show: Boolean) {
         if (show) {
-            binding.registerPrevIv.setVisibility(View.VISIBLE)
+            binding.registerPrevIv.visibility = View.VISIBLE
             binding.registerPlanetBefore.setVisibility(View.VISIBLE)
         } else {
-            binding.registerPrevIv.setVisibility(View.INVISIBLE)
+            binding.registerPrevIv.visibility = View.INVISIBLE
             binding.registerPlanetBefore.setVisibility(View.INVISIBLE)
         }
     }
 
     private fun showHideValue(show: Boolean) {
         if (show) {
-            binding.registerValueTxt.setVisibility(View.VISIBLE)
+            binding.registerValueTxt.visibility = View.VISIBLE
         } else {
-            binding.registerValueTxt.setVisibility(View.GONE)
+            binding.registerValueTxt.visibility = View.GONE
         }
     }
 
@@ -631,7 +628,7 @@ class RegisterActivity : BaseActivity(), RegisterView, TimePickerDialog.OnTimeSe
         builder.setCancelable(false)
         builder.setView(view.root)
         dialogEmotions = builder.create()
-        dialogEmotions.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialogEmotions.window?.setBackgroundDrawable(Color.TRANSPARENT.toDrawable())
         adapterEmotions.setData(items, 1)
         view.emotionsList.layoutManager = managerEmotions
         view.emotionsList.adapter = adapterEmotions
