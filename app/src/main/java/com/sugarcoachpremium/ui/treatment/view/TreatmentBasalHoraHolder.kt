@@ -1,5 +1,6 @@
 package com.sugarcoachpremium.ui.treatment.view
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -29,17 +30,17 @@ class TreatmentBasalHoraHolder(private val binding: TreatmentBasalItemBinding) :
 //
 //        }
 
-        // SUSTITUCION 25/08/2025
+        // SUSTITUCION 11/09/2025 .units se asignaba a un string vacío
         binding.treatmentItemBasalUnidad.setOnSpinnerItemSelectedListener<String> { index, unit, parentIndex, parentText ->
             val category = BasalHoraItem.Builder()
                 .id(item.id)
                 .name(item.name)
-                .units(unit ?: "")
+                .units(unit ?: item.units)
                 .build()
             activity.presenter.saveHoraBasal(category)
         }
-
     }
+
     companion object {
         fun create(parent: ViewGroup): TreatmentBasalHoraHolder {
             val inflater = LayoutInflater.from(parent.context)
