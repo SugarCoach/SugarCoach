@@ -96,9 +96,20 @@ class LoginPresenter  <V : LoginView, I : LoginInteractorImp> @Inject internal c
                     // 🔹 Login exitoso: ir a MainActivity YA
                     getView()?.onLogin()
 
-                    // 🔹 Continuar con el resto de la carga en background
+                    // 🔹 Sincronizar Treatment localmente con el id real del usuario
                     CoroutineScope(Dispatchers.IO).launch {
-                        feedInDatabase()
+                        val treatmentId = user.id
+                        interactor?.makeLocalTreatment(treatmentId)?.observeOn(AndroidSchedulers.mainThread())?.subscribe(object : Observer<Boolean> {
+                            override fun onSubscribe(d: Disposable) {}
+                            override fun onNext(t: Boolean) {}
+                            override fun onError(e: Throwable) {
+                                Log.e("LoginPresenter", "Error al sincronizar Treatment local", e)
+                            }
+                            override fun onComplete() {
+                                // 🔹 Continuar con el resto de la carga en background
+                                feedInDatabase()
+                            }
+                        })
                     }
                 }
             })
