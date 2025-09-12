@@ -164,6 +164,20 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="100dp"
+                            android:layout_height="match_parent"
+                            android:text="Nombre:"
+                            android:textAlignment="textStart"
+                            android:gravity="center_vertical"
+                            android:textSize="18sp"
+                            tools:ignore="RtlCompat" />
+
                     <androidx.appcompat.widget.AppCompatEditText
                             android:id="@+id/profile_name_tv"
                             android:layout_width="match_parent"
@@ -189,12 +203,29 @@
                             android:tint="@color/purple"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:srcCompat="@drawable/ic_edit" />
+
+                    </LinearLayout>
+
                 </FrameLayout>
 
                 <FrameLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="match_parent"
+                        android:text="Mail:"
+                        android:textAlignment="textStart"
+                        android:gravity="center_vertical"
+                        android:textSize="18sp"
+                        tools:ignore="RtlCompat" />
 
                     <androidx.appcompat.widget.AppCompatEditText
                             android:id="@+id/profile_mail_tv"
@@ -219,12 +250,28 @@
                             android:tint="@color/purple"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:srcCompat="@drawable/ic_edit" />
+
+                    </LinearLayout>
                 </FrameLayout>
 
                 <FrameLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="match_parent"
+                        android:text="Nickname:"
+                        android:textAlignment="textStart"
+                        android:gravity="center_vertical"
+                        android:textSize="18sp"
+                        tools:ignore="RtlCompat" />
 
                     <androidx.appcompat.widget.AppCompatEditText
                             android:id="@+id/profile_username_tv"
@@ -250,12 +297,27 @@
                             android:tint="@color/purple"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:srcCompat="@drawable/ic_edit" />
+
+                    </LinearLayout>
                 </FrameLayout>
 
                 <FrameLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="match_parent"
+                        android:text="Nacimiento:"
+                        android:textAlignment="textStart"
+                        android:gravity="center_vertical"
+                        android:textSize="18sp"
+                        tools:ignore="RtlCompat" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/profile_nac_tv"
@@ -278,12 +340,27 @@
                             android:tint="@color/purple"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:srcCompat="@drawable/ic_edit" />
+                    </LinearLayout>
                 </FrameLayout>
 
                 <FrameLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="match_parent"
+                        android:text="Sexo:"
+                        android:textAlignment="textStart"
+                        android:gravity="center_vertical"
+                        android:textSize="18sp"
+                        tools:ignore="RtlCompat" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/profile_sex_tv"
@@ -306,13 +383,26 @@
                             android:tint="@color/purple"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:srcCompat="@drawable/ic_edit" />
+                    </LinearLayout>
                 </FrameLayout>
 
                 <FrameLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
 
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="match_parent"
+                        android:text="Altura (cm):"
+                        android:textAlignment="textStart"
+                        android:gravity="center_vertical"
+                        android:textSize="18sp"
+                        tools:ignore="RtlCompat" />
                     <androidx.appcompat.widget.AppCompatEditText
                             android:id="@+id/profile_height_tv"
                             android:layout_width="match_parent"
@@ -336,12 +426,27 @@
                             android:tint="@color/purple"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:srcCompat="@drawable/ic_edit" />
+                    </LinearLayout>
                 </FrameLayout>
 
                 <FrameLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="match_parent"
+                        android:text="Peso (kg):"
+                        android:textAlignment="textStart"
+                        android:gravity="center_vertical"
+                        android:textSize="18sp"
+                        tools:ignore="RtlCompat" />
 
                     <androidx.appcompat.widget.AppCompatEditText
                             android:id="@+id/profile_weight_tv"
@@ -366,12 +471,27 @@
                             android:tint="@color/purple"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:srcCompat="@drawable/ic_edit" />
+                    </LinearLayout>
                 </FrameLayout>
 
                 <FrameLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="match_parent"
+                        android:text="Fecha debut:"
+                        android:textAlignment="textStart"
+                        android:gravity="center_vertical"
+                        android:textSize="18sp"
+                        tools:ignore="RtlCompat" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/profile_debut_tv"
@@ -394,6 +514,7 @@
                             android:tint="@color/purple"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:srcCompat="@drawable/ic_edit" />
+                    </LinearLayout>
                 </FrameLayout>
 
                 <TextView
