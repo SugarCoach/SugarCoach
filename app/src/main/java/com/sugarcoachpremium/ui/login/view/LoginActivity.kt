@@ -1,6 +1,10 @@
 package com.sugarcoachpremium.ui.login.view
 
+import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -101,7 +105,20 @@ class LoginActivity: BaseActivity(), LoginView {
         Toast.makeText(this, msg, Toast.LENGTH_LONG).show()
     }
 
+    //Chequear conexion a internet antes de loguear
+    @SuppressLint("ServiceCast")
+    private fun isInternetAvailable(): Boolean {
+        val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val network = connectivityManager.activeNetwork ?: return false
+        val activeNetwork = connectivityManager.getNetworkCapabilities(network) ?: return false
 
+        return when {
+            activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
+            activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
+            activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> true
+            else -> false
+        }
+    }
 
     private fun setOnClickListeners() {
 
@@ -116,6 +133,12 @@ class LoginActivity: BaseActivity(), LoginView {
             }
             if (password.isEmpty()) {
                 Toast.makeText(this, getString(R.string.empty_password_error_message), Toast.LENGTH_LONG).show()
+                return@setOnClickListener
+            }
+
+            // 🚨 Verificamos conexión antes del login
+            if (!isInternetAvailable()) {
+                Toast.makeText(this, "No tienes conexión a internet. Revisa tu red.", Toast.LENGTH_LONG).show()
                 return@setOnClickListener
             }
 
