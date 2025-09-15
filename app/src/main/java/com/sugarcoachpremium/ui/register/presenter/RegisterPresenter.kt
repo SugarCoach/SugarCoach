@@ -319,18 +319,15 @@ class RegisterPresenter<V : RegisterView, I : RegisterInteractorImp> @Inject int
                 getView()?.showErrorToast("Ya cargaste un registro en este horario")
             } else {
 
-                if (glucose == 0f || insulin == 0f ||
-                    carbohydrates == 0f || emotionalState.isNullOrEmpty() ||
-                    exercise.isNullOrEmpty()
-                ) {
+                if (glucose == 0f) {
                     when {
 
                         //como hacia para cargar las cosas en 0 ajajja
                         glucose == 0f -> getView()?.showErrorToast("Ingrese un valor en el apartado de glucosa")
-                        insulin == 0f -> getView()?.showErrorToast("Ingrese un valor en el apartado de insulina")
-                        carbohydrates == 0f -> getView()?.showErrorToast("Ingrese un valor en el apartado de carbohidratos")
-                        exercise.isNullOrEmpty() -> getView()?.showErrorToast("Ingrese un valor en el apartado de estado de actividad")
-                        emotionalState.isNullOrEmpty() -> getView()?.showErrorToast("Ingrese un valor en el apartado de estado de animo")
+                        //insulin == 0f -> getView()?.showErrorToast("Ingrese un valor en el apartado de insulina")
+                        //carbohydrates == 0f -> getView()?.showErrorToast("Ingrese un valor en el apartado de carbohidratos")
+                        //exercise.isNullOrEmpty() -> getView()?.showErrorToast("Ingrese un valor en el apartado de estado de actividad")
+                        //emotionalState.isNullOrEmpty() -> getView()?.showErrorToast("Ingrese un valor en el apartado de estado de animo")
                     }
                 } else {
 

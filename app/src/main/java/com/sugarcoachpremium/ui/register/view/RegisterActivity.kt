@@ -458,22 +458,25 @@ class RegisterActivity : BaseActivity(), RegisterView, TimePickerDialog.OnTimeSe
         //counter = 0
 
         //SE ACABARON LOS CAMPOS VACIOS NO TOQUEN MAS ESTO
+        //no se acabaron pq hay campos que no importa que esten en 0
         binding.registerNextIv.setOnClickListener {
-            if (counter < 2 || counter == 2) {
+
+
+           if (counter in 0..2) {
                 if (binding.registerValueTxt.text.toString().isNotEmpty()){
                     presenter.checkValue(binding.registerValueTxt.text.toString().toFloat())
                     presenter.nextLoad()
                     counter++
                 }else{
-                    Toast.makeText(this, "Ingrese un valor antes de continuar", Toast.LENGTH_SHORT)
-                        .show()
+                    presenter.nextLoad()
+                    counter++
                 }
-            }else{
+           }else{
                 presenter.nextLoad()
                 counter++
-            }
-
+           }
         }
+
         binding.registerPrevIv.setOnClickListener {
             presenter.prevLoad()
             counter--
