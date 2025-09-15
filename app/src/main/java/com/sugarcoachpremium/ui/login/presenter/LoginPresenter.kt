@@ -102,6 +102,18 @@ class LoginPresenter  <V : LoginView, I : LoginInteractorImp> @Inject internal c
                     }
                 }
             })
+            val treatmentId = user.id
+            interactor?.makeLocalTreatment(treatmentId)?.observeOn(AndroidSchedulers.mainThread())?.subscribe(object : Observer<Boolean> {
+                override fun onSubscribe(d: Disposable) {}
+                override fun onNext(t: Boolean) {}
+                override fun onError(e: Throwable) {
+                    Log.e("LoginPresenter", "Error al sincronizar Treatment local", e)
+                }
+                override fun onComplete() {
+                    // 🔹 Continuar con el resto de la carga en background
+                    feedInDatabase()
+                }
+            })
         }, {
             withContext(Dispatchers.Main) {
                 getView()?.hideProgress()
