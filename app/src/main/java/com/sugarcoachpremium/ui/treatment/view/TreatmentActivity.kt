@@ -37,9 +37,23 @@ import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
 import androidx.core.graphics.drawable.toDrawable
+import androidx.core.widget.addTextChangedListener
 import com.sugarcoachpremium.ui.register.view.RegisterActivity
+import android.text.Editable
+import android.text.TextWatcher
 
+// class added by default by de IDE
 class TreatmentActivity : BaseActivity(), TreatmentView {
+    // Extension function for cleaner TextWatcher usage
+    private fun android.widget.EditText.onTextChanged(action: (String) -> Unit) {
+        this.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                action(s?.toString() ?: "")
+            }
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+        })
+    }
 
     @Inject
     lateinit var presenter: TreatmentPresenterImp<TreatmentView, TreatmentInteractorImp>
@@ -232,21 +246,21 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
 
     override fun setTreatment(treament: TreatmentBasalCorrectora) {
         val tratamiento = treament.treament!!
-        binding.treatmentObjTxt.setText(tratamiento.object_glucose.toInt().toString())
-        binding.treatmentHiperTxt.setText(tratamiento.hyperglucose.toInt().toString())
-        binding.treatmentHipoTxt.setText(tratamiento.hipoglucose.toInt().toString())
+        binding.treatmentObjTxt.setText(tratamiento.object_glucose.toString())
+        binding.treatmentHiperTxt.setText(tratamiento.hyperglucose.toString())
+        binding.treatmentHipoTxt.setText(tratamiento.hipoglucose.toString())
         binding.treatmentBomb.isChecked = tratamiento.bomb!!
         if (tratamiento.correctora_unit > 0f) {
-            binding.treatmentGluMayorUd.setText(tratamiento.correctora_unit.toInt().toString())
+            binding.treatmentGluMayorUd.setText(tratamiento.correctora_unit.toString())
         }
         if (tratamiento.correctora > 0f) {
-            binding.treatmentGluMayor.setText(tratamiento.correctora.toInt().toString())
+            binding.treatmentGluMayor.setText(tratamiento.correctora.toString())
         }
         if (tratamiento.insulina_unit > 0f) {
-            binding.treatmentCarbonoUd.setText(tratamiento.insulina_unit.toInt().toString())
+            binding.treatmentCarbonoUd.setText(tratamiento.insulina_unit.toString())
         }
         if (tratamiento.carbono > 0f) {
-            binding.treatmentCarbono.setText(tratamiento.carbono.toInt().toString())
+            binding.treatmentCarbono.setText(tratamiento.carbono.toString())
         }
         tratamiento.basal_id?.let {
             initialbasal = true
@@ -426,61 +440,26 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
         }
 
         fun setListeners() {
-            binding.treatmentObjTxt.setOnEditorActionListener { v, actionId, event ->
-                if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    presenter.saveAll(
-                        binding.treatmentObjTxt.text.toString().toFloat(),
-                        binding.treatmentHipoTxt.text.toString().toFloat(),
-                        binding.treatmentHiperTxt.text.toString().toFloat()
-                    )
-                }
-                false
+            binding.treatmentObjTxt.onTextChanged {
+                presenter.saveObj(it.toFloatOrNull() ?: 0f)
             }
-            binding.treatmentHipoTxt.setOnEditorActionListener { v, actionId, event ->
-                if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    presenter.saveAll(
-                        binding.treatmentObjTxt.text.toString().toFloat(),
-                        binding.treatmentHipoTxt.text.toString().toFloat(),
-                        binding.treatmentHiperTxt.text.toString().toFloat()
-                    )
-                }
-                false
+            binding.treatmentHipoTxt.onTextChanged {
+                presenter.saveHipo(it.toFloatOrNull() ?: 0f)
             }
-            binding.treatmentHiperTxt.setOnEditorActionListener { v, actionId, event ->
-                if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    presenter.saveAll(
-                        binding.treatmentObjTxt.text.toString().toFloat(),
-                        binding.treatmentHipoTxt.text.toString().toFloat(),
-                        binding.treatmentHiperTxt.text.toString().toFloat()
-                    )
-                }
-                false
+            binding.treatmentHiperTxt.onTextChanged {
+                presenter.saveHyper(it.toFloatOrNull() ?: 0f)
             }
-            binding.treatmentGluMayorUd.setOnEditorActionListener { v, actionId, event ->
-                if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    presenter.saveUnitCorrectora(
-                        binding.treatmentGluMayorUd.text.toString().toFloat()
-                    )
-                }
-                false
+            binding.treatmentGluMayorUd.onTextChanged {
+                presenter.saveUnitCorrectora(it.toFloatOrNull() ?: 0f)
             }
-            binding.treatmentGluMayor.setOnEditorActionListener { v, actionId, event ->
-                if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    presenter.saveCorrectoraGlu(binding.treatmentGluMayor.text.toString().toFloat())
-                }
-                false
+            binding.treatmentGluMayor.onTextChanged {
+                presenter.saveCorrectoraGlu(it.toFloatOrNull() ?: 0f)
             }
-            binding.treatmentCarbonoUd.setOnEditorActionListener { v, actionId, event ->
-                if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    presenter.saveUnitInsulina(binding.treatmentCarbonoUd.text.toString().toFloat())
-                }
-                false
+            binding.treatmentCarbonoUd.onTextChanged {
+                presenter.saveUnitInsulina(it.toFloatOrNull() ?: 0f)
             }
-            binding.treatmentCarbono.setOnEditorActionListener { v, actionId, event ->
-                if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    presenter.saveCarbono(binding.treatmentCarbono.text.toString().toFloat())
-                }
-                false
+            binding.treatmentCarbono.onTextChanged {
+                presenter.saveCarbono(it.toFloatOrNull() ?: 0f)
             }
 
             binding.treatmentMenu.setOnClickListener {

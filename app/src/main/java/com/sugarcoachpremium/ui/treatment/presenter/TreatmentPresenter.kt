@@ -54,11 +54,12 @@ class TreatmentPresenter<V : TreatmentView, I : TreatmentInteractorImp> @Inject 
 
     lateinit var user: User
 
-    override fun saveAll(obj: Float, hipo: Float, hyper: Float) {
-        treatment.object_glucose = obj
-        treatment.hipoglucose = hipo
-        treatment.hyperglucose = hyper
-    }
+    override fun saveObj(obj: Float) { treatment.object_glucose = obj }
+
+    override fun saveHipo(hipo: Float) { treatment.hipoglucose = hipo }
+
+    override fun saveHyper(hyper: Float) { treatment.hyperglucose = hyper }
+
     override fun updateAll() {
         Log.i("OnUpdateAll", "Se actualizan las bases de datos")
         getView()?.showProgress()
