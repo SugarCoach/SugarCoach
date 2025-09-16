@@ -119,10 +119,16 @@ class LoginInteractor @Inject constructor(private val mContext: Context, private
             return Observable.just(false)
         }
         val treatmentResponse = treatmentResult.getOrNull()!!
-        // Convertir TreatmentResponse a Treament (adaptar según tu modelo)
-        // Buscar el basal_id por nombre
         val basales = treamentRepoHelper.loadAllBasal().blockingGet()
+        val medidores = treamentRepoHelper.loadAllMedidor().blockingGet()
+        val bombas = treamentRepoHelper.loadAllBombas().blockingGet()
+        val correctoras = treamentRepoHelper.loadAllCorrectora().blockingGet()
+
         val basalId = basales.firstOrNull { it.name == treatmentResponse.basal_insuline }?.bid
+        val medidorId = medidores.firstOrNull { it.name == treatmentResponse.medidor }?.mid
+        val bombaId = bombas.firstOrNull { it.name == treatmentResponse.bomba_infusora }?.boid
+        val correctoraId = correctoras.firstOrNull { it.cname == treatmentResponse.correctora_insuline }?.cid
+
         val treament = Treament(
             id = 1,
             bomb = treatmentResponse.bomb,
@@ -131,9 +137,9 @@ class LoginInteractor @Inject constructor(private val mContext: Context, private
             hipoglucose = treatmentResponse.hipoglucose ?: 0f,
             hyperglucose = treatmentResponse.hyperglucose ?: 0f,
             basal_id = basalId,
-            medidor_id = null,
-            bomba_id = null,
-            correctora_id = null,
+            medidor_id = medidorId,
+            bomba_id = bombaId,
+            correctora_id = correctoraId,
             correctora = treatmentResponse.correctora ?: 0f,
             insulina_unit = treatmentResponse.insuline_unit ?: 0f,
             carbono = treatmentResponse.carbono ?: 0f,
