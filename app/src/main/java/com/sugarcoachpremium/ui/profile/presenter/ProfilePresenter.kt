@@ -33,6 +33,7 @@ import kotlinx.coroutines.withContext
 import org.joda.time.LocalDate
 import org.joda.time.LocalDateTime
 import java.io.ByteArrayOutputStream
+import java.lang.Exception
 import javax.inject.Inject
 import kotlin.reflect.full.memberProperties
 
@@ -339,6 +340,22 @@ class ProfilePresenter <V : ProfileView, I : ProfileInteractorImp> @Inject inter
                 }
             }
         }
+    }
 
+    override fun commitChanges(name: String?,weight: Float?,height: Float?,username: String?,mail: String?) {
+        getView()?.showProgress()
+        interactor?.let {
+            CoroutineScope(Dispatchers.IO).launch {
+                try {
+                    updateAll(name, weight, height, username, mail)
+                } catch (e: Exception) {
+                    Log.e("OnCommitChanges", "Excepción: $e")
+                    withContext(Dispatchers.Main) {
+                        getView()?.hideProgress()
+                        getView()?.showErrorToast()
+                    }
+                }
+            }
+        }
     }
 }
