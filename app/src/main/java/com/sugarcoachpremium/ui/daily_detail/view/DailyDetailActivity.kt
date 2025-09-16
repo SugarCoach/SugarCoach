@@ -6,13 +6,16 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.toDrawable
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.sugarcoachpremium.R
@@ -22,6 +25,7 @@ import com.sugarcoachpremium.databinding.ActivityDailyDetailBinding
 import com.sugarcoachpremium.databinding.DialogComentaryBinding
 import com.sugarcoachpremium.databinding.DialogConfigDeleteBinding
 import com.sugarcoachpremium.databinding.DialogEmotionsBinding
+import com.sugarcoachpremium.databinding.DialogTreatmentSaveBinding
 import com.sugarcoachpremium.ui.base.view.BaseActivity
 import com.sugarcoachpremium.ui.daily_detail.interactor.DailyDetailInteractorImp
 import com.sugarcoachpremium.ui.daily_detail.presenter.DailyDetailPresenter
@@ -84,6 +88,12 @@ class DailyDetailActivity : BaseActivity(), DailyDetailView, TimePickerDialog.On
         presenter.initChooser(this)
         id = intent.extras!!.getInt("id")
         menuListeners()
+
+        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                dialogSave()
+            }
+        })
 
     }
 
@@ -322,7 +332,7 @@ class DailyDetailActivity : BaseActivity(), DailyDetailView, TimePickerDialog.On
         dialog.setMessage(msg)
             .setPositiveButton(getString(R.string.daily_detail_accept)) { paramDialogInterface, paramInt ->
                 var intent: Intent
-                if (android.os.Build.VERSION.SDK_INT >= 9) {
+                if (Build.VERSION.SDK_INT >= 9) {
                     /* on 2.3 and newer, use APPLICATION_DETAILS_SETTINGS with proper URI */
                     var packageURI = Uri.parse("package:" + packageName);
                     intent = Intent("android.settings.APPLICATION_DETAILS_SETTINGS", packageURI);
@@ -461,6 +471,29 @@ class DailyDetailActivity : BaseActivity(), DailyDetailView, TimePickerDialog.On
         binding.dailyDetailEdit.visibility = View.INVISIBLE
         binding.dailyDetailDelete.visibility = View.INVISIBLE
         binding.register.isEnabled = false
+    }
+
+    fun dialogSave() {
+
+        val view = DialogTreatmentSaveBinding.inflate(layoutInflater)
+        val builder = AlertDialog.Builder(this)
+        builder.setView(view.root)
+        dialog = builder.create()
+        dialog.window?.setBackgroundDrawable(Color.TRANSPARENT.toDrawable())
+        view.treamentAccept.setOnClickListener {
+            val insulin = binding.dailyDetailInsul.text.toString().toFloatOrNull() ?: 100f
+            val glucose = binding.dailyDetailGlucTv.text.toString().toFloatOrNull() ?: 0f
+            val basal = binding.dailyDetailBasal.text.toString().toFloatOrNull() ?: 0f
+            val carbohydrates = binding.dailyDetailCar.text.toString().toFloatOrNull() ?: 0f
+            presenter.updateAll(insulin, glucose, basal, carbohydrates)
+            finish()
+            dialog.dismiss()
+        }
+        view.treamentCancel.setOnClickListener {
+            finish()
+            dialog.dismiss()
+        }
+        dialog.show()
     }
 
 }

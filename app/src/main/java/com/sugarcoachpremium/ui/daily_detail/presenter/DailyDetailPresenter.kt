@@ -29,6 +29,7 @@ import android.provider.MediaStore
 import android.content.Context
 import android.net.Uri
 import android.util.Log
+import com.sugarcoachpremium.data.database.repository.dailyregister.DailyRegisterRepo
 import com.sugarcoachpremium.data.database.repository.treament.Treament
 import com.sugarcoachpremium.ui.daily_detail.view.DailyItem
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -40,7 +41,14 @@ import kotlinx.coroutines.withContext
 import java.io.ByteArrayOutputStream
 
 
-class DailyDetailPresenter<V : DailyDetailView, I : DailyDetailInteractorImp> @Inject internal constructor(interactor: I, schedulerProvider: SchedulerProvider, disposable: CompositeDisposable) : BasePresenter<V, I>(interactor = interactor, schedulerProvider = schedulerProvider, compositeDisposable = disposable),
+class DailyDetailPresenter<V : DailyDetailView, I : DailyDetailInteractorImp>
+@Inject internal constructor(interactor: I,
+                             schedulerProvider: SchedulerProvider,
+                             disposable: CompositeDisposable,
+                             private val repo: DailyRegisterRepo) : BasePresenter<V, I>
+    (interactor = interactor,
+    schedulerProvider = schedulerProvider,
+    compositeDisposable = disposable),
     DailyDetailPresenterImp<V, I> {
 
 
@@ -270,7 +278,7 @@ class DailyDetailPresenter<V : DailyDetailView, I : DailyDetailInteractorImp> @I
         interactor?.let {
             CoroutineScope(Dispatchers.IO).launch {
                 it.updateRegisterCall(dailyRegister).fold({
-                    Log.i("OnUpdateGlucose", "La response es: $it")
+                    Log.i("OnUpdateEmotional", "La response es: $it")
                     updateEmotionalLocal(emotional)
                 },{
                     withContext(Dispatchers.Main){
@@ -677,5 +685,17 @@ class DailyDetailPresenter<V : DailyDetailView, I : DailyDetailInteractorImp> @I
                 })
             )
         }
+    }
+
+    fun updateAll(insulin: Float?, glucose: Float?, basal: Float?, carbohydrates: Float?){
+        updateInsulin(insulin)
+        updateGlucose(glucose)
+        updateBasal(basal)
+        updateCarb(carbohydrates)
+
+        updateInsulinLocal(insulin)
+        updateGlucoseLocal(glucose)
+        updateBasalLocal(basal)
+        updateCarbLocal(carbohydrates)
     }
 }
