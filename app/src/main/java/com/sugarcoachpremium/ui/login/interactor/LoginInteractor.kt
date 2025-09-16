@@ -53,6 +53,7 @@ class LoginInteractor @Inject constructor(private val mContext: Context, private
            response.await()
        }
         return loginResponse
+
     }
 
     /// makeLocalUser debe ser arreglado, algunos valores están siendo forzados
@@ -69,9 +70,18 @@ class LoginInteractor @Inject constructor(private val mContext: Context, private
 
         Log.d("LoginInteractor_Debug", "Antes de construir el objeto User. birth_date de data: '${data.birth_date}', debut_date de data: '${data.debut_date}'")
 
+
+        // Data de DEBUG agregada para visualizar cambios en el LOGCAT - 12-16/09/2025
+
+        Log.d("DEBUG_DATA", "Data object properties: ${data::class.java.declaredFields.map { it.name }}")
+        Log.d("DEBUG_DATA", "Data object: $data")
+
+
+
         val user = User(
             id = 1,
-            username = cloudUser.attributes!!.username,
+            username = cloudUser.attributes!!.username,         //- DESACTIVADO EL 11/09/2025 - Activado nuevamente. Estoy probando entre esta linea y la siguiente.
+            //username = data.username ?: "", // Usa el username de la API, no el de Strapi
             blocked = false,
             email = cloudUser.attributes.email,
             provider = "",
@@ -362,5 +372,12 @@ class LoginInteractor @Inject constructor(private val mContext: Context, private
                 Observable.just(false)
         }
     }
+
+
+//    override suspend fun clearUserData() {
+//        userHelper.deleteAllUsers()  // Asume DAO tiene @Query("DELETE FROM users")
+//    }
+
+
 
 }

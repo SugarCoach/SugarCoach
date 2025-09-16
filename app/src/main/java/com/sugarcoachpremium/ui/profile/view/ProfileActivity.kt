@@ -99,6 +99,7 @@ class ProfileActivity: BaseActivity(), ProfileView, DatePickerDialog.OnDateSetLi
     }
 
     private fun setInformationFromFirebase(){
+        Log.i("DEBUG", "setInformationFromFirebase llamado") // Línea nueva 11/09/2025
         if(Firebase.auth.currentUser?.email != null) {
             binding.profileMailTv.text =
                 Editable.Factory.getInstance().newEditable(Firebase.auth.currentUser?.email)
@@ -202,6 +203,7 @@ class ProfileActivity: BaseActivity(), ProfileView, DatePickerDialog.OnDateSetLi
     }
 
     override fun getUserData(user: User) {
+        Log.i("DEBUG", "getUserData llamado, username: ${user.username}") // Línea nueva 11/09/2025
         this.user = user
         user.name?.let {
             binding.profileNameTv.setText(it)
