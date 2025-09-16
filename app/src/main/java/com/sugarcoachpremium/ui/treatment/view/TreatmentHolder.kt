@@ -2,6 +2,7 @@ package com.sugarcoachpremium.ui.treatment.view
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.RecyclerView
 import com.sugarcoachpremium.R
 import com.sugarcoachpremium.databinding.TreatmentItemBinding
@@ -11,45 +12,37 @@ class TreatmentHolder(private val binding: TreatmentItemBinding) : RecyclerView.
 
     private var isProgrammaticChange = false
 
-    fun inflateData(item: HorarioItem, position: Int, activity: TreatmentActivity, items: ArrayList<String>) {
+    fun inflateData(item: HorarioItem, position: Int, activity: TreatmentActivity) {
         binding.treamentItemLabel.text = item.name
 
         isProgrammaticChange = true
         binding.treatmentItemHorario.isChecked = item.selected
         isProgrammaticChange = false
-        binding.treatmentItemUnidad.setItems(items.toList())
 
-
-        item.units.let {
-            if (it.isNotEmpty() && it != "0" && binding.treatmentItemHorario.isChecked) {
-                binding.treatmentItemUnidad.selectItemByIndex(it.toInt() - 1)
-            }
+        if (item.units.isNotEmpty() && item.units != "0" && binding.treatmentItemHorario.isChecked) {
+            binding.treatmentItemUnidad.setText(item.units)
+        } else {
+            binding.treatmentItemUnidad.setText("")
         }
 
-
-
         binding.treatmentItemHorario.setOnCheckedChangeListener { _, isChecked ->
-            if (isProgrammaticChange) {
-                return@setOnCheckedChangeListener
-            }
+            if (isProgrammaticChange) return@setOnCheckedChangeListener
 
-            if (isChecked){
-                if (items.isNotEmpty()) {
-                    isProgrammaticChange = true
-                    binding.treatmentItemUnidad.selectItemByIndex(0)
-                    isProgrammaticChange = false
+            if (isChecked) {
+                isProgrammaticChange = true
+                binding.treatmentItemUnidad.setText("1.00")
+                isProgrammaticChange = false
 
-                    val category = HorarioItem.Builder()
-                        .id(item.id)
-                        .name(item.name)
-                        .selected(true)
-                        .units("1")
-                        .categoryId(item.categoryId)
-                        .build()
-                    activity.presenter.saveCategory(category)
-                }
-            }else {
-                binding.treatmentItemUnidad.text = ""
+                val category = HorarioItem.Builder()
+                    .id(item.id)
+                    .name(item.name)
+                    .selected(true)
+                    .units("1.00")
+                    .categoryId(item.categoryId)
+                    .build()
+                activity.presenter.saveCategory(category)
+            } else {
+                binding.treatmentItemUnidad.setText("")
                 binding.treatmentItemUnidad.hint = activity.getString(R.string.treatment_unit_txt)
                 val category = HorarioItem.Builder()
                     .id(item.id)
@@ -62,39 +55,32 @@ class TreatmentHolder(private val binding: TreatmentItemBinding) : RecyclerView.
             }
         }
 
+        binding.treatmentItemUnidad.addTextChangedListener { text ->
+            val value = text?.toString()?.trim()
+            val units = if (value.isNullOrEmpty()) "0" else value
+            val number = units.toDoubleOrNull() ?: 0.0
 
-        //ORIGINAL
-//        binding.treatmentItemUnidad.setOnSpinnerItemSelectedListener<String> { index, unit ->
-//            if (binding.treatmentItemHorario.isChecked){
-//                val category = HorarioItem.Builder()
-//                    .id(item.id)
-//                    .name(item.name)
-//                    .selected(true)
-//                    .units(unit)
-//                    .categoryId(item.categoryId)
-//                    .build()
-//                activity.presenter.saveCategory(category)
-//            }
-//        }
+            if (number > 35.0) {
+                binding.treatmentItemUnidad.setText("35.00")
+                binding.treatmentItemUnidad.setSelection(binding.treatmentItemUnidad.text?.length ?: 0)
+            }
 
+            if (!isProgrammaticChange) {
+                isProgrammaticChange = true
+                binding.treatmentItemHorario.isChecked = true
+                isProgrammaticChange = false
 
-        //SUSTITUCION 25/08/2025
-        binding.treatmentItemUnidad.setOnSpinnerItemSelectedListener<String> { _, _, _, newItem ->
-            isProgrammaticChange = true
-            binding.treatmentItemHorario.isChecked = true
-            isProgrammaticChange = false
-
-            val category = HorarioItem.Builder()
+                val category = HorarioItem.Builder()
                     .id(item.id)
                     .name(item.name)
                     .selected(true)
-                    .units(newItem ?: "0")
+                    .units(units)
                     .categoryId(item.categoryId)
                     .build()
+
                 activity.presenter.saveCategory(category)
-
+            }
         }
-
     }
 
     companion object {

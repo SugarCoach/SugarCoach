@@ -51,33 +51,35 @@
             </LinearLayout>
 
             <LinearLayout
-                    android:gravity="center"
-                    android:layout_width="0dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginLeft="10dp"
+                android:gravity="center"
+                android:layout_width="0dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.33">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.33">
-                <com.skydoves.powerspinner.PowerSpinnerView
+                    android:background="@color/white"
+                    android:padding="5dp"
+                    android:hint="@string/treatment_unit_txt"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    app:boxStrokeColor="@color/gray"
+                    app:boxStrokeWidth="0.4dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/treatment_item_unidad"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/white"
                         android:gravity="center"
-                        android:hint="@string/treatment_unit_txt"
-                        android:padding="5dp"
+                        android:inputType="numberDecimal"
                         android:textColor="@color/gray_letter"
                         android:textSize="10dp"
-                        app:spinner_arrow_gravity="end"
-                        app:spinner_arrow_tint="@color/gray"
-                        app:spinner_arrow_padding="8dp"
-                        app:spinner_divider_color="@color/gray"
-                        app:spinner_divider_show="true"
-                        app:spinner_divider_size="0.4dp"
-                        app:spinner_popup_animation="dropdown"
-                        app:spinner_popup_background="@color/white"
-                        app:spinner_popup_elevation="14dp"
-                        android:id="@+id/treatment_item_unidad"/>
+                        android:imeOptions="actionDone"/>
+                </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
