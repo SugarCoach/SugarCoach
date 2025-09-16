@@ -50,7 +50,9 @@ class TreatmentAdapter(private val activity: TreatmentActivity) : RecyclerView.A
     }
 
     private fun bind(holder: TreatmentHolder, item: HorarioItem) {
-        holder.inflateData(item,holder.adapterPosition, activity, items)
+        holder.inflateData(item,holder.adapterPosition, activity,
+            //items
+        )
     }
 
 }

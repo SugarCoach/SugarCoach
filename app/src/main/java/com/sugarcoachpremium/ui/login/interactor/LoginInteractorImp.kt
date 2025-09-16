@@ -14,6 +14,7 @@ interface LoginInteractorImp : Interactor {
 
     suspend fun getUserData(userUID: String?): Result<GetUserByUIDQuery.Data1?>
     suspend fun makeLocalUser(cloudUser: GetUserByUIDQuery.Data1?): Observable<Boolean>
+    suspend fun makeLocalTreatment(userUID: String?): Observable<Boolean>
     suspend fun doServerLoginpiCall(email: String, password: String): Observable<LoginResponse>
     fun updateUserInSharedPref(loginResponse: LoginResponse, mirror: Boolean, medico: Boolean)
     fun treament(treament: Treament): Observable<Boolean>

@@ -5,13 +5,16 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AlertDialog
+import androidx.core.graphics.drawable.toDrawable
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.Firebase
@@ -21,6 +24,7 @@ import com.sugarcoachpremium.data.database.repository.user.User
 import com.sugarcoachpremium.databinding.ActivityProfileBinding
 import com.sugarcoachpremium.databinding.DialogCongratulationBinding
 import com.sugarcoachpremium.databinding.DialogSexBinding
+import com.sugarcoachpremium.databinding.DialogTreatmentSaveBinding
 import com.sugarcoachpremium.ui.base.view.BaseActivity
 import com.sugarcoachpremium.ui.login.view.LoginActivity
 import com.sugarcoachpremium.ui.profile.interactor.ProfileInteractorImp
@@ -59,6 +63,11 @@ class ProfileActivity: BaseActivity(), ProfileView, DatePickerDialog.OnDateSetLi
         presenter.onAttach(this)
         setInformationFromFirebase()
         setOnClickListeners()
+        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                dialogSave()
+            }
+        })
     }
 
     override fun createCongratsDialog(points: Int, totalPoints: Int){
@@ -314,7 +323,7 @@ class ProfileActivity: BaseActivity(), ProfileView, DatePickerDialog.OnDateSetLi
         dialog.setMessage(msg)
             .setPositiveButton(getString(R.string.daily_detail_accept)) { paramDialogInterface, paramInt ->
                 var intent: Intent
-                if (android.os.Build.VERSION.SDK_INT >= 9) {
+                if (Build.VERSION.SDK_INT >= 9) {
                     /* on 2.3 and newer, use APPLICATION_DETAILS_SETTINGS with proper URI */
                     var packageURI = Uri.parse("package:" + packageName);
                     intent = Intent("android.settings.APPLICATION_DETAILS_SETTINGS", packageURI);
@@ -329,6 +338,30 @@ class ProfileActivity: BaseActivity(), ProfileView, DatePickerDialog.OnDateSetLi
                 }
             }
             .setNegativeButton(getString(R.string.daily_detail_cancel)) { paramDialogInterface, paramInt -> finish() }
+        dialog.show()
+    }
+
+    fun dialogSave() {
+        val view = DialogTreatmentSaveBinding.inflate(layoutInflater)
+        val builder = AlertDialog.Builder(this)
+        builder.setView(view.root)
+        dialog = builder.create()
+        dialog.window?.setBackgroundDrawable(Color.TRANSPARENT.toDrawable())
+        view.treamentAccept.setOnClickListener {
+
+            val name = binding.profileNameTv.text.toString()
+            val weight = binding.profileWeightTv.text.toString().toFloat()
+            val height = binding.profileHeightTv.text.toString().toFloat()
+            val username = binding.profileUsernameTv.text.toString()
+            val mail = binding.profileMailTv.text.toString()
+
+            presenter.commitChanges(name, weight, height, username, mail)
+            dialog.dismiss()
+        }
+        view.treamentCancel.setOnClickListener {
+            finish()
+            dialog.dismiss()
+        }
         dialog.show()
     }
 

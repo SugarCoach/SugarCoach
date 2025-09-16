@@ -3,7 +3,6 @@ package com.sugarcoachpremium.ui.register.view
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.View
@@ -15,7 +14,6 @@ import com.sugarcoachpremium.ui.register.interactor.RegisterInteractorImp
 import com.sugarcoachpremium.ui.register.presenter.RegisterPresenterImp
 import com.sugarcoachpremium.util.AppConstants
 import javax.inject.Inject
-import android.util.Log
 import android.view.inputmethod.EditorInfo
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -25,7 +23,6 @@ import com.sugarcoachpremium.databinding.ActivityRegisterBinding
 import com.sugarcoachpremium.databinding.DialogComentaryBinding
 import com.sugarcoachpremium.databinding.DialogCongratulationBinding
 import com.sugarcoachpremium.databinding.DialogEmotionsBinding
-import com.sugarcoachpremium.type.DailyRegister.Companion.type
 import com.sugarcoachpremium.ui.daily.view.DailyActivity
 import com.sugarcoachpremium.ui.main.view.MainActivity
 import com.sugarcoachpremium.ui.statistics.view.StatisticsActivity
@@ -134,9 +131,9 @@ class RegisterActivity : BaseActivity(), RegisterView, TimePickerDialog.OnTimeSe
     override fun nextLoad(type: Int, value: Float?, position: String?) {
         when (type) {
             1 -> {
-                binding.registerValueTxt.setText("0")
+                binding.registerValueTxt.setText("")
                 value?.let {
-                    if (it >= 0) binding.registerValueTxt.setText(
+                    if (it > 0) binding.registerValueTxt.setText(
                         value.toInt().toString()
                     )
                 }
@@ -156,12 +153,11 @@ class RegisterActivity : BaseActivity(), RegisterView, TimePickerDialog.OnTimeSe
                 showHideComentario(true)
                 showHidePrev(true)
                 showHideNext(true)
-                showHideRegisterAgain(true)
             }
 
             2 -> {
-                binding.registerValueTxt.setText("0")
-                value?.let { if (it >= 0) binding.registerValueTxt.setText(value.toString()) }
+                binding.registerValueTxt.setText("")
+                value?.let { if (it > 0) binding.registerValueTxt.setText(value.toString()) }
                 binding.registerType.setText(R.string.register_carbohidratos_label)
                 binding.registerUnidadTv.setText(R.string.register_car_unidad_label)
                 binding.registerEmotionalTv.visibility = View.GONE
@@ -186,7 +182,7 @@ class RegisterActivity : BaseActivity(), RegisterView, TimePickerDialog.OnTimeSe
                 binding.registerPlanet.setImageResource(R.drawable.planet_actividad)
                 binding.registerPlanetBefore.setImageResource(R.drawable.planet_carbohidratos)
                 binding.registerPlanetAfter.setImageResource(R.drawable.planet_estado)
-                binding.registerValueTxt.setText("0")
+                binding.registerValueTxt.setText("")
                 binding.registerDots.setDotSelection(3)
                 binding.registerEmotionalTv.visibility = View.GONE
                 binding.registerExercicesTv.visibility = View.VISIBLE
@@ -204,7 +200,7 @@ class RegisterActivity : BaseActivity(), RegisterView, TimePickerDialog.OnTimeSe
             }
 
             4 -> {
-                binding.registerValueTxt.setText("0")
+                binding.registerValueTxt.setText("")
                 binding.registerDots.setDotSelection(4)
                 binding.registerEmotionalTv.visibility = View.VISIBLE
                 binding.registerExercicesTv.visibility = View.GONE
@@ -237,7 +233,7 @@ class RegisterActivity : BaseActivity(), RegisterView, TimePickerDialog.OnTimeSe
                 binding.registerEmotionalTv.visibility = View.GONE
                 binding.registerExercicesTv.visibility = View.GONE
                 binding.registerUnidadTv.visibility = View.VISIBLE
-                binding.registerValueTxt.setText("0")
+                binding.registerValueTxt.setText("")
                 value?.let {
                     if (it >= 0) binding.registerValueTxt.setText(
                         value.toInt().toString()
@@ -264,8 +260,8 @@ class RegisterActivity : BaseActivity(), RegisterView, TimePickerDialog.OnTimeSe
                 binding.registerEmotionalTv.visibility = View.GONE
                 binding.registerExercicesTv.visibility = View.GONE
                 binding.registerUnidadTv.visibility = View.VISIBLE
-                binding.registerValueTxt.setText("0")
-                value?.let { if (it >= 0) binding.registerValueTxt.setText(value.toString()) }
+                binding.registerValueTxt.setText("")
+                value?.let { if (it > 0) binding.registerValueTxt.setText(value.toString()) }
                 showHideExercise(false)
                 showHideEmotional(false)
                 showHideValue(true)
@@ -287,7 +283,8 @@ class RegisterActivity : BaseActivity(), RegisterView, TimePickerDialog.OnTimeSe
                 binding.registerEmotionalTv.visibility = View.GONE
                 binding.registerExercicesTv.visibility = View.GONE
                 binding.registerUnidadTv.visibility = View.VISIBLE
-                value?.let { if (it >= 0) binding.registerValueTxt.setText(value.toString()) }
+                binding.registerValueTxt.setText("")
+                value?.let { if (it > 0) binding.registerValueTxt.setText(value.toString()) }
                 showHideExercise(false)
                 showHideEmotional(false)
                 showHideValue(true)
@@ -306,7 +303,7 @@ class RegisterActivity : BaseActivity(), RegisterView, TimePickerDialog.OnTimeSe
                 binding.registerExercicesTv.visibility = View.VISIBLE
                 binding.registerUnidadTv.visibility = View.GONE
                 binding.registerType.visibility = View.GONE
-                binding.registerValueTxt.setText("0")
+                binding.registerValueTxt.setText("")
                 binding.registerDots.setDotSelection(3)
                 binding.registerValueTxt.isEnabled = false
                 showHideExercise(true)
@@ -336,6 +333,36 @@ class RegisterActivity : BaseActivity(), RegisterView, TimePickerDialog.OnTimeSe
         user.avatar?.let {
             binding.registerUserimgIv.setImageDrawable(getDrawable(resIdByName(it, "drawable")))
         }
+
+        //dejaron los puntos por default jaja YA LO ARREGLE
+        binding.registerPtsTxt.text = user.points.toString() // este muestra los puntos totalesp
+
+        var text = "Nivel 1"
+
+        val levelPoints = 43400
+        when {
+            (user.points in levelPoints until levelPoints * 2) -> {
+                text = "Nivel 2"
+            }
+
+            (user.points in levelPoints * 2 until levelPoints * 4) -> {
+                text = "Nivel 3"
+            }
+
+            (user.points in levelPoints * 4 until levelPoints * 8) -> {
+                text = "Nivel 4"
+            }
+
+            (user.points in levelPoints * 8 until levelPoints * 16) -> {
+                text = "Nivel 5"
+            }
+
+            (user.points >= levelPoints * 16) -> {
+                text = "Nivel 6"
+            }
+        }
+
+        binding.registerLevelTxt.text = text //este muestra que nivel sos
     }
 
 
@@ -375,45 +402,45 @@ class RegisterActivity : BaseActivity(), RegisterView, TimePickerDialog.OnTimeSe
 
     private fun showHideImgCar(show: Boolean) {
         if (show) {
-            binding.registerImgLy.setVisibility(View.VISIBLE)
+            binding.registerImgLy.visibility = View.VISIBLE
         } else {
-            binding.registerImgLy.setVisibility(View.GONE)
+            binding.registerImgLy.visibility = View.GONE
         }
     }
 
     private fun showHideComentario(show: Boolean) {
         if (show) {
-            binding.registerComentario.setVisibility(View.VISIBLE)
+            binding.registerComentario.visibility = View.VISIBLE
         } else {
-            binding.registerComentario.setVisibility(View.GONE)
+            binding.registerComentario.visibility = View.GONE
         }
     }
 
     private fun showHideNext(show: Boolean) {
         if (show) {
-            binding.registerNextIv.setVisibility(View.VISIBLE)
+            binding.registerNextIv.visibility = View.VISIBLE
             binding.registerPlanetAfter.setVisibility(View.VISIBLE)
         } else {
-            binding.registerNextIv.setVisibility(View.INVISIBLE)
+            binding.registerNextIv.visibility = View.INVISIBLE
             binding.registerPlanetAfter.setVisibility(View.INVISIBLE)
         }
     }
 
     private fun showHidePrev(show: Boolean) {
         if (show) {
-            binding.registerPrevIv.setVisibility(View.VISIBLE)
+            binding.registerPrevIv.visibility = View.VISIBLE
             binding.registerPlanetBefore.setVisibility(View.VISIBLE)
         } else {
-            binding.registerPrevIv.setVisibility(View.INVISIBLE)
+            binding.registerPrevIv.visibility = View.INVISIBLE
             binding.registerPlanetBefore.setVisibility(View.INVISIBLE)
         }
     }
 
     private fun showHideValue(show: Boolean) {
         if (show) {
-            binding.registerValueTxt.setVisibility(View.VISIBLE)
+            binding.registerValueTxt.visibility = View.VISIBLE
         } else {
-            binding.registerValueTxt.setVisibility(View.GONE)
+            binding.registerValueTxt.visibility = View.GONE
         }
     }
 
@@ -429,17 +456,32 @@ class RegisterActivity : BaseActivity(), RegisterView, TimePickerDialog.OnTimeSe
 
     private fun setOnClickListeners() {
         //counter = 0
+
+        //SE ACABARON LOS CAMPOS VACIOS NO TOQUEN MAS ESTO
+        //no se acabaron pq hay campos que no importa que esten en 0
         binding.registerNextIv.setOnClickListener {
-            if (counter < 2 || counter == 2) {
-                presenter.checkValue(binding.registerValueTxt.text.toString().toFloat())
+
+
+           if (counter in 0..2) {
+                if (binding.registerValueTxt.text.toString().isNotEmpty()){
+                    presenter.checkValue(binding.registerValueTxt.text.toString().toFloat())
+                    presenter.nextLoad()
+                    counter++
+                }else{
+                    presenter.nextLoad()
+                    counter++
+                }
+           }else{
+                presenter.nextLoad()
                 counter++
-            }
-            presenter.nextLoad()
+           }
         }
+
         binding.registerPrevIv.setOnClickListener {
             presenter.prevLoad()
             counter--
         }
+
         binding.registerAgainIv.setOnClickListener {
             presenter.rollBack()
         }
@@ -601,7 +643,7 @@ class RegisterActivity : BaseActivity(), RegisterView, TimePickerDialog.OnTimeSe
         builder.setCancelable(false)
         builder.setView(view.root)
         dialogEmotions = builder.create()
-        dialogEmotions.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialogEmotions.window?.setBackgroundDrawable(Color.TRANSPARENT.toDrawable())
         adapterEmotions.setData(items, 1)
         view.emotionsList.layoutManager = managerEmotions
         view.emotionsList.adapter = adapterEmotions

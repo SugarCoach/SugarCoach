@@ -109,6 +109,39 @@ class LoginInteractor @Inject constructor(private val mContext: Context, private
         setUserId(cloudUser.id)
         return userHelper.insertRegister(user)
     }
+
+    // Sincroniza los datos de Treatment desde la nube y los guarda localmente
+    override suspend fun makeLocalTreatment(userUID: String?): Observable<Boolean> {
+        Log.d("LoginInteractor_Entry", "Entrando a makeLocalTreatment. userUID: $userUID")
+        val treatmentResult = apiRepository.getUserTreatment(userUID ?: "")
+        if (treatmentResult.isFailure || treatmentResult.getOrNull() == null) {
+            Log.w("LoginInteractor_Debug", "No se pudo obtener Treatment remoto, retornando false.")
+            return Observable.just(false)
+        }
+        val treatmentResponse = treatmentResult.getOrNull()!!
+        // Convertir TreatmentResponse a Treament (adaptar según tu modelo)
+        // Buscar el basal_id por nombre
+        val basales = treamentRepoHelper.loadAllBasal().blockingGet()
+        val basalId = basales.firstOrNull { it.name == treatmentResponse.basal_insuline }?.bid
+        val treament = Treament(
+            id = 1,
+            bomb = treatmentResponse.bomb,
+            object_glucose = treatmentResponse.object_glucose ?: 0f,
+            correctora_unit = treatmentResponse.correctora_unit ?: 0f,
+            hipoglucose = treatmentResponse.hipoglucose ?: 0f,
+            hyperglucose = treatmentResponse.hyperglucose ?: 0f,
+            basal_id = basalId,
+            medidor_id = null,
+            bomba_id = null,
+            correctora_id = null,
+            correctora = treatmentResponse.correctora ?: 0f,
+            insulina_unit = treatmentResponse.insuline_unit ?: 0f,
+            carbono = treatmentResponse.carbono ?: 0f,
+            created = java.util.Date()
+        )
+        Log.d("LoginInteractor_Debug", "Objeto Treament construido: $treament")
+        return treamentRepoHelper.insertTreament(treament)
+    }
         //SE IMPLEMENTO FUNCION PARA MANEJO DE PARSEO DE FECHAS DE FORMA SEGURA Y CORRECTA
     private fun parseDateSafely(dateString: String?, fieldName: String): Date? {
         Log.e("!!!!_DATE_PARSE_ENTRY_!!!!", "ENTRANDO a parseDateSafely para campo: $fieldName, con string: $dateString")

@@ -562,7 +562,7 @@
                                 android:gravity="center"
                                 android:layout_height="match_parent">
                             <androidx.appcompat.widget.AppCompatEditText
-                                    android:text="0"
+                                    android:hint="0"
                                     style="@style/TextStyle.Heading"
                                     android:gravity="center"
                                     android:textSize="36dp"
