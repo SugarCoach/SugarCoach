@@ -41,6 +41,7 @@ import androidx.core.widget.addTextChangedListener
 import com.sugarcoachpremium.ui.register.view.RegisterActivity
 import android.text.Editable
 import android.text.TextWatcher
+import kotlin.math.roundToInt
 
 // class added by default by de IDE
 class TreatmentActivity : BaseActivity(), TreatmentView {
@@ -246,21 +247,21 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
 
     override fun setTreatment(treament: TreatmentBasalCorrectora) {
         val tratamiento = treament.treament!!
-        binding.treatmentObjTxt.setText(tratamiento.object_glucose.toString())
-        binding.treatmentHiperTxt.setText(tratamiento.hyperglucose.toString())
-        binding.treatmentHipoTxt.setText(tratamiento.hipoglucose.toString())
+        binding.treatmentObjTxt.setText(tratamiento.object_glucose.roundToInt().toString())
+        binding.treatmentHiperTxt.setText(tratamiento.hyperglucose.roundToInt().toString())
+        binding.treatmentHipoTxt.setText(tratamiento.hipoglucose.roundToInt().toString())
         binding.treatmentBomb.isChecked = tratamiento.bomb!!
         if (tratamiento.correctora_unit > 0f) {
-            binding.treatmentGluMayorUd.setText(tratamiento.correctora_unit.toString())
+            binding.treatmentGluMayorUd.setText(tratamiento.correctora_unit.roundToInt().toString())
         }
         if (tratamiento.correctora > 0f) {
-            binding.treatmentGluMayor.setText(tratamiento.correctora.toString())
+            binding.treatmentGluMayor.setText(tratamiento.correctora.roundToInt().toString())
         }
         if (tratamiento.insulina_unit > 0f) {
-            binding.treatmentCarbonoUd.setText(tratamiento.insulina_unit.toString())
+            binding.treatmentCarbonoUd.setText(tratamiento.insulina_unit.roundToInt().toString())
         }
         if (tratamiento.carbono > 0f) {
-            binding.treatmentCarbono.setText(tratamiento.carbono.toString())
+            binding.treatmentCarbono.setText(tratamiento.carbono.roundToInt().toString())
         }
         tratamiento.basal_id?.let {
             initialbasal = true
