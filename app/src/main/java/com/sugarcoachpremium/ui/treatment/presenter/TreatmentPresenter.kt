@@ -59,37 +59,24 @@ class TreatmentPresenter<V : TreatmentView, I : TreatmentInteractorImp> @Inject 
             getView()?.showErrorToast()
         }
     }
-    // El método iniciativa() ya no es necesario si getTreatment() se llama correctamente desde getUser()
-    // y los datos iniciales se cargan en onAttach o a través de getUser -> getTreatment.
-    // Si se necesita una carga inicial específica de tratamiento que no dependa de getUser,
-    // se puede reactivar y ajustar para que use TreatmentBasalCorrectora.
-    /*
-    fun iniciativa() { 
-        interactor?.let {
-            compositeDisposable.add(it.getTreatment() // Devuelve TreatmentBasalCorrectora
-                .compose(schedulerProvider.ioToMainSingleScheduler())
-                .subscribe({ treamentResponse -> // treamentResponse es TreatmentBasalCorrectora
-                    if (treamentResponse.treament != null) {
-                        treatment = treamentResponse.treament!!
-                        getView()?.setTreatment(treamentResponse) // La vista espera TreatmentBasalCorrectora
-                    } else {
-                        // Manejar el caso donde treamentResponse.treament es null si es posible
-                        Log.e("iniciativa", "El objeto Treament dentro de TreatmentBasalCorrectora es null")
-                        // Podrías inicializar un Treament vacío o mostrar un error
-                    }
-                }, { throwable ->
-                    showException(throwable)
-                })
-            )
-        }
-    }
-    */
 
     override fun updateAll() {
         if (!::treatment.isInitialized) {
             getView()?.showErrorToast("Datos de tratamiento no cargados.")
             return
         }
+
+        // Log detallado ANTES de la corutina y la llamada al interactor
+        Log.i("UpdateAllDebug", "ANTES de enviar: " +
+                "treatment.basal_insuline=${treatment.basal_insuline}, this.basalInsulineName='${this.basalInsuline}', " +
+                "treatment.correctora_insuline=${treatment.correctora_insuline}, this.correctoraInsulineName='${this.correctoraInsuline}', " +
+                "treatment.medidor=${treatment.medidor}, this.medidorName='${this.medidorName}', " +
+                "treatment.bomba_infusora=${treatment.bomba_infusora}, this.bombaInfusoraName='${this.bombaInfusoraName}', " +
+                "treatment.object_glucose=${treatment.object_glucose}, treatment.hipoglucose=${treatment.hipoglucose}, " +
+                "treatment.hyperglucose=${treatment.hyperglucose}, treatment.carbono=${treatment.carbono}, " +
+                "treatment.insulina_unit=${treatment.insulina_unit}, treatment.correctora_unit=${treatment.correctora_unit}, " +
+                "treatment.bomb=${treatment.bomb}")
+
         CoroutineScope(Dispatchers.Main).launch {
             interactor?.let {
                 val treamentToSave = treatment // Es de tipo Treament

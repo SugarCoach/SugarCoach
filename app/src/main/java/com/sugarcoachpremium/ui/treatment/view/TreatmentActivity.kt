@@ -239,7 +239,6 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
         mAlertDialog?.show()
     }
     
-    // Eliminada la función selectSpinnerItemById
 
     override fun setTreatment(treament: TreatmentBasalCorrectora) {
         val tratamiento = treament.treament!!
@@ -260,29 +259,9 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
             binding.treatmentCarbono.setText(tratamiento.carbono.toString())
         }
 
-        binding.treatmentInsuTxt.text = treament.basalInsuline?.name // Display the name as before
+        binding.treatmentInsuTxt.text = treament.basalInsuline?.name
 
-        tratamiento.basal_insuline?.takeIf { it > 0 }?.let {
-            initialbasal = true
-            binding.treatmentBasal.selectItemByIndex(it - 1) 
-        } ?: run { initialbasal = false }
-
-        tratamiento.correctora_insuline?.takeIf { it > 0 }?.let {
-            initial = true
-            binding.treatmentCorrectora.selectItemByIndex(it - 1)
-        } ?: run { initial = false }
-
-        tratamiento.medidor?.takeIf { it > 0 }?.let {
-            initialMedidor = true
-            binding.treatmentMedidor.selectItemByIndex(it - 1)
-        } ?: run { initialMedidor = false }
-
-        tratamiento.bomba_infusora?.takeIf { it > 0 }?.let {
-            initialBomba = true
-            binding.treatmentBombInfusora.selectItemByIndex(it - 1)
-        } ?: run { initialBomba = false }
-
-        // Los listeners permanecen igual, ya manejan las banderas 'initial*'
+        // ***** INICIO DE LA CORRECCIÓN: Establecer Listeners PRIMERO *****
         binding.treatmentCorrectora.setOnSpinnerItemSelectedListener<BasalItem> { oldIndex, oldItem, newIndex, newItem ->
             newItem.let {
                 if (!initial) {
@@ -296,7 +275,7 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
         binding.treatmentBasal.setOnSpinnerItemSelectedListener<BasalItem> { oldIndex, oldItem, newIndex, newItem ->
             newItem.let {
                 if (!initialbasal) {
-                    binding.treatmentInsuTxt.text = it.name
+                    binding.treatmentInsuTxt.text = it.name // Actualizar UI si es necesario
                     presenter.saveBasal(it)
                 } else {
                     initialbasal = false
@@ -323,6 +302,29 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
                 }
             }
         }
+        // ***** FIN DE LA CORRECCIÓN *****
+
+
+        // Ahora, con los listeners ya establecidos, proceder a seleccionar los ítems
+        tratamiento.basal_insuline?.takeIf { it > 0 }?.let {
+            initialbasal = true // Poner la bandera ANTES de la selección programática
+            binding.treatmentBasal.selectItemByIndex(it - 1) 
+        } ?: run { initialbasal = false } // Si no hay ID válido, asegurar que la bandera sea false
+
+        tratamiento.correctora_insuline?.takeIf { it > 0 }?.let {
+            initial = true
+            binding.treatmentCorrectora.selectItemByIndex(it - 1)
+        } ?: run { initial = false }
+
+        tratamiento.medidor?.takeIf { it > 0 }?.let {
+            initialMedidor = true
+            binding.treatmentMedidor.selectItemByIndex(it - 1)
+        } ?: run { initialMedidor = false }
+
+        tratamiento.bomba_infusora?.takeIf { it > 0 }?.let {
+            initialBomba = true
+            binding.treatmentBombInfusora.selectItemByIndex(it - 1)
+        } ?: run { initialBomba = false }
     }
 
     override fun setCategories(category: List<HorarioItem>) {
