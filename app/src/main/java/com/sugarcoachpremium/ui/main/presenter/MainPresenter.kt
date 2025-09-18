@@ -1,6 +1,7 @@
 package com.sugarcoachpremium.ui.main.presenter
 
 import android.app.Activity
+import android.content.Context
 import android.content.pm.PackageManager
 import android.util.Log
 import androidx.core.app.ActivityCompat
@@ -165,6 +166,23 @@ class MainPresenter<V : MainView, I : MainInteractorImp> @Inject internal constr
         }
     }
 
+    private fun translateCategoryKey(key: String, context: Context?): String {
+        context?.let { ctx ->
+            val resourceId = ctx.resources.getIdentifier(key, "string", ctx.packageName)
+            if (resourceId != 0) {
+                try {
+                    return ctx.getString(resourceId)
+                } catch (e: Exception) {
+                    Log.e("MainPresenter", "Error al obtener string para $key", e)
+                    // Fall through to return key if getString fails
+                }
+            } else {
+                Log.w("MainPresenter", "No se encontró ID de recurso para: $key")
+            }
+        }
+        return key // Fallback
+    }
+
     private fun getMedition(dailyRegister: DailyRegister?, category: List<Category>){
         var date = dailyRegister?.created
         if (category.isEmpty()) {
@@ -201,60 +219,75 @@ class MainPresenter<V : MainView, I : MainInteractorImp> @Inject internal constr
         val midnight = LocalTime(0,0)
         val midnightEnd = LocalTime(5,59)
 
+        var determinedKey: String? = null
+
         if (date == null){
             when {
                 timeBetween(currentDate.toLocalTime(), breakfast, breakfastEnd) -> {
-                    getView()?.setMedition(breakfastKey)
+                    determinedKey = breakfastKey
                 }
                 timeBetween(currentDate.toLocalTime(),lunch, lunchEnd) ->{
-                    getView()?.setMedition(lunchKey)
+                    determinedKey = lunchKey
                 }
                 timeBetween(currentDate.toLocalTime(),snack,snackEnd) ->{
-                    getView()?.setMedition(snackKey)
+                    determinedKey = snackKey
                 }
                 timeBetween(currentDate.toLocalTime(),dinner, dinnerEnd) ||  timeBetween(currentDate.toLocalTime(), midnight, midnightEnd) -> {
-                    getView()?.setMedition(dinnerKey)
+                    determinedKey = dinnerKey
                 }
             }
         }else{
             when{
                 (dailyRegister?.category_id == breakfastId || dailyRegister?.category_id == pbreakfastId ) && timeBetween(currentDate.toLocalTime(), breakfast, breakfastEnd)-> {
-                    getView()?.setMedition(pbreakfastKey)
+                    determinedKey = pbreakfastKey
                 }
                 ( dailyRegister?.category_id == breakfastId || dailyRegister?.category_id == pbreakfastId) && timeBetween(currentDate.toLocalTime(),lunch, lunchEnd) -> {
-                    getView()?.setMedition(lunchKey)
+                    determinedKey = lunchKey
                 }
                 (dailyRegister?.category_id == breakfastId || dailyRegister?.category_id == pbreakfastId) && timeBetween(currentDate.toLocalTime(),snack,snackEnd) -> {
-                    getView()?.setMedition(snackKey)
+                    determinedKey = snackKey
                 }
                 (dailyRegister?.category_id == breakfastId || dailyRegister?.category_id == pbreakfastId) &&  (timeBetween(currentDate.toLocalTime(),dinner, dinnerEnd) ||  timeBetween(currentDate.toLocalTime(), midnight, midnightEnd)) -> {
-                    getView()?.setMedition(dinnerKey)
+                    determinedKey = dinnerKey
                 }
                 (dailyRegister?.category_id == lunchId || dailyRegister?.category_id == plunchId) && timeBetween(currentDate.toLocalTime(),lunch, lunchEnd) -> {
-                    getView()?.setMedition(plunchKey)
+                    determinedKey = plunchKey
                 }
                 (dailyRegister?.category_id == lunchId || dailyRegister?.category_id == plunchId) && timeBetween(currentDate.toLocalTime(),snack,snackEnd) -> {
-                    getView()?.setMedition(snackKey)
+                    determinedKey = snackKey
                 }
                 (dailyRegister?.category_id == lunchId || dailyRegister?.category_id == plunchId) && (timeBetween(currentDate.toLocalTime(),dinner, dinnerEnd) ||  timeBetween(currentDate.toLocalTime(), midnight, midnightEnd))-> {
-                    getView()?.setMedition(dinnerKey)
+                    determinedKey = dinnerKey
                 }
                 (dailyRegister?.category_id == snackId || dailyRegister?.category_id == psnackId) && timeBetween(currentDate.toLocalTime(),snack,snackEnd) -> {
-                    getView()?.setMedition(psnackKey)
+                    determinedKey = psnackKey
                 }
                 (dailyRegister?.category_id == snackId || dailyRegister?.category_id == psnackId) && (timeBetween(currentDate.toLocalTime(),dinner, dinnerEnd) ||  timeBetween(currentDate.toLocalTime(), midnight, midnightEnd)) -> {
-                    getView()?.setMedition(dinnerKey)
+                    determinedKey = dinnerKey
                 }
                 (dailyRegister?.category_id == dinnerId || dailyRegister?.category_id == pdinnerId ) && (timeBetween(currentDate.toLocalTime(),dinner, dinnerEnd) ||  timeBetween(currentDate.toLocalTime(), midnight, midnightEnd)) -> {
-                    getView()?.setMedition(pdinnerKey)
+                    determinedKey = pdinnerKey
                 }
                 (dailyRegister?.category_id == dinnerId  || dailyRegister?.category_id == pdinnerId) && timeBetween(currentDate.toLocalTime(), breakfast, breakfastEnd) -> {
-                    getView()?.setMedition(breakfastKey)
+                    determinedKey = breakfastKey
                 }
                 (dailyRegister?.category_id == pdinnerId) -> { // Default or fallback case
-                    getView()?.setMedition(breakfastKey)
+                    determinedKey = breakfastKey
                 }
             }
+        }
+
+        determinedKey?.let { key ->
+            val view = getView()
+            val context = (view as? Context)
+            val translatedName = translateCategoryKey(key, context)
+            view?.setMedition(translatedName)
+        } ?: run {
+            Log.w("MainPresenter", "No se pudo determinar la clave de medición para establecer en la vista.")
+            // Consider setting a default translated message if appropriate and you have a default key
+            // val view = getView()
+            // val context = (view as? Context)
+            // view?.setMedition(translateCategoryKey("your_default_medition_key_here", context))
         }
     }
 

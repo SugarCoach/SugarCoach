@@ -546,35 +546,72 @@ class TreatmentPresenter<V : TreatmentView, I : TreatmentInteractorImp> @Inject 
             }
         }
     }
-    private fun getDataCategories(categoriesFromDb: List<TreatmentHorariosCategory>) { 
+    private fun getDataCategories(categoriesFromDb: List<TreatmentHorariosCategory>) {
         val ret = ArrayList<HorarioItem>()
+        val currentView = getView() // V?
+
+        // La vista (Activity/Fragment) debería ser o proveer un Context
+        val context = (currentView as? Context) // Intenta castear la vista a Context
+
         for(i in categoriesFromDb.indices){
             val categoryItem = categoriesFromDb[i].category
             if (categoryItem != null) {
+                var translatedName = categoryItem.cate_name
+
+                context?.let { ctx -> // Usar el contexto obtenido
+                    val resourceId = ctx.resources.getIdentifier(categoryItem.cate_name, "string", ctx.packageName)
+                    if (resourceId != 0) {
+                        try {
+                            translatedName = ctx.getString(resourceId)
+                        } catch (e: Exception) {
+                            Log.e("getDataCategories", "Error al obtener string para ${categoryItem.cate_name}", e)
+                        }
+                    } else {
+                        Log.w("getDataCategories", "No se encontró ID de recurso para: ${categoryItem.cate_name}")
+                    }
+                }
+                
                 val data = HorarioItem.Builder()
-                    .id(categoryItem.cate_id) // Corregido
-                    .name(categoryItem.cate_name) // Corregido
+                    .id(categoryItem.cate_id)
+                    .name(translatedName)
                     .build()
                 ret.add(data)
             }
         }
-        getView()?.setCategories(ret)
-
+        currentView?.setCategories(ret)
     }
-     private fun getDataCategoriesCorrectora(categoriesFromDb: List<TreatmentHCorrectoraCategory>) { 
+
+     private fun getDataCategoriesCorrectora(categoriesFromDb: List<TreatmentHCorrectoraCategory>) {
         val ret = ArrayList<HorarioItem>()
+        val currentView = getView()
+        val context = (currentView as? Context) // Intenta castear la vista a Context
+
         for(i in categoriesFromDb.indices){
              val categoryItem = categoriesFromDb[i].category
             if (categoryItem != null) {
+                var translatedName = categoryItem.cate_name
+
+                context?.let { ctx -> // Usar el contexto obtenido
+                    val resourceId = ctx.resources.getIdentifier(categoryItem.cate_name, "string", ctx.packageName)
+                    if (resourceId != 0) {
+                        try {
+                            translatedName = ctx.getString(resourceId)
+                        } catch (e: Exception) {
+                            Log.e("getDataCategoriesCorrectora", "Error al obtener string para ${categoryItem.cate_name}", e)
+                        }
+                    } else {
+                        Log.w("getDataCategoriesCorrectora", "No se encontró ID de recurso para: ${categoryItem.cate_name}")
+                    }
+                }
+                
                 val data = HorarioItem.Builder()
-                    .id(categoryItem.cate_id) // Corregido
-                    .name(categoryItem.cate_name) // Corregido
+                    .id(categoryItem.cate_id)
+                    .name(translatedName)
                     .build()
                 ret.add(data)
             }
         }
-        getView()?.setCategoriesCorrectora(ret)
-
+        currentView?.setCategoriesCorrectora(ret)
     }
     private fun getDataBasalHora(horas: List<TreamentBasalHora>) { 
         val ret = ArrayList<BasalHoraItem>()
