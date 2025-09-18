@@ -6,14 +6,16 @@ import android.graphics.Color
 import android.graphics.PorterDuff
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.View
-import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+// Eliminada: import com.skydoves.powerspinner.PowerSpinnerAdapter 
+import com.skydoves.powerspinner.PowerSpinnerView
 import com.sugarcoachpremium.R
 import com.sugarcoachpremium.data.api_db.DailyRegister.DailyRegisterResponse
 import com.sugarcoachpremium.data.database.repository.treament.TreatmentBasalCorrectora
@@ -37,15 +39,11 @@ import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
 import androidx.core.graphics.drawable.toDrawable
-import androidx.core.widget.addTextChangedListener
 import com.sugarcoachpremium.ui.register.view.RegisterActivity
 import android.text.Editable
 import android.text.TextWatcher
-import kotlin.math.roundToInt
 
-// class added by default by de IDE
 class TreatmentActivity : BaseActivity(), TreatmentView {
-    // Extension function for cleaner TextWatcher usage
     private fun android.widget.EditText.onTextChanged(action: (String) -> Unit) {
         this.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
@@ -58,7 +56,6 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
 
     @Inject
     lateinit var presenter: TreatmentPresenterImp<TreatmentView, TreatmentInteractorImp>
-
 
     @Inject
     lateinit var linearLayoutManager: LinearLayoutManager
@@ -110,6 +107,7 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
     lateinit var user: User
 
     lateinit var binding: ActivityTreatmentBinding
+    private var mAlertDialog: AlertDialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -128,6 +126,7 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
 
     override fun onDestroy() {
         presenter.onDetach()
+        mAlertDialog?.dismiss() // Dismiss dialog to prevent leaks
         super.onDestroy()
     }
 
@@ -198,7 +197,6 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
         binding.treatmentBombInfusora.setItems(basalInsuline)
     }
 
-
     override fun showDataSave(totalPoints: Int, points: Int) {
         createDialogCongratulation(points, totalPoints)
     }
@@ -209,8 +207,8 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
         val builder = AlertDialog.Builder(this)
         builder.setCancelable(false)
         builder.setView(view.root)
-        dialog = builder.create()
-        dialog.window?.setBackgroundDrawable(Color.TRANSPARENT.toDrawable())
+        mAlertDialog = builder.create()
+        mAlertDialog?.window?.setBackgroundDrawable(Color.TRANSPARENT.toDrawable())
         view.congratulationPtsTxt.text = "+$points"
         user.avatar?.let {
             view.congratulationAvatar.setImageDrawable(getDrawable(resIdByName(it, "drawable")))
@@ -221,89 +219,70 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
             (totalPoints in levelPoints until levelPoints * 2) -> {
                 text = "2 - Space Cadet"
             }
-
             (totalPoints in levelPoints * 2 until levelPoints * 4) -> {
                 text = "3 - Rocket Captain"
             }
-
             (totalPoints in levelPoints * 4 until levelPoints * 8) -> {
                 text = "4 - Startreck Voyayer"
             }
-
             (totalPoints in levelPoints * 8 until levelPoints * 16) -> {
                 text = "5 - Future Traveller"
             }
-
             (totalPoints >= levelPoints * 16) -> {
                 text = "6 - Quarks Master"
             }
         }
         view.congratulationLevelTxt.text = text
         view.congratulationPtsTotalTxt.text = totalPoints.toString()
-        view.congratulationClose.setOnClickListener { dialog.dismiss() }
-        dialog.setOnDismissListener { presenter.goToActivityMain() }
-        dialog.show()
+        view.congratulationClose.setOnClickListener { mAlertDialog?.dismiss() }
+        mAlertDialog?.setOnDismissListener { presenter.goToActivityMain() }
+        mAlertDialog?.show()
     }
+    
+    // Eliminada la función selectSpinnerItemById
 
     override fun setTreatment(treament: TreatmentBasalCorrectora) {
         val tratamiento = treament.treament!!
-        binding.treatmentObjTxt.setText(tratamiento.object_glucose.roundToInt().toString())
-        binding.treatmentHiperTxt.setText(tratamiento.hyperglucose.roundToInt().toString())
-        binding.treatmentHipoTxt.setText(tratamiento.hipoglucose.roundToInt().toString())
+        binding.treatmentObjTxt.setText(tratamiento.object_glucose.toString())
+        binding.treatmentHiperTxt.setText(tratamiento.hyperglucose.toString())
+        binding.treatmentHipoTxt.setText(tratamiento.hipoglucose.toString())
         binding.treatmentBomb.isChecked = tratamiento.bomb!!
         if (tratamiento.correctora_unit > 0f) {
-            binding.treatmentGluMayorUd.setText(tratamiento.correctora_unit.roundToInt().toString())
+            binding.treatmentGluMayorUd.setText(tratamiento.correctora_unit.toString())
         }
         if (tratamiento.correctora > 0f) {
-            binding.treatmentGluMayor.setText(tratamiento.correctora.roundToInt().toString())
+            binding.treatmentGluMayor.setText(tratamiento.correctora.toString())
         }
         if (tratamiento.insulina_unit > 0f) {
-            binding.treatmentCarbonoUd.setText(tratamiento.insulina_unit.roundToInt().toString())
+            binding.treatmentCarbonoUd.setText(tratamiento.insulina_unit.toString())
         }
         if (tratamiento.carbono > 0f) {
-            binding.treatmentCarbono.setText(tratamiento.carbono.roundToInt().toString())
+            binding.treatmentCarbono.setText(tratamiento.carbono.toString())
         }
-        tratamiento.basal_id?.let {
+
+        binding.treatmentInsuTxt.text = treament.basalInsuline?.name // Display the name as before
+
+        tratamiento.basal_insuline?.takeIf { it > 0 }?.let {
             initialbasal = true
-            binding.treatmentInsuTxt.text = treament.basalInsuline?.name
-            binding.treatmentBasal.selectItemByIndex(it - 1)
-        }
-        tratamiento.correctora_id?.let {
+            binding.treatmentBasal.selectItemByIndex(it - 1) 
+        } ?: run { initialbasal = false }
+
+        tratamiento.correctora_insuline?.takeIf { it > 0 }?.let {
             initial = true
             binding.treatmentCorrectora.selectItemByIndex(it - 1)
-        }
-        tratamiento.medidor_id?.let {
+        } ?: run { initial = false }
+
+        tratamiento.medidor?.takeIf { it > 0 }?.let {
             initialMedidor = true
             binding.treatmentMedidor.selectItemByIndex(it - 1)
-        }
-        tratamiento.bomba_id?.let {
+        } ?: run { initialMedidor = false }
+
+        tratamiento.bomba_infusora?.takeIf { it > 0 }?.let {
             initialBomba = true
             binding.treatmentBombInfusora.selectItemByIndex(it - 1)
-        }
+        } ?: run { initialBomba = false }
 
-
-        //************************* PARTE 1 ************************
-
-        //ORIGINAL
-//        binding.treatmentCorrectora.setOnSpinnerItemSelectedListener<BasalItem> { position, item ->
-//            if (!initial) {
-//                presenter.saveCorrectora(item)
-//            }else{
-//                initial = false
-//            }
-//        }
-
-        //SEGUNDA OPCION
-//        binding.treatmentCorrectora.setOnSpinnerItemSelectedListener<BasalItem> { oldIndex, oldItem, newIndex, newItem ->
-//            if (!initial) {
-//                presenter.saveCorrectora(newItem)
-//            } else {
-//                initial = false
-//            }
-//        }
-
-        //TERCERA OPCION
-
+        // Los listeners permanecen igual, ya manejan las banderas 'initial*'
         binding.treatmentCorrectora.setOnSpinnerItemSelectedListener<BasalItem> { oldIndex, oldItem, newIndex, newItem ->
             newItem.let {
                 if (!initial) {
@@ -314,30 +293,6 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
             }
         }
 
-        //************************* PARTE 2 ************************
-
-        //ORIGINAL
-//        binding.treatmentBasal.setOnSpinnerItemSelectedListener<BasalItem> { position, item ->
-//            if (!initialbasal) {
-//                binding.treatmentInsuTxt.text = item.name
-//                presenter.saveBasal(item)
-//            }else{
-//                initialbasal = false
-//            }
-//        }
-
-        //SEGUNDA OPCION
-
-//        binding.treatmentBasal.setOnSpinnerItemSelectedListener<BasalItem> { oldIndex, oldItem, newIndex, newItem ->
-//            if (!initialbasal) {
-//                binding.treatmentInsuTxt.text = newItem.name
-//                presenter.saveBasal(newItem)
-//            } else {
-//                initialbasal = false
-//            }
-//        }
-
-        //TERCERA OPCION
         binding.treatmentBasal.setOnSpinnerItemSelectedListener<BasalItem> { oldIndex, oldItem, newIndex, newItem ->
             newItem.let {
                 if (!initialbasal) {
@@ -349,27 +304,6 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
             }
         }
 
-        //************************* PARTE 3 ************************
-
-        //ORIGINAL
-//        binding.treatmentMedidor.setOnSpinnerItemSelectedListener<BasalItem> { position, item ->
-//            if (!initialMedidor) {
-//                presenter.saveMedidor(item)
-//            }else{
-//                initialMedidor = false
-//            }
-//        }
-
-        // SEGUNDA OPCION
-//        binding.treatmentMedidor.setOnSpinnerItemSelectedListener<BasalItem> { oldIndex, oldItem, newIndex, newItem ->
-//            if (!initialMedidor) {
-//                presenter.saveMedidor(newItem)
-//            } else {
-//                initialMedidor = false
-//            }
-//        }
-
-        //TERCERA OPCION
         binding.treatmentMedidor.setOnSpinnerItemSelectedListener<BasalItem> { oldIndex, oldItem, newIndex, newItem ->
             newItem.let {
                 if (!initialMedidor) {
@@ -380,29 +314,6 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
             }
         }
 
-
-        //************************* PARTE 4 ************************
-
-        //ORIGINAL
-//        binding.treatmentBombInfusora.setOnSpinnerItemSelectedListener<BasalItem> { position, item ->
-//            if (!initialBomba) {
-//                presenter.saveBomba(item)
-//            }else{
-//                initialBomba = false
-//            }
-//        }
-//    }
-
-        //SEGUNDA OPCION
-//        binding.treatmentBombInfusora.setOnSpinnerItemSelectedListener<BasalItem> { oldIndex, oldItem, newIndex, newItem ->
-//            if (!initialBomba) {
-//                presenter.saveBomba(newItem)
-//            } else {
-//                initialBomba = false
-//            }
-//        }
-
-        //TERCERA OPCION
         binding.treatmentBombInfusora.setOnSpinnerItemSelectedListener<BasalItem> { oldIndex, oldItem, newIndex, newItem ->
             newItem.let {
                 if (!initialBomba) {
@@ -413,246 +324,232 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
             }
         }
     }
-        //*******************************************************
 
-        override fun setCategories(category: List<HorarioItem>) {
-            lmanager.orientation = RecyclerView.VERTICAL
-            binding.treatmentBasalList.layoutManager = lmanager
-            binding.treatmentBasalList.adapter = adapterCategory
-            val items = ArrayList<String>()
-            for (i in 1 until 36) {
-                items.add(i.toString())
-            }
-            adapterCategory.setData(category, items)
+    override fun setCategories(category: List<HorarioItem>) {
+        lmanager.orientation = RecyclerView.VERTICAL
+        binding.treatmentBasalList.layoutManager = lmanager
+        binding.treatmentBasalList.adapter = adapterCategory
+        val items = ArrayList<String>()
+        for (i in 1 until 36) {
+            items.add(i.toString())
         }
-
-        override fun setCategoriesCorrectora(category: List<HorarioItem>) {
-            manager.orientation = RecyclerView.VERTICAL
-            binding.treatmentCorrectoraList.layoutManager = manager
-            binding.treatmentCorrectoraList.adapter = adapterCategoryCorrectora
-            adapterCategoryCorrectora.setData(category)
-        }
-
-        override fun setBasalHoras(horas: List<BasalHoraItem>) {
-            horamanager.orientation = RecyclerView.VERTICAL
-            binding.treatmentHoraList.layoutManager = horamanager
-            binding.treatmentHoraList.adapter = adapterBasalHoraAdapter
-            adapterBasalHoraAdapter.setData(horas)
-        }
-
-        fun setListeners() {
-            binding.treatmentObjTxt.onTextChanged {
-                presenter.saveObj(it.toFloatOrNull() ?: 0f)
-            }
-            binding.treatmentHipoTxt.onTextChanged {
-                presenter.saveHipo(it.toFloatOrNull() ?: 0f)
-            }
-            binding.treatmentHiperTxt.onTextChanged {
-                presenter.saveHyper(it.toFloatOrNull() ?: 0f)
-            }
-            binding.treatmentGluMayorUd.onTextChanged {
-                presenter.saveUnitCorrectora(it.toFloatOrNull() ?: 0f)
-            }
-            binding.treatmentGluMayor.onTextChanged {
-                presenter.saveCorrectoraGlu(it.toFloatOrNull() ?: 0f)
-            }
-            binding.treatmentCarbonoUd.onTextChanged {
-                presenter.saveUnitInsulina(it.toFloatOrNull() ?: 0f)
-            }
-            binding.treatmentCarbono.onTextChanged {
-                presenter.saveCarbono(it.toFloatOrNull() ?: 0f)
-            }
-
-            binding.treatmentMenu.setOnClickListener {
-                if (isFabOpen) {
-                    hideMenu()
-                } else {
-                    showMenu()
-                }
-            }
-
-            binding.treatmentShared.setOnClickListener {
-                hideMenu()
-                showProgress()
-                CoroutineScope(Dispatchers.IO).launch {
-                    presenter.makePdf(baseContext)
-                }
-                //presenter.getScreenShot(this, binding.treatmentLl)
-            }
-
-            binding.treatmentEdit.setOnClickListener {
-                presenter.commitChanges()
-            }
-
-            binding.treatmentBomb.setOnCheckedChangeListener { buttonView, isChecked ->
-                selectBomb(isChecked)
-            }
-
-            binding.treatmentBasalTitle.setOnClickListener { v ->
-                createDialogInfo(getString(R.string.info_insuline))
-            }
-
-            binding.treatmentRanges.setOnClickListener { v ->
-                createDialogInfo(getString(R.string.info_objective))
-            }
-
-            binding.treatmentBasalUnits.setOnClickListener { v ->
-                createDialogInfo(getString(R.string.info_insuline_times))
-            }
-
-            binding.treatmentGluMayorUdTitle.setOnClickListener { v ->
-                createDialogInfo(getString(R.string.info_insuline_correctora_mayor))
-            }
-
-            binding.treatmentCorrectoraTitle.setOnClickListener { v ->
-                createDialogInfo(getString(R.string.info_insuline_correctora))
-            }
-
-            binding.treatmentCorrectoraListTitle.setOnClickListener { v ->
-                createDialogInfo(getString(R.string.info_insuline_horary))
-            }
-
-            binding.treatmentCarbonoTitle.setOnClickListener { v ->
-                createDialogInfo(getString(R.string.info_carbono))
-            }
-
-            binding.treatmentRecordatorioTitle.setOnClickListener { v ->
-                createDialogInfo(getString(R.string.info_recordatorio))
-            }
-
-        }
-
-        fun hideMenu() {
-            isFabOpen = false
-            binding.treatmentMenu.setImageResource(R.drawable.ic_hand)
-            binding.treatmentEdit.visibility = View.GONE
-            binding.treatmentShared.visibility = View.GONE
-        }
-
-        fun showMenu() {
-            isFabOpen = true
-            binding.treatmentMenu.setImageResource(R.drawable.cancel)
-            binding.treatmentEdit.visibility = View.VISIBLE
-            binding.treatmentShared.visibility = View.VISIBLE
-        }
-
-        override fun sharedScreenShot(uri: Uri) {
-            val shareIntent: Intent = Intent().apply {
-                action = Intent.ACTION_SEND
-                putExtra(Intent.EXTRA_STREAM, uri)
-                type = "image/jpeg"
-            }
-            startActivity(
-                Intent.createChooser(
-                    shareIntent,
-                    resources.getText(R.string.daily_detail_share)
-                )
-            )
-        }
-
-        fun menuListeners() {
-            binding.home.setOnClickListener { presenter.goToActivityMain() }
-            binding.statistics.setOnClickListener { presenter.goToActivityStatistic() }
-            binding.dailyRegister.setOnClickListener { presenter.goToActivityDaily() }
-            binding.addRegister.setOnClickListener { presenter.goToActivityRegister() }
-        }
-
-        private fun createDialogInfo(info: String) {
-            val view = DialogInfoBinding.inflate(layoutInflater)
-            val builder = AlertDialog.Builder(this)
-            builder.setCancelable(false)
-            builder.setView(view.root)
-            val dialog = builder.create()
-            dialog.window?.setBackgroundDrawable(Color.TRANSPARENT.toDrawable())
-            view.infoSubtitle.text = info
-            view.infoAccept.setOnClickListener {
-                dialog.dismiss()
-            }
-            dialog.show()
-        }
-
-        override fun openDailyActivity() {
-            val intent = Intent(this, DailyActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
-
-        //ORIGINAL
-//     override fun openTableActivity(dailyRegisters: List<DailyRegisterResponse> ){
-//         /*val intent = Intent(this, TableActivity::class.java)
-//         intent.putExtra("DailyRegisters", dailyRegisters.toArray())
-//         startActivity(intent)
-//         finish()*/
-//     }
-
-        //REEMPLAZO 25/08/2025
-
-        override fun openTableActivity(dailyRegisters: List<DailyRegisterResponse>) {
-            val intent = Intent(this, TableActivity::class.java)
-            // Pasa la lista como un ArrayList (que es Serializable)
-            intent.putExtra("DailyRegisters", ArrayList(dailyRegisters))
-            startActivity(intent)
-            finish()
-        }
-
-        override fun openStatisticActivity() {
-            val intent = Intent(this, StatisticsActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
-        override fun openRegisterActivity() {
-            val intent = Intent(this, RegisterActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
-
-
-        override fun openMainActivity() {
-            val intent = Intent(this, MainActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-            startActivity(intent)
-            finish()
-        }
-
-        override fun getLabel(name: String): String {
-            return getString(resIdByName(name, "string"))
-        }
-
-        fun selectBomb(show: Boolean) {
-            if (show) {
-                binding.treatmentBombNo.visibility = View.GONE
-                binding.treatmentHorario.visibility = View.GONE
-                binding.treatmentBombSi.visibility = View.VISIBLE
-            } else {
-                binding.treatmentBombNo.visibility = View.VISIBLE
-                binding.treatmentHorario.visibility = View.VISIBLE
-                binding.treatmentBombSi.visibility = View.GONE
-            }
-            presenter.saveBomb(show)
-        }
-
-        fun mirrorAccount() {
-            binding.addRegister.isEnabled = true
-            binding.addRegisterImage.setColorFilter(
-                ContextCompat.getColor(this, R.color.white),
-                PorterDuff.Mode.MULTIPLY
-            )
-        }
-
-        fun dialogSave() {
-            val view = DialogTreatmentSaveBinding.inflate(layoutInflater)
-            val builder = AlertDialog.Builder(this)
-            builder.setView(view.root)
-            dialog = builder.create()
-            dialog.window?.setBackgroundDrawable(Color.TRANSPARENT.toDrawable())
-            view.treamentAccept.setOnClickListener {
-                presenter.commitChanges()
-                dialog.dismiss()
-            }
-            view.treamentCancel.setOnClickListener {
-                finish()
-                dialog.dismiss()
-            }
-            dialog.show()
-        }
+        adapterCategory.setData(category, items)
     }
+
+    override fun setCategoriesCorrectora(category: List<HorarioItem>) {
+        manager.orientation = RecyclerView.VERTICAL
+        binding.treatmentCorrectoraList.layoutManager = manager
+        binding.treatmentCorrectoraList.adapter = adapterCategoryCorrectora
+        adapterCategoryCorrectora.setData(category)
+    }
+
+    override fun setBasalHoras(horas: List<BasalHoraItem>) {
+        horamanager.orientation = RecyclerView.VERTICAL
+        binding.treatmentHoraList.layoutManager = horamanager
+        binding.treatmentHoraList.adapter = adapterBasalHoraAdapter
+        adapterBasalHoraAdapter.setData(horas)
+    }
+
+    fun setListeners() {
+        binding.treatmentObjTxt.onTextChanged {
+            presenter.saveObj(it.toFloatOrNull() ?: 0f)
+        }
+        binding.treatmentHipoTxt.onTextChanged {
+            presenter.saveHipo(it.toFloatOrNull() ?: 0f)
+        }
+        binding.treatmentHiperTxt.onTextChanged {
+            presenter.saveHyper(it.toFloatOrNull() ?: 0f)
+        }
+        binding.treatmentGluMayorUd.onTextChanged {
+            presenter.saveUnitCorrectora(it.toFloatOrNull() ?: 0f)
+        }
+        binding.treatmentGluMayor.onTextChanged {
+            presenter.saveCorrectoraGlu(it.toFloatOrNull() ?: 0f)
+        }
+        binding.treatmentCarbonoUd.onTextChanged {
+            presenter.saveUnitInsulina(it.toFloatOrNull() ?: 0f)
+        }
+        binding.treatmentCarbono.onTextChanged {
+            presenter.saveCarbono(it.toFloatOrNull() ?: 0f)
+        }
+
+        binding.treatmentMenu.setOnClickListener {
+            if (isFabOpen) {
+                hideMenu()
+            } else {
+                showMenu()
+            }
+        }
+
+        binding.treatmentShared.setOnClickListener {
+            hideMenu()
+            showProgress()
+            CoroutineScope(Dispatchers.IO).launch {
+                presenter.makePdf(baseContext)
+            }
+        }
+
+        binding.treatmentEdit.setOnClickListener {
+            presenter.commitChanges()
+        }
+
+        binding.treatmentBomb.setOnCheckedChangeListener { buttonView, isChecked ->
+            selectBomb(isChecked)
+        }
+
+        binding.treatmentBasalTitle.setOnClickListener { v ->
+            createDialogInfo(getString(R.string.info_insuline))
+        }
+
+        binding.treatmentRanges.setOnClickListener { v ->
+            createDialogInfo(getString(R.string.info_objective))
+        }
+
+        binding.treatmentBasalUnits.setOnClickListener { v ->
+            createDialogInfo(getString(R.string.info_insuline_times))
+        }
+
+        binding.treatmentGluMayorUdTitle.setOnClickListener { v ->
+            createDialogInfo(getString(R.string.info_insuline_correctora_mayor))
+        }
+
+        binding.treatmentCorrectoraTitle.setOnClickListener { v ->
+            createDialogInfo(getString(R.string.info_insuline_correctora))
+        }
+
+        binding.treatmentCorrectoraListTitle.setOnClickListener { v ->
+            createDialogInfo(getString(R.string.info_insuline_horary))
+        }
+
+        binding.treatmentCarbonoTitle.setOnClickListener { v ->
+            createDialogInfo(getString(R.string.info_carbono))
+        }
+
+        binding.treatmentRecordatorioTitle.setOnClickListener { v ->
+            createDialogInfo(getString(R.string.info_recordatorio))
+        }
+
+    }
+
+    fun hideMenu() {
+        isFabOpen = false
+        binding.treatmentMenu.setImageResource(R.drawable.ic_hand)
+        binding.treatmentEdit.visibility = View.GONE
+        binding.treatmentShared.visibility = View.GONE
+    }
+
+    fun showMenu() {
+        isFabOpen = true
+        binding.treatmentMenu.setImageResource(R.drawable.cancel)
+        binding.treatmentEdit.visibility = View.VISIBLE
+        binding.treatmentShared.visibility = View.VISIBLE
+    }
+
+    override fun sharedScreenShot(uri: Uri) {
+        val shareIntent: Intent = Intent().apply {
+            action = Intent.ACTION_SEND
+            putExtra(Intent.EXTRA_STREAM, uri)
+            type = "image/jpeg"
+        }
+        startActivity(
+            Intent.createChooser(
+                shareIntent,
+                resources.getText(R.string.daily_detail_share)
+            )
+        )
+    }
+
+    fun menuListeners() {
+        binding.home.setOnClickListener { presenter.goToActivityMain() }
+        binding.statistics.setOnClickListener { presenter.goToActivityStatistic() }
+        binding.dailyRegister.setOnClickListener { presenter.goToActivityDaily() }
+        binding.addRegister.setOnClickListener { presenter.goToActivityRegister() }
+    }
+
+    private fun createDialogInfo(info: String) {
+        val view = DialogInfoBinding.inflate(layoutInflater)
+        val builder = AlertDialog.Builder(this)
+        builder.setCancelable(false)
+        builder.setView(view.root)
+        mAlertDialog = builder.create()
+        mAlertDialog?.window?.setBackgroundDrawable(Color.TRANSPARENT.toDrawable())
+        view.infoSubtitle.text = info
+        view.infoAccept.setOnClickListener {
+            mAlertDialog?.dismiss()
+        }
+        mAlertDialog?.show()
+    }
+
+    override fun openDailyActivity() {
+        val intent = Intent(this, DailyActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
+    override fun openTableActivity(dailyRegisters: List<DailyRegisterResponse>) {
+        val intent = Intent(this, TableActivity::class.java)
+        intent.putExtra("DailyRegisters", ArrayList(dailyRegisters))
+        startActivity(intent)
+        finish()
+    }
+
+    override fun openStatisticActivity() {
+        val intent = Intent(this, StatisticsActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+    override fun openRegisterActivity() {
+        val intent = Intent(this, RegisterActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
+    override fun openMainActivity() {
+        val intent = Intent(this, MainActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(intent)
+        finish()
+    }
+
+    override fun getLabel(name: String): String {
+        return getString(resIdByName(name, "string"))
+    }
+
+    fun selectBomb(show: Boolean) {
+        if (show) {
+            binding.treatmentBombNo.visibility = View.GONE
+            binding.treatmentHorario.visibility = View.GONE
+            binding.treatmentBombSi.visibility = View.VISIBLE
+        } else {
+            binding.treatmentBombNo.visibility = View.VISIBLE
+            binding.treatmentHorario.visibility = View.VISIBLE
+            binding.treatmentBombSi.visibility = View.GONE
+        }
+        presenter.saveBomb(show)
+    }
+
+    fun mirrorAccount() {
+        binding.addRegister.isEnabled = true
+        binding.addRegisterImage.setColorFilter(
+            ContextCompat.getColor(this, R.color.white),
+            PorterDuff.Mode.MULTIPLY
+        )
+    }
+
+    fun dialogSave() {
+        val view = DialogTreatmentSaveBinding.inflate(layoutInflater)
+        val builder = AlertDialog.Builder(this)
+        builder.setView(view.root)
+        mAlertDialog = builder.create() // Usando mAlertDialog consistentemente
+        mAlertDialog?.window?.setBackgroundDrawable(Color.TRANSPARENT.toDrawable())
+        view.treamentAccept.setOnClickListener {
+            presenter.commitChanges()
+            mAlertDialog?.dismiss()
+        }
+        view.treamentCancel.setOnClickListener {
+            finish()
+            mAlertDialog?.dismiss()
+        }
+        mAlertDialog?.show()
+    }
+}

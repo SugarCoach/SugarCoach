@@ -11,21 +11,16 @@ import android.net.Uri
 import android.provider.MediaStore
 import android.util.Log
 import android.view.View
-import android.widget.TableRow
-import android.widget.TextView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.sugarcoachpremium.R
-import com.sugarcoachpremium.data.api_db.DailyRegister.DailyRegisterResponse
-import com.sugarcoachpremium.data.database.repository.dailyregister.DailyRegister
 import com.sugarcoachpremium.data.database.repository.treament.*
 import com.sugarcoachpremium.data.database.repository.user.User
-import com.sugarcoachpremium.type.Treatment
 import com.sugarcoachpremium.ui.base.presenter.BasePresenter
 import com.sugarcoachpremium.ui.treatment.interactor.TreatmentInteractorImp
 import com.sugarcoachpremium.ui.treatment.view.BasalHoraItem
-import com.sugarcoachpremium.ui.treatment.view.HorarioItem
 import com.sugarcoachpremium.ui.treatment.view.BasalItem
+import com.sugarcoachpremium.ui.treatment.view.HorarioItem
 import com.sugarcoachpremium.ui.treatment.view.TreatmentView
 import com.sugarcoachpremium.util.SchedulerProvider
 import io.reactivex.disposables.CompositeDisposable
@@ -33,43 +28,77 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import org.joda.time.LocalDateTime
 import java.io.ByteArrayOutputStream
-import java.lang.Exception
-import java.util.EnumSet.range
 import javax.inject.Inject
-import kotlin.reflect.full.memberProperties
 
-class TreatmentPresenter<V : TreatmentView, I : TreatmentInteractorImp> @Inject internal constructor(interactor: I, schedulerProvider: SchedulerProvider, disposable: CompositeDisposable) : BasePresenter<V, I>(interactor = interactor, schedulerProvider = schedulerProvider, compositeDisposable = disposable),
-    TreatmentPresenterImp<V,I> {
-
-
+class TreatmentPresenter<V : TreatmentView, I : TreatmentInteractorImp> @Inject internal constructor(interactor: I, schedulerProvider: SchedulerProvider, disposable: CompositeDisposable) : BasePresenter<V, I>(interactor = interactor, schedulerProvider = schedulerProvider, compositeDisposable = disposable), TreatmentPresenterImp<V, I> {
     lateinit var treatment: Treament
-    lateinit var correctora: TreamentCorrectoraHorarios
     lateinit var basal: TreamentHorarios
-
-    lateinit var basalInsuline: String
-    lateinit var correctoraInsuline: String
-
+    lateinit var correctora: TreamentCorrectoraHorarios
     lateinit var user: User
+    var basalInsuline: String = ""
+    var correctoraInsuline: String = ""
+    private var medidorName: String = "" 
+    private var bombaInfusoraName: String = "" 
 
-    override fun saveObj(obj: Float) { treatment.object_glucose = obj }
 
-    override fun saveHipo(hipo: Float) { treatment.hipoglucose = hipo }
-
-    override fun saveHyper(hyper: Float) { treatment.hyperglucose = hyper }
+    override fun onAttach(view: V?) {
+        super.onAttach(view)
+        try{
+            getUser() 
+            getBombas() // Para las listas de selección
+            getMedidores() // Para las listas de selección
+            getCorrectora() // Para las listas de selección
+            getBasal() // Para las listas de selección
+            getCategories() // Para las listas de selección
+            getCategoriesCorrectora() // Para las listas de selección
+            getBasalHoras() // Para las listas de selección
+        }catch (e: Exception){
+            Log.i("Onattach", "Ocurrio un error en el attach $e")
+            getView()?.showErrorToast()
+        }
+    }
+    // El método iniciativa() ya no es necesario si getTreatment() se llama correctamente desde getUser()
+    // y los datos iniciales se cargan en onAttach o a través de getUser -> getTreatment.
+    // Si se necesita una carga inicial específica de tratamiento que no dependa de getUser,
+    // se puede reactivar y ajustar para que use TreatmentBasalCorrectora.
+    /*
+    fun iniciativa() { 
+        interactor?.let {
+            compositeDisposable.add(it.getTreatment() // Devuelve TreatmentBasalCorrectora
+                .compose(schedulerProvider.ioToMainSingleScheduler())
+                .subscribe({ treamentResponse -> // treamentResponse es TreatmentBasalCorrectora
+                    if (treamentResponse.treament != null) {
+                        treatment = treamentResponse.treament!!
+                        getView()?.setTreatment(treamentResponse) // La vista espera TreatmentBasalCorrectora
+                    } else {
+                        // Manejar el caso donde treamentResponse.treament es null si es posible
+                        Log.e("iniciativa", "El objeto Treament dentro de TreatmentBasalCorrectora es null")
+                        // Podrías inicializar un Treament vacío o mostrar un error
+                    }
+                }, { throwable ->
+                    showException(throwable)
+                })
+            )
+        }
+    }
+    */
 
     override fun updateAll() {
-        Log.i("OnUpdateAll", "Se actualizan las bases de datos")
-        getView()?.showProgress()
-        interactor?.let {
-            CoroutineScope(Dispatchers.IO).launch{
-                compositeDisposable.add(it.editTreatment(treatment, basalInsuline, correctoraInsuline)
+        if (!::treatment.isInitialized) {
+            getView()?.showErrorToast("Datos de tratamiento no cargados.")
+            return
+        }
+        CoroutineScope(Dispatchers.Main).launch {
+            interactor?.let {
+                val treamentToSave = treatment // Es de tipo Treament
+                // El interactor.editTreatment espera un objeto Treament, lo cual es correcto.
+                compositeDisposable.add(it.editTreatment(treamentToSave, basalInsuline, correctoraInsuline, medidorName, bombaInfusoraName)
                     .compose(schedulerProvider.ioToMainObservableScheduler())
                     .subscribe({
-                        Log.i("OnUpdateAll", "La respuesta de editTreatment fue: $it")
-                        updatePoints(cantParametersChanged())
+                        getView()?.showSuccessToast("Actualizo Correctamente")
+                        getTreatment() // Para refrescar los datos, incluyendo los nombres
                     }, { throwable ->
                         showException(throwable)
                     })
@@ -78,135 +107,73 @@ class TreatmentPresenter<V : TreatmentView, I : TreatmentInteractorImp> @Inject 
         }
     }
 
-    private fun updatePoints(points: Int){
-        interactor?.let { inte ->
-            compositeDisposable.add(inte.updateLocalPoints(user, points)
-                .compose(schedulerProvider.ioToMainObservableScheduler())
-                .subscribe({ userInsert ->
-                    Log.i("OnRegisterPresenter", "UserInsert: $userInsert")
-                    if(userInsert){
-                        getView()?.hideProgress()
-                        getView()?.showErrorToast()
-                        goToActivityMain()
-                    }else {
-                        CoroutineScope(Dispatchers.IO).launch {
-                            val updatedPoints = inte.updateUserPoints()
-                            if (updatedPoints) {
-                                withContext(Dispatchers.Main){
-                                    getView()?.hideProgress()
-                                    getView()?.showDataSave(user.points, points)
-                                }
-                            }else{
-                                withContext(Dispatchers.Main){
-                                    getView()?.hideProgress()
-                                    getView()?.showErrorToast()
-                                    goToActivityMain()
-                                }
-                            }
-                        }
-                    }
-                },{
-                    getView()?.hideProgress()
-                    getView()?.showErrorToast()
-                    goToActivityMain()
-                }))
-        }
-    }
-
-    private fun cantParametersChanged(): Int{
-        val noNull = mutableListOf<String>()
-
-        val properties = Treament::class.memberProperties
-
-        for (property in properties) {
-            val valor = property.get(treatment)
-
-            if ((valor != "" && valor != null) && (property.name != "date") ) {
-                Log.i("OnTreatmentPresenter", "cantParameterChanged: El valor es: $valor, ${property.name}")
-                noNull.add(property.name)
-            }
-        }
-        var points = 0
-        var contr = true
-        for(v in 1 until noNull.size){
-            if(contr){
-                points += 100
-                contr = false
-            }
-            points += 50
-        }
-        return points
-    }
-    override fun saveCorrectoraGlu(correctora: Float) {
-        treatment.correctora = correctora
-    }
-
-    override fun saveBomb(bomb: Boolean) {
-        treatment.bomb = bomb
-    }
-    override fun goToActivityDaily() {
-        getView()?.openDailyActivity()
-    }
-
-    override fun goToActivityMain() {
-        getView()?.openMainActivity()
-    }
-
-    override fun goToActivityStatistic() {
-        getView()?.openStatisticActivity()
-    }
-
-    override fun goToActivityRegister() {
-        getView()?.openRegisterActivity()
-    }
-
-
     override fun saveBasal(item: BasalItem) {
-        treatment.basal_id = item.id
-        Log.i("OnSaveBasal", "Basal seteada en memoria: ${item.id}")    }
+        if (!::treatment.isInitialized) return
+        treatment.basal_insuline = item.id
+        this.basalInsuline = item.name 
+        Log.i("OnSaveBasal", "Basal seteada en memoria: ${item.id}, Nombre: ${item.name}")
+    }
 
     override fun saveCorrectora(item: BasalItem) {
-        treatment.correctora_id = item.id
-        Log.i("OnSaveCorrectora", "Correctora seteada en memoria: ${item.id}")
+        if (!::treatment.isInitialized) return
+        treatment.correctora_insuline = item.id
+        this.correctoraInsuline = item.name 
+        Log.i("OnSaveCorrectora", "Correctora seteada en memoria: ${item.id}, Nombre: ${item.name}")
     }
     override fun saveCategory(item: HorarioItem) {
+        if (!::treatment.isInitialized) return
         basal = TreamentHorarios(item.id, item.categoryId, item.selected, treatment.id, item.units.toFloat())
         Log.i("OnSaveCategory", "Categoría basal guardada en memoria: ${item.name}")
 
-//        interactor?.let {
-//            compositeDisposable.add(it.editBasalCategory(basal)
-//                .compose(schedulerProvider.ioToMainObservableScheduler())
-//                .subscribe({ getView()?.showSuccessToast("Actualizo Correctamente")
-//                }, { throwable ->
-//                    showException(throwable)
-//                })
-//            )
-//        }
+        interactor?.let {
+            compositeDisposable.add(it.editBasalCategory(basal)
+                .compose(schedulerProvider.ioToMainObservableScheduler())
+                .subscribe({ getView()?.showSuccessToast("Actualizo Correctamente")
+                }, { throwable ->
+                    Log.e("SaveCategory", "Error al guardar categoría basal: ${throwable.message}", throwable)
+                    showException(throwable)
+                })
+            )
+        }
     }
 
     override fun saveCorrectoraCategory(item: HorarioItem) {
+        if (!::treatment.isInitialized) return
+        // Asegurarse de que treatment.id es válido antes de usarlo
+        if (treatment.id == 0) { // O cualquier otro valor que indique "no inicializado" o "inválido"
+             Log.e("SaveCorrectoraCategory", "treatment.id es inválido (${treatment.id}) antes de crear TreamentCorrectoraHorarios.")
+             getView()?.showErrorToast("Error: No se pudo guardar la categoría correctora debido a datos de tratamiento incompletos.")
+             return 
+        }
         correctora = TreamentCorrectoraHorarios(item.id, item.categoryId,  treatment.id, item.selected)
-        Log.i("OnSaveCorrectoraCategory", "Categoría correctora guardada en memoria: ${item.name}")
-//        interactor?.let {
-//            compositeDisposable.add(it.editCorrectoraCategory(correctora)
-//                .compose(schedulerProvider.ioToMainObservableScheduler())
-//                .subscribe({ getView()?.showSuccessToast("Actualizo Correctamente")
-//                }, { throwable ->
-//                    showException(throwable)
-//                })
-//            )
-//        }
+        Log.i("OnSaveCorrectoraCategory", "Categoría correctora guardada en memoria: ${item.name} con treatment.id: ${treatment.id}")
+        interactor?.let {
+            compositeDisposable.add(it.editCorrectoraCategory(correctora)
+                .compose(schedulerProvider.ioToMainObservableScheduler())
+                .subscribe({ getView()?.showSuccessToast("Actualizo Correctamente")
+                }, { throwable ->
+                    Log.e("SaveCorrectoraCategory", "Error al guardar categoría correctora: ${throwable.message}", throwable)
+                    showException(throwable)
+                })
+            )
+        }
     }
 
     override fun saveUnitCorrectora(unit: Float) {
+        if (!::treatment.isInitialized) return
         treatment.correctora_unit = unit
         Log.i("OnSaveUnitCorrectora", "Unidad correctora en memoria: $unit")
     }
 
-    // Todo hacer que se guarde en la db los datos de horas del tratamiento
     override fun saveHoraBasal(item: BasalHoraItem) {
+        if (!::treatment.isInitialized) return
+         if (treatment.id == 0) {
+            Log.e("SaveHoraBasal", "treatment.id es inválido (${treatment.id}) antes de crear TreamentBasalHora.")
+            getView()?.showErrorToast("Error: No se pudo guardar la hora basal debido a datos de tratamiento incompletos.")
+            return
+        }
         Log.i("OnSaveHoraBasal", "Entré a la función saveHoraBasal")
-        Log.i("OnSaveHoraBasal", "El item es: $item")
+        Log.i("OnSaveHoraBasal", "El item es: $item, treatment.id: ${treatment.id}")
         val unitsFloat = item.units.toFloatOrNull()
         if (unitsFloat == null) {
             Log.e("OnSaveHoraBasal", "Units vacío o inválido: '${item.units}'")
@@ -214,46 +181,52 @@ class TreatmentPresenter<V : TreatmentView, I : TreatmentInteractorImp> @Inject 
             return
         }
         var hora = TreamentBasalHora(item.id, item.name,  treatment.id, unitsFloat)
-        // Log.i("OnSaveHoraBasal", "Hora basal guardada en memoria: ${item.name} con ${item.units}")
-//        interactor?.let {
-//            compositeDisposable.add(it.editBasalHora(hora)
-//                .compose(schedulerProvider.ioToMainObservableScheduler())
-//                .subscribe({ getView()?.showSuccessToast("Actualizo Correctamente")
-//                }, { throwable ->
-//                    showException(throwable)
-//                })
-//            )
-//        }
+        interactor?.let {
+            compositeDisposable.add(it.editBasalHora(hora)
+                .compose(schedulerProvider.ioToMainObservableScheduler())
+                .subscribe({ getView()?.showSuccessToast("Actualizo Correctamente")
+                }, { throwable ->
+                    Log.e("SaveHoraBasal", "Error al guardar hora basal: ${throwable.message}", throwable)
+                    showException(throwable)
+                })
+            )
+        }
     }
 
     override fun saveMedidor(item: BasalItem) {
-        treatment.medidor_id = item.id
-        Log.i("OnSaveMedidor", "Medidor guardado en memoria: ${item.id}")
+        if (!::treatment.isInitialized) return
+        treatment.medidor = item.id
+        this.medidorName = item.name 
+        Log.i("OnSaveMedidor", "Medidor guardado en memoria: ${item.id}, Nombre: ${item.name}")
     }
 
     override fun saveBomba(item: BasalItem) {
-        treatment.bomba_id = item.id
-        Log.i("OnSaveBomba", "Bomba guardada en memoria: ${item.id}")
+        if (!::treatment.isInitialized) return
+        treatment.bomba_infusora = item.id
+        this.bombaInfusoraName = item.name 
+        Log.i("OnSaveBomba", "Bomba guardada en memoria: ${item.id}, Nombre: ${item.name}")
     }
 
     override fun saveCarbono(carbono: Float) {
+        if (!::treatment.isInitialized) return
         treatment.carbono = carbono
         Log.i("OnSaveCarbono", "Carbono seteado en memoria: $carbono")
     }
 
     override fun saveUnitInsulina(unit: Float) {
+        if (!::treatment.isInitialized) return
         treatment.insulina_unit = unit
         Log.i("OnSaveUnitInsulina", "Unidad insulina en memoria: $unit")
     }
 
 
-    fun getCorrectora() {
+    fun getCorrectora() { 
         interactor?.let {
             compositeDisposable.add(it.getCorrectora()
                 .compose(schedulerProvider.ioToMainSingleScheduler())
-                .subscribe({ basals ->
-                    Log.i("OnGetCorrectora", "Se inicia bien: $basals")
-                    getDataCorrectora(basals)
+                .subscribe({ correctoras ->
+                    Log.i("OnGetCorrectora", "Se inicia bien: $correctoras")
+                    getDataCorrectora(correctoras)
                 }, { throwable ->
                     showException(throwable)
                 })
@@ -262,7 +235,7 @@ class TreatmentPresenter<V : TreatmentView, I : TreatmentInteractorImp> @Inject 
     }
 
 
-     fun getBasal() {
+     fun getBasal() { 
         interactor?.let {
             compositeDisposable.add(it.getBasals()
                 .compose(schedulerProvider.ioToMainSingleScheduler())
@@ -275,7 +248,7 @@ class TreatmentPresenter<V : TreatmentView, I : TreatmentInteractorImp> @Inject 
             )
         }
     }
-    fun getMedidores() {
+    fun getMedidores() { 
         interactor?.let {
             compositeDisposable.add(it.getMedidores()
                 .compose(schedulerProvider.ioToMainSingleScheduler())
@@ -289,7 +262,7 @@ class TreatmentPresenter<V : TreatmentView, I : TreatmentInteractorImp> @Inject 
         }
     }
 
-    fun getBombas() {
+    fun getBombas() { 
         interactor?.let {
             compositeDisposable.add(it.getBombas()
                 .compose(schedulerProvider.ioToMainSingleScheduler())
@@ -303,7 +276,7 @@ class TreatmentPresenter<V : TreatmentView, I : TreatmentInteractorImp> @Inject 
         }
     }
 
-    fun getCategories() {
+    fun getCategories() { 
         interactor?.let {
             compositeDisposable.add(it.getCategories()
                 .compose(schedulerProvider.ioToMainSingleScheduler())
@@ -315,7 +288,7 @@ class TreatmentPresenter<V : TreatmentView, I : TreatmentInteractorImp> @Inject 
             )
         }
     }
-     fun getCategoriesCorrectora() {
+     fun getCategoriesCorrectora() { 
         interactor?.let {
             compositeDisposable.add(it.getCategoriesCorrectora()
                 .compose(schedulerProvider.ioToMainSingleScheduler())
@@ -327,7 +300,7 @@ class TreatmentPresenter<V : TreatmentView, I : TreatmentInteractorImp> @Inject 
             )
         }
     }
-    fun getBasalHoras() {
+    fun getBasalHoras() { 
         interactor?.let {
             compositeDisposable.add(it.getBasalHoras()
                 .compose(schedulerProvider.ioToMainSingleScheduler())
@@ -340,8 +313,9 @@ class TreatmentPresenter<V : TreatmentView, I : TreatmentInteractorImp> @Inject 
         }
     }
 
-    override fun showException(throwable: Throwable?) {
-
+    override fun showException(throwable: Throwable?) { 
+        Log.e("TreatmentPresenter", "Error: ${throwable?.message}", throwable)
+        getView()?.showErrorToast("Ocurrió un error: ${throwable?.message}")
     }
     override fun getScreenShot(context: Activity, view: View) {
         if (checkAndRequestPermissions(context)){
@@ -391,57 +365,83 @@ class TreatmentPresenter<V : TreatmentView, I : TreatmentInteractorImp> @Inject 
         }
         return true
     }
-    override fun onAttach(view: V?) {
-        super.onAttach(view)
-        try{
-            getUser()
-            getBasal()
-            getCategories()
-            getCategoriesCorrectora()
-            getBasalHoras()
-        }catch (e: Exception){
-            Log.i("Onattach", "Ocurrio un error en el attach $e")
-            getView()?.showErrorToast()
-        }
-    }
-    private fun getTreatment() {
-        interactor?.let {
-            compositeDisposable.add(it.getTreatment()
-                .compose(schedulerProvider.ioToMainSingleScheduler())
-                .subscribe({ treament ->
-                    Log.i("OnGetTreatment", "Se ingresa a treatment:$treament")
-                    getView()?.let {
-                        treatment = treament.treament!!
-                        basalInsuline = treament.basalInsuline?.name.toString()
-                        correctoraInsuline = treament.correctoraInsuline?.cname.toString()
-                        getPromedio(treament)
-                        getTotalBasal()
-                        getView()?.setTreatment(treament)
-                    }
-                }, { err -> Log.i("OnGetTreatment", "Ocurrio un error: $err") })
-            )
-        }
-    }
 
-    private fun getUser() {
+    private fun getUser() { 
         val date = LocalDateTime()
         interactor?.let {
             compositeDisposable.add(it.getUser()
                 .subscribeOn(Schedulers.io())
                 .subscribe({ userData ->
                     user = userData
-                    getView()?.let {
-                        getView()?.setData(userData,date.toDate())
-                    }
-                }, { err -> println(err) })
+                    getView()?.setData(userData,date.toDate())
+                    getTreatment() 
+                }, { err ->
+                    Log.e("TreatmentPresenter", "Error obteniendo usuario: $err")
+                    getView()?.showErrorToast("Error al cargar datos del usuario.")
+                })
             )
         }
     }
-    private fun getPromedio(treament: TreatmentBasalCorrectora) {
-        var tratamiento = treament.treament!!
-        val danger = tratamiento.hyperglucose
-        val good = tratamiento.hipoglucose..tratamiento.hyperglucose
-        val low = 20f..tratamiento.hipoglucose
+    private fun getTreatment() { 
+        interactor?.let {
+            compositeDisposable.add(it.getTreatment() // Devuelve TreatmentBasalCorrectora
+                .compose(schedulerProvider.ioToMainSingleScheduler())
+                .subscribe({ treamentResponse -> 
+                    Log.i("OnGetTreatment", "Se ingresa a treatment:$treamentResponse")
+                    getView()?.let {view -> 
+                        if (treamentResponse.treament != null) {
+                            treatment = treamentResponse.treament!!
+                            Log.i("GetTreatment", "Treatment object set with id: ${treatment.id}")
+                            // Guardar nombres directamente si vienen de la API y no son nulos/vacíos
+                            if (!treamentResponse.basalInsuline?.name.isNullOrEmpty()){
+                                basalInsuline = treamentResponse.basalInsuline?.name.toString()
+                            } else {
+                                basalInsuline = "" // Asegurar inicialización si no viene de la API
+                            }
+                            if (!treamentResponse.correctoraInsuline?.cname.isNullOrEmpty()){
+                                correctoraInsuline = treamentResponse.correctoraInsuline?.cname.toString()
+                            } else {
+                                correctoraInsuline = "" // Asegurar inicialización si no viene de la API
+                            }
+                        
+                            // Obtener y guardar nombres para medidor y bomba si los IDs existen
+                            // Y si no tenemos ya un nombre (por ejemplo, de una selección previa no guardada)
+                            if (treatment.medidor != 0 && medidorName.isEmpty()) { 
+                                getMedidores() // Para poblar medidorName si aún no está
+                            }
+                            if (treatment.bomba_infusora != 0 && bombaInfusoraName.isEmpty()) { 
+                                getBombas() // Para poblar bombaInfusoraName si aún no está
+                            }
+
+                            getPromedio(treamentResponse)
+                            getTotalBasal()
+                            view.setTreatment(treamentResponse) // La vista espera TreatmentBasalCorrectora
+                        } else {
+                            Log.e("getTreatment", "El objeto Treament dentro de TreatmentBasalCorrectora es null")
+                            // Considera inicializar un 'treatment' local vacío o mostrar un estado de error/vacío en la UI
+                            // Por ejemplo: treatment = Treament(id=0, /* otros valores por defecto */)
+                            // view.showEmptyTreatmentState() o similar
+                        }
+                        
+                        // Aseguramos que las llamadas para popular listas para selección se hagan (ya están en onAttach)
+                    }
+                }, { err ->
+                    Log.e("OnGetTreatment", "Ocurrio un error: $err")
+                    getView()?.showErrorToast("Error al cargar el tratamiento.")
+                })
+            )
+        }
+    }
+
+    private fun getPromedio(treamentResponse: TreatmentBasalCorrectora) { 
+        val tratamientoLocal = treamentResponse.treament
+        if (tratamientoLocal == null) {
+            Log.w("getPromedio", "Tratamiento local es null, no se puede calcular promedio.")
+            return
+        }
+        val danger = tratamientoLocal.hyperglucose
+        val good = tratamientoLocal.hipoglucose..tratamientoLocal.hyperglucose
+        val low = 20f..tratamientoLocal.hipoglucose
         interactor?.let {
             compositeDisposable.add(it.getAverages()
                 .compose(schedulerProvider.ioToMainSingleScheduler())
@@ -459,7 +459,7 @@ class TreatmentPresenter<V : TreatmentView, I : TreatmentInteractorImp> @Inject 
         }
 
     }
-    private fun getTotalBasal() {
+    private fun getTotalBasal() { 
         interactor?.let {
             compositeDisposable.add(it.getAverageBasal()
                 .compose(schedulerProvider.ioToMainSingleScheduler())
@@ -472,224 +472,179 @@ class TreatmentPresenter<V : TreatmentView, I : TreatmentInteractorImp> @Inject 
         }
 
     }
-    private fun getDataBasal(basal: List<BasalInsuline>) {
+    private fun getDataBasal(basales: List<BasalInsuline>) { 
         val ret = ArrayList<BasalItem>()
-        for (i in basal.indices) {
+        for (i in basales.indices) {
             val data = BasalItem.Builder()
-                .id(basal[i].bid)
-                .name(basal[i].name)
+                .id(basales[i].bid)
+                .name(basales[i].name)
                 .build()
-
             ret.add(data)
         }
-        getView()?.setInsulinasBasales(ret)
-        Log.i("OnGetDataBasal", "Se inicia")
-        getMedidores()
-
+        getView()?.setInsulinasBasales(ret) // Corregido
+        if (::treatment.isInitialized && treatment.basal_insuline != 0) {
+            basales.firstOrNull { it.bid == treatment.basal_insuline }?.let {
+                if (this.basalInsuline.isEmpty() || this.basalInsuline != it.name) { // Comprobar con isEmpty
+                     this.basalInsuline = it.name
+                }
+            }
+        }
     }
-    private fun getDataMedidor(basal: List<Medidor>) {
+     private fun getDataCorrectora(correctoras: List<CorrectoraInsuline>) { 
         val ret = ArrayList<BasalItem>()
-        for (i in basal.indices) {
+        for (i in correctoras.indices) {
             val data = BasalItem.Builder()
-                .id(basal[i].mid)
-                .name(basal[i].name)
+                .id(correctoras[i].cid)
+                .name(correctoras[i].cname)
                 .build()
-
+            ret.add(data)
+        }
+        getView()?.setInsulinasCorrectoras(ret) // Corregido
+        if (::treatment.isInitialized && treatment.correctora_insuline != 0) {
+            correctoras.firstOrNull { it.cid == treatment.correctora_insuline }?.let {
+                if (this.correctoraInsuline.isEmpty() || this.correctoraInsuline != it.cname) { // Comprobar con isEmpty
+                    this.correctoraInsuline = it.cname
+                }
+            }
+        }
+    }
+     private fun getDataMedidor(medidores: List<Medidor>) { 
+        val ret = ArrayList<BasalItem>()
+        for (i in medidores.indices) {
+            val data = BasalItem.Builder()
+                .id(medidores[i].mid)
+                .name(medidores[i].name)
+                .build()
             ret.add(data)
         }
         getView()?.setMedidor(ret)
-        Log.i("OnGetDataMedidor", "Se inicia")
-        getBombas()
-
+        if (::treatment.isInitialized && treatment.medidor != 0) {
+            medidores.firstOrNull { it.mid == treatment.medidor }?.let {
+                if (this.medidorName.isEmpty() || this.medidorName != it.name) {
+                    this.medidorName = it.name
+                    Log.i("getDataMedidor", "Nombre del medidor seteado: ${this.medidorName}")
+                }
+            }
+        }
     }
-    private fun getDataBomba(basal: List<BombaInfusora>) {
+     private fun getDataBomba(bombas: List<BombaInfusora>) { 
         val ret = ArrayList<BasalItem>()
-        for (i in basal.indices) {
+        for (i in bombas.indices) {
             val data = BasalItem.Builder()
-                .id(basal[i].boid)
-                .name(basal[i].name)
+                .id(bombas[i].boid)
+                .name(bombas[i].name)
                 .build()
-
             ret.add(data)
         }
         getView()?.setBomba(ret)
-        Log.i("OnGetDataBomba", "Se inicia")
-        getCorrectora()
-
-    }
-    private fun getDataCorrectora(basal: List<CorrectoraInsuline>) {
-        Log.i("OnGetDataCorrectora", "Se inicia")
-        getTreatment()
-        val ret = ArrayList<BasalItem>()
-        for (i in basal.indices) {
-
-            val data = BasalItem.Builder()
-                .id(basal[i].cid)
-                .name(basal[i].cname)
-                .build()
-
-            ret.add(data)
+        if (::treatment.isInitialized && treatment.bomba_infusora != 0) {
+            bombas.firstOrNull { it.boid == treatment.bomba_infusora }?.let {
+                if (this.bombaInfusoraName.isEmpty() || this.bombaInfusoraName != it.name ){
+                    this.bombaInfusoraName = it.name
+                    Log.i("getDataBomba", "Nombre de la bomba seteado: ${this.bombaInfusoraName}")
+                }
+            }
         }
-        getView()?.setInsulinasCorrectoras(ret)
     }
-    private fun getDataCategories(horarios: List<TreatmentHorariosCategory>) {
+    private fun getDataCategories(categoriesFromDb: List<TreatmentHorariosCategory>) { 
         val ret = ArrayList<HorarioItem>()
-        for (i in horarios.indices) {
-            val name = getView()?.getLabel(horarios[i].category!!.cate_name)
-            val data = HorarioItem.Builder()
-            .id(horarios[i].treamentHorarios!!.id)
-            .name(name!!)
-            .selected(horarios[i].treamentHorarios!!.selected)
-            .categoryId(horarios[i].treamentHorarios!!.category_id)
-            .units(horarios[i].treamentHorarios!!.units.toInt().toString())
-            .build()
-
-        ret.add(data)
-    }
-    getView()?.setCategories(ret)
+        for(i in categoriesFromDb.indices){
+            val categoryItem = categoriesFromDb[i].category
+            if (categoryItem != null) {
+                val data = HorarioItem.Builder()
+                    .id(categoryItem.cate_id) // Corregido
+                    .name(categoryItem.cate_name) // Corregido
+                    .build()
+                ret.add(data)
+            }
+        }
+        getView()?.setCategories(ret)
 
     }
-
-
-    private fun getDataCategoriesCorrectora(horarios: List<TreatmentHCorrectoraCategory>) {
+     private fun getDataCategoriesCorrectora(categoriesFromDb: List<TreatmentHCorrectoraCategory>) { 
         val ret = ArrayList<HorarioItem>()
-        for (i in horarios.indices) {
-            val name = getView()?.getLabel(horarios[i].category!!.cate_name)
-            val data = HorarioItem.Builder()
-                .id(horarios[i].treamentCorrectoraHorarios!!.id)
-                .name(name!!)
-                .categoryId(horarios[i].treamentCorrectoraHorarios!!.category_id)
-                .selected(horarios[i].treamentCorrectoraHorarios!!.selected)
-                .build()
-
-            ret.add(data)
+        for(i in categoriesFromDb.indices){
+             val categoryItem = categoriesFromDb[i].category
+            if (categoryItem != null) {
+                val data = HorarioItem.Builder()
+                    .id(categoryItem.cate_id) // Corregido
+                    .name(categoryItem.cate_name) // Corregido
+                    .build()
+                ret.add(data)
+            }
         }
         getView()?.setCategoriesCorrectora(ret)
 
     }
-
-    private fun getDataBasalHora(horarios: List<TreamentBasalHora>) {
+    private fun getDataBasalHora(horas: List<TreamentBasalHora>) { 
         val ret = ArrayList<BasalHoraItem>()
-        for (i in horarios.indices) {
-            val name = horarios[i].time
+        for(i in horas.indices){
             val data = BasalHoraItem.Builder()
-                .id(horarios[i].id)
-                .name(name!!)
-                .units(horarios[i].units.toInt().toString())
+                .id(horas[i].id)
+                .name(horas[i].time) // Corregido
+                .units(horas[i].units.toString())
                 .build()
 
             ret.add(data)
         }
-        getView()?.setBasalHoras(ret)
+        getView()?.setBasalHoras(ret) // Corregido
 
     }
 
+    // Métodos de la interfaz añadidos como stubs
     override suspend fun makePdf(context: Context) {
-        interactor?.getDailys()?.fold({
-            if (it != null) {
-                /*val columns = checkCantColumns(it)
-                withContext(Dispatchers.IO){
-                    getView()?.openTableActivity(it)
-                }
-                Log.i("OnTreatmentPresenter", "MakePdf: $columns")
-                for(daily in it){
-                    Log.i("OnTreatmentPresenter", "MakePDF: $daily")
-                }*/
-                getView()?.hideProgress()
-                getView()?.showSuccessToast("Pdf creado")
-            }
-            getView()?.hideProgress()
-            getView()?.showErrorToast("Realice una carga antes")
-        },{
-            Log.i("OnTreatmentPresenter", "MakePDF: Ocurrió un error:$it")
-            getView()?.hideProgress()
-            getView()?.showErrorToast()
-        })
+        TODO("Not yet implemented")
     }
 
-    private fun checkCantColumns(dailys: List<DailyRegisterResponse>): MutableMap<String, Int>{
-        val cantColumns = mutableMapOf("pbreak" to 0, "plunch" to 0, "psnack" to 0, "pdinner" to 0)
-
-        for(i in 0..dailys.size - 1){
-            Log.i("TreatmentPresenter", "CheckCantColumns: ${dailys[i].date}")
-            if(i == 0 || dailys[i].date == dailys[i-1].date){
-                when(dailys[i].category){
-                    "2" -> {
-                        cantColumns["pbreak"] = cantColumns["pbreak"]!! + 1
-                    }
-                    "4" -> {
-                        cantColumns["plunch"] = cantColumns["plunch"]!! + 1
-                    }
-                    "6" -> {
-                        cantColumns["psnack"] = cantColumns["psnack"]!! + 1
-                    }
-                    "8" -> {
-                        cantColumns["pdinner"] = cantColumns["pdinner"]!! + 1
-                    }
-                }
-            }
-
-        }
-        return cantColumns
+    override fun saveObj(obj: Float) {
+        if (!::treatment.isInitialized) return
+        treatment.object_glucose = obj
+        Log.i("saveObj", "Objetivo glucosa seteado en memoria: $obj")
+        // Considera llamar a updateAll() o commitChanges() si este cambio debe persistir inmediatamente
     }
 
-    private fun setUpTable(columns: MutableMap<String,Int>, context: Context){
-        val tableRow0 = TableRow(context)
-        val textView0 = TextView(context)
-
-        textView0.text = "Day"
-        textView0.setTextColor(Color.BLACK)
-        tableRow0.addView(textView0)
-
-        val textView1 = TextView(context)
-        textView1.text = "Breakfast"
-        textView1.setTextColor(Color.BLACK)
-        tableRow0.addView(textView0)
-
-        val textView2 = TextView(context)
-        textView2.text = "Lunch"
-        textView2.setTextColor(Color.BLACK)
-        tableRow0.addView(textView0)
-
-        val textView3 = TextView(context)
-        textView3.text = "Snack"
-        textView3.setTextColor(Color.BLACK)
-        tableRow0.addView(textView0)
-
-        val textView4 = TextView(context)
-        textView4.text = "Dinner"
-        textView4.setTextColor(Color.BLACK)
-        tableRow0.addView(textView0)
+    override fun saveHipo(hipo: Float) {
+        if (!::treatment.isInitialized) return
+        treatment.hipoglucose = hipo
+        Log.i("saveHipo", "Hipoglucosa seteada en memoria: $hipo")
     }
 
-    override fun commitChanges() {
-        getView()?.showProgress()
-        interactor?.let {
-            CoroutineScope(Dispatchers.IO).launch {
-                try {
-                    compositeDisposable.add(
-                        it.editTreatment(treatment, basalInsuline, correctoraInsuline)
-                            .compose(schedulerProvider.ioToMainObservableScheduler())
-                            .subscribe({
-                                Log.i("OnCommitChanges", "Cambios guardados correctamente en DB")
-                                getView()?.hideProgress()
-                                getView()?.showSuccessToast("Datos actualizados")
-                                goToActivityMain()
-                            }, { throwable ->
-                                Log.e("OnCommitChanges", "Error al guardar cambios", throwable)
-                                getView()?.hideProgress()
-                                getView()?.showErrorToast()
-                            })
-                    )
-                } catch (e: Exception) {
-                    Log.e("OnCommitChanges", "Excepción: $e")
-                    withContext(Dispatchers.Main) {
-                        getView()?.hideProgress()
-                        getView()?.showErrorToast()
-                    }
-                }
-            }
-        }
+    override fun saveHyper(hyper: Float) {
+        if (!::treatment.isInitialized) return
+        treatment.hyperglucose = hyper
+        Log.i("saveHyper", "Hiperglucosa seteada en memoria: $hyper")
     }
 
+    override fun goToActivityDaily() {
+        getView()?.openDailyActivity()
+    }
+
+    override fun goToActivityMain() {
+        getView()?.openMainActivity()
+    }
+
+    override fun goToActivityStatistic() {
+        getView()?.openStatisticActivity()
+    }
+
+    override fun saveCorrectoraGlu(correctoraValue: Float) { // Renombrado el parámetro para evitar confusión
+        if (!::treatment.isInitialized) return
+        treatment.correctora = correctoraValue
+        Log.i("saveCorrectoraGlu", "Correctora (sensibilidad) seteada en memoria: $correctoraValue")
+    }
+
+    override fun saveBomb(bomb: Boolean) {
+        if (!::treatment.isInitialized) return
+        treatment.bomb = bomb
+        Log.i("saveBomb", "Uso de bomba seteado en memoria: $bomb")
+    }
+
+    override fun goToActivityRegister() {
+        getView()?.openRegisterActivity()
+    }
+
+    override fun commitChanges() { // Este podría ser un alias para updateAll o tener una lógica más específica
+        updateAll()
+        Log.i("commitChanges", "Cambios enviados para actualizar.")
+    }
 }

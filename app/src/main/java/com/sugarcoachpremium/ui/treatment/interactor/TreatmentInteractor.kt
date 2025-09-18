@@ -32,12 +32,17 @@ class TreatmentInteractor @Inject constructor(private val treamentRepoHelper: Tr
     lateinit var treatment: Treament
     lateinit var basalInsuline: String
     lateinit var correctoraInsuline: String
+    lateinit var medidorName: String // Agregado
+    lateinit var bombaInfusoraName: String // Agregado
     lateinit var user: User
+
     @SuppressLint("CheckResult")
-    override suspend fun editTreatment(treament: Treament, basalInsuline: String, correctoraInsuline: String): Observable<Boolean> {
+    override suspend fun editTreatment(treament: Treament, basalInsuline: String, correctoraInsuline: String, medidorName: String, bombaInfusoraName: String): Observable<Boolean> {
         Log.i("OnEditTreatment", "El treatment que se va a subir es: $treament")
         this.basalInsuline = basalInsuline
         this.correctoraInsuline = correctoraInsuline
+        this.medidorName = medidorName // Agregado
+        this.bombaInfusoraName = bombaInfusoraName // Agregado
 
         val response = editCloudTreatment(treament)
         Log.i("OnEditTreatment", "La response fue: $response")
@@ -60,7 +65,7 @@ class TreatmentInteractor @Inject constructor(private val treamentRepoHelper: Tr
             apiRepository.getUserTreatment(getCurrentId()!!).fold({
                 Log.i("OnEditCloud", "El treatment de este usuario es: $it")
 
-                apiRepository.updateTreatment(it!!.id, treatment.toTreatmentInput(getCurrentId()!!, basalInsuline, correctoraInsuline)).fold({
+                apiRepository.updateTreatment(it!!.id, treatment.toTreatmentInput(getCurrentId()!!, basalInsuline, correctoraInsuline, medidorName, bombaInfusoraName)).fold({
                     Log.i("OnEditCloud", "Se actualizo correctamente")
                     response = true
                 },{

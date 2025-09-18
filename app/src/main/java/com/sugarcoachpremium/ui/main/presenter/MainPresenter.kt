@@ -50,8 +50,7 @@ class MainPresenter<V : MainView, I : MainInteractorImp> @Inject internal constr
                 .compose(schedulerProvider.ioToMainSingleScheduler())
                 .subscribe({ treatment ->
                     getPromedios(treatment.treament!!)
-                }, { err -> println("error" + err) })
-            )
+                }, { err -> println("error" + err) }))
         }
     }
     fun deleteRegisters() {
@@ -125,8 +124,7 @@ class MainPresenter<V : MainView, I : MainInteractorImp> @Inject internal constr
                             average.promedio > danger -> it.setPromColor(R.color.red)
                         }
                     }
-                }, { err -> println(err) })
-            )
+                }, { err -> println(err) }))
         }
     }
 
@@ -153,8 +151,7 @@ class MainPresenter<V : MainView, I : MainInteractorImp> @Inject internal constr
                 .compose(schedulerProvider.ioToMainSingleScheduler())
                 .subscribe({ daily ->
                     getCategories(daily.dailyRegister)
-                }, { err -> println("error" + err) })
-            )
+                }, { err -> println("error" + err) }))
         }
     }
     private fun getCategories(dailyRegister: DailyRegister?){
@@ -164,8 +161,7 @@ class MainPresenter<V : MainView, I : MainInteractorImp> @Inject internal constr
                 .subscribe({ categories ->
                     Log.i("OnMainPresenter", "Las categories fueron: $categories")
                     getMedition(dailyRegister, categories)
-                }, { err -> println("error" + err) })
-            )
+                }, { err -> println("error" + err) }))
         }
     }
 
@@ -176,14 +172,14 @@ class MainPresenter<V : MainView, I : MainInteractorImp> @Inject internal constr
             return
         }
 
-        val breakfastname = category.firstOrNull { it.cate_name == "register_breakfast_label" }?.cate_name ?: "register_breakfast_label"
-        val pbreakfastname  = category.firstOrNull { it.cate_name == "register_pbreakfast_label" }?.cate_name ?: "register_pbreakfast_label"
-        val lunchname  = category.firstOrNull { it.cate_name == "register_lunch_label" }?.cate_name ?: "register_lunch_label"
-        val plunchname  = category.firstOrNull { it.cate_name == "register_plunch_label" }?.cate_name ?: "register_plunch_label"
-        val snackname  = category.firstOrNull { it.cate_name == "register_snack_label" }?.cate_name ?: "register_snack_label"
-        val psnackname  = category.firstOrNull { it.cate_name == "register_psnack_label" }?.cate_name ?: "register_psnack_label"
-        val dinnername  = category.firstOrNull { it.cate_name == "register_dinner_label" }?.cate_name ?: "register_dinner_label"
-        val pdinnername  = category.firstOrNull { it.cate_name == "register_pdinner_label" }?.cate_name ?: "register_pdinner_label"
+        val breakfastKey = category.firstOrNull { it.cate_name == "register_breakfast_label" }?.cate_name ?: "register_breakfast_label"
+        val pbreakfastKey  = category.firstOrNull { it.cate_name == "register_pbreakfast_label" }?.cate_name ?: "register_pbreakfast_label"
+        val lunchKey  = category.firstOrNull { it.cate_name == "register_lunch_label" }?.cate_name ?: "register_lunch_label"
+        val plunchKey  = category.firstOrNull { it.cate_name == "register_plunch_label" }?.cate_name ?: "register_plunch_label"
+        val snackKey  = category.firstOrNull { it.cate_name == "register_snack_label" }?.cate_name ?: "register_snack_label"
+        val psnackKey  = category.firstOrNull { it.cate_name == "register_psnack_label" }?.cate_name ?: "register_psnack_label"
+        val dinnerKey  = category.firstOrNull { it.cate_name == "register_dinner_label" }?.cate_name ?: "register_dinner_label"
+        val pdinnerKey  = category.firstOrNull { it.cate_name == "register_pdinner_label" }?.cate_name ?: "register_pdinner_label"
 
         val breakfastId = category.firstOrNull { it.cate_name == "register_breakfast_label" }?.cate_id
         val pbreakfastId  = category.firstOrNull { it.cate_name == "register_pbreakfast_label" }?.cate_id
@@ -207,69 +203,61 @@ class MainPresenter<V : MainView, I : MainInteractorImp> @Inject internal constr
 
         if (date == null){
             when {
-
                 timeBetween(currentDate.toLocalTime(), breakfast, breakfastEnd) -> {
-                    getView()?.setMedition(breakfastname)
-
+                    getView()?.setMedition(breakfastKey)
                 }
-
                 timeBetween(currentDate.toLocalTime(),lunch, lunchEnd) ->{
-                    getView()?.setMedition(lunchname)
+                    getView()?.setMedition(lunchKey)
                 }
-
                 timeBetween(currentDate.toLocalTime(),snack,snackEnd) ->{
-                    getView()?.setMedition(snackname)
+                    getView()?.setMedition(snackKey)
                 }
-
-
                 timeBetween(currentDate.toLocalTime(),dinner, dinnerEnd) ||  timeBetween(currentDate.toLocalTime(), midnight, midnightEnd) -> {
-                    getView()?.setMedition(dinnername)
+                    getView()?.setMedition(dinnerKey)
                 }
-
             }
         }else{
             when{
                 (dailyRegister?.category_id == breakfastId || dailyRegister?.category_id == pbreakfastId ) && timeBetween(currentDate.toLocalTime(), breakfast, breakfastEnd)-> {
-                    getView()?.setMedition(pbreakfastname)
+                    getView()?.setMedition(pbreakfastKey)
                 }
                 ( dailyRegister?.category_id == breakfastId || dailyRegister?.category_id == pbreakfastId) && timeBetween(currentDate.toLocalTime(),lunch, lunchEnd) -> {
-                    getView()?.setMedition(lunchname)
+                    getView()?.setMedition(lunchKey)
                 }
                 (dailyRegister?.category_id == breakfastId || dailyRegister?.category_id == pbreakfastId) && timeBetween(currentDate.toLocalTime(),snack,snackEnd) -> {
-                    getView()?.setMedition(snackname)
+                    getView()?.setMedition(snackKey)
                 }
                 (dailyRegister?.category_id == breakfastId || dailyRegister?.category_id == pbreakfastId) &&  (timeBetween(currentDate.toLocalTime(),dinner, dinnerEnd) ||  timeBetween(currentDate.toLocalTime(), midnight, midnightEnd)) -> {
-                    getView()?.setMedition(dinnername)
+                    getView()?.setMedition(dinnerKey)
                 }
-                (dailyRegister?.category_id == lunchId || dailyRegister?.category_id == plunchId   && timeBetween(currentDate.toLocalTime(),lunch, lunchEnd)) -> {
-                    getView()?.setMedition(plunchname)
+                (dailyRegister?.category_id == lunchId || dailyRegister?.category_id == plunchId) && timeBetween(currentDate.toLocalTime(),lunch, lunchEnd) -> {
+                    getView()?.setMedition(plunchKey)
                 }
                 (dailyRegister?.category_id == lunchId || dailyRegister?.category_id == plunchId) && timeBetween(currentDate.toLocalTime(),snack,snackEnd) -> {
-                    getView()?.setMedition(snackname)
+                    getView()?.setMedition(snackKey)
                 }
                 (dailyRegister?.category_id == lunchId || dailyRegister?.category_id == plunchId) && (timeBetween(currentDate.toLocalTime(),dinner, dinnerEnd) ||  timeBetween(currentDate.toLocalTime(), midnight, midnightEnd))-> {
-                    getView()?.setMedition(dinnername)
+                    getView()?.setMedition(dinnerKey)
                 }
                 (dailyRegister?.category_id == snackId || dailyRegister?.category_id == psnackId) && timeBetween(currentDate.toLocalTime(),snack,snackEnd) -> {
-                    getView()?.setMedition(psnackname)
+                    getView()?.setMedition(psnackKey)
                 }
                 (dailyRegister?.category_id == snackId || dailyRegister?.category_id == psnackId) && (timeBetween(currentDate.toLocalTime(),dinner, dinnerEnd) ||  timeBetween(currentDate.toLocalTime(), midnight, midnightEnd)) -> {
-                    getView()?.setMedition(dinnername)
+                    getView()?.setMedition(dinnerKey)
                 }
                 (dailyRegister?.category_id == dinnerId || dailyRegister?.category_id == pdinnerId ) && (timeBetween(currentDate.toLocalTime(),dinner, dinnerEnd) ||  timeBetween(currentDate.toLocalTime(), midnight, midnightEnd)) -> {
-                    getView()?.setMedition(pdinnername)
+                    getView()?.setMedition(pdinnerKey)
                 }
                 (dailyRegister?.category_id == dinnerId  || dailyRegister?.category_id == pdinnerId) && timeBetween(currentDate.toLocalTime(), breakfast, breakfastEnd) -> {
-                    getView()?.setMedition(breakfastname)
+                    getView()?.setMedition(breakfastKey)
                 }
-                (dailyRegister?.category_id == pdinnerId) -> {
-                    getView()?.setMedition(breakfastname)
+                (dailyRegister?.category_id == pdinnerId) -> { // Default or fallback case
+                    getView()?.setMedition(breakfastKey)
                 }
             }
-
         }
-
     }
+
     fun timeBetween(time: LocalTime, startTime: LocalTime, endTime: LocalTime): Boolean{
         return time.isAfter(startTime) && time.isBefore(endTime) || time.isEqual(startTime) || time.isEqual(endTime)
     }
@@ -312,6 +300,4 @@ class MainPresenter<V : MainView, I : MainInteractorImp> @Inject internal constr
             ActivityCompat.requestPermissions(context, listPermissionsNeeded.toTypedArray(), permissionRequest)
         }
     }
-
-
 }

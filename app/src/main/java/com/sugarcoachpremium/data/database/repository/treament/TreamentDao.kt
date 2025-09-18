@@ -12,7 +12,10 @@ interface TreamentDao {
     @Query("SELECT * FROM treament ORDER BY created")
     fun loadAll(): List<Treament>
 
-    @Query("SELECT *  FROM treament left join basal_insuline on treament.basal_id = basal_insuline.bid left join correctora_insuline on treament.correctora_id = correctora_insuline.cid  WHERE treament.id = :id")
+    @Query("SELECT * FROM treament " +
+           "LEFT JOIN basal_insuline ON treament.basal_insuline = basal_insuline.bid " +
+           "LEFT JOIN correctora_insuline ON treament.correctora_insuline = correctora_insuline.cid " +
+           "WHERE treament.id = :id")
     fun loadById(id: Int): TreatmentBasalCorrectora
 
 
@@ -94,4 +97,3 @@ interface TreamentDao {
     fun editCorrectoraCategory(horarios: TreamentCorrectoraHorarios)
 
 }
-
