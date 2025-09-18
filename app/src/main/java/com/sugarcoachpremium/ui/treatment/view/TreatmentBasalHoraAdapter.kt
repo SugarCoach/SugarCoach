@@ -46,11 +46,26 @@ class TreatmentBasalHoraAdapter(private val activity: TreatmentActivity) : Recyc
     }
 
     private fun bind(holder: TreatmentBasalHoraHolder, item: BasalHoraItem) {
-        var items = ArrayList<String>()
-        for (i in 1 until 36){
-            items.add(i.toString())
+        val items = ArrayList<String>()
+        var currentValue = 0.0f
+        val maxValue = 35.0f
+        val step = 0.1f // Incremento
+
+        while (currentValue <= maxValue) {
+            // Formatea el número a un decimal y añade el sufijo " U"
+            items.add(String.format(Locale.US, "%.1f U", currentValue))
+            currentValue += step
+            // Redondeo simple para mitigar problemas de precisión con floats
+            // Para mayor precisión, se podría usar BigDecimal
+            currentValue = Math.round(currentValue * 10.0f) / 10.0f
         }
-        holder.inflateData(item,holder.adapterPosition, activity, items)
+        // Asegurarse de que el último valor (35.0 U) se incluya si el bucle termina justo antes
+        // Esto es una salvaguarda, el while (currentValue <= maxValue) debería manejarlo.
+        if (!items.contains(String.format(Locale.US, "%.1f U", maxValue)) && maxValue > (currentValue - step)) {
+             items.add(String.format(Locale.US, "%.1f U", maxValue))
+        }
+
+        holder.inflateData(item, holder.adapterPosition, activity, items)
     }
 
 }

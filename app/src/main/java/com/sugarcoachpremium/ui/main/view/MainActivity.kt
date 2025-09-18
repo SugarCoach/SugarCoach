@@ -4,6 +4,7 @@ import android.content.Intent
 import android.graphics.PorterDuff
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import com.sugarcoachpremium.R
@@ -108,8 +109,9 @@ class MainActivity : BaseActivity(), MainView {
     }
 
     override fun setMedition(label: String) {
-        binding.mainMedTxt.text = getLabel(label)
+        binding.mainMedTxt.text = label // Revertido: Muestra la clave directamente
     }
+
     override fun setUser(user: User) {
         binding.mainUsernameTxt.text = user.username
         if(user.points == 0){
@@ -209,9 +211,22 @@ class MainActivity : BaseActivity(), MainView {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         presenter.onRequestPermissionsResult(this, requestCode, permissions, grantResults)
     }
+
     override fun getLabel(name: String): String {
-        return getString(resIdByName(name, "string"))
+        try {
+            val resourceId = resources.getIdentifier(name, "string", packageName)
+            if (resourceId != 0) {
+                return getString(resourceId)
+            } else {
+                Log.w("MainActivity_GetLabel", "String resource not found for key: $name. Returning key itself.")
+                return name 
+            }
+        } catch (e: Exception) {
+            Log.e("MainActivity_GetLabel", "Exception while getting string resource for key: $name", e)
+            return name 
+        }
     }
+
     override fun mirrorAccount() {
         binding.mainAddRegisterCv.isEnabled = false
         binding.mainRegistoImage.setColorFilter(ContextCompat.getColor(this, R.color.gray), PorterDuff.Mode.MULTIPLY)

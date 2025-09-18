@@ -6,14 +6,16 @@ import android.graphics.Color
 import android.graphics.PorterDuff
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.View
-import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+// Eliminada: import com.skydoves.powerspinner.PowerSpinnerAdapter 
+import com.skydoves.powerspinner.PowerSpinnerView
 import com.sugarcoachpremium.R
 import com.sugarcoachpremium.data.api_db.DailyRegister.DailyRegisterResponse
 import com.sugarcoachpremium.data.database.repository.treament.TreatmentBasalCorrectora
@@ -37,21 +39,16 @@ import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
 import androidx.core.graphics.drawable.toDrawable
-import androidx.core.widget.addTextChangedListener
 import com.sugarcoachpremium.ui.register.view.RegisterActivity
 import android.text.Editable
 import android.text.TextWatcher
-import kotlin.math.roundToInt
 
-// class added by default by de IDE
 class TreatmentActivity : BaseActivity(), TreatmentView {
-    // Extension function for cleaner TextWatcher usage
     private fun android.widget.EditText.onTextChanged(action: (String) -> Unit) {
         this.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 action(s?.toString() ?: "")
             }
-
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         })
@@ -59,7 +56,6 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
 
     @Inject
     lateinit var presenter: TreatmentPresenterImp<TreatmentView, TreatmentInteractorImp>
-
 
     @Inject
     lateinit var linearLayoutManager: LinearLayoutManager
@@ -108,13 +104,10 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
     var initialMedidor = false
     var initialBomba = false
     var isFabOpen = false
-    var home = false
-    var statistics = false
-    var dailyRegisterAct = false
-    var addRegisterAct = false
     lateinit var user: User
 
     lateinit var binding: ActivityTreatmentBinding
+    private var mAlertDialog: AlertDialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -133,6 +126,7 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
 
     override fun onDestroy() {
         presenter.onDetach()
+        mAlertDialog?.dismiss() // Dismiss dialog to prevent leaks
         super.onDestroy()
     }
 
@@ -203,7 +197,6 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
         binding.treatmentBombInfusora.setItems(basalInsuline)
     }
 
-
     override fun showDataSave(totalPoints: Int, points: Int) {
         createDialogCongratulation(points, totalPoints)
     }
@@ -214,8 +207,8 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
         val builder = AlertDialog.Builder(this)
         builder.setCancelable(false)
         builder.setView(view.root)
-        dialog = builder.create()
-        dialog.window?.setBackgroundDrawable(Color.TRANSPARENT.toDrawable())
+        mAlertDialog = builder.create()
+        mAlertDialog?.window?.setBackgroundDrawable(Color.TRANSPARENT.toDrawable())
         view.congratulationPtsTxt.text = "+$points"
         user.avatar?.let {
             view.congratulationAvatar.setImageDrawable(getDrawable(resIdByName(it, "drawable")))
@@ -226,89 +219,49 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
             (totalPoints in levelPoints until levelPoints * 2) -> {
                 text = "2 - Space Cadet"
             }
-
             (totalPoints in levelPoints * 2 until levelPoints * 4) -> {
                 text = "3 - Rocket Captain"
             }
-
             (totalPoints in levelPoints * 4 until levelPoints * 8) -> {
                 text = "4 - Startreck Voyayer"
             }
-
             (totalPoints in levelPoints * 8 until levelPoints * 16) -> {
                 text = "5 - Future Traveller"
             }
-
             (totalPoints >= levelPoints * 16) -> {
                 text = "6 - Quarks Master"
             }
         }
         view.congratulationLevelTxt.text = text
         view.congratulationPtsTotalTxt.text = totalPoints.toString()
-        view.congratulationClose.setOnClickListener { dialog.dismiss() }
-        dialog.setOnDismissListener { presenter.goToActivityMain() }
-        dialog.show()
+        view.congratulationClose.setOnClickListener { mAlertDialog?.dismiss() }
+        mAlertDialog?.setOnDismissListener { presenter.goToActivityMain() }
+        mAlertDialog?.show()
     }
+    
 
     override fun setTreatment(treament: TreatmentBasalCorrectora) {
         val tratamiento = treament.treament!!
-        binding.treatmentObjTxt.setText(tratamiento.object_glucose.roundToInt().toString())
-        binding.treatmentHiperTxt.setText(tratamiento.hyperglucose.roundToInt().toString())
-        binding.treatmentHipoTxt.setText(tratamiento.hipoglucose.roundToInt().toString())
+        binding.treatmentObjTxt.setText(tratamiento.object_glucose.toString())
+        binding.treatmentHiperTxt.setText(tratamiento.hyperglucose.toString())
+        binding.treatmentHipoTxt.setText(tratamiento.hipoglucose.toString())
         binding.treatmentBomb.isChecked = tratamiento.bomb!!
         if (tratamiento.correctora_unit > 0f) {
-            binding.treatmentGluMayorUd.setText(tratamiento.correctora_unit.roundToInt().toString())
+            binding.treatmentGluMayorUd.setText(tratamiento.correctora_unit.toString())
         }
         if (tratamiento.correctora > 0f) {
-            binding.treatmentGluMayor.setText(tratamiento.correctora.roundToInt().toString())
+            binding.treatmentGluMayor.setText(tratamiento.correctora.toString())
         }
         if (tratamiento.insulina_unit > 0f) {
-            binding.treatmentCarbonoUd.setText(tratamiento.insulina_unit.roundToInt().toString())
+            binding.treatmentCarbonoUd.setText(tratamiento.insulina_unit.toString())
         }
         if (tratamiento.carbono > 0f) {
-            binding.treatmentCarbono.setText(tratamiento.carbono.roundToInt().toString())
-        }
-        tratamiento.basal_id?.let {
-            initialbasal = true
-            binding.treatmentInsuTxt.text = treament.basalInsuline?.name
-            binding.treatmentBasal.selectItemByIndex(it - 1)
-        }
-        tratamiento.correctora_id?.let {
-            initial = true
-            binding.treatmentCorrectora.selectItemByIndex(it - 1)
-        }
-        tratamiento.medidor_id?.let {
-            initialMedidor = true
-            binding.treatmentMedidor.selectItemByIndex(it - 1)
-        }
-        tratamiento.bomba_id?.let {
-            initialBomba = true
-            binding.treatmentBombInfusora.selectItemByIndex(it - 1)
+            binding.treatmentCarbono.setText(tratamiento.carbono.toString())
         }
 
+        binding.treatmentInsuTxt.text = treament.basalInsuline?.name
 
-        //************************* PARTE 1 ************************
-
-        //ORIGINAL
-//        binding.treatmentCorrectora.setOnSpinnerItemSelectedListener<BasalItem> { position, item ->
-//            if (!initial) {
-//                presenter.saveCorrectora(item)
-//            }else{
-//                initial = false
-//            }
-//        }
-
-        //SEGUNDA OPCION
-//        binding.treatmentCorrectora.setOnSpinnerItemSelectedListener<BasalItem> { oldIndex, oldItem, newIndex, newItem ->
-//            if (!initial) {
-//                presenter.saveCorrectora(newItem)
-//            } else {
-//                initial = false
-//            }
-//        }
-
-        //TERCERA OPCION
-
+        // ***** INICIO DE LA CORRECCIÓN: Establecer Listeners PRIMERO *****
         binding.treatmentCorrectora.setOnSpinnerItemSelectedListener<BasalItem> { oldIndex, oldItem, newIndex, newItem ->
             newItem.let {
                 if (!initial) {
@@ -319,34 +272,10 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
             }
         }
 
-        //************************* PARTE 2 ************************
-
-        //ORIGINAL
-//        binding.treatmentBasal.setOnSpinnerItemSelectedListener<BasalItem> { position, item ->
-//            if (!initialbasal) {
-//                binding.treatmentInsuTxt.text = item.name
-//                presenter.saveBasal(item)
-//            }else{
-//                initialbasal = false
-//            }
-//        }
-
-        //SEGUNDA OPCION
-
-//        binding.treatmentBasal.setOnSpinnerItemSelectedListener<BasalItem> { oldIndex, oldItem, newIndex, newItem ->
-//            if (!initialbasal) {
-//                binding.treatmentInsuTxt.text = newItem.name
-//                presenter.saveBasal(newItem)
-//            } else {
-//                initialbasal = false
-//            }
-//        }
-
-        //TERCERA OPCION
         binding.treatmentBasal.setOnSpinnerItemSelectedListener<BasalItem> { oldIndex, oldItem, newIndex, newItem ->
             newItem.let {
                 if (!initialbasal) {
-                    binding.treatmentInsuTxt.text = it.name
+                    binding.treatmentInsuTxt.text = it.name // Actualizar UI si es necesario
                     presenter.saveBasal(it)
                 } else {
                     initialbasal = false
@@ -354,27 +283,6 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
             }
         }
 
-        //************************* PARTE 3 ************************
-
-        //ORIGINAL
-//        binding.treatmentMedidor.setOnSpinnerItemSelectedListener<BasalItem> { position, item ->
-//            if (!initialMedidor) {
-//                presenter.saveMedidor(item)
-//            }else{
-//                initialMedidor = false
-//            }
-//        }
-
-        // SEGUNDA OPCION
-//        binding.treatmentMedidor.setOnSpinnerItemSelectedListener<BasalItem> { oldIndex, oldItem, newIndex, newItem ->
-//            if (!initialMedidor) {
-//                presenter.saveMedidor(newItem)
-//            } else {
-//                initialMedidor = false
-//            }
-//        }
-
-        //TERCERA OPCION
         binding.treatmentMedidor.setOnSpinnerItemSelectedListener<BasalItem> { oldIndex, oldItem, newIndex, newItem ->
             newItem.let {
                 if (!initialMedidor) {
@@ -385,29 +293,6 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
             }
         }
 
-
-        //************************* PARTE 4 ************************
-
-        //ORIGINAL
-//        binding.treatmentBombInfusora.setOnSpinnerItemSelectedListener<BasalItem> { position, item ->
-//            if (!initialBomba) {
-//                presenter.saveBomba(item)
-//            }else{
-//                initialBomba = false
-//            }
-//        }
-//    }
-
-        //SEGUNDA OPCION
-//        binding.treatmentBombInfusora.setOnSpinnerItemSelectedListener<BasalItem> { oldIndex, oldItem, newIndex, newItem ->
-//            if (!initialBomba) {
-//                presenter.saveBomba(newItem)
-//            } else {
-//                initialBomba = false
-//            }
-//        }
-
-        //TERCERA OPCION
         binding.treatmentBombInfusora.setOnSpinnerItemSelectedListener<BasalItem> { oldIndex, oldItem, newIndex, newItem ->
             newItem.let {
                 if (!initialBomba) {
@@ -417,8 +302,30 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
                 }
             }
         }
+        // ***** FIN DE LA CORRECCIÓN *****
+
+
+        // Ahora, con los listeners ya establecidos, proceder a seleccionar los ítems
+        tratamiento.basal_insuline?.takeIf { it > 0 }?.let {
+            initialbasal = true // Poner la bandera ANTES de la selección programática
+            binding.treatmentBasal.selectItemByIndex(it - 1) 
+        } ?: run { initialbasal = false } // Si no hay ID válido, asegurar que la bandera sea false
+
+        tratamiento.correctora_insuline?.takeIf { it > 0 }?.let {
+            initial = true
+            binding.treatmentCorrectora.selectItemByIndex(it - 1)
+        } ?: run { initial = false }
+
+        tratamiento.medidor?.takeIf { it > 0 }?.let {
+            initialMedidor = true
+            binding.treatmentMedidor.selectItemByIndex(it - 1)
+        } ?: run { initialMedidor = false }
+
+        tratamiento.bomba_infusora?.takeIf { it > 0 }?.let {
+            initialBomba = true
+            binding.treatmentBombInfusora.selectItemByIndex(it - 1)
+        } ?: run { initialBomba = false }
     }
-    //*******************************************************
 
     override fun setCategories(category: List<HorarioItem>) {
         lmanager.orientation = RecyclerView.VERTICAL
@@ -482,7 +389,6 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
             CoroutineScope(Dispatchers.IO).launch {
                 presenter.makePdf(baseContext)
             }
-            //presenter.getScreenShot(this, binding.treatmentLl)
         }
 
         binding.treatmentEdit.setOnClickListener {
@@ -555,18 +461,25 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
         )
     }
 
+    fun menuListeners() {
+        binding.home.setOnClickListener { presenter.goToActivityMain() }
+        binding.statistics.setOnClickListener { presenter.goToActivityStatistic() }
+        binding.dailyRegister.setOnClickListener { presenter.goToActivityDaily() }
+        binding.addRegister.setOnClickListener { presenter.goToActivityRegister() }
+    }
+
     private fun createDialogInfo(info: String) {
         val view = DialogInfoBinding.inflate(layoutInflater)
         val builder = AlertDialog.Builder(this)
         builder.setCancelable(false)
         builder.setView(view.root)
-        val dialog = builder.create()
-        dialog.window?.setBackgroundDrawable(Color.TRANSPARENT.toDrawable())
+        mAlertDialog = builder.create()
+        mAlertDialog?.window?.setBackgroundDrawable(Color.TRANSPARENT.toDrawable())
         view.infoSubtitle.text = info
         view.infoAccept.setOnClickListener {
-            dialog.dismiss()
+            mAlertDialog?.dismiss()
         }
-        dialog.show()
+        mAlertDialog?.show()
     }
 
     override fun openDailyActivity() {
@@ -575,19 +488,8 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
         finish()
     }
 
-    //ORIGINAL
-//     override fun openTableActivity(dailyRegisters: List<DailyRegisterResponse> ){
-//         /*val intent = Intent(this, TableActivity::class.java)
-//         intent.putExtra("DailyRegisters", dailyRegisters.toArray())
-//         startActivity(intent)
-//         finish()*/
-//     }
-
-    //REEMPLAZO 25/08/2025
-
     override fun openTableActivity(dailyRegisters: List<DailyRegisterResponse>) {
         val intent = Intent(this, TableActivity::class.java)
-        // Pasa la lista como un ArrayList (que es Serializable)
         intent.putExtra("DailyRegisters", ArrayList(dailyRegisters))
         startActivity(intent)
         finish()
@@ -598,13 +500,11 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
         startActivity(intent)
         finish()
     }
-
     override fun openRegisterActivity() {
         val intent = Intent(this, RegisterActivity::class.java)
         startActivity(intent)
         finish()
     }
-
 
     override fun openMainActivity() {
         val intent = Intent(this, MainActivity::class.java)
@@ -638,50 +538,20 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
         )
     }
 
-
-    fun menuListeners() {
-        binding.home.setOnClickListener {
-            home = true
-            dialogSave()
-        }
-        binding.statistics.setOnClickListener {
-            statistics = true
-            dialogSave()
-        }
-        binding.dailyRegister.setOnClickListener {
-            dailyRegisterAct = true
-            dialogSave()
-        }
-        binding.addRegister.setOnClickListener {
-            addRegisterAct = true
-            dialogSave()
-        }
-    }
-
-
-
     fun dialogSave() {
         val view = DialogTreatmentSaveBinding.inflate(layoutInflater)
         val builder = AlertDialog.Builder(this)
         builder.setView(view.root)
-        dialog = builder.create()
-        dialog.window?.setBackgroundDrawable(Color.TRANSPARENT.toDrawable())
+        mAlertDialog = builder.create() // Usando mAlertDialog consistentemente
+        mAlertDialog?.window?.setBackgroundDrawable(Color.TRANSPARENT.toDrawable())
         view.treamentAccept.setOnClickListener {
             presenter.commitChanges()
-
-            when {
-                home -> presenter.goToActivityMain()
-                statistics -> presenter.goToActivityStatistic()
-                dailyRegisterAct -> presenter.goToActivityDaily()
-                addRegisterAct -> presenter.goToActivityRegister()
-            }
-
-            dialog.dismiss()
+            mAlertDialog?.dismiss()
         }
         view.treamentCancel.setOnClickListener {
             finish()
-            dialog.dismiss()
+            mAlertDialog?.dismiss()
         }
-        dialog.show()
+        mAlertDialog?.show()
     }
 }

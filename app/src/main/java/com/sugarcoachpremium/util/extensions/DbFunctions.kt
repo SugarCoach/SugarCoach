@@ -80,7 +80,7 @@ fun DailyRegister.toDailyInput(id: String?): DailyRegisterInput{
     )
 }
 
-fun Treament.toTreatmentInput(id: String, basalInsuline: String = "", correctoraInsuline: String = ""): TreatmentInput{
+fun Treament.toTreatmentInput(id: String, basalInsuline: String = "", correctoraInsuline: String = "", medidorName: String = "", bombaInfusoraName: String = ""): TreatmentInput{
     return TreatmentInput(
         bomb = Optional.present(bomb),
         object_glucose = Optional.present(object_glucose.toDouble()),
@@ -92,6 +92,8 @@ fun Treament.toTreatmentInput(id: String, basalInsuline: String = "", correctora
         carbono = Optional.present(carbono.toDouble()),
         basal_insuline = Optional.present(basalInsuline),
         correctora_insuline = Optional.present(correctoraInsuline),
+        medidor = Optional.present(medidorName), // Agregado
+        bomba_infusora = Optional.present(bombaInfusoraName), // Agregado
         users_permissions_user = Optional.present(id)
     )
 }
