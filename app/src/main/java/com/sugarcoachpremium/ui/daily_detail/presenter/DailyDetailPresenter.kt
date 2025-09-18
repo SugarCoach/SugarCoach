@@ -347,7 +347,7 @@ class DailyDetailPresenter<V : DailyDetailView, I : DailyDetailInteractorImp>
             compositeDisposable.add(it.updateRegister(dailyRegister)
                 .compose(schedulerProvider.ioToMainObservableScheduler())
                 .doOnNext { getView()?.hideProgress() }
-                .subscribe({ getView()?.showSuccessToastUpdate()
+                .subscribe({ //getView()?.showSuccessToastUpdate()
                 }, { throwable ->
                     showException(throwable)
                 })
@@ -361,7 +361,7 @@ class DailyDetailPresenter<V : DailyDetailView, I : DailyDetailInteractorImp>
             compositeDisposable.add(it.updateRegister(dailyRegister)
                 .compose(schedulerProvider.ioToMainObservableScheduler())
                 .doOnNext { getView()?.hideProgress() }
-                .subscribe({ getView()?.showSuccessToastUpdate()
+                .subscribe({ //getView()?.showSuccessToastUpdate()
                 }, { throwable ->
                     showException(throwable)
                 })
@@ -374,7 +374,7 @@ class DailyDetailPresenter<V : DailyDetailView, I : DailyDetailInteractorImp>
             compositeDisposable.add(it.updateRegister(dailyRegister)
                 .compose(schedulerProvider.ioToMainObservableScheduler())
                 .doOnNext { getView()?.hideProgress() }
-                .subscribe({ getView()?.showSuccessToastUpdate()
+                .subscribe({ //getView()?.showSuccessToastUpdate()
                 }, { throwable ->
                     showException(throwable)
                 })
@@ -387,7 +387,8 @@ class DailyDetailPresenter<V : DailyDetailView, I : DailyDetailInteractorImp>
         interactor?.let {
             compositeDisposable.add(it.updateRegister(dailyRegister)
                 .compose(schedulerProvider.ioToMainObservableScheduler())
-                .doOnNext { getView()?.hideProgress() }
+                .doOnNext { //getView()?.hideProgress()
+                }
                 .subscribe({
                     getView()?.showSuccessToastUpdate()
 
@@ -403,7 +404,8 @@ class DailyDetailPresenter<V : DailyDetailView, I : DailyDetailInteractorImp>
         interactor?.let {
             compositeDisposable.add(it.updateRegister(dailyRegister)
                 .compose(schedulerProvider.ioToMainObservableScheduler())
-                .doOnNext { getView()?.hideProgress() }
+                .doOnNext { //getView()?.hideProgress()
+                }
                 .subscribe({
                     getView()?.showSuccessToastUpdate()
                     setEmotional(emotional)
@@ -420,7 +422,7 @@ class DailyDetailPresenter<V : DailyDetailView, I : DailyDetailInteractorImp>
             compositeDisposable.add(it.updateRegister(dailyRegister)
                 .compose(schedulerProvider.ioToMainObservableScheduler())
                 .doOnNext { getView()?.hideProgress() }
-                .subscribe({ getView()?.showSuccessToastUpdate()
+                .subscribe({ //getView()?.showSuccessToastUpdate()
                 }, { throwable ->
                     showException(throwable)
                 })
@@ -435,7 +437,7 @@ class DailyDetailPresenter<V : DailyDetailView, I : DailyDetailInteractorImp>
                 .compose(schedulerProvider.ioToMainObservableScheduler())
                 .doOnSubscribe { getView()?.showProgress() }
                 .doOnNext { getView()?.hideProgress() }
-                .subscribe({ getView()?.showSuccessToastUpdate()
+                .subscribe({ //getView()?.showSuccessToastUpdate()
                 }, { throwable ->
                     showException(throwable)
                 })
@@ -693,9 +695,11 @@ class DailyDetailPresenter<V : DailyDetailView, I : DailyDetailInteractorImp>
         updateBasal(basal)
         updateCarb(carbohydrates)
 
-        updateInsulinLocal(insulin)
-        updateGlucoseLocal(glucose)
-        updateBasalLocal(basal)
-        updateCarbLocal(carbohydrates)
+//        updateInsulinLocal(insulin)
+//        updateGlucoseLocal(glucose)
+//        updateBasalLocal(basal)
+//        updateCarbLocal(carbohydrates)
+
+        getView()?.showSuccessToastUpdate()
     }
 }

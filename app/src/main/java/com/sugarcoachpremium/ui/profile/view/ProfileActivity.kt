@@ -356,6 +356,7 @@ class ProfileActivity: BaseActivity(), ProfileView, DatePickerDialog.OnDateSetLi
             val mail = binding.profileMailTv.text.toString()
 
             presenter.commitChanges(name, weight, height, username, mail)
+            finish()
             dialog.dismiss()
         }
         view.treamentCancel.setOnClickListener {

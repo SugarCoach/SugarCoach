@@ -78,6 +78,12 @@ class DailyDetailActivity : BaseActivity(), DailyDetailView, TimePickerDialog.On
     var daily: DailyRegister? = null
     var isFabOpen = false
 
+    var menu = false
+    var statistics = false
+    var tratamiento = false
+    var registro = false
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDailyDetailBinding.inflate(layoutInflater)
@@ -452,10 +458,28 @@ class DailyDetailActivity : BaseActivity(), DailyDetailView, TimePickerDialog.On
     }
 
     fun menuListeners(){
-        binding.home.setOnClickListener { presenter.goToActivityMain() }
-        binding.statistics.setOnClickListener { presenter.goToActivityStatistic() }
-        binding.tratamiento.setOnClickListener { presenter.goToActivityTreament() }
-        binding.register.setOnClickListener { presenter.goToActivityRegister() }
+        binding.home.setOnClickListener {
+            //presenter.goToActivityMain()
+            menu = true
+            dialogSave()
+        }
+
+        binding.statistics.setOnClickListener {
+            //presenter.goToActivityStatistic()
+            statistics = true
+            dialogSave()
+        }
+
+        binding.tratamiento.setOnClickListener {
+            //presenter.goToActivityTreament()
+            tratamiento = true
+            dialogSave()
+        }
+        binding.register.setOnClickListener {
+            //presenter.goToActivityRegister()
+            registro = true
+            dialogSave()
+        }
     }
 
     override fun getLabel(name: String): String {
@@ -482,10 +506,16 @@ class DailyDetailActivity : BaseActivity(), DailyDetailView, TimePickerDialog.On
         dialog.window?.setBackgroundDrawable(Color.TRANSPARENT.toDrawable())
         view.treamentAccept.setOnClickListener {
             val insulin = binding.dailyDetailInsul.text.toString().toFloatOrNull() ?: 100f
-            val glucose = binding.dailyDetailGlucTv.text.toString().toFloatOrNull() ?: 0f
-            val basal = binding.dailyDetailBasal.text.toString().toFloatOrNull() ?: 0f
-            val carbohydrates = binding.dailyDetailCar.text.toString().toFloatOrNull() ?: 0f
+            val glucose = binding.dailyDetailGlucTv.text.toString().toFloatOrNull() ?: 1f
+            val basal = binding.dailyDetailBasal.text.toString().toFloatOrNull() ?: 1f
+            val carbohydrates = binding.dailyDetailCar.text.toString().toFloatOrNull() ?: 1f
             presenter.updateAll(insulin, glucose, basal, carbohydrates)
+            when{
+                menu -> presenter.goToActivityMain()
+                statistics -> presenter.goToActivityStatistic()
+                tratamiento -> presenter.goToActivityTreament()
+                registro -> presenter.goToActivityRegister()
+            }
             finish()
             dialog.dismiss()
         }

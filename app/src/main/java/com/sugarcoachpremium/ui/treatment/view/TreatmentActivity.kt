@@ -50,6 +50,7 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
             override fun afterTextChanged(s: Editable?) {
                 action(s?.toString() ?: "")
             }
+
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         })
@@ -106,6 +107,10 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
     var initialMedidor = false
     var initialBomba = false
     var isFabOpen = false
+    var home = false
+    var statistics = false
+    var dailyRegisterAct = false
+    var addRegisterAct = false
     lateinit var user: User
 
     lateinit var binding: ActivityTreatmentBinding
@@ -412,171 +417,164 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
             }
         }
     }
-        //*******************************************************
+    //*******************************************************
 
-        override fun setCategories(category: List<HorarioItem>) {
-            lmanager.orientation = RecyclerView.VERTICAL
-            binding.treatmentBasalList.layoutManager = lmanager
-            binding.treatmentBasalList.adapter = adapterCategory
-            val items = ArrayList<String>()
-            for (i in 1 until 36) {
-                items.add(i.toString())
-            }
-            adapterCategory.setData(category, items)
+    override fun setCategories(category: List<HorarioItem>) {
+        lmanager.orientation = RecyclerView.VERTICAL
+        binding.treatmentBasalList.layoutManager = lmanager
+        binding.treatmentBasalList.adapter = adapterCategory
+        val items = ArrayList<String>()
+        for (i in 1 until 36) {
+            items.add(i.toString())
+        }
+        adapterCategory.setData(category, items)
+    }
+
+    override fun setCategoriesCorrectora(category: List<HorarioItem>) {
+        manager.orientation = RecyclerView.VERTICAL
+        binding.treatmentCorrectoraList.layoutManager = manager
+        binding.treatmentCorrectoraList.adapter = adapterCategoryCorrectora
+        adapterCategoryCorrectora.setData(category)
+    }
+
+    override fun setBasalHoras(horas: List<BasalHoraItem>) {
+        horamanager.orientation = RecyclerView.VERTICAL
+        binding.treatmentHoraList.layoutManager = horamanager
+        binding.treatmentHoraList.adapter = adapterBasalHoraAdapter
+        adapterBasalHoraAdapter.setData(horas)
+    }
+
+    fun setListeners() {
+        binding.treatmentObjTxt.onTextChanged {
+            presenter.saveObj(it.toFloatOrNull() ?: 0f)
+        }
+        binding.treatmentHipoTxt.onTextChanged {
+            presenter.saveHipo(it.toFloatOrNull() ?: 0f)
+        }
+        binding.treatmentHiperTxt.onTextChanged {
+            presenter.saveHyper(it.toFloatOrNull() ?: 0f)
+        }
+        binding.treatmentGluMayorUd.onTextChanged {
+            presenter.saveUnitCorrectora(it.toFloatOrNull() ?: 0f)
+        }
+        binding.treatmentGluMayor.onTextChanged {
+            presenter.saveCorrectoraGlu(it.toFloatOrNull() ?: 0f)
+        }
+        binding.treatmentCarbonoUd.onTextChanged {
+            presenter.saveUnitInsulina(it.toFloatOrNull() ?: 0f)
+        }
+        binding.treatmentCarbono.onTextChanged {
+            presenter.saveCarbono(it.toFloatOrNull() ?: 0f)
         }
 
-        override fun setCategoriesCorrectora(category: List<HorarioItem>) {
-            manager.orientation = RecyclerView.VERTICAL
-            binding.treatmentCorrectoraList.layoutManager = manager
-            binding.treatmentCorrectoraList.adapter = adapterCategoryCorrectora
-            adapterCategoryCorrectora.setData(category)
-        }
-
-        override fun setBasalHoras(horas: List<BasalHoraItem>) {
-            horamanager.orientation = RecyclerView.VERTICAL
-            binding.treatmentHoraList.layoutManager = horamanager
-            binding.treatmentHoraList.adapter = adapterBasalHoraAdapter
-            adapterBasalHoraAdapter.setData(horas)
-        }
-
-        fun setListeners() {
-            binding.treatmentObjTxt.onTextChanged {
-                presenter.saveObj(it.toFloatOrNull() ?: 0f)
-            }
-            binding.treatmentHipoTxt.onTextChanged {
-                presenter.saveHipo(it.toFloatOrNull() ?: 0f)
-            }
-            binding.treatmentHiperTxt.onTextChanged {
-                presenter.saveHyper(it.toFloatOrNull() ?: 0f)
-            }
-            binding.treatmentGluMayorUd.onTextChanged {
-                presenter.saveUnitCorrectora(it.toFloatOrNull() ?: 0f)
-            }
-            binding.treatmentGluMayor.onTextChanged {
-                presenter.saveCorrectoraGlu(it.toFloatOrNull() ?: 0f)
-            }
-            binding.treatmentCarbonoUd.onTextChanged {
-                presenter.saveUnitInsulina(it.toFloatOrNull() ?: 0f)
-            }
-            binding.treatmentCarbono.onTextChanged {
-                presenter.saveCarbono(it.toFloatOrNull() ?: 0f)
-            }
-
-            binding.treatmentMenu.setOnClickListener {
-                if (isFabOpen) {
-                    hideMenu()
-                } else {
-                    showMenu()
-                }
-            }
-
-            binding.treatmentShared.setOnClickListener {
+        binding.treatmentMenu.setOnClickListener {
+            if (isFabOpen) {
                 hideMenu()
-                showProgress()
-                CoroutineScope(Dispatchers.IO).launch {
-                    presenter.makePdf(baseContext)
-                }
-                //presenter.getScreenShot(this, binding.treatmentLl)
+            } else {
+                showMenu()
             }
-
-            binding.treatmentEdit.setOnClickListener {
-                presenter.commitChanges()
-            }
-
-            binding.treatmentBomb.setOnCheckedChangeListener { buttonView, isChecked ->
-                selectBomb(isChecked)
-            }
-
-            binding.treatmentBasalTitle.setOnClickListener { v ->
-                createDialogInfo(getString(R.string.info_insuline))
-            }
-
-            binding.treatmentRanges.setOnClickListener { v ->
-                createDialogInfo(getString(R.string.info_objective))
-            }
-
-            binding.treatmentBasalUnits.setOnClickListener { v ->
-                createDialogInfo(getString(R.string.info_insuline_times))
-            }
-
-            binding.treatmentGluMayorUdTitle.setOnClickListener { v ->
-                createDialogInfo(getString(R.string.info_insuline_correctora_mayor))
-            }
-
-            binding.treatmentCorrectoraTitle.setOnClickListener { v ->
-                createDialogInfo(getString(R.string.info_insuline_correctora))
-            }
-
-            binding.treatmentCorrectoraListTitle.setOnClickListener { v ->
-                createDialogInfo(getString(R.string.info_insuline_horary))
-            }
-
-            binding.treatmentCarbonoTitle.setOnClickListener { v ->
-                createDialogInfo(getString(R.string.info_carbono))
-            }
-
-            binding.treatmentRecordatorioTitle.setOnClickListener { v ->
-                createDialogInfo(getString(R.string.info_recordatorio))
-            }
-
         }
 
-        fun hideMenu() {
-            isFabOpen = false
-            binding.treatmentMenu.setImageResource(R.drawable.ic_hand)
-            binding.treatmentEdit.visibility = View.GONE
-            binding.treatmentShared.visibility = View.GONE
-        }
-
-        fun showMenu() {
-            isFabOpen = true
-            binding.treatmentMenu.setImageResource(R.drawable.cancel)
-            binding.treatmentEdit.visibility = View.VISIBLE
-            binding.treatmentShared.visibility = View.VISIBLE
-        }
-
-        override fun sharedScreenShot(uri: Uri) {
-            val shareIntent: Intent = Intent().apply {
-                action = Intent.ACTION_SEND
-                putExtra(Intent.EXTRA_STREAM, uri)
-                type = "image/jpeg"
+        binding.treatmentShared.setOnClickListener {
+            hideMenu()
+            showProgress()
+            CoroutineScope(Dispatchers.IO).launch {
+                presenter.makePdf(baseContext)
             }
-            startActivity(
-                Intent.createChooser(
-                    shareIntent,
-                    resources.getText(R.string.daily_detail_share)
-                )
+            //presenter.getScreenShot(this, binding.treatmentLl)
+        }
+
+        binding.treatmentEdit.setOnClickListener {
+            presenter.commitChanges()
+        }
+
+        binding.treatmentBomb.setOnCheckedChangeListener { buttonView, isChecked ->
+            selectBomb(isChecked)
+        }
+
+        binding.treatmentBasalTitle.setOnClickListener { v ->
+            createDialogInfo(getString(R.string.info_insuline))
+        }
+
+        binding.treatmentRanges.setOnClickListener { v ->
+            createDialogInfo(getString(R.string.info_objective))
+        }
+
+        binding.treatmentBasalUnits.setOnClickListener { v ->
+            createDialogInfo(getString(R.string.info_insuline_times))
+        }
+
+        binding.treatmentGluMayorUdTitle.setOnClickListener { v ->
+            createDialogInfo(getString(R.string.info_insuline_correctora_mayor))
+        }
+
+        binding.treatmentCorrectoraTitle.setOnClickListener { v ->
+            createDialogInfo(getString(R.string.info_insuline_correctora))
+        }
+
+        binding.treatmentCorrectoraListTitle.setOnClickListener { v ->
+            createDialogInfo(getString(R.string.info_insuline_horary))
+        }
+
+        binding.treatmentCarbonoTitle.setOnClickListener { v ->
+            createDialogInfo(getString(R.string.info_carbono))
+        }
+
+        binding.treatmentRecordatorioTitle.setOnClickListener { v ->
+            createDialogInfo(getString(R.string.info_recordatorio))
+        }
+
+    }
+
+    fun hideMenu() {
+        isFabOpen = false
+        binding.treatmentMenu.setImageResource(R.drawable.ic_hand)
+        binding.treatmentEdit.visibility = View.GONE
+        binding.treatmentShared.visibility = View.GONE
+    }
+
+    fun showMenu() {
+        isFabOpen = true
+        binding.treatmentMenu.setImageResource(R.drawable.cancel)
+        binding.treatmentEdit.visibility = View.VISIBLE
+        binding.treatmentShared.visibility = View.VISIBLE
+    }
+
+    override fun sharedScreenShot(uri: Uri) {
+        val shareIntent: Intent = Intent().apply {
+            action = Intent.ACTION_SEND
+            putExtra(Intent.EXTRA_STREAM, uri)
+            type = "image/jpeg"
+        }
+        startActivity(
+            Intent.createChooser(
+                shareIntent,
+                resources.getText(R.string.daily_detail_share)
             )
-        }
+        )
+    }
 
-        fun menuListeners() {
-            binding.home.setOnClickListener { presenter.goToActivityMain() }
-            binding.statistics.setOnClickListener { presenter.goToActivityStatistic() }
-            binding.dailyRegister.setOnClickListener { presenter.goToActivityDaily() }
-            binding.addRegister.setOnClickListener { presenter.goToActivityRegister() }
+    private fun createDialogInfo(info: String) {
+        val view = DialogInfoBinding.inflate(layoutInflater)
+        val builder = AlertDialog.Builder(this)
+        builder.setCancelable(false)
+        builder.setView(view.root)
+        val dialog = builder.create()
+        dialog.window?.setBackgroundDrawable(Color.TRANSPARENT.toDrawable())
+        view.infoSubtitle.text = info
+        view.infoAccept.setOnClickListener {
+            dialog.dismiss()
         }
+        dialog.show()
+    }
 
-        private fun createDialogInfo(info: String) {
-            val view = DialogInfoBinding.inflate(layoutInflater)
-            val builder = AlertDialog.Builder(this)
-            builder.setCancelable(false)
-            builder.setView(view.root)
-            val dialog = builder.create()
-            dialog.window?.setBackgroundDrawable(Color.TRANSPARENT.toDrawable())
-            view.infoSubtitle.text = info
-            view.infoAccept.setOnClickListener {
-                dialog.dismiss()
-            }
-            dialog.show()
-        }
+    override fun openDailyActivity() {
+        val intent = Intent(this, DailyActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
 
-        override fun openDailyActivity() {
-            val intent = Intent(this, DailyActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
-
-        //ORIGINAL
+    //ORIGINAL
 //     override fun openTableActivity(dailyRegisters: List<DailyRegisterResponse> ){
 //         /*val intent = Intent(this, TableActivity::class.java)
 //         intent.putExtra("DailyRegisters", dailyRegisters.toArray())
@@ -584,74 +582,105 @@ class TreatmentActivity : BaseActivity(), TreatmentView {
 //         finish()*/
 //     }
 
-        //REEMPLAZO 25/08/2025
+    //REEMPLAZO 25/08/2025
 
-        override fun openTableActivity(dailyRegisters: List<DailyRegisterResponse>) {
-            val intent = Intent(this, TableActivity::class.java)
-            // Pasa la lista como un ArrayList (que es Serializable)
-            intent.putExtra("DailyRegisters", ArrayList(dailyRegisters))
-            startActivity(intent)
-            finish()
+    override fun openTableActivity(dailyRegisters: List<DailyRegisterResponse>) {
+        val intent = Intent(this, TableActivity::class.java)
+        // Pasa la lista como un ArrayList (que es Serializable)
+        intent.putExtra("DailyRegisters", ArrayList(dailyRegisters))
+        startActivity(intent)
+        finish()
+    }
+
+    override fun openStatisticActivity() {
+        val intent = Intent(this, StatisticsActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
+    override fun openRegisterActivity() {
+        val intent = Intent(this, RegisterActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
+
+    override fun openMainActivity() {
+        val intent = Intent(this, MainActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(intent)
+        finish()
+    }
+
+    override fun getLabel(name: String): String {
+        return getString(resIdByName(name, "string"))
+    }
+
+    fun selectBomb(show: Boolean) {
+        if (show) {
+            binding.treatmentBombNo.visibility = View.GONE
+            binding.treatmentHorario.visibility = View.GONE
+            binding.treatmentBombSi.visibility = View.VISIBLE
+        } else {
+            binding.treatmentBombNo.visibility = View.VISIBLE
+            binding.treatmentHorario.visibility = View.VISIBLE
+            binding.treatmentBombSi.visibility = View.GONE
         }
+        presenter.saveBomb(show)
+    }
 
-        override fun openStatisticActivity() {
-            val intent = Intent(this, StatisticsActivity::class.java)
-            startActivity(intent)
-            finish()
+    fun mirrorAccount() {
+        binding.addRegister.isEnabled = true
+        binding.addRegisterImage.setColorFilter(
+            ContextCompat.getColor(this, R.color.white),
+            PorterDuff.Mode.MULTIPLY
+        )
+    }
+
+
+    fun menuListeners() {
+        binding.home.setOnClickListener {
+            home = true
+            dialogSave()
         }
-        override fun openRegisterActivity() {
-            val intent = Intent(this, RegisterActivity::class.java)
-            startActivity(intent)
-            finish()
+        binding.statistics.setOnClickListener {
+            statistics = true
+            dialogSave()
         }
-
-
-        override fun openMainActivity() {
-            val intent = Intent(this, MainActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-            startActivity(intent)
-            finish()
+        binding.dailyRegister.setOnClickListener {
+            dailyRegisterAct = true
+            dialogSave()
         }
-
-        override fun getLabel(name: String): String {
-            return getString(resIdByName(name, "string"))
-        }
-
-        fun selectBomb(show: Boolean) {
-            if (show) {
-                binding.treatmentBombNo.visibility = View.GONE
-                binding.treatmentHorario.visibility = View.GONE
-                binding.treatmentBombSi.visibility = View.VISIBLE
-            } else {
-                binding.treatmentBombNo.visibility = View.VISIBLE
-                binding.treatmentHorario.visibility = View.VISIBLE
-                binding.treatmentBombSi.visibility = View.GONE
-            }
-            presenter.saveBomb(show)
-        }
-
-        fun mirrorAccount() {
-            binding.addRegister.isEnabled = true
-            binding.addRegisterImage.setColorFilter(
-                ContextCompat.getColor(this, R.color.white),
-                PorterDuff.Mode.MULTIPLY
-            )
-        }
-
-        fun dialogSave() {
-            val view = DialogTreatmentSaveBinding.inflate(layoutInflater)
-            val builder = AlertDialog.Builder(this)
-            builder.setView(view.root)
-            dialog = builder.create()
-            dialog.window?.setBackgroundDrawable(Color.TRANSPARENT.toDrawable())
-            view.treamentAccept.setOnClickListener {
-                presenter.commitChanges()
-                dialog.dismiss()
-            }
-            view.treamentCancel.setOnClickListener {
-                finish()
-                dialog.dismiss()
-            }
-            dialog.show()
+        binding.addRegister.setOnClickListener {
+            addRegisterAct = true
+            dialogSave()
         }
     }
+
+
+
+    fun dialogSave() {
+        val view = DialogTreatmentSaveBinding.inflate(layoutInflater)
+        val builder = AlertDialog.Builder(this)
+        builder.setView(view.root)
+        dialog = builder.create()
+        dialog.window?.setBackgroundDrawable(Color.TRANSPARENT.toDrawable())
+        view.treamentAccept.setOnClickListener {
+            presenter.commitChanges()
+
+            when {
+                home -> presenter.goToActivityMain()
+                statistics -> presenter.goToActivityStatistic()
+                dailyRegisterAct -> presenter.goToActivityDaily()
+                addRegisterAct -> presenter.goToActivityRegister()
+            }
+
+            dialog.dismiss()
+        }
+        view.treamentCancel.setOnClickListener {
+            finish()
+            dialog.dismiss()
+        }
+        dialog.show()
+    }
+}
