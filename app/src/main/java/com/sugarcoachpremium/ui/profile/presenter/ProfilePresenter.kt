@@ -2,18 +2,23 @@ package com.sugarcoachpremium.ui.profile.presenter
 
 import android.Manifest
 import android.app.Activity
+import android.content.ContentValues
 import android.content.Context
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
-import java.util.Calendar // Aseguramos que esta sea la importación para Calendar
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
+import android.os.Build
 import android.provider.MediaStore
 import android.util.Log
 import android.view.View
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.graphics.createBitmap
+import androidx.core.graphics.toColorInt
+import androidx.core.net.toUri
 import androidx.fragment.app.FragmentManager
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
@@ -28,176 +33,177 @@ import com.wdullaer.materialdatetimepicker.date.DatePickerDialog
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.cancelChildren
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.joda.time.LocalDate
 import org.joda.time.LocalDateTime
 import java.io.ByteArrayOutputStream
 import java.lang.Exception
+import java.util.Calendar
 import javax.inject.Inject
-import kotlin.reflect.full.memberProperties
+import kotlin.math.abs
 
 class ProfilePresenter <V : ProfileView, I : ProfileInteractorImp> @Inject internal constructor(interactor: I, schedulerProvider: SchedulerProvider, disposable: CompositeDisposable) : BasePresenter<V, I>(interactor = interactor, schedulerProvider = schedulerProvider, compositeDisposable = disposable),
     ProfilePresenterImp<V, I> {
 
     lateinit var user: User
     val permissionRequest = 1
+    private val presenterScope = CoroutineScope(Dispatchers.Main.immediate)
 
     override fun onAttach(view: V?) {
         super.onAttach(view)
         getAvatars()
         getMedition()
     }
+
+    override fun onDetach() {
+        super.onDetach()
+        presenterScope.coroutineContext.cancelChildren()
+    }
+
     override fun updateSex(name: String?) {
-        user.sex = name!!.toString()
-        getView()?.setSex(name)
+        val v = getView() ?: return
+        name ?: return
+        user.sex = name
+        v.setSex(name)
     }
 
     override fun updateAvatar(position: Int, avatar: ProfileItem) {
+        val v = getView() ?: return
         user.avatar = avatar.image
-        getView()?.setAvatar(position)
+        v.setAvatar(position)
     }
 
     override fun setBirthday(year: Int, monthOfYear: Int, dayOfMonth: Int) {
-        val date = LocalDate(year, monthOfYear, dayOfMonth)
+        val v = getView() ?: return
+        val date = LocalDate(year, monthOfYear + 1, dayOfMonth)
         user.birthday = date.toDate()
-        getView()?.setBirthday(date.toDate())
+        v.setBirthday(date.toDate())
     }
 
     override fun setDebut(year: Int, monthOfYear: Int, dayOfMonth: Int) {
-        val date = LocalDate(year, monthOfYear, dayOfMonth)
+        val v = getView() ?: return
+        val date = LocalDate(year, monthOfYear + 1, dayOfMonth)
         user.debut = date.toDate()
-        getView()?.setDebut(date.toDate())
+        v.setDebut(date.toDate())
     }
 
     private fun getUser() = interactor?.let {
         compositeDisposable.add(it.getUser()
             .compose(schedulerProvider.ioToMainSingleScheduler())
-            .subscribe({ userData ->
-                Log.i("OnGetUser", "La data fue $userData")
-                getView()?.let {
-                    user = userData
-                    getView()?.getUserData(userData)
-                    userData.birthday?.let {
-                        getView()?.setBirthday(it)
-                    }
-                    userData.debut?.let {
-                        getView()?.setDebut(it)
-                    }
+            .subscribe({
+                val v = getView() ?: return@subscribe
+                Log.i("OnGetUser", "La data fue $it") // Use explicit 'it'
+                user = it
+                v.getUserData(it)
+                it.birthday?.let { birthdayDate ->
+                    v.setBirthday(birthdayDate)
                 }
-            }, { err -> Log.i("OnGetUser", "No se pudo encontrar el usuario") }))
+                it.debut?.let { debutDate ->
+                    v.setDebut(debutDate)
+                }
+            }, { err -> Log.i("OnGetUser", "No se pudo encontrar el usuario: $err") }))
     }
 
-    fun getAvatars(){
-        var items = ArrayList<ProfileItem>();
-        for (i in 1 until 12){
+    fun getAvatars() {
+        val v = getView() ?: return
+        val items = ArrayList<ProfileItem>()
+        for (i in 1..12) {
             val item = ProfileItem.Builder()
                 .id(i)
-                .image("avatar_"+i)
+                .image("avatar_$i")
                 .selected(false)
                 .build()
             items.add(item)
         }
-        getView()?.setAvatars(items)
+        v.setAvatars(items)
         getUser()
     }
-    override fun updateAll(name: String?,weight: Float?,height: Float?,username: String?,mail: String?) {
 
-        Log.i("UpdateAll", "Datos recibidos - name: $name, weight: $weight, height: $height, username: $username, mail: $mail")
+    override fun updateAll(name: String?, weight: Float?, height: Float?, username: String?, mail: String?) {
+        val v = getView() ?: return
+        v.showProgress()
 
-        getView()?.showProgress()
+        if (!this::user.isInitialized) {
+            Log.e("ProfilePresenter", "User no ha sido inicializado en updateAll.")
+            v.hideProgress(); v.showErrorToast("Error: Datos de usuario no disponibles."); return
+        }
 
-        if(name != null){
-            println(name)
-            user.name = name.toString()
-        }
-        if (weight != null) {
-            println(weight)
-            user.weight = weight.toFloat()
-        }
-        if (height != null) {
-            println(height)
-            user.height = height.toFloat()
-        }
-        if(username != null){
-            println(username)
-            user.username = username.toString()
-        }
-        if(mail != null){
-            println(mail)
-            user.email = mail.toString()
-        }
-        val points = cantParametersChanged(name,weight,height,username,mail)
-        user.points += points
+        val points = changedFieldsCount(user, name, weight, height, username, mail)
+        user.points = (user.points ?: 0) + points
 
-        // Validación de fecha de debut vs nacimiento ANTES de guardar
+        name?.let { user.name = it }
+        weight?.let { user.weight = it }
+        height?.let { user.height = it }
+        username?.let { user.username = it }
+        mail?.let { user.email = it }
+
         if (user.birthday != null && user.debut != null && user.debut!!.before(user.birthday!!)) {
-            getView()?.showErrorToast("La fecha de debut no puede ser anterior a la de nacimiento.")
-            getView()?.hideProgress()
-            return
+            v.hideProgress(); v.showErrorToast("La fecha de debut no puede ser anterior a la de nacimiento."); return
         }
 
-        interactor?.let {
-            compositeDisposable.add(it.updateUser(user)
+        val inter = interactor ?: run { v.hideProgress(); v.showErrorToast("Operación cancelada"); return }
+        compositeDisposable.add(
+            inter.updateUser(user)
                 .compose(schedulerProvider.ioToMainObservableScheduler())
                 .subscribe({
-                    CoroutineScope(Dispatchers.IO).launch {
-                        interactor!!.getDataId().fold({
-                            interactor!!.updateApiUser(user, it).fold({
-                                withContext(Dispatchers.Main){
+                    presenterScope.launch {
+                        try {
+                            val dataIdRes = withContext(Dispatchers.IO) { inter.getDataId() }
+                            dataIdRes.fold(
+                                onSuccess = { id ->
+                                    val upRes = withContext(Dispatchers.IO) { inter.updateApiUser(user, id) }
+                                    upRes.fold(
+                                        onSuccess = {
+                                            getView()?.hideProgress()
+                                            getView()?.createCongratsDialog(points, user.points ?: 0)
+                                        },
+                                        onFailure = {errorUpdateApi ->
+                                            Log.e("ProfilePresenter", "Error en updateApiUser: ", errorUpdateApi)
+                                            getView()?.hideProgress()
+                                            getView()?.showErrorToast("Error al actualizar en servidor. Verifique su conexión Wifi")
+                                        }
+                                    )
+                                },
+                                onFailure = {errorGetDataId ->
+                                    Log.e("ProfilePresenter", "Error en getDataId: ", errorGetDataId)
                                     getView()?.hideProgress()
-                                    getView()?.createCongratsDialog(points, user.points)
+                                    getView()?.showErrorToast("Error al obtener ID de datos. Verifique su conexión Wifi")
                                 }
-                            },{
-                                withContext(Dispatchers.Main){
-                                    getView()?.hideProgress()
-                                    getView()?.showErrorToast("Verifique su conexión Wifi")
-                                }
-                            })
-                        },{
-                            withContext(Dispatchers.Main){
-                                getView()?.hideProgress()
-                                getView()?.showErrorToast("Verifique su conexión Wifi")
-                            }
-                        })
+                            )
+                        } catch (e: Exception) {
+                            Log.e("ProfilePresenter", "Excepción en corrutina de updateAll: ", e)
+                            getView()?.hideProgress()
+                            getView()?.showErrorToast("Ocurrió un error inesperado.")
+                        }
                     }
-                }, { throwable ->
-                    showException(throwable)
+                }, { t ->
+                    getView()?.hideProgress()
+                    getView()?.showErrorToast(t.localizedMessage ?: "Error al actualizar localmente.")
                 })
-            )
-        }
+        )
     }
 
-    private fun cantParametersChanged(name: String?,weight: Float?,height: Float?,username: String?,mail: String?): Int{
-        val noNull = mutableListOf<String>()
-        val listOfProperties = mutableListOf("username","email","sex", "name", "avatar", "weight",
-            "birthday", "debut", "number", "height")
-        val listOfValues = mutableListOf<String?>(user.name,user.weight.toString(),user.height.toString(),user.username,user.email,
-            user.debut.toString(), user.avatar.toString(), user.birthday.toString(), user.sex.toString())
-
-        val properties = User::class.memberProperties
-
-        for (property in properties) {
-            val valor = property.get(user)
-
-            if ((valor != "" && valor != null) && (property.name in listOfProperties) && (valor.toString() !in listOfValues)) {
-                Log.i("OnProfilePresenter", "cantParameterChanged: El valor es: $valor, ${property.name}")
-                noNull.add(property.name)
-            }
+    private fun neq(a: Float?, b: Float?, eps: Float = 1e-3f) =
+        when {
+            a == null && b == null -> false
+            a == null || b == null -> true
+            else -> abs(a - b) > eps
         }
-        var points = 0
-        var contr = true
-        for(v in 1 until noNull.size){
-            if(contr){
-                points += 100
-                contr = false
-            }
-            points += 50
-        }
-        return points
+
+    private fun changedFieldsCount(u: User, name: String?, w: Float?, h: Float?, username: String?, mail: String?): Int {
+        var c = 0
+        if (name != null && name != u.name) c++
+        if (w != null && neq(w, u.weight)) c++
+        if (h != null && neq(h, u.height)) c++
+        if (username != null && username != u.username) c++
+        if (mail != null && mail != u.email) c++
+        return if (c == 0) 0 else 100 + (c - 1) * 50
     }
 
     override fun logout() {
+        getView() ?: return
         val providerId = Firebase.auth.currentUser?.providerData
 
         Log.i("CurrentUser", "El usuario actual es: ${Firebase.auth.currentUser}")
@@ -205,157 +211,193 @@ class ProfilePresenter <V : ProfileView, I : ProfileInteractorImp> @Inject inter
         Firebase.auth.signOut()
         com.facebook.login.LoginManager.getInstance().logOut()
         interactor?.perfomLogout()
-        getView()?.openLoginActivity()
-        interactor?.let {
-            compositeDisposable.add(it.deleteUser()
-                .compose(schedulerProvider.ioToMainObservableScheduler())
-                .subscribe({ result ->
-                    interactor?.perfomLogout()
-                    getView()?.openLoginActivity()
-                }, { err -> println(err) })
+
+        interactor?.let { currentInteractor -> 
+            compositeDisposable.add(
+                currentInteractor.deleteUser()
+                    .compose(schedulerProvider.ioToMainObservableScheduler()) 
+                    .flatMap { currentInteractor.deleteTreament() } 
+                    .subscribe(
+                        {
+                            Log.i("ProfilePresenter", "Logout cleanup successful, opening login activity.")
+                            getView()?.openLoginActivity()
+                         },
+                        { e ->
+                            Log.e("ProfilePresenter", "Error en logout cleanup", e)
+                            getView()?.showErrorToast("Error durante la limpieza de datos.")
+                            getView()?.openLoginActivity() 
+                        }
+                    )
             )
-        }
-        interactor?.let {
-            compositeDisposable.add(it.deleteUser()
-                .compose(schedulerProvider.ioToMainObservableScheduler())
-                .flatMap { interactor?.deleteTreament() }
-                .subscribe({ result ->
-                    interactor?.perfomLogout()
-                    getView()?.openLoginActivity()
-                }, { err -> println(err) }))
-        }
+        } ?: getView()?.openLoginActivity()
     }
-    fun deleteRegisters() {
+
+    /*fun deleteRegisters() {
+        val v = getView() ?: return
         interactor?.let {
             compositeDisposable.add(it.deleteAll()
                 .flatMap { interactor?.deleteTreament() }
                 .compose(schedulerProvider.ioToMainObservableScheduler())
-                .subscribe({ result ->
+                .subscribe({
                     interactor?.perfomLogout()
-                    getView()?.openLoginActivity()
-                }, { err -> println(err) }))}
+                    v.openLoginActivity()
+                }, { err -> Log.e("ProfilePresenter", "Error en deleteAll/deleteTreatment", err) }))
+        }
+    }*/
 
-    }
-
-    private fun getMedition(){
-        var currentDate = LocalDateTime()
-        getView()?.setDateMedition(currentDate.toDate())
+    private fun getMedition() {
+        val v = getView() ?: return
+        val currentDate = LocalDateTime()
+        v.setDateMedition(currentDate.toDate())
     }
 
     override fun showDateDialog(
         fragmentManager: FragmentManager,
         dateSetListener: DatePickerDialog.OnDateSetListener,
         tag: String,
-        date: LocalDate // Esta es la fecha inicial para el diálogo
+        date: LocalDate
     ) {
+        if (getView() == null) return
         val dpd = DatePickerDialog.newInstance(
             dateSetListener,
             date.year,
-            date.monthOfYear - 1, // joda-time month es 1-12, DatePickerDialog espera 0-11
+            date.monthOfYear - 1,
             date.dayOfMonth
         )
-        dpd.setCancelColor(Color.parseColor("#000000"))
-        dpd.setOkColor(Color.parseColor("#000000"))
+        dpd.setCancelColor("#000000".toColorInt())
+        dpd.setOkColor("#000000".toColorInt())
 
-        // --- RESTRICCIÓN GENERAL: NO FECHAS FUTURAS (aplica a ambos diálogos) ---
-        val todayCalendar = Calendar.getInstance() // Esto ahora será java.util.Calendar
+        val todayCalendar = Calendar.getInstance()
         dpd.maxDate = todayCalendar
 
-        // --- RESTRICCIÓN ESPECÍFICA PARA LA FECHA DE DEBUT ---
         if (tag == "debut") {
             if (this::user.isInitialized && user.birthday != null) {
-                val birthDateCalendar = Calendar.getInstance() // Esto ahora será java.util.Calendar
+                val birthDateCalendar = Calendar.getInstance()
                 birthDateCalendar.time = user.birthday!!
                 dpd.minDate = birthDateCalendar
             }
         }
         dpd.show(fragmentManager, tag)
     }
+
     override fun getScreenShot(context: Activity, view: View) {
-        if (checkAndRequestPermissions(context)){
+        val v = getView() ?: return
+        if (checkAndRequestPermissions(context)) {
             val bitmap = getScreenShotImage(view)
             val uri = getImageUri(context, bitmap)
-            getView()?.sharedScreenShot(uri)
+            if (uri == Uri.EMPTY) {
+                v.showErrorToast("No se pudo guardar la captura")
+                return
+            }
+            v.sharedScreenShot(uri)
         }
     }
-    private fun getScreenShotImage(view: View): Bitmap {
-        val returnedBitmap = Bitmap.createBitmap(view.width, view.height, Bitmap.Config.ARGB_8888)
-        val canvas = Canvas(returnedBitmap)
-        val bgDrawable = view.background
-        if (bgDrawable != null) bgDrawable.draw(canvas)
-        else canvas.drawColor(Color.WHITE)
-        view.draw(canvas)
-        return returnedBitmap
-    }
-    fun checkAndRequestPermissions(context: Activity): Boolean {
-        val readpermission = ContextCompat.checkSelfPermission(context, Manifest.permission.READ_EXTERNAL_STORAGE)
-        val writepermission = ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE)
 
+    private fun getScreenShotImage(view: View): Bitmap {
+        val w = view.width.takeIf { it > 0 } ?: view.measuredWidth
+        val h = view.height.takeIf { it > 0 } ?: view.measuredHeight
+        require(w > 0 && h > 0) { "View width and height must be > 0. Got $w x $h" }
+
+        val bmp = createBitmap(w, h, Bitmap.Config.ARGB_8888)
+        val canvas = Canvas(bmp)
+        (view.background ?: ColorDrawable(Color.WHITE)).draw(canvas)
+        view.draw(canvas)
+        return bmp
+    }
+
+
+    fun checkAndRequestPermissions(context: Activity): Boolean {
+        val requiredPermissions = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            listOf(Manifest.permission.READ_MEDIA_IMAGES)
+        } else {
+             listOf(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        }
 
         val listPermissionsNeeded = ArrayList<String>()
+        for (permission in requiredPermissions) {
+            if (ContextCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
+                listPermissionsNeeded.add(permission)
+            }
+        }
 
-        if (readpermission != PackageManager.PERMISSION_GRANTED) {
-            listPermissionsNeeded.add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-        }
-        if (writepermission != PackageManager.PERMISSION_GRANTED) {
-            listPermissionsNeeded.add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-        }
-        if (!listPermissionsNeeded.isEmpty()) {
+        if (listPermissionsNeeded.isNotEmpty()) {
             ActivityCompat.requestPermissions(context, listPermissionsNeeded.toTypedArray(), permissionRequest)
             return false
         }
         return true
     }
 
-    private fun getImageUri(context: Context, inImage: Bitmap): Uri {
-        val bytes = ByteArrayOutputStream()
-        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
-        val path = MediaStore.Images.Media.insertImage(context.getContentResolver(), inImage, getRandomString(10), null)
-        return Uri.parse(path)
+    private fun getImageUri(context: Context, bmp: Bitmap): Uri {
+        val displayName = "${getRandomString(10)}.jpg"
+        val mimeType = "image/jpeg"
+
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) { // API 29
+            val contentValues = ContentValues().apply {
+                put(MediaStore.Images.Media.DISPLAY_NAME, displayName)
+                put(MediaStore.Images.Media.MIME_TYPE, mimeType)
+                put(MediaStore.Images.Media.RELATIVE_PATH, "Pictures/SugarCoach")
+                put(MediaStore.Images.Media.IS_PENDING, 1)
+            }
+            val resolver = context.contentResolver
+            var uri: Uri? = null
+            try {
+                uri = resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues)
+                uri?.let {
+                    resolver.openOutputStream(it)?.use { out ->
+                        bmp.compress(Bitmap.CompressFormat.JPEG, 95, out)
+                    }
+                    contentValues.clear()
+                    contentValues.put(MediaStore.Images.Media.IS_PENDING, 0)
+                    resolver.update(it, contentValues, null, null)
+                }
+                uri ?: Uri.EMPTY
+            } catch (e: Exception) {
+                Log.e("ProfilePresenter", "Error saving image with ContentResolver: $e")
+                uri?.let { resolver.delete(it, null, null) } 
+                Uri.EMPTY
+            }
+        } else {
+            @Suppress("DEPRECATION")
+            val path: String? = MediaStore.Images.Media.insertImage(context.contentResolver, bmp, displayName, null)
+            path?.toUri() ?: run {
+                 Log.e("ProfilePresenter", "MediaStore.Images.Media.insertImage returned null (legacy path)")
+                 Uri.EMPTY
+            }
+        }
     }
-    private fun getRandomString(length: Int) : String {
+
+    private fun getRandomString(length: Int): String {
         val allowedChars = "ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz1234567890"
         return (1..length)
             .map { allowedChars.random() }
             .joinToString("")
     }
+
     override fun onRequestPermissionsResult(context: Activity, requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+        val v = getView() ?: return
         when (requestCode) {
             permissionRequest -> {
-
-                val perms = HashMap<String, Int>()
-                if (grantResults.size > 0) {
-                    for (i in permissions.indices) {
-                        perms[permissions[i]] = grantResults[i]
+                if (grantResults.isNotEmpty()) {
+                    var allGranted = true
+                    for (i in grantResults.indices) {
+                        if (grantResults[i] != PackageManager.PERMISSION_GRANTED) {
+                            allGranted = false
+                            Log.w("ProfilePresenter", "Permiso denegado: ${permissions[i]}")
+                        }
                     }
-                    val listPermissionsNeeded = java.util.ArrayList<Int>()
-                    for (i in perms.keys)
-                    { if (perms[i] == PackageManager.PERMISSION_GRANTED) {
-                        listPermissionsNeeded.add(perms[i]!!)
+                    if (!allGranted) {
+                        v.explain(R.string.daily_detail_permission)
                     }
-                    }
-                    if (listPermissionsNeeded.size != permissions.size) {
-                        getView()?.explain(R.string.daily_detail_permission)
-                    }
+                } else {
+                    Log.w("ProfilePresenter", "grantResults vacío, el usuario pudo cancelar.")
+                    v.explain(R.string.daily_detail_permission)
                 }
             }
         }
     }
 
-    override fun commitChanges(name: String?,weight: Float?,height: Float?,username: String?,mail: String?) {
-        getView()?.showProgress()
-        interactor?.let {
-            CoroutineScope(Dispatchers.IO).launch {
-                try {
-                    updateAll(name, weight, height, username, mail)
-                } catch (e: Exception) {
-                    Log.e("OnCommitChanges", "Excepción: $e")
-                    withContext(Dispatchers.Main) {
-                        getView()?.hideProgress()
-                        getView()?.showErrorToast()
-                    }
-                }
-            }
-        }
+    override fun commitChanges(name: String?, weight: Float?, height: Float?, username: String?, mail: String?) {
+        getView() ?: return 
+        updateAll(name, weight, height, username, mail)
     }
 }
